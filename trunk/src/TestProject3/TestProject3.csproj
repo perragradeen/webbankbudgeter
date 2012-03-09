@@ -51,9 +51,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Utilities">
-      <HintPath>..\..\Utilities\Utilities\bin\Debug\Utilities.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -72,6 +69,10 @@
     <ProjectReference Include="..\Budgetterarn\Budgetterarn.csproj">
       <Project>{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}</Project>
       <Name>Budgetterarn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities\Utilities.csproj">
+      <Project>{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

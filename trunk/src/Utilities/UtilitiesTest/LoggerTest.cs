@@ -92,7 +92,7 @@ namespace UtilitiesTest
         {
             string excelBookPath = @"C:\1.xls";
             string sheetName = "Sheet1";
-            Logger.OperationToPerformOnBook operation = null;
+            //Logger.OperationToPerformOnBook operation = null;
             //var rowToWrite = new object[] { "Testar", "kl:", DateTime.Now };//.ToString()
             bool overWrite = true;
 

@@ -1024,8 +1024,8 @@ namespace Budgetterarn
                 var passElem = baselogginElem.NextSibling.NextSibling.FirstChild;// System.Web.UI.HtmlControls.HtmlInputControl;
 
                 //Set attrib
-                userNameElem.SetAttribute("value", "7906072439");
-                passElem.SetAttribute("value", "2222");
+                userNameElem.SetAttribute("value", "xxx");
+                passElem.SetAttribute("value", "xxxx");
 
 
                 //(webBrowser1.FindForm() as HtmlElement)

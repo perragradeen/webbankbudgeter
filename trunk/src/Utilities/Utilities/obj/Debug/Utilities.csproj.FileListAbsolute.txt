@@ -1,0 +1,9 @@
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\bin\Debug\Utilities.dll
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\bin\Debug\Utilities.pdb
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\bin\Debug\office.dll
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\bin\Debug\Microsoft.Office.Interop.Excel.xml
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\bin\Debug\office.xml
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\obj\Debug\ResolveAssemblyReference.cache
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\obj\Debug\Utilities.dll
+C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\Utilities\obj\Debug\Utilities.pdb

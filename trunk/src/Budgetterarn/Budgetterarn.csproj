@@ -169,7 +169,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Utilities\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\Utilities\Utilities\Utilities.csproj">
       <Project>{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}</Project>
       <Name>Utilities</Name>
     </ProjectReference>

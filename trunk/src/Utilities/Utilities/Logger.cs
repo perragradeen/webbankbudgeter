@@ -674,7 +674,7 @@ namespace Utilities
                         continue;
 
                     //Strängar längre än ca912 kan inte skrivas till en cell, uten ger ett exception med lite info i. Så längder över 900 tecken klipps bort.
-                    const int maxCellLength = 900;
+                    //const int maxCellLength = 900;
                     //foreach (var arg in args[0] as object[])
                     //{
                     //    if (arg.ToString().Length > maxCellLength)
