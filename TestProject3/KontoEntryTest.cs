@@ -70,7 +70,7 @@ namespace TestProject3
         [DeploymentItem("Budgetterarn.exe")]
         public void RowThatExistsTest()
         {
-            var target = new Budgeter.Winforms.BudgeterForm(); // TODO: Initialize to an appropriate value
+            var target = new BudgeterForm(); // TODO: Initialize to an appropriate value
             string[] inArray = new string[] { "test1", "223" };
             int columnNumber = 1; // TODO: Initialize to an appropriate value
             string expected = "223"; // TODO: Initialize to an appropriate value

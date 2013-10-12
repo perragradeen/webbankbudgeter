@@ -71,7 +71,7 @@ namespace TestProject3
         [DeploymentItem("Budgetterarn.exe")]
         public void AutoLoadEtceTest()
         {
-            var target = new Budgeter.Winforms.BudgeterForm(); // TODO: Initialize to an appropriate value
+            var target = new BudgeterForm(); // TODO: Initialize to an appropriate value
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.AutoLoadEtce();
