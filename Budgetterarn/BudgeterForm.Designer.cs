@@ -120,35 +120,35 @@ namespace Budgeter.Winforms
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
             this.loadToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
             this.loadToolStripMenuItem1.Text = "Load new entries from xls";
-            this.loadToolStripMenuItem1.Click += new System.EventHandler(this.loadToolStripMenuItem1_Click);
+            this.loadToolStripMenuItem1.Click += new System.EventHandler(this.LoadToolStripMenuItem1Click);
             // 
             // FileMenuLoadNewFromXls
             // 
             this.FileMenuLoadNewFromXls.Name = "FileMenuLoadNewFromXls";
             this.FileMenuLoadNewFromXls.Size = new System.Drawing.Size(197, 22);
             this.FileMenuLoadNewFromXls.Text = "Add new entries from xls";
-            this.FileMenuLoadNewFromXls.Click += new System.EventHandler(this.fileMenuLoadNewFromXls_Click);
+            this.FileMenuLoadNewFromXls.Click += new System.EventHandler(this.FileMenuLoadNewFromXlsClick);
             // 
             // openBankSiteToolStripMenuItem
             // 
             this.openBankSiteToolStripMenuItem.Name = "openBankSiteToolStripMenuItem";
             this.openBankSiteToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.openBankSiteToolStripMenuItem.Text = "Open bank site";
-            this.openBankSiteToolStripMenuItem.Click += new System.EventHandler(this.openBankSiteToolStripMenuItem_Click);
+            this.openBankSiteToolStripMenuItem.Click += new System.EventHandler(this.OpenBankSiteToolStripMenuItemClick);
             // 
             // openUrlToolStripMenuItem
             // 
             this.openUrlToolStripMenuItem.Name = "openUrlToolStripMenuItem";
             this.openUrlToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.openUrlToolStripMenuItem.Text = "Open Url";
-            this.openUrlToolStripMenuItem.Click += new System.EventHandler(this.openUrlToolStripMenuItem_Click);
+            this.openUrlToolStripMenuItem.Click += new System.EventHandler(this.OpenUrlToolStripMenuItemClick);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItemClick);
             // 
             // testToolStripMenuItem
             // 
@@ -168,42 +168,42 @@ namespace Budgeter.Winforms
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
             this.debugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.debugToolStripMenuItem.Text = "Debug";
-            this.debugToolStripMenuItem.Click += new System.EventHandler(this.debugToolStripMenuItem_Click);
+            this.debugToolStripMenuItem.Click += new System.EventHandler(this.DebugToolStripMenuItemClick);
             // 
             // navigeraToolStripMenuItem
             // 
             this.navigeraToolStripMenuItem.Name = "navigeraToolStripMenuItem";
             this.navigeraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.navigeraToolStripMenuItem.Text = "Navigera";
-            this.navigeraToolStripMenuItem.Click += new System.EventHandler(this.navigeraToolStripMenuItem_Click);
+            this.navigeraToolStripMenuItem.Click += new System.EventHandler(this.NavigeraToolStripMenuItemClick);
             // 
             // setLoginToolStripMenuItem
             // 
             this.setLoginToolStripMenuItem.Name = "setLoginToolStripMenuItem";
             this.setLoginToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.setLoginToolStripMenuItem.Text = "Set Login";
-            this.setLoginToolStripMenuItem.Click += new System.EventHandler(this.setLoginToolStripMenuItem_Click);
+            this.setLoginToolStripMenuItem.Click += new System.EventHandler(this.SetLoginToolStripMenuItemClick);
             // 
             // navigateToLöneToolStripMenuItem
             // 
             this.navigateToLöneToolStripMenuItem.Name = "navigateToLöneToolStripMenuItem";
             this.navigateToLöneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.navigateToLöneToolStripMenuItem.Text = "NavigateToLöne";
-            this.navigateToLöneToolStripMenuItem.Click += new System.EventHandler(this.navigateToLöneToolStripMenuItem_Click);
+            this.navigateToLöneToolStripMenuItem.Click += new System.EventHandler(this.NavigateToLöneToolStripMenuItemClick);
             // 
             // testNav1ToolStripMenuItem
             // 
             this.testNav1ToolStripMenuItem.Name = "testNav1ToolStripMenuItem";
             this.testNav1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testNav1ToolStripMenuItem.Text = "Test nav1";
-            this.testNav1ToolStripMenuItem.Click += new System.EventHandler(this.testNav1ToolStripMenuItem_Click);
+            this.testNav1ToolStripMenuItem.Click += new System.EventHandler(this.TestNav1ToolStripMenuItemClick);
             // 
             // testBackNavToolStripMenuItem
             // 
             this.testBackNavToolStripMenuItem.Name = "testBackNavToolStripMenuItem";
             this.testBackNavToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testBackNavToolStripMenuItem.Text = "TestBackNav";
-            this.testBackNavToolStripMenuItem.Click += new System.EventHandler(this.testBackNavToolStripMenuItem_Click);
+            this.testBackNavToolStripMenuItem.Click += new System.EventHandler(this.TestBackNavToolStripMenuItemClick);
             // 
             // loadToolStripMenuItem
             // 
@@ -219,7 +219,7 @@ namespace Budgeter.Winforms
             this.loadCurrentEntriesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
             this.loadCurrentEntriesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.loadCurrentEntriesToolStripMenuItem.Text = "Load current entries";
-            this.loadCurrentEntriesToolStripMenuItem.Click += new System.EventHandler(this.loadCurrentEntriesToolStripMenuItem_Click);
+            this.loadCurrentEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadCurrentEntriesToolStripMenuItemClick);
             // 
             // optionsToolStripMenuItem
             // 
@@ -246,7 +246,7 @@ namespace Budgeter.Winforms
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(102, 609);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
             // this.webBrowser1.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser1_Navigated);
             // 
             // splitContainer1
@@ -335,7 +335,7 @@ namespace Budgeter.Winforms
             this.m_b_ClearNewOnes.TabIndex = 5;
             this.m_b_ClearNewOnes.Text = "Clear All";
             this.m_b_ClearNewOnes.UseVisualStyleBackColor = true;
-            this.m_b_ClearNewOnes.Click += new System.EventHandler(this.m_b_ClearNewOnes_Click);
+            this.m_b_ClearNewOnes.Click += new System.EventHandler(this.MbClearNewOnesClick);
             // 
             // m_newItemsTab
             // 
@@ -372,7 +372,7 @@ namespace Budgeter.Winforms
             this.btn_RecheckAutocat.TabIndex = 4;
             this.btn_RecheckAutocat.Text = "Re check w auto cats";
             this.btn_RecheckAutocat.UseVisualStyleBackColor = true;
-            this.btn_RecheckAutocat.Click += new System.EventHandler(this.btn_RecheckAutocat_Click);
+            this.btn_RecheckAutocat.Click += new System.EventHandler(this.BtnRecheckAutocatClick);
             // 
             // m_b_AddNewToMem
             // 
@@ -382,7 +382,7 @@ namespace Budgeter.Winforms
             this.m_b_AddNewToMem.TabIndex = 4;
             this.m_b_AddNewToMem.Text = "Add new to mem";
             this.m_b_AddNewToMem.UseVisualStyleBackColor = true;
-            this.m_b_AddNewToMem.Click += new System.EventHandler(this.AddNewToMem_Click);
+            this.m_b_AddNewToMem.Click += new System.EventHandler(this.AddNewToMemClick);
             // 
             // richTextBox1
             // 
@@ -439,7 +439,7 @@ namespace Budgeter.Winforms
             this.debugbtn.Text = "Debug add new";
             this.debugbtn.UseVisualStyleBackColor = true;
             this.debugbtn.Visible = false;
-            this.debugbtn.Click += new System.EventHandler(this.debugbtn_Click);
+            this.debugbtn.Click += new System.EventHandler(this.DebugbtnClick);
             // 
             // btnLoadCurrentEntries
             // 
@@ -449,7 +449,7 @@ namespace Budgeter.Winforms
             this.btnLoadCurrentEntries.TabIndex = 4;
             this.btnLoadCurrentEntries.Text = "Load current entries";
             this.btnLoadCurrentEntries.UseVisualStyleBackColor = true;
-            this.btnLoadCurrentEntries.Click += new System.EventHandler(this.btnLoadCurrentEntries_Click);
+            this.btnLoadCurrentEntries.Click += new System.EventHandler(this.BtnLoadCurrentEntriesClick);
             // 
             // Budgeter
             // 
@@ -464,7 +464,7 @@ namespace Budgeter.Winforms
             this.MainMenuStrip = this._MainMenu;
             this.Name = "Budgeter";
             this.Text = "The Budgeter, version ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Budgeter_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BudgeterFormClosing);
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

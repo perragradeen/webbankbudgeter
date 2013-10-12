@@ -1,6 +1,5 @@
-﻿using RefLesses;
-using System;
-using System.Globalization;
+﻿using System;
+using RefLesses;
 
 namespace Budgeter.Core.Entities
 {
@@ -15,11 +14,17 @@ namespace Budgeter.Core.Entities
         /// Info om vad som köpts eller hänt på kontoraden
         /// </summary>
         public string EventValue { get; set; }
+
         public string BeloppValue { get; set; }
+
         public string SaldoValue { get; set; }
 
-        public DateTime Date { get {
-            return DateFunctions.ParseDateWithCultureEtc(DateValue);
-        } }
+        public DateTime Date
+        {
+            get
+            {
+                return DateFunctions.ParseDateWithCultureEtc(DateValue);
+            }
+        }
     }
 }
