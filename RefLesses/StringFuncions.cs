@@ -1,18 +1,19 @@
 ﻿namespace RefLesses
 {
-   public class StringFuncions
+    public class StringFuncions
     {
-        public static string mergeStringArrayToString(string[] inArray)
+        public static string MergeStringArrayToString(string[] inArray)
         {
-            return mergeStringArrayToString(inArray, false);
+            return MergeStringArrayToString(inArray, false);
         }
-        public static string mergeStringArrayToString(string[] inArray, bool spaceBetweenThem)
-        {
-            string returnString = "";
 
-            foreach (string item in inArray)
+        public static string MergeStringArrayToString(string[] inArray, bool spaceBetweenThem)
+        {
+            var returnString = string.Empty;
+
+            foreach (var item in inArray)
             {
-                returnString += item + (spaceBetweenThem ? " " : "");
+                returnString += item + (spaceBetweenThem ? " " : string.Empty);
             }
 
             return returnString;

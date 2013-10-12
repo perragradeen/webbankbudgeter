@@ -3,7 +3,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Utilities {
+namespace Utilities
+{
     /// <summary>
     /// Serialisera eller Deserialisera något till/från fil.
     /// 
@@ -13,32 +14,36 @@ namespace Utilities {
     /// Ladda XML-filen till minnet med serialisering
     /// OneAccessoriesCatalog = DeserializeObject(accessoryCatalogIn, typeof(Accessories)) as Accessories;
     /// </summary>
-    public class SerializationFunctions {
+    public class SerializationFunctions
+    {
         /// <summary>
         /// Lägg innehållet i en xml-fil till minnet i den statiska vaiabeln AllCategories
         /// </summary>
         /// <param name="filename">xml-fil som ska läsas in</param>
         /// <param name="serializeType">the return type, ie Accessories</param>
-        public static object DeserializeObject(string filename, Type serializeType) {
+        public static object DeserializeObject(string filename, Type serializeType)
+        {
             FileStream fileStream = null;
-            try {
-                //Initiera variabler som behövs
-                //Gör en serializer som matchar mot klassen accessories
+            try
+            {
+                // Initiera variabler som behövs
+                // Gör en serializer som matchar mot klassen accessories
                 var serializer = new XmlSerializer(serializeType);
 
-                //Öppna filen
+                // Öppna filen
                 fileStream = new FileStream(filename, FileMode.Open);
                 var reader = new XmlTextReader(fileStream);
 
-                //Utför själva serialiseringen, spara resultatet i objectSerialized
+                // Utför själva serialiseringen, spara resultatet i objectSerialized
                 var objectSerialized = serializer.Deserialize(reader);
 
-                //Stäng filen, nu när läsningen är färdig
+                // Stäng filen, nu när läsningen är färdig
                 fileStream.Close();
 
                 return objectSerialized;
-
-            } catch (Exception serExcp) {
+            }
+            catch (Exception serExcp)
+            {
                 ErrorCatchForSerialze(filename, fileStream, serExcp);
                 throw;
             }
@@ -50,11 +55,14 @@ namespace Utilities {
         /// <param name="filename">xml-fil som ska läsas in</param>
         /// <param name="serializeType">the return type, ie Accessories</param>
         /// <param name="selectedProduct">the object to load file to</param>
-        public static void SerializeObject(string filename, Type serializeType, object selectedProduct) {
+        public static void SerializeObject(string filename, Type serializeType, object selectedProduct)
+        {
             StreamWriter myWriter = null;
-            try {
-                //Gör en serializer som matchar mot klassen accessories
+            try
+            {
+                // Gör en serializer som matchar mot klassen accessories
                 #region Serializera ner till fil
+
                 var serializer = new XmlSerializer(serializeType);
 
                 myWriter = new StreamWriter(filename);
@@ -63,39 +71,54 @@ namespace Utilities {
                 serializer.Serialize(myWriter, selectedProduct);
 
                 myWriter.Close();
+
                 #endregion
-            } catch (Exception deserExcp) {
+            }
+            catch (Exception deserExcp)
+            {
                 ErrorCatchForSerialze(filename, myWriter, deserExcp);
             }
         }
 
         #region Error handling
-        //Done: Fånga fel här och stäng filen etc...
-        private static void ErrorCatchForSerialze(string filename, Stream fileStream, Exception serExcp) {
+
+        // Done: Fånga fel här och stäng filen etc...
+        private static void ErrorCatchForSerialze(string filename, Stream fileStream, Exception serExcp)
+        {
             ErrorCatchForSerialze(filename, "deserializing", fileStream, null, serExcp);
         }
-        private static void ErrorCatchForSerialze(string filename, TextWriter fileWriteStream, Exception serExcp) {
+
+        private static void ErrorCatchForSerialze(string filename, TextWriter fileWriteStream, Exception serExcp)
+        {
             ErrorCatchForSerialze(filename, "serializing", null, fileWriteStream, serExcp);
         }
-        private static void ErrorCatchForSerialze(string filename, string deserializingOrSer, Stream fileStream, TextWriter fileWriteStream, Exception serExcp) {
-            Console.WriteLine("Error while " + deserializingOrSer + " object: " + filename + "- Sys err: " +
-                              serExcp.Message);
 
-            try {
-                //Stäng filen, även om den redan är stängd
-                if (fileStream != null) {
+        private static void ErrorCatchForSerialze(
+            string filename, string deserializingOrSer, Stream fileStream, TextWriter fileWriteStream, Exception serExcp)
+        {
+            Console.WriteLine(
+                "Error while " + deserializingOrSer + " object: " + filename + "- Sys err: " + serExcp.Message);
+
+            try
+            {
+                // Stäng filen, även om den redan är stängd
+                if (fileStream != null)
+                {
                     fileStream.Close();
                 }
-                if (fileWriteStream != null) {
+
+                if (fileWriteStream != null)
+                {
                     fileWriteStream.Close();
                 }
-            } catch (Exception closeExcp) {
+            }
+            catch (Exception closeExcp)
+            {
                 Console.WriteLine("File; " + filename + " already closed or other error: " + closeExcp.Message);
                 throw;
             }
         }
+
         #endregion
-
     }
-
 }

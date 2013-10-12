@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Budgetterarn {
-    class Tests {
+﻿namespace Budgetterarn
+{
+    internal class Tests
+    {
     }
 }

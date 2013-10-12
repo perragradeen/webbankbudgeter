@@ -24,6 +24,8 @@ namespace Budgetterarn
     /// </summary>
     public partial class BudgeterForm : Form
     {
+        public delegate void DoneNavigationAction();
+
         public const string VersionNumber = "1.0.1.9";
 
         #region Members
@@ -82,7 +84,10 @@ namespace Budgetterarn
         // 1.0.1.0 PopupComboboxOfCaytegories had a bugg with wrong colwidth added when checking postion, only noticable if not all columns have same length. Nicer set autocat and popup. användaren kan sätta autokat.
         // 1.0.0.1 Nothing new yet, Later singleclick in newlist etc.
         // 1.0.0.0 Everything before, see Svn. Even Added mulitiselect etc.
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1109:BlockStatementsMustNotContainEmbeddedRegions", Justification = "Reviewed. Suppression is OK here."),SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1109:BlockStatementsMustNotContainEmbeddedRegions", 
+            Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements", 
+            Justification = "Reviewed. Suppression is OK here.")]
         public BudgeterForm() // Konstruktor
         {
             try
@@ -93,6 +98,7 @@ namespace Budgetterarn
 
                 // ReSharper disable JoinDeclarationAndInitializer
                 bool debug;
+
                 // ReSharper restore JoinDeclarationAndInitializer
 #if DEBUG
                 debug = true;
@@ -164,8 +170,6 @@ namespace Budgetterarn
         }
 
         // Settings (mostly debug)
-        public delegate void DoneNavigationAction();
-
         public static string StatusLabelText
         {
             get
@@ -331,9 +335,7 @@ namespace Budgetterarn
             tp_NewItemsEdited.UseVisualStyleBackColor = true;
 
             // m_newIitemsListEdited
-            newIitemsListEdited.Anchor = ((AnchorStyles.Top
-                                           | AnchorStyles.Bottom)
-                                          | AnchorStyles.Left)
+            newIitemsListEdited.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left)
                                          | AnchorStyles.Right;
             newIitemsListEdited.FullRowSelect = true;
             newIitemsListEdited.GridLines = true;
@@ -425,14 +427,14 @@ namespace Budgetterarn
             // Todo: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
             var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
                                          {
-                                             filePath = Filerefernces._excelFileSavePath,
-                                             excelFileSavePath = changedExcelFileSavePath,
+                                             filePath = Filerefernces._excelFileSavePath, 
+                                             excelFileSavePath = changedExcelFileSavePath, 
                                              excelFileSavePathWithoutFileName =
-                                             Filerefernces.ExcelFileSavePathWithoutFileName,
-                                             excelFileSaveFileName = Filerefernces._excelFileSaveFileName,
-                                             sheetName = SheetName,
-                                             clearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile,
-                                             somethingChanged = somethingChanged,
+                                                 Filerefernces.ExcelFileSavePathWithoutFileName, 
+                                             excelFileSaveFileName = Filerefernces._excelFileSaveFileName, 
+                                             sheetName = SheetName, 
+                                             clearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile, 
+                                             somethingChanged = somethingChanged, 
                                          };
 
             // Ladda från fil
@@ -458,10 +460,7 @@ namespace Budgetterarn
             }
 
             var loadResult = LoadNSave.GetAllEntriesFromExcelFile(
-                kontoutdragInfoForLoad,
-                kontoEntries,
-                saldon,
-                entriesLoadedFromDataStore);
+                kontoutdragInfoForLoad, kontoEntries, saldon, entriesLoadedFromDataStore);
 
             // Visa text för anv. om hur det gick etc.
             statusText = "No. rows loaded; " + kontoEntries.Count + " . Skpped: " + loadResult.skippedOrSaved
@@ -596,9 +595,9 @@ namespace Budgetterarn
             {
                 var baselogginElem =
 
-                // ReSharper disable PossibleNullReferenceException
-                webBrowser1.Document.Body.FirstChild.FirstChild.FirstChild.FirstChild.NextSibling.NextSibling
-                            .FirstChild.FirstChild.NextSibling;
+                    // ReSharper disable PossibleNullReferenceException
+                    webBrowser1.Document.Body.FirstChild.FirstChild.FirstChild.FirstChild.NextSibling.NextSibling
+                               .FirstChild.FirstChild.NextSibling;
 
                 // ReSharper restore PossibleNullReferenceException
                 if (baselogginElem != null)
@@ -854,7 +853,7 @@ namespace Budgetterarn
 
         /// <summary>Uppdatera UI för nya entries, gör gisningar av dubbletter, typ av kostnad etc
         /// </summary>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements", 
             Justification = "Reviewed. Suppression is OK here.")]
         private void CheckAndAddNewItems()
         {
@@ -1055,10 +1054,10 @@ namespace Budgetterarn
             var statusText = toolStripStatusLabel1.Text;
             var kontoutdragInfoForSave = new KontoutdragInfoForSave
                                          {
-                                             excelFileSaveFileName = Filerefernces._excelFileSaveFileName,
-                                             excelFileSavePath = Filerefernces._excelFileSavePath,
+                                             excelFileSaveFileName = Filerefernces._excelFileSaveFileName, 
+                                             excelFileSavePath = Filerefernces._excelFileSavePath, 
                                              excelFileSavePathWithoutFileName =
-                                                 Filerefernces.ExcelFileSavePathWithoutFileName,
+                                                 Filerefernces.ExcelFileSavePathWithoutFileName, 
                                              sheetName = SheetName
                                          };
 

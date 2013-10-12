@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace RefLesses
 {
     public static class MiscFunctions
     {
-        public static void AddToOrChangeValueInDictionaryForKey(this Dictionary<string, string> saldon, string saldoName, double saldoValue)
+        public static void AddToOrChangeValueInDictionaryForKey(
+            this Dictionary<string, string> saldon, string saldoName, double saldoValue)
         {
             if (saldon.ContainsKey(saldoName))
             {
@@ -23,7 +21,7 @@ namespace RefLesses
         {
             if (saldon.ContainsKey(key))
             {
-                return (saldon[key] ?? string.Empty).ToString();
+                return saldon[key] ?? string.Empty;
             }
             else
             {

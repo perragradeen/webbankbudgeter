@@ -7,38 +7,39 @@ namespace RefLesses
     {
         public static DateTime ParseDateWithCultureEtc(string dateValue)
         {
-                if (string.IsNullOrEmpty(dateValue))
+            if (string.IsNullOrEmpty(dateValue))
+            {
+                return DateTime.MinValue;
+            }
+
+            #region Datumkonvertering etc
+
+            var useThisCulture = new CultureInfo("en-US");
+
+            // felhantering, sätt dagens datum om det är fel
+            var currDate = DateTime.MinValue; // = DateTime.Parse("1/1/1900 12:00:00 AM", useThisCulture);
+            try
+            {
+                if (string.IsNullOrEmpty(dateValue) || dateValue.Length <= 3)
                 {
-                    return DateTime.MinValue;
                 }
-
-                #region Datumkonvertering etc
-                var useThisCulture = new CultureInfo("en-US");
-
-                //felhantering, sätt dagens datum om det är fel
-                DateTime currDate = DateTime.MinValue; // = DateTime.Parse("1/1/1900 12:00:00 AM", useThisCulture);
-                try
+                else
                 {
-                    if (string.IsNullOrEmpty(dateValue) || dateValue.Length <= 3) { }
-                    else
-                    {
-                        currDate = DateTime.Parse(dateValue, useThisCulture);
-                    }
+                    currDate = DateTime.Parse(dateValue, useThisCulture);
                 }
-                catch (Exception DateValueExc)
-                {
-                    Console.WriteLine("Error in parsing DateValue: " + DateValueExc.Message);
-                }
+            }
+            catch (Exception DateValueExc)
+            {
+                Console.WriteLine("Error in parsing DateValue: " + DateValueExc.Message);
+            }
 
-                var svecia = new CultureInfo("sv-SE");
+            var svecia = new CultureInfo("sv-SE");
 
-                var DateValueFormated = currDate.Date.ToString("yyyy-MM-dd", svecia);
+            var DateValueFormated = currDate.Date.ToString("yyyy-MM-dd", svecia);
 
+            #endregion
 
-                #endregion
-
-
-                return DateTime.Parse(DateValueFormated);
+            return DateTime.Parse(DateValueFormated);
         }
     }
 }

@@ -7,6 +7,11 @@ namespace Budgeter.Core.Entities
 {
     public class KontoutdragInfo
     {
+        /// <summary>
+        /// Key = description, Value= amount
+        /// </summary>
+        private Dictionary<string, string> saldon = new Dictionary<string, string>();
+
         public KontoutdragInfo()
         {
             KontoEntries = new SortedList(new DescendingComparer());
@@ -18,11 +23,6 @@ namespace Budgeter.Core.Entities
         /// </summary>
         public SortedList KontoEntries { get; set; }
         public SortedList NewKontoEntries { get; set; }
-
-        /// <summary>
-        /// Key = description, Value= amount
-        /// </summary>
-        Dictionary<string, string> saldon = new Dictionary<string, string>();
     }
 
     public class KontoutdragInfoForSave
@@ -54,7 +54,7 @@ namespace Budgeter.Core.Entities
         public bool somethingLoadedOrSaved { get; set; }
     }
 
-    //Tagit från nätet: http://www.codeproject.com/KB/cs/Descending_Sorted_List.aspx?fid=1353560&df=90&mpp=25&noise=3&sort=Position&view=Quick&select=2570977#xx2570977xx
+    // Tagit från nätet: http://www.codeproject.com/KB/cs/Descending_Sorted_List.aspx?fid=1353560&df=90&mpp=25&noise=3&sort=Position&view=Quick&select=2570977#xx2570977xx
     public class DescendingComparer : IComparer
     {
         public int Compare(object x, object y)
@@ -66,8 +66,9 @@ namespace Budgeter.Core.Entities
                     return x.ToString().CompareTo(y.ToString()) * -1;
                 }
                 else
-                    return System.Convert.ToInt32(x).CompareTo
-                        (System.Convert.ToInt32(y)) * -1;
+                {
+                    return System.Convert.ToInt32(x).CompareTo(System.Convert.ToInt32(y)) * -1;
+                }
             }
             catch (Exception ex)
             {
@@ -76,5 +77,4 @@ namespace Budgeter.Core.Entities
             }
         }
     }
-
 }

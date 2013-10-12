@@ -1,5 +1,5 @@
-﻿using Budgeter.Core.Entities;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Budgeter.Core.Entities;
 
 namespace Budgeter.Winforms
 {

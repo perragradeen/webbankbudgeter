@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Collections;
+﻿using System.Collections;
 using System.Windows.Forms;
 
 namespace Budgetterarn.InternalUtilities
@@ -12,17 +9,19 @@ namespace Budgetterarn.InternalUtilities
     public class ListViewColumnSorter : IComparer
     {
         /// <summary>
+        /// Case insensitive comparer object
+        /// </summary>
+        private readonly CaseInsensitiveComparer ObjectCompare;
+
+        /// <summary>
         /// Specifies the column to be sorted
         /// </summary>
         private int ColumnToSort;
+
         /// <summary>
         /// Specifies the order in which to sort (i.e. 'Ascending').
         /// </summary>
         private SortOrder OrderOfSort;
-        /// <summary>
-        /// Case insensitive comparer object
-        /// </summary>
-        private CaseInsensitiveComparer ObjectCompare;
 
         /// <summary>
         /// Class constructor.  Initializes various elements
@@ -37,6 +36,38 @@ namespace Budgetterarn.InternalUtilities
 
             // Initialize the CaseInsensitiveComparer object
             ObjectCompare = new CaseInsensitiveComparer();
+        }
+
+        /// <summary>
+        /// Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
+        /// </summary>
+        public int SortColumn
+        {
+            get
+            {
+                return ColumnToSort;
+            }
+
+            set
+            {
+                ColumnToSort = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
+        /// </summary>
+        public SortOrder Order
+        {
+            get
+            {
+                return OrderOfSort;
+            }
+
+            set
+            {
+                OrderOfSort = value;
+            }
         }
 
         /// <summary>
@@ -55,7 +86,8 @@ namespace Budgetterarn.InternalUtilities
             listviewY = (ListViewItem)y;
 
             // Compare the two items
-            compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
+            compareResult = ObjectCompare.Compare(
+                listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
 
             // Calculate correct return value based on object comparison
             if (OrderOfSort == SortOrder.Ascending)
@@ -66,7 +98,7 @@ namespace Budgetterarn.InternalUtilities
             else if (OrderOfSort == SortOrder.Descending)
             {
                 // Descending sort is selected, return negative result of compare operation
-                return (-compareResult);
+                return -compareResult;
             }
             else
             {
@@ -74,36 +106,5 @@ namespace Budgetterarn.InternalUtilities
                 return 0;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
-        /// </summary>
-        public int SortColumn
-        {
-            set
-            {
-                ColumnToSort = value;
-            }
-            get
-            {
-                return ColumnToSort;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
-        /// </summary>
-        public SortOrder Order
-        {
-            set
-            {
-                OrderOfSort = value;
-            }
-            get
-            {
-                return OrderOfSort;
-            }
-        }
-
     }
 }
