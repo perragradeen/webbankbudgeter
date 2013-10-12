@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelLogRowComparer.cs" />
+    <Compile Include="ExcelRowEntry.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="OpenFileFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

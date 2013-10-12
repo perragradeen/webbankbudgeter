@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Microsoft.Office.Interop.Excel;
 
-//using System.Windows.Forms;
 namespace Utilities
 {
     internal class ExcelLogRowComparer
     {
         // There is one other line you will have to change which is switching XlWBATemplate.xlWBATWorksheet to Excel.XlWBATemplate.xlWBATWorksheet.
-        private static Application _excelApp;
+        private static Application excelApp;
 
-        private static Workbook _newLog;
-        private static Workbook _oldLog;
+        private static Workbook newLog;
+        private static Workbook oldLog;
 
         // public static Progress _compareProgress = new Progress();
 
@@ -53,347 +54,273 @@ namespace Utilities
         // dlg.Filter = "Excel XLS Log File|*.xls";
         // return dlg;
         // }
+        [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1515:SingleLineCommentMustBePrecededByBlankLine", Justification = "Reviewed. Suppression is OK here."),SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1115:ParameterMustFollowComma",
+            Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static void CompareLogs(string oldLogFileName, string newLogFileName) // filename
         {
             // bool orgProgresSetting = false;//Håller på vad progress vad satt till innan
+            // if (MainForm.StopGracefully)
+            // return;
+            excelApp = new ApplicationClass();
+
+            // Skapa instansen här istället för globalt i denna klass, för att det inte ska skapas en Excelprocess om man bara kör en funktion i denna klassen
+            #region Progress
+
+            // Progress
+            // orgProgresSetting = MainForm.ShowProgress;//Håller på vad progress vad satt till innan
+            // if (MainForm.ShowProgress)
+            // MainForm.ShowProgress = false;
+
+            // MainForm.ShowTextProgress = true;//Visar texten bara 
+            #endregion
+
+            var oldCi = System.Threading.Thread.CurrentThread.CurrentCulture;
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+            #region read Old Log
+
+            var oldBook = new Hashtable();
+
+            try
+            {
+                // _compareProgress.StartTotal("Loading old Log...", 0);//-1 );
+
+                // Öppna den gamla loggen
+                oldLog = excelApp.Workbooks._Open(
+                    oldLogFileName,
+                    Type.Missing, // filename,
+                    0,
+                    Type.Missing,
+                    XlPlatform.xlWindows, // XlTextQualifier.xlTextQualifierNone,
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    false, // COMMA
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing);
+
+                // get the collection of sheets in the workbook
+                var oldSheets = oldLog.Worksheets;
+                var numOfOldSheets = oldLog.Worksheets.Count;
+
+                //// get the first and only worksheet from the collection of worksheets
+
+                //// loop through 10 rows of the spreadsheet and place each row in the list view
+
+                // _compareProgress.StartTotal("Loading old Log sheets...", numOfOldSheets);//-1 );
+                // int sheetsDone = 0;//För progress
+
+                // Store old rows
+                for (var sheetNr = 1; sheetNr <= numOfOldSheets; sheetNr++)
+                {
+                    var name = ((Worksheet)oldSheets.Item[sheetNr]).Name;
+
+                    var oldWorksheet = (Worksheet)oldSheets.Item[sheetNr];
+
+                    var oldRows = new Hashtable();
+                    GetExcelRows(oldWorksheet, oldRows);
+
+                    oldBook.Add(name, oldRows);
+
+                    // _compareProgress.SetTotal(++sheetsDone);
+
+                    // if (MainForm.StopGracefully)
+                    // break;
+                }
+            }
+            catch (Exception e)
+            {
+                // MessageBox.Show("Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
+                throw new Exception(
+                    "Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
+                    + e.Message + ").",
+                    e);
+            }
+
+            #endregion
+
+            #region read New Log
+
             try
             {
                 // if (MainForm.StopGracefully)
                 // return;
-                _excelApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
-                    
-                    // Skapa instansen här istället för globalt i denna klass, för att det inte ska skapas en Excelprocess om man bara kör en funktion i denna klassen
-                #region Progress
 
-                // Progress
-                // orgProgresSetting = MainForm.ShowProgress;//Håller på vad progress vad satt till innan
-                // if (MainForm.ShowProgress)
-                // MainForm.ShowProgress = false;
+                // _compareProgress.StartTotal("Loading new Log...", 0);//-1 );
 
-                // MainForm.ShowTextProgress = true;//Visar texten bara 
-                #endregion
+                // Excel.Workbook tempWB = newLog;
+                // Ev. ha If(_newLog ==null)...
+                newLog = excelApp.Workbooks._Open(
+                    newLogFileName, // filename, filename,
+                    Type.Missing,
+                    0,
+                    Type.Missing,
+                    XlPlatform.xlWindows, // XlTextQualifier.xlTextQualifierNone,
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    false, // COMMA
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing);
 
-                var oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                var newSheets = newLog.Worksheets;
+                var numOfNewSheets = newLog.Worksheets.Count;
 
-                #region read Old Log
+                //// get the first worksheet from the collection of worksheets
 
-                var oldBook = new Hashtable();
+                //// loop through 10 rows of the spreadsheet and place each row in the list view
+                // Hashtable newBook = new Hashtable();
+                // Hashtable oldRows = new Hashtable();
 
-                try
-                {
-                    // _compareProgress.StartTotal("Loading old Log...", 0);//-1 );
+                // _compareProgress.StartTotal("Loading new Log sheets and compares...", numOfNewSheets);//-1 );
+                // int sheetsDone = 0;//För progress
+                var specialCaseForAllProfilesHandled = false;
 
-                    // Öppna den gamla loggen
-                    _oldLog = _excelApp.Workbooks._Open(
-                        oldLogFileName, 
-                        // filename,
-                        Type.Missing, 
-                        0, 
-                        Type.Missing, 
-                        Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, 
-                        // XlTextQualifier.xlTextQualifierNone,
-                        Type.Missing, 
-                        Type.Missing, 
-                        Type.Missing, 
-                        false, 
-                        // COMMA
-                        Type.Missing, 
-                        Type.Missing, 
-                        Type.Missing, 
-                        Type.Missing);
-
-                    // get the collection of sheets in the workbook
-                    var oldSheets = _oldLog.Worksheets;
-                    var numOfOldSheets = _oldLog.Worksheets.Count;
-
-                    //// get the first and only worksheet from the collection of worksheets
-                    var oldWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)oldSheets.get_Item(1);
-
-                    //// loop through 10 rows of the spreadsheet and place each row in the list view
-                    var oldRows = new Hashtable();
-
-                    // _compareProgress.StartTotal("Loading old Log sheets...", numOfOldSheets);//-1 );
-                    // int sheetsDone = 0;//För progress
-
-                    // Store old rows
-                    for (var sheetNr = 1; sheetNr <= numOfOldSheets; sheetNr++)
-                    {
-                        var name = ((Microsoft.Office.Interop.Excel.Worksheet)oldSheets.get_Item(sheetNr)).Name;
-
-                        oldWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)oldSheets.get_Item(sheetNr);
-
-                        oldRows = new Hashtable();
-                        getExcelRows(oldWorksheet, oldRows);
-
-                        oldBook.Add(name, oldRows);
-
-                        // _compareProgress.SetTotal(++sheetsDone);
-
-                        // if (MainForm.StopGracefully)
-                        // break;
-                    }
-                }
-                catch (Exception e)
-                {
-                    // MessageBox.Show("Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
-                    throw new Exception(
-                        "Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
-                        + e.Message + ").", 
-                        e);
-                }
-
-                #endregion
-
-                #region read New Log
-
-                try
+                // Compare to old rows
+                for (var sheetNr = 1; sheetNr <= numOfNewSheets; sheetNr++)
                 {
                     // if (MainForm.StopGracefully)
-                    // return;
+                    // break;
+                    var name = ((Worksheet)newSheets.Item[sheetNr]).Name;
 
-                    // _compareProgress.StartTotal("Loading new Log...", 0);//-1 );
+                    var newWorksheet = (Worksheet)newSheets.Item[sheetNr];
 
-                    // Excel.Workbook tempWB = newLog;
-                    // Ev. ha If(_newLog ==null)...
-                    _newLog = _excelApp.Workbooks._Open(
-                        newLogFileName, 
-                        // filename,
-                        // filename,
-                        Type.Missing, 
-                        0, 
-                        Type.Missing, 
-                        Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, 
-                        // XlTextQualifier.xlTextQualifierNone,
-                        Type.Missing, 
-                        Type.Missing, 
-                        Type.Missing, 
-                        false, 
-                        // COMMA
-                        Type.Missing, 
-                        Type.Missing, 
-                        Type.Missing, 
-                        Type.Missing);
+                    // Specialfall för AllProfiles-flikar
+                    if (name.StartsWith("AllProfiles") && !specialCaseForAllProfilesHandled)
+                    {
+                        CheckAllProfiles(oldBook, newSheets);
 
-                    var newSheets = _newLog.Worksheets;
-                    var numOfNewSheets = _newLog.Worksheets.Count;
-
-                    //// get the first worksheet from the collection of worksheets
-                    var newWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)newSheets.get_Item(1);
-
-                    //// loop through 10 rows of the spreadsheet and place each row in the list view
-                    // Hashtable newBook = new Hashtable();
-                    // Hashtable oldRows = new Hashtable();
-
-                    // _compareProgress.StartTotal("Loading new Log sheets and compares...", numOfNewSheets);//-1 );
-                    // int sheetsDone = 0;//För progress
-                    var specialCaseForAllProfilesHandled = false;
-
-                    // Compare to old rows
-                    for (var sheetNr = 1; sheetNr <= numOfNewSheets; sheetNr++)
+                        specialCaseForAllProfilesHandled = true;
+                    }
+                    else if (name.StartsWith("AllProfiles") && specialCaseForAllProfilesHandled)
+                    {
+                    }
+                    else if (oldBook.ContainsKey(name))
                     {
                         // if (MainForm.StopGracefully)
                         // break;
-                        var name = ((Microsoft.Office.Interop.Excel.Worksheet)newSheets.get_Item(sheetNr)).Name;
 
-                        newWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)newSheets.get_Item(sheetNr);
+                        // Läs in hela nuv. nya arket till en HT
+                        var newRows = new Hashtable();
+                        GetExcelRows(newWorksheet, newRows);
 
-                        // oldRows = new Hashtable();
-                        if (name.StartsWith("AllProfiles") && !specialCaseForAllProfilesHandled) // Specialfall för AllProfiles-flikar
+                        var rows = 0;
+                        var colums = 0; // newWorksheet.UsedRange.Columns.Count;
+                        if (CompareExcelRows(newWorksheet, oldBook[name] as Hashtable, newRows, ref rows, ref colums))
                         {
-                            CheckAllProfiles(oldBook, newSheets);
+                            #region Sortera
 
-                            specialCaseForAllProfilesHandled = true;
-                        }
-                        else if (name.StartsWith("AllProfiles") && specialCaseForAllProfilesHandled)
-                        {
-                        }
-                        else if (oldBook.ContainsKey(name))
-                        {
                             // if (MainForm.StopGracefully)
                             // break;
 
-                            // Läs in hela nuv. nya arket till en HT
-                            var newRows = new Hashtable();
-                            getExcelRows(newWorksheet, newRows);
+                            // Sortera på new
+                            var column = GetStandardExcelColumnName(colums + 1);
+                            var range = newWorksheet.Range["A4", column + rows.ToString(CultureInfo.InvariantCulture)];
 
-                            var rows = 0;
-                            var colums = 0; // newWorksheet.UsedRange.Columns.Count;
-                            if (compareExcelRows(
-                                newWorksheet, oldBook[name] as Hashtable, newRows, ref rows, ref colums))
+                            // "IV"
+                            if (name != "DatabaseInfo")
                             {
-                                #region Sortera
+                                range.Sort(
+                                    range.Columns[colums + 1, Type.Missing],
+                                    XlSortOrder.xlDescending,
+                                    // För att felsöka Excelprogrammering, använd macroEdit for VB i excel...
+                                    // range.Columns[2,Type.Missing], Type.Missing, Excel.XlSortOrder.xlDescending
+                                    Type.Missing,
+                                    Type.Missing,
+                                    XlSortOrder.xlDescending,
+                                    Type.Missing,
+                                    XlSortOrder.xlDescending,
+                                    XlYesNoGuess.xlNo,
+                                    Type.Missing,
+                                    Type.Missing,
+                                    XlSortOrientation.xlSortColumns,
+                                    // ReSharper disable RedundantArgumentDefaultValue
+                                    XlSortMethod.xlPinYin,
+                                    XlSortDataOption.xlSortNormal,
+                                    XlSortDataOption.xlSortNormal,
+                                    XlSortDataOption.xlSortNormal);
 
-                                // if (MainForm.StopGracefully)
-                                // break;
-
-                                // Sortera på new
-                                var column = GetStandardExcelColumnName(colums + 1);
-                                var range = newWorksheet.get_Range("A4", column + rows.ToString()); // "IV"
-
-                                if (name != "DatabaseInfo") // && name != "Info")
-                                {
-                                    range.Sort(
-                                        range.Columns[colums + 1, Type.Missing], 
-                                        Microsoft.Office.Interop.Excel.XlSortOrder.xlDescending
-                                        
-                                        // För att felsöka Excelprogrammering, använd macroEdit for VB i excel...
-                                        // range.Columns[2,Type.Missing], Type.Missing, Excel.XlSortOrder.xlDescending
-                                        , 
-                                        Type.Missing, 
-                                        Type.Missing, 
-                                        Microsoft.Office.Interop.Excel.XlSortOrder.xlDescending, 
-                                        Type.Missing, 
-                                        Microsoft.Office.Interop.Excel.XlSortOrder.xlDescending, 
-                                        Microsoft.Office.Interop.Excel.XlYesNoGuess.xlNo, 
-                                        Type.Missing, 
-                                        Type.Missing, 
-                                        Microsoft.Office.Interop.Excel.XlSortOrientation.xlSortColumns, 
-                                        Microsoft.Office.Interop.Excel.XlSortMethod.xlPinYin, 
-                                        Microsoft.Office.Interop.Excel.XlSortDataOption.xlSortNormal, 
-                                        Microsoft.Office.Interop.Excel.XlSortDataOption.xlSortNormal, 
-                                        Microsoft.Office.Interop.Excel.XlSortDataOption.xlSortNormal);
-                                }
-
-                                // Ta bort "new"-kolumnen
-                                range = newWorksheet.get_Range(column + 1, column + rows.ToString()); // "IV"
-                                range.Delete(Type.Missing); // false//(object)false);//
-
-                                if (name == "DatabaseInfo") // För old o diff överskriften...
-                                {
-                                    range = newWorksheet.get_Range("C:D", "C:D");
-                                    range.EntireColumn.AutoFit(); // autofittar hela columnen för all som loggas
-                                }
-
-                                // newWorksheet.set 
-                                #endregion
+                                // ReSharper restore RedundantArgumentDefaultValue
                             }
 
-                            // if (MainForm.StopGracefully)
-                            // break;
-                        }
-                        else
-                        {
-                            Console.WriteLine(name + " didn't exist in old Excel book.");
+                            // Ta bort "new"-kolumnen
+                            range = newWorksheet.Range[column + 1, column + rows.ToString(CultureInfo.InvariantCulture)];
+
+                            // "IV"
+                            range.Delete(Type.Missing); // false//(object)false);//
+
+                            // För old o diff överskriften...
+                            if (name == "DatabaseInfo")
+                            {
+                                range = newWorksheet.Range["C:D", "C:D"];
+                                range.EntireColumn.AutoFit(); // autofittar hela columnen för all som loggas
+                            }
+
+                            // newWorksheet.set 
+                            #endregion
                         }
 
-                        // oldBook.Add(name, oldRows);
-
-                        // _compareProgress.SetTotal(++sheetsDone);
+                        // if (MainForm.StopGracefully)
+                        // break;
+                    }
+                    else
+                    {
+                        Console.WriteLine(name + " didn't exist in old Excel book.");
                     }
 
-                    // Spara en ny fil
-                    // newLog.FullName = newLog.FullName + "-Compared";
-                    // newLog.Save();// .Save();
-                    newLogFileName = _newLog.FullName.Replace(".xls", "") + "-Compared" + ".xls";
-                    _newLog.SaveCopyAs(newLogFileName); // MainForm.LastLogPath);//newLog.FullName + "-Compared");
-                    _newLog.Close(false, Type.Missing, Type.Missing);
+                    // oldBook.Add(name, oldRows);
 
-                    // _book.Close(false, Type.Missing, Type.Missing);
-                    _excelApp.Quit();
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(_excelApp);
-                    _excelApp = null;
-                }
-                catch (Exception e)
-                {
-                    // MessageBox.Show("Error in comparing old log with new log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
-                    // throw e;
-                    throw new Exception(
-                        "Error in comparing old log with new log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
-                        + e.Message + ").", 
-                        e);
+                    // _compareProgress.SetTotal(++sheetsDone);
                 }
 
-                #endregion - read new
+                // Spara en ny fil
+                // newLog.FullName = newLog.FullName + "-Compared";
+                // newLog.Save();// .Save();
+                newLogFileName = newLog.FullName.Replace(".xls", string.Empty) + "-Compared" + ".xls";
+                newLog.SaveCopyAs(newLogFileName); // MainForm.LastLogPath);//newLog.FullName + "-Compared");
+                newLog.Close(false, Type.Missing, Type.Missing);
 
-                System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
+                // _book.Close(false, Type.Missing, Type.Missing);
+                excelApp.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                excelApp = null;
             }
             catch (Exception e)
             {
-                // MessageBox.Show("Error in comparing logs.\r\n\r\nSys err:\r\n\r\n" + e.Message, "Error, Exception!");
-                throw e;
+                // MessageBox.Show("Error in comparing old log with new log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
+                // throw e;
+                throw new Exception(
+                    "Error in comparing old log with new log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
+                    + e.Message + ").",
+                    e);
             }
+
+            #endregion - read new
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = oldCi;
 
             // MainForm.ShowTextProgress = false;//Visar inte ens texten längre
             // MainForm.ShowProgress = orgProgresSetting;//Håller på vad progress vad satt till innan
 
             // Stäng Excel
-            if (_excelApp != null)
+            if (excelApp != null)
             {
-                _excelApp.Quit();
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(_excelApp);
-                _excelApp = null;
-            }
-        }
-
-        private static string[] ConvertToStringArray(Array values)
-        {
-            // create a new string array
-            var theArray = new string[values.Length];
-
-            // loop through the 2-D System.Array and populate the 1-D String Array
-            for (var i = 1; i <= values.Length; i++)
-            {
-                if (values.GetValue(1, i) == null)
-                {
-                    theArray[i - 1] = "";
-                }
-                else
-                {
-                    theArray[i - 1] = values.GetValue(1, i).ToString();
-                }
-
-                // if (MainForm.StopGracefully)
-                // return null;
-            }
-
-            return theArray;
-
-            // string Str1= ((ExcelXptlb.Range ) ( (ExcelXptlb.Worksheet)
-            // ExlApp.Workbooks[WorkBookName.ToString()].Worksheets[WorkSheetName.ToString()]
-            // ).Cells[Row, Col]).Text.ToString()    
-        }
-
-        private static string[,] ConvertToStringArray2Dimensional(Array values)
-        {
-            try
-            {
-                // create a new string array
-                var theArray = new string[values.GetUpperBound(0), values.GetUpperBound(1) - 1];
-
-                // string[,] test = new string[11, 2];
-
-                // loop through the 2-D System.Array and populate the 1-D String Array
-                for (var i = 1; i <= values.GetUpperBound(0); i++)
-                {
-                    for (var j = 1; j < values.GetUpperBound(1); j++)
-                    {
-                        if (values.GetValue(i, j) == null)
-                        {
-                            theArray[i - 1, j - 1] = "";
-                        }
-                        else
-                        {
-                            theArray[i - 1, j - 1] = values.GetValue(i, j).ToString();
-                        }
-
-                        // if (MainForm.StopGracefully)
-                        // return null;
-                    }
-                }
-
-                return theArray;
-            }
-            catch (Exception Arrayexp)
-            {
-                throw Arrayexp;
+                excelApp.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                excelApp = null;
             }
         }
 
         public static string GetStandardExcelColumnName(int columnNumberOneBased)
         {
             var baseValue = Convert.ToInt32('A') - 1;
-            var ret = "";
+            var ret = string.Empty;
 
             if (columnNumberOneBased > 26)
             {
@@ -403,7 +330,7 @@ namespace Utilities
             return ret + Convert.ToChar(baseValue + (columnNumberOneBased % 26));
         }
 
-        public static void getExcelRows(Worksheet worksheet, Hashtable storeIn)
+        public static void GetExcelRows(Worksheet worksheet, Hashtable storeIn)
         {
             if (storeIn == null)
             {
@@ -418,7 +345,8 @@ namespace Utilities
                 // int currentProgress = 0;
 
                 // worksheet.UsedRange.Count ger rader, worksheet.UsedRange.Columns.Count ger kolumner
-                for (var i = 1; i <= worksheet.UsedRange.Rows.Count; i++) // worksheet.Rows.Count; i++)//65536; i++)
+                // 65536
+                for (var i = 1; i <= worksheet.UsedRange.Rows.Count; i++)
                 {
                     // if (MainForm.StopGracefully)
                     // return;
@@ -432,18 +360,20 @@ namespace Utilities
 
                     // Todo: ta bara in resterande, räkna inte med de som redan lästs hittils
                     var column = GetStandardExcelColumnName(worksheet.UsedRange.Columns.Count + 1);
-                    var range = worksheet.get_Range(
-                        "A" + i.ToString(), column + (i + numOfRowsToReadAtATime).ToString()); // "IV" 
-                    var myvalues = (System.Array)range.Cells.get_Value(Type.Missing); // Value;
+                    var range =
+                        worksheet
+                            .Range["A" + i.ToString(CultureInfo.InvariantCulture),
+                            column + (i + numOfRowsToReadAtATime).ToString(CultureInfo.InvariantCulture)]; // "IV" 
+                    var myvalues = (Array)range.Cells.Value[Type.Missing]; // Value;
 
                     // string strData = range.get_Value(Type.Missing).ToString();
                     // string[] strArray2 = ConvertToStringArray(myvalues);
                     string[] strArrayIn = null;
-                    string[,] strArrayIn2d = null;
+                    string[,] strArrayIn2D = null;
 
                     if (numOfRowsToReadAtATime > 1)
                     {
-                        strArrayIn2d = ConvertToStringArray2Dimensional(myvalues);
+                        strArrayIn2D = ConvertToStringArray2Dimensional(myvalues);
                     }
                     else
                     {
@@ -461,18 +391,26 @@ namespace Utilities
                         if (numOfRowsToReadAtATime > 1)
                         {
                             // Hämta ut en inläst rad
-                            strArrayIn = new string[1 + strArrayIn2d.GetUpperBound(1)];
-                            for (var ijj = 0; ijj < strArrayIn2d.GetUpperBound(1) + 1; ijj++)
+                            if (strArrayIn2D != null)
                             {
-                                strArrayIn[ijj] = strArrayIn2d[ii, ijj];
+                                strArrayIn = new string[1 + strArrayIn2D.GetUpperBound(1)];
+                                for (var ijj = 0; ijj < strArrayIn2D.GetUpperBound(1) + 1; ijj++)
+                                {
+                                    strArrayIn[ijj] = strArrayIn2D[ii, ijj];
+                                }
                             }
                         }
 
-                        var strArray = "";
+                        var strArray = string.Empty;
                         var currentColumn = 0;
 
                         // Onödig ta strArrayIn direkt
-                        var strArrayToSave = new string[strArrayIn.Length]; // - 1];
+                        if (strArrayIn == null)
+                        {
+                            continue;
+                        }
+
+                        var strArrayToSave = new object[strArrayIn.Length]; // - 1];
 
                         // TODO: skippa konverteringen till string och lagra object direkt istället
                         foreach (var arg in strArrayIn)
@@ -519,21 +457,78 @@ namespace Utilities
             }
         }
 
-        private static bool CheckAllProfiles(Hashtable oldBook, Sheets newSheets)
+        private static string[] ConvertToStringArray(Array values)
+        {
+            // create a new string array
+            var theArray = new string[values.Length];
+
+            // loop through the 2-D System.Array and populate the 1-D String Array
+            for (var i = 1; i <= values.Length; i++)
+            {
+                if (values.GetValue(1, i) == null)
+                {
+                    theArray[i - 1] = string.Empty;
+                }
+                else
+                {
+                    theArray[i - 1] = values.GetValue(1, i).ToString();
+                }
+
+                // if (MainForm.StopGracefully)
+                // return null;
+            }
+
+            return theArray;
+
+            // string Str1= ((ExcelXptlb.Range ) ( (ExcelXptlb.Worksheet)
+            // ExlApp.Workbooks[WorkBookName.ToString()].Worksheets[WorkSheetName.ToString()]
+            // ).Cells[Row, Col]).Text.ToString()    
+        }
+
+        private static string[,] ConvertToStringArray2Dimensional(Array values)
+        {
+            // create a new string array
+            var theArray = new string[values.GetUpperBound(0), values.GetUpperBound(1) - 1];
+
+            // string[,] test = new string[11, 2];
+
+            // loop through the 2-D System.Array and populate the 1-D String Array
+            for (var i = 1; i <= values.GetUpperBound(0); i++)
+            {
+                for (var j = 1; j < values.GetUpperBound(1); j++)
+                {
+                    if (values.GetValue(i, j) == null)
+                    {
+                        theArray[i - 1, j - 1] = string.Empty;
+                    }
+                    else
+                    {
+                        theArray[i - 1, j - 1] = values.GetValue(i, j).ToString();
+                    }
+
+                    // if (MainForm.StopGracefully)
+                    // return null;
+                }
+            }
+
+            return theArray;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
+            Justification = "Reviewed. Suppression is OK here.")]
+        private static void CheckAllProfiles(Hashtable oldBook, Sheets newSheets)
         {
             try
             {
-                var oldRows = new Hashtable();
                 var newRows = new Hashtable();
                 Worksheet saveSheet = null;
 
                 #region Läs in alla nya, och hitta sheetet "AllProfiles"
 
                 // Läs in alla nya
-                var numOfNewSheets = _newLog.Worksheets.Count;
+                var numOfNewSheets = newLog.Worksheets.Count;
 
                 //// get the first worksheet from the collection of worksheets
-                Worksheet newWorksheet = null; // (Excel.Worksheet)newSheets.get_Item(1);
 
                 //// loop through 10 rows of the spreadsheet and place each row in the list view
 
@@ -545,14 +540,15 @@ namespace Utilities
                 {
                     // if (MainForm.StopGracefully)
                     // break;
-                    var name = ((Microsoft.Office.Interop.Excel.Worksheet)newSheets.get_Item(sheetNr)).Name;
+                    var name = ((Worksheet)newSheets.Item[sheetNr]).Name;
 
-                    newWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)newSheets.get_Item(sheetNr);
+                    var newWorksheet = (Worksheet)newSheets.Item[sheetNr]; // (Excel.Worksheet)newSheets.get_Item(1);
 
                     // Läs in hela nuv. nya arket till en HT
-                    if (name.StartsWith("AllProfiles")) // Specialfall för AllProfiles-flikar
+                    // Specialfall för AllProfiles-flikar
+                    if (name.StartsWith("AllProfiles"))
                     {
-                        getExcelRows(newWorksheet, newRows);
+                        GetExcelRows(newWorksheet, newRows);
                     }
 
                     if (name == "AllProfiles")
@@ -569,7 +565,7 @@ namespace Utilities
 
                 #region Lägg ihop alla gamla
 
-                oldRows = oldBook["AllProfiles"] as Hashtable;
+                var oldRows = oldBook["AllProfiles"] as Hashtable;
 
                 foreach (DictionaryEntry item in oldBook)
                 {
@@ -580,20 +576,35 @@ namespace Utilities
                     // {
                     // oldRows = rows;
                     // }
-                    if (name.StartsWith("AllProfiles_")) // Specialfall för AllProfiles-flikar
+                    // Specialfall för AllProfiles-flikar
+                    if (name != null && name.StartsWith("AllProfiles_"))
                     {
-                        foreach (DictionaryEntry innerItem in rows)
+                        if (rows != null)
                         {
-                            if (oldRows.ContainsKey(innerItem.Key as string))
+                            foreach (DictionaryEntry innerItem in rows)
                             {
-                                // Här finns en dublett! Det ska ladrig inträffa, för det ska vara unika som läggs till, även om det iofs är olika blad
-                                Console.WriteLine(
-                                    "Double fond in CheckAllProfiles old rows: " + name + ". Key: >" + innerItem.Key
-                                    + "<");
-                            }
-                            else
-                            {
-                                oldRows.Add(innerItem.Key as string, innerItem.Value as ExcelRowEntry);
+                                if (oldRows != null
+                                    // ReSharper disable AssignNullToNotNullAttribute
+                                    && oldRows.ContainsKey(innerItem.Key as string))
+                                    // ReSharper restore AssignNullToNotNullAttribute
+                                {
+                                    // Här finns en dublett! Det ska ladrig inträffa, för det ska vara unika som läggs till, även om det iofs är olika blad
+                                    Console.WriteLine(
+                                        "Double fond in CheckAllProfiles old rows: " + name + ". Key: >" + innerItem.Key
+                                        + "<");
+                                }
+                                else
+                                {
+                                    if (oldRows != null)
+                                    {
+                                        // ReSharper disable AssignNullToNotNullAttribute
+                                        if (!oldRows.ContainsKey(innerItem.Key as string))
+                                        {
+                                            oldRows.Add(innerItem.Key as string, innerItem.Value as ExcelRowEntry);
+                                            // ReSharper restore AssignNullToNotNullAttribute
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -601,20 +612,18 @@ namespace Utilities
 
                 #endregion
 
-                compareExcelRows(saveSheet, oldRows, newRows);
+                CompareExcelRows(saveSheet, oldRows, newRows);
             }
             catch (Exception allPexcp)
             {
                 throw new Exception(
                     "Error in comparing AllProfiles log with new log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
-                    + allPexcp.Message + ").", 
+                    + allPexcp.Message + ").",
                     allPexcp);
             }
-
-            return true;
         }
 
-        private static bool tableAreNull(Hashtable storedOld, Hashtable storedNew)
+        private static bool TableAreNull(Hashtable storedOld, Hashtable storedNew)
         {
             if (storedOld == null || storedNew == null)
             {
@@ -630,7 +639,9 @@ namespace Utilities
         /// </summary>
         /// <param name="storedInFirst"></param>
         /// <param name="storedInSecond"></param>
-        /// <returns></returns>
+        /// <returns>HashTable</returns>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1630:DocumentationTextMustContainWhitespace", Justification = "Reviewed. Suppression is OK here."),SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
+            Justification = "Reviewed. Suppression is OK here.")]
         private static Hashtable CheckForRowsIn(Hashtable storedInFirst, Hashtable storedInSecond)
         {
             var allFoundRows = new Hashtable();
@@ -648,7 +659,7 @@ namespace Utilities
                 // return null;
                 var concatedNewRowCells = storedInFirstRow.Key as string;
 
-                if (!storedInSecond.ContainsKey(concatedNewRowCells))
+                if (concatedNewRowCells != null && !storedInSecond.ContainsKey(concatedNewRowCells))
                 {
                     // Om den bara finns med i nya
                     // färglägg bara unika celler från stored.Value...
@@ -672,19 +683,20 @@ namespace Utilities
         /// <summary>
         /// Loggar de rader som skiljer sig till arbetsbladet "saveWorksheet"
         /// </summary>
-        /// <param name="saveWorksheet"></param>
-        /// <param name="storedOld"></param>
-        /// <param name="storedNew"></param>
-        /// <returns></returns>
-        private static bool compareExcelRows(
-            Worksheet saveWorksheet, Hashtable storedOld, Hashtable storedNew)
+        /// <param name="saveWorksheet">
+        /// </param>
+        /// <param name="storedOld">
+        /// </param>
+        /// <param name="storedNew">
+        /// </param>
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
+            Justification = "Reviewed. Suppression is OK here.")]
+        private static void CompareExcelRows(Worksheet saveWorksheet, Hashtable storedOld, Hashtable storedNew)
         {
-            if (tableAreNull(storedOld, storedNew))
+            if (TableAreNull(storedOld, storedNew))
             {
-                return false;
+                return;
             }
-
-            var somethingDiffers = false;
 
             try
             {
@@ -701,37 +713,39 @@ namespace Utilities
                 // return false;
                 if (allOldRows.Count > 0 || allNewRows.Count > 0)
                 {
-                    somethingDiffers = true;
                 }
                 else
                 {
-                    return false;
+                    return;
                 }
 
                 #region Logga det som skiljer
 
                 saveWorksheet.Cells.Clear(); // Rensa
 
-                var sheetName = "AllProfiles";
+                const string SheetName = "AllProfiles";
 
                 // Logga det som skiljer (TODO; fixa så det inte skriver över antalet maxrader)
                 // int nextRow = 1;
                 var oa = new object[] { saveWorksheet, 4, 1 };
 
                 // Logga new
-                var cellLayOutSettings = new Hashtable();
-                cellLayOutSettings.Add(CellLayOutSettings.InteriorColorColorIndexType, 36);
+                var cellLayOutSettings = new Hashtable { { CellLayOutSettings.InteriorColorColorIndexType, 36 } };
                 foreach (DictionaryEntry item in allNewRows)
                 {
-                    Logger.addRow(
-                        saveWorksheet, 
-                        sheetName, 
-                        ref oa, 
-                        cellLayOutSettings, 
-                        false, 
-                        System.Drawing.Color.Empty, 
-                        0, 
-                        (item.Value as ExcelRowEntry).args); // as string[]//Green// as string[]
+                    var excelRowEntry = item.Value as ExcelRowEntry;
+                    if (excelRowEntry != null)
+                    {
+                        Logger.addRow(
+                            saveWorksheet,
+                            SheetName,
+                            ref oa,
+                            cellLayOutSettings,
+                            false,
+                            System.Drawing.Color.Empty,
+                            0,
+                            excelRowEntry.Args); // as string[]//Green// as string[]
+                    }
 
                     // Addr(sheetName, cellLayOutSettings, insertRow, (item.Value as DbInfoLogEntry).args);                    
                 }
@@ -741,15 +755,19 @@ namespace Utilities
                 cellLayOutSettings.Add(CellLayOutSettings.InteriorColorSysDrawingType, System.Drawing.Color.GreenYellow);
                 foreach (DictionaryEntry item in allOldRows)
                 {
-                    Logger.addRow(
-                        saveWorksheet, 
-                        sheetName, 
-                        ref oa, 
-                        cellLayOutSettings, 
-                        false, 
-                        System.Drawing.Color.Empty, 
-                        0, 
-                        (item.Value as ExcelRowEntry).args); // as string[]//Green// as string[]
+                    var excelRowEntry = item.Value as ExcelRowEntry;
+                    if (excelRowEntry != null)
+                    {
+                        Logger.addRow(
+                            saveWorksheet,
+                            SheetName,
+                            ref oa,
+                            cellLayOutSettings,
+                            false,
+                            System.Drawing.Color.Empty,
+                            0,
+                            excelRowEntry.Args); // as string[]//Green// as string[]
+                    }
 
                     // Addr(sheetName, cellLayOutSettings, insertRow, (item.Value as DbInfoLogEntry).args);                    
                 }
@@ -760,23 +778,20 @@ namespace Utilities
             {
                 Console.WriteLine("Error in compareExcelRows: " + e.Message);
             }
-
-            return somethingDiffers;
         }
 
-        private static bool compareExcelRows(
-            Worksheet worksheet, 
-            Hashtable storedOld, 
-            Hashtable storedNew, 
-            ref int rows, 
-            ref int orgColCount)
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
+            Justification = "Reviewed. Suppression is OK here.")]
+        private static bool CompareExcelRows(
+            Worksheet worksheet, Hashtable storedOld, Hashtable storedNew, ref int rows, ref int orgColCount)
         {
             // if (storedOld == null)
             // {
             // MessageBox.Show("Hashtable empty.");
             // return false;
             // }
-            if (tableAreNull(storedOld, storedOld)) // skulle ha new är oxo eg.
+            // skulle ha new är oxo eg.
+            if (TableAreNull(storedOld, storedOld))
             {
                 return false;
             }
@@ -828,24 +843,32 @@ namespace Utilities
                     // } 
                     #endregion
 
-                    if (!storedOld.ContainsKey(concatedNewRowCells))
+                    if (concatedNewRowCells != null && !storedOld.ContainsKey(concatedNewRowCells))
                     {
                         // Om den bara finns med i nya
                         // färglägg bara unika celler från stored.Value...
                         // Uniqe row found
 
                         // hämta radnumret
-                        var currentRowNumber = (storedNew[concatedNewRowCells] as ExcelRowEntry).row;
+                        if (storedNew.ContainsKey(concatedNewRowCells))
+                        {
+                            var excelRowEntry = storedNew[concatedNewRowCells] as ExcelRowEntry;
+                            if (excelRowEntry != null)
+                            {
+                                var currentRowNumber = excelRowEntry.Row;
 
-                        // int currentRowNumber = ((int)(allInNew[concatedNewRowCells] as object[])[1]);
-                        var column = GetStandardExcelColumnName(orgColCount + 1);
-                            
-                            // worksheet.UsedRange.Columns.Count + 1);
-                        var range = worksheet.get_Range(
-                            "A" + currentRowNumber.ToString(), column + currentRowNumber.ToString()); // "IV" 
+                                // int currentRowNumber = ((int)(allInNew[concatedNewRowCells] as object[])[1]);
+                                var column = GetStandardExcelColumnName(orgColCount + 1);
 
-                        range.Interior.ColorIndex = 36; // EntireRow
-                        worksheet.Cells[currentRowNumber, orgColCount + 1] = "NEW"; // args[i].ToString();
+                                // worksheet.UsedRange.Columns.Count + 1);
+                                var range =
+                                    worksheet.Range["A" + currentRowNumber.ToString(CultureInfo.InvariantCulture),
+                                        column + currentRowNumber.ToString(CultureInfo.InvariantCulture)]; // "IV" 
+
+                                range.Interior.ColorIndex = 36; // EntireRow
+                                worksheet.Cells[currentRowNumber, orgColCount + 1] = "NEW"; // args[i].ToString();
+                            }
+                        }
 
                         somethingDiffers = true;
 
@@ -928,12 +951,9 @@ namespace Utilities
 
                 #region check deleted
 
-                var sheets = new Hashtable();
-                sheets.Add(worksheet.Name, new object[] { worksheet, orgRowCount + 1, 1 });
-                    
-                    // +1 på rad för att det är var man ska skriva nästa cellrad.
-                var _last = sheets[worksheet.Name] as Microsoft.Office.Interop.Excel.Worksheet;
+                var sheets = new Hashtable { { worksheet.Name, new object[] { worksheet, orgRowCount + 1, 1 } } };
 
+                // +1 på rad för att det är var man ska skriva nästa cellrad.
                 var somethingFoundDeletedAndExtraTitelsWritten = false;
 
                 // Special för DatabaseInfo
@@ -952,7 +972,6 @@ namespace Utilities
                         // lägg till raden i loggen och välj speciell färg (grön), TODO: ha funktioner när man skickar med wilken excelbok man har och vilken sheets-tabell, så all excelkod ligger i logger.cs
                         try
                         {
-                            var sheet = worksheet;
                             var sheetName = worksheet.Name;
                             var oa = sheets[sheetName] as object[];
 
@@ -969,7 +988,7 @@ namespace Utilities
                                 // nextSheet.Name = saveAsSheetName = "Prov_part2";
                                 // sheets.Add(saveAsSheetName, new object[] { nextSheet, 1, 4 });
                                 saveAsSheetName = sheetName + "_part" + oa[2];
-                                oa = sheets[sheetName + "_part" + oa[2]] as object[]; // oa[0] as Excel.Worksheet;	
+                                oa = sheets[sheetName + "_part" + oa[2]] as object[]; // oa[0] as Excel.Worksheet; 
                             }
                             else
                             {
@@ -978,22 +997,22 @@ namespace Utilities
 
                             #endregion
 
-                            sheet = oa[0] as Microsoft.Office.Interop.Excel.Worksheet;
+                            var sheet = oa[0] as Worksheet;
 
-                            var nextRow = 0;
-                                
-                                // = Logger.addRow(sheet, saveAsSheetName, ref oa, null, false, System.Drawing.Color.Green, 0, stored[oldrow] as string[]);// as string[]
+                            int nextRow;
+
+                            // = Logger.addRow(sheet, saveAsSheetName, ref oa, null, false, System.Drawing.Color.Green, 0, stored[oldrow] as string[]);// as string[]
                             if (worksheet.Name != "DatabaseInfo")
                             {
                                 nextRow = Logger.addRow(
-                                    sheet, 
-                                    saveAsSheetName, 
-                                    ref oa, 
-                                    null, 
-                                    false, 
-                                    System.Drawing.Color.GreenYellow, 
-                                    0, 
-                                    (storedOld[oldrow] as ExcelRowEntry).args); // as string[]//Green// as string[]
+                                    sheet,
+                                    saveAsSheetName,
+                                    ref oa,
+                                    null,
+                                    false,
+                                    System.Drawing.Color.GreenYellow,
+                                    0,
+                                    (storedOld[oldrow] as ExcelRowEntry).Args); // as string[]//Green// as string[]
                             }
                             else
                             {
@@ -1001,45 +1020,41 @@ namespace Utilities
 
                                 if (!somethingFoundDeletedAndExtraTitelsWritten)
                                 {
-                                    var titleCellLayout = new Hashtable();
-                                    titleCellLayout.Add(CellLayOutSettings.Bold, true);
-
-                                    nextRow = Logger.addRow(
-                                        sheet, 
-                                        saveAsSheetName, 
-                                        ref oa, 
-                                        titleCellLayout, 
-                                        true, 
-                                        System.Drawing.Color.Empty, 
-                                        3, 
-                                        3, 
-                                        "Old quantity");
-                                    nextRow = Logger.addRow(
-                                        sheet, 
-                                        saveAsSheetName, 
-                                        ref oa, 
-                                        titleCellLayout, 
-                                        true, 
-                                        System.Drawing.Color.Empty, 
-                                        3, 
-                                        4, 
-                                        "Difference");
-
+                                    // var titleCellLayout = new Hashtable { { CellLayOutSettings.Bold, true } };
+                                    // nextRow = Logger.addRow(
+                                    // sheet,
+                                    // saveAsSheetName,
+                                    // ref oa,
+                                    // titleCellLayout,
+                                    // true,
+                                    // System.Drawing.Color.Empty,
+                                    // 3,
+                                    // 3,
+                                    // "Old quantity");
+                                    // nextRow = Logger.addRow(
+                                    // sheet,
+                                    // saveAsSheetName,
+                                    // ref oa,
+                                    // titleCellLayout,
+                                    // true,
+                                    // System.Drawing.Color.Empty,
+                                    // 3,
+                                    // 4,
+                                    // "Difference");
                                     somethingFoundDeletedAndExtraTitelsWritten = true;
                                 }
 
-                                nextRow = Logger.addRow(
-                                    sheet, 
-                                    saveAsSheetName, 
-                                    ref oa, 
-                                    null, 
-                                    false, 
-                                    System.Drawing.Color.GreenYellow, 
-                                    (storedOld[oldrow] as ExcelRowEntry).row, 
-                                    3, 
-                                    (storedOld[oldrow] as ExcelRowEntry).args[1]);
-
-                                var currRow = (storedOld[oldrow] as ExcelRowEntry).row;
+                                // nextRow = Logger.addRow(
+                                // sheet,
+                                // saveAsSheetName,
+                                // ref oa,
+                                // null,
+                                // false,
+                                // System.Drawing.Color.GreenYellow,
+                                // (storedOld[oldrow] as ExcelRowEntry).row,
+                                // 3,
+                                // (storedOld[oldrow] as ExcelRowEntry).args[1]);
+                                var currRow = (storedOld[oldrow] as ExcelRowEntry).Row;
                                 var cellLayout = new Hashtable();
 
                                 #region Skriv med rött om antalet gått ner sen gamla loggen
@@ -1050,19 +1065,20 @@ namespace Utilities
                                 foreach (DictionaryEntry newRow in storedNew)
                                 {
                                     // string currRow = (storedOld[oldrow] as DbInfoLogEntry).row.ToString();
-                                    if (currRow == (newRow.Value as ExcelRowEntry).row)
+                                    if (currRow == (newRow.Value as ExcelRowEntry).Row)
                                     {
                                         // Hittat, ska nu hämta ut quantity, som finns i value 0
-                                        newQuantity = int.Parse((newRow.Value as ExcelRowEntry).args[1]);
+                                        newQuantity = int.Parse((string)(newRow.Value as ExcelRowEntry).Args[1]);
 
                                         // newQuantity = int.Parse(newRow[0].ToString());
                                         break;
                                     }
                                 }
 
-                                var oldQuantity = newQuantity - int.Parse((storedOld[oldrow] as ExcelRowEntry).args[1]);
-                                    
-                                    // Det som kommer stå i cellen sen. I.e nya-gamla quantity, blir bökigt att hämta ut
+                                var oldQuantity = newQuantity
+                                                  - int.Parse((string)(storedOld[oldrow] as ExcelRowEntry).Args[1]);
+
+                                // Det som kommer stå i cellen sen. I.e nya-gamla quantity, blir bökigt att hämta ut
                                 if (oldQuantity < 0)
                                 {
                                     cellLayout.Add(CellLayOutSettings.TextColor, System.Drawing.Color.Red);
@@ -1071,28 +1087,25 @@ namespace Utilities
                                 #endregion
 
                                 nextRow = Logger.addRow(
-                                    sheet, 
-                                    saveAsSheetName, 
-                                    ref oa, 
-                                    cellLayout, 
-                                    false, 
-                                    System.Drawing.Color.Empty, 
-                                    (storedOld[oldrow] as ExcelRowEntry).row, 
-                                    4, 
-                                    new[]
-                                    {
-                                        "=B" + currRow + "-D" + currRow
-                                        
-                                        // BC när den är färdig, men "new" finns som rad o då blird det B+D
-                                    });
+                                    sheet,
+                                    saveAsSheetName,
+                                    ref oa,
+                                    cellLayout,
+                                    false,
+                                    System.Drawing.Color.Empty,
+                                    (storedOld[oldrow] as ExcelRowEntry).Row,
+                                    4,
+                                    new object[] { "=B" + currRow + "-D" + currRow });
 
+                                // BC när den är färdig, men "new" finns som rad o då blird det B+D
                                 #endregion
                             }
 
                             #region Check if rowcount exceeded maximum
 
                             // +1 fär oa[1] (nästa rad) är alltid 1 större än nextrow är här
-                            if (nextRow + 1 > (Logger.excelMaxNoRows - 2)) // tar sista raden oxå //(excelMaxNoRows-2) )//tar ínte allra sista raden för säkerhets skull
+                            // tar sista raden oxå //(excelMaxNoRows-2) )//tar ínte allra sista raden för säkerhets skull
+                            if (nextRow + 1 > (Logger.excelMaxNoRows - 2))
                             {
                                 // Gör ett nytt ark med samma namn + siffra (EX. Prov_part2)
 
@@ -1110,10 +1123,9 @@ namespace Utilities
 
                                 // Excel.Worksheet nextSheet = new Excel.Worksheet() as Excel.Worksheet;//_book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as Excel.Worksheet;//Type.Missing, _last, Type.Missing, Type.Missing
                                 // Excel.Worksheet nextSheet = _book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as Excel.Worksheet;
-                                _last = sheet;
+                                var last = sheet;
                                 var nextSheet =
-                                    _newLog.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as
-                                    Microsoft.Office.Interop.Excel.Worksheet;
+                                    newLog.Worksheets.Add(Type.Missing, last, Type.Missing, Type.Missing) as Worksheet;
 
                                 nextSheet.Name = newSheetName;
                                 sheets.Add(newSheetName, new object[] { nextSheet, 4, 0 });
@@ -1156,20 +1168,6 @@ namespace Utilities
             rows = orgRowCount;
 
             return somethingDiffers;
-        }
-    }
-
-    public class ExcelRowEntry // Byt namn
-    {
-        public string[] args = null;
-
-        public int row = 0; // Byt namn till rownumber
-
-        public ExcelRowEntry(int i, string[] s)
-        {
-            row = i;
-
-            args = s;
         }
     }
 }

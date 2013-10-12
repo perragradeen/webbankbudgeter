@@ -33,10 +33,10 @@ namespace Budgetterarn
         // , args[8] as string
         // , args[9] as Dictionary<string, string>);
         // }
-        private const string LÖNEKONTOName = "LÖNEKONTO";
+        private const string LönekontoName = "LÖNEKONTO";
         private const string AllkortName = "Allkort";
         private const string EjFaktureratEtcName = "ejFaktureratEtc";
-        private static readonly List<string> swedbankSaldonames = new List<string>
+        private static readonly List<string> SwedbankSaldonames = new List<string>
                                                                   {
                                                                       "Privatkonto 8417-8,4 751 687-7", 
                                                                       "Servicekonto 8417-8,4 778 356-8", 
@@ -46,29 +46,9 @@ namespace Budgetterarn
 
         internal static LoadOrSaveResult Save(
             KontoutdragInfoForSave kontoutdragInfoForSave,
-            // Thread mainThread, 
-            // ref string statusLabel,
-            // , out Thread workerThread,
             SortedList kontoEntries,
-            // , string excelFileSavePath
-            // , string sheetName
-            // , ref bool somethingChanged
-            // , string excelFileSavePathWithoutFileName, string excelFileSaveFileName
             Dictionary<string, string> saldon)
         {
-            #region Thread handling
-
-            // if (Thread.CurrentThread == mainThread) {
-            // toolStripStatusLabel1.Text = "Saving... number of entries; " + kontoEntries.Count;
-
-            // workerThread = new Thread(new ThreadStart(Save));
-            // workerThread.CurrentCulture = mainThread.CurrentCulture;
-            // workerThread.CurrentUICulture = mainThread.CurrentUICulture;
-            // workerThread.Start();
-            // return;
-            // }
-            #endregion
-
             try
             {
                 // If nothing to save, return
@@ -97,7 +77,7 @@ namespace Budgetterarn
             }
             catch (Exception savExcp)
             {
-                MessageBox.Show("Error: " + savExcp.Message);
+                MessageBox.Show(@"Error: " + savExcp.Message);
                 return new LoadOrSaveResult();
             }
         }
@@ -108,7 +88,7 @@ namespace Budgetterarn
             Hashtable logThis = null;
 
             // Lägg till överskrifter
-            // y	m	d	n	t	g	s	b				c
+            // y m d n t g s b    c
             if (ProgramSettings.BankType.Equals(BankType.Swedbank)
                 || ProgramSettings.BankType.Equals(BankType.Mobilhandelsbanken))
             {
@@ -244,7 +224,7 @@ namespace Budgetterarn
             {
                 if (item.Value != null)
                 {
-                    var entryArray = ((ExcelRowEntry)item.Value).args;
+                    var entryArray = ((ExcelRowEntry)item.Value).Args;
 
                     // Om det är tomt
                     if (entryArray == null)
@@ -256,21 +236,21 @@ namespace Budgetterarn
                     if (entryArray[0] == "y")
                     {
                         // Spara saldon, använd det gamla värdet om inget nytt hittats från fil.
-                        var saldoLöne = saldon.SafeGetStringFromDictionary(LÖNEKONTOName);
+                        var saldoLöne = saldon.SafeGetStringFromDictionary(LönekontoName);
                         var saldoAllkort = saldon.SafeGetStringFromDictionary(AllkortName);
                         var saldoAllkortKreditEjFakturerat = saldon.SafeGetStringFromDictionary(EjFaktureratEtcName);
 
-                        saldoLöne = entryArray.Length > 12 ? entryArray[12] ?? saldoLöne : saldoLöne;
-                        saldoAllkort = entryArray.Length > 13 ? entryArray[13] ?? saldoAllkort : saldoAllkort;
-                        saldoAllkortKreditEjFakturerat = entryArray.Length > 14
-                                                             ? entryArray[14] ?? saldoAllkortKreditEjFakturerat
-                                                             : saldoAllkortKreditEjFakturerat;
+                        saldoLöne = (string)(entryArray.Length > 12 ? entryArray[12] ?? saldoLöne : saldoLöne);
+                        saldoAllkort = (string)(entryArray.Length > 13 ? entryArray[13] ?? saldoAllkort : saldoAllkort);
+                        saldoAllkortKreditEjFakturerat = (string)(entryArray.Length > 14
+                                                                      ? entryArray[14] ?? saldoAllkortKreditEjFakturerat
+                                                                      : saldoAllkortKreditEjFakturerat);
 
                         // var saldoAllkortKreditFakturerat = entryArray.Length > 15 ? entryArray[15] ?? saldoAllkortKreditFakturerat : saldoAllkortKreditFakturerat;
                         var saldoColumnNumber = 11;
                         if (ProgramSettings.BankType == BankType.Swedbank)
                         {
-                            foreach (var s in swedbankSaldonames)
+                            foreach (var s in SwedbankSaldonames)
                             {
                                 var saldot = entryArray.Length > saldoColumnNumber
                                                  ? entryArray[saldoColumnNumber + 1] ?? string.Empty
@@ -278,11 +258,11 @@ namespace Budgetterarn
 
                                 if (!saldon.ContainsKey(s))
                                 {
-                                    saldon.Add(s, saldot);
+                                    saldon.Add(s, (string)saldot);
                                 }
                                 else
                                 {
-                                    saldon[s] = saldot;
+                                    saldon[s] = (string)saldot;
                                 }
 
                                 saldoColumnNumber++;
@@ -290,7 +270,7 @@ namespace Budgetterarn
                         }
                         else if (ProgramSettings.BankType == BankType.Mobilhandelsbanken)
                         {
-                            saldon.AddToOrChangeValueInDictionaryForKey(LÖNEKONTOName, saldoLöne.GetValueFromEntry());
+                            saldon.AddToOrChangeValueInDictionaryForKey(LönekontoName, saldoLöne.GetValueFromEntry());
                             saldon.AddToOrChangeValueInDictionaryForKey(AllkortName, saldoAllkort.GetValueFromEntry());
                             saldon.AddToOrChangeValueInDictionaryForKey(
                                 EjFaktureratEtcName, saldoAllkortKreditEjFakturerat.GetValueFromEntry()
@@ -303,7 +283,7 @@ namespace Budgetterarn
                         continue;
                     }
 
-                    var newKe = new KontoEntry(entryArray, true);
+                    var newKe = new KontoEntry((string[])entryArray, true);
                     var key = newKe.KeyForThis; // item.Key as string;
 
                     // Lägg till orginalraden, gör i UI-hanterare
@@ -544,7 +524,7 @@ namespace Budgetterarn
             saldoValueElem = saldoElement.FirstChild.NextSibling.NextSibling.NextSibling.FirstChild.NextSibling;
 
             var saldoValueDisp = 0.0;
-            if (saldoElement != null && saldoName != LÖNEKONTOName)
+            if (saldoElement != null && saldoName != LönekontoName)
             {
                 saldoValueDisp = RemoveSekFromMoneyString(saldoValueElem.InnerText).GetValueFromEntry();
 
@@ -841,7 +821,7 @@ namespace Budgetterarn
                     if (!currentSubElem.TagName.Equals("OPTION") && // h3
                         currentSubElem.TagName.Equals("H3"))
                     {
-                        foreach (var s in swedbankSaldonames)
+                        foreach (var s in SwedbankSaldonames)
                         {
                             if (currentSubElem.InnerText.Contains(s))
                             {
@@ -1139,7 +1119,7 @@ namespace Budgetterarn
 
                     // Start new Excel-instance
                     excelAppOpen = new Application();
-                    excelAppOpen.WorkbookDeactivate += Application_WorkbookDeactivate;
+                    excelAppOpen.WorkbookDeactivate += ApplicationWorkbookDeactivate;
 
                     var oldCi = Thread.CurrentThread.CurrentCulture;
                     Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
@@ -1171,17 +1151,15 @@ namespace Budgetterarn
             }
             catch (Exception fileExp)
             {
-                Console.WriteLine("Error in LoadComparedLogIn: " + fileExp.Message);
+                Console.WriteLine(@"Error in LoadComparedLogIn: " + fileExp.Message);
             }
             finally
             {
                 Cursor.Current = Cursors.Default;
             }
-
-            return;
         }
 
-        private static void Application_WorkbookDeactivate(Workbook wb)
+        private static void ApplicationWorkbookDeactivate(Workbook wb)
         {
             try
             {
@@ -1203,7 +1181,7 @@ namespace Budgetterarn
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error while closing Excel: " + e.Message);
+                MessageBox.Show(@"Error while closing Excel: " + e.Message);
             }
         }
     }

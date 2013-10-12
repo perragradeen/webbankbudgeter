@@ -46,8 +46,8 @@ ________________________________________
 *När autokat satts, så ska bara den nya kollas mot listan, inte kolla alla autokats som satts på raderna som syns som nya.
 *ta bort columndebugtext
 *ibland är det tomt, men det är det på allkort kredit...
-	*gå på tabelltitel, så kan man sätt vilken info som hör till vilken typ.
-			<TR><TD width="62" class="SHBHeader" valign=top>Köpdatum</TD><TD width="8" class="SHBHeader">&nbsp;</TD><TD width="40" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="107" class="SHBHeader" valign=top>Inköpsställe</TD><TD width="3" class="SHBHeader">&nbsp;</TD><TD width="110" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="50" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="100" align="right" class="SHBHeader" valign=top>Belopp i SEK</TD><TD width="10" class="SHBHeader">&nbsp;</TD><TD width="60" class="SHBHeader">&nbsp;</TD><TD width="10" class="SHBHeader">&nbsp;</TD></TR>
+ *gå på tabelltitel, så kan man sätt vilken info som hör till vilken typ.
+   <TR><TD width="62" class="SHBHeader" valign=top>Köpdatum</TD><TD width="8" class="SHBHeader">&nbsp;</TD><TD width="40" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="107" class="SHBHeader" valign=top>Inköpsställe</TD><TD width="3" class="SHBHeader">&nbsp;</TD><TD width="110" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="50" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="100" align="right" class="SHBHeader" valign=top>Belopp i SEK</TD><TD width="10" class="SHBHeader">&nbsp;</TD><TD width="60" class="SHBHeader">&nbsp;</TD><TD width="10" class="SHBHeader">&nbsp;</TD></TR>
 
 *//Todo. Ta bort den ur minnet, newKontoEntries
 *Dubblettvarning. Tydligare fråga vad yes/no innebär. Fixa så den har mer exakt info, typ en rad för varje, med datum, kost etc...
@@ -71,27 +71,27 @@ _klar
     #region Todos
     Todos:
     
-	___Rensa upp bland koden______
-	X*Rensa gammal kod. (den s i SVN, på samma rad som man är, bara att gå bakåt i historik till "Rensat gammal Kod")
-	X*Gör om variabelreferenser så att det inte behövs så många argument.
-	*Töm BudgeterUI.cs
-	*Gör om LoadNSave till att instansieras. Funktionerna kan vara statiska på de delar där det är lämpligt.
-	*Skapa trunk och branch, för stora delar som att byta till telefoninloggning
-	*Ta bort varningar (14.34 - 15)
-	
-	*Byt namn på saldon lista, till konton med saldon (inladdat från xls) som innehåller konton och saldon. används bla. i C:\Files\My Dropbox\budget\Program\Budgetterarn\Budgetterarn\LaodNSave.cs r170
-	 
-	___UI och användbarhetsFörbättringar___________
-	1*Minska antalet klick till att ladda in.
-	0,25*Begränsa antalet gamla poster som visas i listView (ev. med en kanpp för att få fram alla) 15
+ ___Rensa upp bland koden______
+ X*Rensa gammal kod. (den s i SVN, på samma rad som man är, bara att gå bakåt i historik till "Rensat gammal Kod")
+ X*Gör om variabelreferenser så att det inte behövs så många argument.
+ *Töm BudgeterUI.cs
+ *Gör om LoadNSave till att instansieras. Funktionerna kan vara statiska på de delar där det är lämpligt.
+ *Skapa trunk och branch, för stora delar som att byta till telefoninloggning
+ *Ta bort varningar (14.34 - 15)
+ 
+ *Byt namn på saldon lista, till konton med saldon (inladdat från xls) som innehåller konton och saldon. används bla. i C:\Files\My Dropbox\budget\Program\Budgetterarn\Budgetterarn\LaodNSave.cs r170
+  
+ ___UI och användbarhetsFörbättringar___________
+ 1*Minska antalet klick till att ladda in.
+ 0,25*Begränsa antalet gamla poster som visas i listView (ev. med en kanpp för att få fram alla) 15
 
 
-	___Kärndelar för sysstemet___________
-	3*Lägg till så man loggar in utan dosa via telefoninloggning.
+ ___Kärndelar för sysstemet___________
+ 3*Lägg till så man loggar in utan dosa via telefoninloggning.
     _Ta bort interop Excel-koppling, och ha all Exclekod i utilities, om det går med avstänging etc...
     * kolla automatiskt när Excel sparat klart. Ev. med exitfunktionen eller trådtrams. Ev. fixa så denna pollar el. linkn. medans den väntar på att filen ska hinna sparas innan man öppnar, eller testa annat där. Nu kommer fråga om man vill öppna budget-filen direkt i Excel efter man sparat. Man måste dock vänta på att det ska sparas klart innan man klickar på Yes
-	*Spara allt som xml. Ev. på ett format som Excel snyggt och enkelt kan läsa
-	*Byt namn på alla delar som har med kontohändelser att göra. Kalla dem "accountEvents" el. likn. (helst ej svenska "kontohändelser")
+ *Spara allt som xml. Ev. på ett format som Excel snyggt och enkelt kan läsa
+ *Byt namn på alla delar som har med kontohändelser att göra. Kalla dem "accountEvents" el. likn. (helst ej svenska "kontohändelser")
 
     Gör en tråd som väntar på att sidan ska ladda klart etc, så kan man automatiskt hoppa till rätt ställe och läsa in entries
     *Knapp eller annat sätt att ladda entries från html

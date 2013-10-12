@@ -672,8 +672,8 @@ namespace Utilities
 
                 // här ska koll på arknummer göras
                 /*
-                om o[2] är >1	så ska det numrets delark laddas
-	
+                om o[2] är >1 så ska det numrets delark laddas
+ 
                     sheet ska vara = sheetName + o[2].tostring()
                     leta bland sheets efter Arket med det namnet
                     sheet = HL[ sheetName + o[2].tostring()]
@@ -683,7 +683,7 @@ namespace Utilities
                 if ((int)oa[2] > 1)
                 {
                     saveAsSheetName = sheetName + "_part" + oa[2];
-                    oa = _sheets[sheetName + "_part" + oa[2]] as object[]; // oa[0] as Excel.Worksheet;	
+                    oa = _sheets[sheetName + "_part" + oa[2]] as object[]; // oa[0] as Excel.Worksheet; 
                 }
                 else
                 {

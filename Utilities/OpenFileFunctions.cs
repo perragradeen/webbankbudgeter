@@ -125,7 +125,7 @@ namespace Utilities
                         
                         // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
                     rows = new Hashtable();
-                    ExcelLogRowComparer.getExcelRows(worksheet, rows);
+                    ExcelLogRowComparer.GetExcelRows(worksheet, rows);
                         
                         // Hämta ut rader och lägg i rows från Excel arket worksheet
                     book.Add(localSheetName, rows); // Lägg till i arbetsboken
@@ -142,7 +142,7 @@ namespace Utilities
                     // book = book[sheetName]
                     foreach (ExcelRowEntry var in (book[sheetName] as Hashtable).Values) // string[]
                     {
-                        returnHashtable.Add(var.args[selectedRow - 1], 1);
+                        returnHashtable.Add(var.Args[selectedRow - 1], 1);
                     }
                 }
 
