@@ -23,10 +23,8 @@ namespace RefLesses
             {
                 return saldon[key] ?? string.Empty;
             }
-            else
-            {
-                return string.Empty;
-            }
+            
+            return string.Empty;
         }
     }
 }
