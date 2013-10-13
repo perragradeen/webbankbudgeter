@@ -283,7 +283,7 @@ namespace Budgetterarn
                         continue;
                     }
 
-                    var newKe = new KontoEntry((string[])entryArray, true);
+                    var newKe = new KontoEntry(entryArray, true);
                     var key = newKe.KeyForThis; // item.Key as string;
 
                     // Lägg till orginalraden, gör i UI-hanterare

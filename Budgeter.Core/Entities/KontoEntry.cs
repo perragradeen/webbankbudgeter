@@ -20,10 +20,16 @@ namespace Budgeter.Core.Entities
         // Ev. ha en övrig inf, en array av string typ, med referenser kommentarer etc
 
         // dateFormat = currDate.Date.ToString("yyyy-MM-dd", svecia);// string.IsNullOrEmpty(dateFormat).ToString();
+        public bool ForUi { get; set; }
         public string DateString
         {
             get
             {
+                var datesTemp = Date.ToString();
+                if (ForUi && datesTemp.Contains("00"))
+                {
+                    return Date.ToString("yyyy-MM-dd");
+                }
                 return Date.ToString();
             }
         } // "yyyy-MM-dd"); } }
@@ -114,7 +120,7 @@ namespace Budgeter.Core.Entities
         {
         }
 
-        public KontoEntry(string[] inArray, bool fromXls = false) // CreateKE
+        public KontoEntry(object[] inArray, bool fromXls = false) // CreateKE
         {
             mFromXls = fromXls;
 
@@ -203,11 +209,11 @@ namespace Budgeter.Core.Entities
             SaldoOrginal = fromBank.SaldoValue.GetValueFromEntry();
         }
 
-        public string RowThatExists(string[] inArray, int columnNumber)
+        public string RowThatExists(object[] inArray, int columnNumber)
         {
             return inArray.Length > columnNumber && inArray[columnNumber] != null
-                       ? inArray[mFromXls ? columnNumber + 2 : columnNumber]
-                       : "";
+                       ? inArray[mFromXls ? columnNumber + 2 : columnNumber].ToString()
+                       : string.Empty;
         }
 
         #endregion

@@ -66,7 +66,9 @@ namespace Budgetterarn
         internal static void AddToListview(ListView list, KontoEntry entry)
         {
             // Sätt mellanslagstecken ifall en strän i listan kommer att bli tom eller null, så att det finns något att klicka på och så det inte uppstår exception senare.
+            entry.ForUi = true;
             var kontoEntryElements = entry.RowToSaveToUiSwitched; // RowToSaveForThis;
+            entry.ForUi = false;
 
             // for (var itemIndex = 0; itemIndex < kontoEntryElements.Length; itemIndex++)//hm, denna kan man nog inte ha här o räkna med bra resultat, men o andra sidan så är det bara för att comboboxen ska dyka upp visuellt, så detta e lugnt
             // {
