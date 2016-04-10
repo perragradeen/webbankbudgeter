@@ -1,7 +1,7 @@
 ﻿using Budgetterarn;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestProject3
+namespace TestBudgetterarn
 {
     /// <summary>
     ///This is a test class for BudgeterTest and is intended
@@ -48,10 +48,10 @@ namespace TestProject3
         [DeploymentItem("Budgetterarn.exe")]
         public void AutoLoadEtceTest()
         {
-            var target = new BudgeterForm(); // TODO: Initialize to an appropriate value
+            var target = new ProgramSettings(); // TODO: Initialize to an appropriate value
             var expected = false; // TODO: Initialize to an appropriate value
             bool actual;
-            actual = target.AutoLoadEtce();
+            actual = target.AutoLoadEtc;
             Assert.AreEqual(expected, actual);
         }
     }

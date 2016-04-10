@@ -9,7 +9,7 @@ namespace Budgetterarn
 {
     internal class ViewUpdateUi
     {
-        internal static void UpdateListViewFromSortedList(ListView showEntriesInThis, SortedList kontoEntries)
+        internal static void SetNewItemsListViewFromSortedList(ListView showEntriesInThis, SortedList kontoEntries)
         {
             if (showEntriesInThis != null)
             {
@@ -80,15 +80,13 @@ namespace Budgetterarn
             // System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             // "Neww"}, -1, System.Drawing.Color.Lime, System.Drawing.Color.Empty, null);
 
-            // kolla om elementet redan finns
-            // if (!list.Items.ContainsKey(kontoEntryElements[0]))
-
             // byt plats på typavkat och kostnad
             // var kostnad = kontoEntryElements[2];
             // var typAvkostnad = kontoEntryElements[5];
 
             // kontoEntryElements[2] = typAvkostnad;
             // kontoEntryElements[5] = typAvkostnad;
+
             list.Items.Add(new ListViewItem(kontoEntryElements, -1, entry.FontFrontColor, Color.Empty, null)).Tag =
                 entry;
                 

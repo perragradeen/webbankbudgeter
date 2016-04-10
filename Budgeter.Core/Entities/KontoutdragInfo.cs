@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Budgetterarn.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,12 +11,12 @@ namespace Budgeter.Core.Entities
         /// <summary>
         /// Key = description, Value= amount
         /// </summary>
-        private Dictionary<string, string> saldon = new Dictionary<string, string>();
+        private SaldoHolder saldoHolder;
 
         public KontoutdragInfo()
         {
             KontoEntries = new SortedList(new DescendingComparer());
-            saldon = new Dictionary<string, string>();
+            saldoHolder = new SaldoHolder();
         }
 
         /// <summary>

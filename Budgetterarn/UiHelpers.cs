@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Budgeter.Core.Entities;
+using System.Collections.Generic;
 
 namespace Budgeter.Winforms
 {
@@ -15,6 +16,24 @@ namespace Budgeter.Winforms
             foreach (ListViewItem viewItem in listToSearchIn.Items)
             {
                 if (((KontoEntry)viewItem.Tag).KeyForThis.Equals(keyToSearchFor))
+                {
+                    return viewItem;
+                }
+            }
+
+            return null;
+        }
+
+        public static bool CheckIfKeyExistsInKontoEntries(this List<KontoEntry> listToSearchIn, string keyToSearchFor)
+        {
+            return listToSearchIn.GetEntryFromKontoEntries(keyToSearchFor) != null;
+        }
+
+        private static KontoEntry GetEntryFromKontoEntries(this List<KontoEntry> listToSearchIn, string keyToSearchFor)
+        {
+            foreach (KontoEntry viewItem in listToSearchIn)
+            {
+                if (viewItem.KeyForThis.Equals(keyToSearchFor))
                 {
                     return viewItem;
                 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Budgeter.Core.Entities;
 
@@ -140,6 +141,24 @@ namespace Budgetterarn
             #endregion
         }
 
+        public List<KontoEntry> ItemsAsKontoEntries
+        {
+            get
+            {
+                var entries = new List<KontoEntry>();
+
+                if (Items != null && Items.Count > 0)
+                {
+
+                    var items = Items.Cast<ListViewItem>();
+                    items.ToList().ForEach(
+                        viewItem => entries.Add((KontoEntry)viewItem.Tag));
+                }
+
+                return entries;
+            }
+        }
+
         #region Events (button clicks etc)
 
         private void RowKeyPress(object sender, KeyPressEventArgs e)
@@ -269,7 +288,7 @@ namespace Budgetterarn
                 }
 
                 // Skippa att fråga om o sätta exakt samma kategori.
-                if (newKe.TypAvKostnad.Equals(lookedUpCat))
+                if (newKe.TypAvKostnad != null && newKe.TypAvKostnad.Equals(lookedUpCat))
                 {
                     continue;
                 }

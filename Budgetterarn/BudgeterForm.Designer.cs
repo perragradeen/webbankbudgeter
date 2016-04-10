@@ -71,6 +71,7 @@ namespace Budgetterarn
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.debugbtn = new System.Windows.Forms.Button();
             this.btnLoadCurrentEntries = new System.Windows.Forms.Button();
+            this.loadEntriesFromPdfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -106,41 +107,41 @@ namespace Budgetterarn
             this.openUrlToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadToolStripMenuItem1
             // 
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
             this.loadToolStripMenuItem1.Text = "Load new entries from xls";
             this.loadToolStripMenuItem1.Click += new System.EventHandler(this.LoadToolStripMenuItem1Click);
             // 
             // FileMenuLoadNewFromXls
             // 
             this.FileMenuLoadNewFromXls.Name = "FileMenuLoadNewFromXls";
-            this.FileMenuLoadNewFromXls.Size = new System.Drawing.Size(197, 22);
+            this.FileMenuLoadNewFromXls.Size = new System.Drawing.Size(208, 22);
             this.FileMenuLoadNewFromXls.Text = "Add new entries from xls";
             this.FileMenuLoadNewFromXls.Click += new System.EventHandler(this.FileMenuLoadNewFromXlsClick);
             // 
             // openBankSiteToolStripMenuItem
             // 
             this.openBankSiteToolStripMenuItem.Name = "openBankSiteToolStripMenuItem";
-            this.openBankSiteToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.openBankSiteToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.openBankSiteToolStripMenuItem.Text = "Open bank site";
             this.openBankSiteToolStripMenuItem.Click += new System.EventHandler(this.OpenBankSiteToolStripMenuItemClick);
             // 
             // openUrlToolStripMenuItem
             // 
             this.openUrlToolStripMenuItem.Name = "openUrlToolStripMenuItem";
-            this.openUrlToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.openUrlToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.openUrlToolStripMenuItem.Text = "Open Url";
             this.openUrlToolStripMenuItem.Click += new System.EventHandler(this.OpenUrlToolStripMenuItemClick);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItemClick);
             // 
@@ -154,64 +155,65 @@ namespace Budgetterarn
             this.testNav1ToolStripMenuItem,
             this.testBackNavToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.testToolStripMenuItem.Text = "Test";
             // 
             // debugToolStripMenuItem
             // 
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.debugToolStripMenuItem.Text = "Debug";
             this.debugToolStripMenuItem.Click += new System.EventHandler(this.DebugToolStripMenuItemClick);
             // 
             // navigeraToolStripMenuItem
             // 
             this.navigeraToolStripMenuItem.Name = "navigeraToolStripMenuItem";
-            this.navigeraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.navigeraToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.navigeraToolStripMenuItem.Text = "Navigera";
             this.navigeraToolStripMenuItem.Click += new System.EventHandler(this.NavigeraToolStripMenuItemClick);
             // 
             // setLoginToolStripMenuItem
             // 
             this.setLoginToolStripMenuItem.Name = "setLoginToolStripMenuItem";
-            this.setLoginToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setLoginToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.setLoginToolStripMenuItem.Text = "Set Login";
             this.setLoginToolStripMenuItem.Click += new System.EventHandler(this.SetLoginToolStripMenuItemClick);
             // 
             // navigateToLöneToolStripMenuItem
             // 
             this.navigateToLöneToolStripMenuItem.Name = "navigateToLöneToolStripMenuItem";
-            this.navigateToLöneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.navigateToLöneToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.navigateToLöneToolStripMenuItem.Text = "NavigateToLöne";
             this.navigateToLöneToolStripMenuItem.Click += new System.EventHandler(this.NavigateToLöneToolStripMenuItemClick);
             // 
             // testNav1ToolStripMenuItem
             // 
             this.testNav1ToolStripMenuItem.Name = "testNav1ToolStripMenuItem";
-            this.testNav1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testNav1ToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.testNav1ToolStripMenuItem.Text = "Test nav1";
             this.testNav1ToolStripMenuItem.Click += new System.EventHandler(this.TestNav1ToolStripMenuItemClick);
             // 
             // testBackNavToolStripMenuItem
             // 
             this.testBackNavToolStripMenuItem.Name = "testBackNavToolStripMenuItem";
-            this.testBackNavToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testBackNavToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.testBackNavToolStripMenuItem.Text = "TestBackNav";
             this.testBackNavToolStripMenuItem.Click += new System.EventHandler(this.TestBackNavToolStripMenuItemClick);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadCurrentEntriesToolStripMenuItem});
+            this.loadCurrentEntriesToolStripMenuItem,
+            this.loadEntriesFromPdfFileToolStripMenuItem});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.loadToolStripMenuItem.Text = "Load";
             // 
             // loadCurrentEntriesToolStripMenuItem
             // 
             this.loadCurrentEntriesToolStripMenuItem.Name = "loadCurrentEntriesToolStripMenuItem";
             this.loadCurrentEntriesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.loadCurrentEntriesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.loadCurrentEntriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.loadCurrentEntriesToolStripMenuItem.Text = "Load current entries";
             this.loadCurrentEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadCurrentEntriesToolStripMenuItemClick);
             // 
@@ -220,7 +222,7 @@ namespace Budgetterarn
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemAutoSaveCheck});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // menuItemAutoSaveCheck
@@ -229,7 +231,7 @@ namespace Budgetterarn
             this.menuItemAutoSaveCheck.CheckOnClick = true;
             this.menuItemAutoSaveCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuItemAutoSaveCheck.Name = "menuItemAutoSaveCheck";
-            this.menuItemAutoSaveCheck.Size = new System.Drawing.Size(170, 22);
+            this.menuItemAutoSaveCheck.Size = new System.Drawing.Size(178, 22);
             this.menuItemAutoSaveCheck.Text = "Autosave when add";
             // 
             // webBrowser1
@@ -241,13 +243,12 @@ namespace Budgetterarn
             this.webBrowser1.Size = new System.Drawing.Size(102, 609);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
-            // this.webBrowser1.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser1_Navigated);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 27);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -319,7 +320,7 @@ namespace Budgetterarn
             this.InfoNewEntries.Size = new System.Drawing.Size(551, 13);
             this.InfoNewEntries.TabIndex = 6;
             this.InfoNewEntries.Text = "To delete one; select it and press del. To autocategorize press a. s = Set severa" +
-                "l at once, all selected get the same.";
+    "l at once, all selected get the same.";
             // 
             // m_b_ClearNewOnes
             // 
@@ -333,9 +334,9 @@ namespace Budgetterarn
             // 
             // m_newItemsTab
             // 
-            this.m_newItemsTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_newItemsTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.m_newItemsTab.Controls.Add(this.tp_NewItemsEdited);
             this.m_newItemsTab.Controls.Add(this.tp_NewItemsOrg);
             this.m_newItemsTab.Location = new System.Drawing.Point(0, 32);
@@ -445,7 +446,14 @@ namespace Budgetterarn
             this.btnLoadCurrentEntries.UseVisualStyleBackColor = true;
             this.btnLoadCurrentEntries.Click += new System.EventHandler(this.BtnLoadCurrentEntriesClick);
             // 
-            // Budgeter
+            // loadEntriesFromPdfFileToolStripMenuItem
+            // 
+            this.loadEntriesFromPdfFileToolStripMenuItem.Name = "loadEntriesFromPdfFileToolStripMenuItem";
+            this.loadEntriesFromPdfFileToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.loadEntriesFromPdfFileToolStripMenuItem.Text = "Load Entries from Pdf File";
+            this.loadEntriesFromPdfFileToolStripMenuItem.Click += new System.EventHandler(this.loadEntriesFromPdfFileToolStripMenuItem_Click);
+            // 
+            // BudgeterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -456,7 +464,7 @@ namespace Budgetterarn
             this.Controls.Add(this._MainMenu);
             this.Controls.Add(this.splitContainer1);
             this.MainMenuStrip = this._MainMenu;
-            this.Name = "Budgeter";
+            this.Name = "BudgeterForm";
             this.Text = "The Budgeter, version ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BudgeterFormClosing);
             this._MainMenu.ResumeLayout(false);
@@ -520,6 +528,7 @@ namespace Budgetterarn
         private ToolStripMenuItem navigateToLöneToolStripMenuItem;
         private ToolStripMenuItem testNav1ToolStripMenuItem;
         private ToolStripMenuItem testBackNavToolStripMenuItem;
+        private ToolStripMenuItem loadEntriesFromPdfFileToolStripMenuItem;
     }
 }
 

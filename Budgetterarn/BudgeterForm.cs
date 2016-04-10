@@ -12,6 +12,12 @@ using Budgeter.Winforms;
 using Budgetterarn.Application_Settings_and_constants;
 using Budgetterarn.InternalUtilities;
 using Budgetterarn.Operations;
+using Utilities;
+using Budgeter.Core;
+using Budgetterarn.DAL;
+using Budgetterarn.Model;
+using Budgetterarn.WebCrawlers;
+using System.IO;
 
 // Budgeter.Winforms
 namespace Budgetterarn
@@ -24,27 +30,42 @@ namespace Budgetterarn
     /// </summary>
     public partial class BudgeterForm : Form
     {
-        public delegate void DoneNavigationAction();
+        private string GetBankUrl()
+        {
+            return
+                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort-Kortköp-ej fakturerat.html"
 
-        public const string VersionNumber = "1.0.1.9";
+                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort-webfull.html"
+                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort.html"
+                //@"C:\Files\Dropbox\budget\Program\TestData\Lönekonto.html"
+                //@"C:\Files\Dropbox\budget\Program\TestData\Kontotransaktioner-ej-fakt.html"
+
+                //@"C:\Files\Dropbox\budget\Program\TestData\allkort0328.html"
+
+                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort.org.html"
+
+
+                bankUrl
+            ;
+        }
+
+        // Bugg när ke laddas från web. Dubbletter kommenr in i nya listan
+        public const string VersionNumber = "1.0.1.15"; // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
 
         #region Members
 
         private const string SheetName = "Kontoutdrag_officiella"; // "Kontoutdrag f.o.m. 0709 bot.up.";
         private static ToolStripStatusLabel toolStripStatusLabel1;
         private static string bankUrl =
-            "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv";
+            "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv"
+            ;
 
         private static string categoryPath = @"Data\Categories.xml";
         private readonly bool debugGlobal; // For useSaveCheck
 
-        // static string BankUrlHandelsBanken = "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv";
-        private readonly SortedList kontoEntries = new SortedList(new DescendingComparer());
+        private KontoEntriesHolder kontoEntriesHolder = new KontoEntriesHolder();
 
-        // Ev. byta denna mot en klass med innehåll och nyckel, för att behålla orginalordningen på posterna. Sorteras med nyaste först
-        private readonly Stack<DoneNavigationAction> navigatedNextActionIsStack = new Stack<DoneNavigationAction>();
-        private readonly SortedList newKontoEntries = new SortedList();
-        private readonly Dictionary<string, string> saldon = new Dictionary<string, string>();
+        // static string BankUrlHandelsBanken = "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv";
 
         // Key = description, Value= amount
         // private static string _excelFileSavePathWithoutFileName;// = @"C:\stuff\budget\";//Hårdkodad sökväg utan dialog
@@ -54,36 +75,31 @@ namespace Budgetterarn
         // const string m_s_newEntriesXlsDebug = @"C:\Documents and Settings\hu\My Documents\NYA entries test Pelles kontoutdrag.xls";
         private bool somethingChanged;
 
-        // To do, sätt alla medlemmar i en egen klass etc.
-        // string saldoLöne = "";
-        // string saldoAllkort = "";
-        // string saldoAllkortKreditEjFakturerat = "";
-        // string saldoAllkortKreditFakturerat = "";
-        private Thread workerThread;
-
-        // Excel.Application _excelApp = new Excel.Application();//Denna ligger här för att kunna släppa objektet i delegat nedan (Application_WorkbookDeactivate)
-        // Navigering i browser
-        #endregion
-
         // Generic types for Designer
         private KontoEntryListView entriesInToBeSaved;
         private ListViewWithComboBox newIitemsListEdited;
         private KontoEntryListView newIitemsListOrg;
         private KontoEntryListView xlsOrginalEntries;
 
-        // IF CHANGED VERSION. DOCUMENT CHANGES!!!AND COMMIT See Changes summary below.
-        // 1.0.1.9 Gjort anpassningar till Excel engelsk version map datumformat etc. Nu loggas celler som objekt istället för strängar. Div omstrukturering i testProjekt och tillagda projekt.
-        // 1.0.1.8 För handelsbanken mobil. Autonavigera med inloggning etc. Så allt nytt laddas in automatiskt. + Snabbkanapp Ctrl+L för att ladda entries.
-        // 1.0.1.7 Kan nu ladda entries från Handelsbanken mobilsida. Som har enklare inloggning. +Buggfix med sortering av nya entries.
-        // 1.0.1.6 Enklare sparning utan prompt. Autosave som val när man lagt till nya entries. Även ändrat för funktioner som sparar och laddar. Fixat så det går att anv designervyn i VS.
-        // 1.0.1.5 Fixed new saldos for SHB. Double-mbox clearified, better handling of uniques and double-entries.
-        // 1.0.1.4 Fixed autocat set, so it is less unneccesary popups to user. Started to Add functionality for Swedbank.
-        // 1.0.1.3 Addad exception catch att Exclel close. Now user selects if autocat shold overwrite existing choices. Added info about how to set several cats at the same time. Added sorting on listviews. Columns from excel should now be correct in listviews.
-        // 1.0.1.2 Fixed so tag is also set when just selecting cat on new entries from web, also a halfsmart (not full proof, bu probably never gonna err...) doublechecker added.
-        // 1.0.1.1 Changed way Version number is set
-        // 1.0.1.0 PopupComboboxOfCaytegories had a bugg with wrong colwidth added when checking postion, only noticable if not all columns have same length. Nicer set autocat and popup. användaren kan sätta autokat.
-        // 1.0.0.1 Nothing new yet, Later singleclick in newlist etc.
-        // 1.0.0.0 Everything before, see Svn. Even Added mulitiselect etc.
+        private ProgramSettings programSettings;
+        private AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
+
+        // To do, sätt alla medlemmar i en egen klass etc.
+        // string saldoLöne = "";
+        // string saldoAllkort = "";
+        // string saldoAllkortKreditEjFakturerat = "";
+        // string saldoAllkortKreditFakturerat = "";
+
+        // Excel.Application _excelApp = new Excel.Application();//Denna ligger här för att kunna släppa objektet i delegat nedan (Application_WorkbookDeactivate)
+        // Navigering i browser
+        // private void UpdateXlsOrginal()
+        // UpdateEntriesToSaveMemList
+        // private static void GetAllEntriesFromExcelFile(string excelFileSavePath, SortedList entries, bool b, object o) {
+        // throw new NotImplementedException();
+        // }
+
+        #endregion
+
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1109:BlockStatementsMustNotContainEmbeddedRegions", 
             Justification = "Reviewed. Suppression is OK here.")]
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements", 
@@ -92,12 +108,14 @@ namespace Budgetterarn
         {
             try
             {
-                LoadEtc();
+                InitFields();
+
+                InitSettingsEtc();
 
                 #region Debug
 
                 // ReSharper disable JoinDeclarationAndInitializer
-                bool debug;
+                bool debug = false;
 
                 // ReSharper restore JoinDeclarationAndInitializer
 #if DEBUG
@@ -120,7 +138,7 @@ namespace Budgetterarn
 
                 if (debug)
                 {
-                    // TODO: GetAllEntriesFromExcelFile(m_s_newEntriesXlsDebug, _newKontoEntries, false, null);
+                    // TODO: GetAllEntriesFromExcelFile(m_s_newEntriesXlsDebug, _kontoEntriesHolder.NewKontoEntries, false, null);
                     // CheckAndAddNewItems();//Debug: Lägg till nya i GuiLista
                     debugbtn.Visible = true;
                     DebugAddoNewList();
@@ -132,7 +150,11 @@ namespace Budgetterarn
                     // Öpnna banksidan direkt
                     OpenBankSiteInBrowser();
 
-                    AutoNavigateToKontonEtc();
+                    if (programSettings.AutoLoadEtc)
+                    {
+                        autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(LoadCurrentEntriesFromBrowser, webBrowser1);
+                        autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
+                    } 
                 }
 
                 #region Old
@@ -199,64 +221,12 @@ namespace Budgetterarn
             }
         }
 
-        public static DialogResult SaveCheckWithArgs(
-            KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, Dictionary<string, string> saldon)
+        private void InitFields()
         {
-            var saveOr = DialogResult.None;
-            if (kontoutdragInfoForSave.somethingChanged)
-            {
-                saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
-
-                // Cancel
-                if (saveOr == DialogResult.Yes)
-                {
-                    LoadNSave.Save(kontoutdragInfoForSave, kontoEntries, saldon);
-                }
-            }
-
-            return saveOr;
+            programSettings = new ProgramSettings();
         }
 
-        public bool AutoLoadEtce()
-        {
-            var s = GeneralSettings.GetStringSetting("AutonavigateEtc");
-
-            bool b;
-            return bool.TryParse(s, out b) && b;
-        }
-
-        public HtmlElement FindChildWithId(HtmlElement htmlElement, string idToFind)
-        {
-            if (htmlElement.Id != null && htmlElement.Id.Equals(idToFind))
-            {
-                return htmlElement;
-            }
-
-            HtmlElement returnHtmlElement = null;
-            foreach (HtmlElement item in htmlElement.Children)
-            {
-                returnHtmlElement = FindChildWithId(item, idToFind);
-            }
-
-            if (returnHtmlElement != null)
-            {
-                return returnHtmlElement;
-            }
-
-            while ((htmlElement = htmlElement.NextSibling) != null)
-            {
-                returnHtmlElement = FindChildWithId(htmlElement, idToFind);
-            }
-
-            if (returnHtmlElement != null)
-            {
-                return returnHtmlElement;
-            }
-
-            return null;
-        }
-
-        private void LoadEtc()
+        private void InitSettingsEtc()
         {
             // Get file names from settings file
             categoryPath = GeneralSettings.GetStringSetting("CategoryPath");
@@ -275,46 +245,6 @@ namespace Budgetterarn
 
             // läs in xls...
             GetAllEntriesFromExcelFile(Filerefernces._excelFileSavePath, true);
-        }
-
-        private void AutoNavigateToKontonEtc()
-        {
-            if (!AutoLoadEtce())
-            {
-                return;
-            }
-
-            // Korttransaktioner
-            navigatedNextActionIsStack.Push(LoadCurrentEntriesFromBrowser);
-
-            // navigatedNextActionIsSatck.Push(NavigateToFirstItemInVisibleList);
-
-            ////Allkonto
-            navigatedNextActionIsStack.Push(LoadEntriesAndGoToFirst);
-            navigatedNextActionIsStack.Push(NavigateToAllKonto);
-
-            // navigatedNextActionIsSatck.Push(BrowserGoBack);
-
-            // Löne
-            navigatedNextActionIsStack.Push(LoadEntriesAndGoBack);
-            navigatedNextActionIsStack.Push(NavigateToLöneKonto);
-
-            // Inlogg
-            navigatedNextActionIsStack.Push(NavigateToFirstItemInVisibleList);
-            navigatedNextActionIsStack.Push(SetLoginUserEtc);
-            navigatedNextActionIsStack.Push(NavigateToFirstItemInVisibleList);
-        }
-
-        private void LoadEntriesAndGoBack()
-        {
-            LoadCurrentEntriesFromBrowser();
-            BrowserGoBack();
-        }
-
-        private void LoadEntriesAndGoToFirst()
-        {
-            LoadCurrentEntriesFromBrowser();
-            NavigateToFirstItemInVisibleList();
         }
 
         private void InitSpecialGenericUiElements()
@@ -438,10 +368,10 @@ namespace Budgetterarn
                                          };
 
             // Ladda från fil
-            var entriesLoadedFromDataStore = LoadNSave.LoadEntriesFromFile(kontoutdragInfoForLoad, ref workerThread);
+            var entriesLoadedFromDataStore = LoadKonton.LoadEntriesFromFile(kontoutdragInfoForLoad);
 
             // För att se om något laddats från fil
-            var somethingLoadedFromFile = entriesLoadedFromDataStore.Count > 0;
+            var somethingLoadedFromFile = entriesLoadedFromDataStore != null && entriesLoadedFromDataStore.Count > 0;
 
             statusStrip1.Text = statusText;
 
@@ -459,11 +389,14 @@ namespace Budgetterarn
                 return false;
             }
 
-            var loadResult = LoadNSave.GetAllEntriesFromExcelFile(
-                kontoutdragInfoForLoad, kontoEntries, saldon, entriesLoadedFromDataStore);
+            var loadResult = LoadKonton.GetAllEntriesFromExcelFile(
+                kontoutdragInfoForLoad,
+                kontoEntriesHolder.KontoEntries,
+                kontoEntriesHolder.SaldoHolder,
+                entriesLoadedFromDataStore);
 
             // Visa text för anv. om hur det gick etc.
-            statusText = "No. rows loaded; " + kontoEntries.Count + " . Skpped: " + loadResult.skippedOrSaved
+            statusText = "No. rows loaded; " + kontoEntriesHolder.KontoEntries.Count + " . Skpped: " + loadResult.skippedOrSaved
                          + ". File loaded; " + kontoutdragInfoForLoad.filePath;
 
             // Nu har det precis rensats och laddats in nytt
@@ -493,10 +426,31 @@ namespace Budgetterarn
 
             // Lägg till orginalraden, gör i UI-hanterare
             // Lägg in det som är satt att sparas till minnet (viasa alla _kontoEntries i listview). Även uppdatera färg på text.
-            ViewUpdateUi.UpdateListViewFromSortedList(xlsOrginalEntries, kontoEntries);
-            ViewUpdateUi.UpdateListViewFromSortedList(entriesInToBeSaved, kontoEntries);
+            ViewUpdateUi.SetNewItemsListViewFromSortedList(xlsOrginalEntries, kontoEntriesHolder.KontoEntries);
+            ViewUpdateUi.SetNewItemsListViewFromSortedList(entriesInToBeSaved, kontoEntriesHolder.KontoEntries);
 
             return true;
+        }
+
+        #region Load&Save
+
+        public static DialogResult SaveCheckWithArgs(
+           KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
+        {
+            var saveOr = DialogResult.None;
+            if (kontoutdragInfoForSave.somethingChanged)
+            {
+                saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
+
+                // Cancel
+                if (saveOr == DialogResult.Yes)
+                {
+                    SaveKonton.Save
+                        (kontoutdragInfoForSave, kontoEntries, saldoHolder);
+                }
+            }
+
+            return saveOr;
         }
 
         private bool SaveFirstCheck(
@@ -506,10 +460,11 @@ namespace Budgetterarn
             // Save check
             if (checkforUnsavedChanges && somethingLoadedFromFile)
             {
-                if (kontoEntries.Count > 0)
+                if (kontoEntriesHolder.KontoEntries.Count > 0)
                 {
                     // somethingChanged är alltid false här
-                    var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntries, saldon);
+                    var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntriesHolder.KontoEntries,
+                        kontoEntriesHolder.SaldoHolder);
                     if (userResponse == DialogResult.Cancel)
                     {
                         return true;
@@ -524,11 +479,136 @@ namespace Budgetterarn
             return false;
         }
 
-        // private void UpdateXlsOrginal()
-        // UpdateEntriesToSaveMemList
-        // private static void GetAllEntriesFromExcelFile(string excelFileSavePath, SortedList entries, bool b, object o) {
-        // throw new NotImplementedException();
-        // }
+        private void Save()
+        {
+            var statusText = toolStripStatusLabel1.Text;
+            var kontoutdragInfoForSave = new KontoutdragInfoForSave
+            {
+                excelFileSaveFileName = Filerefernces._excelFileSaveFileName,
+                excelFileSavePath = Filerefernces._excelFileSavePath,
+                excelFileSavePathWithoutFileName =
+                    Filerefernces.ExcelFileSavePathWithoutFileName,
+                sheetName = SheetName
+            };
+
+            var saveResult = SaveKonton.Save(kontoutdragInfoForSave, kontoEntriesHolder.KontoEntries,
+                kontoEntriesHolder.SaldoHolder);
+
+            somethingChanged = saveResult.somethingLoadedOrSaved;
+
+            // somethingChanged = false;//Precis sparat, så här har inget hunnit ändras 
+            statusText += "Saving done, saved entries; " + saveResult.skippedOrSaved;
+
+            // Räkna inte överskriften, den skrivs alltid om
+
+            // toolStripStatusLabel1.Text = "Saving done, saved entries; " + (logThis.Count - 1);//Räkna inte överskriften, den skrivs alltid om
+
+            // Fråga om man vill öppna Excel
+            if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
+                == DialogResult.Yes)
+            {
+                ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.excelFileSavePath);
+            }
+
+            toolStripStatusLabel1.Text = statusText;
+        }
+
+        private void LoadCurrentEntriesFromBrowser()
+        {
+            toolStripStatusLabel1.Text = @"Processing";
+
+            // var oldSaldoAllkort = saldoAllkort;
+            // var oldSaldoLöne = saldoLöne;
+            var somethingLoadeded = LoadKonton.GetAllVisibleEntriesFromWebBrowser(
+                kontoEntriesHolder,
+                webBrowser1);
+                //kontoEntries, webBrowser1, kontoEntriesHolder.NewKontoEntries, ref somethingChanged, saldoHolder);
+
+            // Done, meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
+            toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
+
+            if (somethingLoadeded)
+            {
+                CheckAndAddNewItems();
+                toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
+                                             + kontoEntriesHolder.NewKontoEntries.Count + @".";
+            }
+
+            // if ((!string.IsNullOrEmpty(oldSaldoAllkort) &&
+            // !oldSaldoAllkort.ClearSpacesAndReplaceCommas().Equals(saldoAllkort.ClearSpacesAndReplaceCommas()))
+            // ||
+            // (!string.IsNullOrEmpty(oldSaldoLöne) &&
+            // !oldSaldoLöne.ClearSpacesAndReplaceCommas().Equals(saldoLöne.ClearSpacesAndReplaceCommas()))
+            // )
+            // {
+            // toolStripStatusLabel1.Text += " Saldon: Allkort:" + (saldoAllkort ?? string.Empty) + ", Löne:" +
+            // (saldoLöne ?? string.Empty) + ", Kredit Ej fakt.:" +
+            // (saldoAllkortKreditEjFakturerat ?? string.Empty) +
+            // ", Kredit fakt.:" + (saldoAllkortKreditFakturerat ?? string.Empty);
+            // }
+        }
+
+        #endregion
+
+        #region Koppling av data till UI
+
+        private void UpdateEntriesToSaveMemList()
+        {
+            ViewUpdateUi.SetNewItemsListViewFromSortedList(entriesInToBeSaved, kontoEntriesHolder.KontoEntries);
+        }
+
+        private void CheckAndAddNewItems()
+        {
+            CheckAndAddNewItems(
+                new KontoEntriesViewModelListUpdater
+                {
+                    kontoEntries = kontoEntriesHolder.KontoEntries,
+                    NewIitemsListEdited = newIitemsListEdited.ItemsAsKontoEntries,
+                    NewKontoEntriesIn = kontoEntriesHolder.NewKontoEntries,
+                }
+            );
+        }
+
+        /// <summary>Uppdatera UI för nya entries, gör gisningar av dubbletter, typ av kostnad etc
+        /// </summary>
+        private void CheckAndAddNewItems(KontoEntriesViewModelListUpdater lists)
+        {
+            // Flagga och se vad som är nytt etc.
+            KontoEntriesChecker.CheckAndAddNewItemsForLists(lists);
+
+            // Lägg till i org
+            if (lists.NewIitemsListOrg != null)
+            {
+                lists.NewIitemsListOrg.ForEach(k => ViewUpdateUi.AddToListview(newIitemsListOrg, k));
+            }
+
+            // Filtrera ut de som inte redan ligger i UI
+            var inUiListAlready = newIitemsListEdited.ItemsAsKontoEntries;
+            foreach (var entry in lists.NewIitemsListEdited)
+            {
+                if (!inUiListAlready.Any(e=> e.KeyForThis == entry.KeyForThis))
+                {
+                    lists.ToAddToListview.Add(entry);
+                }
+            }
+
+            foreach (var entry in lists.ToAddToListview)
+            {
+                // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
+                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuesseDouble(entry, kontoEntriesHolder.KontoEntries);
+                
+                // Lägg till i edited
+                ViewUpdateUi.AddToListview(newIitemsListEdited, entry);
+            }
+
+            // Updatera memlistan för att se om någon entry fått ny färg
+            UpdateEntriesToSaveMemList();
+        }
+
+        #endregion
+
+        #region Events (button clicks etc)
+
         private void OpenUrlToolStripMenuItemClick(object sender, EventArgs e)
         {
             var url = InputBoxDialog.InputBox("Skirv url", "Navigera till", webBrowser1.Url.AbsolutePath);
@@ -539,177 +619,18 @@ namespace Budgetterarn
 
         private void NavigeraToolStripMenuItemClick(object sender, EventArgs e)
         {
-            NavigateToFirstItemInVisibleList();
+            autoGetEntriesHbMobilHandler.BrowserNavigator.NavigateToFirstItemInVisibleList();
         }
 
-        private void NavigateToFirstItemInVisibleList()
-        {
-            if (webBrowser1.Document != null)
-            {
-                if (webBrowser1.Document.Body != null)
-                {
-                    // ReSharper disable PossibleNullReferenceException
-                    if (webBrowser1.Document.Body.FirstChild.FirstChild.FirstChild.FirstChild.NextSibling.NextSibling
-                        != null)
-                    {
-                        var baseElem =
-                            webBrowser1.Document.Body.FirstChild.FirstChild.FirstChild.FirstChild.NextSibling.FirstChild
-                                       .FirstChild
-                            ?? webBrowser1.Document.Body.FirstChild.FirstChild.FirstChild.FirstChild.NextSibling
-                                          .NextSibling.FirstChild.FirstChild;
-
-                        // ReSharper restore PossibleNullReferenceException
-                        if (baseElem == null)
-                        {
-                            return;
-                        }
-
-                        var logginElem = baseElem.FirstChild;
-
-                        NavigateToAsHref(logginElem);
-                    }
-                }
-            }
-        }
-
-        private void NavigateToAsHref(HtmlElement navigateAElem)
-        {
-            var href = navigateAElem.GetAttribute("href");
-
-            var url = href;
-            webBrowser1.Navigate(url);
-        }
-
-        // private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
-        // {
-
-        // }
         private void SetLoginToolStripMenuItemClick(object sender, EventArgs e)
         {
-            SetLoginUserEtc();
-        }
-
-        private void SetLoginUserEtc()
-        {
-            if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
-            {
-                var baselogginElem =
-
-                    // ReSharper disable PossibleNullReferenceException
-                    webBrowser1.Document.Body.FirstChild.FirstChild.FirstChild.FirstChild.NextSibling.NextSibling
-                               .FirstChild.FirstChild.NextSibling;
-
-                // ReSharper restore PossibleNullReferenceException
-                if (baselogginElem != null)
-                {
-                    var userNameElem = baselogginElem.FirstChild;
-
-                    // ReSharper disable PossibleNullReferenceException
-                    var passElem = baselogginElem.NextSibling.NextSibling.FirstChild;
-
-                    // ReSharper restore PossibleNullReferenceException
-
-                    // System.Web.UI.HtmlControls.HtmlInputControl;
-
-                    // Set attrib. Login
-                    if (userNameElem != null)
-                    {
-                        userNameElem.SetAttribute("value", string.Empty);
-                    }
-
-                    if (passElem != null)
-                    {
-                        passElem.SetAttribute("value", string.Empty);
-                    }
-                }
-
-                // (webBrowser1.FindForm() as HtmlElement)
-                // .InvokeMember("submit");
-                Submit(webBrowser1);
-            }
-        }
-
-        private void Submit(WebBrowser inWebBrowserControl)
-        {
-            if (inWebBrowserControl.Document != null)
-            {
-                var elements = inWebBrowserControl.Document.GetElementsByTagName("Form");
-
-                foreach (HtmlElement currentElement in elements)
-                {
-                    currentElement.InvokeMember("submit");
-                }
-            }
-        }
-
-        private void NavigateToAllKonto()
-        {
-            if (webBrowser1.Document != null)
-            {
-                var oneElem = FindChildWithId(webBrowser1.Document.Body, "item_1").FirstChild;
-                if (oneElem == null)
-                {
-                    throw new ArgumentNullException("one" + "Elem");
-                }
-
-                NavigateToAsHref(oneElem);
-            }
-        }
-
-        private void NavigateToLöneKonto()
-        {
-            // item_2
-
-            // webBrowser1
-
-            // var Dd = webBrowser1.Document.Body.FirstChild;
-            // Dd = FindChildWithId(webBrowser1.Document.Body, "item_2");
-            if (webBrowser1.Document == null)
-            {
-                return;
-            }
-
-            var oneElem = FindChildWithId(webBrowser1.Document.Body, "item_2").FirstChild;
-            NavigateToAsHref(oneElem);
-
-            // var href = elem.FirstChild.GetAttribute("href");
-
-            // var url = href;
-            // webBrowser1.Navigate(url);
+            autoGetEntriesHbMobilHandler.BrowserNavigator.SetLoginUserEtc();
         }
 
         private void NavigateToLöneToolStripMenuItemClick(object sender, EventArgs e)
         {
-            NavigateToLöneKonto();
+            autoGetEntriesHbMobilHandler.BrowserNavigator.NavigateToLöneKonto();
         }
-
-        private void TestNav1ToolStripMenuItemClick(object sender, EventArgs e)
-        {
-        }
-
-        private void TestBackNavToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            BrowserGoBack();
-        }
-
-        private void BrowserGoBack()
-        {
-            if (webBrowser1.CanGoBack)
-            {
-                webBrowser1.GoBack();
-            }
-        }
-
-        #region Koppling av data till UI
-
-        private void UpdateEntriesToSaveMemList()
-        {
-            ViewUpdateUi.UpdateListViewFromSortedList(entriesInToBeSaved, kontoEntries);
-        }
-
-        #endregion
-
-        #region Events (button clicks etc)
 
         private void LoadToolStripMenuItem1Click(object sender, EventArgs e)
         {
@@ -732,16 +653,28 @@ namespace Budgetterarn
             }
         }
 
+        private void LoadCurrentEntriesToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            LoadCurrentEntriesFromBrowser();
+        }
+
         private void WebBrowser1DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            toolStripStatusLabel1.Text = @"Done";
+            if (!programSettings.AutoLoadEtc)
+            {
+                return;
+            }
 
             // statusStrip1//_browserStatusMessage.Text = "Done";
-            if (navigatedNextActionIsStack.Count > 0)
+            toolStripStatusLabel1.Text = @"Done";
+
+            try
             {
-                // SetLoginUserEtc();
-                var navigatedNextActionIs = navigatedNextActionIsStack.Pop();
-                navigatedNextActionIs.Invoke();
+                autoGetEntriesHbMobilHandler.LoadingCompleted();
+            }
+            catch (Exception browseExp)
+            {
+                MessageBox.Show(@"Error in WebBrowser1DocumentCompleted! : " + browseExp.Message);
             }
         }
 
@@ -754,11 +687,6 @@ namespace Budgetterarn
             // const string clickUrl = @"javascript:showOrHideMenu('/shb/Inet/ICentSv.nsf/default/q1525F8FCB98E7B02C12571E60031D5A7?opendocument&frame=0','id4')";
 
             // var obj = webBrowser1.ObjectForScripting;//.Navigate(clickUrl);
-        }
-
-        private void LoadCurrentEntriesToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            LoadCurrentEntriesFromBrowser();
         }
 
         private void BtnLoadCurrentEntriesClick(object sender, EventArgs e)
@@ -836,7 +764,7 @@ namespace Budgetterarn
             PerformLayout();
 
             // läs in html...
-            webBrowser1.Navigate(bankUrl);
+            webBrowser1.Navigate(GetBankUrl());
         }
 
         // Rensa minnet och m_newIitemsListOrg
@@ -844,138 +772,12 @@ namespace Budgetterarn
         {
             newIitemsListOrg.Items.Clear();
             newIitemsListEdited.Items.Clear();
-            newKontoEntries.Clear();
+            kontoEntriesHolder.NewKontoEntries.Clear();
 
             // Rensa även listan som är en kopia av Guilistan för nya ke
         }
 
         #endregion
-
-        /// <summary>Uppdatera UI för nya entries, gör gisningar av dubbletter, typ av kostnad etc
-        /// </summary>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements", 
-            Justification = "Reviewed. Suppression is OK here.")]
-        private void CheckAndAddNewItems()
-        {
-            // TODO: flytta denna till annan fil, ev. skicka med fkn som delegat
-            // Skriv in nya entries i textrutan
-            if (newKontoEntries.Count > 0)
-            {
-                foreach (DictionaryEntry item in newKontoEntries)
-                {
-                    var newKe = item.Value as KontoEntry;
-
-                    if (newKe == null)
-                    {
-                        continue;
-                    }
-
-                    var foundDoubleInUList = newIitemsListEdited.CheckIfKeyExistsInUiControl(newKe.KeyForThis)
-                                             || newIitemsListEdited.Items.Cast<ListViewItem>()
-                                                                   .Any(
-                                                                       viewItem =>
-                                                                       ((KontoEntry)viewItem.Tag).KeyForThis.Equals(
-                                                                           newKe.KeyForThis));
-
-                    // Om man laddar html-entries 2 gånger i rad, så ska det inte skapas dubletter
-                    if (foundDoubleInUList)
-                    {
-                        continue;
-                    }
-
-                    // Lägg till i org
-                    if (newIitemsListOrg != null)
-                    {
-                        ViewUpdateUi.AddToListview(newIitemsListOrg, newKe);
-                    }
-
-                    // Kolla om det är en dubblet eller om det är finns ett motsvarade "skyddat belopp"
-                    if (kontoEntries.ContainsKey(newKe.KeyForThis))
-                    {
-                        continue;
-                    }
-
-                    // kolla om det är "Skyddat belopp", dubblett o likn. innan man ändrar entryn, med autokat
-
-                    // Slå upp autokategori
-                    var lookedUpCat = CategoriesHolder.AllCategories.AutocategorizeType(newKe.Info);
-                    if (lookedUpCat != null)
-                    {
-                        newKe.TypAvKostnad = lookedUpCat;
-                    }
-
-                    #region Old
-
-                    // markera de som är dubblet eller skb, och flagga dem för ersättning av de som redan finns i minnet
-                    // Gissa om det är en dublett, jmfr på datum, info och kost
-                    // if (GuessedDouble(newKE))
-                    // {
-                    // continue;
-                    // } 
-                    #endregion
-
-                    // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
-                    CheckForSkyddatBeloppMatcherAndGuesseDouble(newKe);
-
-                    // Lägg till i edited
-                    ViewUpdateUi.AddToListview(newIitemsListEdited, newKe);
-                }
-            }
-
-            // Updatera memlistan för att se om någon entry fått ny färg
-            UpdateEntriesToSaveMemList();
-        }
-
-        /// <summary>Hjäpfunnktion till CheckAndAddNewItems
-        /// SweEnglish rules!
-        /// Prestandainfo. Loop i loop...
-        /// </summary>
-        /// <param name="newKe"></param>
-        private void CheckForSkyddatBeloppMatcherAndGuesseDouble(KontoEntry newKe) // , bool skipInfo)
-        {
-            const string Skb = "skyddat belopp";
-            const string Pkk = "PREL. KORTKÖP";
-
-            foreach (KontoEntry entry in kontoEntries.Values)
-            {
-                // Om entryn inte är av typen regulär skippa jämförelser av den.
-                // Det kan t.ex. vara mathandling, som delas upp i hemlagat o hygien, eller Periodens köp, som inte ska räknas med som vanlgt och ej heller jämföras
-                if (entry.EntryType != KontoEntryType.Regular)
-                {
-                    continue;
-                }
-
-                if (entry.Date == newKe.Date && entry.KostnadEllerInkomst.Equals(newKe.KostnadEllerInkomst))
-                {
-                    // Ersätt skb
-                    if (entry.Info.ToLower() == Skb.ToLower() || entry.Info.ToLower() == Pkk.ToLower())
-                    {
-                        newKe.FontFrontColor = entry.FontFrontColor = Color.DeepSkyBlue;
-
-                        // Ta de gamla saldot
-                        newKe.SaldoOrginal = entry.SaldoOrginal;
-                        newKe.AckumuleratSaldo = entry.AckumuleratSaldo;
-
-                        // Vid senare ersättande, så kommer typen vara den nya, eftersom det är den som autokattats, och då stämmer det nog bättre än den som kan vara skyddat belopp. Anv. kan ju även alltid sätta själv innan sparning
-                        // Är inget autokattat, så ta den gamla, man har säkert gissat rätt
-                        if (string.IsNullOrEmpty(newKe.TypAvKostnad))
-                        {
-                            newKe.TypAvKostnad = entry.TypAvKostnad;
-                        }
-
-                        newKe.ReplaceThisKey = entry.KeyForThis;
-                    }
-                    else
-                    {
-                        // Det är kanske en dubblett
-                        newKe.FontFrontColor = entry.FontFrontColor = Color.Red;
-                        newKe.ThisIsDoubleDoNotAdd = true;
-                    }
-
-                    return; // En entry ska bara kunna ersätta En annan entry
-                }
-            }
-        }
 
         private void SetStatusLabelProps()
         {
@@ -998,13 +800,13 @@ namespace Budgetterarn
         // Ger tillgång till status etiketten.
         private void AddNewEntriesToUiListsAndMem(bool autoSave)
         {
-            toolStripStatusLabel1.Text = @"Trying to add; " + newKontoEntries.Count + @"items";
+            toolStripStatusLabel1.Text = @"Trying to add; " + kontoEntriesHolder.NewKontoEntries.Count + @"items";
 
             // Hämta nya entries från Ui. (slipper man om man binder ui-kontroller med de som är sparade och ändrade i minnet.)
             var newEntriesFromUi = GetNewEntriesFromUI(newIitemsListEdited);
 
             // Lägg till/Updatera nya
-            var changeInfo = UiHelpersDependant.AddNewEntries(kontoEntries, newEntriesFromUi);
+            var changeInfo = UiHelpersDependant.AddNewEntries(kontoEntriesHolder.KontoEntries, newEntriesFromUi);
             somethingChanged = CheckIfSomethingWasChanged(somethingChanged, changeInfo.SomethingChanged);
 
             UpdateEntriesToSaveMemList();
@@ -1049,75 +851,18 @@ namespace Budgetterarn
             return newEntriesFromUi;
         }
 
-        private void Save()
-        {
-            var statusText = toolStripStatusLabel1.Text;
-            var kontoutdragInfoForSave = new KontoutdragInfoForSave
-                                         {
-                                             excelFileSaveFileName = Filerefernces._excelFileSaveFileName, 
-                                             excelFileSavePath = Filerefernces._excelFileSavePath, 
-                                             excelFileSavePathWithoutFileName =
-                                                 Filerefernces.ExcelFileSavePathWithoutFileName, 
-                                             sheetName = SheetName
-                                         };
-
-            var saveResult = LoadNSave.Save(kontoutdragInfoForSave, kontoEntries, saldon);
-
-            somethingChanged = saveResult.somethingLoadedOrSaved;
-
-            // somethingChanged = false;//Precis sparat, så här har inget hunnit ändras 
-            statusText += "Saving done, saved entries; " + saveResult.skippedOrSaved;
-
-            // Räkna inte överskriften, den skrivs alltid om
-
-            // toolStripStatusLabel1.Text = "Saving done, saved entries; " + (logThis.Count - 1);//Räkna inte överskriften, den skrivs alltid om
-
-            // Fråga om man vill öppna Excel
-            if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
-                == DialogResult.Yes)
-            {
-                LoadNSave.LoadExcelFileInExcel(kontoutdragInfoForSave.excelFileSavePath);
-            }
-
-            toolStripStatusLabel1.Text = statusText;
-        }
-
-        private void LoadCurrentEntriesFromBrowser()
-        {
-            toolStripStatusLabel1.Text = @"Processing";
-
-            // var oldSaldoAllkort = saldoAllkort;
-            // var oldSaldoLöne = saldoLöne;
-            var somethingLoadeded = LoadNSave.GetAllVisibleEntriesFromWebBrowser(
-                kontoEntries, webBrowser1, newKontoEntries, ref somethingChanged, saldon);
-
-            // Done, meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
-            toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
-
-            if (somethingLoadeded)
-            {
-                CheckAndAddNewItems();
-                toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
-                                             + newKontoEntries.Count + @".";
-            }
-
-            // if ((!string.IsNullOrEmpty(oldSaldoAllkort) &&
-            // !oldSaldoAllkort.ClearSpacesAndReplaceCommas().Equals(saldoAllkort.ClearSpacesAndReplaceCommas()))
-            // ||
-            // (!string.IsNullOrEmpty(oldSaldoLöne) &&
-            // !oldSaldoLöne.ClearSpacesAndReplaceCommas().Equals(saldoLöne.ClearSpacesAndReplaceCommas()))
-            // )
-            // {
-            // toolStripStatusLabel1.Text += " Saldon: Allkort:" + (saldoAllkort ?? string.Empty) + ", Löne:" +
-            // (saldoLöne ?? string.Empty) + ", Kredit Ej fakt.:" +
-            // (saldoAllkortKreditEjFakturerat ?? string.Empty) +
-            // ", Kredit fakt.:" + (saldoAllkortKreditFakturerat ?? string.Empty);
-            // }
-        }
-
         #endregion
 
         #region Test&Debug
+
+        private void TestNav1ToolStripMenuItemClick(object sender, EventArgs e)
+        {
+        }
+
+        private void TestBackNavToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            autoGetEntriesHbMobilHandler.BrowserNavigator.BrowserGoBack();
+        }
 
         private void DebugbtnClick(object sender, EventArgs e)
         {
@@ -1129,16 +874,16 @@ namespace Budgetterarn
             var sometheingadded = false;
             for (var i = 0; i < 8; i++)
             {
-                if (newKontoEntries == null)
+                if (kontoEntriesHolder.NewKontoEntries == null)
                 {
                     continue;
                 }
 
                 var testKey = "testkey" + i;
-                if (!newKontoEntries.ContainsKey(testKey))
+                if (!kontoEntriesHolder.NewKontoEntries.ContainsKey(testKey))
                 {
                     var newInfo = "test" + (i % 2 == 0 ? i.ToString(CultureInfo.InvariantCulture) : string.Empty);
-                    newKontoEntries.Add(testKey, new KontoEntry { Date = DateTime.Now.AddDays(i), Info = newInfo });
+                    kontoEntriesHolder.NewKontoEntries.Add(testKey, new KontoEntry { Date = DateTime.Now.AddDays(i), Info = newInfo });
                     sometheingadded = true;
                 }
             }
@@ -1150,5 +895,52 @@ namespace Budgetterarn
         }
 
         #endregion
+
+        private void loadEntriesFromPdfFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = @"Processing from Pdf";
+
+            //fileNkameGetter 
+            var selectFileDialog = new OpenFileDialog();
+
+            //var selectFileDialog = new FolderBrowserDialog();
+
+            Stream fileStream = null;
+            if (selectFileDialog.ShowDialog() == DialogResult.OK)
+            //&& (fileStream = selectFileDialog..OpenFile()) != null)
+            {
+                string fileName = selectFileDialog.FileName; //.SelectedPath; // .FileName;
+                //using (fileStream)
+                //{
+                //   // TODO
+                //}
+
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    var pdfParser = new KontoFromPdfParser(fileName);
+                    var rows = pdfParser.ParseToKontoEntriesFromRedPdf();
+
+
+                    var somethingLoadeded = LoadKonton.GetAllEntriesFromPdfFile(
+                        kontoEntriesHolder,
+                        rows);
+
+                    if (somethingLoadeded)
+                    {
+                        CheckAndAddNewItems();
+                        toolStripStatusLabel1.Text = @"Done processing entries from Pdf. New Entries found; "
+                                                     + kontoEntriesHolder.NewKontoEntries.Count + @".";
+                    }
+                    else
+                    {
+                        // Done, meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
+                        toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
+                    }
+
+
+                }
+            }
+        }
+
     }
 }

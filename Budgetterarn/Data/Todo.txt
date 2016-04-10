@@ -1,59 +1,37 @@
 ﻿!!!*Kolla sökvägar, och ge fel om det inte är rätt, ge chans att sätta dem eller ladda om Xml
 
-*När man godkänt dubbletter, se till att de sparas.
+1*Kolla kolumnbredder på datum etc. För gamla o nya kontoentries
 
-__Fra LG:___________
+1*Spara år+mån+dag istället för datum (för att undvika fel med olika Excel-kulturer...)
+9*Gör knapp el- likn. för att ta fram fler redan inladdade entries.
+2*Gör så autoladdaren går längre bak i historien. Ev. kolla senasteentries och ta nya så långt bak så det överlappar.
+4*Fixa så det varnar om man har lagt till något i nya från web, och inte sparat. Bör vara någon funk där redan.
+2*Gör en liten sammanfattning som sparas i dropbox så mobilen enkelt kan ööpna. Gör någon slags genveg eller likn. på mobilen, så man ser vad som är kvar i varje pott.
 
-BUDGET
-1. öppna Budgetteran på skrivbordet
-2. File-menyn = open banksite
-3. Clear all
-4. Log on (i banken)
-5. ta fram kontoutdrag - alla konton."visa alla", "hämta fler" Välj lämpligt datum varje månad, i samband m räkningar
-6. load current entries
-7. välj kategori. Om vill auto - markera raden, tryck "a", välj "ja"
-7b. Add new to mem.
-8. File - save - "ja jag vill skriva över" vänta lite innan "ja open bankfile"
-9. beskåda och njut!
-Steg 2 - analys
-1. Öppna LG budget C: stuff - "LG.budget" (=som jag har sparat)
-2. titta
+v?*Ändra inläsning av saldo i SHB
+v?*Lägg in så man direkt hoppar till konton, sen fixa inläsningen, så den säkert stämmer med ramar etc. https://secure.handelsbanken.se/bb/seip/servlet/UASipko?appAction=InitAccountTransactions&appName=ipko
+3*Varna om man missat att sätta en kategori, föreslå övr. el. likn. automatiskt.
+?*Kanske kan forca en postback el. likn. för att simulera en scriptkörning, kolla annars på StackOverflow om det finns något sätt.
 
-ide
-överföring till räkningskonton
-el + hyra i samma överföring
-"inget" som valbar kategori
-resa
-+ = inkomst
-________________________________________
+_Dubbletter_
+1v?*När man godkänt dubbletter, se till att de sparas.
+1v?*Kolla dubbletter, och se till att det är tydligt vad som händer vid de olika valen i dialogboxen. Se även insp. Ex. Way out westöl.
+2v?*Dubblettvarning. Tydligare fråga vad yes/no innebär. Fixa så den har mer exakt info, typ en rad för varje, med datum, kost etc...
 
-
-
-*Gör knapp el- likn. för att ta fram fler redan inladdade entries.
-*Gör så autoladdaren går längre bak i historien. Ev. kolla senasteentries och ta nya så långt bak så det överlappar.
-*Fixa så det varnar om man har lagt till något i nya från web, och inte sparat. Bör vara någon funk där redan.
-*Gör en liten sammanfattning som sparas i dropbox så mobilen enkelt kan ööpna. Gör någon slags genveg eller likn. på mobilen, så man ser vad som är kvar i varje pott.
-
-*Ändra inläsning av saldo i SHB
-*Lägg in så man direkt hoppar till konton, sen fixa inläsningen, så den säkert stämmer med ramar etc. https://secure.handelsbanken.se/bb/seip/servlet/UASipko?appAction=InitAccountTransactions&appName=ipko
-*Varna om man missat att sätta en kategori, föreslå övr. el. likn. automatiskt.
-*Kanske kan forca en postback el. likn. för att simulera en scriptkörning, kolla annars på StackOverflow om det finns något sätt.
-*Kolla dubbletter, och se till att det är tydligt vad som händer vid de olika valen i dialogboxen. Se även insp. Ex. Way out westöl.
-*I Excel, gör ifsats på In-raderna, så att om det kommit in från +, så ska det som är standard att lägga in varje månad skrivas ut, annars 0.
-*Nåt fel med inläsning när man deletat en entry. Den man tog bort lästes inte in igen.
-*Visa inläästa saldon hela tiden, eller typ i meny
-*Detta kollas för att färga om etc...Kolla om de lästa från Excel påverkas när man laddar nya etries, den verkar uppdateras, men se till att det blir bättre prestanda på get new entries.
-*När autokat satts, så ska bara den nya kollas mot listan, inte kolla alla autokats som satts på raderna som syns som nya.
-*ta bort columndebugtext
-*ibland är det tomt, men det är det på allkort kredit...
+?*I Excel, gör ifsats på In-raderna, så att om det kommit in från +, så ska det som är standard att lägga in varje månad skrivas ut, annars 0.
+5?*Nåt fel med inläsning när man deletat en entry. Den man tog bort lästes inte in igen.
+2*Visa inlästa saldon hela tiden, eller typ i meny
+6*Detta kollas för att färga om etc...Kolla om de lästa från Excel påverkas när man laddar nya etries, den verkar uppdateras, men se till att det blir bättre prestanda på get new entries.
+7?*När autokat satts, så ska bara den nya kollas mot listan, inte kolla alla autokats som satts på raderna som syns som nya.
+8?*ta bort columndebugtext
+?*ibland är det tomt, men det är det på allkort kredit...
  *gå på tabelltitel, så kan man sätt vilken info som hör till vilken typ.
    <TR><TD width="62" class="SHBHeader" valign=top>Köpdatum</TD><TD width="8" class="SHBHeader">&nbsp;</TD><TD width="40" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="107" class="SHBHeader" valign=top>Inköpsställe</TD><TD width="3" class="SHBHeader">&nbsp;</TD><TD width="110" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="50" class="SHBHeader">&nbsp;</TD><TD width="5" class="SHBHeader">&nbsp;</TD><TD width="100" align="right" class="SHBHeader" valign=top>Belopp i SEK</TD><TD width="10" class="SHBHeader">&nbsp;</TD><TD width="60" class="SHBHeader">&nbsp;</TD><TD width="10" class="SHBHeader">&nbsp;</TD></TR>
 
-*//Todo. Ta bort den ur minnet, newKontoEntries
-*Dubblettvarning. Tydligare fråga vad yes/no innebär. Fixa så den har mer exakt info, typ en rad för varje, med datum, kost etc...
-*Knapp eller annat sätt att ladda entries från html
+?*//Todo. Ta bort den ur minnet, newKontoEntries
+?*Knapp eller annat sätt att ladda entries från html
 
-*De är lite fladdrigt att välja kat. så ha mer stabilt...man gör enkelt rätt om man vet iofs..
+?*De är lite fladdrigt att välja kat. så ha mer stabilt...man gör enkelt rätt om man vet iofs..
 
 
 
@@ -195,3 +173,38 @@ _klar
     *07-01  AkeademikerFörs
     #endregion
     #endregion
+
+
+
+
+
+
+
+
+
+
+
+__Fra LG:___________
+
+BUDGET
+1. öppna Budgetteran på skrivbordet
+2. File-menyn = open banksite
+3. Clear all
+4. Log on (i banken)
+5. ta fram kontoutdrag - alla konton."visa alla", "hämta fler" Välj lämpligt datum varje månad, i samband m räkningar
+6. load current entries
+7. välj kategori. Om vill auto - markera raden, tryck "a", välj "ja"
+7b. Add new to mem.
+8. File - save - "ja jag vill skriva över" vänta lite innan "ja open bankfile"
+9. beskåda och njut!
+Steg 2 - analys
+1. Öppna LG budget C: stuff - "LG.budget" (=som jag har sparat)
+2. titta
+
+ide
+överföring till räkningskonton
+el + hyra i samma överföring
+"inget" som valbar kategori
+resa
++ = inkomst
+________________________________________

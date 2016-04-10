@@ -1,7 +1,7 @@
 ﻿using Budgetterarn;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestProject3
+namespace TestBudgetterarn
 {
     /// <summary>
     ///This is a test class for KontoEntryTest and is intended

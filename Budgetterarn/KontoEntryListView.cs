@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
 using Budgetterarn.InternalUtilities;
+using System.Collections.Generic;
+using Budgeter.Core.Entities;
 
 namespace Budgetterarn
 {

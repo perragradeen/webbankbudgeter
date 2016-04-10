@@ -2,8 +2,23 @@
 
 namespace Budgetterarn
 {
-    internal class ProgramSettings
+    public class ProgramSettings
     {
+        public ProgramSettings()
+        {
+            AutoLoadEtc = AutoLoadEtcFromXml();
+        }
+
+        public bool AutoLoadEtc { get; private set; }
+
+        private bool AutoLoadEtcFromXml()
+        {
+            var s = GeneralSettings.GetStringSetting("AutonavigateEtc");
+
+            bool b;
+            return bool.TryParse(s, out b) && b;
+        }
+
         public static BankType BankType
         {
             get
@@ -21,7 +36,7 @@ namespace Budgetterarn
         }
     }
 
-    internal enum BankType
+    public enum BankType
     {
         Handelsbanken, 
         Swedbank, 

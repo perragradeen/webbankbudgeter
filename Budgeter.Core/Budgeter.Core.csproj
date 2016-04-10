@@ -34,16 +34,14 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BudgeterConstants\ShbConstants.cs" />
     <Compile Include="Entities\BankRow.cs" />
     <Compile Include="Entities\KontoEntry.cs" />
     <Compile Include="Entities\KontoutdragInfo.cs" />
+    <Compile Include="Entities\Saldo.cs" />
+    <Compile Include="KontoEntriesViewModelListUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

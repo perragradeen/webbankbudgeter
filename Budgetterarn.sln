@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgetterarn", "Budgetterarn\Budgetterarn.csproj", "{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{761FC116-2A5A-4627-9A13-2A9806C856AD}"
@@ -10,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject3", "TestProject3\TestProject3.csproj", "{9A7151F0-897B-470E-9AC2-2CEEE674AD2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBudgetterarn", "TestProject3\TestBudgetterarn.csproj", "{9A7151F0-897B-470E-9AC2-2CEEE674AD2F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}"
 EndProject
@@ -20,10 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeter.Core", "Budgeter.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefLesses", "RefLesses\RefLesses.csproj", "{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfToText", "PdfToText\PdfToText.csproj", "{563F5F70-3855-4EE3-B100-78D6D937F0CB}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Budgetterarn.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -103,8 +104,21 @@ Global
 		{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1}.Release|Win32.ActiveCfg = Release|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{563F5F70-3855-4EE3-B100-78D6D937F0CB}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Budgetterarn.vsmdi
 	EndGlobalSection
 EndGlobal

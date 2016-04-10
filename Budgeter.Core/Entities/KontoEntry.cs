@@ -8,6 +8,10 @@ namespace Budgeter.Core.Entities
     public class KontoEntry
     {
         public DateTime Date { get; set; }
+        public int year { get; set; }
+        public int month { get; set; }
+        public int day { get; set; }
+
         public string Info { get; set; }
         public double KostnadEllerInkomst { get; set; }
         public double SaldoOrginal { get; set; }
@@ -33,6 +37,15 @@ namespace Budgeter.Core.Entities
                 return Date.ToString();
             }
         } // "yyyy-MM-dd"); } }
+        public string DateStringFrom3Ints
+        {
+            get
+            {
+                return Date.ToString("yyyy-MM-dd");
+            }
+        } // "yyyy-MM-dd"); } }
+
+
         // De 3 nedan kan innehålla annat än vad de heter, gamla grejjer kan ligga där de skulle vara eg.
         public string ExtendedInfo { get; set; } // Mer detaljer, typ maträtt etc
         public string Place { get; set; }
@@ -49,7 +62,7 @@ namespace Budgeter.Core.Entities
                     StringFuncions.MergeStringArrayToString(
                         new[]
                         {
-                           DateString, Info, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), ExtendedInfo 
+                           DateStringFrom3Ints, Info, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), ExtendedInfo 
                         });
             }
 
@@ -76,7 +89,7 @@ namespace Budgeter.Core.Entities
                            // OS = Swe och Excel (office) = Swe
                            // Då sparas datum i samma kultur.
                            // Men om man har Os = Swe och Excel = US, så sparas datum i Swe-format och Excel sparar i fel format...
-                           Date, // DateString, 
+                           Date.Day, // DateString, 
                            Info, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), 
                            AckumuleratSaldo.ToString(), TypAvKostnad, ExtendedInfo, Place, TimeOfDay, 
                            EntryType.ToString()
@@ -91,7 +104,7 @@ namespace Budgeter.Core.Entities
         // }
 
         /// <summary>
-        /// Bytt plats på typ och kost
+        /// Bytt plats på typ och kost. För Ui
         /// </summary>
         public string[] RowToSaveToUiSwitched // (bool toExcel)
         {
@@ -178,10 +191,24 @@ namespace Budgeter.Core.Entities
             #region Sätt värden till denna klass
 
             Date = DateFunctions.ParseDateWithCultureEtc(date);
+            if (mFromXls)
+            {
+                year = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 0));
+                month = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 1));
+                day = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 2));
+
+                if (day == 0)
+                {
+                    day = Date.Day;
+                }
+
+                Date = new DateTime(year, month, day);
+            }
+
             Info = info;
-            KostnadEllerInkomst = cost.GetValueFromEntry();
-            SaldoOrginal = saldo.GetValueFromEntry();
-            AckumuleratSaldo = ackumuleratSaldo.GetValueFromEntry();
+            KostnadEllerInkomst = cost.GetDoubleValueFromStringEntry();
+            SaldoOrginal = saldo.GetDoubleValueFromStringEntry();
+            AckumuleratSaldo = ackumuleratSaldo.GetDoubleValueFromStringEntry();
             TypAvKostnad = typ;
 
             // Sätt default entry type
@@ -205,14 +232,21 @@ namespace Budgeter.Core.Entities
         {
             Date = fromBank.Date;
             Info = fromBank.EventValue;
-            KostnadEllerInkomst = fromBank.BeloppValue.GetValueFromEntry();
-            SaldoOrginal = fromBank.SaldoValue.GetValueFromEntry();
+            KostnadEllerInkomst = fromBank.BeloppValue.GetDoubleValueFromStringEntry();
+            SaldoOrginal = fromBank.SaldoValue.GetDoubleValueFromStringEntry();
         }
 
         public string RowThatExists(object[] inArray, int columnNumber)
         {
             return inArray.Length > columnNumber && inArray[columnNumber] != null
                        ? inArray[mFromXls ? columnNumber + 2 : columnNumber].ToString()
+                       : string.Empty;
+        }
+
+        public string RowThatExistsNoSpecial(object[] inArray, int columnNumber)
+        {
+            return inArray.Length > columnNumber && inArray[columnNumber] != null
+                       ? inArray[columnNumber].ToString()
                        : string.Empty;
         }
 

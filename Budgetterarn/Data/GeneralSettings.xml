@@ -14,7 +14,7 @@
 
   <property name="ExcelFileSavePathFileName" value="Pelles Budget.xls"/>
   <property name="CategoryPath" value="Data\Categories.xml"/>
-  <property name="BankUrl" value="mobilhandelsbanken" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>
-  <property name="AutonavigateEtc" value="true"/>
+  <property name="BankUrl" value="Handelsbanken" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>
+  <property name="AutonavigateEtc" value="false"/>
 
 </GeneralSettings>

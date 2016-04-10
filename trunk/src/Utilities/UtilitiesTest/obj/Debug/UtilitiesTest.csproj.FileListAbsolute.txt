@@ -1,7 +1,0 @@
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\bin\Debug\UtilitiesTest.dll
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\bin\Debug\UtilitiesTest.pdb
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\bin\Debug\Utilities.dll
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\bin\Debug\Utilities.pdb
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\obj\Debug\ResolveAssemblyReference.cache
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\obj\Debug\UtilitiesTest.dll
-C:\Files\Dropbox\budget\Program\webbankbudgeter_trunk_root\trunk\src\Utilities\UtilitiesTest\obj\Debug\UtilitiesTest.pdb

@@ -4,27 +4,18 @@ namespace RefLesses
 {
     public static class MiscFunctions
     {
-        public static void AddToOrChangeValueInDictionaryForKey(
-            this Dictionary<string, string> saldon, string saldoName, double saldoValue)
+        public static int SafeGetIntFromString(this string text)
         {
-            if (saldon.ContainsKey(saldoName))
+            if (!string.IsNullOrEmpty(text))
             {
-                saldon[saldoName] = saldoValue.ToString();
+                int n = 0;
+                if (int.TryParse(text, out n))
+                {
+                    return n;
+                }
             }
-            else
-            {
-                saldon.Add(saldoName, saldoValue.ToString());
-            }
-        }
 
-        public static string SafeGetStringFromDictionary(this Dictionary<string, string> saldon, string key)
-        {
-            if (saldon.ContainsKey(key))
-            {
-                return saldon[key] ?? string.Empty;
-            }
-            
-            return string.Empty;
+            return 0;
         }
     }
 }
