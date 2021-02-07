@@ -9,7 +9,7 @@ using System.Text.Json;
 namespace FileTests
 {
     [TestClass]
-    public class InBudgetJsonSerializerTest
+    public class JsonSerializerTest
     {
         public static string PathToTheFile => Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
