@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Utilities;
 
-namespace Budgetterarn.Operations
+namespace Budgetterarn.InternalUtilities
 {
     public class FileOperations
     {

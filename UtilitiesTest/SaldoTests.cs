@@ -1,11 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Budgetterarn.WebCrawlers;
-using Budgetterarn.Model;
-using System.Windows.Forms;
-using Budgeter.Core;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestBudgetterarn
+namespace UtilitiesTest
 {
     [TestClass]
     public class SaldoTests
@@ -20,7 +15,7 @@ namespace TestBudgetterarn
             //browser.Navigate(
             //    //@"C:\Files\Dropbox\budget\Program\TestData\allkort0328.html")
             //    @"C:\Files\Dropbox\budget\Program\TestData\Allkort.html")
-                
+
             //    ;
             //browser.Focus();
             //browser.GoHome();
@@ -32,7 +27,7 @@ namespace TestBudgetterarn
             ////browser.ResumeLayout();
             ////browser.Show();
             ////browser.Update(;)
-            
+
             ////browser();
             ////Assert.IsNotNull(browser.Document.Window.Document.Body);
 

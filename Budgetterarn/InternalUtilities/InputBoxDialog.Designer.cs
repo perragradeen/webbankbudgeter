@@ -1,4 +1,4 @@
-﻿namespace Budgetterarn.Operations
+﻿namespace Budgetterarn.InternalUtilities
 {
     partial class InputBoxDialog
     {

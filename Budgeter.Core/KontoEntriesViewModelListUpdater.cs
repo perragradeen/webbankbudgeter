@@ -13,7 +13,7 @@ namespace Budgeter.Core
             ToAddToOrgListview = new List<KontoEntry>();
         }
 
-        public SortedList kontoEntries { get; set; }
+        public SortedList KontoEntries { get; set; }
 
         /// <summary>
         /// Nya
@@ -21,7 +21,7 @@ namespace Budgeter.Core
         /// Dessa är de som analyseras.
         /// </summary>
         public SortedList NewKontoEntriesIn { get; set; }
-        
+
         public List<KontoEntry> ToAddToOrgListview { get; set; }
 
         /// <summary>

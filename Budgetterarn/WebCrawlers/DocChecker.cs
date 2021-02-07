@@ -1,5 +1,6 @@
-﻿using Budgeter.Core;
+﻿using Budgeter.Core.BudgeterConstants;
 using Budgetterarn.DAL;
+using LoadTransactionsFromFile;
 using System;
 using System.Windows.Forms;
 
@@ -66,7 +67,6 @@ namespace Budgetterarn.WebCrawlers
                 // Swallow!!! = LAZY
             }
 
-
             try
             {
                 // Hämta saldon för Svenska Handelsbanken
@@ -96,7 +96,10 @@ namespace Budgetterarn.WebCrawlers
         {
             var body = _kontoEntriesHolder.Doc.Window.Frames[0].Document.Body;
 
-            var allkortKontoEntriesElement = body.Children[11].Children[10].Children[0];
+            // Verifierat historiska
+            //var allkortKontoEntriesElement = body.Children[10].Children[10].Children[0]; // <2016-05-22
+
+            var allkortKontoEntriesElement = body.Children[14].Children[10].Children[0];
 
             // Kolla saldon igen
             GetShbSaldos(body.InnerText);
@@ -129,12 +132,14 @@ namespace Budgetterarn.WebCrawlers
         private void GetKontoEntriesLöne()
         {
             var body = _kontoEntriesHolder.Doc.Window.Frames[0].Document.Body;
-            //var body = _kontoEntriesHolder.Doc.Window.Frames[1].Document.Body;
 
             //var kontoEntriesElement = body.Children[12].Children[1].Children[0];
 
+            // Verifierat historiska
+            //var kontoEntriesElement = body.Children[11].Children[8].Children[0];
+
             //Funkade 2016-04-09 < 19:42
-            var kontoEntriesElement = body.Children[11].Children[8].Children[0];
+            var kontoEntriesElement = body.Children[14].Children[8].Children[0];
             GetShbSaldos(body.Children[11].InnerText);
 
 
@@ -159,9 +164,14 @@ namespace Budgetterarn.WebCrawlers
             //var baseElement = body.FirstChild
             //    .NextSibling.NextSibling.NextSibling.NextSibling.NextSibling.NextSibling;
 
+            // Verifierat historiska
+            //body.Children[6].Children[14].Children[0];
+            //body.Children[9.Children[14].Children[0];
+
             var allkortKontoEntriesElement =
-                body.Children[6].Children[14].Children[0];
-                //baseElement.Children[17].FirstChild;
+                body.Children[9].Children[14].Children[0];
+            //body.Children[14].Children[4].Children[0];
+            //baseElement.Children[17].FirstChild;
 
             LoadKonton.CheckHtmlTr(allkortKontoEntriesElement,
                 _kontoEntriesHolder.KontoEntries,

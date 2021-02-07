@@ -1,17 +1,21 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+// ReSharper disable IdentifierTypo
 
-namespace Budgetterarn.Operations
+namespace Budgetterarn.InternalUtilities
 {
     public partial class InputBoxDialog : Form
     {
         public static string InputBox(string prompt, string title, string defaultValue)
         {
-            var ib = new InputBoxDialog();
-            ib.FormPrompt = prompt;
-            ib.FormCaption = title;
-            ib.DefaultValue = defaultValue;
+            var ib = new InputBoxDialog
+            {
+                FormPrompt = prompt,
+                FormCaption = title, 
+                DefaultValue = defaultValue
+            };
+
             ib.ShowDialog();
             var s = ib.InputResponse;
             ib.Close();
@@ -33,7 +37,7 @@ namespace Budgetterarn.Operations
 
         /// <summary>
         /// Required designer variable.
-        ///
+        /// </summary>
         private readonly Container components = null;
         private Button btnOK;
         private Label lblPrompt;
@@ -43,8 +47,6 @@ namespace Budgetterarn.Operations
         {
             // Required for Windows Form Designer support
             InitializeComponent();
-
-            // TODO: Add any constructor code after InitializeComponent call
         }
 
         #endregion
@@ -53,15 +55,12 @@ namespace Budgetterarn.Operations
 
         /// <summary>
         /// Clean up any resources being used.
-        ///
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
+                components?.Dispose();
             }
 
             base.Dispose(disposing);
@@ -76,139 +75,90 @@ namespace Budgetterarn.Operations
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
-        ///
+        /// </summary>
         private void InitializeComponent()
         {
-            this.lblPrompt = new System.Windows.Forms.Label();
-            this.txtInput = new System.Windows.Forms.TextBox();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            lblPrompt = new System.Windows.Forms.Label();
+            txtInput = new System.Windows.Forms.TextBox();
+            btnOK = new System.Windows.Forms.Button();
+            btnCancel = new System.Windows.Forms.Button();
+            SuspendLayout();
 
             // lblPrompt
-            this.lblPrompt.Anchor =
+            lblPrompt.Anchor =
                 (System.Windows.Forms.AnchorStyles)
                 ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                    | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
-            this.lblPrompt.BackColor = System.Drawing.SystemColors.Control;
-            this.lblPrompt.Font = new System.Drawing.Font(
-                "Microsoft Sans Serif", 
-                9.75F, 
-                System.Drawing.FontStyle.Regular, 
-                System.Drawing.GraphicsUnit.Point, 
+            lblPrompt.BackColor = System.Drawing.SystemColors.Control;
+            lblPrompt.Font = new System.Drawing.Font(
+                "Microsoft Sans Serif",
+                9.75F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
                 (byte)(0));
-            this.lblPrompt.Location = new System.Drawing.Point(12, 9);
-            this.lblPrompt.Name = "lblPrompt";
-            this.lblPrompt.Size = new System.Drawing.Size(302, 82);
-            this.lblPrompt.TabIndex = 3;
+            lblPrompt.Location = new System.Drawing.Point(12, 9);
+            lblPrompt.Name = "lblPrompt";
+            lblPrompt.Size = new System.Drawing.Size(302, 82);
+            lblPrompt.TabIndex = 3;
 
             // txtInput
-            this.txtInput.Location = new System.Drawing.Point(8, 100);
-            this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(379, 20);
-            this.txtInput.TabIndex = 0;
+            txtInput.Location = new System.Drawing.Point(8, 100);
+            txtInput.Name = "txtInput";
+            txtInput.Size = new System.Drawing.Size(379, 20);
+            txtInput.TabIndex = 0;
 
             // btnOK
-            this.btnOK.Location = new System.Drawing.Point(320, 10);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 4;
-            this.btnOK.Text = "&OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.BtnOKClick);
+            btnOK.Location = new System.Drawing.Point(320, 10);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new System.Drawing.Size(75, 25);
+            btnOK.TabIndex = 4;
+            btnOK.Text = "&OK";
+            btnOK.UseVisualStyleBackColor = true;
+            btnOK.Click += new System.EventHandler(this.BtnOKClick);
 
             // btnCancel
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(320, 41);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
+            btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnCancel.Location = new System.Drawing.Point(320, 41);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(75, 25);
+            btnCancel.TabIndex = 5;
+            btnCancel.Text = "&Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
 
             // InputBoxDialog
-            this.AcceptButton = this.btnOK;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(398, 128);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.txtInput);
-            this.Controls.Add(this.lblPrompt);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "InputBoxDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InputBox";
-            this.Load += new System.EventHandler(this.InputBox_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = this.btnOK;
+            AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            BackColor = System.Drawing.SystemColors.Control;
+            CancelButton = this.btnCancel;
+            ClientSize = new System.Drawing.Size(398, 128);
+            Controls.Add(this.btnCancel);
+            Controls.Add(this.btnOK);
+            Controls.Add(this.txtInput);
+            Controls.Add(this.lblPrompt);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "InputBoxDialog";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "InputBox";
+            Load += new System.EventHandler(this.InputBox_Load);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         #region Private Variables
 
-        private string defaultValue = string.Empty;
-        private string formCaption = string.Empty;
-        private string formPrompt = string.Empty;
-        private string inputResponse = string.Empty;
-
         #endregion
 
         #region Public Properties
 
-        public string FormCaption
-        {
-            get
-            {
-                return formCaption;
-            }
-
-            set
-            {
-                formCaption = value;
-            }
-        } // property FormCaption
-        public string FormPrompt
-        {
-            get
-            {
-                return formPrompt;
-            }
-
-            set
-            {
-                formPrompt = value;
-            }
-        } // property FormPrompt
-        public string InputResponse
-        {
-            get
-            {
-                return inputResponse;
-            }
-
-            set
-            {
-                inputResponse = value;
-            }
-        } // property InputResponse
-        public string DefaultValue
-        {
-            get
-            {
-                return defaultValue;
-            }
-
-            set
-            {
-                defaultValue = value;
-            }
-        } // property DefaultValue
+        public string FormCaption { get; set; } = string.Empty;
+        public string FormPrompt { get; set; } = string.Empty;
+        public string InputResponse { get; set; } = string.Empty;
+        public string DefaultValue { get; set; } = string.Empty;
 
         #endregion
 
@@ -216,9 +166,9 @@ namespace Budgetterarn.Operations
 
         private void InputBox_Load(object sender, EventArgs e)
         {
-            txtInput.Text = defaultValue;
-            lblPrompt.Text = formPrompt;
-            Text = formCaption;
+            txtInput.Text = DefaultValue;
+            lblPrompt.Text = FormPrompt;
+            Text = FormCaption;
             txtInput.SelectionStart = 0;
             txtInput.SelectionLength = txtInput.Text.Length;
             txtInput.Focus();

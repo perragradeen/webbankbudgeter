@@ -1,13 +1,11 @@
-﻿using Budgeter.Core.Entities;
-using Budgetterarn.Model;
+﻿using Budgeter.Core.BudgeterConstants;
+using Budgeter.Core.Entities;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utilities;
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
 
 namespace Budgetterarn.DAL
 {
@@ -27,22 +25,17 @@ namespace Budgetterarn.DAL
                 }
 
                 var logArray = GetTopRowWithHeaders(saldoHolder);
-                var logThis = GetWhatToLogWithHeaders(ProgramSettings.BankType, logArray, kontoEntries);
+                var logThis = GetWhatToLogWithHeaders(logArray, kontoEntries);
 
                 ReIndexKontoentriesToLatestOnTop(kontoEntries, logThis);
 
-                // Gör någon backup el. likn. för att inte förlora data. Backupa dynamiskt. Så att om man skickar in en fil så backas den upp istället för huvudfilen...men de e rätt ok att backa huvudfilen
-                BackupOrginialFile(
-                    "Before.Save",
-                    kontoutdragInfoForSave.excelFileSavePath,
-                    kontoutdragInfoForSave.excelFileSavePathWithoutFileName,
-                    kontoutdragInfoForSave.excelFileSaveFileName);
+                BackupOldFile(kontoutdragInfoForSave);
 
                 // spara över gammalt, innan skrevs det på sist
                 Logger.WriteToWorkBook(
-                    kontoutdragInfoForSave.excelFileSavePath, kontoutdragInfoForSave.sheetName, true, logThis);
+                    kontoutdragInfoForSave.ExcelFileSavePath, kontoutdragInfoForSave.SheetName, true, logThis);
 
-                return new LoadOrSaveResult { skippedOrSaved = logThis.Count - 1, somethingLoadedOrSaved = false };
+                return new LoadOrSaveResult { SkippedOrSaved = logThis.Count - 1, SomethingLoadedOrSaved = false };
             }
             catch (Exception savExcp)
             {
@@ -51,10 +44,21 @@ namespace Budgetterarn.DAL
             }
         }
 
-        private static Hashtable GetWhatToLogWithHeaders(BankType bankType, object[] logArray, SortedList kontoEntries)
+        private static void BackupOldFile(KontoutdragInfoForSave kontoutdragInfoForSave)
+        {
+            // Gör någon backup el. likn. för att inte förlora data. Backupa dynamiskt. Så att om man skickar in en fil så backas den upp istället för huvudfilen...men de e rätt ok att backa huvudfilen
+            new FileBackupper(
+                "Before.Save",
+                kontoutdragInfoForSave.ExcelFileSavePath,
+                kontoutdragInfoForSave.ExcelFileSavePathWithoutFileName,
+                kontoutdragInfoForSave.ExcelFileSaveFileName
+                ).BackupOrginialFile();
+        }
+
+        private static Hashtable GetWhatToLogWithHeaders(IEnumerable logArray, ICollection kontoEntries)
         {
             // Gör om till Arraylist för ordning, det blir i omvänd ordning, alltså först överst. Ex 2009-04-01 sen 2009-04-02 osv.
-            Hashtable logThis = null;
+            Hashtable logThis;
 
             // Lägg till överskrifter
             // y m d n t g s b    c
@@ -79,8 +83,7 @@ namespace Budgetterarn.DAL
             foreach (DictionaryEntry currentRow in kontoEntries)
             {
                 // string key = currentRow.Key as string;
-                var currentKeEntry = currentRow.Value as KontoEntry;
-                if (currentKeEntry != null)
+                if (currentRow.Value is KontoEntry currentKeEntry)
                 {
                     logThis.Add(indexKey--, currentKeEntry.RowToSaveForThis); // Använd int som nyckel
                 }
@@ -89,9 +92,11 @@ namespace Budgetterarn.DAL
 
         private static object[] GetTopRowWithHeaders(SaldoHolder saldoHolder)
         {
-            // saldon
-            var saldoColumnNumber = 11 + 1;
             var columnNames = new object[] { "y", "m", "d", "n", "t", "g", "s", "b", "", "", "", "c" };
+            // saldon
+            var saldoColumnNumber = 11 + 1
+                //+ columnNames.Length
+                ;
 
             var logArray = new object[columnNames.Length + saldoHolder.Saldon.Count];
 
@@ -108,28 +113,5 @@ namespace Budgetterarn.DAL
 
             return logArray;
         }
-
-
-        private static void BackupOrginialFile(
-            string typeOfBackup,
-            string excelFileSavePath,
-            string excelFileSavePathWithoutFileName,
-            string excelFileSaveFileName)
-        {
-            BackupOrginialFile(
-                excelFileSavePath, excelFileSavePathWithoutFileName, typeOfBackup + "." + excelFileSaveFileName);
-        }
-
-        private static void BackupOrginialFile(
-            string orgfilePath, string newFilePathWithoutFileName, string newFileName)
-        {
-            // TODO: check that dir exists and path etc
-            System.IO.File.Copy(
-                orgfilePath,
-                newFilePathWithoutFileName + @"bak\" + newFileName + "."
-                + DateTime.Now.ToString(new System.Globalization.CultureInfo("sv-SE")).Replace(":", ".") + ".bak.xls",
-                true);
-        }
     }
-
 }

@@ -65,7 +65,7 @@
                 return false;
             }
 
-            return  compareThis.Trim().ToLower()
+            return compareThis.Trim().ToLower()
                         .Contains(
                     withThis.Trim().ToLower());
         }

@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using System.IO;
 
 namespace PdfToText
@@ -30,7 +29,7 @@ namespace PdfToText
                 }
 
                 PDFParser pdfParser = new PDFParser();
-                pdfParser.ExtractText(file, Path.GetFileNameWithoutExtension(file)+".txt");
+                pdfParser.ExtractText(file, Path.GetFileNameWithoutExtension(file) + ".txt");
             }
             catch (Exception exc)
             {

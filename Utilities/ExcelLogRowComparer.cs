@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Globalization;
-using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace Utilities
 {
@@ -54,11 +58,6 @@ namespace Utilities
         // dlg.Filter = "Excel XLS Log File|*.xls";
         // return dlg;
         // }
-        [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1515:SingleLineCommentMustBePrecededByBlankLine", Justification = "Reviewed. Suppression is OK here.")
-        , SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1115:ParameterMustFollowComma",
-            Justification = "Reviewed. Suppression is OK here.")]
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
-            Justification = "Reviewed. Suppression is OK here.")]
         public static void CompareLogs(string oldLogFileName, string newLogFileName) // filename
         {
             // bool orgProgresSetting = false;//Håller på vad progress vad satt till innan
@@ -289,7 +288,7 @@ namespace Utilities
 
                 // _book.Close(false, Type.Missing, Type.Missing);
                 excelApp.Quit();
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                Marshal.ReleaseComObject(excelApp);
                 excelApp = null;
             }
             catch (Exception e)
@@ -313,7 +312,7 @@ namespace Utilities
             if (excelApp != null)
             {
                 excelApp.Quit();
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                Marshal.ReleaseComObject(excelApp);
                 excelApp = null;
             }
         }
@@ -515,8 +514,6 @@ namespace Utilities
             return theArray;
         }
 
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
-            Justification = "Reviewed. Suppression is OK here.")]
         private static void CheckAllProfiles(Hashtable oldBook, Sheets newSheets)
         {
             try
@@ -570,41 +567,38 @@ namespace Utilities
 
                 foreach (DictionaryEntry item in oldBook)
                 {
-                    var name = item.Key as string;
-                    var rows = item.Value as Hashtable;
 
                     // if (name == "AllProfiles")//Specialfall för AllProfiles-flikar
                     // {
                     // oldRows = rows;
                     // }
                     // Specialfall för AllProfiles-flikar
-                    if (name != null && name.StartsWith("AllProfiles_"))
+                    if (!(item.Key is string name) || !name.StartsWith("AllProfiles_"))
+                        continue;
+                    if (!(item.Value is Hashtable rows))
+                        continue;
+
+                    foreach (DictionaryEntry innerItem in rows)
                     {
-                        if (rows != null)
+                        if (oldRows != null
+                            // ReSharper disable AssignNullToNotNullAttribute
+                            && oldRows.ContainsKey(innerItem.Key as string))
+                            // ReSharper restore AssignNullToNotNullAttribute
                         {
-                            foreach (DictionaryEntry innerItem in rows)
+                            // Här finns en dublett! Det ska ladrig inträffa, för det ska vara unika som läggs till, även om det iofs är olika blad
+                            Console.WriteLine(
+                                "Double fond in CheckAllProfiles old rows: " + name + ". Key: >" + innerItem.Key
+                                + "<");
+                        }
+                        else
+                        {
+                            if (oldRows != null)
                             {
-                                if (oldRows != null
-                                    // ReSharper disable AssignNullToNotNullAttribute
-                                    && oldRows.ContainsKey(innerItem.Key as string))
+                                // ReSharper disable AssignNullToNotNullAttribute
+                                if (!oldRows.ContainsKey(innerItem.Key as string))
+                                {
+                                    oldRows.Add(innerItem.Key as string, innerItem.Value as ExcelRowEntry);
                                     // ReSharper restore AssignNullToNotNullAttribute
-                                {
-                                    // Här finns en dublett! Det ska ladrig inträffa, för det ska vara unika som läggs till, även om det iofs är olika blad
-                                    Console.WriteLine(
-                                        "Double fond in CheckAllProfiles old rows: " + name + ". Key: >" + innerItem.Key
-                                        + "<");
-                                }
-                                else
-                                {
-                                    if (oldRows != null)
-                                    {
-                                        // ReSharper disable AssignNullToNotNullAttribute
-                                        if (!oldRows.ContainsKey(innerItem.Key as string))
-                                        {
-                                            oldRows.Add(innerItem.Key as string, innerItem.Value as ExcelRowEntry);
-                                            // ReSharper restore AssignNullToNotNullAttribute
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -641,8 +635,6 @@ namespace Utilities
         /// <param name="storedInFirst"></param>
         /// <param name="storedInSecond"></param>
         /// <returns>HashTable</returns>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1630:DocumentationTextMustContainWhitespace", Justification = "Reviewed. Suppression is OK here."),SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
-            Justification = "Reviewed. Suppression is OK here.")]
         private static Hashtable CheckForRowsIn(Hashtable storedInFirst, Hashtable storedInSecond)
         {
             var allFoundRows = new Hashtable();
@@ -658,9 +650,9 @@ namespace Utilities
             {
                 // if (MainForm.StopGracefully)
                 // return null;
-                var concatedNewRowCells = storedInFirstRow.Key as string;
 
-                if (concatedNewRowCells != null && !storedInSecond.ContainsKey(concatedNewRowCells))
+                if (storedInFirstRow.Key is string concatedNewRowCells 
+                    && !storedInSecond.ContainsKey(concatedNewRowCells))
                 {
                     // Om den bara finns med i nya
                     // färglägg bara unika celler från stored.Value...
@@ -690,8 +682,6 @@ namespace Utilities
         /// </param>
         /// <param name="storedNew">
         /// </param>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
-            Justification = "Reviewed. Suppression is OK here.")]
         private static void CompareExcelRows(Worksheet saveWorksheet, Hashtable storedOld, Hashtable storedNew)
         {
             if (TableAreNull(storedOld, storedNew))
@@ -734,10 +724,9 @@ namespace Utilities
                 var cellLayOutSettings = new Hashtable { { CellLayOutSettings.InteriorColorColorIndexType, 36 } };
                 foreach (DictionaryEntry item in allNewRows)
                 {
-                    var excelRowEntry = item.Value as ExcelRowEntry;
-                    if (excelRowEntry != null)
+                    if (item.Value is ExcelRowEntry excelRowEntry)
                     {
-                        Logger.addRow(
+                        Logger.AddRow(
                             saveWorksheet,
                             SheetName,
                             ref oa,
@@ -756,10 +745,9 @@ namespace Utilities
                 cellLayOutSettings.Add(CellLayOutSettings.InteriorColorSysDrawingType, System.Drawing.Color.GreenYellow);
                 foreach (DictionaryEntry item in allOldRows)
                 {
-                    var excelRowEntry = item.Value as ExcelRowEntry;
-                    if (excelRowEntry != null)
+                    if (item.Value is ExcelRowEntry excelRowEntry)
                     {
-                        Logger.addRow(
+                        Logger.AddRow(
                             saveWorksheet,
                             SheetName,
                             ref oa,
@@ -781,10 +769,12 @@ namespace Utilities
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements",
-            Justification = "Reviewed. Suppression is OK here.")]
         private static bool CompareExcelRows(
-            Worksheet worksheet, Hashtable storedOld, Hashtable storedNew, ref int rows, ref int orgColCount)
+            _Worksheet worksheet,
+            Hashtable storedOld, 
+            Hashtable storedNew, 
+            ref int rows, 
+            ref int orgColCount)
         {
             // if (storedOld == null)
             // {
@@ -828,7 +818,6 @@ namespace Utilities
                 {
                     // if (MainForm.StopGracefully)
                     // return false;
-                    var concatedNewRowCells = newEntry.Key as string;
 
                     #region Old
 
@@ -844,7 +833,7 @@ namespace Utilities
                     // } 
                     #endregion
 
-                    if (concatedNewRowCells != null && !storedOld.ContainsKey(concatedNewRowCells))
+                    if (newEntry.Key is string concatedNewRowCells && !storedOld.ContainsKey(concatedNewRowCells))
                     {
                         // Om den bara finns med i nya
                         // färglägg bara unika celler från stored.Value...
@@ -853,8 +842,7 @@ namespace Utilities
                         // hämta radnumret
                         if (storedNew.ContainsKey(concatedNewRowCells))
                         {
-                            var excelRowEntry = storedNew[concatedNewRowCells] as ExcelRowEntry;
-                            if (excelRowEntry != null)
+                            if (storedNew[concatedNewRowCells] is ExcelRowEntry excelRowEntry)
                             {
                                 var currentRowNumber = excelRowEntry.Row;
 
@@ -1005,7 +993,7 @@ namespace Utilities
                             // = Logger.addRow(sheet, saveAsSheetName, ref oa, null, false, System.Drawing.Color.Green, 0, stored[oldrow] as string[]);// as string[]
                             if (worksheet.Name != "DatabaseInfo")
                             {
-                                nextRow = Logger.addRow(
+                                nextRow = Logger.AddRow(
                                     sheet,
                                     saveAsSheetName,
                                     ref oa,
@@ -1087,16 +1075,16 @@ namespace Utilities
 
                                 #endregion
 
-                                nextRow = Logger.addRow(
+                                nextRow = Logger.AddRow(
                                     sheet,
                                     saveAsSheetName,
                                     ref oa,
                                     cellLayout,
                                     false,
-                                    System.Drawing.Color.Empty,
+                                    Color.Empty,
                                     (storedOld[oldrow] as ExcelRowEntry).Row,
-                                    4,
-                                    new object[] { "=B" + currRow + "-D" + currRow });
+                                    4, 
+                                    "=B" + currRow + "-D" + currRow);
 
                                 // BC när den är färdig, men "new" finns som rad o då blird det B+D
                                 #endregion

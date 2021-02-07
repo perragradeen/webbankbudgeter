@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
+using Budgetterarn.Application_Settings_and_constants;
+using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
-using Budgeter.Core.Entities;
-using Budgetterarn.Application_Settings_and_constants;
 
 namespace Budgetterarn
 {
@@ -59,8 +59,8 @@ namespace Budgetterarn
             }
 
             list.Items.Add(new ListViewItem(items));
-                
-                // Overkill? hehe, anal. Trodde jag...nu fick jag ju nytta av det så det så
+
+            // Overkill? hehe, anal. Trodde jag...nu fick jag ju nytta av det så det så
         }
 
         internal static void AddToListview(ListView list, KontoEntry entry)
@@ -89,8 +89,8 @@ namespace Budgetterarn
 
             list.Items.Add(new ListViewItem(kontoEntryElements, -1, entry.FontFrontColor, Color.Empty, null)).Tag =
                 entry;
-                
-                // man slipper lite tecken och castningarna o likhetstecknet, iom att detta är en fkn//Overkill? hehe, anal. Trodde jag...nu fick jag ju nytta av det så det så
+
+            // man slipper lite tecken och castningarna o likhetstecknet, iom att detta är en fkn//Overkill? hehe, anal. Trodde jag...nu fick jag ju nytta av det så det så
         }
 
         #endregion

@@ -3,8 +3,6 @@ using System.Windows.Forms;
 
 namespace Budgetterarn
 {
-    public delegate void DoneNavigationAction();
-
     public class AutoGetEntriesHbMobil
     {
         // Ev. byta denna mot en klass med innehåll och nyckel, för att behålla orginalordningen på posterna. Sorteras med nyaste först

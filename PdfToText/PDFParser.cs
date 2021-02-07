@@ -1,13 +1,13 @@
+using iTextSharp.text.pdf;
 using System;
 using System.IO;
-using iTextSharp.text.pdf;
 
 namespace PdfToText
 {
     /// <summary>
     /// Parses a PDF file and extracts the text from it.
     /// </summary>
-    public class PDFParser 
+    public class PDFParser
     {
         /// BT = Beginning of a text object operator 
         /// ET = End of a text object operator
@@ -42,18 +42,18 @@ namespace PdfToText
                 PdfReader reader = new PdfReader(inFileName);
                 //outFile = File.CreateText(outFileName);
                 outFile = new StreamWriter(outFileName, false, System.Text.Encoding.UTF8);
-                
+
                 Console.Write("Processing: ");
-                
-                int     totalLen    = 68;
-                float   charUnit    = ((float)totalLen) / (float)reader.NumberOfPages;
-                int     totalWritten= 0;
-                float   curUnit     = 0;
+
+                int totalLen = 68;
+                float charUnit = ((float)totalLen) / (float)reader.NumberOfPages;
+                int totalWritten = 0;
+                float curUnit = 0;
 
                 for (int page = 1; page <= reader.NumberOfPages; page++)
-                {                    
+                {
                     outFile.Write(ExtractTextFromPDFBytes(reader.GetPageContent(page)) + " ");
-                    
+
                     // Write the progress.
                     if (charUnit >= 1.0f)
                     {
@@ -75,7 +75,7 @@ namespace PdfToText
                             }
                             curUnit = 0;
                         }
-                        
+
                     }
                 }
 
@@ -144,7 +144,7 @@ namespace PdfToText
                             }
                             else
                             {
-                                if (CheckToken(new string[] {"'", "T*", "\""}, previousCharacters))
+                                if (CheckToken(new string[] { "'", "T*", "\"" }, previousCharacters))
                                 {
                                     resultString += "\n";
                                 }
@@ -159,8 +159,8 @@ namespace PdfToText
                         }
 
                         // End of a text object, also go to a new line.
-                        if (bracketDepth == 0 && 
-                            CheckToken( new string[]{"ET"}, previousCharacters))
+                        if (bracketDepth == 0 &&
+                            CheckToken(new string[] { "ET" }, previousCharacters))
                         {
 
                             inTextObject = false;
@@ -216,7 +216,7 @@ namespace PdfToText
                     previousCharacters[_numberOfCharsToKeep - 1] = c;
 
                     // Start of a text object
-                    if (!inTextObject && CheckToken(new string[]{"BT"}, previousCharacters))
+                    if (!inTextObject && CheckToken(new string[] { "BT" }, previousCharacters))
                     {
                         inTextObject = true;
                     }
@@ -239,7 +239,7 @@ namespace PdfToText
         /// <returns></returns>
         private bool CheckToken(string[] tokens, char[] recent)
         {
-            foreach(string token in tokens)
+            foreach (string token in tokens)
             {
                 if ((recent[_numberOfCharsToKeep - 3] == token[0]) &&
                     (recent[_numberOfCharsToKeep - 2] == token[1]) &&

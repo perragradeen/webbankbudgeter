@@ -1,5 +1,5 @@
-﻿using System;
-using RefLesses;
+﻿using RefLesses;
+using System;
 
 namespace Budgeter.Core.Entities
 {

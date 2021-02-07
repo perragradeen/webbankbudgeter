@@ -8,11 +8,14 @@ namespace Budgetterarn.Application_Settings_and_constants
         static Filerefernces()
         {
             // Get file names from settings file
-            var appPath = AppDomain.CurrentDomain.BaseDirectory;
+            var appPath = AppDomain.CurrentDomain.BaseDirectory;// TODO: fixa en allmän funktion som ger sökväg relativ
 
-            _excelFileSaveFileName = GeneralSettings.GetStringSetting("ExcelFileSavePathFileName");
-            ExcelFileSavePathWithoutFileName = GeneralSettings.GetStringSetting("ExcelFileSaveDirPath");
-            _excelFileSavePath = ExcelFileSavePathWithoutFileName + _excelFileSaveFileName;
+            _excelFileSaveFileName =
+                GeneralSettings.GetStringSetting("ExcelFileSavePathFileName");
+            ExcelFileSavePathWithoutFileName =
+                GeneralSettings.GetStringSetting("ExcelFileSaveDirPath");
+            _excelFileSavePath =
+                ExcelFileSavePathWithoutFileName + _excelFileSaveFileName;
             _excelFileSavePath = Path.Combine(appPath, _excelFileSavePath);
         }
 

@@ -1,12 +1,10 @@
 ﻿using Budgeter.Core;
 using Budgeter.Core.Entities;
-using System;
-using System.Collections.Generic;
+using CategoryHandler;
+using System.Collections;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using Budgeter.Winforms;
-using System.Collections;
+// ReSharper disable CommentTypo
 
 namespace Budgetterarn
 {
@@ -85,65 +83,59 @@ namespace Budgetterarn
         {
             // TODO: flytta denna till annan fil, ev. skicka med fkn som delegat
             // Skriv in nya entries i textrutan
-            if (lists.NewKontoEntriesIn.Count > 0)
+            if (lists.NewKontoEntriesIn.Count <= 0) return;
+
+            foreach (DictionaryEntry item in lists.NewKontoEntriesIn)
             {
-                foreach (DictionaryEntry item in lists.NewKontoEntriesIn)
+                if (!(item.Value is KontoEntry newKe))
                 {
-                    var newKe = item.Value as KontoEntry;
-
-                    if (newKe == null)
-                    {
-                        continue;
-                    }
-
-                    var foundDoubleInUList = lists.NewIitemsListEdited
-                            .CheckIfKeyExistsInKontoEntries(newKe.KeyForThis)
-                        || lists.NewIitemsListEdited
-                                            .Any(
-                                                viewItem =>
-                                                (viewItem).KeyForThis.Equals(
-                                                    newKe.KeyForThis));
-
-                    // Om man laddar html-entries 2 gånger i rad, så ska det inte skapas dubletter
-                    if (foundDoubleInUList)
-                    {
-                        continue;
-                    }
-
-                    // Lägg till i org
-                    if (lists.NewIitemsListOrg != null)
-                    {
-                        lists.NewIitemsListOrg.Add(newKe);
-                    }
-
-                    // Kolla om det är en dubblet eller om det är finns ett motsvarade "skyddat belopp"
-                    if (lists.kontoEntries.ContainsKey(newKe.KeyForThis))
-                    {
-                        continue;
-                    }
-
-                    // kolla om det är "Skyddat belopp", dubblett o likn. innan man ändrar entryn, med autokat
-
-                    // Slå upp autokategori
-                    var lookedUpCat = CategoriesHolder.AllCategories.AutocategorizeType(newKe.Info);
-                    if (lookedUpCat != null)
-                    {
-                        newKe.TypAvKostnad = lookedUpCat;
-                    }
-
-                    #region Old
-
-                    // markera de som är dubblet eller skb, och flagga dem för ersättning av de som redan finns i minnet
-                    // Gissa om det är en dublett, jmfr på datum, info och kost
-                    // if (GuessedDouble(newKE))
-                    // {
-                    // continue;
-                    // } 
-                    #endregion
-
-                    // Lägg till i edited
-                    lists.NewIitemsListEdited.Add(newKe);
+                    continue;
                 }
+
+                var foundDoubleInUList = lists.NewIitemsListEdited
+                                             .CheckIfKeyExistsInKontoEntries(newKe.KeyForThis)
+                                         || lists.NewIitemsListEdited
+                                             .Any(
+                                                 viewItem =>
+                                                     (viewItem).KeyForThis.Equals(
+                                                         newKe.KeyForThis));
+
+                // Om man laddar html-entries 2 gånger i rad, så ska det inte skapas dubletter
+                if (foundDoubleInUList)
+                {
+                    continue;
+                }
+
+                // Lägg till i org
+                lists.NewIitemsListOrg?.Add(newKe);
+
+                // Kolla om det är en dubblet eller om det är finns ett motsvarade "skyddat belopp"
+                if (lists.KontoEntries.ContainsKey(newKe.KeyForThis))
+                {
+                    continue;
+                }
+
+                // kolla om det är "Skyddat belopp", dubblett o likn. innan man ändrar entryn, med autokat
+
+                // Slå upp autokategori
+                var lookedUpCat = CategoriesHolder.AutocategorizeType(newKe.Info);
+                if (lookedUpCat != null)
+                {
+                    newKe.TypAvKostnad = lookedUpCat;
+                }
+
+                #region Old
+
+                // markera de som är dubblet eller skb, och flagga dem för ersättning av de som redan finns i minnet
+                // Gissa om det är en dublett, jmfr på datum, info och kost
+                // if (GuessedDouble(newKE))
+                // {
+                // continue;
+                // } 
+                #endregion
+
+                // Lägg till i edited
+                lists.NewIitemsListEdited.Add(newKe);
             }
         }
     }

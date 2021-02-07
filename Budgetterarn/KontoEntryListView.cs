@@ -1,7 +1,5 @@
-﻿using System.Windows.Forms;
-using Budgetterarn.InternalUtilities;
-using System.Collections.Generic;
-using Budgeter.Core.Entities;
+﻿using Budgetterarn.InternalUtilities;
+using System.Windows.Forms;
 
 namespace Budgetterarn
 {

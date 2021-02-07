@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
+using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
-using Budgeter.Core.Entities;
 
-namespace Budgeter.Winforms
+namespace Budgetterarn
 {
     public class UiHelpersDependant
     {
@@ -29,8 +29,8 @@ namespace Budgeter.Winforms
                         else // Replace old
                         {
                             entry.FontFrontColor = Color.Blue;
-                                
-                                // ev. skulle man sätta replacethiskey till den gamla keyn med den som ersatte, för att kunna spåra förändringar
+
+                            // ev. skulle man sätta replacethiskey till den gamla keyn med den som ersatte, för att kunna spåra förändringar
                             if (oldKontoEntries.ContainsKey(entry.ReplaceThisKey))
                             {
                                 oldKontoEntries[entry.ReplaceThisKey] = entry;
@@ -53,17 +53,11 @@ namespace Budgeter.Winforms
             }
 
             return new AddedAndReplacedEntriesCounter
-                   {
-                      SomethingChanged = somethingChanged, Added = addedEntries, Replaced = replacedEntries 
-                   };
+            {
+                SomethingChanged = somethingChanged,
+                Added = addedEntries,
+                Replaced = replacedEntries
+            };
         }
-    }
-
-    public class AddedAndReplacedEntriesCounter
-    {
-        public int Added { get; set; }
-        public int Replaced { get; set; }
-
-        public bool SomethingChanged { get; set; }
     }
 }

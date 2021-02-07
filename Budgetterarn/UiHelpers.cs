@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
-namespace Budgeter.Winforms
+namespace Budgetterarn
 {
     public static class UiHelpers
     {

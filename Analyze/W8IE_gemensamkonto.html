@@ -1,0 +1,1525 @@
+<div class="fdp-header">
+    Vi har påbörjat bygget av nya internetbanken. Allt är inte klart än men välkommen in att testa betaversionen.
+    <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplCLNLIntegration&amp;_flow_id_=CLNL_CALL_REDIRECT&amp;_new_flow_=true&amp;_nlportlet_id_=%2Fidp%2Fportal%2Fidentifieringidp%2Ffederativeissue%3Ftarget%3Ddigitalbank&amp;requestId=6&amp;WindowSessId=1488396216402886916">Till nya internetbanken beta</a>
+</div>
+
+<div id="page-header">
+
+    <!-- header_top.jsp -->
+    <div id="global-func">
+        <ul>
+
+
+            <li class="first"><a title="Anpassa format. Alt-0" accesskey="0" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplDialogeninstellningKund&amp;_flow_id_=INSTELLNING_VISA_ANPASSNING_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916">Anpassa</a></li>
+            <li><a title="Innehåll. Alt-3" accesskey="3" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALLSKARTA_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916">Innehåll</a></li>
+            <li><a title="Hjälp. Alt-6" accesskey="6" href="javascript:fsbOppnaFonster('http://hjalp.swedbank.se/sidhjalp-internetbanken-privat/ekonomisk-oversikt/konton-och-lan-oversikt/visa-kontohistorik/index.htm','Hjelp',700,700,'scrollbars=yes,resizable=yes,status=no,menubar=no,directories=no,toolbar=yes,location=no');">Hjälp</a></li>
+
+
+
+            <li class="last"> <a title="Kontakta oss. Alt-7" accesskey="7" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplDialogenmeddelande&amp;_flow_id_=VISA_FRAGA_PRE_CLIENT&amp;_new_flow_=true&amp;requestId=6&amp;WindowSessId=1488396216402886916">Kontakta oss</a></li>
+
+
+            <li class="logout"><a title="Logga ut." onclick="onLinkClick(this)" href="?TDEApplName=TDEApplDialogenmassmeddelande&amp;_flow_id_=HEMTA_DRIFTMEDDELANDE_UTLOGGNING_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;bankid=08999&amp;WindowSessId=1488396216402886916">Logga ut</a></li>
+
+        </ul>
+        <span class="current-time">2017-03-01 20:23</span>
+    </div>
+
+    <img class="logo" alt="Logotyp Swedbank AB (publ)" src="images/swedbank/logo/08999.gif">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="nav">
+    <script language="JavaScript" type="text/javascript">writeMainMenu();</script><div id="main-nav">
+        <ul>
+            <li class="first"><a id="toplevel_Favoriter" accesskey="m" onmouseover="showMainMenu('Favoriter', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('Favoriter', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=Favoriter&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Favoriter</a></li>
+            <li style="background-color: transparent;"><a id="toplevel_Startsida" style="color: rgb(234, 94, 13); border-right-color: rgb(204, 204, 204);" onmouseover="showMainMenu('Startsida', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('Startsida', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=Startsida&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Startsida</a></li>
+            <li><a id="toplevel_Ekonomiskoversikt" onmouseover="showMainMenu('Ekonomiskoversikt', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('Ekonomiskoversikt', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=Ekonomiskoversikt&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Ekonomisk översikt</a></li>
+            <li><a id="toplevel_BetalaOverfora" onmouseover="showMainMenu('BetalaOverfora', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('BetalaOverfora', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=BetalaOverfora&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Betala/Överföra</a></li>
+            <li><a id="toplevel_SparaPlacera" onmouseover="showMainMenu('SparaPlacera', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('SparaPlacera', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=SparaPlacera&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Spara/Placera</a></li>
+            <li><a id="toplevel_Lana" onmouseover="showMainMenu('Lana', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('Lana', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=Lana&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Låna</a></li>
+            <li><a id="toplevel_Forsekra" onmouseover="showMainMenu('Forsekra', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('Forsekra', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=Forsekra&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Försäkra</a></li>
+            <li class="last"><a id="toplevel_Tillvalstjenster" onmouseover="showMainMenu('Tillvalstjenster', this);" onclick="if (__mm_activeMenu &amp;&amp; __mm_activeMenu.inFocus) { return false; }" onfocus="showMainMenu('Tillvalstjenster', this);" onblur="mainMenu.hideAll();" href="../bviPrivat/privat?TDEApplName=TDEApplMeny&amp;_flow_id_=VISA_INNEHALL_CLIENT&amp;_new_flow_=true&amp;menuId=Tillvalstjenster&amp;WindowSessId=1488396216402886916&amp;requestId=6" mcmouseover="nohide">Tillval</a></li>
+        </ul>
+    </div>
+
+    <div id="page-nav">
+
+        <h2 class="sidrubrik">Kontohistorik</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <ul>
+            <li class="first selected">
+                <span>
+                    Kontohistorik
+                </span>
+            </li>
+            <li>
+                <a title="Gå till kontovillkor" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=VISA_INLAN_KONTOVILLKOR_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916">Kontovillkor</a>
+            </li>
+
+            <li class="last">
+                <a title="Gå till byt kontonamn" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=EDITERA_EGET_NAMN_SPECIFIKT_KONTO_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916">Byt kontonamn</a>
+            </li>
+
+
+
+        </ul>
+
+
+
+    </div>
+    <div id="user-info">
+
+
+        <ul>
+
+            <li class="user">PER GRADEEN</li>
+            <li class="organisation">&nbsp;</li>
+
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+<div class="sidinnehall">
+    <a accesskey="s" href="#"></a>
+    <table class="sidinnehall-tabell" cellspacing="0">
+        <tbody>
+            <tr>
+                <td class="sidinnehall-tabell-cell">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <table width="100%" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td class="sidspalt2a">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <!-- tilleggsobjekt sida start FunkTopp-->
+                                    <!-- tilleggsobjekt sida end FunkTopp -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="sektion">
+
+                                        <div class="sektion-huvud">
+                                            <h3 class="mellanrubrik">
+
+
+                                                Gemensamt
+                                                (Privatkonto)
+                                                8105-9,964 260 138-0
+
+
+                                                (SEK)
+
+
+
+
+
+                                            </h3>
+                                        </div>
+
+                                        <div class="sektion-innehall2">
+                                            <table width="100%" class="tabell" style="margin-top: 1em;" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="infotext2">
+                                                            <form name="form_byt_konto" id="form_byt_konto" action="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=BYT_KONTO_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916" method="post">
+                                                                <select name="index" id="index">
+                                                                    <option value="">Välj konto</option>
+
+
+                                                                    <option class="listruta-rubrik" value="">Konton i svenska kronor</option>
+                                                                    <option value="0">Gemensamt 8105-9,964 260 138-0</option>
+                                                                    <option value="1">PrivatPG 8105-9,964 260 134-9</option>
+                                                                </select>&nbsp;
+                                                                <input name="byt_konto" title="Byt konto i rullistan" class="knapp" onclick="document.getElementById('form_byt_konto').action='/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=BYT_KONTO_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916',onButtonClick('form_byt_konto', null)" type="button" value="Byt konto">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+
+                                            <table class="tabell" style="width: 100%; clear: both;" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <th align="left" class="tabell-huvud" style="width: 20%;"></th>
+                                                        <th align="left" class="tabell-huvud" style="width: 15%;"></th>
+                                                        <th align="left" class="tabell-huvud" style="width: 40%;">&nbsp;</th>
+                                                        <th align="right" class="tabell-huvud" style="width: 25%;"><span class="tabell-kolumnrubrik"> Belopp </span></th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="tabell-cell-topp ingen-botten">&nbsp;</td>
+                                                        <td class="tabell-cell-topp ingen-botten">&nbsp;</td>
+                                                        <td class="tabell-cell-topp" scope="row">
+
+                                                            Saldo
+
+
+                                                        </td>
+                                                        <td align="right" class="tabell-cell-topp">419 152,79</td>
+                                                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell-summering2 ingen-botten">&nbsp;</td>
+                                                        <td class="tabell-cell-summering2 ingen-botten">&nbsp;</td>
+                                                        <td class="tabell-cell-summering" scope="row">Tillgängligt belopp</td>
+                                                        <td align="right" class="tabell-cell-summering">419 152,79</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <h3 class="mellanrubrik">De senaste transaktionerna</h3>
+                                            <table class="tabell" style="width: 100%; clear: both;" cellspacing="0">
+
+
+
+
+
+
+
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="15%" align="left" class="tabell-huvud" scope="col"><span class="tabell-kolumnrubrik">  <a title="Klicka på pilen för att sortera listan i datumordning." class="tabell-lenk" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SORTERA_KONTOTRANSAKTIONER_CLIENT&amp;_new_flow_=false&amp;kolumnId=datumBokforing&amp;requestId=6&amp;WindowSessId=1488396216402886916">Bokf.datum&nbsp;<img width="10" height="5" alt="Klicka på pilen för att sortera listan i datumordning." src="images/ikon_sortering.gif"></a></span></th>
+
+
+
+                                                        <th width="17%" align="left" class="tabell-huvud" scope="col"><span class="tabell-kolumnrubrik">  <a title="Klicka på pilen för att sortera listan i datumordning." class="tabell-lenk" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SORTERA_KONTOTRANSAKTIONER_CLIENT&amp;_new_flow_=false&amp;kolumnId=datum&amp;requestId=6&amp;WindowSessId=1488396216402886916">Trans.datum&nbsp;<img width="10" height="5" alt="Klicka på pilen för att sortera listan i datumordning." src="images/ikon_sortering.gif"></a></span></th>
+
+
+
+
+
+
+                                                        <th width="31%" align="left" class="tabell-huvud" scope="col"><span class="tabell-kolumnrubrik">  <a title="Klicka på pilen för att sortera listan efter kontohändelse i bokstavsordning." class="tabell-lenk" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SORTERA_KONTOTRANSAKTIONER_CLIENT&amp;_new_flow_=false&amp;kolumnId=beskrivning&amp;requestId=6&amp;WindowSessId=1488396216402886916">Kontohändelse&nbsp;<img width="10" height="5" alt="Klicka på pilen för att sortera listan efter kontohändelse i bokstavsordning." src="images/ikon_sortering.gif"></a></span></th>
+
+
+                                                        <th width="5%" align="left" class="tabell-huvud" scope="col">
+                                                            <span class="tabell-kolumnrubrik">&nbsp;</span>
+                                                        </th>
+
+                                                        <th width="15%" align="right" class="tabell-huvud" scope="col"><span class="tabell-kolumnrubrik">  <a title="Klicka på pilen för att sortera listan i beloppsordning." class="tabell-lenk" onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SORTERA_KONTOTRANSAKTIONER_CLIENT&amp;_new_flow_=false&amp;kolumnId=belopp&amp;requestId=6&amp;WindowSessId=1488396216402886916">Belopp&nbsp;<img width="10" height="5" alt="Klicka på pilen för att sortera listan i beloppsordning." src="images/ikon_sortering.gif"></a></span></th>
+
+                                                        <th width="15%" align="right" class="tabell-huvud" scope="col">
+                                                            <span class="tabell-kolumnrubrik">
+
+                                                                Saldo
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="tabell-cell-topp"><span style="white-space: nowrap;">17-02-28</span></td>
+                                                        <td class="tabell-cell-topp">17-02-28&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell-topp">TELIA AB&nbsp;</td>
+                                                        -->
+
+                                                        <td class="tabell-cell-topp">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999998&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">TELIA AB&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell-topp">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell-topp"><span style="white-space: nowrap;">-687,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell-topp"><span style="white-space: nowrap;">419 152,79</span></td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-28</span></td>
+                                                        <td class="tabell-cell">17-02-28&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">TRE KRONOR&nbsp;</td>
+                                                        -->
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999997&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">TRE KRONOR&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-656,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">419 839,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-28</span></td>
+                                                        <td class="tabell-cell">17-02-28&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Överföring lån 0000002857934661&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999996&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Överföring lån 0000002857934661&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-4 740,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">420 495,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-28</span></td>
+                                                        <td class="tabell-cell">17-02-28&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Överföring lån 0000002857934653&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999995&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Överföring lån 0000002857934653&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 228,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">425 235,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-28</span></td>
+                                                        <td class="tabell-cell">17-02-28&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Överföring lån 0000002857934638&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999994&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Överföring lån 0000002857934638&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 091,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">426 463,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-27</span></td>
+                                                        <td class="tabell-cell">17-02-27&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Ikea möbler&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999993&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Ikea möbler&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-16 355,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">427 554,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-27</span></td>
+                                                        <td class="tabell-cell">17-02-27&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Överföring lån 0000002857934646&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999992&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Överföring lån 0000002857934646&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 210,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">443 909,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-27</span></td>
+                                                        <td class="tabell-cell">17-02-26&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">dagers&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999991&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">dagers&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">15 000,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">445 119,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-27</span></td>
+                                                        <td class="tabell-cell">17-02-26&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">barn&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999990&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">barn&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 125,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">430 119,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-27</span></td>
+                                                        <td class="tabell-cell">17-02-25&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">buff&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999989&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">buff&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-16 000,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">431 244,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-23</span></td>
+                                                        <td class="tabell-cell">17-02-24&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Dagersättning&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999988&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Dagersättning&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">9 064,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">447 244,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-23</span></td>
+                                                        <td class="tabell-cell">17-02-24&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">LÖN&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999987&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">LÖN&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">4 349,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">438 180,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-22</span></td>
+                                                        <td class="tabell-cell">17-02-22&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">buffert&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999986&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">buffert&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-4 000,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">433 831,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-22</span></td>
+                                                        <td class="tabell-cell">17-02-22&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">ellos kläder&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999985&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">ellos kläder&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 144,90</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">437 831,79</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-16</span></td>
+                                                        <td class="tabell-cell">17-02-16&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">hälsokost&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999984&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">hälsokost&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 336,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">438 976,69</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-16</span></td>
+                                                        <td class="tabell-cell">17-02-20&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">Barnbidrag&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999983&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">Barnbidrag&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">1 125,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">440 312,69</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-15</span></td>
+                                                        <td class="tabell-cell">17-02-15&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">blommorbul&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999982&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">blommorbul&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-550,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">439 187,69</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-15</span></td>
+                                                        <td class="tabell-cell">17-02-15&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">mat&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999981&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">mat&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-1 547,31</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">439 737,69</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell"><span style="white-space: nowrap;">17-02-13</span></td>
+                                                        <td class="tabell-cell">17-02-11&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell">mobil&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999980&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">mobil&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">-560,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell"><span style="white-space: nowrap;">441 285,00</span></td>
+
+
+
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td class="tabell-cell-botten"><span style="white-space: nowrap;">17-02-13</span></td>
+                                                        <td class="tabell-cell-botten">17-02-11&nbsp;</td>
+
+
+
+                                                        <!--
+                                                        <td class="tabell-cell-botten">mat&nbsp;</td>
+                                                        -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <td class="tabell-cell-botten">
+                                                            <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplEngagemang&amp;_flow_id_=FETCH_TRANSACTION_DETAILS_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;sortId=999999999999999979&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=0">mat&nbsp;</a>
+                                                        </td>
+
+
+
+
+                                                        <td class="tabell-cell-botten">&nbsp;</td>
+                                                        <td align="right" class="tabell-cell-botten"><span style="white-space: nowrap;">-1 400,00</span></td>
+
+
+                                                        <td align="right" class="tabell-cell-botten"><span style="white-space: nowrap;">441 845,00</span></td>
+
+
+
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="right" class="tabell-fot" colspan="6">
+                                                            <form name="pagingtag_form1" id="pagingtag_form1" action="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=TILLBAKA_TILL_KONTOINFORMATION_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916" method="post">
+                                                                Föregående&nbsp;<span class="avskiljare">|</span>
+                                                                1-20&nbsp;<span class="avskiljare">|</span>
+                                                                <a title="Visa" href="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=TILLBAKA_TILL_KONTOINFORMATION_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=20">21-40</a>&nbsp;<span class="avskiljare">|</span>
+                                                                <a title="Visa" href="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=TILLBAKA_TILL_KONTOINFORMATION_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=40">41-57</a>&nbsp;<span class="avskiljare">|</span>
+                                                                <a title="Visa" href="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=TILLBAKA_TILL_KONTOINFORMATION_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=20">Nästa</a>&nbsp;<span class="avskiljare">|</span>
+                                                                <a title="Visar alla rader" href="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=TILLBAKA_TILL_KONTOINFORMATION_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916&amp;paging_transaktionVB=-1">Visa alla</a>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+
+
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                        <div class="sektion-fot">
+                                            <div class="knappar">
+                                                <form name="tillbakaForm" id="tillbakaForm" action="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=%23&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916" method="post">
+
+
+                                                    <input name="tillbaka" title="Tillbaka till föregående sida" class="knapp" onclick="document.getElementById('tillbakaForm').action='/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=VISA_STARTSIDA_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916',onButtonClick('tillbakaForm', null)" type="button" value="Tillbaka">
+                                                    <input title="Sidan öppnas i utskriftsvänligt format i nytt fönster." class="knapp" onclick="window.open('/bviPrivat/privat?OldWindowSessId=1488396216402886916&amp;doNotRunPaketeringsnavigator=true&amp;requestId=0&amp;print=yes&amp;index=0&amp;SID_ID=tdeappl%2Fengagemang%2Fstartsida&amp;TDEApplName=TDEApplEngagemang&amp;_new_flow_=false&amp;_flow_id_=VISA_KONTOINFORMATION_PRE_CLIENT','Utskrift','toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=790,height=570,left=20,top=20'); return false;" type="button" value="Skriv ut">
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <!-- tilleggsobjekt sida start FunkBotten-->
+                                    <!-- tilleggsobjekt sida end FunkBotten -->
+
+
+
+
+                                </td>
+
+
+                                <td class="sidspalt-marginal">&nbsp;</td>
+                                <td class="sidspalt2b">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <!-- tilleggsobjekt sida start StodTopp-->
+                                    <!-- tilleggsobjekt sida end StodTopp -->
+
+
+
+
+
+
+
+
+
+
+                                    <script type="text/javascript">
+
+                                        $(document).ready(function(){
+                                            initDatepicker();
+                                        });
+
+                                    </script>
+
+
+
+
+                                    <div class="sektion">
+                                        <div class="sektion-huvud">
+                                            <h3 class="mellanrubrik">Sök transaktioner på kontot</h3>
+                                        </div>
+
+                                        <div class="sektion-innehall2" style="position: relative;">
+                                            <div class="form">
+                                                <form name="form_searchTransactions" id="form_searchTransactions" action="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SEARCH_TRANSACTIONS_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916" method="post">
+                                                    <p class="infotext">* Obligatoriska uppgifter</p>
+
+                                                    <table width="100%" class="form-uppstellning" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="form-feltnamn-topp2" id="datum" style="width: 33%;">Bokföringsdatum *</td>
+                                                                <td class="form-felt-topp2" headers="datum">
+                                                                    <span class="datepicker-inside-icon" style="left: 181.91px; top: 42.75px;"></span><input name="DatumFrom" title="Ange datum (ååmmdd) eller välj i kalender. Använd musen eller Ctrl + piltangent för att välja datum i datumväljaren. Page up/down för att välja månad. Tryck Esc för att stänga datumväljaren" class="inmatningsfelt datum hasDatepicker" id="DatumFrom" type="text" size="8" maxlength="15" value="">
+
+                                                                    <label for="DatumTom">-</label>
+                                                                    <span class="datepicker-inside-icon" style="left: 189.25px; top: 62.55px;"></span><input name="DatumTom" title="Ange datum (ååmmdd) eller välj i kalender. Använd musen eller Ctrl + piltangent för att välja datum i datumväljaren. Page up/down för att välja månad. Tryck Esc för att stänga datumväljaren" class="inmatningsfelt datum hasDatepicker" id="DatumTom" type="text" size="8" maxlength="15" value="">
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="form-feltnamn" id="belopp" style="width: 33%;">Belopp</td>
+                                                                <td class="form-felt" headers="belopp">
+                                                                    <input name="BeloppFrom" title="Ange belopp utan tecken" class="inmatningsfelt" id="BeloppFrom" type="text" size="11" maxlength="20" value="">
+
+                                                                    <label for="BeloppTom">-</label>
+                                                                    <input name="BeloppTom" title="Ange belopp utan tecken" class="inmatningsfelt" id="BeloppTom" type="text" size="11" maxlength="20" value="">
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="form-feltnamn-botten" id="transaktionstyp" style="width: 33%;">Transaktionstyp *</td>
+                                                                <td class="form-felt-botten" headers="transaktionstyp">
+
+                                                                    <input name="Transaktionstyp" title="Välj" id="ALLA" type="radio" checked="checked" value="ALLA">
+                                                                    <label for="ALLA">Alla</label>
+
+                                                                    <input name="Transaktionstyp" title="Välj" id="I" type="radio" value="I">
+                                                                    <label for="I">Insättning</label>
+
+                                                                    <input name="Transaktionstyp" title="Välj" id="U" type="radio" value="U">
+                                                                    <label for="U">Uttag</label>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <input name="PAGING_OFFSET" type="hidden" value="0">
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="sektion-fot">
+                                            <div class="knappar">
+                                                <form name="form_search" id="form_search" action="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SEARCH_TRANSACTIONS_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916" method="post">
+                                                    <input name="search" title="Sök transaktioner" class="knapp" onclick="document.getElementById('form_searchTransactions').action='/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=SEARCH_TRANSACTIONS_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916',onButtonClick('form_searchTransactions', null)" type="button" value="Sök">
+                                                </form>
+
+
+                                                <form name="form_export" id="form_export" action="/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=EXPORT_TRANSACTIONS_SELECT_FORMAT_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916" method="post">
+                                                    <input name="search" title="Exportera sökresultatet" disabled="disabled" class="knapp" onclick="document.getElementById('form_searchTransactions').action='/bviPrivat/privat?TDEApplName=TDEApplEngagemang&amp;_flow_id_=EXPORT_TRANSACTIONS_SELECT_FORMAT_PRE_CLIENT&amp;_new_flow_=false&amp;requestId=6&amp;WindowSessId=1488396216402886916',onButtonClick('form_searchTransactions', null)" type="button" value="Exportera">
+                                                    <input name="PAGING_OFFSET" type="hidden" value="0">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                    <div class="sektion info">
+
+                                        <div class="sektion-huvud">
+                                            <h3 class="mellanrubrik">Information</h3>
+                                        </div>
+                                        <div class="sektion-innehall">
+
+
+
+
+
+
+                                            <p class="brodtext"> <p>Kontohistoriken visar information 13 månader tillbaka i tiden. De senaste kontohändelserna visas först. För att se alla tillgängliga kontohändelser måste du hämta dessa i omgångar. Detta gör du genom att klicka på länken "Visa alla". På nästa sida du kommer till klickar du på länken "Hämta fler". Har du ytterligare transaktioner kan du behöva klicka på "Hämta fler" ett antal gånger.</p><p>Vid kortköp/uttag i annan valuta än SEK tillkommer ett administrativt påslag om 1,5 procent på valutakursen. Detta påslag inkluderas i det redovisade beloppet.</p><p></p>
+
+
+
+                                            <p class="brodtext">Du kan söka transaktioner upp till 13 månader tillbaka i tiden och exportera sökresultatet i valfritt format.</p>
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <!-- tilleggsobjekt sida start StodBotten-->
+                                    <!-- 1 -->
+
+
+
+
+
+                                    <div class="sektion info">
+                                        <div class="sektion-huvud"><h3 class="mellanrubrik">IBAN</h3></div>
+                                        <div class="sektion-innehall">
+
+                                            <table width="100%" class="tabell" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+
+
+                                                            Söker du ditt kontos IBAN och BIC? Du finner denna information via underrubriken "Kontovillkor" längst upp till vänster på sidan.
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- 2 -->
+
+
+
+                                    <br>
+
+
+
+                                    <div class="sektion info">
+                                        <div class="sektion-huvud"><h3 class="mellanrubrik">Korttransaktioner</h3></div>
+                                        <div class="sektion-innehall">
+
+                                            <table width="100%" class="tabell" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+
+
+                                                            Detaljer om dina korttransaktioner ser du i <a onclick="onLinkClick(this)" href="?TDEApplName=TDEApplPaketeringsnavigator&amp;_flow_id_=HANTERA_INTERNLENK_CLIENT&amp;il_TDEApplName=TDEApplKort&amp;il_flow_id_=VISA_KORTOVERSIKT_PRECLIENT&amp;_new_flow_=true&amp;WindowSessId=1488396216402886916&amp;requestId=6">kortöversikten</a>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- 3 -->
+
+
+
+                                    <br>
+
+
+
+                                    <div class="sektion info">
+                                        <div class="sektion-huvud"><h3 class="mellanrubrik">Tips!</h3></div>
+                                        <div class="sektion-innehall">
+
+                                            <table width="100%" class="tabell" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+
+
+                                                            <b>Undrar du vad tillgängligt belopp, saldo eller&nbsp;andra ord på sidan&nbsp;betyder?&nbsp;<br></b><br><a href="http://www.swedbank.se/sst/inf/out/infOutHjalp/0,3769,55146,00.html" target="_new">Klicka här och kika i vår ordlista.</a>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                    <!-- tilleggsobjekt sida end StodBotten -->
+
+
+
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="sidfot"><span>© Swedbank AB (publ)</span></div>
+
+<script language="JavaScript" src="jsp/portal/js/wtinit.js" type="text/javascript"></script>
+<script language="JavaScript" src="jsp/portal/js/wtbase.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+<div class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" id="ui-datepicker-div"></div><div class="menu" id="mc_Startsida" style="left: 78px; top: 190px; width: 149px; visibility: hidden; position: absolute; z-index: 2;"><div class="menu-item" id="mi_Startsida_0"><nobr><span class="menu-item-label" id="itemLabel" onmouseover="return false;" onmouseout="return false;">Startsida</span></nobr></div><div class="menu-item" id="mi_Startsida_1"><nobr><span class="menu-item-label" id="itemLabel" onmouseover="return false;" onmouseout="return false;">Elektroniska dokument</span></nobr></div><div class="menu-item" id="mi_Startsida_2"><nobr><span class="menu-item-label" id="itemLabel" onmouseover="return false;" onmouseout="return false;">Egna inställningar</span></nobr></div><div class="menu-item" id="mi_Startsida_3"><nobr><span class="menu-item-label" id="itemLabel" onmouseover="return false;" onmouseout="return false;">Beställ tjänster</span></nobr></div><div class="menu-item" id="mi_Startsida_4"><nobr><span class="menu-item-label" id="itemLabel" onmouseover="return false;" onmouseout="return false;">Kontakta oss</span></nobr></div></div>

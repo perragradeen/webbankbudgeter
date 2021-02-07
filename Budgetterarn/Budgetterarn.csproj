@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Budgetterarn</RootNamespace>
     <AssemblyName>Budgetterarn</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -19,7 +19,7 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Files\Dropbox\budget\Budgeterarn Release\Ny\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -29,9 +29,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -57,19 +58,26 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>374BB41371E91D31BC9EB6CA99F33E002EBD8547</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Budgetterarn_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="itextsharp">
-      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddedAndReplacedEntriesCounter.cs" />
     <Compile Include="Application Settings and constants\Filerefernces.cs" />
     <Compile Include="Application Settings and constants\UISettings.cs" />
     <Compile Include="AutoGetEntriesHbMobil.cs" />
@@ -80,8 +88,9 @@
     <Compile Include="BudgeterForm.Designer.cs">
       <DependentUpon>BudgeterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\KontoFromPdfParser.cs" />
+    <Compile Include="DAL\FileBackupper.cs" />
     <Compile Include="DAL\SaveKonton.cs" />
+    <Compile Include="DoneNavigationAction.cs" />
     <Compile Include="InternalUtilities\BrowserExtend.cs" />
     <Compile Include="KontoEntriesChecker.cs" />
     <Compile Include="KontoEntryListView.cs">
@@ -97,15 +106,12 @@
     <Compile Include="ListViewWithComboBox.Designer.cs">
       <DependentUpon>ListViewWithComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc.cs" />
-    <Compile Include="CategoriesHandler.cs">
-    </Compile>
+    <Compile Include="GeneralSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebCrawlers\DocChecker.cs" />
     <Compile Include="WebCrawlers\EntryAdder.cs" />
-    <Compile Include="WebCrawlers\KontoEntriesHolder.cs" />
     <Compile Include="WebCrawlers\MobileHandelsbanken.cs" />
     <Compile Include="WebCrawlers\SaldoValueAdder.cs" />
     <EmbeddedResource Include="BudgeterForm.resx">
@@ -122,6 +128,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="Budgetterarn_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,6 +154,10 @@
     <Compile Include="ViewUpdateUI.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\InBudgetsOfCategories.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Categories.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -186,9 +197,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PdfToText\PdfToText.csproj">
-      <Project>{563f5f70-3855-4ee3-b100-78d6d937f0cb}</Project>
-      <Name>PdfToText</Name>
+    <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj">
+      <Project>{c707980b-cdac-4a23-be4c-5e41856541b0}</Project>
+      <Name>CategoryHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj">
+      <Project>{618a6f79-4251-4969-857b-e806c0f45882}</Project>
+      <Name>LoadTransactionsFromFile</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}</Project>

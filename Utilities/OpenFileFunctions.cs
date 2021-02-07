@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections;
-using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Xml;
-using Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace Utilities
@@ -17,9 +18,11 @@ namespace Utilities
 
         private static Hashtable InitInfoToolUsedFileTypesFilterNames()
         {
-            var returnNames = new Hashtable();
-            returnNames.Add(FileType.xls, "Excel XLS Log File");
-            returnNames.Add(FileType.xml, "XML Setting File");
+            var returnNames = new Hashtable
+            {
+                { FileType.xls, "Excel XLS Log File" },
+                { FileType.xml, "XML Setting File" }
+            };
 
             return returnNames;
         }
@@ -33,15 +36,15 @@ namespace Utilities
         /// <param name="selectedRow">Rad som ska sparas, 0 för alla</param>
         /// <returns>Om selectedRow är annat än 0 och sheetName inte är tom sträng, så returneras en Hashtabell med den angivna raden </returns>
         public static Hashtable OpenExcelSheet(string excelBookPath, string sheetName, Hashtable book, int selectedRow)
-            // ev. returnera en bool om det lyckades, ev. lägg en Arraylist som innehåller allt inkl. dubletter
+        // ev. returnera en bool om det lyckades, ev. lägg en Arraylist som innehåller allt inkl. dubletter
         {
             var returnHashtable = new Hashtable();
-            var oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            var oldCI = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             #region read Old Log
 
-            _excelApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
+            _excelApp = new ApplicationClass();
             _excelApp.WorkbookDeactivate += Application_WorkbookDeactivate;
 
             Workbook ExcelBook = null;
@@ -55,21 +58,21 @@ namespace Utilities
 
                 // Öppna den gamla loggen
                 ExcelBook = _excelApp.Workbooks._Open(
-                    excelBookPath, 
+                    excelBookPath,
                     // filename,
-                    Type.Missing, 
-                    0, 
-                    Type.Missing, 
-                    Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, 
+                    Type.Missing,
+                    0,
+                    Type.Missing,
+                    XlPlatform.xlWindows,
                     // XlTextQualifier.xlTextQualifierNone,
-                    Type.Missing, 
-                    Type.Missing, 
-                    Type.Missing, 
-                    false, 
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    false,
                     // COMMA
-                    Type.Missing, 
-                    Type.Missing, 
-                    Type.Missing, 
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
                     Type.Missing);
 
                 // get the collection of sheets in the workbook
@@ -119,15 +122,15 @@ namespace Utilities
                 for (var sheetNr = startSheetNumber; sheetNr <= numOfSheets; sheetNr++)
                 {
                     var localSheetName = ((Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(sheetNr)).Name;
-                        
-                        // Excelarknamnet
+
+                    // Excelarknamnet
                     worksheet = (Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(sheetNr);
-                        
-                        // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
+
+                    // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
                     rows = new Hashtable();
                     ExcelLogRowComparer.GetExcelRows(worksheet, rows);
-                        
-                        // Hämta ut rader och lägg i rows från Excel arket worksheet
+
+                    // Hämta ut rader och lägg i rows från Excel arket worksheet
                     book.Add(localSheetName, rows); // Lägg till i arbetsboken
 
                     // Progress, görs ej nu, för de e fel comparer... ExcelLogRowComparer._compareProgress.SetTotal(++sheetsDone);//Progress
@@ -152,7 +155,7 @@ namespace Utilities
             catch (Exception e)
             {
                 _excelApp.Quit(); // Stäng excel
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(_excelApp);
+                Marshal.ReleaseComObject(_excelApp);
 
                 if (returnHashtable != null && returnHashtable.Count > 0)
                 {
@@ -162,13 +165,13 @@ namespace Utilities
                 // MessageBox.Show("Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
                 throw new Exception(
                     "Error in retrieving log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
-                    + e.Message + ").", 
+                    + e.Message + ").",
                     e);
             }
 
             // Stängt boken oven
             // _excelApp.Quit();//Stäng excel
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(_excelApp);
+            Marshal.ReleaseComObject(_excelApp);
 
             return returnHashtable;
 
@@ -189,9 +192,11 @@ namespace Utilities
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-            // ReSharper disable RedundantAssignment
             // Wants to be sure excelAppOpen is cleared
+            // ReSharper disable RedundantAssignment
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             appToCloseEtc = null;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
 
             // ReSharper restore RedundantAssignment
         }
@@ -227,7 +232,7 @@ namespace Utilities
 
                     returnTable.Add(
                         settingCurrent, ""
-                        
+
                         // new DaySettings(
                         // int.Parse(settingCurrentElem.GetAttribute("dagintervall"))
                         // , settingCurrent + " Time!")
@@ -243,39 +248,5 @@ namespace Utilities
         }
 
         #endregion
-    }
-
-    public class WinFormsChecks
-    {
-        public delegate void SaveFunction();
-
-        /// <summary>
-        /// Saves if user wants to
-        /// </summary>
-        /// <param name="somethingChanged">bool indicating if something has changed</param>
-        /// <param name="saveFunc">The function that will perform the actual saving.</param>
-        /// <returns>True if something was saved</returns>
-        public static DialogResult SaveCheck(bool somethingChanged, SaveFunction saveFunc)
-        {
-            var saveOr = DialogResult.None;
-            if (somethingChanged)
-            {
-                saveOr = MessageBox.Show("Läget ej sparat! Spara nu?", "Spara?", MessageBoxButtons.YesNoCancel);
-                    
-                    // Cancel
-                if (saveOr == DialogResult.Yes)
-                {
-                    saveFunc();
-                }
-            }
-
-            return saveOr;
-        }
-    }
-
-    public enum FileType
-    {
-        xls, 
-        xml, 
     }
 }

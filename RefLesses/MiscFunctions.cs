@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RefLesses
+﻿namespace RefLesses
 {
     public static class MiscFunctions
     {

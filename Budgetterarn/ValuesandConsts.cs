@@ -1,8 +1,9 @@
 ﻿namespace Budgetterarn
 {
-    internal class ValuesandConsts
+    class ValuesandConsts
     {
-        // Some consts
+        //Some consts
         internal const int TypAvKostnadKolumnnummer = 2;
+
     }
 }

@@ -1,19 +1,15 @@
-﻿using RefLesses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Budgeter.Core.Entities;
+using RefLesses;
 
 namespace Budgetterarn.WebCrawlers
 {
     public class SaldoValueAdder
     {
-        private string htmlBodyText;
-        private Model.SaldoHolder saldoHolder;
+        private readonly string htmlBodyText;
+        private readonly SaldoHolder saldoHolder;
 
-        public SaldoValueAdder(string htmlBodyText, Model.SaldoHolder saldoHolder)
+        public SaldoValueAdder(string htmlBodyText, SaldoHolder saldoHolder)
         {
-            // TODO: Complete member initialization
             this.htmlBodyText = htmlBodyText;
             this.saldoHolder = saldoHolder;
         }

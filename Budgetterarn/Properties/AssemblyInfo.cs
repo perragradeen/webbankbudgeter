@@ -29,10 +29,11 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.15")]
-[assembly: AssemblyFileVersion("1.0.1.15")]
+[assembly: AssemblyVersion("1.0.1.16")]
+[assembly: AssemblyFileVersion("1.0.1.16")]
 
 // IF CHANGED VERSION. DOCUMENT CHANGES!!!AND COMMIT See Changes summary below.
+// 1.0.1.16 Swedbank funkar nu med senaste. Lite refaktor lämnad etc
 // 1.0.1.15 Möjligt att Ladda från pdf-fil med gamla kredit-rader. Allkortsfaktura SHB
 // 1.0.1.14 Anpassning till nyare Handelsbanken inlgoggning via dosa. Även kredit-kontotinfo etc. Stor Refaktor
 // 1.0.1.12 Anpassning till nyare Handelsbanken inlgoggning via dosa

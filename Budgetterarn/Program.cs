@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using Budgetterarn;
 
-namespace Budgeter.Winforms
+namespace Budgetterarn
 {
     internal static class Program
     {

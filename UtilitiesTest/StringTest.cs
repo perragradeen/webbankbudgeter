@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RefLesses;
 
 namespace UtilitiesTest
@@ -25,9 +24,9 @@ namespace UtilitiesTest
         public string TestText
         {
             get
-            { 
+            {
 
-        return @"
+                return @"
 
 
 
@@ -332,6 +331,7 @@ Villkor | Ansvarsbegränsning | För dig som bor utanför Sverige | Prislista
 
 Ekonomisk översikt
         ";
-        } }
+            }
+        }
     }
 }

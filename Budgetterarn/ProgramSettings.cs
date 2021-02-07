@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Budgeter.Core.BudgeterConstants;
+using System;
 
 namespace Budgetterarn
 {
@@ -15,8 +16,7 @@ namespace Budgetterarn
         {
             var s = GeneralSettings.GetStringSetting("AutonavigateEtc");
 
-            bool b;
-            return bool.TryParse(s, out b) && b;
+            return bool.TryParse(s, out bool b) && b;
         }
 
         public static BankType BankType
@@ -34,12 +34,5 @@ namespace Budgetterarn
                 return 0;
             }
         }
-    }
-
-    public enum BankType
-    {
-        Handelsbanken, 
-        Swedbank, 
-        Mobilhandelsbanken, 
     }
 }

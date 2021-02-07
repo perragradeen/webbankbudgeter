@@ -1,13 +1,15 @@
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections;
 using System.Drawing;
 using System.IO;
-using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace Utilities
 {
-    public delegate void MessageHandler(string message);
-
     /// <summary>
     /// Summary description for Logger.
     /// </summary>
@@ -16,10 +18,10 @@ namespace Utilities
         public delegate int OperationToPerformOnBook(Worksheet sheet, object[] logRows);
 
         public const int excelMaxNoRows = 65536;
-                         // håller reda på hur många rader som kan finnas i ett Excelark, (<=Ex2003 har max 65536 (2^16)rader)
+        // håller reda på hur många rader som kan finnas i ett Excelark, (<=Ex2003 har max 65536 (2^16)rader)
         private static readonly Hashtable _uniqueLoggerErrorMessages = new Hashtable();
         private readonly Hashtable _sheets = new Hashtable();
-                                   // blir en lista med sheetName = namnet på arket, lastRow = sista raden i arket, subSheet = hur många delark som har samma början på namnet det finns Ex. Prov_part2
+        // blir en lista med sheetName = namnet på arket, lastRow = sista raden i arket, subSheet = hur många delark som har samma början på namnet det finns Ex. Prov_part2
         private readonly Hashtable _testInfo = new Hashtable();
         private bool _GeneralSheetCreated;
 
@@ -51,21 +53,21 @@ namespace Utilities
             Directory.CreateDirectory(logPath);
 
             logPath = string.Format(
-                @"{0}Logs\{1}-{2:00}-{3:00} {4:00}-{5:00}-{6:00}.xls", 
-                AppDomain.CurrentDomain.BaseDirectory, 
-                DateTime.Now.Year, 
-                DateTime.Now.Month, 
-                DateTime.Now.Day, 
-                DateTime.Now.Hour, 
-                DateTime.Now.Minute, 
+                @"{0}Logs\{1}-{2:00}-{3:00} {4:00}-{5:00}-{6:00}.xls",
+                AppDomain.CurrentDomain.BaseDirectory,
+                DateTime.Now.Year,
+                DateTime.Now.Month,
+                DateTime.Now.Day,
+                DateTime.Now.Hour,
+                DateTime.Now.Minute,
                 DateTime.Now.Second);
 
-            _app = new Microsoft.Office.Interop.Excel.ApplicationClass();
+            _app = new ApplicationClass();
             _app.WorkbookDeactivate += Application_WorkbookDeactivate;
 
             _book = _app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
 
-            _sheet = _book.Sheets[1] as Microsoft.Office.Interop.Excel.Worksheet; // Excel.Worksheet 
+            _sheet = _book.Sheets[1] as Worksheet; // Excel.Worksheet 
             _sheet.Name = "Info";
             _sheets.Add("Info", new object[] { _sheet, 1, 0 });
             _last = _sheet;
@@ -94,23 +96,23 @@ namespace Utilities
         private static void SaveWorkBook(Workbook book, string logPath)
         {
             book.SaveAs(
-                logPath, 
+                logPath,
                 // Filename
-                Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, 
+                XlFileFormat.xlWorkbookNormal,
                 // FileFormat
-                Type.Missing, 
+                Type.Missing,
                 // Password
-                Type.Missing, 
+                Type.Missing,
                 // WriteResPassword
-                false, 
+                false,
                 // ReadOnlyRecommended
-                Type.Missing, 
-                Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, 
-                Microsoft.Office.Interop.Excel.XlSaveConflictResolution.xlLocalSessionChanges, 
+                Type.Missing,
+                XlSaveAsAccessMode.xlExclusive,
+                XlSaveConflictResolution.xlLocalSessionChanges,
                 // ConflictResolution. Spara över ändringar med lokala (man har ju tryckt på att spara.
-                Type.Missing, 
-                Type.Missing, 
-                Type.Missing, 
+                Type.Missing,
+                Type.Missing,
+                Type.Missing,
                 Type.Missing);
         }
 
@@ -133,7 +135,7 @@ namespace Utilities
             // Stäng och släpp excel
             _app.Quit();
 
-            while (System.Runtime.InteropServices.Marshal.ReleaseComObject(_app) != 0)
+            while (Marshal.ReleaseComObject(_app) != 0)
             {
             }
 
@@ -165,11 +167,11 @@ namespace Utilities
         /// <param name="excelBookPath">path to Excel file</param>
         /// <returns></returns>
         public static int WriteToWorkBook(
-            string excelBookPath, 
-            string sheetName, 
-            OperationToPerformOnBook operation, 
-            object[] rowToWrite, 
-            bool overWrite, 
+            string excelBookPath,
+            string sheetName,
+            OperationToPerformOnBook operation,
+            object[] rowToWrite,
+            bool overWrite,
             Hashtable rowsToWrite)
         {
             #region Todo
@@ -184,9 +186,9 @@ namespace Utilities
             // Ge möjlighet till att välja sheet 
             #endregion
 
-            var excelApp = new Microsoft.Office.Interop.Excel.Application();
+            var excelApp = new Application();
 
-            Workbook excelBook = null;
+            Workbook excelBook;
 
             #region Öppna
 
@@ -197,27 +199,27 @@ namespace Utilities
 
                 // Öppna filen
                 excelBook = excelApp.Workbooks._Open(
-                    excelBookPath, 
+                    excelBookPath,
                     // filename,
-                    Type.Missing, 
-                    0, 
-                    Type.Missing, 
-                    Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, 
+                    Type.Missing,
+                    0,
+                    Type.Missing,
+                    XlPlatform.xlWindows,
                     // XlTextQualifier.xlTextQualifierNone,
-                    Type.Missing, 
-                    Type.Missing, 
-                    Type.Missing, 
-                    false, 
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    false,
                     // COMMA
-                    Type.Missing, 
-                    Type.Missing, 
-                    Type.Missing, 
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
                     Type.Missing);
 
                 #endregion
 
                 // Disable calculation while writing
-                excelApp.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual;
+                excelApp.Calculation = XlCalculation.xlCalculationManual;
 
                 // get the collection of sheets in the workbook
                 var Sheets = excelBook.Worksheets;
@@ -226,7 +228,7 @@ namespace Utilities
                 var startSheetNumber = 1;
 
                 // get the first worksheet from the collection of worksheets
-                var workSheet = (Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(startSheetNumber);
+                var workSheet = (Worksheet)Sheets.get_Item(startSheetNumber);
                 if (sheetName != "")
                 {
                     #region Hämta ut rätt sheet
@@ -279,13 +281,13 @@ namespace Utilities
 
                     if (rowToWrite != null) // Skriver en rad
                     {
-                        addRow(workSheet, "", ref oa, null, false, System.Drawing.Color.Empty, 0, 0, rowToWrite);
+                        AddRow(workSheet, "", ref oa, null, false, Color.Empty, 0, 0, rowToWrite);
                     }
                     else if (rowsToWrite != null) // Skriver flera rader
                     {
                         foreach (var currentRow in rowsToWrite.Values)
                         {
-                            addRow(workSheet, "", ref oa, null, false, System.Drawing.Color.Empty, 0, 0, currentRow);
+                            AddRow(workSheet, "", ref oa, null, false, Color.Empty, 0, 0, currentRow);
                         }
                     }
 
@@ -293,19 +295,19 @@ namespace Utilities
                 }
 
                 // Enable calculation after writing is done
-                excelApp.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationAutomatic;
+                excelApp.Calculation = XlCalculation.xlCalculationAutomatic;
             }
             catch (Exception e)
             {
                 #region Exception
 
                 excelApp.Quit(); // Stäng excel
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                Marshal.ReleaseComObject(excelApp);
 
                 // MessageBox.Show("Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
                 throw new Exception(
                     "Error in retrieving log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
-                    + e.Message + ").", 
+                    + e.Message + ").",
                     e);
 
                 #endregion
@@ -324,7 +326,7 @@ namespace Utilities
             }
 
             excelApp.Quit(); // Stäng Excel
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+            Marshal.ReleaseComObject(excelApp);
 
             #endregion
 
@@ -345,14 +347,14 @@ namespace Utilities
                 // Excel.Worksheet sheet
                 _sheet =
                     _book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as
-                    Microsoft.Office.Interop.Excel.Worksheet;
+                    Worksheet;
                 _sheet.Name = "General";
                 _sheets.Add("General", new object[] { _sheet, 1, 0 });
                 _last = _sheet;
 
                 _GeneralSheetCreated = true;
 
-                addRow("General", true, 0, "General exception messages");
+                AddRow("General", true, 0, "General exception messages");
 
                 // LogMessage("General", "---", "");
             }
@@ -385,27 +387,28 @@ namespace Utilities
             {
                 foreach (object[] sheetWInfo in _sheets.Values)
                 {
-                    // _sheet = oa[0] as Excel.Worksheet;
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(
-                        sheetWInfo[0] as Microsoft.Office.Interop.Excel.Worksheet);
+                    if (sheetWInfo[0] is Worksheet workSheetToRelease)
+                        Marshal.ReleaseComObject(
+                            workSheetToRelease);
                 }
 
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(_book);
+                Marshal.ReleaseComObject(_book);
                 _book = null;
             }
             catch
             {
+                // ignored
             }
 
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(_last);
+            Marshal.ReleaseComObject(_last);
             if (_sheet != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(_sheet);
+                Marshal.ReleaseComObject(_sheet);
             }
 
             if (_nextSheet != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(_nextSheet);
+                Marshal.ReleaseComObject(_nextSheet);
             }
 
             GC.Collect();
@@ -413,7 +416,7 @@ namespace Utilities
 
             _app.Quit();
 
-            while (System.Runtime.InteropServices.Marshal.ReleaseComObject(_app) != 0)
+            while (Marshal.ReleaseComObject(_app) != 0)
             {
             }
 
@@ -429,7 +432,7 @@ namespace Utilities
             // Excel.Worksheet 
             _sheet =
                 _book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as
-                Microsoft.Office.Interop.Excel.Worksheet;
+                Worksheet;
             _last = _sheet;
             _sheet.Name = name;
             _sheets.Add(name, new object[] { _sheet, 4, 1 });
@@ -448,22 +451,23 @@ namespace Utilities
                 return;
             }
 
-            var testInfo = _testInfo[name] as TestInfo;
-            if (testInfo != null)
+            if (_testInfo[name] is TestInfo testInfo)
             {
-                var cellLayout = new Hashtable();
-                cellLayout.Add(CellLayOutSettings.Bold, true);
+                var cellLayout = new Hashtable
+                {
+                    {CellLayOutSettings.Bold, true}
+                };
 
                 if (testInfo.Columns[0] == "Total number of:") // if(name = "DataBaseInfo")
                 {
-                    addRow(name, cellLayout, true, 3, testInfo.Columns);
+                    AddRow(name, cellLayout, true, 3, testInfo.Columns);
                 }
                 else
                 {
-                    addRow(name, cellLayout, true, 3, testInfo.Columns);
+                    AddRow(name, cellLayout, true, 3, testInfo.Columns);
                 }
 
-                addRow(name, false, 1, testInfo.Description); // skriver beskrivningen sist så inte den autofittas
+                AddRow(name, false, 1, testInfo.Description); // skriver beskrivningen sist så inte den autofittas
             }
         }
 
@@ -479,13 +483,13 @@ namespace Utilities
         public void Log(
             string sheetName, Hashtable cellLayOutSettings, bool autofit, int insertInRow, params object[] args)
         {
-            addRow(sheetName, cellLayOutSettings, autofit, insertInRow, args);
+            AddRow(sheetName, cellLayOutSettings, autofit, insertInRow, args);
         }
 
         public void Log(string sheetName, bool autofit, int insertInRow, params object[] args)
         {
             // Excel.Range newCell = 
-            addRow(sheetName, autofit, insertInRow, args);
+            AddRow(sheetName, autofit, insertInRow, args);
         }
 
         public void Log(Type t, int insertInRow, params object[] args)
@@ -503,31 +507,28 @@ namespace Utilities
         {
             // Excel.Range newCell = 
             // Stor prestandaförlust om man autofittar för varje ny rad som skrivs, detta görs för överskriften (kolumnnamnen sen)
-            addRow(sheetName, cellLayOutSettings, false, insertInRow, args); // true
+            AddRow(sheetName, cellLayOutSettings, false, insertInRow, args); // true
 
-            var ti = _testInfo[sheetName] as TestInfo;
+            if (OnLog == null || !(_testInfo[sheetName] is TestInfo ti) || ti.InfoText == "") return;
 
-            if (OnLog != null && ti != null && ti.InfoText != "")
+            // if (args.Length != ti.Columns.Length)
+            // {
+            // Console.WriteLine("Faulty TestInfo for {0}.", sheetName);
+            // return;
+            // }
+            var s = "";
+            for (var i = 0; i < args.Length; i++)
             {
-                // if (args.Length != ti.Columns.Length)
-                // {
-                // Console.WriteLine("Faulty TestInfo for {0}.", sheetName);
-                // return;
-                // }
-                var s = "";
-                for (var i = 0; i < args.Length; i++)
-                {
-                    s += string.Format("{0}{1}, ", ti.Columns.Length <= i ? "" : ti.Columns[i] + "=", args[i]);
-                }
-
-                if (s.Length > 0)
-                {
-                    s = s.Substring(0, s.Length - 2);
-                }
-
-                s = string.Format("{0}: {1}", ti.InfoText, s);
-                OnLog(s);
+                s += $"{(ti.Columns.Length <= i ? "" : ti.Columns[i] + "=")}{args[i]}, ";
             }
+
+            if (s.Length > 0)
+            {
+                s = s.Substring(0, s.Length - 2);
+            }
+
+            s = string.Format("{0}: {1}", ti.InfoText, s);
+            OnLog(s);
         }
 
         public void LogMessage(string type, int insertInRow, string message, params object[] args)
@@ -542,12 +543,9 @@ namespace Utilities
                 message += arg + " ";
             }
 
-            addRow(type, false, insertInRow, logMessages);
+            AddRow(type, false, insertInRow, logMessages);
 
-            if (OnLog != null)
-            {
-                OnLog(message);
-            }
+            OnLog?.Invoke(message);
         }
 
         public void LogMessage(string type, string message, params object[] args)
@@ -565,28 +563,22 @@ namespace Utilities
                 }
             }
 
-            addRow(type, true, 0, logMessages);
+            AddRow(type, true, 0, logMessages);
 
-            if (OnLog != null)
-            {
-                OnLog(message);
-            }
+            OnLog?.Invoke(message);
         }
 
         public void LogMessage(string type, bool autofit, string message, params object[] args) // For time messages
         {
             message = string.Format(message, args);
 
-            addRow(type, autofit, 0, message);
+            AddRow(type, autofit, 0, message);
 
-            if (OnLog != null)
-            {
-                OnLog(message);
-            }
+            OnLog?.Invoke(message);
         }
 
         // PG, Läser ett excelark och räknar unika rader inklusive testinfo, rubrikraden etc
-        public int uniqeCountId(Type t, string inString) // flytta ev. denna till en mer passande klass
+        public int UniqeCountId(Type t, string inString) // flytta ev. denna till en mer passande klass
         {
             var sheetName = t.Name;
 
@@ -606,7 +598,7 @@ namespace Utilities
             var checkedIds = new Hashtable();
 
             var oa = _sheets[sheetName] as object[];
-            _sheet = oa[0] as Microsoft.Office.Interop.Excel.Worksheet;
+            _sheet = oa[0] as Worksheet;
             var maxRows = (int)oa[1];
             var maxCols = 7;
 
@@ -617,8 +609,8 @@ namespace Utilities
                     for (var j = 1; j < maxCols + 1; j++)
                     {
                         var stemp = _sheet.Cells[i, j].ToString();
-                            
-                            // får bara ut typen som sträng system.object...kanske ska köra med VCC-räkning under körning, gör det nu
+
+                        // får bara ut typen som sträng system.object...kanske ska köra med VCC-räkning under körning, gör det nu
                         if (stemp.StartsWith(inString) && checkedIds[stemp] == null)
                         {
                             checkedIds.Add(stemp, 1);
@@ -631,21 +623,22 @@ namespace Utilities
             return numberOfUniqes;
         }
 
-        public void addRow(string sheetName, bool autofit, int insertInRow, params object[] args)
+        public void AddRow(string sheetName, bool autofit, int insertInRow, params object[] args)
         {
-            addRow(sheetName, null, autofit, insertInRow, args);
+            AddRow(sheetName, null, autofit, insertInRow, args);
         }
 
         /// <summary>
         /// Adds a row, For autofit to be good, the rows without autofit shold be written last.
         /// </summary>
         /// <param name="sheetName">Name of the sheet to add in</param>
+        /// <param name="cellLayOutSettings">Design of cell pretty</param>
         /// <param name="autofit">For autofit to be good, the rows without autofit shold be written last.</param>
         /// <param name="insertInRow">Row to set in cell</param>
         /// <param name="args">What to fill cells with</param>
-        private void addRow(
+        private void AddRow(
             string sheetName, Hashtable cellLayOutSettings, bool autofit, int insertInRow, params object[] args)
-            // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
+        // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
         {
             try
             {
@@ -690,16 +683,16 @@ namespace Utilities
                     saveAsSheetName = sheetName;
                 }
 
-                _sheet = oa[0] as Microsoft.Office.Interop.Excel.Worksheet;
+                _sheet = (Worksheet) oa?[0];
 
-                var nextRow = addRow(
-                    _sheet, 
-                    saveAsSheetName, 
-                    ref oa, 
-                    cellLayOutSettings, 
-                    autofit, 
-                    System.Drawing.Color.Empty, 
-                    insertInRow, 
+                var nextRow = AddRow(
+                    _sheet,
+                    saveAsSheetName,
+                    ref oa,
+                    cellLayOutSettings,
+                    autofit,
+                    Color.Empty,
+                    insertInRow,
                     args);
 
                 if (nextRow > (excelMaxNoRows - 1)) // tar sista raden oxå //(excelMaxNoRows-2) )//tar ínte allra sista raden för säkerhets skull
@@ -709,7 +702,7 @@ namespace Utilities
                     // Ev. skriv något på sista raden typ: "Fortsättning på nästa ark _part2...
                     _nextSheet =
                         _book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as
-                        Microsoft.Office.Interop.Excel.Worksheet;
+                        Worksheet;
                     _last = _nextSheet;
 
                     var orgOa = _sheets[sheetName] as object[];
@@ -733,31 +726,31 @@ namespace Utilities
             }
         }
 
-        public static int addRow(
-            Worksheet sheet, 
-            string saveAsSheetName, 
-            ref object[] oa, 
-            Hashtable cellLayOutSettings, 
-            bool autofit, 
-            Color color, 
-            int insertInRow, 
+        public static int AddRow(
+            Worksheet sheet,
+            string saveAsSheetName,
+            ref object[] oa,
+            Hashtable cellLayOutSettings,
+            bool autofit,
+            Color color,
+            int insertInRow,
             params object[] args)
-            // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
+        // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
         {
-            return addRow(sheet, saveAsSheetName, ref oa, cellLayOutSettings, autofit, color, insertInRow, 0, args);
+            return AddRow(sheet, saveAsSheetName, ref oa, cellLayOutSettings, autofit, color, insertInRow, 0, args);
         }
 
-        public static int addRow(
-            Worksheet sheet, 
-            string saveAsSheetName, 
-            ref object[] oa, 
-            Hashtable cellLayOutSettings, 
-            bool autofit, 
-            Color color, 
-            int insertInRow, 
-            int insertInColumn, 
+        public static int AddRow(
+            Worksheet sheet,
+            string saveAsSheetName,
+            ref object[] oa,
+            Hashtable cellLayOutSettings,
+            bool autofit,
+            Color color,
+            int insertInRow,
+            int insertInColumn,
             params object[] args)
-            // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
+        // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
         {
             try
             {
@@ -856,12 +849,12 @@ namespace Utilities
                 #endregion
 
                 // Write cells several at a tiem, Fill A2:B6 with an array of values (First and Last Names).
-                var fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);
-                    
-                    // nextRow.ToString();
-                var toColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(args.Length + insertInColumn);
-                    
-                    // nextRow.ToString();
+                var fromColumn = ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);
+
+                // nextRow.ToString();
+                var toColumn = ExcelLogRowComparer.GetStandardExcelColumnName(args.Length + insertInColumn);
+
+                // nextRow.ToString();
                 var cellRange = sheet.get_Range(
                     fromColumn + rowWrittenTo.ToString(), toColumn + rowWrittenTo.ToString());
 
@@ -890,7 +883,7 @@ namespace Utilities
                 #region Layout (färg, autofit column etc)
 
                 if ((cellLayOutSettings != null && cellLayOutSettings.Count > 0) || autofit
-                    || (color != System.Drawing.Color.Empty))
+                    || (color != Color.Empty))
                 {
                     // Excel.Range //cellRange = null;
                     // cellRange =
@@ -913,15 +906,15 @@ namespace Utilities
                         // cellRange.Font.Bold = true;
                     }
 
-                    if (color != System.Drawing.Color.Empty)
+                    if (color != Color.Empty)
                     {
-                        cellRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(color); // Fungerar
+                        cellRange.Interior.Color = ColorTranslator.ToOle(color); // Fungerar
                     }
                 }
 
                 #endregion
 
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(cellRange);
+                Marshal.ReleaseComObject(cellRange);
                 cellRange = null;
 
                 if (insertInRow > 0)
@@ -1006,13 +999,13 @@ namespace Utilities
                             break;
                         case CellLayOutSettings.TextColor:
                             cellRange.Font.Color =
-                                System.Drawing.ColorTranslator.ToOle((System.Drawing.Color)currentSetting.Value);
+                                ColorTranslator.ToOle((Color)currentSetting.Value);
                             break;
                         case CellLayOutSettings.InteriorColorSysDrawingType:
                             cellRange.Interior.Color =
-                                System.Drawing.ColorTranslator.ToOle((System.Drawing.Color)currentSetting.Value);
-                                
-                                // System.Drawing.ColorTranslator.ToOle(color);
+                                ColorTranslator.ToOle((Color)currentSetting.Value);
+
+                            // System.Drawing.ColorTranslator.ToOle(color);
                             break;
                         case CellLayOutSettings.InteriorColorColorIndexType:
                             cellRange.Interior.ColorIndex = (int)currentSetting.Value;
@@ -1026,41 +1019,6 @@ namespace Utilities
             {
                 Console.WriteLine("Error in EditCellLayOut in Logger: " + e.Message);
             }
-        }
-    }
-
-    public enum CellLayOutSettings
-    {
-        Bold, 
-        UnderLined, 
-        FontStyle, 
-        TextColor, 
-        InteriorColorSysDrawingType, // System.Drawing.Color.GreenYellow
-        InteriorColorColorIndexType // range.Interior.ColorIndex = 36
-    }
-
-    public enum XlWBATemplate
-    {
-        xlWBATWorksheet = -4167, 
-        xlWBATChart = -4109, 
-        xlWBATExcel4MacroSheet = 3, 
-        xlWBATExcel4IntlMacroSheet = 4, 
-    }
-
-    /// <summary>
-    /// Summary description for TestInfo.
-    /// </summary>
-    public class TestInfo : Attribute
-    {
-        public string[] Columns = null;
-        public string Description = "";
-        public string InfoText = "";
-
-        public TestInfo(string description, string infoText, params string[] columns)
-        {
-            Description = description;
-            InfoText = infoText;
-            Columns = columns;
         }
     }
 }

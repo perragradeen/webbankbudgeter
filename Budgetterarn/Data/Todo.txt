@@ -1,5 +1,7 @@
 ﻿!!!*Kolla sökvägar, och ge fel om det inte är rätt, ge chans att sätta dem eller ladda om Xml
 
+?* Använd FileHelpers Write to Excel Nuget
+
 1*Kolla kolumnbredder på datum etc. För gamla o nya kontoentries
 
 1*Spara år+mån+dag istället för datum (för att undvika fel med olika Excel-kulturer...)

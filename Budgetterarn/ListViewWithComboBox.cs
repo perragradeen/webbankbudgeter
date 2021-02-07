@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
+using CategoryHandler;
+using CategoryHandler.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Budgeter.Core.Entities;
 
 namespace Budgetterarn
 {
@@ -41,7 +43,7 @@ namespace Budgetterarn
 
             // Ha xmlinläsningen av kat. här. nej den läses in innan init
             // Read the categories.
-            foreach (var cat in CategoriesHolder.AllCategories.CategoryList)
+            foreach (var cat in CategoriesHolder.GetCategoriesList())
             {
                 comboBoxCategories.Items.Add(cat.Description);
             }
@@ -236,7 +238,11 @@ namespace Budgetterarn
             #endregion
 
             // Sätt autokategori (lägg till eller ändra)
-            if (!CategoriesHolder.AllCategories.SetNewAutoCategorize(selectedCategoryText, newAutoCategeory))
+            if (!CategoriesHolder.AllCategoriesHandler.SetNewAutoCategorize(
+                selectedCategoryText,
+                newAutoCategeory,
+                UserAcceptsFurtherAction,
+                AutoCatCpation))
             {
                 return;
             }
@@ -275,7 +281,7 @@ namespace Budgetterarn
                 }
 
                 // Slå upp autokategori
-                var lookedUpCat = CategoriesHolder.AllCategories.AutocategorizeType(newKe.Info);
+                var lookedUpCat = CategoriesHolder.AutocategorizeType(newKe.Info);
                 if (lookedUpCat == null)
                 {
                     continue;
@@ -495,8 +501,8 @@ namespace Budgetterarn
             if (clickedItem != null)
             {
                 comboBoxCategories.Size = new Size(widestText * 4, clickedItem.Bounds.Bottom - clickedItem.Bounds.Top);
-                    
-                    // Gamla bredden: end - position
+
+                // Gamla bredden: end - position
 
                 // Set rest of the box properties
                 comboBoxCategories.Location = new Point(position, clickedItem.Bounds.Y);

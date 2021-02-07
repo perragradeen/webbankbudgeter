@@ -1,6 +1,10 @@
-﻿using System;
+﻿using RefLesses;
+using System;
 using System.Drawing;
-using RefLesses;
+using System.Globalization;
+
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace Budgeter.Core.Entities
 {
@@ -8,9 +12,9 @@ namespace Budgeter.Core.Entities
     public class KontoEntry
     {
         public DateTime Date { get; set; }
-        public int year { get; set; }
-        public int month { get; set; }
-        public int day { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public int Day { get; set; }
 
         public string Info { get; set; }
         public double KostnadEllerInkomst { get; set; }
@@ -29,21 +33,15 @@ namespace Budgeter.Core.Entities
         {
             get
             {
-                var datesTemp = Date.ToString();
+                var datesTemp = Date.ToString(CultureInfo.InvariantCulture);
                 if (ForUi && datesTemp.Contains("00"))
                 {
                     return Date.ToString("yyyy-MM-dd");
                 }
-                return Date.ToString();
+                return Date.ToString(CultureInfo.InvariantCulture);
             }
         } // "yyyy-MM-dd"); } }
-        public string DateStringFrom3Ints
-        {
-            get
-            {
-                return Date.ToString("yyyy-MM-dd");
-            }
-        } // "yyyy-MM-dd"); } }
+        public string DateStringFrom3Ints => Date.ToString("yyyy-MM-dd"); // "yyyy-MM-dd"); } }
 
 
         // De 3 nedan kan innehålla annat än vad de heter, gamla grejjer kan ligga där de skulle vara eg.
@@ -62,7 +60,11 @@ namespace Budgeter.Core.Entities
                     StringFuncions.MergeStringArrayToString(
                         new[]
                         {
-                           DateStringFrom3Ints, Info, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), ExtendedInfo 
+                           DateStringFrom3Ints,
+                           Info,
+                           KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
+                           SaldoOrginal.ToString(CultureInfo.InvariantCulture),
+                           ExtendedInfo
                         });
             }
 
@@ -90,8 +92,13 @@ namespace Budgeter.Core.Entities
                            // Då sparas datum i samma kultur.
                            // Men om man har Os = Swe och Excel = US, så sparas datum i Swe-format och Excel sparar i fel format...
                            Date.Day, // DateString, 
-                           Info, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), 
-                           AckumuleratSaldo.ToString(), TypAvKostnad, ExtendedInfo, Place, TimeOfDay, 
+                           Info, KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
+                           SaldoOrginal.ToString(CultureInfo.InvariantCulture),
+                           AckumuleratSaldo.ToString(CultureInfo.InvariantCulture), 
+                           TypAvKostnad, 
+                           ExtendedInfo, 
+                           Place, 
+                           TimeOfDay,
                            EntryType.ToString()
                        };
             }
@@ -112,8 +119,12 @@ namespace Budgeter.Core.Entities
             {
                 return new[]
                        {
-                           DateString, Info, TypAvKostnad, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), 
-                           AckumuleratSaldo.ToString()
+                           DateString,
+                           Info, 
+                           TypAvKostnad, 
+                           KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture), 
+                           SaldoOrginal.ToString(CultureInfo.InvariantCulture),
+                           AckumuleratSaldo.ToString(CultureInfo.InvariantCulture)
                        };
             }
         }
@@ -135,6 +146,11 @@ namespace Budgeter.Core.Entities
 
         public KontoEntry(object[] inArray, bool fromXls = false) // CreateKE
         {
+            if (InarrayEmpty(inArray))
+            {
+                return;
+            }
+
             mFromXls = fromXls;
 
             // Kolla alla insträngar, om någon är null, kan det bli fel ordning på inläsningen, denna antar att beskrivningen är tom
@@ -193,16 +209,24 @@ namespace Budgeter.Core.Entities
             Date = DateFunctions.ParseDateWithCultureEtc(date);
             if (mFromXls)
             {
-                year = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 0));
-                month = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 1));
-                day = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 2));
+                Year = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 0));
+                Month = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 1));
+                Day = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 2));
 
-                if (day == 0)
+                if (Day == 0)
                 {
-                    day = Date.Day;
+                    Day = Date.Day;
                 }
 
-                Date = new DateTime(year, month, day);
+                try
+                {
+                    Date = new DateTime(Year, Month, Day);
+                }
+                catch (Exception e)
+                {
+
+                    throw new Exception("Datumfel. data: " + Year + " " + Month + " " + Day, e);
+                }
             }
 
             Info = info;
@@ -226,6 +250,19 @@ namespace Budgeter.Core.Entities
             EntryType = EntryTypeFromString(RowThatExists(inArray, columnNumberEntryType));
 
             #endregion
+        }
+
+        private bool InarrayEmpty(object[] inArray)
+        {
+            foreach (var item in inArray)
+            {
+                if (!string.IsNullOrEmpty((string)item))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public KontoEntry(BankRow fromBank)
@@ -278,14 +315,5 @@ namespace Budgeter.Core.Entities
         {
             return Info;
         }
-    }
-
-    public enum KontoEntryType
-    {
-        Regular = 0, 
-        Ignore, 
-        SplitChild, 
-        Split, 
-        AllkortsFakturaDragning
     }
 }

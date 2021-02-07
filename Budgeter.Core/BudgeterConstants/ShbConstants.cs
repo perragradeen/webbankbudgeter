@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Budgeter.Core
+namespace Budgeter.Core.BudgeterConstants
 {
     public class ShbConstants
     {
+        public const string SheetName = "Kontoutdrag_officiella"; // "Kontoutdrag f.o.m. 0709 bot.up.";
+
         public const string LönekontoName = "LÖNEKONTO";
 
         // Ex.
@@ -20,10 +19,9 @@ namespace Budgeter.Core
         public static readonly List<string> SwedbankSaldonames =
             new List<string>
             {
-                "Privatkonto 8417-8,4 751 687-7", 
-                "Servicekonto 8417-8,4 778 356-8", 
-                "Servicekonto 8417-8,914 636 458-4", 
-                "e-sparkonto 8417-8,983 306 619-5"
+                "PrivatPG (Privatkonto) 8105-9,964 260 134-9",
+                "Gemensamt (Privatkonto) 8105-9,964 260 138-0",
+                "Vivis"
             };
         public const string ShbAllkortKreditKontoIdentifierare = "ALLKORT - korttransaktioner";
     }

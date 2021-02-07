@@ -1,15 +1,11 @@
-﻿using Budgeter.Core.Entities;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Budgeter.Core.BudgeterConstants;
+using Budgeter.Core.Entities;
 using RefLesses;
-using Budgetterarn.DAL;
-using Budgetterarn.Model;
-using Budgeter.Core;
+using System.Collections;
+using System.Windows.Forms;
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
 
 namespace Budgetterarn.WebCrawlers
 {
@@ -46,7 +42,7 @@ namespace Budgetterarn.WebCrawlers
 
         private static HtmlElement GetSaldoElement(HtmlElement saldoElement)
         {
-           if (saldoElement.TagName.Equals("DIV")) // .GetAttribute("link-list") != null)
+            if (saldoElement.TagName.Equals("DIV")) // .GetAttribute("link-list") != null)
             {
             }
             else
@@ -80,12 +76,15 @@ namespace Budgetterarn.WebCrawlers
 
         private static BankRow GetMobileHandelsbankenTableRow(HtmlElement htmlElement)
         {
-            var entryStrings = new BankRow();
+            var entryStrings = new BankRow
+            {
+                DateValue = htmlElement.FirstChild?.InnerText.Trim(),
+                EventValue = htmlElement.FirstChild?.NextSibling?.FirstChild?.InnerText.Trim()
+            };
 
-            entryStrings.DateValue = htmlElement.FirstChild.InnerText.Trim();
-            entryStrings.EventValue = htmlElement.FirstChild.NextSibling.FirstChild.InnerText.Trim();
 
-            var beloppVal = htmlElement.FirstChild.NextSibling.FirstChild.NextSibling.InnerText.Trim();
+            var beloppVal =
+                htmlElement.FirstChild?.NextSibling?.FirstChild?.NextSibling?.InnerText.Trim();
             entryStrings.BeloppValue = StringFuncions.RemoveSekFromMoneyString(beloppVal);
             entryStrings.SaldoValue = string.Empty;
 
@@ -97,48 +96,43 @@ namespace Budgetterarn.WebCrawlers
         /// Körs flera gånger en per sida och får då ut flera olika konton och uppdaterar dess värde i saldo-tabellen.
         /// </summary>
         /// <param name="saldoElement"></param>
-        /// <param name="saldon"></param>
+        /// <param name="saldoHolder"></param>
         private static void GetMobileHandelsBankenSaldo(HtmlElement saldoElement, SaldoHolder saldoHolder)
         {
-            var saldoName = saldoElement.FirstChild.FirstChild.InnerText;
-            var saldoValueElem = saldoElement.FirstChild.NextSibling.NextSibling;
-
-            var saldoValue = 0.0;
+            var saldoName = saldoElement.FirstChild?.FirstChild?.InnerText;
+            var saldoValueElem = saldoElement.FirstChild?.NextSibling?.NextSibling;
 
             if (saldoHolder.HasSaldoName(AllkortName)
                 || saldoHolder.HasSaldoName("Allkortskonto"))
             {
-                if (saldoName.Contains(AllkortName))
+                if (saldoName != null
+                    && saldoName.Contains(AllkortName))
                 {
                     // allkortHas = true;
                     saldoName = AllkortName;
                 }
             }
 
-            if (saldoElement != null)
-            {
-                saldoValue = StringFuncions.RemoveSekFromMoneyString(saldoValueElem.InnerText).
-                    GetDoubleValueFromStringEntry();
-                saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoName, saldoValue);
-            }
+            var saldoValue = StringFuncions.RemoveSekFromMoneyString(saldoValueElem?.InnerText).
+                GetDoubleValueFromStringEntry();
+            saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoName, saldoValue);
 
             // Kolla disp. belopp
-            var saldoNameDispBelopp = AllkortEjFaktureratName;
-            saldoValueElem = saldoElement.FirstChild.NextSibling.NextSibling.NextSibling.FirstChild.NextSibling;
+            const string saldoNameDispBelopp = AllkortEjFaktureratName;
+            saldoValueElem =
+                saldoElement.FirstChild?.NextSibling?.NextSibling?.NextSibling?.FirstChild?.NextSibling;
 
-            var saldoValueDisp = 0.0;
-            if (saldoElement != null && saldoName != LönekontoName)
-            {
-                saldoValueDisp = StringFuncions.RemoveSekFromMoneyString(saldoValueElem.InnerText).
-                    GetDoubleValueFromStringEntry();
+            if (saldoName == LönekontoName) return;
 
-                // Räkna ut mellanskillnaden som motsvarar fakturerat och ej förfallet etc
-                const int KreditBelopp = 10000;
+            var saldoValueDisp = StringFuncions.RemoveSekFromMoneyString(saldoValueElem?.InnerText).
+                GetDoubleValueFromStringEntry();
 
-                saldoValueDisp = saldoValue + KreditBelopp - saldoValueDisp;
+            // Räkna ut mellanskillnaden som motsvarar fakturerat och ej förfallet etc
+            const int kreditBelopp = 10000;
 
-                saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoNameDispBelopp, -saldoValueDisp);
-            }
+            saldoValueDisp = saldoValue + kreditBelopp - saldoValueDisp;
+
+            saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoNameDispBelopp, -saldoValueDisp);
         }
     }
 }

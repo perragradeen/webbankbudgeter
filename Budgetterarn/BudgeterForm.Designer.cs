@@ -71,7 +71,6 @@ namespace Budgetterarn
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.debugbtn = new System.Windows.Forms.Button();
             this.btnLoadCurrentEntries = new System.Windows.Forms.Button();
-            this.loadEntriesFromPdfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -94,7 +93,7 @@ namespace Budgetterarn
             this.optionsToolStripMenuItem});
             this._MainMenu.Location = new System.Drawing.Point(0, 0);
             this._MainMenu.Name = "_MainMenu";
-            this._MainMenu.Size = new System.Drawing.Size(1284, 24);
+            this._MainMenu.Size = new System.Drawing.Size(1020, 24);
             this._MainMenu.TabIndex = 2;
             this._MainMenu.Text = "menuStrip1";
             // 
@@ -203,8 +202,7 @@ namespace Budgetterarn
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadCurrentEntriesToolStripMenuItem,
-            this.loadEntriesFromPdfFileToolStripMenuItem});
+            this.loadCurrentEntriesToolStripMenuItem});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.loadToolStripMenuItem.Text = "Load";
@@ -240,7 +238,7 @@ namespace Budgetterarn
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(102, 609);
+            this.webBrowser1.Size = new System.Drawing.Size(80, 609);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
             // 
@@ -259,8 +257,8 @@ namespace Budgetterarn
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1281, 609);
-            this.splitContainer1.SplitterDistance = 102;
+            this.splitContainer1.Size = new System.Drawing.Size(1017, 609);
+            this.splitContainer1.SplitterDistance = 80;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
@@ -280,8 +278,8 @@ namespace Budgetterarn
             this.splitContainer2.Panel2.Controls.Add(this.m_newItemsTab);
             this.splitContainer2.Panel2.Controls.Add(this.btn_RecheckAutocat);
             this.splitContainer2.Panel2.Controls.Add(this.m_b_AddNewToMem);
-            this.splitContainer2.Size = new System.Drawing.Size(1175, 609);
-            this.splitContainer2.SplitterDistance = 302;
+            this.splitContainer2.Size = new System.Drawing.Size(933, 609);
+            this.splitContainer2.SplitterDistance = 239;
             this.splitContainer2.TabIndex = 0;
             // 
             // tabControl1
@@ -292,7 +290,7 @@ namespace Budgetterarn
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(302, 609);
+            this.tabControl1.Size = new System.Drawing.Size(239, 609);
             this.tabControl1.TabIndex = 0;
             // 
             // m_inMemoryList
@@ -300,7 +298,7 @@ namespace Budgetterarn
             this.m_inMemoryList.Location = new System.Drawing.Point(4, 22);
             this.m_inMemoryList.Name = "m_inMemoryList";
             this.m_inMemoryList.Padding = new System.Windows.Forms.Padding(3);
-            this.m_inMemoryList.Size = new System.Drawing.Size(294, 583);
+            this.m_inMemoryList.Size = new System.Drawing.Size(231, 583);
             this.m_inMemoryList.TabIndex = 1;
             this.m_inMemoryList.Text = "Memory";
             this.m_inMemoryList.UseVisualStyleBackColor = true;
@@ -309,7 +307,7 @@ namespace Budgetterarn
             // 
             this.m_originalXls.Location = new System.Drawing.Point(4, 22);
             this.m_originalXls.Name = "m_originalXls";
-            this.m_originalXls.Size = new System.Drawing.Size(294, 583);
+            this.m_originalXls.Size = new System.Drawing.Size(231, 583);
             this.m_originalXls.TabIndex = 2;
             // 
             // InfoNewEntries
@@ -342,21 +340,21 @@ namespace Budgetterarn
             this.m_newItemsTab.Location = new System.Drawing.Point(0, 32);
             this.m_newItemsTab.Name = "m_newItemsTab";
             this.m_newItemsTab.SelectedIndex = 0;
-            this.m_newItemsTab.Size = new System.Drawing.Size(1169, 577);
+            this.m_newItemsTab.Size = new System.Drawing.Size(990, 577);
             this.m_newItemsTab.TabIndex = 0;
             // 
             // tp_NewItemsEdited
             // 
             this.tp_NewItemsEdited.Location = new System.Drawing.Point(4, 22);
             this.tp_NewItemsEdited.Name = "tp_NewItemsEdited";
-            this.tp_NewItemsEdited.Size = new System.Drawing.Size(1161, 551);
+            this.tp_NewItemsEdited.Size = new System.Drawing.Size(982, 551);
             this.tp_NewItemsEdited.TabIndex = 0;
             // 
             // tp_NewItemsOrg
             // 
             this.tp_NewItemsOrg.Location = new System.Drawing.Point(4, 22);
             this.tp_NewItemsOrg.Name = "tp_NewItemsOrg";
-            this.tp_NewItemsOrg.Size = new System.Drawing.Size(1161, 551);
+            this.tp_NewItemsOrg.Size = new System.Drawing.Size(982, 551);
             this.tp_NewItemsOrg.TabIndex = 1;
             // 
             // btn_RecheckAutocat
@@ -422,7 +420,7 @@ namespace Budgetterarn
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 644);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1284, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1020, 22);
             this.statusStrip1.TabIndex = 5;
             // 
             // debugbtn
@@ -446,18 +444,11 @@ namespace Budgetterarn
             this.btnLoadCurrentEntries.UseVisualStyleBackColor = true;
             this.btnLoadCurrentEntries.Click += new System.EventHandler(this.BtnLoadCurrentEntriesClick);
             // 
-            // loadEntriesFromPdfFileToolStripMenuItem
-            // 
-            this.loadEntriesFromPdfFileToolStripMenuItem.Name = "loadEntriesFromPdfFileToolStripMenuItem";
-            this.loadEntriesFromPdfFileToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.loadEntriesFromPdfFileToolStripMenuItem.Text = "Load Entries from Pdf File";
-            this.loadEntriesFromPdfFileToolStripMenuItem.Click += new System.EventHandler(this.loadEntriesFromPdfFileToolStripMenuItem_Click);
-            // 
             // BudgeterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 666);
+            this.ClientSize = new System.Drawing.Size(1020, 666);
             this.Controls.Add(this.btnLoadCurrentEntries);
             this.Controls.Add(this.debugbtn);
             this.Controls.Add(this.statusStrip1);
@@ -528,7 +519,6 @@ namespace Budgetterarn
         private ToolStripMenuItem navigateToLöneToolStripMenuItem;
         private ToolStripMenuItem testNav1ToolStripMenuItem;
         private ToolStripMenuItem testBackNavToolStripMenuItem;
-        private ToolStripMenuItem loadEntriesFromPdfFileToolStripMenuItem;
     }
 }
 

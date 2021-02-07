@@ -1,23 +1,19 @@
-﻿using System;
+﻿using Budgeter.Core;
+using Budgeter.Core.Entities;
+using Budgetterarn.Application_Settings_and_constants;
+using Budgetterarn.DAL;
+using Budgetterarn.InternalUtilities;
+using CategoryHandler;
+using LoadTransactionsFromFile;
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
-using Budgeter.Core.Entities;
-using Budgeter.Winforms;
-using Budgetterarn.Application_Settings_and_constants;
-using Budgetterarn.InternalUtilities;
-using Budgetterarn.Operations;
 using Utilities;
-using Budgeter.Core;
-using Budgetterarn.DAL;
-using Budgetterarn.Model;
-using Budgetterarn.WebCrawlers;
-using System.IO;
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 // Budgeter.Winforms
 namespace Budgetterarn
@@ -30,7 +26,7 @@ namespace Budgetterarn
     /// </summary>
     public partial class BudgeterForm : Form
     {
-        private string GetBankUrl()
+        private static string GetBankUrl()
         {
             return
                 //@"C:\Files\Dropbox\budget\Program\TestData\Allkort-Kortköp-ej fakturerat.html"
@@ -50,7 +46,7 @@ namespace Budgetterarn
         }
 
         // Bugg när ke laddas från web. Dubbletter kommenr in i nya listan
-        public const string VersionNumber = "1.0.1.15"; // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
+        public const string VersionNumber = "1.0.1.16"; // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
 
         #region Members
 
@@ -63,7 +59,7 @@ namespace Budgetterarn
         private static string categoryPath = @"Data\Categories.xml";
         private readonly bool debugGlobal; // For useSaveCheck
 
-        private KontoEntriesHolder kontoEntriesHolder = new KontoEntriesHolder();
+        private readonly KontoEntriesHolder kontoEntriesHolder = new KontoEntriesHolder();
 
         // static string BankUrlHandelsBanken = "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv";
 
@@ -82,7 +78,7 @@ namespace Budgetterarn
         private KontoEntryListView xlsOrginalEntries;
 
         private ProgramSettings programSettings;
-        private AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
+        private readonly AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
 
         // To do, sätt alla medlemmar i en egen klass etc.
         // string saldoLöne = "";
@@ -100,10 +96,6 @@ namespace Budgetterarn
 
         #endregion
 
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1109:BlockStatementsMustNotContainEmbeddedRegions", 
-            Justification = "Reviewed. Suppression is OK here.")]
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:DoNotPlaceRegionsWithinElements", 
-            Justification = "Reviewed. Suppression is OK here.")]
         public BudgeterForm() // Konstruktor
         {
             try
@@ -154,7 +146,7 @@ namespace Budgetterarn
                     {
                         autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(LoadCurrentEntriesFromBrowser, webBrowser1);
                         autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
-                    } 
+                    }
                 }
 
                 #region Old
@@ -182,7 +174,7 @@ namespace Budgetterarn
             }
             catch (Exception e)
             {
-                MessageBox.Show(@"Error! : " + e.Message);
+                MessageBox.Show(@"Init Error! : " + e.Message);
             }
 
             #region Test
@@ -228,23 +220,30 @@ namespace Budgetterarn
 
         private void InitSettingsEtc()
         {
-            // Get file names from settings file
-            categoryPath = GeneralSettings.GetStringSetting("CategoryPath");
-            bankUrl = GeneralSettings.GetTextfileStringSetting("BankUrl");
+            try
+            {
+                // Get file names from settings file
+                categoryPath = GeneralSettings.GetStringSetting("CategoryPath");
+                bankUrl = GeneralSettings.GetTextfileStringSetting("BankUrl");
 
-            // var t = new CategoriesHolder();
-            // Ladda kategorier som man har till att flagga olika kontohändelser
-            CategoriesHolder.DeserializeObject(categoryPath);
+                // var t = new CategoriesHolder();
+                // Ladda kategorier som man har till att flagga olika kontohändelser
+                CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
 
-            // Initiera UI-objekt
-            InitializeComponent();
-            InitSpecialGenericUiElements();
-            SetStatusLabelProps();
+                // Initiera UI-objekt
+                InitializeComponent();
+                InitSpecialGenericUiElements();
+                SetStatusLabelProps();
 
-            // Sätt nuvarande tråd som main
+                // Sätt nuvarande tråd som main
 
-            // läs in xls...
-            GetAllEntriesFromExcelFile(Filerefernces._excelFileSavePath, true);
+                // läs in xls...
+                GetAllEntriesFromExcelFile(Filerefernces._excelFileSavePath, true);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void InitSpecialGenericUiElements()
@@ -356,24 +355,41 @@ namespace Budgetterarn
 
             // Todo: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
             var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
-                                         {
-                                             filePath = Filerefernces._excelFileSavePath, 
-                                             excelFileSavePath = changedExcelFileSavePath, 
-                                             excelFileSavePathWithoutFileName =
-                                                 Filerefernces.ExcelFileSavePathWithoutFileName, 
-                                             excelFileSaveFileName = Filerefernces._excelFileSaveFileName, 
-                                             sheetName = SheetName, 
-                                             clearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile, 
-                                             somethingChanged = somethingChanged, 
-                                         };
+            {
+                FilePath = Filerefernces._excelFileSavePath,
+                ExcelFileSavePath = changedExcelFileSavePath,
+                ExcelFileSavePathWithoutFileName =
+                                                 Filerefernces.ExcelFileSavePathWithoutFileName,
+                ExcelFileSaveFileName = Filerefernces._excelFileSaveFileName,
+                SheetName = SheetName,
+                ClearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile,
+                SomethingChanged = somethingChanged,
+            };
+
+            CheckFileIfEmptyPromptUserIfEmptyPath(kontoutdragInfoForLoad);
 
             // Ladda från fil
-            var entriesLoadedFromDataStore = LoadKonton.LoadEntriesFromFile(kontoutdragInfoForLoad);
+            Hashtable entriesLoadedFromDataStore;
+            try
+            {
+                entriesLoadedFromDataStore = LoadKonton.LoadEntriesFromFile(kontoutdragInfoForLoad);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File: " + kontoutdragInfoForLoad?.FilePath + " does not exist.", "File error");
+                return false;
+            }
 
             // För att se om något laddats från fil
             var somethingLoadedFromFile = entriesLoadedFromDataStore != null && entriesLoadedFromDataStore.Count > 0;
 
-            statusStrip1.Text = statusText;
+            if (entriesLoadedFromDataStore == null)
+            {
+                statusText += kontoutdragInfoForLoad.FilePath;
+            }
+
+            //statusStrip1.Text = statusText;
+            toolStripStatusLabel1.Text = statusText;
 
             // kolla om något laddades från Excel
             if (!somethingLoadedFromFile)
@@ -396,11 +412,11 @@ namespace Budgetterarn
                 entriesLoadedFromDataStore);
 
             // Visa text för anv. om hur det gick etc.
-            statusText = "No. rows loaded; " + kontoEntriesHolder.KontoEntries.Count + " . Skpped: " + loadResult.skippedOrSaved
-                         + ". File loaded; " + kontoutdragInfoForLoad.filePath;
+            statusText = "No. rows loaded; " + kontoEntriesHolder.KontoEntries.Count + " . Skpped: " + loadResult.SkippedOrSaved
+                         + ". File loaded; " + kontoutdragInfoForLoad.FilePath;
 
             // Nu har det precis rensats och laddats in nytt
-            kontoutdragInfoForLoad.somethingChanged = !CheckforUnsavedChanges;
+            kontoutdragInfoForLoad.SomethingChanged = !CheckforUnsavedChanges;
 
             // Ev. har pathen ändrats.
             if (excelFileSavePath == string.Empty)
@@ -416,10 +432,11 @@ namespace Budgetterarn
             }
 
             // toolStripStatusLabel1.Text = statusText + " Saldon: Allkort:" + saldoAllkort + ", Löne:" + saldoLöne + ", Kredit Ej fakt.:" + saldoAllkortKreditEjFakturerat + ", Kredit fakt.:" + saldoAllkortKreditFakturerat;
-            statusStrip1.Text = statusText;
+            //statusStrip1.Text = statusText;
+            toolStripStatusLabel1.Text = statusText;
 
             // If nothing loaded return
-            if (!loadResult.somethingLoadedOrSaved)
+            if (!loadResult.SomethingLoadedOrSaved)
             {
                 return false;
             }
@@ -432,13 +449,23 @@ namespace Budgetterarn
             return true;
         }
 
+        private void CheckFileIfEmptyPromptUserIfEmptyPath(KontoutdragInfoForLoad kontoutdragInfoForLoad)
+        {
+            if (string.IsNullOrWhiteSpace(kontoutdragInfoForLoad.FilePath))
+            {
+                kontoutdragInfoForLoad.ExcelFileSavePath =
+                    kontoutdragInfoForLoad.FilePath =
+                        FileOperations.OpenFileOfType("Open file", FileType.xls, ""); // Öppnar dialog
+            }
+        }
+
         #region Load&Save
 
         public static DialogResult SaveCheckWithArgs(
            KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
         {
             var saveOr = DialogResult.None;
-            if (kontoutdragInfoForSave.somethingChanged)
+            if (kontoutdragInfoForSave.SomethingChanged)
             {
                 saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
 
@@ -472,7 +499,7 @@ namespace Budgetterarn
                 }
                 else
                 {
-                    kontoutdragInfoForLoad.somethingChanged = false;
+                    kontoutdragInfoForLoad.SomethingChanged = false;
                 }
             }
 
@@ -484,20 +511,20 @@ namespace Budgetterarn
             var statusText = toolStripStatusLabel1.Text;
             var kontoutdragInfoForSave = new KontoutdragInfoForSave
             {
-                excelFileSaveFileName = Filerefernces._excelFileSaveFileName,
-                excelFileSavePath = Filerefernces._excelFileSavePath,
-                excelFileSavePathWithoutFileName =
+                ExcelFileSaveFileName = Filerefernces._excelFileSaveFileName,
+                ExcelFileSavePath = Filerefernces._excelFileSavePath,
+                ExcelFileSavePathWithoutFileName =
                     Filerefernces.ExcelFileSavePathWithoutFileName,
-                sheetName = SheetName
+                SheetName = SheetName
             };
 
             var saveResult = SaveKonton.Save(kontoutdragInfoForSave, kontoEntriesHolder.KontoEntries,
                 kontoEntriesHolder.SaldoHolder);
 
-            somethingChanged = saveResult.somethingLoadedOrSaved;
+            somethingChanged = saveResult.SomethingLoadedOrSaved;
 
             // somethingChanged = false;//Precis sparat, så här har inget hunnit ändras 
-            statusText += "Saving done, saved entries; " + saveResult.skippedOrSaved;
+            statusText += "Saving done, saved entries; " + saveResult.SkippedOrSaved;
 
             // Räkna inte överskriften, den skrivs alltid om
 
@@ -507,7 +534,7 @@ namespace Budgetterarn
             if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
                 == DialogResult.Yes)
             {
-                ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.excelFileSavePath);
+                ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.ExcelFileSavePath);
             }
 
             toolStripStatusLabel1.Text = statusText;
@@ -522,7 +549,7 @@ namespace Budgetterarn
             var somethingLoadeded = LoadKonton.GetAllVisibleEntriesFromWebBrowser(
                 kontoEntriesHolder,
                 webBrowser1);
-                //kontoEntries, webBrowser1, kontoEntriesHolder.NewKontoEntries, ref somethingChanged, saldoHolder);
+            //kontoEntries, webBrowser1, kontoEntriesHolder.NewKontoEntries, ref somethingChanged, saldoHolder);
 
             // Done, meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
             toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
@@ -562,7 +589,7 @@ namespace Budgetterarn
             CheckAndAddNewItems(
                 new KontoEntriesViewModelListUpdater
                 {
-                    kontoEntries = kontoEntriesHolder.KontoEntries,
+                    KontoEntries = kontoEntriesHolder.KontoEntries,
                     NewIitemsListEdited = newIitemsListEdited.ItemsAsKontoEntries,
                     NewKontoEntriesIn = kontoEntriesHolder.NewKontoEntries,
                 }
@@ -586,7 +613,7 @@ namespace Budgetterarn
             var inUiListAlready = newIitemsListEdited.ItemsAsKontoEntries;
             foreach (var entry in lists.NewIitemsListEdited)
             {
-                if (!inUiListAlready.Any(e=> e.KeyForThis == entry.KeyForThis))
+                if (!inUiListAlready.Any(e => e.KeyForThis == entry.KeyForThis))
                 {
                     lists.ToAddToListview.Add(entry);
                 }
@@ -596,7 +623,7 @@ namespace Budgetterarn
             {
                 // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
                 KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuesseDouble(entry, kontoEntriesHolder.KontoEntries);
-                
+
                 // Lägg till i edited
                 ViewUpdateUi.AddToListview(newIitemsListEdited, entry);
             }
@@ -841,8 +868,8 @@ namespace Budgetterarn
             var newEntriesFromUi = new SortedList();
             foreach (ListViewItem item in mineNewIitemsListEdited.Items)
             {
-                var newKe = item.Tag as KontoEntry;
-                if (newKe != null && !newEntriesFromUi.ContainsKey(newKe.KeyForThis))
+                if (item.Tag is KontoEntry newKe 
+                    && !newEntriesFromUi.ContainsKey(newKe.KeyForThis))
                 {
                     newEntriesFromUi.Add(newKe.KeyForThis, newKe);
                 }
@@ -895,52 +922,6 @@ namespace Budgetterarn
         }
 
         #endregion
-
-        private void loadEntriesFromPdfFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = @"Processing from Pdf";
-
-            //fileNkameGetter 
-            var selectFileDialog = new OpenFileDialog();
-
-            //var selectFileDialog = new FolderBrowserDialog();
-
-            Stream fileStream = null;
-            if (selectFileDialog.ShowDialog() == DialogResult.OK)
-            //&& (fileStream = selectFileDialog..OpenFile()) != null)
-            {
-                string fileName = selectFileDialog.FileName; //.SelectedPath; // .FileName;
-                //using (fileStream)
-                //{
-                //   // TODO
-                //}
-
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    var pdfParser = new KontoFromPdfParser(fileName);
-                    var rows = pdfParser.ParseToKontoEntriesFromRedPdf();
-
-
-                    var somethingLoadeded = LoadKonton.GetAllEntriesFromPdfFile(
-                        kontoEntriesHolder,
-                        rows);
-
-                    if (somethingLoadeded)
-                    {
-                        CheckAndAddNewItems();
-                        toolStripStatusLabel1.Text = @"Done processing entries from Pdf. New Entries found; "
-                                                     + kontoEntriesHolder.NewKontoEntries.Count + @".";
-                    }
-                    else
-                    {
-                        // Done, meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
-                        toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
-                    }
-
-
-                }
-            }
-        }
 
     }
 }
