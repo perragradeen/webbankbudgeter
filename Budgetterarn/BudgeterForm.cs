@@ -12,6 +12,9 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Utilities;
+
+using CefSharp;
+using CefSharp.WinForms;
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
 
@@ -52,23 +55,12 @@ namespace Budgetterarn
 
         private const string SheetName = "Kontoutdrag_officiella"; // "Kontoutdrag f.o.m. 0709 bot.up.";
         private static ToolStripStatusLabel toolStripStatusLabel1;
-        private static string bankUrl =
-            "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv"
-            ;
+        private static string bankUrl = "LoadsVia_xml_settings";
 
         private static string categoryPath = @"Data\Categories.xml";
-        private readonly bool debugGlobal; // For useSaveCheck
+        private bool debugGlobal; // For useSaveCheck
 
         private readonly KontoEntriesHolder kontoEntriesHolder = new KontoEntriesHolder();
-
-        // static string BankUrlHandelsBanken = "http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv";
-
-        // Key = description, Value= amount
-        // private static string _excelFileSavePathWithoutFileName;// = @"C:\stuff\budget\";//Hårdkodad sökväg utan dialog
-        // private static string _excelFileSaveFileName;// = @"Test LG Budget.xls";//Pelles Budget.xls";//Hårdkodad sökväg utan dialog
-        // private string _excelFileSavePath;// = _excelFileSavePathWithoutFileName + _excelFileSaveFileName;//Hårdkodad sökväg utan dialog
-        // string _excelFileSavePath = @"C:\Documents and Settings\hu\My Documents\CoNy kolumn of Test Pelles kontoutdrag.xls";//Hårdkodad sökväg utan dialog
-        // const string m_s_newEntriesXlsDebug = @"C:\Documents and Settings\hu\My Documents\NYA entries test Pelles kontoutdrag.xls";
         private bool somethingChanged;
 
         // Generic types for Designer
@@ -78,23 +70,35 @@ namespace Budgetterarn
         private KontoEntryListView xlsOrginalEntries;
 
         private ProgramSettings programSettings;
-        private readonly AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
-
-        // To do, sätt alla medlemmar i en egen klass etc.
-        // string saldoLöne = "";
-        // string saldoAllkort = "";
-        // string saldoAllkortKreditEjFakturerat = "";
-        // string saldoAllkortKreditFakturerat = "";
-
-        // Excel.Application _excelApp = new Excel.Application();//Denna ligger här för att kunna släppa objektet i delegat nedan (Application_WorkbookDeactivate)
-        // Navigering i browser
-        // private void UpdateXlsOrginal()
-        // UpdateEntriesToSaveMemList
-        // private static void GetAllEntriesFromExcelFile(string excelFileSavePath, SortedList entries, bool b, object o) {
-        // throw new NotImplementedException();
-        // }
-
+        private AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
+        public ChromiumWebBrowser webBrowser1;
         #endregion
+
+        public void InitChromiumWebBrowser()
+        {
+            var settingsBrowse = new CefSettings();
+
+            Cef.Initialize(settingsBrowse);
+
+            webBrowser1 = new ChromiumWebBrowser(string.Empty);
+            this.Controls.Add(webBrowser1);
+
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = DockStyle.Fill;
+            this.webBrowser1.Location = new Point(0, 0);
+            this.webBrowser1.MinimumSize = new Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new Size(80, 609);
+            this.webBrowser1.TabIndex = 0;
+            //this.webBrowser1.IsLoading.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
+
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.webBrowser1);
+        }
 
         public BudgeterForm() // Konstruktor
         {
@@ -104,86 +108,83 @@ namespace Budgetterarn
 
                 InitSettingsEtc();
 
+                InitChromiumWebBrowser();
+
                 #region Debug
-
-                // ReSharper disable JoinDeclarationAndInitializer
-                bool debug = false;
-
-                // ReSharper restore JoinDeclarationAndInitializer
-#if DEBUG
-                debug = true;
-#endif
-
-                if (!debugGlobal)
-                {
-                    debug = debugGlobal;
-                }
-
-                if (debugGlobal && debug)
-                {
-                    debugGlobal = true;
-                }
-                else
-                {
-                    debugGlobal = false;
-                }
-
-                if (debug)
+                if (Debug())
                 {
                     // TODO: GetAllEntriesFromExcelFile(m_s_newEntriesXlsDebug, _kontoEntriesHolder.NewKontoEntries, false, null);
                     // CheckAndAddNewItems();//Debug: Lägg till nya i GuiLista
                     debugbtn.Visible = true;
                     DebugAddoNewList();
                 }
-
                 #endregion
                 else
                 {
                     // Öpnna banksidan direkt
                     OpenBankSiteInBrowser();
 
-                    if (programSettings.AutoLoadEtc)
-                    {
-                        autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(LoadCurrentEntriesFromBrowser, webBrowser1);
-                        autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
-                    }
+                    RunAutoLoadIfItIsEnabled();
                 }
 
-                #region Old
-
-                // string sheetName = "Kontoutdrag_officiella";// "Kontoutdrag f.o.m. 0709 bot.up.";
-                // 2009 3 2009-03-26   JohaMsMatBio   -10   50 951,93 spara till russel övrigt
-                // string[] temp1 = new string[] { "2009", "3",    "2009-03-26", "JohaMsMatBio", "-10", "50 951,93", "spara till russel övrigt" };
-                // 2009 3 2009-03-25   LÖN   17 969,00   50 961,93 + 
-
-                // Utilities.ExcelRowEntry newE = new Utilities.ExcelRowEntry(0, temp1);
-
-                // if (!_kontoUtdragXLS.ContainsKey(mergeStringArrayToString(temp1)))
-                // _kontoUtdragXLS.Add(mergeStringArrayToString(temp1), newE);
-                // webBrowser1.Url = "";
-
-                // läs in html...
-                // OpenBankSiteInBrowser();//Gör ej som default.
-                #endregion
-
-                // Sätt versionsnummer i titel
-                if (Text != null)
-                {
-                    Text += VersionNumber;
-                }
+                SetVersionsnummerToWindowTitle();
             }
             catch (Exception e)
             {
                 MessageBox.Show(@"Init Error! : " + e.Message);
             }
-
-            #region Test
-
-            // var ifHb = ProgramSettings.BankType.Equals(BankType.Handelsbanken);
-            #endregion
         }
 
-        // Settings (mostly debug)
+        private void RunAutoLoadIfItIsEnabled()
+        {
+            if (programSettings.AutoLoadEtc)
+            {
+                autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(LoadCurrentEntriesFromBrowser, null);
+                autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
+            }
+        }
+
+        /// <summary>
+        /// Sätt versionsnummer i titel
+        /// </summary>
+        private void SetVersionsnummerToWindowTitle()
+        {
+            if (Text != null)
+            {
+                Text += VersionNumber;
+            }
+        }
+
+        private bool Debug()
+        {
+            // ReSharper disable JoinDeclarationAndInitializer
+            bool debug = false;
+
+            // ReSharper restore JoinDeclarationAndInitializer
+#if DEBUG
+            debug = true;
+#endif
+
+            if (!debugGlobal)
+            {
+                debug = debugGlobal;
+            }
+
+            if (debugGlobal && debug)
+            {
+                debugGlobal = true;
+            }
+            else
+            {
+                debugGlobal = false;
+            }
+
+            return debug;
+        }
+
+        /// <summary>
+        /// Settings (mostly debug)
+        /// </summary>
         public static string StatusLabelText
         {
             get
@@ -338,6 +339,107 @@ namespace Budgetterarn
             newIitemsListOrg.ListViewItemSorter = new ListViewColumnSorter();
         }
 
+        #region Load&Save
+
+        public static DialogResult SaveCheckWithArgs(
+           KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
+        {
+            var saveOr = DialogResult.None;
+            if (kontoutdragInfoForSave.SomethingChanged)
+            {
+                saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
+
+                // Cancel
+                if (saveOr == DialogResult.Yes)
+                {
+                    SaveKonton.Save
+                        (kontoutdragInfoForSave, kontoEntries, saldoHolder);
+                }
+            }
+
+            return saveOr;
+        }
+
+        private bool SaveFirstCheck(
+            KontoutdragInfoForLoad kontoutdragInfoForLoad, bool checkforUnsavedChanges, bool somethingLoadedFromFile)
+        {
+            // Nu har något laddats från fil, kolla då om något ska sparas
+            // Save check
+            if (checkforUnsavedChanges && somethingLoadedFromFile)
+            {
+                if (kontoEntriesHolder.KontoEntries.Count > 0)
+                {
+                    // somethingChanged är alltid false här
+                    var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntriesHolder.KontoEntries,
+                        kontoEntriesHolder.SaldoHolder);
+                    if (userResponse == DialogResult.Cancel)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    kontoutdragInfoForLoad.SomethingChanged = false;
+                }
+            }
+
+            return false;
+        }
+
+        private void Save()
+        {
+            var statusText = toolStripStatusLabel1.Text;
+            var kontoutdragInfoForSave = new KontoutdragInfoForSave
+            {
+                ExcelFileSaveFileName = Filerefernces._excelFileSaveFileName,
+                ExcelFileSavePath = Filerefernces._excelFileSavePath,
+                ExcelFileSavePathWithoutFileName =
+                    Filerefernces.ExcelFileSavePathWithoutFileName,
+                SheetName = SheetName
+            };
+
+            var saveResult = SaveKonton.Save(kontoutdragInfoForSave, kontoEntriesHolder.KontoEntries,
+                kontoEntriesHolder.SaldoHolder);
+
+            somethingChanged = saveResult.SomethingLoadedOrSaved;
+
+            // somethingChanged = false;//Precis sparat, så här har inget hunnit ändras 
+            statusText += "Saving done, saved entries; " + saveResult.SkippedOrSaved;
+
+            // Räkna inte överskriften, den skrivs alltid om
+
+            // toolStripStatusLabel1.Text = "Saving done, saved entries; " + (logThis.Count - 1);//Räkna inte överskriften, den skrivs alltid om
+
+            // Fråga om man vill öppna Excel
+            if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
+                == DialogResult.Yes)
+            {
+                ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.ExcelFileSavePath);
+            }
+
+            toolStripStatusLabel1.Text = statusText;
+        }
+
+        private void LoadCurrentEntriesFromBrowser()
+        {
+            toolStripStatusLabel1.Text = @"Processing";
+
+            var somethingLoadeded = LoadKonton.GetAllVisibleEntriesFromWebBrowser(
+                kontoEntriesHolder,
+                webBrowser1.GetTextAsync().Result
+            );
+
+            // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
+            toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
+
+            if (somethingLoadeded)
+            {
+                CheckAndAddNewItems();
+                toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
+                                             + kontoEntriesHolder.NewKontoEntries.Count + @".";
+            }
+        }
+
         /// <summary>
         /// Uses members in this class
         /// </summary>
@@ -449,132 +551,6 @@ namespace Budgetterarn
             return true;
         }
 
-        private void CheckFileIfEmptyPromptUserIfEmptyPath(KontoutdragInfoForLoad kontoutdragInfoForLoad)
-        {
-            if (string.IsNullOrWhiteSpace(kontoutdragInfoForLoad.FilePath))
-            {
-                kontoutdragInfoForLoad.ExcelFileSavePath =
-                    kontoutdragInfoForLoad.FilePath =
-                        FileOperations.OpenFileOfType("Open file", FileType.xls, ""); // Öppnar dialog
-            }
-        }
-
-        #region Load&Save
-
-        public static DialogResult SaveCheckWithArgs(
-           KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
-        {
-            var saveOr = DialogResult.None;
-            if (kontoutdragInfoForSave.SomethingChanged)
-            {
-                saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
-
-                // Cancel
-                if (saveOr == DialogResult.Yes)
-                {
-                    SaveKonton.Save
-                        (kontoutdragInfoForSave, kontoEntries, saldoHolder);
-                }
-            }
-
-            return saveOr;
-        }
-
-        private bool SaveFirstCheck(
-            KontoutdragInfoForLoad kontoutdragInfoForLoad, bool checkforUnsavedChanges, bool somethingLoadedFromFile)
-        {
-            // Nu har något laddats från fil, kolla då om något ska sparas
-            // Save check
-            if (checkforUnsavedChanges && somethingLoadedFromFile)
-            {
-                if (kontoEntriesHolder.KontoEntries.Count > 0)
-                {
-                    // somethingChanged är alltid false här
-                    var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntriesHolder.KontoEntries,
-                        kontoEntriesHolder.SaldoHolder);
-                    if (userResponse == DialogResult.Cancel)
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    kontoutdragInfoForLoad.SomethingChanged = false;
-                }
-            }
-
-            return false;
-        }
-
-        private void Save()
-        {
-            var statusText = toolStripStatusLabel1.Text;
-            var kontoutdragInfoForSave = new KontoutdragInfoForSave
-            {
-                ExcelFileSaveFileName = Filerefernces._excelFileSaveFileName,
-                ExcelFileSavePath = Filerefernces._excelFileSavePath,
-                ExcelFileSavePathWithoutFileName =
-                    Filerefernces.ExcelFileSavePathWithoutFileName,
-                SheetName = SheetName
-            };
-
-            var saveResult = SaveKonton.Save(kontoutdragInfoForSave, kontoEntriesHolder.KontoEntries,
-                kontoEntriesHolder.SaldoHolder);
-
-            somethingChanged = saveResult.SomethingLoadedOrSaved;
-
-            // somethingChanged = false;//Precis sparat, så här har inget hunnit ändras 
-            statusText += "Saving done, saved entries; " + saveResult.SkippedOrSaved;
-
-            // Räkna inte överskriften, den skrivs alltid om
-
-            // toolStripStatusLabel1.Text = "Saving done, saved entries; " + (logThis.Count - 1);//Räkna inte överskriften, den skrivs alltid om
-
-            // Fråga om man vill öppna Excel
-            if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
-                == DialogResult.Yes)
-            {
-                ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.ExcelFileSavePath);
-            }
-
-            toolStripStatusLabel1.Text = statusText;
-        }
-
-        private void LoadCurrentEntriesFromBrowser()
-        {
-            toolStripStatusLabel1.Text = @"Processing";
-
-            // var oldSaldoAllkort = saldoAllkort;
-            // var oldSaldoLöne = saldoLöne;
-            var somethingLoadeded = LoadKonton.GetAllVisibleEntriesFromWebBrowser(
-                kontoEntriesHolder,
-                webBrowser1);
-            //kontoEntries, webBrowser1, kontoEntriesHolder.NewKontoEntries, ref somethingChanged, saldoHolder);
-
-            // Done, meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
-            toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
-
-            if (somethingLoadeded)
-            {
-                CheckAndAddNewItems();
-                toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
-                                             + kontoEntriesHolder.NewKontoEntries.Count + @".";
-            }
-
-            // if ((!string.IsNullOrEmpty(oldSaldoAllkort) &&
-            // !oldSaldoAllkort.ClearSpacesAndReplaceCommas().Equals(saldoAllkort.ClearSpacesAndReplaceCommas()))
-            // ||
-            // (!string.IsNullOrEmpty(oldSaldoLöne) &&
-            // !oldSaldoLöne.ClearSpacesAndReplaceCommas().Equals(saldoLöne.ClearSpacesAndReplaceCommas()))
-            // )
-            // {
-            // toolStripStatusLabel1.Text += " Saldon: Allkort:" + (saldoAllkort ?? string.Empty) + ", Löne:" +
-            // (saldoLöne ?? string.Empty) + ", Kredit Ej fakt.:" +
-            // (saldoAllkortKreditEjFakturerat ?? string.Empty) +
-            // ", Kredit fakt.:" + (saldoAllkortKreditFakturerat ?? string.Empty);
-            // }
-        }
-
         #endregion
 
         #region Koppling av data till UI
@@ -638,10 +614,10 @@ namespace Budgetterarn
 
         private void OpenUrlToolStripMenuItemClick(object sender, EventArgs e)
         {
-            var url = InputBoxDialog.InputBox("Skirv url", "Navigera till", webBrowser1.Url.AbsolutePath);
+            var url = InputBoxDialog.InputBox(
+                "Skirv url", "Navigera till", webBrowser1.Address);
 
-            // var httpText = "http://";
-            webBrowser1.Navigate(url); // httpText + url.Replace(httpText, string.Empty));
+            webBrowser1.Load(url);
         }
 
         private void NavigeraToolStripMenuItemClick(object sender, EventArgs e)
@@ -692,7 +668,6 @@ namespace Budgetterarn
                 return;
             }
 
-            // statusStrip1//_browserStatusMessage.Text = "Done";
             toolStripStatusLabel1.Text = @"Done";
 
             try
@@ -707,13 +682,9 @@ namespace Budgetterarn
 
         private void DebugToolStripMenuItemClick(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(
+            webBrowser1.Load(
                 "https://secure.handelsbanken.se"
                 + "/bb/seip/servlet/UASipko?appAction=ShowAccountOverview&appName=ipko");
-
-            // const string clickUrl = @"javascript:showOrHideMenu('/shb/Inet/ICentSv.nsf/default/q1525F8FCB98E7B02C12571E60031D5A7?opendocument&frame=0','id4')";
-
-            // var obj = webBrowser1.ObjectForScripting;//.Navigate(clickUrl);
         }
 
         private void BtnLoadCurrentEntriesClick(object sender, EventArgs e)
@@ -791,10 +762,12 @@ namespace Budgetterarn
             PerformLayout();
 
             // läs in html...
-            webBrowser1.Navigate(GetBankUrl());
+            webBrowser1.Load(GetBankUrl());
         }
 
-        // Rensa minnet och m_newIitemsListOrg
+        /// <summary>
+        /// Rensa minnet och m_newIitemsListOrg
+        /// </summary>
         private void ClearNewOnesFnc()
         {
             newIitemsListOrg.Items.Clear();
@@ -805,6 +778,16 @@ namespace Budgetterarn
         }
 
         #endregion
+
+        private void CheckFileIfEmptyPromptUserIfEmptyPath(KontoutdragInfoForLoad kontoutdragInfoForLoad)
+        {
+            if (string.IsNullOrWhiteSpace(kontoutdragInfoForLoad.FilePath))
+            {
+                kontoutdragInfoForLoad.ExcelFileSavePath =
+                    kontoutdragInfoForLoad.FilePath =
+                        FileOperations.OpenFileOfType("Open file", FileType.xls, ""); // Öppnar dialog
+            }
+        }
 
         private void SetStatusLabelProps()
         {
@@ -824,7 +807,10 @@ namespace Budgetterarn
             toolStripStatusLabel1.Text = @"toolStripStatusLabel1";
         }
 
-        // Ger tillgång till status etiketten.
+        /// <summary>
+        /// Accessar status etiketten.
+        /// </summary>
+        /// <param name="autoSave"></param>
         private void AddNewEntriesToUiListsAndMem(bool autoSave)
         {
             toolStripStatusLabel1.Text = @"Trying to add; " + kontoEntriesHolder.NewKontoEntries.Count + @"items";

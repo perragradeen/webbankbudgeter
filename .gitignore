@@ -15,3 +15,5 @@ bin
 /FileTests/obj
 bin
 obj
+/.vs
+/packages

@@ -17,6 +17,6 @@
   <property name="AutonavigateEtc" value="false"/>
 
   <!--<property name="BankUrl" value="Handelsbanken" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>-->
-  <property name="BankUrl" value="swedbank" rownumberInTextfile="1" textfileName="Data\TrickyURLS.txt"/>
+  <property name="BankUrl" value="swedbank" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>
 
 </GeneralSettings>

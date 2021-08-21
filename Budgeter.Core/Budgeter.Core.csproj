@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BudgeterConstants\BankType.cs" />
-    <Compile Include="BudgeterConstants\ShbConstants.cs" />
+    <Compile Include="BudgeterConstants\BankConstants.cs" />
     <Compile Include="Entities\BankRow.cs" />
     <Compile Include="Entities\DescendingComparer.cs" />
     <Compile Include="Entities\KontoEntry.cs" />

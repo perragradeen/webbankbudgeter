@@ -115,8 +115,21 @@ namespace WebBankBudgeter
             var utgifter = table.BudgetRows.ToList();
             var månadsRubriker = await _inBudgetUiHandler.HämtaRubrikePåInPosterAsync();
 
+            // Presentera tabell för kvar budget.
+            _inBudgetUiHandler.BindInPosterRaderTillUi(
+                SnurraIgenom(inData, utgifter, WriteLineToOutputAndScrollDown),
+                månadsRubriker,
+                gv_incomes);
+
+            // Presentera summor för varje kat.
+        }
+
+        private static List<Rad> SnurraIgenom(
+            List<Rad> inData,
+            List<Service.Model.BudgetRow> utgifter,
+            Action<string> writeLineToOutputAndScrollDown)
+        {
             var kvarrader = new List<Rad>();
-            // Snurra igenom
             foreach (var inBudget in inData)
             {
                 // Synka med kategori och månad.
@@ -151,19 +164,14 @@ namespace WebBankBudgeter
                             var message = "Hittar ingen motsvarande inpost för utgift i :"
                                 + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
 
-                            WriteLineToOutputAndScrollDown(message);
+                            writeLineToOutputAndScrollDown(message);
                         }
                     }
                 }
                 kvarrader.Add(nuvarandeRad);
             }
-            // Presentera tabell för kvar budget.
-            _inBudgetUiHandler.BindInPosterRaderTillUi(
-                kvarrader,
-                månadsRubriker,
-                gv_incomes);
 
-            // Presentera summor för varje kat.
+            return kvarrader;
         }
 
         private MonthAvarages CalculateMonthlyAvarages()

@@ -5,9 +5,6 @@ using System;
 using System.Collections;
 using Utilities;
 
-//using Microsoft.Office.Interop.Excel;
-//using Application = Microsoft.Office.Interop.Excel.Application;
-
 namespace LoadTransactionsFromFile.DAL
 {
     public class LoadKontonDal
@@ -53,11 +50,9 @@ namespace LoadTransactionsFromFile.DAL
                     // Om det är kolumnbeskrivning, skippa...
                     if ((string)entryArray[0] == "y")
                     {
-                        // var saldoAllkortKreditFakturerat = entryArray.Length > 15 ? entryArray[15] ?? saldoAllkortKreditFakturerat : saldoAllkortKreditFakturerat;
                         var saldoColumnNumber = 11;
-                        //if (ProgramSettings.BankType == BankType.Swedbank)
-                        //{
-                        foreach (var saldoName in ShbConstants.SwedbankSaldonames)
+
+                        foreach (var saldoName in BankConstants.SwedbankSaldonames)
                         {
                             var saldot = entryArray.Length > saldoColumnNumber + 1
                                              ? entryArray[saldoColumnNumber + 1] ?? string.Empty
@@ -68,57 +63,18 @@ namespace LoadTransactionsFromFile.DAL
 
                             saldoColumnNumber++;
                         }
-                        //}
-                        //else if (ProgramSettings.BankType == BankType.Mobilhandelsbanken)
-                        //{
-                        //    // Spara saldon, använd det gamla värdet om inget nytt hittats från fil.
-                        //    //var saldoLöne = saldoHolder.GetSaldoForName(LönekontoName);
-                        //    //var saldoAllkort = saldoHolder.GetSaldoForName(AllkortName);
-                        //    //var saldoAllkortKreditEjFakturerat = saldoHolder.GetSaldoForName(EjFaktureratEtcName);
-
-                        //    //var saldoLöne = GetValueIfNotEmpty(entryArray, 12);
-                        //    //var saldoAllkort = (string)(entryArray.Length > 13 ? entryArray[13] ?? saldoAllkort : saldoAllkort);
-                        //    //var saldoAllkortKreditEjFakturerat = (string)(entryArray.Length > 14
-                        //    //                                              ? entryArray[14] ?? saldoAllkortKreditEjFakturerat
-                        //    //                                              : saldoAllkortKreditEjFakturerat);
-
-
-                        //    saldoHolder.AddToOrChangeValueInDictionaryForKey(LönekontoName, GetValueIfNotEmpty(entryArray, 12));
-                        //    saldoHolder.AddToOrChangeValueInDictionaryForKey(AllkortName, GetValueIfNotEmpty(entryArray, 13));
-                        //    saldoHolder.AddToOrChangeValueInDictionaryForKey(
-                        //        AllkortEjFaktureratName, GetValueIfNotEmpty(entryArray, 14)
-
-                        //        // + saldoAllkortKreditFakturerat.GetValueFromEntry()
-                        //        );
-                        //}
 
                         // Hoppa över
                         continue;
                     }
 
                     var newKe = new KontoEntry(entryArray, true);
-                    var key = newKe.KeyForThis; // item.Key as string;
+                    var key = newKe.KeyForThis;
 
                     // Lägg till orginalraden, gör i UI-hanterare
                     if (!saveToTable.ContainsKey(key))
                     {
-                        #region old debug
-
-                        // AddToRichTextBox(richTextBox1, newKE.RowToSaveForThis);
-
-                        // test debug
-                        // if (_newKontoEntries.Count < 6)
-                        // {
-                        // if (!_newKontoEntries.ContainsKey(key))
-                        // {
-                        // _newKontoEntries.Add(key, newKE);
-                        // //AddToListview(m_newIitemsListOrg, newKE);
-                        // }
-                        // }
-                        // else 
-                        #endregion
-
-                        saveToTable.Add(key, newKe); // CreateKE(entryArray, true)
+                        saveToTable.Add(key, newKe);
 
                         loadResult.SomethingLoadedOrSaved = true;
                     }

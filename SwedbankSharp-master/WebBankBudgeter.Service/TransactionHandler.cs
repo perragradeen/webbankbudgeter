@@ -134,7 +134,7 @@ namespace WebBankBudgeter.Service
                 FilePath = testfilePath,
                 ExcelFileSavePath = testfilePath,
                 ExcelFileSaveFileName = @"pelles budget.xls",
-                SheetName = ShbConstants.SheetName,
+                SheetName = BankConstants.SheetName,
             };
             kontoutdragInfoForLoad.FilePath = System.IO.Path.Combine(
                 kontoutdragInfoForLoad.FilePath,
