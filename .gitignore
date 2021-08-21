@@ -11,3 +11,7 @@ bin
 /TestResults/Deploy_Per 2013-11-23 17_21_14/Out
 /PdfToText/*.user
 /Backup/*.user
+/FileTests/bin
+/FileTests/obj
+bin
+obj
