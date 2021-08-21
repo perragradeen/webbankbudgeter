@@ -55,7 +55,7 @@ namespace Budgetterarn.DAL
 
                         #region Swedbank
 
-                        // Get saldo
+                        // TODO: läs saldon Get saldo
                         //GetSwedbankSaldo(webBrowser1.Document.Body, kontoEntriesHolder.SaldoHolder);
 
 
@@ -130,7 +130,6 @@ namespace Budgetterarn.DAL
         /// <returns></returns>
         private static BankRow GetSwedBankTableRowv2(List<string> htmlElement)
         {
-
             const int eventColNum = 1;
             const int dateColNum = 2;
             const int beloppColNum = 4;

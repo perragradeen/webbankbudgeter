@@ -1,9 +1,9 @@
 ﻿using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
+using Utilities;
 using System;
 using System.Collections;
 using System.Windows.Forms;
-using Utilities;
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
 
@@ -82,7 +82,6 @@ namespace Budgetterarn.DAL
             var indexKey = kontoEntries.Count;
             foreach (DictionaryEntry currentRow in kontoEntries)
             {
-                // string key = currentRow.Key as string;
                 if (currentRow.Value is KontoEntry currentKeEntry)
                 {
                     logThis.Add(indexKey--, currentKeEntry.RowToSaveForThis); // Använd int som nyckel
@@ -93,10 +92,8 @@ namespace Budgetterarn.DAL
         private static object[] GetTopRowWithHeaders(SaldoHolder saldoHolder)
         {
             var columnNames = new object[] { "y", "m", "d", "n", "t", "g", "s", "b", "", "", "", "c" };
-            // saldon
-            var saldoColumnNumber = 11 + 1
-                //+ columnNames.Length
-                ;
+
+            var saldoColumnNumber = 11 + 1;
 
             var logArray = new object[columnNames.Length + saldoHolder.Saldon.Count];
 

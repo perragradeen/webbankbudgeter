@@ -13,13 +13,6 @@ namespace WebBankBudgeter.Service.Services
             }
 
             return DoubleParseAdvanced(text.ToString());
-
-            //return double.TryParse(text.ToString()
-            //        .Replace(" ", string.Empty)
-            //        .Replace(",", ",")
-            //    , NumberStyles.Any, CultureInfo.InvariantCulture
-            //    , out double value) 
-            //    ? value : 0;
         }
 
         public static double DoubleParseAdvanced(string strToParse, char decimalSymbol = ',')

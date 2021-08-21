@@ -17,19 +17,5 @@ namespace WebBankBudgeter.Service.Model.ViewModel
         public List<string> ColumnHeaders { get; set; }
 
         public IEnumerable<BudgetRow> BudgetRows { get; set; }
-
-        //Rows = new List<List<object>>();
-        //public List<List<object>> Rows { get; set; }
-        //public List<List<string>> RowsIncludingHeaders
-        //{
-        //    get
-        //    {
-        //        var allRows = new List<List<string>>();
-        //        allRows.Add(ColumnHeaders);
-        //        allRows.AddRange(Rows);
-
-        //        return allRows;
-        //    }
-        //}
     }
 }

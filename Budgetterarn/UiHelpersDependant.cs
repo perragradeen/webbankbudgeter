@@ -14,7 +14,7 @@ namespace Budgetterarn
 
             var addedEntries = 0;
             var replacedEntries = 0;
-            foreach (KontoEntry entry in newEntries.Values) // _newKontoEntries.Values)
+            foreach (KontoEntry entry in newEntries.Values)
             {
                 if (!entry.ThisIsDoubleDoNotAdd)
                 {

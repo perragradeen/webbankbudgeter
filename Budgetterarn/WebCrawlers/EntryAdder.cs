@@ -17,15 +17,9 @@ namespace Budgetterarn.WebCrawlers
 
             if (!kontoEntries.ContainsKey(key) && !newKontoEntries.ContainsKey(key)) // Kollas även senare
             {
-                // if (newKontoEntries != null) {// && !newKontoEntries.ContainsKey(key)) {
                 if (key != null)
                 {
                     newKontoEntries.Add(key, newKeyFromHtml);
-
-                    // }
-                    // else {
-                    // //Dubblett
-                    // }
                 }
 
                 // Handle Doubles

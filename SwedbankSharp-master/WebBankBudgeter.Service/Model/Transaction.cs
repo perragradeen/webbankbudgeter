@@ -59,11 +59,6 @@ namespace WebBankBudgeter.Service.Model
             }
         }
 
-        //public static string GetDateAsYearMothText(DateTime dateTime)
-        //{
-
-        //}
-
         public string DateAsYearMothText
         {
             get
@@ -82,11 +77,6 @@ namespace WebBankBudgeter.Service.Model
 
         public static DateTime GetDateFromYearMonthName(string yearAndMonthAsText)
         {
-            //var årOMånadSplit = yearAndMonthAsText.Split(' ');
-            //var year = int.Parse(årOMånadSplit[0]);
-            //var monthText = årOMånadSplit[1];
-
-            //int month = DateTime.ParseExact(monthText, "MMMM", CultureInfo.InvariantCulture).Month;
             return DateTime.ParseExact(yearAndMonthAsText, "yyyy MMMM", CultureInfo.InvariantCulture);
         }
 
@@ -109,7 +99,6 @@ namespace WebBankBudgeter.Service.Model
 
                 if (double.TryParse(Amount.ToString()
                         .Replace(" ", string.Empty)
-                    //.Replace(",", ".")
                     , out var value))
                 {
                     _amountAsDouble = value;

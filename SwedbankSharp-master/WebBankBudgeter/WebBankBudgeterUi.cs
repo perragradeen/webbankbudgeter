@@ -211,16 +211,6 @@ namespace WebBankBudgeter
             //gv_incomes.SortCompare += new DataGridViewSortCompareEventHandler(nisse);
         }
 
-        //private void Gv_incomes_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        //{
-
-        //}
-
-        //private void nisse(object sender, DataGridViewSortCompareEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         private void InitTotalsUi()
         {
             var cNo = gv_Totals.Columns.Add("1", "Description");
@@ -250,11 +240,6 @@ namespace WebBankBudgeter
             AddRowWith2Cells(gv_Totals, "Inkomster snitt", summedAvaragesForCalc.Incomes);
             AddRowWith2Cells(gv_Totals, "Diff snitt", summedAvaragesForCalc.IncomeDiffCosts);
         }
-
-        //private async Task BindInPosterToUiAsync()
-        //{
-        //    await _inBudgetUiHandler.BindInPosterToUiAsync();
-        //}
 
         private void SparaInPosterPåDisk()
         {

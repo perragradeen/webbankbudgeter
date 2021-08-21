@@ -1,9 +1,2 @@
-https://secure.handelsbanken.se/bb/glss/servlet/prelogon?id=seprivsv
+https://online.swedbank.se/app/ib/logga-in
 https://internetbank.swedbank.se/bviPrivat/privat?TDEApplName=TDEApplEngagemang&_flow_id_=HEMTA_FLER_KONTOINFORMATION_PRECLIENT&_new_flow_=false&requestId=3&WindowSessId=148800773916144931
-http://m.handelsbanken.se
-https://internetbank.swedbank.se/bviPrivat/privat?WindowSessId=1275411021953467700&TDEApplName=TDEApplEngagemang&_flow_id_=BYT_KONTO_PRE_CLIENT&requestId=16&_new_flow_=false
-
-https://secure.handelsbanken.se/bb/glss/servlet/ssco_auth2?appAction=doAuthentication&path=ssse&entryId=privsignelegse&language=sv&country=SE
-http://www.handelsbanken.se/247igaa.nsf/default/LoginBankId?opendocument&redir=privelegsv
-https://secure.handelsbanken.se/bb/glss/servlet/ssco_auth2?appAction=doAuthentication&path=ssse&entryId=privcapse&language=sv&country=SE
-https://secure.handelsbanken.se/private/#!/economic_overview

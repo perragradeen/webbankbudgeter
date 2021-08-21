@@ -11,7 +11,6 @@ namespace Budgetterarn
         [STAThread]
         private static void Main()
         {
-            // ListviewWithComboBoxTest.Test.MainTestes(null);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BudgeterForm());

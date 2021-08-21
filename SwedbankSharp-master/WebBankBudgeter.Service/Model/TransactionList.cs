@@ -10,6 +10,5 @@ namespace WebBankBudgeter.Service.Model
         public List<ReservedTransaction> ReservedTransactions { get; set; }
         public int NumberOfReservedTransactions { get; set; }
         public bool MoreTransactionsAvailable { get; set; }
-        //public Links2 Links { get; set; }
     }
 }

@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Serializers\Serializers.csproj">
+      <Project>{d9a75c48-aeed-4bea-8c87-505146705dd6}</Project>
+      <Name>Serializers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{e6bffa45-e5f3-48d1-a5a8-953a37b6e7e7}</Project>
       <Name>Utilities</Name>

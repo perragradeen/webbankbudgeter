@@ -49,13 +49,8 @@ namespace Utilities
 
             Workbook ExcelBook = null;
 
-            // Hashtable book = new Hashtable();
             try
             {
-                // new ExcelLogRowComparer();//För progress
-
-                // ExcelLogRowComparer._compareProgress.StartTotal("Loading Log...", 0);
-
                 // Öppna den gamla loggen
                 ExcelBook = _excelApp.Workbooks._Open(
                     excelBookPath,
@@ -64,7 +59,6 @@ namespace Utilities
                     0,
                     Type.Missing,
                     XlPlatform.xlWindows,
-                    // XlTextQualifier.xlTextQualifierNone,
                     Type.Missing,
                     Type.Missing,
                     Type.Missing,
@@ -115,9 +109,6 @@ namespace Utilities
                 /// loop through 10 rows of the spreadsheet and place each row in the list view
                 var rows = new Hashtable(); // Behöver ej göras new, kan sättas till null eg.
 
-                // Progress, görs ej nu, för de e fel comparer... ExcelLogRowComparer._compareProgress.StartTotal("Loading Log sheets...", numOfSheets);//Progress
-                // int sheetsDone = 0;//För progress
-
                 // Store old rows
                 for (var sheetNr = startSheetNumber; sheetNr <= numOfSheets; sheetNr++)
                 {
@@ -132,18 +123,11 @@ namespace Utilities
 
                     // Hämta ut rader och lägg i rows från Excel arket worksheet
                     book.Add(localSheetName, rows); // Lägg till i arbetsboken
-
-                    // Progress, görs ej nu, för de e fel comparer... ExcelLogRowComparer._compareProgress.SetTotal(++sheetsDone);//Progress
-
-                    // if (MainForm.StopGracefully)
-                    // break;
                 }
 
-                // throw new Exception("TESTEXEPTION");
                 if (sheetName != "" && selectedRow != 0) // ha detta som en annan fkn, för att kunna använda ovan som en mer generell fkn, och ev. ha en som kör båda sen, för MissingCSC
                 {
-                    // book = book[sheetName]
-                    foreach (ExcelRowEntry var in (book[sheetName] as Hashtable).Values) // string[]
+                    foreach (ExcelRowEntry var in (book[sheetName] as Hashtable).Values)
                     {
                         returnHashtable.Add(var.Args[selectedRow - 1], 1);
                     }
@@ -162,7 +146,6 @@ namespace Utilities
                     return returnHashtable;
                 }
 
-                // MessageBox.Show("Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
                 throw new Exception(
                     "Error in retrieving log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
                     + e.Message + ").",
@@ -170,7 +153,6 @@ namespace Utilities
             }
 
             // Stängt boken oven
-            // _excelApp.Quit();//Stäng excel
             Marshal.ReleaseComObject(_excelApp);
 
             return returnHashtable;
@@ -207,7 +189,7 @@ namespace Utilities
 
         public Hashtable ReadSettings()
         {
-            return ReadSettings("settings.xml", "//pretentioussettings"); // AppDomain.CurrentDomain.BaseDirectory + 
+            return ReadSettings("settings.xml", "//pretentioussettings");
         }
 
         /// <summary>
@@ -222,21 +204,15 @@ namespace Utilities
             try
             {
                 var __doc = new XmlDocument();
-                __doc.Load(settingsFile); // "settings.xml");//AppDomain.CurrentDomain.BaseDirectory + 
+                __doc.Load(settingsFile);
 
-                var items = __doc.SelectSingleNode(nodeName); // "//pretentioussettings");
-                foreach (XmlNode item in items.ChildNodes) // __doc.FirstChild.ChildNodes)
+                var items = __doc.SelectSingleNode(nodeName);
+                foreach (XmlNode item in items.ChildNodes)
                 {
                     var settingCurrentElem = item as XmlElement;
                     var settingCurrent = settingCurrentElem.Name;
 
-                    returnTable.Add(
-                        settingCurrent, ""
-
-                        // new DaySettings(
-                        // int.Parse(settingCurrentElem.GetAttribute("dagintervall"))
-                        // , settingCurrent + " Time!")
-                        );
+                    returnTable.Add(settingCurrent, "");
                 }
 
                 return returnTable;

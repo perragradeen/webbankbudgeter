@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace WebBankBudgeter.Service
+namespace Serializers
 {
     /// <summary>
     /// Serialisera eller Deserialisera något till/från fil.

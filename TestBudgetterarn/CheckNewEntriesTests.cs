@@ -36,10 +36,8 @@ namespace TestBudgetterarn
                 {
                     KontoEntries = new SortedList(new DescendingComparer()),
                     NewIitemsListEdited =
-                        // new List<KontoEntry>(),
                         TestDataKoList,
                     NewKontoEntriesIn = newKos,
-                    // newKontoEntries,
                 };
             }
         }
@@ -111,7 +109,7 @@ namespace TestBudgetterarn
                 KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuesseDouble(entry, testData.KontoEntries);
             }
 
-            var new1 = testData.NewIitemsListEdited.First(); //.ToList().First();
+            var new1 = testData.NewIitemsListEdited.First();
             Assert.AreEqual(old1.FontFrontColor, new1.FontFrontColor);
         }
     }

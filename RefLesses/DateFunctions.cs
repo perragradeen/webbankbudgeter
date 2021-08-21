@@ -17,7 +17,7 @@ namespace RefLesses
             var useThisCulture = new CultureInfo("en-US");
 
             // felhantering, sätt dagens datum om det är fel
-            var currDate = DateTime.MinValue; // = DateTime.Parse("1/1/1900 12:00:00 AM", useThisCulture);
+            var currDate = DateTime.MinValue;
             try
             {
                 if (string.IsNullOrEmpty(dateValue) || dateValue.Length <= 3)

@@ -10,17 +10,17 @@ namespace Budgetterarn.Application_Settings_and_constants
             // Get file names from settings file
             var appPath = AppDomain.CurrentDomain.BaseDirectory;// TODO: fixa en allmän funktion som ger sökväg relativ
 
-            _excelFileSaveFileName =
+            ExcelFileSaveFileName =
                 GeneralSettings.GetStringSetting("ExcelFileSavePathFileName");
             ExcelFileSavePathWithoutFileName =
                 GeneralSettings.GetStringSetting("ExcelFileSaveDirPath");
-            _excelFileSavePath =
-                ExcelFileSavePathWithoutFileName + _excelFileSaveFileName;
-            _excelFileSavePath = Path.Combine(appPath, _excelFileSavePath);
+            ExcelFileSavePath =
+                ExcelFileSavePathWithoutFileName + ExcelFileSaveFileName;
+            ExcelFileSavePath = Path.Combine(appPath, ExcelFileSavePath);
         }
 
         public static string ExcelFileSavePathWithoutFileName { get; set; }
-        public static string _excelFileSaveFileName { get; set; }
-        public static string _excelFileSavePath { get; set; }
+        public static string ExcelFileSaveFileName { get; set; }
+        public static string ExcelFileSavePath { get; set; }
     }
 }

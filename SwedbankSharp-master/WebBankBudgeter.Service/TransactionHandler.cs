@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serializers;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Model.ViewModel;
 using WebBankBudgeter.Service.Services;
@@ -84,22 +85,8 @@ namespace WebBankBudgeter.Service
             _writeToOutput(message + Environment.NewLine);
         }
 
-        //private async Task<TransactionList> GetData()
         private async Task<TransactionList> GetData()
         {
-            //return TestData.GetTestDatasFromFiles();
-
-            //----------------------
-
-            //long idnumber = 7906072439;
-            ////long idnumber2 = 7703217583;
-            //var idNumbers = new List<long>
-            //{
-            //    idnumber
-            //    //, idnumber2
-            //};
-
-            //var getter = new GetAllEntriesForAccounts(_writeToOutput);
             var transactionLists =
                 await GetTransactionsTransFormedFromFile();
 
@@ -124,9 +111,6 @@ namespace WebBankBudgeter.Service
 
         private SortedList GetTransactionsFromFile()
         {
-            //var statusText = toolStripStatusLabel1.Text = @"Nothing loaded.";
-            //var changedExcelFileSavePath = Filerefernces._excelFileSavePath;
-
             // Todo:Viktig: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
             var testfilePath = @"C:\Temp";
             var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
@@ -163,7 +147,6 @@ namespace WebBankBudgeter.Service
 
             var transactions = GetTransFormedTransactionsFromFileToList(transactionsFromFile); // Add reoccuring and income categories
 
-            //var returnList = FillAllCategories(transactions);
             return transactions;
         }
 

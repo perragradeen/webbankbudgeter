@@ -67,7 +67,6 @@ namespace WebBankBudgeter.Service.Services
 
             var catChartModelRowList =
                 new Dictionary<string, BudgetRow>();
-            //var amountsForMonth = new Dictionary<string, double>();
             foreach (var dateAndCatTransGroup in transactionsGrouped)
             {
                 var rowFactory = new BudgetRowFactory(
@@ -95,7 +94,6 @@ namespace WebBankBudgeter.Service.Services
         public static IEnumerable<IGrouping<TransGrouping, Transaction>> GroupOnMonthAndCategory(List<Transaction> transactions)
         {
             var g = transactions.GroupBy(t =>
-                //t.DateAsDate.Month + "_" + t.Categories.Name
                 new TransGrouping
                 {
                     Year = t.DateAsDate.Year,

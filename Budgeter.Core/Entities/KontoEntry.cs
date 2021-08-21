@@ -27,7 +27,6 @@ namespace Budgeter.Core.Entities
         public string TypAvKostnad { get; set; } // kunde varit en enum, men då hade den inte kunnat läsas in från Xml.
         // Ev. ha en övrig inf, en array av string typ, med referenser kommentarer etc
 
-        // dateFormat = currDate.Date.ToString("yyyy-MM-dd", svecia);// string.IsNullOrEmpty(dateFormat).ToString();
         public bool ForUi { get; set; }
         public string DateString
         {
@@ -40,8 +39,8 @@ namespace Budgeter.Core.Entities
                 }
                 return Date.ToString(CultureInfo.InvariantCulture);
             }
-        } // "yyyy-MM-dd"); } }
-        public string DateStringFrom3Ints => Date.ToString("yyyy-MM-dd"); // "yyyy-MM-dd"); } }
+        }
+        public string DateStringFrom3Ints => Date.ToString("yyyy-MM-dd");
 
 
         // De 3 nedan kan innehålla annat än vad de heter, gamla grejjer kan ligga där de skulle vara eg.
@@ -71,13 +70,8 @@ namespace Budgeter.Core.Entities
             // Ta inte med TypAvKostnad, för det finns inget i Html om det, och då kan man inte jämföra med excel eftersom nycklarna e olika.
         }
 
-        // public int ExcelRowNumber { get; set; }
         public object[] RowToSaveForThis
         {
-            // Date.Month.ToString()=="1"
-            // new string[1]{
-            // "=B" + currRow + "-D" + currRow //BC när den är färdig, men "new" finns som rad o då blird det B+D
-            // }
             get
             {
                 return new object[]
@@ -104,16 +98,10 @@ namespace Budgeter.Core.Entities
             }
         }
 
-        // public string[] RowToSaveToUi//(bool toExcel)
-        // {
-        // get { return new[] { DateString, Info, KostnadEllerInkomst.ToString(), SaldoOrginal.ToString(), AckumuleratSaldo.ToString(), TypAvKostnad }; }
-
-        // }
-
         /// <summary>
         /// Bytt plats på typ och kost. För Ui
         /// </summary>
-        public string[] RowToSaveToUiSwitched // (bool toExcel)
+        public string[] RowToSaveToUiSwitched
         {
             get
             {
@@ -144,7 +132,7 @@ namespace Budgeter.Core.Entities
         {
         }
 
-        public KontoEntry(object[] inArray, bool fromXls = false) // CreateKE
+        public KontoEntry(object[] inArray, bool fromXls = false)
         {
             if (InarrayEmpty(inArray))
             {
@@ -152,23 +140,6 @@ namespace Budgeter.Core.Entities
             }
 
             mFromXls = fromXls;
-
-            // Kolla alla insträngar, om någon är null, kan det bli fel ordning på inläsningen, denna antar att beskrivningen är tom
-            var index = 0;
-            foreach (var currentValue in inArray)
-            {
-                if (currentValue == null)
-                {
-                    // Förskjut alla värden ett steg pga nullen, om det inte är från allkort...
-                    // inArray[3] = inArray[2];
-
-                    // inArray[2] = inArray[1];
-                    // inArray[1] = "";
-                }
-
-                index++;
-            }
-
             // he, skulle kunna sätta en ny array av inArray och om det saknas värde så sätt "" eller " "
 
             // gör ev. om från const tilldyn. sätt nästa rel. den första, så kan man ta bort eller skjuta in en lätt

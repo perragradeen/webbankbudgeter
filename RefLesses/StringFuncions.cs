@@ -21,12 +21,8 @@
 
         public static string GetTextBetweenStartAndEndText(string inText, string startText, string endText)
         {
-            //var startText = "Ej fakturerat:";
-            //var endText = "  Clearingnummer:";
-
             //Kolla saldo
             if (inText != null &&
-                // C:\Files\Dropbox\budget\Program\webbankbudgeter\Budgetterarn\DAL\LoadKonton.cs
                 ContainsClean(inText, startText)
                 && ContainsClean(inText, endText)
                 )
@@ -37,11 +33,9 @@
 
                 var saldo =
                     elemText.Substring(startIndex, endIndex - startIndex).Trim()
-                    //.Replace(extraText, string.Empty)
                     .Replace(" ", string.Empty);
 
                 //Saldo:44 476,09 Information och villkor om kontot
-                //saldoAllkortKreditEjFakturerat = saldo;
                 return saldo;
             }
 
@@ -50,8 +44,7 @@
 
         public static double SafeGetDouble(string inText)
         {
-            double result;
-            if (double.TryParse(inText, out result))
+            if (double.TryParse(inText, out var result))
             {
                 return result;
             }

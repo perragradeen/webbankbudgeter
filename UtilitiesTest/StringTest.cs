@@ -14,11 +14,8 @@ namespace UtilitiesTest
             var result = StringFuncions.GetTextBetweenStartAndEndText(TestText, "LÖNEKONTO - 629 010 552", "Att tänka på inför årsskiftet");
 
             var splitResult = result.Substring(0, result.Length / 2);
-            //string part1 = full.Substring(0, 8);
-            //string part2 = full.Substring(8, 8);
 
             Assert.AreEqual("163421,75", splitResult);
-            //Assert.AreEqual("163421,75", result);
         }
 
         public string TestText

@@ -34,9 +34,6 @@ namespace Budgetterarn
             FullRowSelect = true;
             GridLines = true;
 
-            // this.Location = new System.Drawing.Point(3, 3);
-            // this.Name = "m_newIitemsListOrg";
-            // this.Size = new System.Drawing.Size(574, 577);
             TabIndex = 0;
             UseCompatibleStateImageBehavior = false;
             View = System.Windows.Forms.View.Details;
@@ -67,10 +64,10 @@ namespace Budgetterarn
 
             // Create an instance of a ListView column sorter and assign it 
             // to the ListView control.
-            ColumnClick += listView1_ColumnClick;
+            ColumnClick += ListView1_ColumnClick;
         }
 
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void ListView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             var lvwColumnSorter = (ListViewColumnSorter)ListViewItemSorter;
 

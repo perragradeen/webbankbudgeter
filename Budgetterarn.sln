@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebBankBudgeter-Service", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBankBudgeter.Service.TransactionTests", "WebBankBudgeter.Service.TransactionTests\WebBankBudgeter.Service.TransactionTests.csproj", "{ABC3FF60-A110-4263-8E43-52BEAE6E5478}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serializers", "Serializers\Serializers.csproj", "{D9A75C48-AEED-4BEA-8C87-505146705DD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -209,6 +211,18 @@ Global
 		{ABC3FF60-A110-4263-8E43-52BEAE6E5478}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{ABC3FF60-A110-4263-8E43-52BEAE6E5478}.Release|Win32.ActiveCfg = Release|Any CPU
 		{ABC3FF60-A110-4263-8E43-52BEAE6E5478}.Release|Win32.Build.0 = Release|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Debug|Win32.Build.0 = Debug|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Release|Win32.ActiveCfg = Release|Any CPU
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,6 +243,7 @@ Global
 		{181DDD13-5842-4AEF-B89F-B2F4F4861346} = {8844F44C-9912-4031-A1EB-9782E3DCDF83}
 		{D6766080-123A-44CA-9F31-2638B9403286} = {FD53D91B-89C8-4E78-8870-38429ACB27E3}
 		{ABC3FF60-A110-4263-8E43-52BEAE6E5478} = {D6766080-123A-44CA-9F31-2638B9403286}
+		{D9A75C48-AEED-4BEA-8C87-505146705DD6} = {6AC71520-9D21-4146-972E-D9FA4DDD9019}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E1C4CD8-26A7-4A10-804E-67B76E8DBCF8}

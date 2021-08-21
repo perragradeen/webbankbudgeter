@@ -46,7 +46,6 @@
     <Compile Include="Model\TransactionList.cs" />
     <Compile Include="MonthAvarages\MonthAvarages.cs" />
     <Compile Include="MonthAvarages\MonthAvaragesCalcs.cs" />
-    <Compile Include="SerializationFunctions.cs" />
     <Compile Include="Services\Conversions.cs" />
     <Compile Include="Services\Helpers\BudgetRowFactory.cs" />
     <Compile Include="Model\BudgetRow.cs" />
@@ -73,6 +72,10 @@
     <ProjectReference Include="..\..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj">
       <Project>{618A6F79-4251-4969-857B-E806C0F45882}</Project>
       <Name>LoadTransactionsFromFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Serializers\Serializers.csproj">
+      <Project>{d9a75c48-aeed-4bea-8c87-505146705dd6}</Project>
+      <Name>Serializers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

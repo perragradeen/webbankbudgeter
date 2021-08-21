@@ -67,7 +67,7 @@ namespace Utilities
 
             _book = _app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
 
-            _sheet = _book.Sheets[1] as Worksheet; // Excel.Worksheet 
+            _sheet = _book.Sheets[1] as Worksheet;
             _sheet.Name = "Info";
             _sheets.Add("Info", new object[] { _sheet, 1, 0 });
             _last = _sheet;
@@ -81,8 +81,6 @@ namespace Utilities
             {
                 return _app;
             }
-
-            // set { _app = value; }
         }
         public Workbook Book
         {
@@ -116,20 +114,6 @@ namespace Utilities
                 Type.Missing);
         }
 
-        // Sub SaveAs( _
-        // <InAttribute()> Optional ByVal Filename As Object, _
-        // <InAttribute()> Optional ByVal FileFormat As Object, _
-        // <InAttribute()> Optional ByVal Password As Object, _
-        // <InAttribute()> Optional ByVal WriteResPassword As Object, _
-        // <InAttribute()> Optional ByVal ReadOnlyRecommended As Object, _
-        // <InAttribute()> Optional ByVal CreateBackup As Object, _
-        // <InAttribute()> Optional ByVal AccessMode As XlSaveAsAccessMode, _
-        // <InAttribute()> Optional ByVal ConflictResolution As Object, _
-        // <InAttribute()> Optional ByVal AddToMru As Object, _
-        // <InAttribute()> Optional ByVal TextCodepage As Object, _
-        // <InAttribute()> Optional ByVal TextVisualLayout As Object, _
-        // <InAttribute()> Optional ByVal Local As Object _
-        // )
         private void Application_WorkbookDeactivate(Workbook wb)
         {
             // Stäng och släpp excel
@@ -205,7 +189,6 @@ namespace Utilities
                     0,
                     Type.Missing,
                     XlPlatform.xlWindows,
-                    // XlTextQualifier.xlTextQualifierNone,
                     Type.Missing,
                     Type.Missing,
                     Type.Missing,
@@ -250,8 +233,6 @@ namespace Utilities
 
                     numOfSheets = startSheetNumber; // +1 behövs ej eftersom loopen har  <= numOfSheets
 
-                    // string localSheetName = ((Excel.Worksheet)Sheets.get_Item(sheetNr)).Name;//Excelarknamnet
-                    // workSheet = (Excel.Worksheet)Sheets.get_Item(sheetNr);//Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
                     if (workSheet == null)
                     {
                         throw new Exception("Sheet not found: " + sheetName + ". In: " + excelBookPath);
@@ -304,7 +285,6 @@ namespace Utilities
                 excelApp.Quit(); // Stäng excel
                 Marshal.ReleaseComObject(excelApp);
 
-                // MessageBox.Show("Error in retrieving old log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: " + e.Message + ").");
                 throw new Exception(
                     "Error in retrieving log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
                     + e.Message + ").",
@@ -344,7 +324,6 @@ namespace Utilities
             if (!_GeneralSheetCreated)
             {
                 // För felmeddelanden
-                // Excel.Worksheet sheet
                 _sheet =
                     _book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as
                     Worksheet;
@@ -355,8 +334,6 @@ namespace Utilities
                 _GeneralSheetCreated = true;
 
                 AddRow("General", true, 0, "General exception messages");
-
-                // LogMessage("General", "---", "");
             }
 
             return _GeneralSheetCreated;
@@ -372,7 +349,6 @@ namespace Utilities
             // något strul med stoppknappen
             try
             {
-                // _book.Save();
                 _book.Close(false, Type.Missing, Type.Missing);
             }
             catch (Exception e)
@@ -380,9 +356,6 @@ namespace Utilities
                 Console.WriteLine("Error in closing excel." + e);
             }
 
-            // _app. blir den 
-
-            // ---
             try
             {
                 foreach (object[] sheetWInfo in _sheets.Values)
@@ -422,14 +395,12 @@ namespace Utilities
 
             _app = null;
 
-            // _book.Close(0, "","");//PG
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
 
         public void AddTest(string name, TestInfo testInfo)
         {
-            // Excel.Worksheet 
             _sheet =
                 _book.Worksheets.Add(Type.Missing, _last, Type.Missing, Type.Missing) as
                 Worksheet;
@@ -458,7 +429,7 @@ namespace Utilities
                     {CellLayOutSettings.Bold, true}
                 };
 
-                if (testInfo.Columns[0] == "Total number of:") // if(name = "DataBaseInfo")
+                if (testInfo.Columns[0] == "Total number of:")
                 {
                     AddRow(name, cellLayout, true, 3, testInfo.Columns);
                 }
@@ -471,10 +442,6 @@ namespace Utilities
             }
         }
 
-        // public void Log(string sheetName, object autofitAlwaysTrue, int insertInRow, params object[] args)
-        // {
-        // Log(sheetName , null, insertInRow, args);//Används aldrig
-        // }
         public void Log(string sheetName, int insertInRow, params object[] args)
         {
             Log(sheetName, false, insertInRow, args);
@@ -488,7 +455,6 @@ namespace Utilities
 
         public void Log(string sheetName, bool autofit, int insertInRow, params object[] args)
         {
-            // Excel.Range newCell = 
             AddRow(sheetName, autofit, insertInRow, args);
         }
 
@@ -505,17 +471,11 @@ namespace Utilities
 
         public void Log(string sheetName, Hashtable cellLayOutSettings, int insertInRow, params object[] args)
         {
-            // Excel.Range newCell = 
             // Stor prestandaförlust om man autofittar för varje ny rad som skrivs, detta görs för överskriften (kolumnnamnen sen)
             AddRow(sheetName, cellLayOutSettings, false, insertInRow, args); // true
 
             if (OnLog == null || !(_testInfo[sheetName] is TestInfo ti) || ti.InfoText == "") return;
 
-            // if (args.Length != ti.Columns.Length)
-            // {
-            // Console.WriteLine("Faulty TestInfo for {0}.", sheetName);
-            // return;
-            // }
             var s = "";
             for (var i = 0; i < args.Length; i++)
             {
@@ -552,7 +512,7 @@ namespace Utilities
         {
             var logMessages = new object[args.Length + 1];
             logMessages[0] = message;
-            if (args.Length > 0 && args[0].GetType() == typeof(string)) // .ToString().StartsWith("{"))
+            if (args.Length > 0 && args[0].GetType() == typeof(string))
             {
                 var argNr = 1;
                 message = type + " " + message + " ";
@@ -647,7 +607,6 @@ namespace Utilities
                     GeneralSheetCreated();
                 }
 
-                // Excel.Range cellRange = null;
                 if (_app == null)
                 {
                     return; // null;
@@ -655,7 +614,6 @@ namespace Utilities
 
                 _sheet = null;
 
-                // Excel.Worksheet sheet = null;
                 if (!_sheets.Contains(sheetName))
                 {
                     return; // null;
@@ -676,7 +634,7 @@ namespace Utilities
                 if ((int)oa[2] > 1)
                 {
                     saveAsSheetName = sheetName + "_part" + oa[2];
-                    oa = _sheets[sheetName + "_part" + oa[2]] as object[]; // oa[0] as Excel.Worksheet; 
+                    oa = _sheets[sheetName + "_part" + oa[2]] as object[];
                 }
                 else
                 {
@@ -712,17 +670,11 @@ namespace Utilities
                     _sheets.Add(newSheetName, new object[] { _nextSheet, 4, 0 });
                 }
 
-                // _sheets[sheetName] = oa;
                 _sheets[saveAsSheetName] = oa;
-
-                // return cellRange;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error in Logger, may be Excel error: " + e.Message);
-
-                // throw e;
-                // return null;
             }
         }
 
@@ -735,7 +687,6 @@ namespace Utilities
             Color color,
             int insertInRow,
             params object[] args)
-        // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
         {
             return AddRow(sheet, saveAsSheetName, ref oa, cellLayOutSettings, autofit, color, insertInRow, 0, args);
         }
@@ -750,7 +701,6 @@ namespace Utilities
             int insertInRow,
             int insertInColumn,
             params object[] args)
-        // Done vad som va målet inte det som står th.: returnera cellen eller cellrange o gör det möjligt att i efterhand göra autoFitColumnWidth. //Excel.Range addRow
         {
             try
             {
@@ -766,18 +716,16 @@ namespace Utilities
                 var nextRow = (int)oa[1];
 
                 // spara cellerna som det skrivs till i en sträng-array, skr sedan alla på en gång
-                // string[,] cellsToWrite = new string[1, args.Length + insertInColumn];
                 object[,] cellsToWrite = null;
                 if (args.Length == 1) // onödig?, hmm nej, inte om det är special för 1 grejj, ska man inte kunna skriva enradsgrejjer till andra kolumnerm, hm det har med DbInfos new och +/- kolumn att göra troligt
                 {
-                    cellsToWrite = new object[1, args.Length]; // + insertInColumn
+                    cellsToWrite = new object[1, args.Length];
                 }
                 else
                 {
                     cellsToWrite = new object[1, args.Length + insertInColumn];
                 }
 
-                // string toWriteIncells = args;
                 #region Write each cell at a time to temp variable
 
                 var rowWrittenTo = 0;
@@ -792,58 +740,20 @@ namespace Utilities
                     }
 
                     // Strängar längre än ca912 kan inte skrivas till en cell, uten ger ett exception med lite info i. Så längder över 900 tecken klipps bort.
-                    // const int maxCellLength = 900;
-                    // foreach (var arg in args[0] as object[])
-                    // {
-                    // if (arg.ToString().Length > maxCellLength)
-                    // {
-                    // arg = arg.ToString().Substring(0, 900);
-                    // }
-                    // }
                     var toWriteIncell = args[i - insertInColumn];
-
-                    // (args[i - insertInColumn].ToString()).Length > 900 ?
-                    // (args[i - insertInColumn].ToString()).Substring(0, 900)
-                    // : args[i - insertInColumn].ToString();
 
                     // Det blir problem med celler som börjar med "=", och sedan inte ger en riktig formel, så detta sätts till
                     // TODO: Fixa något allmänt test för formler som kan gå fel, eller formatera rangen som text, men det vill man iofs inte alltid...
-                    // if (toWriteIncell.ToString().StartsWith("=") && toWriteIncell.ToString().Contains("x")) toWriteIncell = " " + toWriteIncell;
                     rowWrittenTo = nextRow; // Vilken rad som verkligen skrivits till, används för layout av cellen
                     if (insertInRow > 0)
                     {
-                        // sheet.Cells[insertInRow, i + 1] = toWriteIncell;
                         cellsToWrite[0, i - insertInColumn] = toWriteIncell;
                         rowWrittenTo = insertInRow;
                     }
-                    else // if (args[i] != null)
+                    else
                     {
-                        // sheet.Cells[nextRow, i + 1] = toWriteIncell;
-                        // cellsToWrite[0, i] = toWriteIncell;
                         cellsToWrite[0, i] = toWriteIncell; // (toWriteIncell as string);//.Length > 900 ?
-
-                        // (toWriteIncell as string).Substring(0, 900)
-                        // : toWriteIncell;
                     }
-
-                    #region old Exceltester
-
-                    // cellRange.Interior.ColorIndex = 36;//36 = Gul//Fungerar
-                    // cellRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Green);//Fungerar
-
-                    // rng.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
-                    // ((Excel.Worksheet)sheet.Activate())
-                    // objRange.Font.Background = 4.0;
-                    // string strData = objRange.get_Value(Type.Missing).ToString();
-                    // objRange.Select();
-                    // objRange.Style =  
-                    // object tempObject = objRange.Borders.Color;
-
-                    // objRange.Borders.Color = 5.0;//Ändrar faktiskt ramen för cellen
-
-                    // ((Range)sheet.Cells[nextRow, i + 1]).AutoFit();
-                    // sheet.Cells[nextRow, i + 1].AutoFit();
-                    #endregion
                 }
 
                 #endregion
@@ -861,54 +771,24 @@ namespace Utilities
                 // Write to excel sheet
                 cellRange.Value2 = cellsToWrite; // "A"
 
-                #region buggtest Skriv till ExcelSheet
-
-                // Excel.Range //cellRange = null;
-
-                // object[,] tempp = new object[2, 5] { "a", "f", "g", "h" };
-                // cellRange.Value2 = cellsToWrite;//"A"
-                // object to = new object[] { cellsToWrite };
-
-                // fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();
-                // toColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(cellsToWrite.Length + insertInColumn);//nextRow.ToString();
-
-                // cellRange = sheet.get_Range(fromColumn + rowWrittenTo.ToString(), toColumn + rowWrittenTo.ToString());
-
-                // buggtest
-                // object[,] tempp = new object[2, 5] { "a", "f", "g", "h" };
-                // cellRange.Value2 = cellsToWrite;//"A"
-                // object to = new object[] { cellsToWrite };
-                #endregion
-
                 #region Layout (färg, autofit column etc)
 
                 if ((cellLayOutSettings != null && cellLayOutSettings.Count > 0) || autofit
                     || (color != Color.Empty))
                 {
-                    // Excel.Range //cellRange = null;
-                    // cellRange =
-                    // sheet.get_Range(fromColumn + rowWrittenTo.ToString(), toColumn + rowWrittenTo.ToString());//"A" 
-                    // (Excel.Range)sheet.Cells[rowWrittenTo, i + 1];
                     if (cellLayOutSettings != null && cellLayOutSettings.Count > 0)
                     {
                         EditCellLayOut(cellLayOutSettings, cellRange);
                     }
 
-                    // Det hade med insertrow att göra, så det va fel range hela tiden...Inte ens detta ger bold på columnnamnen
-                    // Excel.Range cellRanges = (Excel.Range)sheet.Cells[nextRow, i + 1];
-                    // cellRanges.Font.Bold = true;
-                    // cellRange.Font.Color = System.Drawing.ColorTranslator.ToOle(color);
-                    // color = System.Drawing.Color.Empty;
                     if (autofit)
                     {
                         cellRange.EntireColumn.AutoFit(); // autofittar hela columnen för all som loggas
-
-                        // cellRange.Font.Bold = true;
                     }
 
                     if (color != Color.Empty)
                     {
-                        cellRange.Interior.Color = ColorTranslator.ToOle(color); // Fungerar
+                        cellRange.Interior.Color = ColorTranslator.ToOle(color);
                     }
                 }
 
@@ -971,8 +851,6 @@ namespace Utilities
                         + excExcp.Message);
                 }
 
-                // throw e;
-                // return null;
                 return -1;
             }
         }
@@ -1004,8 +882,6 @@ namespace Utilities
                         case CellLayOutSettings.InteriorColorSysDrawingType:
                             cellRange.Interior.Color =
                                 ColorTranslator.ToOle((Color)currentSetting.Value);
-
-                            // System.Drawing.ColorTranslator.ToOle(color);
                             break;
                         case CellLayOutSettings.InteriorColorColorIndexType:
                             cellRange.Interior.ColorIndex = (int)currentSetting.Value;
@@ -1022,23 +898,3 @@ namespace Utilities
         }
     }
 }
-
-/*
-"
-fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();l32131616516516516uuuuuuyyuuuuutt255"
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1)xxxnextRow.ToString()xfromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1)XXxnextRow.ToString()Xl32131616516516516uuuuuuyyuuuuutt255"
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1)xxxnextRow.ToString()xfromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1)XXxnextRow.ToString()Xl32131616516516516uuuuuuyyuuuuutt255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1)xxxnextRow.ToString()xfromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1)XXxnextRow.ToString()Xl32131616516516516uuuuuuyyuuuuutt255"
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255"
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255"
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuutr255"
-
-"fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuusdfsfgsfgsfgsfggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggguuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxuxx255"
-dsd 
- * 
- * 
- * Gräns vid 912 tecken
-"
- * 
-fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuuuuu255fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();fromColumn = Utilities.ExcelLogRowComparer.GetStandardExcelColumnName(insertInColumn + 1);//nextRow.ToString();lx32131616516516516uuuuuuuusdfsfgsfgsfgsfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggpppgggggggxxxuxx255"
- */

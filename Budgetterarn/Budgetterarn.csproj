@@ -94,8 +94,8 @@
     <Compile Include="AddedAndReplacedEntriesCounter.cs" />
     <Compile Include="Application Settings and constants\Filerefernces.cs" />
     <Compile Include="Application Settings and constants\UISettings.cs" />
-    <Compile Include="AutoGetEntriesHbMobil.cs" />
-    <Compile Include="BrowserNavigating.cs" />
+    <Compile Include="AutoNavigateBrowser\AutoGetEntriesHbMobil.cs" />
+    <Compile Include="AutoNavigateBrowser\BrowserNavigating.cs" />
     <Compile Include="BudgeterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,7 +105,6 @@
     <Compile Include="DAL\FileBackupper.cs" />
     <Compile Include="DAL\SaveKonton.cs" />
     <Compile Include="DoneNavigationAction.cs" />
-    <Compile Include="InternalUtilities\BrowserExtend.cs" />
     <Compile Include="KontoEntriesChecker.cs" />
     <Compile Include="KontoEntryListView.cs">
       <SubType>Component</SubType>
@@ -151,7 +150,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tests.cs" />
     <Compile Include="InternalUtilities\FileOperations.cs" />
     <Compile Include="InternalUtilities\InputBoxDialog.cs">
       <SubType>Form</SubType>
@@ -162,14 +160,9 @@
     <Compile Include="InternalUtilities\ListViewColumnSorter.cs" />
     <Compile Include="UiHelpers.cs" />
     <Compile Include="UiHelpersDependant.cs" />
-    <Compile Include="ValuesandConsts.cs" />
     <Compile Include="ViewUpdateUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\InBudgetsOfCategories.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\Categories.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -177,9 +170,6 @@
     <Content Include="Data\GeneralSettings.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Data\LGCategories.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Todo.txt" />
     <Content Include="Data\TrickyURLS.txt">

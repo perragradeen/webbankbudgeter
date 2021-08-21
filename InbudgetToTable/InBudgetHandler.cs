@@ -40,10 +40,6 @@ namespace InbudgetToTable
 
                 var celler = rad.Cells.Cast<DataGridViewCell>();
                 var sistaRadensIndexNummer = bindToUiElement.Rows.GetLastRow(DataGridViewElementStates.Displayed);
-                //if (rad.Index == sistaRadensIndexNummer)
-                //{
-                //    break;
-                //}
 
                 var kolumnerEfter1 = celler.Where(värde => värde.ColumnIndex != 0);
 
@@ -126,10 +122,7 @@ namespace InbudgetToTable
                 // Skriv ut värdet i kr kolumner från vänster till höger
                 var inPosterna = inPostGrupp
                     .ToList();
-                //.OrderBy(tid => tid.YearAndMonth)
-                //.Select(inPosten => inPosten.BudgetValue)
-                //.ToDictionary<string, double>(d=>d, v=> v.BudgetValue);
-                //rad.Kolumner.AddRange(inPosterna);
+
                 foreach (var inPost in inPosterna)
                 {
                     var årOMånadKey = Transaction.GetYearMonthName(inPost.YearAndMonth);

@@ -4,7 +4,7 @@ namespace Budgeter.Core.BudgeterConstants
 {
     public class BankConstants
     {
-        public const string SheetName = "Kontoutdrag_officiella"; // "Kontoutdrag f.o.m. 0709 bot.up.";
+        public const string SheetName = "Kontoutdrag_officiella";
 
         public static readonly List<string> SwedbankSaldonames =
             new List<string>

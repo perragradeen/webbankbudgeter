@@ -19,7 +19,8 @@ namespace UtilitiesTest
         {
             var sheetName = "Blad1";
             Logger.OperationToPerformOnBook operation = null;
-            var rowToWrite = new object[] { "Testar", "kl:", DateTime.Now }; // .ToString()
+            var rowToWrite = new object[]
+                { "Testar", "kl:", DateTime.Now };
             var overWrite = true;
             Hashtable rowsToWrite = null;
             var expected = -1;
@@ -33,8 +34,6 @@ namespace UtilitiesTest
         {
             var sheetName = "Sheet1";
 
-            // Logger.OperationToPerformOnBook operation = null;
-            // var rowToWrite = new object[] { "Testar", "kl:", DateTime.Now };//.ToString()
             var overWrite = true;
 
             var rowsToWrite = new Hashtable

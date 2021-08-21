@@ -4,10 +4,10 @@ namespace Budgetterarn.DAL
 {
     public class FileBackupper
     {
-        private string typeOfBackup;
-        private string excelFileSavePath;
-        private string excelFileSavePathWithoutFileName;
-        private string excelFileSaveFileName;
+        private readonly string typeOfBackup;
+        private readonly string excelFileSavePath;
+        private readonly string excelFileSavePathWithoutFileName;
+        private readonly string excelFileSaveFileName;
 
         public FileBackupper(string v, string excelFileSavePath, string excelFileSavePathWithoutFileName, string excelFileSaveFileName)
         {

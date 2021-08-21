@@ -45,10 +45,8 @@
     <Compile Include="Entities\DescendingComparer.cs" />
     <Compile Include="Entities\KontoEntry.cs" />
     <Compile Include="Entities\KontoEntryType.cs" />
-    <Compile Include="Entities\KontoutdragInfo.cs" />
     <Compile Include="Entities\InBudget.cs" />
     <Compile Include="Entities\KontoutdragInfoForLoad.cs" />
-    <Compile Include="Entities\KontoutdragInfoForLoadUiThreaded.cs" />
     <Compile Include="Entities\KontoutdragInfoForSave.cs" />
     <Compile Include="Entities\LoadOrSaveResult.cs" />
     <Compile Include="Entities\Saldo.cs" />

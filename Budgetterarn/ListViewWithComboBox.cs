@@ -14,26 +14,13 @@ namespace Budgetterarn
         #region Members
 
         internal const string AutoCatCpation = "Spara kategorival (typ av kostnad) automatiskt?";
+        private const int TypAvKostnadKolumnnummer = 2;
         private readonly ComboBox comboBoxCategories = new ComboBox();
 
         private readonly List<object> previouslySelectedItems = new List<object>();
         private ListViewItem clickedItem;
         private int selectedSubItem;
         private int x;
-
-        // private int Y;
-
-        // Todo: lägg alla dessa i en container, för att sedan kunna sätta alla samtidigt etc
-        // TODO: spara alla inställningar anv. gör, tex. kolumnbredd etc
-        // private System.Windows.Forms.ComboBox comboBoxCountries = new System.Windows.Forms.ComboBox();
-        // private System.Windows.Forms.ColumnHeader columnHeader1;
-        // private System.Windows.Forms.ColumnHeader columnHeader2;
-        // private ColumnHeader Date = new ColumnHeader();
-        // private ColumnHeader Info = new ColumnHeader();
-        // private ColumnHeader KostnadEllerInkomst = new ColumnHeader();
-        // private ColumnHeader SaldoOrginal = new ColumnHeader();
-        // private ColumnHeader AckumuleratSaldo = new ColumnHeader();
-        // private ColumnHeader TypAvKostnad = new ColumnHeader();
         #endregion
 
         // Constructor
@@ -60,87 +47,12 @@ namespace Budgetterarn
 
             #endregion
 
-            #region Old
-
-            // this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            // this.Date,
-            // this.Info,
-            // this.KostnadEllerInkomst,
-            // this.SaldoOrginal,
-            // this.AckumuleratSaldo,
-            // this.TypAvKostnad,
-            // });
-            #endregion
-
             Name = "listViewWithComboBox1";
 
-            // this.Size = new System.Drawing.Size(0,0);
             TabIndex = 0;
             MouseDown += ListViewMouseDown;
 
-            // DoubleClick += ListViewDoubleClick;
             MouseClick += ListViewMouseClick;
-
-            // To update columnwidths when it changes
-            // ColumnWidthChanging += ListViewWithComboBox_ColumnWidthChanging;
-            #region Old
-
-            View = View.Details;
-            GridLines = true;
-            FullRowSelect = true;
-
-            KeyPress += RowKeyPress;
-
-            #region Old
-
-            // this.Date.Text = "Date";
-            // this.Info.Text = "Info";
-            // this.KostnadEllerInkomst.Text = "KostnadEllerInkomst";
-            // this.SaldoOrginal.Text = "SaldoOrginal";
-            // this.AckumuleratSaldo.Text = "AckumuleratSaldo";
-            // this.TypAvKostnad.Text = "TypAvKostnad";
-
-            //// 
-            //// c_Date
-            //// 
-            // this.Date.Text = "Date";
-            // this.Date.Width = 62;
-            //// 
-            //// Info
-            //// 
-            // this.Info.Text = "Info";
-            // this.Info.Width = 85;
-            //// 
-            //// KostnadEllerInkomst
-            //// 
-            // this.KostnadEllerInkomst.Text = "KostnadEllerInkomst";
-            // this.KostnadEllerInkomst.Width = 79;
-            //// 
-            //// SaldoOrginal
-            //// 
-            // this.SaldoOrginal.Text = "SaldoOrginal";
-            // this.SaldoOrginal.Width = 75;
-            //// 
-            //// AckumuleratSaldo
-            //// 
-            // this.AckumuleratSaldo.Text = "AckumuleratSaldo";
-            // this.AckumuleratSaldo.Width = 84;
-            //// 
-            //// TypAvKostnad
-            //// 
-            // this.TypAvKostnad.Text = "TypAvKostnad";
-            // this.TypAvKostnad.Width = 192; 
-            #region Old
-
-            // Adds text items to listView1
-            // this.Items.Add(new ListViewItem(
-            // new string[] { "test", "test" })
-            // ); 
-            #endregion
-
-            #endregion
-
-            #endregion
         }
 
         public List<KontoEntry> ItemsAsKontoEntries
@@ -165,8 +77,6 @@ namespace Budgetterarn
 
         private void RowKeyPress(object sender, KeyPressEventArgs e)
         {
-            // if (e.KeyChar == (char)Keys.Delete) delete registreras inte här...
-
             // TODO: sätt denna i högerklickmeny
             if (e.KeyChar == 'a')
             {
@@ -319,7 +229,7 @@ namespace Budgetterarn
                 newKe.TypAvKostnad = lookedUpCat;
 
                 // Sätt ny kategori i listan också, så anv. ser att det ändrats.
-                listViewItem.SubItems[ValuesandConsts.TypAvKostnadKolumnnummer].Text = newKe.TypAvKostnad;
+                listViewItem.SubItems[TypAvKostnadKolumnnummer].Text = newKe.TypAvKostnad;
             }
 
             #endregion
@@ -343,7 +253,7 @@ namespace Budgetterarn
             }
 
             // Popup box:
-            PopupComboboxOfCaytegories(ValuesandConsts.TypAvKostnadKolumnnummer);
+            PopupComboboxOfCaytegories(TypAvKostnadKolumnnummer);
         }
 
         private void CategoryKeyPress(object sender, KeyPressEventArgs e)
@@ -406,7 +316,6 @@ namespace Budgetterarn
             clickedItem = GetItemAt(e.X, e.Y);
             x = e.X;
 
-            // Y = e.Y;
 #if DEBUG
             BudgeterForm.StatusLabelText = x.ToString();
 #endif
@@ -416,20 +325,16 @@ namespace Budgetterarn
 
         private bool UserEventFire { get; set; }
 
-        // void ListViewWithComboBox_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e) {
-
-        // }
         private void DetleteSelectedEntry()
         {
-            if (SelectedIndices.Count < 1 || SelectedItems.Count < 1) // || clickedItem == null)
+            if (SelectedIndices.Count < 1 || SelectedItems.Count < 1)
             {
                 return;
             }
 
             Items.RemoveAt(SelectedIndices[0]);
 
-            // Todo. Ta bort den ur minnet, newKontoEntries
-            // newKontoEntries
+            // Todo: Ta bort den ur minnet, newKontoEntries
         }
 
         private void PopupComboboxOfCaytegories()
@@ -551,27 +456,6 @@ namespace Budgetterarn
                 ((KontoEntry)clickedItem.Tag).TypAvKostnad = selectedItemInCatText;
             }
 
-            // Om flera är valda, sätt vald text i alla
-            // if (SelectedItems.Count > 1) {
-            // foreach (ListViewItem selectedItem in SelectedItems) {
-            // //Sätt texten i cellen.
-            // selectedItem.SubItems[selectedSubItem].Text = selectedItemInCatText;
-            // }
-            // }
-            #endregion
-
-            #region Old
-
-            // else if (column == "Countries")
-            // {
-            // Rectangle r = new Rectangle(position, item.Bounds.Top, end, item.Bounds.Bottom);
-            // comboBoxCountries.Size = new System.Drawing.Size(end - position, item.Bounds.Bottom - item.Bounds.Top);
-            // comboBoxCountries.Location = new System.Drawing.Point(position, item.Bounds.Y);
-            // comboBoxCountries.Show();
-            // comboBoxCountries.Text = subItemText;
-            // comboBoxCountries.SelectAll();
-            // comboBoxCountries.Focus();
-            // } 
             #endregion
         }
     }

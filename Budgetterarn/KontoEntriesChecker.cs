@@ -124,16 +124,6 @@ namespace Budgetterarn
                     newKe.TypAvKostnad = lookedUpCat;
                 }
 
-                #region Old
-
-                // markera de som är dubblet eller skb, och flagga dem för ersättning av de som redan finns i minnet
-                // Gissa om det är en dublett, jmfr på datum, info och kost
-                // if (GuessedDouble(newKE))
-                // {
-                // continue;
-                // } 
-                #endregion
-
                 // Lägg till i edited
                 lists.NewIitemsListEdited.Add(newKe);
             }

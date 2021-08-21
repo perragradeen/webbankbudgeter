@@ -32,18 +32,7 @@ namespace Budgetterarn
         private static string GetBankUrl()
         {
             return
-                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort-Kortköp-ej fakturerat.html"
-
-                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort-webfull.html"
-                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort.html"
-                //@"C:\Files\Dropbox\budget\Program\TestData\Lönekonto.html"
-                //@"C:\Files\Dropbox\budget\Program\TestData\Kontotransaktioner-ej-fakt.html"
-
-                //@"C:\Files\Dropbox\budget\Program\TestData\allkort0328.html"
-
-                //@"C:\Files\Dropbox\budget\Program\TestData\Allkort.org.html"
-
-
+                //@"C:\Files\Dropbox\budget\Program\TestData\x.html"
                 bankUrl
             ;
         }
@@ -53,7 +42,7 @@ namespace Budgetterarn
 
         #region Members
 
-        private const string SheetName = "Kontoutdrag_officiella"; // "Kontoutdrag f.o.m. 0709 bot.up.";
+        private const string SheetName = "Kontoutdrag_officiella";
         private static ToolStripStatusLabel toolStripStatusLabel1;
         private static string bankUrl = "LoadsVia_xml_settings";
 
@@ -113,8 +102,6 @@ namespace Budgetterarn
                 #region Debug
                 if (Debug())
                 {
-                    // TODO: GetAllEntriesFromExcelFile(m_s_newEntriesXlsDebug, _kontoEntriesHolder.NewKontoEntries, false, null);
-                    // CheckAndAddNewItems();//Debug: Lägg till nya i GuiLista
                     debugbtn.Visible = true;
                     DebugAddoNewList();
                 }
@@ -191,7 +178,6 @@ namespace Budgetterarn
             {
                 return toolStripStatusLabel1.Text;
             }
-
             set
             {
                 toolStripStatusLabel1.Text = value;
@@ -207,7 +193,6 @@ namespace Budgetterarn
             {
                 return base.Text;
             }
-
             set
             {
                 base.Text = value;
@@ -227,7 +212,6 @@ namespace Budgetterarn
                 categoryPath = GeneralSettings.GetStringSetting("CategoryPath");
                 bankUrl = GeneralSettings.GetTextfileStringSetting("BankUrl");
 
-                // var t = new CategoriesHolder();
                 // Ladda kategorier som man har till att flagga olika kontohändelser
                 CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
 
@@ -239,7 +223,7 @@ namespace Budgetterarn
                 // Sätt nuvarande tråd som main
 
                 // läs in xls...
-                GetAllEntriesFromExcelFile(Filerefernces._excelFileSavePath, true);
+                GetAllEntriesFromExcelFile(Filerefernces.ExcelFileSavePath, true);
             }
             catch (Exception e)
             {
@@ -391,8 +375,8 @@ namespace Budgetterarn
             var statusText = toolStripStatusLabel1.Text;
             var kontoutdragInfoForSave = new KontoutdragInfoForSave
             {
-                ExcelFileSaveFileName = Filerefernces._excelFileSaveFileName,
-                ExcelFileSavePath = Filerefernces._excelFileSavePath,
+                ExcelFileSaveFileName = Filerefernces.ExcelFileSaveFileName,
+                ExcelFileSavePath = Filerefernces.ExcelFileSavePath,
                 ExcelFileSavePathWithoutFileName =
                     Filerefernces.ExcelFileSavePathWithoutFileName,
                 SheetName = SheetName
@@ -403,12 +387,10 @@ namespace Budgetterarn
 
             somethingChanged = saveResult.SomethingLoadedOrSaved;
 
-            // somethingChanged = false;//Precis sparat, så här har inget hunnit ändras 
+            //Precis sparat, så här har inget hunnit ändras 
             statusText += "Saving done, saved entries; " + saveResult.SkippedOrSaved;
 
             // Räkna inte överskriften, den skrivs alltid om
-
-            // toolStripStatusLabel1.Text = "Saving done, saved entries; " + (logThis.Count - 1);//Räkna inte överskriften, den skrivs alltid om
 
             // Fråga om man vill öppna Excel
             if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
@@ -453,16 +435,16 @@ namespace Budgetterarn
         private bool GetAllEntriesFromExcelFile(string excelFileSavePath, bool clearContentBeforeReadingNewFile)
         {
             var statusText = toolStripStatusLabel1.Text = @"Nothing loaded.";
-            var changedExcelFileSavePath = Filerefernces._excelFileSavePath;
+            var changedExcelFileSavePath = Filerefernces.ExcelFileSavePath;
 
             // Todo: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
             var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
             {
-                FilePath = Filerefernces._excelFileSavePath,
+                FilePath = Filerefernces.ExcelFileSavePath,
                 ExcelFileSavePath = changedExcelFileSavePath,
                 ExcelFileSavePathWithoutFileName =
                                                  Filerefernces.ExcelFileSavePathWithoutFileName,
-                ExcelFileSaveFileName = Filerefernces._excelFileSaveFileName,
+                ExcelFileSaveFileName = Filerefernces.ExcelFileSaveFileName,
                 SheetName = SheetName,
                 ClearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile,
                 SomethingChanged = somethingChanged,
@@ -490,7 +472,6 @@ namespace Budgetterarn
                 statusText += kontoutdragInfoForLoad.FilePath;
             }
 
-            //statusStrip1.Text = statusText;
             toolStripStatusLabel1.Text = statusText;
 
             // kolla om något laddades från Excel
@@ -528,13 +509,11 @@ namespace Budgetterarn
             else
             {
                 // Har man däremot laddat in nya så ska den sökvägen gälla för sparningar
-                Filerefernces._excelFileSavePath = changedExcelFileSavePath;
+                Filerefernces.ExcelFileSavePath = changedExcelFileSavePath;
 
                 // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska utan UI etc
             }
 
-            // toolStripStatusLabel1.Text = statusText + " Saldon: Allkort:" + saldoAllkort + ", Löne:" + saldoLöne + ", Kredit Ej fakt.:" + saldoAllkortKreditEjFakturerat + ", Kredit fakt.:" + saldoAllkortKreditFakturerat;
-            //statusStrip1.Text = statusText;
             toolStripStatusLabel1.Text = statusText;
 
             // If nothing loaded return
@@ -642,7 +621,8 @@ namespace Budgetterarn
             // Helt ny fil ska laddas, töm gammalt
             // Ev. Todo: Rensa UI också, eller lita på att funktionen klarar det iom laddning kan avbrytas etc.
             // Man vill öppna en annan fil som man ska välja och som man ska hämta värden ifrån. Sen spara som den filen man valt. Att börja om med annan fil
-            GetAllEntriesFromExcelFile(debugGlobal ? Filerefernces._excelFileSavePath : string.Empty, true);
+            GetAllEntriesFromExcelFile(
+                debugGlobal ? Filerefernces.ExcelFileSavePath : string.Empty, true);
         }
 
         private void FileMenuLoadNewFromXlsClick(object sender, EventArgs e)
@@ -808,7 +788,7 @@ namespace Budgetterarn
         }
 
         /// <summary>
-        /// Accessar status etiketten.
+        /// Accessar status etikett-ui-elementet.
         /// </summary>
         /// <param name="autoSave"></param>
         private void AddNewEntriesToUiListsAndMem(bool autoSave)
@@ -867,6 +847,7 @@ namespace Budgetterarn
         #endregion
 
         #region Test&Debug
+        // TODO: ta bort alla tester o flytta ev till unit/integrationstester...
 
         private void TestNav1ToolStripMenuItemClick(object sender, EventArgs e)
         {
@@ -908,6 +889,5 @@ namespace Budgetterarn
         }
 
         #endregion
-
     }
 }

@@ -2,21 +2,10 @@
 <GeneralSettings>
   <property name="ExcelFileSaveDirPath" value="..\"/>
 
-  <!--<property name="ExcelFileSavePathFileName" value="Pelles Budget.xls"/>
-  <property name="CategoryPath" value="Data\Categories.xml"/>
-  <property name="BankUrl" value="handelsbanken" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>-->
-
-
-  <!--<property name="ExcelFileSavePathFileName" value="LG Budget.xls"/>
-  <property name="CategoryPath" value="Data\LGCategories.xml"/>
-  <property name="BankUrl" value="swedbank" rownumberInTextfile="1" textfileName="Data\TrickyURLS.txt"/>-->
-
-
   <property name="ExcelFileSavePathFileName" value="Pelles Budget.xls"/>
   <property name="CategoryPath" value="Data\Categories.xml"/>
   <property name="AutonavigateEtc" value="false"/>
 
-  <!--<property name="BankUrl" value="Handelsbanken" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>-->
-  <property name="BankUrl" value="swedbank" rownumberInTextfile="1" textfileName="Data\TrickyURLS.txt"/>
+  <property name="BankUrl" value="swedbank" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>
 
 </GeneralSettings>

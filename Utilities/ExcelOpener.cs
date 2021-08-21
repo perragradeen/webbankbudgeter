@@ -44,14 +44,6 @@ namespace Utilities
 
                 if (fileOkToOpen)
                 {
-                    #region Old öppna med reflect proccess
-
-                    // System.Diagnostics.Process proc = new System.Diagnostics.Process();
-
-                    // string processPath = @"C:\Program Files\Microsoft Office\OFFICE11\";
-                    // proc.StartInfo = new System.Diagnostics.ProcessStartInfo(processPath + "Excel" + ".exe", filePath);//C:\\windows\\system32\\
-                    #endregion
-
                     #region Open log in Exel //before: tab window
 
                     // Start new Excel-instance
@@ -90,11 +82,6 @@ namespace Utilities
             {
                 Console.WriteLine(@"Error in LoadComparedLogIn: " + fileExp.Message);
             }
-            finally
-            {
-                // Cursor.Current = Cursors.Default;
-            }
-
         }
 
         private static void ApplicationWorkbookDeactivate(Workbook wb)

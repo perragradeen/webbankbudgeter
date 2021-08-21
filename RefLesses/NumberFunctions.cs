@@ -29,8 +29,7 @@ namespace RefLesses
                 .Replace(";", string.Empty)
                 .Replace(":", string.Empty);
 
-            double tempd;
-            return double.TryParse(cleanVal, NumberStyles.Number, cultureToUse, out tempd)
+            return double.TryParse(cleanVal, NumberStyles.Number, cultureToUse, out double tempd)
                        ? Math.Round(tempd, 2)
                        : 0.0;
         }

@@ -22,7 +22,6 @@ namespace WebBankBudgeter.Service.Model
         public override int GetHashCode()
         {
             return
-                //CategoriesList.GetHasIntForCategory(Category) + 
                 Year + Month;
         }
     }

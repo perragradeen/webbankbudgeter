@@ -40,7 +40,7 @@ namespace WebBankBudgeter.UiBinders
                     {
                         case TextToTableOutPuter.AverageColumnDescription:
                             value = CalcMonthAvaragesPerRow(
-                                row.AmountsForMonth, table.ColumnHeaders); //row.AmountAverageText;
+                                row.AmountsForMonth, table.ColumnHeaders);
                             break;
                         case TextToTableOutPuter.CategoryNameColumnDescription:
                             value = row.CategoryText;

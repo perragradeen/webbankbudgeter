@@ -6,8 +6,7 @@
         {
             if (!string.IsNullOrEmpty(text))
             {
-                int n = 0;
-                if (int.TryParse(text, out n))
+                if (int.TryParse(text, out int n))
                 {
                     return n;
                 }
