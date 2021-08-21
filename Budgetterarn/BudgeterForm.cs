@@ -677,7 +677,7 @@ namespace Budgetterarn
         {
             if (!debugGlobal)
             {
-                if (Utilities.WinFormsChecks.SaveCheck(somethingChanged, Save) == DialogResult.Cancel)
+                if (WinFormsChecks.SaveCheck(somethingChanged, Save) == DialogResult.Cancel)
                 {
                     e.Cancel = true;
                 }
@@ -815,20 +815,10 @@ namespace Budgetterarn
 
         private bool CheckIfSomethingWasChanged(bool oldSomethingChanged, bool newSomethingChanged)
         {
-            if (oldSomethingChanged)
-            {
-                return true;
-            }
-
-            if (newSomethingChanged)
-            {
-                return true;
-            }
-
-            return false;
+            return oldSomethingChanged || newSomethingChanged;
         }
 
-        private SortedList GetNewEntriesFromUI(ListView mineNewIitemsListEdited)
+        private static SortedList GetNewEntriesFromUI(ListView mineNewIitemsListEdited)
         {
             // Hämta nya entries från Ui. (slipper man om man binder ui-kontroller med de som är sparade och ändrade i minnet.)
             var newEntriesFromUi = new SortedList();
