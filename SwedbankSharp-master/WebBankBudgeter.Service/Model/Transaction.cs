@@ -7,9 +7,8 @@ namespace WebBankBudgeter.Service.Model
     public class Transaction
     {
         public string Id { get; set; }
-        public string Date { get; set; }
+        private string Date { get; set; }
         public string Description { get; set; }
-        public string Currency { get; set; }
         public object Amount { get; set; }
 
         public string ExpenseControlIncluded { get; set; }
@@ -28,8 +27,7 @@ namespace WebBankBudgeter.Service.Model
                 categories = new Categories
                 {
                     Name = "No Category",
-                    Group = "No group",
-                    Id = IdNoCategory
+                    Group = "No group"
                 };
 
                 return categories.ToString();

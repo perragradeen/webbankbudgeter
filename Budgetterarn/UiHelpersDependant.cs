@@ -1,12 +1,14 @@
-﻿using Budgeter.Core.Entities;
-using System;
+﻿using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
+using Budgeter.Core.Entities;
+
+// ReSharper disable LocalizableElement
 
 namespace Budgetterarn
 {
-    public class UiHelpersDependant
+    public static class UiHelpersDependant
     {
         public static AddedAndReplacedEntriesCounter AddNewEntries(SortedList oldKontoEntries, SortedList newEntries)
         {
@@ -16,39 +18,37 @@ namespace Budgetterarn
             var replacedEntries = 0;
             foreach (KontoEntry entry in newEntries.Values)
             {
-                if (!entry.ThisIsDoubleDoNotAdd)
+                if (entry.ThisIsDoubleDoNotAdd) continue;
+                if (!oldKontoEntries.ContainsKey(entry.KeyForThis)) // (detta ska redan vara kollat)
                 {
-                    if (!oldKontoEntries.ContainsKey(entry.KeyForThis)) // (detta ska redan vara kollat)
+                    if (string.IsNullOrEmpty(entry.ReplaceThisKey)) // Add new
                     {
-                        if (string.IsNullOrEmpty(entry.ReplaceThisKey)) // Add new
+                        entry.FontFrontColor = Color.Lime;
+                        oldKontoEntries.Add(entry.KeyForThis, entry);
+                        addedEntries++;
+                    }
+                    else // Replace old
+                    {
+                        entry.FontFrontColor = Color.Blue;
+
+                        // ev. skulle man sätta replacethiskey till den gamla keyn med den som ersatte, för att kunna spåra förändringar
+                        if (oldKontoEntries.ContainsKey(entry.ReplaceThisKey))
                         {
-                            entry.FontFrontColor = Color.Lime;
-                            oldKontoEntries.Add(entry.KeyForThis, entry);
-                            addedEntries++;
+                            oldKontoEntries[entry.ReplaceThisKey] = entry;
                         }
-                        else // Replace old
+                        else
                         {
-                            entry.FontFrontColor = Color.Blue;
-
-                            // ev. skulle man sätta replacethiskey till den gamla keyn med den som ersatte, för att kunna spåra förändringar
-                            if (oldKontoEntries.ContainsKey(entry.ReplaceThisKey))
-                            {
-                                oldKontoEntries[entry.ReplaceThisKey] = entry;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Error: key not found! : " + entry.ReplaceThisKey);
-                            }
-
-                            replacedEntries++;
+                            MessageBox.Show("Error: key not found! : " + entry.ReplaceThisKey);
                         }
 
-                        somethingChanged = true; // Här har man tagit in nytt som inte är sparat
+                        replacedEntries++;
                     }
-                    else
-                    {
-                        Console.WriteLine("Double key found!: " + entry.KeyForThis);
-                    }
+
+                    somethingChanged = true; // Här har man tagit in nytt som inte är sparat
+                }
+                else
+                {
+                    Console.WriteLine("Double key found!: " + entry.KeyForThis);
                 }
             }
 

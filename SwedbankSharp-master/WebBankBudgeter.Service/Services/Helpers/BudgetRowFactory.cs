@@ -41,18 +41,18 @@ namespace WebBankBudgeter.Service.Services.Helpers
 
         public void AddSummedAmounts(BudgetRow row)
         {
-            var summedAmountsExpenses = (double)_dateAndCatTransGroup
+            var summedAmountsExpenses = _dateAndCatTransGroup
                 .Sum(r => r.AmountAsDouble);
 
             // Lägg till summa av Amount
-            var monthNameName_AsKey = RecordOne.DateAsYearMothText;
-            if (row.AmountsForMonth.ContainsKey(monthNameName_AsKey))
+            var monthNameNameAsKey = RecordOne.DateAsYearMothText;
+            if (row.AmountsForMonth.ContainsKey(monthNameNameAsKey))
             {
-                row.AmountsForMonth[monthNameName_AsKey] += summedAmountsExpenses;
+                row.AmountsForMonth[monthNameNameAsKey] += summedAmountsExpenses;
             }
             else
             {
-                row.AmountsForMonth.Add(monthNameName_AsKey, summedAmountsExpenses);
+                row.AmountsForMonth.Add(monthNameNameAsKey, summedAmountsExpenses);
             }
         }
     }

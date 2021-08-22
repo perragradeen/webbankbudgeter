@@ -7,35 +7,35 @@ namespace WebBankBudgeter.Service.MonthAvarages
 {
     public class MonthAvaragesCalcs
     {
-        private readonly TransactionList _transactionListdata;
+        private readonly TransactionList _transactionDatalist;
 
-        public static readonly string[] RecurringCatGroups = {
+        public static readonly string[] ReoccurringCatGroups = {
             "ID_ACCOMMODATION",
             "ID_HOUSEHOLD",
             "ID_OTHER",
             "ID_TRANSPORT"
         };
 
-        public static readonly IEnumerable<string> IncomesCatGroup = new[] { "ID_INCOME" };
+        private static readonly IEnumerable<string> IncomesCatGroup = new[] { "ID_INCOME" };
 
-        public MonthAvaragesCalcs(TransactionList transactionListdata)
+        public MonthAvaragesCalcs(TransactionList transactionDatalist)
         {
-            _transactionListdata = transactionListdata;
+            _transactionDatalist = transactionDatalist;
         }
 
         public MonthAvarages GetMonthAvarages()
         {
-            var gropuedTrans = TableGetter.GroupOnMonthAndCategory(_transactionListdata.Transactions);
+            var gropuedTrans = TableGetter.GroupOnMonthAndCategory(_transactionDatalist.Transactions);
 
             //transform to fit ui
-            return GetMonthAvaragesFromGroupTransactions(gropuedTrans);
+            return GetMonthAveragesFromGroupTransactions(gropuedTrans);
         }
 
-        private MonthAvarages GetMonthAvaragesFromGroupTransactions(IEnumerable<IGrouping<TransGrouping, Transaction>> gropuedTrans)
+        private static MonthAvarages GetMonthAveragesFromGroupTransactions(IEnumerable<IGrouping<TransGrouping, Transaction>> gropuedTrans)
         {
-            var avarages = new MonthAvarages();
-            var avaragesReccuringCosts = new List<double>();
-            var avaragesIncomes = new List<double>();
+            var averages = new MonthAvarages();
+            var averagesReoccurringCosts = new List<double>();
+            var averagesIncomes = new List<double>();
 
             var rows = TableGetter.GetRowsFromGroupedRecords(gropuedTrans);
             foreach (var row in rows)
@@ -43,23 +43,23 @@ namespace WebBankBudgeter.Service.MonthAvarages
                 var averageValue = row.AmountsForMonth.Values.ToList().Average(d => d);
 
                 var catGroupIsIncome = IncomesCatGroup.Any(c => row.CategoryText.Contains(c));
-                var catGroupIsReccuring = RecurringCatGroups.Any(c => row.CategoryText.Contains(c));
-                if (catGroupIsReccuring)
+                var catGroupIsReoccurring = ReoccurringCatGroups.Any(c => row.CategoryText.Contains(c));
+                if (catGroupIsReoccurring)
                 {
-                    avaragesReccuringCosts.Add(averageValue);
+                    averagesReoccurringCosts.Add(averageValue);
                 }
                 else if (catGroupIsIncome)
                 {
-                    avaragesIncomes.Add(averageValue);
+                    averagesIncomes.Add(averageValue);
                 }
             }
 
-            avarages.ReccuringCosts = avaragesReccuringCosts.Sum(d => d);
-            avarages.Incomes = avaragesIncomes.Sum(d => d);
+            averages.ReccuringCosts = averagesReoccurringCosts.Sum(d => d);
+            averages.Incomes = averagesIncomes.Sum(d => d);
 
-            avarages.IncomeDiffCosts = avarages.Incomes + avarages.ReccuringCosts;
+            averages.IncomeDiffCosts = averages.Incomes + averages.ReccuringCosts;
 
-            return avarages;
+            return averages;
         }
     }
 }

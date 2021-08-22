@@ -1,5 +1,5 @@
-﻿using Budgeter.Core.BudgeterConstants;
-using System;
+﻿using System;
+using Budgeter.Core.BudgeterConstants;
 
 namespace Budgetterarn
 {
@@ -10,13 +10,13 @@ namespace Budgetterarn
             AutoLoadEtc = AutoLoadEtcFromXml();
         }
 
-        public bool AutoLoadEtc { get; private set; }
+        public bool AutoLoadEtc { get; }
 
-        private bool AutoLoadEtcFromXml()
+        private static bool AutoLoadEtcFromXml()
         {
             var s = GeneralSettings.GetStringSetting("AutonavigateEtc");
 
-            return bool.TryParse(s, out bool b) && b;
+            return bool.TryParse(s, out var b) && b;
         }
 
         public static BankType BankType
@@ -24,14 +24,12 @@ namespace Budgetterarn
             get
             {
                 var fromXls = GeneralSettings.GetStringSetting("BankUrl");
-                if (fromXls != null)
-                {
-                    var matchedString = fromXls.ToLower();
-                    matchedString = matchedString[0].ToString().ToUpper() + matchedString.Substring(1);
-                    return (BankType)Enum.Parse(typeof(BankType), matchedString);
-                }
+                if (fromXls == null) return 0;
 
-                return 0;
+                var matchedString = fromXls.ToLower();
+                matchedString = matchedString[0].ToString().ToUpper() + matchedString.Substring(1);
+                return (BankType)Enum.Parse(typeof(BankType), matchedString);
+
             }
         }
     }

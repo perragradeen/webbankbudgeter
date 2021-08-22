@@ -1,17 +1,19 @@
-﻿using Budgetterarn.InternalUtilities;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Budgetterarn.InternalUtilities;
+
+// ReSharper disable LocalizableElement
 
 namespace Budgetterarn
 {
-    public partial class KontoEntryListView : ListView
+    public partial class KontoEntryListView
     {
         // Members
-        private ColumnHeader c_AckumuleratSaldo;
-        private ColumnHeader c_Date;
-        private ColumnHeader c_Info;
-        private ColumnHeader c_KostnadEllerInkomst;
-        private ColumnHeader c_SaldoOrginal;
-        private ColumnHeader c_TypAvKostnad;
+        private ColumnHeader _cAckumuleratSaldo;
+        private ColumnHeader _cDate;
+        private ColumnHeader _cInfo;
+        private ColumnHeader _cKostnadEllerInkomst;
+        private ColumnHeader _cSaldoOrginal;
+        private ColumnHeader _cTypAvKostnad;
 
         public KontoEntryListView()
         {
@@ -20,47 +22,47 @@ namespace Budgetterarn
 
         private void InitializeComponent()
         {
-            c_Date = new System.Windows.Forms.ColumnHeader();
-            c_Info = new System.Windows.Forms.ColumnHeader();
-            c_KostnadEllerInkomst = new System.Windows.Forms.ColumnHeader();
-            c_SaldoOrginal = new System.Windows.Forms.ColumnHeader();
-            c_AckumuleratSaldo = new System.Windows.Forms.ColumnHeader();
-            c_TypAvKostnad = new System.Windows.Forms.ColumnHeader();
+            _cDate = new ColumnHeader();
+            _cInfo = new ColumnHeader();
+            _cKostnadEllerInkomst = new ColumnHeader();
+            _cSaldoOrginal = new ColumnHeader();
+            _cAckumuleratSaldo = new ColumnHeader();
+            _cTypAvKostnad = new ColumnHeader();
 
             // m_newIitemsListOrg
             Columns.AddRange(
-                new[] { c_Date, c_Info, c_TypAvKostnad, c_KostnadEllerInkomst, c_SaldoOrginal, c_AckumuleratSaldo });
-            Dock = System.Windows.Forms.DockStyle.Fill;
+                new[] { _cDate, _cInfo, _cTypAvKostnad, _cKostnadEllerInkomst, _cSaldoOrginal, _cAckumuleratSaldo });
+            Dock = DockStyle.Fill;
             FullRowSelect = true;
             GridLines = true;
 
             TabIndex = 0;
             UseCompatibleStateImageBehavior = false;
-            View = System.Windows.Forms.View.Details;
+            View = View.Details;
 
             // c_Date
-            c_Date.Text = "Date";
-            c_Date.Width = 62;
+            _cDate.Text = "Date";
+            _cDate.Width = 62;
 
             // c_Info
-            c_Info.Text = "Info";
-            c_Info.Width = 85;
+            _cInfo.Text = "Info";
+            _cInfo.Width = 85;
 
             // c_KostnadEllerInkomst
-            c_KostnadEllerInkomst.Text = "KostnadEllerInkomst";
-            c_KostnadEllerInkomst.Width = 79;
+            _cKostnadEllerInkomst.Text = "KostnadEllerInkomst";
+            _cKostnadEllerInkomst.Width = 79;
 
             // c_SaldoOrginal
-            c_SaldoOrginal.Text = "SaldoOrginal";
-            c_SaldoOrginal.Width = 75;
+            _cSaldoOrginal.Text = "SaldoOrginal";
+            _cSaldoOrginal.Width = 75;
 
             // c_AckumuleratSaldo
-            c_AckumuleratSaldo.Text = "AckumuleratSaldo";
-            c_AckumuleratSaldo.Width = 75;
+            _cAckumuleratSaldo.Text = "AckumuleratSaldo";
+            _cAckumuleratSaldo.Width = 75;
 
             // c_TypAvKostnad
-            c_TypAvKostnad.Text = "TypAvKostnad";
-            c_TypAvKostnad.Width = 92;
+            _cTypAvKostnad.Text = "TypAvKostnad";
+            _cTypAvKostnad.Width = 92;
 
             // Create an instance of a ListView column sorter and assign it 
             // to the ListView control.
@@ -75,14 +77,8 @@ namespace Budgetterarn
             if (e.Column == lvwColumnSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
-                if (lvwColumnSorter.Order == SortOrder.Ascending)
-                {
-                    lvwColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    lvwColumnSorter.Order = SortOrder.Ascending;
-                }
+                lvwColumnSorter.Order = lvwColumnSorter.Order == SortOrder.Ascending
+                    ? SortOrder.Descending : SortOrder.Ascending;
             }
             else
             {

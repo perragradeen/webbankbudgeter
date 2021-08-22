@@ -1,6 +1,5 @@
 using Budgeter.Core.Entities;
 using System.Collections;
-using System.Windows.Forms;
 
 namespace LoadTransactionsFromFile
 {
@@ -14,10 +13,8 @@ namespace LoadTransactionsFromFile
             SaldoHolder = new SaldoHolder();
         }
 
-        public HtmlDocument Doc { get; set; }
-        public SortedList KontoEntries { get; set; }
-        public SortedList NewKontoEntries { get; set; }
-        public bool SomethingChanged { get; set; }
-        public SaldoHolder SaldoHolder { get; set; }
+        public SortedList KontoEntries { get; }
+        public SortedList NewKontoEntries { get; }
+        public SaldoHolder SaldoHolder { get; }
     }
 }

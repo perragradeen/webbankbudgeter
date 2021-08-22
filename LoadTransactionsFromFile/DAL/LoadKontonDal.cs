@@ -7,7 +7,7 @@ using Utilities;
 
 namespace LoadTransactionsFromFile.DAL
 {
-    public class LoadKontonDal
+    public static class LoadKontonDal
     {
         /// <summary>
         /// Sparar till Excel-fil
@@ -31,7 +31,9 @@ namespace LoadTransactionsFromFile.DAL
         }
 
         public static LoadOrSaveResult SkapaKontoEntries(
-            SortedList saveToTable, Hashtable entriesLoadedFromDataStore, SaldoHolder saldoHolder)
+            SortedList saveToTable,
+            Hashtable entriesLoadedFromDataStore,
+            SaldoHolder saldoHolder)
         {
             var loadResult = new LoadOrSaveResult();
 
@@ -55,8 +57,8 @@ namespace LoadTransactionsFromFile.DAL
                         foreach (var saldoName in BankConstants.SwedbankSaldonames)
                         {
                             var saldot = entryArray.Length > saldoColumnNumber + 1
-                                             ? entryArray[saldoColumnNumber + 1] ?? string.Empty
-                                             : string.Empty; // Todo, byt empty mot värden i saldon
+                                ? entryArray[saldoColumnNumber + 1] ?? string.Empty
+                                : string.Empty; // Todo: byt empty mot värden i saldon
 
                             saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoName,
                                 saldot.ToString().GetDoubleValueFromStringEntry());

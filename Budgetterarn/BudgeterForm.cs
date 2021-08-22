@@ -1,20 +1,21 @@
-﻿using Budgeter.Core;
-using Budgeter.Core.Entities;
-using Budgetterarn.Application_Settings_and_constants;
-using Budgetterarn.DAL;
-using Budgetterarn.InternalUtilities;
-using CategoryHandler;
-using LoadTransactionsFromFile;
-using System;
+﻿using System;
 using System.Collections;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using Utilities;
-
+using Budgeter.Core;
+using Budgeter.Core.Entities;
+using Budgetterarn.Application_Settings_and_constants;
+using Budgetterarn.AutoNavigateBrowser;
+using Budgetterarn.DAL;
+using Budgetterarn.InternalUtilities;
+using CategoryHandler;
 using CefSharp;
 using CefSharp.WinForms;
+using LoadTransactionsFromFile;
+using Utilities;
+
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
 
@@ -38,7 +39,7 @@ namespace Budgetterarn
         }
 
         // Bugg när ke laddas från web. Dubbletter kommenr in i nya listan
-        public const string VersionNumber = "1.0.1.16"; // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
+        private const string VersionNumber = "1.0.1.16"; // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
 
         #region Members
 
@@ -60,33 +61,34 @@ namespace Budgetterarn
 
         private ProgramSettings programSettings;
         private AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
-        public ChromiumWebBrowser webBrowser1;
+        private ChromiumWebBrowser webBrowser1;
+
         #endregion
 
-        public void InitChromiumWebBrowser()
+        private void InitChromiumWebBrowser()
         {
             var settingsBrowse = new CefSettings();
 
             Cef.Initialize(settingsBrowse);
 
             webBrowser1 = new ChromiumWebBrowser(string.Empty);
-            this.Controls.Add(webBrowser1);
+            Controls.Add(webBrowser1);
 
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Dock = DockStyle.Fill;
-            this.webBrowser1.Location = new Point(0, 0);
-            this.webBrowser1.MinimumSize = new Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new Size(80, 609);
-            this.webBrowser1.TabIndex = 0;
+            webBrowser1.Dock = DockStyle.Fill;
+            webBrowser1.Location = new Point(0, 0);
+            webBrowser1.MinimumSize = new Size(20, 20);
+            webBrowser1.Name = "webBrowser1";
+            webBrowser1.Size = new Size(80, 609);
+            webBrowser1.TabIndex = 0;
             //this.webBrowser1.IsLoading.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
 
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.webBrowser1);
+            splitContainer1.Panel1.Controls.Add(webBrowser1);
         }
 
         public BudgeterForm() // Konstruktor
@@ -100,12 +102,15 @@ namespace Budgetterarn
                 InitChromiumWebBrowser();
 
                 #region Debug
+
                 if (Debug())
                 {
                     debugbtn.Visible = true;
                     DebugAddoNewList();
                 }
+
                 #endregion
+
                 else
                 {
                     // Öpnna banksidan direkt
@@ -124,11 +129,9 @@ namespace Budgetterarn
 
         private void RunAutoLoadIfItIsEnabled()
         {
-            if (programSettings.AutoLoadEtc)
-            {
-                autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(LoadCurrentEntriesFromBrowser, null);
-                autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
-            }
+            if (!programSettings.AutoLoadEtc) return;
+            autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(LoadCurrentEntriesFromBrowser, null);
+            autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
         }
 
         /// <summary>
@@ -145,7 +148,7 @@ namespace Budgetterarn
         private bool Debug()
         {
             // ReSharper disable JoinDeclarationAndInitializer
-            bool debug = false;
+            bool debug;
 
             // ReSharper restore JoinDeclarationAndInitializer
 #if DEBUG
@@ -174,29 +177,16 @@ namespace Budgetterarn
         /// </summary>
         public static string StatusLabelText
         {
-            get
-            {
-                return toolStripStatusLabel1.Text;
-            }
-            set
-            {
-                toolStripStatusLabel1.Text = value;
-            }
+            set => toolStripStatusLabel1.Text = value;
         }
 
         /// <summary>
         /// Titeltexten för fönstret
         /// </summary>
-        public override sealed string Text
+        public sealed override string Text
         {
-            get
-            {
-                return base.Text;
-            }
-            set
-            {
-                base.Text = value;
-            }
+            get => base.Text;
+            set => base.Text = value;
         }
 
         private void InitFields()
@@ -210,7 +200,7 @@ namespace Budgetterarn
             {
                 // Get file names from settings file
                 categoryPath = GeneralSettings.GetStringSetting("CategoryPath");
-                bankUrl = GeneralSettings.GetTextfileStringSetting("BankUrl");
+                bankUrl = GeneralSettings.GetTextFileStringSetting("BankUrl");
 
                 // Ladda kategorier som man har till att flagga olika kontohändelser
                 CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
@@ -325,20 +315,18 @@ namespace Budgetterarn
 
         #region Load&Save
 
-        public static DialogResult SaveCheckWithArgs(
-           KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
+        private static DialogResult SaveCheckWithArgs(
+            KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
         {
             var saveOr = DialogResult.None;
-            if (kontoutdragInfoForSave.SomethingChanged)
-            {
-                saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
+            if (!kontoutdragInfoForSave.SomethingChanged) return saveOr;
+            saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
 
-                // Cancel
-                if (saveOr == DialogResult.Yes)
-                {
-                    SaveKonton.Save
-                        (kontoutdragInfoForSave, kontoEntries, saldoHolder);
-                }
+            // Cancel
+            if (saveOr == DialogResult.Yes)
+            {
+                SaveKonton.Save
+                    (kontoutdragInfoForSave, kontoEntries, saldoHolder);
             }
 
             return saveOr;
@@ -349,22 +337,20 @@ namespace Budgetterarn
         {
             // Nu har något laddats från fil, kolla då om något ska sparas
             // Save check
-            if (checkforUnsavedChanges && somethingLoadedFromFile)
+            if (!checkforUnsavedChanges || !somethingLoadedFromFile) return false;
+            if (kontoEntriesHolder.KontoEntries.Count > 0)
             {
-                if (kontoEntriesHolder.KontoEntries.Count > 0)
+                // somethingChanged är alltid false här
+                var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntriesHolder.KontoEntries,
+                    kontoEntriesHolder.SaldoHolder);
+                if (userResponse == DialogResult.Cancel)
                 {
-                    // somethingChanged är alltid false här
-                    var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntriesHolder.KontoEntries,
-                        kontoEntriesHolder.SaldoHolder);
-                    if (userResponse == DialogResult.Cancel)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-                else
-                {
-                    kontoutdragInfoForLoad.SomethingChanged = false;
-                }
+            }
+            else
+            {
+                kontoutdragInfoForLoad.SomethingChanged = false;
             }
 
             return false;
@@ -414,12 +400,10 @@ namespace Budgetterarn
             // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
             toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
 
-            if (somethingLoadeded)
-            {
-                CheckAndAddNewItems();
-                toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
-                                             + kontoEntriesHolder.NewKontoEntries.Count + @".";
-            }
+            if (!somethingLoadeded) return;
+            CheckAndAddNewItems();
+            toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
+                                         + kontoEntriesHolder.NewKontoEntries.Count + @".";
         }
 
         /// <summary>
@@ -443,7 +427,7 @@ namespace Budgetterarn
                 FilePath = Filerefernces.ExcelFileSavePath,
                 ExcelFileSavePath = changedExcelFileSavePath,
                 ExcelFileSavePathWithoutFileName =
-                                                 Filerefernces.ExcelFileSavePathWithoutFileName,
+                    Filerefernces.ExcelFileSavePathWithoutFileName,
                 ExcelFileSaveFileName = Filerefernces.ExcelFileSaveFileName,
                 SheetName = SheetName,
                 ClearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile,
@@ -460,12 +444,14 @@ namespace Budgetterarn
             }
             catch (Exception)
             {
-                MessageBox.Show("File: " + kontoutdragInfoForLoad?.FilePath + " does not exist.", "File error");
+                MessageBox.Show(@"File: " + kontoutdragInfoForLoad.FilePath +
+                                @" does not exist.", @"File error");
                 return false;
             }
 
             // För att se om något laddats från fil
-            var somethingLoadedFromFile = entriesLoadedFromDataStore != null && entriesLoadedFromDataStore.Count > 0;
+            var somethingLoadedFromFile = entriesLoadedFromDataStore != null
+                                          && entriesLoadedFromDataStore.Count > 0;
 
             if (entriesLoadedFromDataStore == null)
             {
@@ -545,7 +531,7 @@ namespace Budgetterarn
                 new KontoEntriesViewModelListUpdater
                 {
                     KontoEntries = kontoEntriesHolder.KontoEntries,
-                    NewIitemsListEdited = newIitemsListEdited.ItemsAsKontoEntries,
+                    NewItemsListEdited = newIitemsListEdited.ItemsAsKontoEntries,
                     NewKontoEntriesIn = kontoEntriesHolder.NewKontoEntries,
                 }
             );
@@ -559,16 +545,16 @@ namespace Budgetterarn
             KontoEntriesChecker.CheckAndAddNewItemsForLists(lists);
 
             // Lägg till i org
-            if (lists.NewIitemsListOrg != null)
+            if (lists.NewItemsListOrg != null)
             {
-                lists.NewIitemsListOrg.ForEach(k => ViewUpdateUi.AddToListview(newIitemsListOrg, k));
+                lists.NewItemsListOrg.ForEach(k => ViewUpdateUi.AddToListview(newIitemsListOrg, k));
             }
 
             // Filtrera ut de som inte redan ligger i UI
             var inUiListAlready = newIitemsListEdited.ItemsAsKontoEntries;
-            foreach (var entry in lists.NewIitemsListEdited)
+            foreach (var entry in lists.NewItemsListEdited)
             {
-                if (!inUiListAlready.Any(e => e.KeyForThis == entry.KeyForThis))
+                if (inUiListAlready.All(e => e.KeyForThis != entry.KeyForThis))
                 {
                     lists.ToAddToListview.Add(entry);
                 }
@@ -577,7 +563,7 @@ namespace Budgetterarn
             foreach (var entry in lists.ToAddToListview)
             {
                 // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
-                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuesseDouble(entry, kontoEntriesHolder.KontoEntries);
+                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, kontoEntriesHolder.KontoEntries);
 
                 // Lägg till i edited
                 ViewUpdateUi.AddToListview(newIitemsListEdited, entry);
@@ -675,12 +661,10 @@ namespace Budgetterarn
         // Todo: change name
         private void BudgeterFormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!debugGlobal)
+            if (debugGlobal) return;
+            if (WinFormsChecks.SaveCheck(somethingChanged, Save) == DialogResult.Cancel)
             {
-                if (WinFormsChecks.SaveCheck(somethingChanged, Save) == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                }
+                e.Cancel = true;
             }
         }
 
@@ -759,13 +743,13 @@ namespace Budgetterarn
 
         #endregion
 
-        private void CheckFileIfEmptyPromptUserIfEmptyPath(KontoutdragInfoForLoad kontoutdragInfoForLoad)
+        private static void CheckFileIfEmptyPromptUserIfEmptyPath(KontoutdragInfoForLoad kontoutdragInfoForLoad)
         {
             if (string.IsNullOrWhiteSpace(kontoutdragInfoForLoad.FilePath))
             {
                 kontoutdragInfoForLoad.ExcelFileSavePath =
                     kontoutdragInfoForLoad.FilePath =
-                        FileOperations.OpenFileOfType("Open file", FileType.xls, ""); // Öppnar dialog
+                        FileOperations.OpenFileOfType("Open file", FileType.Xls, ""); // Öppnar dialog
             }
         }
 
@@ -805,7 +789,7 @@ namespace Budgetterarn
             UpdateEntriesToSaveMemList();
 
             toolStripStatusLabel1.Text = @"Entries in memory updated. Added entries; " + changeInfo.Added
-                                         + @". Replaced entries; " + changeInfo.Replaced;
+                + @". Replaced entries; " + changeInfo.Replaced;
 
             if (autoSave)
             {
@@ -813,7 +797,7 @@ namespace Budgetterarn
             }
         }
 
-        private bool CheckIfSomethingWasChanged(bool oldSomethingChanged, bool newSomethingChanged)
+        private static bool CheckIfSomethingWasChanged(bool oldSomethingChanged, bool newSomethingChanged)
         {
             return oldSomethingChanged || newSomethingChanged;
         }
@@ -837,6 +821,7 @@ namespace Budgetterarn
         #endregion
 
         #region Test&Debug
+
         // TODO: ta bort alla tester o flytta ev till unit/integrationstester...
 
         private void TestNav1ToolStripMenuItemClick(object sender, EventArgs e)
@@ -864,12 +849,10 @@ namespace Budgetterarn
                 }
 
                 var testKey = "testkey" + i;
-                if (!kontoEntriesHolder.NewKontoEntries.ContainsKey(testKey))
-                {
-                    var newInfo = "test" + (i % 2 == 0 ? i.ToString(CultureInfo.InvariantCulture) : string.Empty);
-                    kontoEntriesHolder.NewKontoEntries.Add(testKey, new KontoEntry { Date = DateTime.Now.AddDays(i), Info = newInfo });
-                    sometheingadded = true;
-                }
+                if (kontoEntriesHolder.NewKontoEntries.ContainsKey(testKey)) continue;
+                var newInfo = "test" + (i % 2 == 0 ? i.ToString(CultureInfo.InvariantCulture) : string.Empty);
+                kontoEntriesHolder.NewKontoEntries.Add(testKey, new KontoEntry { Date = DateTime.Now.AddDays(i), Info = newInfo });
+                sometheingadded = true;
             }
 
             if (sometheingadded)

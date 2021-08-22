@@ -6,7 +6,7 @@ using Utilities;
 
 namespace LoadTransactionsFromFile
 {
-    public class LoadEntriesFromFileHandler
+    public static class LoadEntriesFromFileHandler
     {
         public static Hashtable LoadEntriesFromFile(
             KontoutdragInfoForLoad kontoutdragInfoForLoad)
@@ -18,6 +18,7 @@ namespace LoadTransactionsFromFile
             var kontoUtdragXls = new Hashtable();
 
             // Todo: Gör om till arraylist, eller lista av dictionary items, för att kunna välja ordning
+
             #region Öppna fil och hämta rader
 
             try
@@ -29,7 +30,7 @@ namespace LoadTransactionsFromFile
                     return null;
                 }
 
-                if (!System.IO.File.Exists(filePath))
+                if (!File.Exists(filePath))
                 {
                     throw new FileNotFoundException(filePath);
                 }

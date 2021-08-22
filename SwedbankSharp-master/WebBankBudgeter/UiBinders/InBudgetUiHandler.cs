@@ -2,6 +2,7 @@
 using InbudgetToTable;
 using InbudgetToTable.Model;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,27 +41,6 @@ namespace WebBankBudgeter.UiBinders
             _inBudgetHandler.SparaInPosterPåDisk(inPoster);
         }
 
-        public async Task BindInPosterToUiAsync()
-        {
-            // Sortera år+månad kronologiskt
-            var rader = await _inBudgetHandler.HämtaRaderFörUiBindningAsync();
-            var inPosterKolumnRubriker = await _inBudgetHandler.HämtaRubrikePåInPosterAsync();
-
-            // UI
-            BindInPosterRaderTillUi(rader, inPosterKolumnRubriker);
-        }
-
-        public async Task<List<InBudget>> GetInPoster()
-        {
-            return await _inBudgetHandler.GetInPoster();
-        }
-
-        private void BindInPosterRaderTillUi(List<Rad> rader, List<string> inPosterKolumnRubriker)
-        {
-            var bindToUiElement = _gv_incomes;
-            BindInPosterRaderTillUi(rader, inPosterKolumnRubriker, bindToUiElement);
-        }
-
         public void BindInPosterRaderTillUi(List<Rad> rader, List<string> inPosterKolumnRubriker, DataGridView bindToUiElement)
         {
             // UI
@@ -80,17 +60,12 @@ namespace WebBankBudgeter.UiBinders
 
                 foreach (var kolumnVärde in rad.Kolumner)
                 {
-                    bindToUiElement.Rows[radNummer].Cells[kolumnNummer++].Value = kolumnVärde.Value.ToString();
+                    bindToUiElement
+                        .Rows[radNummer]
+                        .Cells[kolumnNummer++]
+                        .Value = kolumnVärde.Value.ToString(CultureInfo.InvariantCulture);
                 }
             }
         }
-
-        //private List<InBudget> Ta_ut_alla_unika_månader(List<InBudget> inPoster)
-        //{
-        //    var år = inPoster.GroupBy(post => post.YearAndMonth.Year).ToList();
-        //    var årOMånad = år.ToList().GroupBy(post => post.ToList().);
-
-        //    return årOMånad.ToList();
-        //}
     }
 }

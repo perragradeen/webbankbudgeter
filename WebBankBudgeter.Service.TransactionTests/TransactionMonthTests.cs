@@ -1,8 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebBankBudgeter.Service.Model;
 
-namespace TransactionTests
+namespace WebBankBudgeter.Service.TransactionTests
 {
     [TestClass]
     public class TransactionMonthTests

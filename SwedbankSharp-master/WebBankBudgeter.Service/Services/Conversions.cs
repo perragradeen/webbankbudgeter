@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace WebBankBudgeter.Service.Services
 {
-    public class Conversions
+    public static class Conversions
     {
         public static double SafeGetDouble(object text)
         {
@@ -15,21 +15,20 @@ namespace WebBankBudgeter.Service.Services
             return DoubleParseAdvanced(text.ToString());
         }
 
-        public static double DoubleParseAdvanced(string strToParse, char decimalSymbol = ',')
+        private static double DoubleParseAdvanced(string strToParse, char decimalSymbol = ',')
         {
-            string tmp = Regex.Match(strToParse, @"([-]?[0-9]+)([\s])?([0-9]+)?[." + decimalSymbol + "]?([0-9 ]+)?([0-9]+)?").Value;
+            var tmp = Regex.Match(strToParse, @"([-]?[0-9]+)([\s])?([0-9]+)?[." + decimalSymbol + "]?([0-9 ]+)?([0-9]+)?").Value;
 
-            if (tmp.Length > 0 && strToParse.Contains(tmp))
-            {
-                var currDecSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            if (tmp.Length <= 0 || !strToParse.Contains(tmp))
+                return 0;
 
-                tmp = tmp.Replace(".", currDecSeparator).Replace(decimalSymbol.ToString(), currDecSeparator);
+            var currentDecimalSeparator = Thread.CurrentThread
+                .CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
-                return double.Parse(tmp);
-            }
+            tmp = tmp.Replace(".", currentDecimalSeparator)
+                .Replace(decimalSymbol.ToString(), currentDecimalSeparator);
 
-            return 0;
+            return double.Parse(tmp);
         }
-
     }
 }

@@ -4,15 +4,10 @@
     {
         public static int SafeGetIntFromString(this string text)
         {
-            if (!string.IsNullOrEmpty(text))
-            {
-                if (int.TryParse(text, out int n))
-                {
-                    return n;
-                }
-            }
+            if (string.IsNullOrEmpty(text))
+                return 0;
 
-            return 0;
+            return int.TryParse(text, out var n) ? n : 0;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+
 namespace Budgetterarn
 {
     partial class ListViewWithComboBox : KontoEntryListView
@@ -6,7 +7,7 @@ namespace Budgetterarn
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.

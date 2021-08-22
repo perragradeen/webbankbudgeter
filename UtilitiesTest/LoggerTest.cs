@@ -9,41 +9,52 @@ namespace UtilitiesTest
     [TestClass]
     public class LoggerTest
     {
-        public string ExcelBookPath => Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                @"TestFiles\1.xls"
-                );
+        private static string ExcelBookPath => Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory,
+            @"TestFiles\1.xls"
+        );
 
         [TestMethod]
         public void WriteToWorkBookTest()
         {
-            var sheetName = "Blad1";
-            Logger.OperationToPerformOnBook operation = null;
+            const string sheetName = "Blad1";
             var rowToWrite = new object[]
                 { "Testar", "kl:", DateTime.Now };
-            var overWrite = true;
-            Hashtable rowsToWrite = null;
-            var expected = -1;
-            int actual;
-            actual = Logger.WriteToWorkBook(ExcelBookPath, sheetName, operation, rowToWrite, overWrite, rowsToWrite);
+
+            const int expected = -1;
+            
+            var actual = 
+                Logger.WriteToWorkBook(
+                    ExcelBookPath,
+                    sheetName,
+                    operation: null,
+                    rowToWrite,
+                    overWrite: true,
+                    rowsToWrite: null);
+
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void WriteToWorkBookTest1()
         {
-            var sheetName = "Sheet1";
-
-            var overWrite = true;
+            const string sheetName = "Sheet1";
 
             var rowsToWrite = new Hashtable
-                              {
-                                  { 1, new object[] { "afdf", "test", 7, DateTime.Now } },
-                                  { 2, new object[] { "tvåan", "test", 2, DateTime.Now.AddHours(1) } }
-                              };
-            var expected = -1;
-            int actual;
-            actual = Logger.WriteToWorkBook(ExcelBookPath, sheetName, overWrite, rowsToWrite);
+            {
+                { 1, new object[] { "afdf", "test", 7, DateTime.Now } },
+                { 2, new object[] { "tvåan", "test", 2, DateTime.Now.AddHours(1) } }
+            };
+
+            const int expected = -1;
+
+            var actual =
+                Logger.WriteToWorkBook(
+                    ExcelBookPath,
+                    sheetName,
+                    overWrite: true,
+                    rowsToWrite);
+
             Assert.AreEqual(expected, actual);
         }
     }

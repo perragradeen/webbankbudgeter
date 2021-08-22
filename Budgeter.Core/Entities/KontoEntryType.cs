@@ -6,6 +6,5 @@
         Ignore,
         SplitChild,
         Split,
-        AllkortsFakturaDragning
     }
 }

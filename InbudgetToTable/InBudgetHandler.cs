@@ -13,18 +13,13 @@ namespace InbudgetToTable
 {
     public class InBudgetHandler
     {
-        public const string SummaText = "Summa";
+        private const string SummaText = "Summa";
         private readonly string _inBudgetFilePath;
 
         private List<InBudget> _inPoster;
         public async Task<List<InBudget>> GetInPoster()
         {
-            if (_inPoster == null)
-            {
-                _inPoster = await GetIncomes();
-            }
-
-            return _inPoster;
+            return _inPoster ?? (_inPoster = await GetIncomes());
         }
 
         public InBudgetHandler(string inBudgetFilePath)
@@ -38,13 +33,12 @@ namespace InbudgetToTable
             {
                 //-		rad	{DataGridViewRow { Index=0 }}	object {System.Windows.Forms.DataGridViewRow}
 
-                var celler = rad.Cells.Cast<DataGridViewCell>();
-                var sistaRadensIndexNummer = bindToUiElement.Rows.GetLastRow(DataGridViewElementStates.Displayed);
+                var celler = rad.Cells.Cast<DataGridViewCell>().ToList();
 
                 var kolumnerEfter1 = celler.Where(värde => värde.ColumnIndex != 0);
 
-                var radRubrik = celler.Where(värde => värde.ColumnIndex == 0)
-                    .FirstOrDefault()?.Value?.ToString();
+                var radRubrik = celler
+                    .FirstOrDefault(värde => värde.ColumnIndex == 0)?.Value?.ToString();
                 if (
                     radRubrik == SummaText
                     || string.IsNullOrWhiteSpace(radRubrik))
@@ -52,12 +46,15 @@ namespace InbudgetToTable
                     continue;
                 }
 
-                var kolumnRubrikGet = bindToUiElement.Columns.Cast<DataGridViewTextBoxColumn>();
+                var kolumnRubrikGet = bindToUiElement.Columns.Cast<DataGridViewTextBoxColumn>().ToList();
                 foreach (var kolumn in kolumnerEfter1)
                 {
                     // Hämta den kolumnrubrik som kolumnens index har
-                    var årMånad = Transaction.GetDateFromYearMonthName(
-                        kolumnRubrikGet.FirstOrDefault(kolumnLetare => kolumnLetare.Index == kolumn.ColumnIndex).HeaderText);
+                    var headerText = kolumnRubrikGet
+                        .FirstOrDefault(kolumnLetare => kolumnLetare.Index == kolumn.ColumnIndex)
+                            ?.HeaderText;
+                    var årMånad = Transaction.GetDateFromYearMonthName(headerText);
+
                     var värde = Conversions.SafeGetDouble(kolumn.Value);
 
                     inPoster.Add(new InBudget
@@ -85,7 +82,7 @@ namespace InbudgetToTable
             File.WriteAllText(_inBudgetFilePath, jsonString);
         }
 
-        public async Task<List<InBudget>> GetIncomes()
+        private async Task<List<InBudget>> GetIncomes()
         {
             // Behövs inte ta ut alla unika månader, för dom skrivs in unika
             // var årOMånader = Ta_ut_alla_unika_månader(inPoster);

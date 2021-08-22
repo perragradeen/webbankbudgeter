@@ -3,24 +3,11 @@
     // Byt namn
     public class ExcelRowEntry
     {
-        private readonly object[] args;
-
-        public ExcelRowEntry(int i, object[] s)
+        public ExcelRowEntry(object[] s)
         {
-            Row = i;
-
-            args = s;
+            Args = s;
         }
 
-        // Byt namn till rownumber
-        public int Row { get; private set; }
-
-        public object[] Args
-        {
-            get
-            {
-                return args;
-            }
-        }
+        public object[] Args { get; }
     }
 }

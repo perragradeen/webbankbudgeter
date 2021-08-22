@@ -2,7 +2,7 @@
 {
     public enum FileType
     {
-        xls,
-        xml,
+        Xls,
+        Xml,
     }
 }

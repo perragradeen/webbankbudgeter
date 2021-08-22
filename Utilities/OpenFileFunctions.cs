@@ -3,25 +3,23 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Xml;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace Utilities
 {
-    public class OpenFileFunctions
+    public static class OpenFileFunctions
     {
         #region Open file functions
 
-        public static Hashtable UsedFileTypesFilterNames = InitInfoToolUsedFileTypesFilterNames();
-
-        private static Application _excelApp;
+        public static readonly Hashtable UsedFileTypesFilterNames =
+            InitInfoToolUsedFileTypesFilterNames();
 
         private static Hashtable InitInfoToolUsedFileTypesFilterNames()
         {
             var returnNames = new Hashtable
             {
-                { FileType.xls, "Excel XLS Log File" },
-                { FileType.xml, "XML Setting File" }
+                { FileType.Xls, "Excel XLS Log File" },
+                { FileType.Xml, "XML Setting File" }
             };
 
             return returnNames;
@@ -35,24 +33,24 @@ namespace Utilities
         /// <param name="book">Hashtabell som ALLA celler eller rader lagras i, inte bara en kolumn även om man valt att få det, den returneras av funktionen istället</param>
         /// <param name="selectedRow">Rad som ska sparas, 0 för alla</param>
         /// <returns>Om selectedRow är annat än 0 och sheetName inte är tom sträng, så returneras en Hashtabell med den angivna raden </returns>
-        public static Hashtable OpenExcelSheet(string excelBookPath, string sheetName, Hashtable book, int selectedRow)
-        // ev. returnera en bool om det lyckades, ev. lägg en Arraylist som innehåller allt inkl. dubletter
+        public static void OpenExcelSheet(
+                string excelBookPath,
+                string sheetName,
+                Hashtable book,
+                int selectedRow)
+            // ev. returnera en bool om det lyckades, ev. lägg en Arraylist som innehåller allt inkl. dubletter
         {
             var returnHashtable = new Hashtable();
-            var oldCI = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             #region read Old Log
 
-            _excelApp = new ApplicationClass();
-            _excelApp.WorkbookDeactivate += Application_WorkbookDeactivate;
-
-            Workbook ExcelBook = null;
+            var excelApp = new ApplicationClass();
 
             try
             {
                 // Öppna den gamla loggen
-                ExcelBook = _excelApp.Workbooks._Open(
+                var excelBook = excelApp.Workbooks._Open(
                     excelBookPath,
                     // filename,
                     Type.Missing,
@@ -70,55 +68,20 @@ namespace Utilities
                     Type.Missing);
 
                 // get the collection of sheets in the workbook
-                var Sheets = ExcelBook.Worksheets;
-                var numOfSheets = ExcelBook.Worksheets.Count;
-                var startSheetNumber = 1;
-
-                //// get the first and only worksheet from the collection of worksheets
-                Worksheet worksheet = null;
-                if (sheetName == "")
-                {
-                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(1);
-                }
-                else if (sheetName != "=theonlyonein")
-                {
-                    // Hämta ut ett ark med inskickat namn
-                    foreach (Worksheet currentSheet in Sheets)
-                    {
-                        if (currentSheet.Name == sheetName)
-                        {
-                            worksheet = currentSheet;
-
-                            break;
-                        }
-
-                        startSheetNumber++;
-                    }
-
-                    numOfSheets = startSheetNumber; // +1 behövs ej eftersom loopen har  <= numOfSheets
-                }
-                else if (sheetName == "=theonlyonein") // bör det ju vara då...hehe
-                {
-                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(1);
-                    sheetName = worksheet.Name;
-
-                    numOfSheets = 1;
-                    startSheetNumber = 1;
-                }
-
-                /// loop through 10 rows of the spreadsheet and place each row in the list view
-                var rows = new Hashtable(); // Behöver ej göras new, kan sättas till null eg.
+                var sheets = excelBook.Worksheets;
+                var numOfSheets = excelBook.Worksheets.Count;
 
                 // Store old rows
+                const int startSheetNumber = 1;
                 for (var sheetNr = startSheetNumber; sheetNr <= numOfSheets; sheetNr++)
                 {
-                    var localSheetName = ((Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(sheetNr)).Name;
+                    var localSheetName = ((Worksheet)sheets.Item[sheetNr]).Name;
 
                     // Excelarknamnet
-                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)Sheets.get_Item(sheetNr);
+                    var worksheet = (Worksheet)sheets.Item[sheetNr];
 
                     // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
-                    rows = new Hashtable();
+                    var rows = new Hashtable(); // Behöver ej göras new, kan sättas till null eg.
                     ExcelLogRowComparer.GetExcelRows(worksheet, rows);
 
                     // Hämta ut rader och lägg i rows från Excel arket worksheet
@@ -127,23 +90,25 @@ namespace Utilities
 
                 if (sheetName != "" && selectedRow != 0) // ha detta som en annan fkn, för att kunna använda ovan som en mer generell fkn, och ev. ha en som kör båda sen, för MissingCSC
                 {
-                    foreach (ExcelRowEntry var in (book[sheetName] as Hashtable).Values)
+                    var rows = (book[sheetName] as Hashtable)?.Values
+                               ?? throw new ArgumentNullException(nameof(excelBookPath));
+                    foreach (ExcelRowEntry var in rows)
                     {
                         returnHashtable.Add(var.Args[selectedRow - 1], 1);
                     }
                 }
 
                 // Stäng worbook utan att spara (man har ju bara läst nu)
-                ExcelBook.Close(false, Type.Missing, Type.Missing);
+                excelBook.Close(false, Type.Missing, Type.Missing);
             }
             catch (Exception e)
             {
-                _excelApp.Quit(); // Stäng excel
-                Marshal.ReleaseComObject(_excelApp);
+                excelApp.Quit(); // Stäng excel
+                Marshal.ReleaseComObject(excelApp);
 
-                if (returnHashtable != null && returnHashtable.Count > 0)
+                if (returnHashtable.Count > 0)
                 {
-                    return returnHashtable;
+                    return;
                 }
 
                 throw new Exception(
@@ -152,75 +117,24 @@ namespace Utilities
                     e);
             }
 
-            // Stängt boken oven
-            Marshal.ReleaseComObject(_excelApp);
-
-            return returnHashtable;
+            // Stäng boken oven
+            CloseApp(excelApp);
 
             #endregion
         }
 
         // För att stänga Excel efter användandet.
-        private static void Application_WorkbookDeactivate(Workbook wb)
+        private static void CloseApp(Application appToCloseEtc)
         {
             // Stäng och släpp excel
-            var appToCloseEtc = _excelApp;
             appToCloseEtc.Quit();
 
-            while (System.Runtime.InteropServices.Marshal.ReleaseComObject(appToCloseEtc) != 0)
+            while (Marshal.ReleaseComObject(appToCloseEtc) != 0)
             {
             }
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
-            // Wants to be sure excelAppOpen is cleared
-            // ReSharper disable RedundantAssignment
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-            appToCloseEtc = null;
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
-
-            // ReSharper restore RedundantAssignment
-        }
-
-        #endregion
-
-        #region LoadXmlSettings
-
-        public Hashtable ReadSettings()
-        {
-            return ReadSettings("settings.xml", "//pretentioussettings");
-        }
-
-        /// <summary>
-        /// Returns a HasHtable with the nodes form nodeName, and some attributes from a xml file
-        /// </summary>
-        /// <param name="settingsFile">Xml file</param>
-        /// <param name="nodeName">Node to read from</param>
-        /// <returns></returns>
-        public Hashtable ReadSettings(string settingsFile, string nodeName)
-        {
-            var returnTable = new Hashtable();
-            try
-            {
-                var __doc = new XmlDocument();
-                __doc.Load(settingsFile);
-
-                var items = __doc.SelectSingleNode(nodeName);
-                foreach (XmlNode item in items.ChildNodes)
-                {
-                    var settingCurrentElem = item as XmlElement;
-                    var settingCurrent = settingCurrentElem.Name;
-
-                    returnTable.Add(settingCurrent, "");
-                }
-
-                return returnTable;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Fel vid inläsning av settings-fil: " + e.Message, e);
-            }
         }
 
         #endregion

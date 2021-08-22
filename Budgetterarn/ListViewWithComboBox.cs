@@ -1,19 +1,21 @@
-﻿using Budgeter.Core.Entities;
-using CategoryHandler;
-using CategoryHandler.Model;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
+using Budgeter.Core.Entities;
+using CategoryHandler;
+using CategoryHandler.Model;
+
 namespace Budgetterarn
 {
-    public partial class ListViewWithComboBox : KontoEntryListView
+    public partial class ListViewWithComboBox
     {
         #region Members
 
-        internal const string AutoCatCpation = "Spara kategorival (typ av kostnad) automatiskt?";
+        private const string AutoCatCpation = "Spara kategorival (typ av kostnad) automatiskt?";
         private const int TypAvKostnadKolumnnummer = 2;
         private readonly ComboBox comboBoxCategories = new ComboBox();
 
@@ -21,6 +23,7 @@ namespace Budgetterarn
         private ListViewItem clickedItem;
         private int selectedSubItem;
         private int x;
+
         #endregion
 
         // Constructor
@@ -61,13 +64,10 @@ namespace Budgetterarn
             {
                 var entries = new List<KontoEntry>();
 
-                if (Items != null && Items.Count > 0)
-                {
-
-                    var items = Items.Cast<ListViewItem>();
-                    items.ToList().ForEach(
-                        viewItem => entries.Add((KontoEntry)viewItem.Tag));
-                }
+                if (Items.Count <= 0) return entries;
+                var items = Items.Cast<ListViewItem>();
+                items.ToList().ForEach(
+                    viewItem => entries.Add((KontoEntry)viewItem.Tag));
 
                 return entries;
             }
@@ -127,8 +127,8 @@ namespace Budgetterarn
             // Get selected items cat
             var selEntry = (KontoEntry)clickedItem.Tag;
             var selItemsCat = selEntry != null && !string.IsNullOrEmpty(selEntry.TypAvKostnad)
-                                  ? selEntry.TypAvKostnad
-                                  : null;
+                ? selEntry.TypAvKostnad
+                : null;
 
             var selectedCategoryText = selItemsCat ?? comboBoxCategories.Items[i].ToString(); // Done:Byt namn
             var slectedInfoDescription = clickedItem.SubItems[1].Text;
@@ -138,8 +138,8 @@ namespace Budgetterarn
 
             // Fråga anv. om den är säker
             var autoCatMessage = "Spara autokategori? Alltså att altid välja:" + Environment.NewLine
-                                 + selectedCategoryText + Environment.NewLine + "Varje gång info är:"
-                                 + Environment.NewLine + slectedInfoDescription + Environment.NewLine + "?";
+                                                                               + selectedCategoryText + Environment.NewLine + "Varje gång info är:"
+                                                                               + Environment.NewLine + slectedInfoDescription + Environment.NewLine + "?";
             if (!UserAcceptsFurtherAction(autoCatMessage, AutoCatCpation))
             {
                 return;
@@ -176,7 +176,7 @@ namespace Budgetterarn
         /// </summary>
         /// <param name="items"></param>
         /// <param name="infoToCheck">empty string means all, null means none</param>
-        internal static void UpdateCategoriesWithAutoCatList(ListViewItemCollection items, string infoToCheck)
+        private static void UpdateCategoriesWithAutoCatList(IEnumerable items, string infoToCheck)
         {
             #region Uppdera listan men nya entries
 
@@ -235,7 +235,7 @@ namespace Budgetterarn
             #endregion
         }
 
-        internal static bool UserAcceptsFurtherAction(string message, string caption)
+        private static bool UserAcceptsFurtherAction(string message, string caption)
         {
             // Done:Popup mbox and ask user Are u sure?...etc
             var saveAutocatOrNot = MessageBox.Show(message, caption, MessageBoxButtons.YesNoCancel);
@@ -288,11 +288,9 @@ namespace Budgetterarn
             }
             else
             {
-                if (clickedItem != null)
-                {
-                    clickedItem.SubItems[selectedSubItem].Text = str;
-                    ((KontoEntry)clickedItem.Tag).TypAvKostnad = str;
-                }
+                if (clickedItem == null) return;
+                clickedItem.SubItems[selectedSubItem].Text = str;
+                ((KontoEntry)clickedItem.Tag).TypAvKostnad = str;
             }
         }
 
@@ -306,12 +304,12 @@ namespace Budgetterarn
             PopupComboboxOfCaytegories();
         }
 
-        public void ListViewMouseClick(object sender, EventArgs e)
+        private void ListViewMouseClick(object sender, EventArgs e)
         {
             PopupComboboxOfCaytegories();
         }
 
-        public void ListViewMouseDown(object sender, MouseEventArgs e)
+        private void ListViewMouseDown(object sender, MouseEventArgs e)
         {
             clickedItem = GetItemAt(e.X, e.Y);
             x = e.X;
@@ -337,14 +335,10 @@ namespace Budgetterarn
             // Todo: Ta bort den ur minnet, newKontoEntries
         }
 
-        private void PopupComboboxOfCaytegories()
-        {
-            PopupComboboxOfCaytegories(null);
-        }
-
-        private void PopupComboboxOfCaytegories(int? selectedSubColumnItem)
+        private void PopupComboboxOfCaytegories(int? selectedSubColumnItem = null)
         {
             // Check whether the subitem was clicked
+
             #region Check posistion clicked
 
             var start = x;
@@ -446,15 +440,13 @@ namespace Budgetterarn
 
             // Hämta text från boxen
             var selectedItemInCatText = string.IsNullOrEmpty(comboBoxCategories.SelectedItem.ToString())
-                                            ? " "
-                                            : comboBoxCategories.SelectedItem.ToString();
+                ? " "
+                : comboBoxCategories.SelectedItem.ToString();
 
             // Sätt texten i cellen. Om flera inte är valda
-            if (selectedSubColumnItem == null && clickedItem != null)
-            {
-                clickedItem.SubItems[selectedSubItem].Text = selectedItemInCatText;
-                ((KontoEntry)clickedItem.Tag).TypAvKostnad = selectedItemInCatText;
-            }
+            if (selectedSubColumnItem != null || clickedItem == null) return;
+            clickedItem.SubItems[selectedSubItem].Text = selectedItemInCatText;
+            ((KontoEntry)clickedItem.Tag).TypAvKostnad = selectedItemInCatText;
 
             #endregion
         }

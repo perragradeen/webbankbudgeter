@@ -24,6 +24,7 @@ namespace WebBankBudgeter.UiBinders
             {
                 _gv_budget.Columns.Add(column, column);
             }
+
             _gv_budget.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
 
@@ -39,7 +40,7 @@ namespace WebBankBudgeter.UiBinders
                     switch (header)
                     {
                         case TextToTableOutPuter.AverageColumnDescription:
-                            value = CalcMonthAvaragesPerRow(
+                            value = CalcMonthAveragesPerRow(
                                 row.AmountsForMonth, table.ColumnHeaders);
                             break;
                         case TextToTableOutPuter.CategoryNameColumnDescription:
@@ -57,26 +58,27 @@ namespace WebBankBudgeter.UiBinders
         }
 
 
-        private static object CalcMonthAvaragesPerRow(Dictionary<string, double> rowAmountsForMonth, List<string> tableColumnHeaders)
+        private static object CalcMonthAveragesPerRow(IReadOnlyDictionary<string, double> rowAmountsForMonth, IEnumerable<string> tableColumnHeaders)
         {
             var amounts = new List<double>();
-            foreach (var columHeader in tableColumnHeaders)
+            foreach (var columnHeader in tableColumnHeaders)
             {
-                switch (columHeader)
+                switch (columnHeader)
                 {
                     case TextToTableOutPuter.AverageColumnDescription:
                         break;
                     case TextToTableOutPuter.CategoryNameColumnDescription:
                         break;
                     default:
-                        if (rowAmountsForMonth.ContainsKey(columHeader))
+                        if (rowAmountsForMonth.ContainsKey(columnHeader))
                         {
-                            amounts.Add(rowAmountsForMonth[columHeader]);
+                            amounts.Add(rowAmountsForMonth[columnHeader]);
                         }
                         else
                         {
                             amounts.Add(0);
                         }
+
                         break;
                 }
             }

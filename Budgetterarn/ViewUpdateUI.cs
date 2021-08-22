@@ -1,13 +1,13 @@
-﻿using Budgeter.Core.Entities;
-using Budgetterarn.Application_Settings_and_constants;
-using System;
+﻿using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
+using Budgeter.Core.Entities;
+using Budgetterarn.Application_Settings_and_constants;
 
 namespace Budgetterarn
 {
-    internal class ViewUpdateUi
+    internal static class ViewUpdateUi
     {
         internal static void SetNewItemsListViewFromSortedList(ListView showEntriesInThis, SortedList kontoEntries)
         {
@@ -36,14 +36,7 @@ namespace Budgetterarn
         {
             // Begränsa antal synliga rader
             rowCounter++;
-            if (rowCounter > UISettings.MaxRowDisplay)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return rowCounter > UISettings.MaxRowDisplay;
         }
 
         #region Container adds

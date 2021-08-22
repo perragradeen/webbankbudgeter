@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Budgetterarn
 {
@@ -7,7 +8,7 @@ namespace Budgetterarn
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -463,24 +464,24 @@ namespace Budgetterarn
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip _MainMenu;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadCurrentEntriesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem openBankSiteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage m_originalXls;
-        private System.Windows.Forms.TabPage m_inMemoryList;
-        private System.Windows.Forms.TabControl m_newItemsTab;
-        private System.Windows.Forms.TabPage tp_NewItemsEdited;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private MenuStrip _MainMenu;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem testToolStripMenuItem;
+        private ToolStripMenuItem debugToolStripMenuItem;
+        private ToolStripMenuItem loadToolStripMenuItem;
+        private ToolStripMenuItem loadCurrentEntriesToolStripMenuItem;
+        private ToolStripMenuItem loadToolStripMenuItem1;
+        private ToolStripMenuItem openBankSiteToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private SplitContainer splitContainer1;
+        private SplitContainer splitContainer2;
+        private TabControl tabControl1;
+        private TabPage m_originalXls;
+        private TabPage m_inMemoryList;
+        private TabControl m_newItemsTab;
+        private TabPage tp_NewItemsEdited;
+        private RichTextBox richTextBox1;
+        private StatusStrip statusStrip1;
         private Button m_b_AddNewToMem;
         private ColumnHeader c_Date;
         private ColumnHeader c_Info;

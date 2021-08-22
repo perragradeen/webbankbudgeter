@@ -1,15 +1,15 @@
-﻿using Budgeter.Core.BudgeterConstants;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using Budgetterarn.WebCrawlers;
 using LoadTransactionsFromFile;
 using LoadTransactionsFromFile.DAL;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Budgetterarn.DAL
 {
-    public class LoadKonton : BankConstants
+    internal class LoadKonton : BankConstants
     {
         /// <summary>
         /// Sparar till Excel-fil
@@ -41,7 +41,7 @@ namespace Budgetterarn.DAL
         internal static bool GetAllVisibleEntriesFromWebBrowser(
             KontoEntriesHolder kontoEntriesHolder,
             string text
-            )
+        )
         {
             var noKe = kontoEntriesHolder.KontoEntries.Count; // Se om något ändras sen...
             var noNewKontoEntriesBeforeLoading = kontoEntriesHolder.NewKontoEntries.Count;
@@ -61,9 +61,9 @@ namespace Budgetterarn.DAL
 
                         // Get Entries
                         GetHtmlEntriesFromSwedBankv2(
-                                    text,
-                                    kontoEntriesHolder.KontoEntries,
-                                    kontoEntriesHolder.NewKontoEntries);
+                            text,
+                            kontoEntriesHolder.KontoEntries,
+                            kontoEntriesHolder.NewKontoEntries);
 
                         #endregion
 
@@ -75,7 +75,6 @@ namespace Budgetterarn.DAL
 
             if (kontoEntriesHolder.KontoEntries.Count != noKe)
             {
-                kontoEntriesHolder.SomethingChanged = true; // Här har man tagit in nytt som inte är sparat
             }
 
             // Returnera aom något ändrats. Är de nya inte samma som innan laddning, så är det sant att något ändrats.
@@ -88,8 +87,8 @@ namespace Budgetterarn.DAL
             // Spara en batch, dyker det upp dubletter i samma, så ska de ses som unika
             var newBatchOfKontoEntriesAlreadyRed = EntryAdder.GetNewBatchOfKontoEntriesAlreadyRed(kontoEntries, newKontoEntries);
 
-            var entryBlob = text.Substring(text.IndexOf("\nTransaktioner\nTransaktionsdatum\nBokföringsdatum\nBelopp\nSaldo\n") +
-                "\nTransaktioner\nTransaktionsdatum\nBokföringsdatum\nBelopp\nSaldo\n".Length);
+            var entryBlob = text.Substring(text.IndexOf("\nTransaktioner\nTransaktionsdatum\nBokföringsdatum\nBelopp\nSaldo\n", StringComparison.Ordinal) +
+                                           "\nTransaktioner\nTransaktionsdatum\nBokföringsdatum\nBelopp\nSaldo\n".Length);
             var entries = entryBlob.Split('\n');
             var currentColumnCount = 0;
             var rows = new List<List<string>>();
@@ -99,12 +98,10 @@ namespace Budgetterarn.DAL
                 currentColumnCount++;
                 currentEntriesColumns.Add(textPart);
 
-                if (currentColumnCount > 4)
-                {
-                    currentColumnCount = 0;
-                    rows.Add(new List<string>(currentEntriesColumns));
-                    currentEntriesColumns = new List<string>();
-                }
+                if (currentColumnCount <= 4) continue;
+                currentColumnCount = 0;
+                rows.Add(new List<string>(currentEntriesColumns));
+                currentEntriesColumns = new List<string>();
 
             }
 
@@ -128,7 +125,7 @@ namespace Budgetterarn.DAL
         /// </summary>
         /// <param name="htmlElement"></param>
         /// <returns></returns>
-        private static BankRow GetSwedBankTableRowv2(List<string> htmlElement)
+        private static BankRow GetSwedBankTableRowv2(IReadOnlyList<string> htmlElement)
         {
             const int eventColNum = 1;
             const int dateColNum = 2;

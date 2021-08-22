@@ -1,14 +1,15 @@
-﻿using Budgeter.Core;
-using Budgeter.Core.Entities;
-using CategoryHandler;
-using System.Collections;
+﻿using System.Collections;
 using System.Drawing;
 using System.Linq;
+using Budgeter.Core;
+using Budgeter.Core.Entities;
+using CategoryHandler;
+
 // ReSharper disable CommentTypo
 
 namespace Budgetterarn
 {
-    public class KontoEntriesChecker
+    public static class KontoEntriesChecker
     {
         const string Skb = "skyddat belopp";
         const string Pkk = "PREL. KORTKÖP";
@@ -19,39 +20,37 @@ namespace Budgetterarn
         /// <param name="newKe">Entry to change</param>
         /// <param name="entry">CurrentEntry to read</param>
         /// <returns></returns>
-        internal static bool DidSatKeyForEntry(KontoEntry newKe, KontoEntry entry)
+        private static bool DidSatKeyForEntry(KontoEntry newKe, KontoEntry entry)
         {
-            if (entry.Date == newKe.Date && entry.KostnadEllerInkomst.Equals(newKe.KostnadEllerInkomst))
+            if (entry.Date != newKe.Date
+                || !entry.KostnadEllerInkomst.Equals(newKe.KostnadEllerInkomst)) return true;
+
+            // Ersätt skb
+            if (entry.Info.ToLower() == Skb.ToLower() || entry.Info.ToLower() == Pkk.ToLower())
             {
-                // Ersätt skb
-                if (entry.Info.ToLower() == Skb.ToLower() || entry.Info.ToLower() == Pkk.ToLower())
+                newKe.FontFrontColor = entry.FontFrontColor = Color.DeepSkyBlue;
+
+                // Ta de gamla saldot
+                newKe.SaldoOrginal = entry.SaldoOrginal;
+                newKe.AckumuleratSaldo = entry.AckumuleratSaldo;
+
+                // Vid senare ersättande, så kommer typen vara den nya, eftersom det är den som autokattats, och då stämmer det nog bättre än den som kan vara skyddat belopp. Anv. kan ju även alltid sätta själv innan sparning
+                // Är inget autokattat, så ta den gamla, man har säkert gissat rätt
+                if (string.IsNullOrEmpty(newKe.TypAvKostnad))
                 {
-                    newKe.FontFrontColor = entry.FontFrontColor = Color.DeepSkyBlue;
-
-                    // Ta de gamla saldot
-                    newKe.SaldoOrginal = entry.SaldoOrginal;
-                    newKe.AckumuleratSaldo = entry.AckumuleratSaldo;
-
-                    // Vid senare ersättande, så kommer typen vara den nya, eftersom det är den som autokattats, och då stämmer det nog bättre än den som kan vara skyddat belopp. Anv. kan ju även alltid sätta själv innan sparning
-                    // Är inget autokattat, så ta den gamla, man har säkert gissat rätt
-                    if (string.IsNullOrEmpty(newKe.TypAvKostnad))
-                    {
-                        newKe.TypAvKostnad = entry.TypAvKostnad;
-                    }
-
-                    newKe.ReplaceThisKey = entry.KeyForThis;
-                }
-                else
-                {
-                    // Det är kanske en dubblett
-                    newKe.FontFrontColor = entry.FontFrontColor = Color.Red;
-                    newKe.ThisIsDoubleDoNotAdd = true;
+                    newKe.TypAvKostnad = entry.TypAvKostnad;
                 }
 
-                return false; // En entry ska bara kunna ersätta En annan entry
+                newKe.ReplaceThisKey = entry.KeyForThis;
+            }
+            else
+            {
+                // Det är kanske en dubblett
+                newKe.FontFrontColor = entry.FontFrontColor = Color.Red;
+                newKe.ThisIsDoubleDoNotAdd = true;
             }
 
-            return true;
+            return false; // En entry ska bara kunna ersätta En annan entry
         }
 
         /// <summary>Hjäpfunnktion till CheckAndAddNewItems
@@ -59,9 +58,11 @@ namespace Budgetterarn
         /// Prestandainfo. Loop i loop...
         /// </summary>
         /// <param name="newKe"></param>
-        public static void CheckForSkyddatBeloppMatcherAndGuesseDouble(KontoEntry newKe, SortedList kontoEntries)
+        /// <param name="kontoEntries"></param>
+        public static void CheckForSkyddatBeloppMatcherAndGuessDouble(
+            KontoEntry newKe,
+            SortedList kontoEntries)
         {
-            // private
             foreach (KontoEntry entry in kontoEntries.Values)
             {
                 // Om entryn inte är av typen regulär skippa jämförelser av den.
@@ -71,7 +72,7 @@ namespace Budgetterarn
                     continue;
                 }
 
-                if (!KontoEntriesChecker.DidSatKeyForEntry(newKe, entry))
+                if (!DidSatKeyForEntry(newKe, entry))
                 {
                     return;
                 }
@@ -92,9 +93,9 @@ namespace Budgetterarn
                     continue;
                 }
 
-                var foundDoubleInUList = lists.NewIitemsListEdited
+                var foundDoubleInUList = lists.NewItemsListEdited
                                              .CheckIfKeyExistsInKontoEntries(newKe.KeyForThis)
-                                         || lists.NewIitemsListEdited
+                                         || lists.NewItemsListEdited
                                              .Any(
                                                  viewItem =>
                                                      (viewItem).KeyForThis.Equals(
@@ -107,7 +108,7 @@ namespace Budgetterarn
                 }
 
                 // Lägg till i org
-                lists.NewIitemsListOrg?.Add(newKe);
+                lists.NewItemsListOrg?.Add(newKe);
 
                 // Kolla om det är en dubblet eller om det är finns ett motsvarade "skyddat belopp"
                 if (lists.KontoEntries.ContainsKey(newKe.KeyForThis))
@@ -125,7 +126,7 @@ namespace Budgetterarn
                 }
 
                 // Lägg till i edited
-                lists.NewIitemsListEdited.Add(newKe);
+                lists.NewItemsListEdited.Add(newKe);
             }
         }
     }

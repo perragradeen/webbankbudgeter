@@ -1,23 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Budgetterarn
+namespace Budgetterarn.AutoNavigateBrowser
 {
     public class AutoGetEntriesHbMobil
     {
         // Ev. byta denna mot en klass med innehåll och nyckel, för att behålla orginalordningen på posterna. Sorteras med nyaste först
         private readonly Stack<DoneNavigationAction> navigatedNextActionIsStack;
-        private readonly BrowserNavigating browserNavigator;
         private readonly DoneNavigationAction LoadCurrentEntriesFromBrowser;
 
         public AutoGetEntriesHbMobil(DoneNavigationAction loadCurrentEntriesFromBrowser, WebBrowser webBrowser)
         {
             navigatedNextActionIsStack = new Stack<DoneNavigationAction>();
-            browserNavigator = new BrowserNavigating(webBrowser);
-            this.LoadCurrentEntriesFromBrowser = loadCurrentEntriesFromBrowser;
+            BrowserNavigator = new BrowserNavigating(webBrowser);
+            LoadCurrentEntriesFromBrowser = loadCurrentEntriesFromBrowser;
         }
 
-        public BrowserNavigating BrowserNavigator { get { return browserNavigator; } }
+        public BrowserNavigating BrowserNavigator { get; }
 
         public void LoadingCompleted()
         {
@@ -50,34 +49,34 @@ namespace Budgetterarn
 
             // Allkonto
             navigatedNextActionIsStack.Push(LoadEntriesAndGoToFirst);
-            navigatedNextActionIsStack.Push(browserNavigator.NavigateToAllKonto);
+            navigatedNextActionIsStack.Push(BrowserNavigator.NavigateToAllKonto);
 
             // Löne
             navigatedNextActionIsStack.Push(LoadEntriesAndGoBack);
-            navigatedNextActionIsStack.Push(browserNavigator.NavigateToLöneKonto);
+            navigatedNextActionIsStack.Push(BrowserNavigator.NavigateToLöneKonto);
 
             // Inlogg
-            navigatedNextActionIsStack.Push(browserNavigator.NavigateToFirstItemInVisibleList);
-            navigatedNextActionIsStack.Push(browserNavigator.SetLoginUserEtc);
-            navigatedNextActionIsStack.Push(browserNavigator.NavigateToFirstItemInVisibleList);
+            navigatedNextActionIsStack.Push(BrowserNavigator.NavigateToFirstItemInVisibleList);
+            navigatedNextActionIsStack.Push(BrowserNavigator.SetLoginUserEtc);
+            navigatedNextActionIsStack.Push(BrowserNavigator.NavigateToFirstItemInVisibleList);
         }
 
         private void LoadEntriesAndGoBack()
         {
             LoadCurrentEntriesFromBrowser();
-            browserNavigator.BrowserGoBack();
+            BrowserNavigator.BrowserGoBack();
         }
 
         private void LoadEntriesAndGoToFirst()
         {
             LoadCurrentEntriesFromBrowser();
-            browserNavigator.NavigateToFirstItemInVisibleList();
+            BrowserNavigator.NavigateToFirstItemInVisibleList();
         }
 
         private void LoadEntriesAndVisaFler()
         {
             LoadCurrentEntriesFromBrowser();
-            browserNavigator.NavigateTo3rdinsideEgVisaFler();
+            BrowserNavigator.NavigateTo3rdinsideEgVisaFler();
         }
     }
 }

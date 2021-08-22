@@ -7,7 +7,7 @@ namespace RefLesses
     {
         public static double GetDoubleValueFromStringEntry(this string val)
         {
-            // Todo, felkollar
+            // Todo: felkollar
             var cultureToUse = System.Threading.Thread.CurrentThread.CurrentCulture;
             if (string.IsNullOrEmpty(val))
             {
@@ -29,9 +29,12 @@ namespace RefLesses
                 .Replace(";", string.Empty)
                 .Replace(":", string.Empty);
 
-            return double.TryParse(cleanVal, NumberStyles.Number, cultureToUse, out double tempd)
-                       ? Math.Round(tempd, 2)
-                       : 0.0;
+            return double.TryParse(cleanVal,
+                NumberStyles.Number,
+                cultureToUse,
+                out var temp)
+                ? Math.Round(temp, 2)
+                : 0.0;
         }
     }
 }

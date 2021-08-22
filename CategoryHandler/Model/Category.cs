@@ -31,7 +31,7 @@ namespace CategoryHandler.Model
         /// </summary>
         /// <param name="infoDescription"></param>
         /// <returns></returns>
-        public AutoCategorise GetObjectWithDescription(string infoDescription)
+        private AutoCategorise GetObjectWithDescription(string infoDescription)
         {
             foreach (var currObject in AutoCategoriseList)
             {

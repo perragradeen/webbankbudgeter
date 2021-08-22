@@ -22,6 +22,6 @@ namespace CategoryHandler.Model
         /// <summary>
         /// Set from Xml file
         /// </summary>
-        public List<Category> CategoryList { get; set; } = new List<Category>();
+        public List<Category> CategoryList { get; } = new List<Category>();
     }
 }

@@ -4,14 +4,14 @@ using Utilities;
 
 namespace Budgetterarn.InternalUtilities
 {
-    public class FileOperations
+    public static class FileOperations
     {
         public static string OpenFileOfType(string dlgTitle, FileType fileType, string dirRelativeToBase)
         {
-            return OpenFileOfType(dlgTitle, fileType, dirRelativeToBase, "");
+            return OpenFileOfType(dlgTitle, fileType, dirRelativeToBase, string.Empty);
         }
 
-        public static string OpenFileOfType(
+        private static string OpenFileOfType(
             string dlgTitle, FileType fileType, string dirRelativeToBase, string absoluteDir)
         {
             try
@@ -33,20 +33,14 @@ namespace Budgetterarn.InternalUtilities
                     dlg.InitialDirectory = absoluteDir;
                 }
 
-                dlg.Filter = Utilities.OpenFileFunctions.UsedFileTypesFilterNames[fileType] + "|*."
-                             + fileType.ToString();
-                if (dlg.ShowDialog() != DialogResult.OK)
-                {
-                    return "";
-                }
-                else
-                {
-                    return dlg.FileName;
-                }
+                dlg.Filter = OpenFileFunctions.UsedFileTypesFilterNames[fileType] + @"|*."
+                    + fileType;
+                return dlg.ShowDialog() != DialogResult.OK
+                    ? string.Empty : dlg.FileName;
             }
-            catch (Exception OpenFileOfTypeExp)
+            catch (Exception openFileOfTypeExp)
             {
-                MessageBox.Show("Error in OpenFileOfType(...): " + OpenFileOfTypeExp);
+                MessageBox.Show(@"Error in OpenFileOfType(...): " + openFileOfTypeExp);
                 return null;
             }
         }

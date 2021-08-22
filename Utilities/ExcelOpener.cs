@@ -1,29 +1,27 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System;
+using System.IO;
 using System.Threading;
 
 namespace Utilities
 {
-    public class ExcelOpener
+    public static class ExcelOpener
     {
-        // Contains Excelapp to use for opening file after save, in Excel mode. And auto close it when close...
-        private static Application excelAppOpen;
+        // Contains Excel-app to use for opening file after save, in Excel mode. And auto close it when close...
+        private static Application _excelAppOpen;
 
         public static void LoadExcelFileInExcel(string excelFileSavePath)
         {
-            // SetStatusBar(EStatusBar.eProcessing);
             try
             {
-                var filePath = excelFileSavePath;
-                // Cursor.Current = Cursors.WaitCursor;
                 var fileOkToOpen = true;
 
                 #region check file
 
                 try
                 {
-                    var newFile = new System.IO.FileInfo(filePath);
-                    if (System.IO.File.Exists(filePath))
+                    var newFile = new FileInfo(excelFileSavePath);
+                    if (File.Exists(excelFileSavePath))
                     {
                         using (newFile.Open(System.IO.FileMode.Open))
                         {
@@ -42,41 +40,38 @@ namespace Utilities
 
                 #endregion
 
-                if (fileOkToOpen)
-                {
-                    #region Open log in Exel //before: tab window
+                if (!fileOkToOpen)
+                    return;
 
-                    // Start new Excel-instance
-                    excelAppOpen = new Application();
-                    excelAppOpen.WorkbookDeactivate += ApplicationWorkbookDeactivate;
+                #region Open log in Exel //before: tab window
 
-                    var oldCi = Thread.CurrentThread.CurrentCulture;
-                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                // Start new Excel-instance
+                _excelAppOpen = new Application();
+                _excelAppOpen.WorkbookDeactivate += ApplicationWorkbookDeactivate;
 
-                    if (excelAppOpen.Workbooks != null)
-                    {
-                        excelAppOpen.Workbooks._Open(
-                            filePath,
-                            Type.Missing,
-                            0,
-                            Type.Missing,
-                            XlPlatform.xlWindows,
-                            Type.Missing,
-                            Type.Missing,
-                            Type.Missing,
-                            false, // COMMA
-                            Type.Missing,
-                            Type.Missing,
-                            Type.Missing,
-                            Type.Missing);
-                    }
+                var oldCi = Thread.CurrentThread.CurrentCulture;
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
-                    excelAppOpen.Visible = true;
+                _excelAppOpen.Workbooks?._Open(
+                    excelFileSavePath,
+                    Type.Missing,
+                    0,
+                    Type.Missing,
+                    XlPlatform.xlWindows,
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    false, // COMMA
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing,
+                    Type.Missing);
 
-                    Thread.CurrentThread.CurrentCulture = oldCi;
+                _excelAppOpen.Visible = true;
 
-                    #endregion
-                }
+                Thread.CurrentThread.CurrentCulture = oldCi;
+
+                #endregion
             }
             catch (Exception fileExp)
             {
@@ -87,9 +82,9 @@ namespace Utilities
         private static void ApplicationWorkbookDeactivate(Workbook wb)
         {
             // Stäng och släpp excel
-            excelAppOpen.Quit();
+            _excelAppOpen.Quit();
 
-            while (System.Runtime.InteropServices.Marshal.ReleaseComObject(excelAppOpen) != 0)
+            while (System.Runtime.InteropServices.Marshal.ReleaseComObject(_excelAppOpen) != 0)
             {
             }
 
@@ -98,7 +93,7 @@ namespace Utilities
 
             // ReSharper disable RedundantAssignment
             // Wants to be sure excelAppOpen is cleared
-            excelAppOpen = null;
+            _excelAppOpen = null;
 
             // ReSharper restore RedundantAssignment
         }

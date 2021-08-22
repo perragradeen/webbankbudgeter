@@ -19,12 +19,6 @@ namespace Budgeter.Core.Entities
 
         public string SaldoValue { get; set; }
 
-        public DateTime Date
-        {
-            get
-            {
-                return DateFunctions.ParseDateWithCultureEtc(DateValue);
-            }
-        }
+        public DateTime Date => DateFunctions.ParseDateWithCultureEtc(DateValue);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using RefLesses;
 using System.Collections.Generic;
 using System.Linq;
-// ReSharper disable IdentifierTypo
 
 namespace Budgeter.Core.Entities
 {
@@ -14,7 +13,9 @@ namespace Budgeter.Core.Entities
 
         public List<Saldo> Saldon { get; }
 
-        private void SetSaldoValue(string saldoName, double saldoValue)
+        private void SetSaldoValue(
+            string saldoName,
+            double saldoValue)
         {
             Saldon
                 .Where(w => w.SaldoName == saldoName)
@@ -22,13 +23,14 @@ namespace Budgeter.Core.Entities
                 .ForEach(s => s.SaldoValue = saldoValue);
         }
 
-        public bool HasSaldoName(string saldoName)
+        private bool HasSaldoName(string saldoName)
         {
             return Saldon.Any(s => s.SaldoName.Equals(saldoName));
         }
 
         public void AddToOrChangeValueInDictionaryForKey(
-            string saldoName, string saldoValueText)
+            string saldoName,
+            string saldoValueText)
         {
             if (string.IsNullOrEmpty(saldoValueText))
             {
@@ -41,7 +43,8 @@ namespace Budgeter.Core.Entities
         }
 
         public void AddToOrChangeValueInDictionaryForKey(
-            string saldoName, double saldoValue)
+            string saldoName,
+            double saldoValue)
         {
             if (HasSaldoName(saldoName))
             {

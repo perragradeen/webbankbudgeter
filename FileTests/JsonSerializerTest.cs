@@ -11,10 +11,10 @@ namespace FileTests
     [TestClass]
     public class JsonSerializerTest
     {
-        public static string PathToTheFile => Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                @"testFile.json"
-                );
+        private static string PathToTheFile => Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory,
+            @"testFile.json"
+        );
 
         [TestMethod]
         public void TestSerializeList()
@@ -35,9 +35,10 @@ namespace FileTests
         private static List<InBudget> GetTestData()
         {
             // Arrange
-            return new List<InBudget> {
-             new InBudget { BudgetValue = 1 },
-             new InBudget { BudgetValue = 2 },
+            return new()
+            {
+                new InBudget { BudgetValue = 1 },
+                new InBudget { BudgetValue = 2 },
             };
         }
 
@@ -52,6 +53,7 @@ namespace FileTests
             var testData = JsonSerializer
                 .Deserialize<List<InBudget>>(jsonString);
 
+            Assert.IsNotNull(testData);
             Assert.AreEqual(1, testData.First().BudgetValue);
         }
     }

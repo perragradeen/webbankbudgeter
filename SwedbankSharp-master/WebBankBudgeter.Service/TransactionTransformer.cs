@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using WebBankBudgeter.Service.Model;
-// ReSharper disable IdentifierTypo
 
 namespace WebBankBudgeter.Service
 {
@@ -12,12 +11,13 @@ namespace WebBankBudgeter.Service
         /// Transaction row from file
         /// </summary>
         private readonly KontoEntry _kontoEnry;
-        private readonly Func<string, string> lookUpCategoryGroup;
+
+        private readonly Func<string, string> _lookUpCategoryGroup;
 
         public TransactionTransformer(KontoEntry kontoEnry, Func<string, string> lookUpCategoryGroup)
         {
             _kontoEnry = kontoEnry;
-            this.lookUpCategoryGroup = lookUpCategoryGroup;
+            _lookUpCategoryGroup = lookUpCategoryGroup;
         }
 
         public Transaction GetTransaction()
@@ -42,9 +42,7 @@ namespace WebBankBudgeter.Service
 
         private string GetCategoryGroup(string typAvKostnad)
         {
-            //return "ID_OTHER";
-
-            var categoryGroup = lookUpCategoryGroup(typAvKostnad);
+            var categoryGroup = _lookUpCategoryGroup(typAvKostnad);
             return categoryGroup;
 
             // valde 1.

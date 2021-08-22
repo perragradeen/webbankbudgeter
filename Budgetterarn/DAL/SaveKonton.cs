@@ -1,15 +1,17 @@
-﻿using Budgeter.Core.BudgeterConstants;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using Utilities;
-using System;
-using System.Collections;
-using System.Windows.Forms;
+
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
 
 namespace Budgetterarn.DAL
 {
-    public class SaveKonton
+    public static class SaveKonton
     {
         internal static LoadOrSaveResult Save(
             KontoutdragInfoForSave kontoutdragInfoForSave,
@@ -52,7 +54,7 @@ namespace Budgetterarn.DAL
                 kontoutdragInfoForSave.ExcelFileSavePath,
                 kontoutdragInfoForSave.ExcelFileSavePathWithoutFileName,
                 kontoutdragInfoForSave.ExcelFileSaveFileName
-                ).BackupOrginialFile();
+            ).BackupOrginialFile();
         }
 
         private static Hashtable GetWhatToLogWithHeaders(IEnumerable logArray, ICollection kontoEntries)
@@ -65,19 +67,19 @@ namespace Budgetterarn.DAL
             if (ProgramSettings.BankType.Equals(BankType.Swedbank)
                 || ProgramSettings.BankType.Equals(BankType.Mobilhandelsbanken)
                 || ProgramSettings.BankType.Equals(BankType.Handelsbanken)
-                )
+            )
             {
                 logThis = new Hashtable { { kontoEntries.Count + 1, logArray } };
             }
             else
             {
-                throw new Exception("Bank type not allowed: " + ProgramSettings.BankType.ToString());
+                throw new Exception("Bank type not allowed: " + ProgramSettings.BankType);
             }
 
             return logThis;
         }
 
-        private static void ReIndexKontoentriesToLatestOnTop(SortedList kontoEntries, Hashtable logThis)
+        private static void ReIndexKontoentriesToLatestOnTop(ICollection kontoEntries, IDictionary logThis)
         {
             var indexKey = kontoEntries.Count;
             foreach (DictionaryEntry currentRow in kontoEntries)
@@ -89,7 +91,7 @@ namespace Budgetterarn.DAL
             }
         }
 
-        private static object[] GetTopRowWithHeaders(SaldoHolder saldoHolder)
+        private static IEnumerable<object> GetTopRowWithHeaders(SaldoHolder saldoHolder)
         {
             var columnNames = new object[] { "y", "m", "d", "n", "t", "g", "s", "b", "", "", "", "c" };
 

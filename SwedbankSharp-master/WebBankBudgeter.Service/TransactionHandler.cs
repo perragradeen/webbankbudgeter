@@ -5,6 +5,7 @@ using LoadTransactionsFromFile.DAL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Serializers;
@@ -34,19 +35,19 @@ namespace WebBankBudgeter.Service
             _tableGetter = tableGetter;
 
             _allCategories = SerializationFunctions.DeserializeObject(
-                categoriesFilePath,
-                typeof(Categories))
-            as Categories;
+                    categoriesFilePath,
+                    typeof(Categories))
+                as Categories;
         }
 
         public async Task<bool> GetTransactionsAsync()
         {
-            TransactionList transactionListdata;
+            TransactionList transactionDatalist;
             try
             {
-                transactionListdata =
+                transactionDatalist =
                     await GetData();
-                if (transactionListdata == null)
+                if (transactionDatalist == null)
                 {
                     _writeToOutput(Environment.NewLine + "No one logged in.");
                     return false;
@@ -59,7 +60,7 @@ namespace WebBankBudgeter.Service
             }
 
             _transactionCalcsHandler =
-                new TransactionCalcs(transactionListdata);
+                new TransactionCalcs(transactionDatalist);
 
             return true;
         }
@@ -99,11 +100,14 @@ namespace WebBankBudgeter.Service
             var allTransactions = GetAllTransactions(transactionLists);
 
             var transactionListTotal = transactionLists.FirstOrDefault();
+            Debug.Assert(transactionListTotal != null, nameof(transactionListTotal) + " != null");
+
             transactionListTotal.Transactions = allTransactions;
             if (transactionListTotal.Account == null)
             {
                 transactionListTotal.Account = new Account();
             }
+
             transactionListTotal.Account.Balance = GetTotalBalanceForTransactions(transactionLists);
 
             return transactionListTotal;
@@ -111,7 +115,7 @@ namespace WebBankBudgeter.Service
 
         private SortedList GetTransactionsFromFile()
         {
-            // Todo:Viktig: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
+            // Todo: Viktig: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
             var testfilePath = @"C:\Temp";
             var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
             {
@@ -123,7 +127,7 @@ namespace WebBankBudgeter.Service
             kontoutdragInfoForLoad.FilePath = System.IO.Path.Combine(
                 kontoutdragInfoForLoad.FilePath,
                 kontoutdragInfoForLoad.ExcelFileSaveFileName
-                );
+            );
 
             // Ladda från fil
             var entriesLoadedFromDataStore =
@@ -150,7 +154,7 @@ namespace WebBankBudgeter.Service
             return transactions;
         }
 
-        private List<TransactionList> GetTransFormedTransactionsFromFileToList(SortedList transactionsFromFile)
+        private List<TransactionList> GetTransFormedTransactionsFromFileToList(IEnumerable transactionsFromFile)
         {
             var listOfSeveralAccounts = new List<TransactionList>();
             var transactions = new List<Transaction>();
@@ -178,11 +182,11 @@ namespace WebBankBudgeter.Service
         private string LookUpCategoryGroup(string categoryName)
         {
             return _allCategories.CategoryList.FirstOrDefault(c =>
-                c.Description == categoryName)
+                    c.Description == categoryName)
                 ?.Group;
         }
 
-        private static List<Transaction> GetAllTransactions(List<TransactionList> transactionLists)
+        private static List<Transaction> GetAllTransactions(IEnumerable<TransactionList> transactionLists)
         {
             var allTransactions = new List<Transaction>();
             foreach (var list in transactionLists)
@@ -193,20 +197,19 @@ namespace WebBankBudgeter.Service
             return allTransactions;
         }
 
-        public object GetTotalBalanceForTransactions(List<TransactionList> transactionLists)
+        private static object GetTotalBalanceForTransactions(IEnumerable<TransactionList> transactionLists)
         {
-            return transactionLists.Sum(l =>
-                 GetAmountNotZero(l));
+            return transactionLists.Sum(GetAmountNotZero);
         }
 
-        private double GetAmountNotZero(TransactionList l)
+        private static double GetAmountNotZero(TransactionList list)
         {
-            var balance = Conversions.SafeGetDouble(l.Account?.Balance);
-            var availableAmount = Conversions.SafeGetDouble(l.Account?.AvailableAmount);
+            var balance = Conversions.SafeGetDouble(list.Account?.Balance);
+            var availableAmount = Conversions.SafeGetDouble(list.Account?.AvailableAmount);
 
             return balance > 0 ?
-                    balance :
-                    availableAmount;
+                balance :
+                availableAmount;
         }
     }
 }

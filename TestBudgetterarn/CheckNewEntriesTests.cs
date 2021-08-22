@@ -12,20 +12,15 @@ namespace TestBudgetterarn
     [TestClass]
     public class CheckNewEntriesTests
     {
-        public List<KontoEntry> TestDataKoList
-        {
-            get
+        private static List<KontoEntry> TestDataKoList =>
+            (new List<KontoEntry>
             {
-                return (new List<KontoEntry>
-                    {
-                        new KontoEntry { Date = DateTime.Now.AddDays(-2), KostnadEllerInkomst = 1, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
-                        new KontoEntry { Date = DateTime.Now.AddDays(-1), KostnadEllerInkomst = 2, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
-                        new KontoEntry { Date = DateTime.Now.AddDays(-3), KostnadEllerInkomst = 3, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
-                    });
-            }
-        }
+                new KontoEntry { Date = DateTime.Now.AddDays(-2), KostnadEllerInkomst = 1, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
+                new KontoEntry { Date = DateTime.Now.AddDays(-1), KostnadEllerInkomst = 2, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
+                new KontoEntry { Date = DateTime.Now.AddDays(-3), KostnadEllerInkomst = 3, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
+            });
 
-        private KontoEntriesViewModelListUpdater TestDataGet
+        private static KontoEntriesViewModelListUpdater TestDataGet
         {
             get
             {
@@ -35,7 +30,7 @@ namespace TestBudgetterarn
                 return new KontoEntriesViewModelListUpdater
                 {
                     KontoEntries = new SortedList(new DescendingComparer()),
-                    NewIitemsListEdited =
+                    NewItemsListEdited =
                         TestDataKoList,
                     NewKontoEntriesIn = newKos,
                 };
@@ -55,7 +50,7 @@ namespace TestBudgetterarn
             KontoEntriesChecker.CheckAndAddNewItemsForLists(testData);
 
             // Then it sholud be
-            var afterCount = testData.NewIitemsListEdited.Count;
+            var afterCount = testData.NewItemsListEdited.Count;
             Assert.AreEqual(inCount, afterCount);
         }
 
@@ -65,8 +60,8 @@ namespace TestBudgetterarn
             // if theese preconditions exists
             var testData = TestDataGet;
             var oldData = TestDataGet;
-            oldData.NewIitemsListEdited.First().KostnadEllerInkomst = 9123;
-            testData.NewIitemsListEdited = oldData.NewIitemsListEdited;
+            oldData.NewItemsListEdited.First().KostnadEllerInkomst = 9123;
+            testData.NewItemsListEdited = oldData.NewItemsListEdited;
 
             // If begin value is
             var inCount = testData.NewKontoEntriesIn.Count;
@@ -75,7 +70,7 @@ namespace TestBudgetterarn
             KontoEntriesChecker.CheckAndAddNewItemsForLists(testData);
 
             // Then it sholud be
-            var afterCount = testData.NewIitemsListEdited.Count;
+            var afterCount = testData.NewItemsListEdited.Count;
             Assert.AreEqual(inCount + 1, afterCount);
         }
 
@@ -86,8 +81,8 @@ namespace TestBudgetterarn
             var testData = TestDataGet;
 
             var oldData = TestDataGet;
-            oldData.NewIitemsListEdited.First().Info = "annan info utan 0-or";
-            testData.NewIitemsListEdited = oldData.NewIitemsListEdited;
+            oldData.NewItemsListEdited.First().Info = "annan info utan 0-or";
+            testData.NewItemsListEdited = oldData.NewItemsListEdited;
 
             TestDataKoList.ForEach(x => testData.KontoEntries.Add(x.KeyForThis, x));
 
@@ -98,18 +93,18 @@ namespace TestBudgetterarn
             KontoEntriesChecker.CheckAndAddNewItemsForLists(testData);
 
             // Then it sholud be
-            var afterCount = testData.NewIitemsListEdited.Count;
+            var afterCount = testData.NewItemsListEdited.Count;
             Assert.AreEqual(inCount, afterCount);
 
-            var old1 = testData.NewIitemsListEdited.First();
-            foreach (var entry in testData.NewIitemsListEdited)
+            var old1 = testData.NewItemsListEdited.First();
+            foreach (var entry in testData.NewItemsListEdited)
             {
                 // BudgeterForm
                 // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
-                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuesseDouble(entry, testData.KontoEntries);
+                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, testData.KontoEntries);
             }
 
-            var new1 = testData.NewIitemsListEdited.First();
+            var new1 = testData.NewItemsListEdited.First();
             Assert.AreEqual(old1.FontFrontColor, new1.FontFrontColor);
         }
     }

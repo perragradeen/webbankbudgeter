@@ -1,10 +1,9 @@
 ﻿using RefLesses;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-
-// ReSharper disable CommentTypo
-// ReSharper disable IdentifierTypo
+using System.Linq;
 
 namespace Budgeter.Core.Entities
 {
@@ -12,9 +11,9 @@ namespace Budgeter.Core.Entities
     public class KontoEntry
     {
         public DateTime Date { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public int Day { get; set; }
+        private int Year { get; }
+        private int Month { get; }
+        private int Day { get; }
 
         public string Info { get; set; }
         public double KostnadEllerInkomst { get; set; }
@@ -28,7 +27,8 @@ namespace Budgeter.Core.Entities
         // Ev. ha en övrig inf, en array av string typ, med referenser kommentarer etc
 
         public bool ForUi { get; set; }
-        public string DateString
+
+        private string DateString
         {
             get
             {
@@ -37,33 +37,36 @@ namespace Budgeter.Core.Entities
                 {
                     return Date.ToString("yyyy-MM-dd");
                 }
+
                 return Date.ToString(CultureInfo.InvariantCulture);
             }
         }
-        public string DateStringFrom3Ints => Date.ToString("yyyy-MM-dd");
+
+        private string DateStringFrom3Ints => Date.ToString("yyyy-MM-dd");
 
 
         // De 3 nedan kan innehålla annat än vad de heter, gamla grejjer kan ligga där de skulle vara eg.
-        public string ExtendedInfo { get; set; } // Mer detaljer, typ maträtt etc
-        public string Place { get; set; }
+        private string ExtendedInfo { get; } // Mer detaljer, typ maträtt etc
+
+        private string Place { get; }
 
         // Var för någonstans, eller vilken händelse, te.x. Stockholmsresan sommar 2009, hemma eller jobblunch
-        public string TimeOfDay { get; set; } // Klockslag, t.ex. 12.10
-        public KontoEntryType EntryType { get; set; }
+        private string TimeOfDay { get; } // Klockslag, t.ex. 12.10
+        public KontoEntryType EntryType { get; }
 
         public string KeyForThis
         {
             get
             {
                 return
-                    StringFuncions.MergeStringArrayToString(
+                    StringFunctions.MergeStringArrayToString(
                         new[]
                         {
-                           DateStringFrom3Ints,
-                           Info,
-                           KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
-                           SaldoOrginal.ToString(CultureInfo.InvariantCulture),
-                           ExtendedInfo
+                            DateStringFrom3Ints,
+                            Info,
+                            KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
+                            SaldoOrginal.ToString(CultureInfo.InvariantCulture),
+                            ExtendedInfo
                         });
             }
 
@@ -75,26 +78,26 @@ namespace Budgeter.Core.Entities
             get
             {
                 return new object[]
-                       {
-                           "" + Date.ToString("yyyy"), Date.Month.ToString(), // Datum i år o månad
+                {
+                    "" + Date.ToString("yyyy"), Date.Month.ToString(), // Datum i år o månad
 
-                           // På amerikanskt Excel så måste man spara i annat format. Eller år, månad, dag för sig i varsin cell. Men det är svårt att här veta vilket typ av office man kommer att öppna i. Men det kommer sparas i Excel via interop på ett visst sätt.
-                           // Man kan kanske kolla här vilken kultur som är här och se om den skiljer från installerat office...
-                           // Det blir inte problem om:
-                           // OS = Us och Excel (office) = Us
-                           // OS = Swe och Excel (office) = Swe
-                           // Då sparas datum i samma kultur.
-                           // Men om man har Os = Swe och Excel = US, så sparas datum i Swe-format och Excel sparar i fel format...
-                           Date.Day, // DateString, 
-                           Info, KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
-                           SaldoOrginal.ToString(CultureInfo.InvariantCulture),
-                           AckumuleratSaldo.ToString(CultureInfo.InvariantCulture), 
-                           TypAvKostnad, 
-                           ExtendedInfo, 
-                           Place, 
-                           TimeOfDay,
-                           EntryType.ToString()
-                       };
+                    // På amerikanskt Excel så måste man spara i annat format. Eller år, månad, dag för sig i varsin cell. Men det är svårt att här veta vilket typ av office man kommer att öppna i. Men det kommer sparas i Excel via interop på ett visst sätt.
+                    // Man kan kanske kolla här vilken kultur som är här och se om den skiljer från installerat office...
+                    // Det blir inte problem om:
+                    // OS = Us och Excel (office) = Us
+                    // OS = Swe och Excel (office) = Swe
+                    // Då sparas datum i samma kultur.
+                    // Men om man har Os = Swe och Excel = US, så sparas datum i Swe-format och Excel sparar i fel format...
+                    Date.Day, // DateString, 
+                    Info, KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
+                    SaldoOrginal.ToString(CultureInfo.InvariantCulture),
+                    AckumuleratSaldo.ToString(CultureInfo.InvariantCulture), 
+                    TypAvKostnad, 
+                    ExtendedInfo, 
+                    Place, 
+                    TimeOfDay,
+                    EntryType.ToString()
+                };
             }
         }
 
@@ -106,14 +109,14 @@ namespace Budgeter.Core.Entities
             get
             {
                 return new[]
-                       {
-                           DateString,
-                           Info, 
-                           TypAvKostnad, 
-                           KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture), 
-                           SaldoOrginal.ToString(CultureInfo.InvariantCulture),
-                           AckumuleratSaldo.ToString(CultureInfo.InvariantCulture)
-                       };
+                {
+                    DateString,
+                    Info, 
+                    TypAvKostnad, 
+                    KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture), 
+                    SaldoOrginal.ToString(CultureInfo.InvariantCulture),
+                    AckumuleratSaldo.ToString(CultureInfo.InvariantCulture)
+                };
             }
         }
 
@@ -143,6 +146,7 @@ namespace Budgeter.Core.Entities
             // he, skulle kunna sätta en ny array av inArray och om det saknas värde så sätt "" eller " "
 
             // gör ev. om från const tilldyn. sätt nästa rel. den första, så kan man ta bort eller skjuta in en lätt
+
             #region Columnnummer konstanter
 
             // Todo: gör om till enum
@@ -175,14 +179,15 @@ namespace Budgeter.Core.Entities
             #endregion
 
             // TODO: Gör något med ack.salod
+
             #region Sätt värden till denna klass
 
             Date = DateFunctions.ParseDateWithCultureEtc(date);
             if (mFromXls)
             {
-                Year = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 0));
-                Month = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 1));
-                Day = MiscFunctions.SafeGetIntFromString(RowThatExistsNoSpecial(inArray, 2));
+                Year = RowThatExistsNoSpecial(inArray, 0).SafeGetIntFromString();
+                Month = RowThatExistsNoSpecial(inArray, 1).SafeGetIntFromString();
+                Day = RowThatExistsNoSpecial(inArray, 2).SafeGetIntFromString();
 
                 if (Day == 0)
                 {
@@ -223,17 +228,10 @@ namespace Budgeter.Core.Entities
             #endregion
         }
 
-        private bool InarrayEmpty(object[] inArray)
+        private static bool InarrayEmpty(IEnumerable<object> inArray)
         {
-            foreach (var item in inArray)
-            {
-                if (!string.IsNullOrEmpty((string)item))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return inArray.All(item => string.IsNullOrEmpty(
+                (string) item));
         }
 
         public KontoEntry(BankRow fromBank)
@@ -246,16 +244,18 @@ namespace Budgeter.Core.Entities
 
         public string RowThatExists(object[] inArray, int columnNumber)
         {
-            return inArray.Length > columnNumber && inArray[columnNumber] != null
-                       ? inArray[mFromXls ? columnNumber + 2 : columnNumber].ToString()
-                       : string.Empty;
+            return (
+                inArray.Length > columnNumber && inArray[columnNumber] != null
+                    ? inArray[mFromXls ? columnNumber + 2 : columnNumber]
+                    : string.Empty
+            ) as string;
         }
 
-        public string RowThatExistsNoSpecial(object[] inArray, int columnNumber)
+        private static string RowThatExistsNoSpecial(IReadOnlyList<object> inArray, int columnNumber)
         {
-            return inArray.Length > columnNumber && inArray[columnNumber] != null
-                       ? inArray[columnNumber].ToString()
-                       : string.Empty;
+            return inArray.Count > columnNumber && inArray[columnNumber] != null
+                ? inArray[columnNumber].ToString()
+                : string.Empty;
         }
 
         #endregion
@@ -271,7 +271,10 @@ namespace Budgeter.Core.Entities
 
             try
             {
-                kontoEntryType = (KontoEntryType)Enum.Parse(typeof(KontoEntryType), entryType, true);
+                kontoEntryType = (KontoEntryType)Enum.Parse(
+                    typeof(KontoEntryType),
+                    entryType,
+                    true);
             }
             catch (Exception enumEx)
             {

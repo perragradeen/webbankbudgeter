@@ -2,13 +2,14 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using RefLesses;
 
 namespace Budgetterarn
 {
     /// <summary>
     /// Returns a setting from file, if the setting wanted is not found, the return result is an empty string or false
     /// </summary>
-    public class GeneralSettings
+    public static class GeneralSettings
     {
         private static readonly XmlDocument doc = new XmlDocument();
 
@@ -19,31 +20,14 @@ namespace Budgetterarn
                 var path = Path.Combine(
                     AppDomain.CurrentDomain.BaseDirectory,
                     @"Data\"
-                    );
+                );
                 path = Path.Combine(path, @"GeneralSettings.xml");
                 doc.Load(path);
             }
             catch (Exception loadExp)
             {
-                Console.WriteLine("Error in Config(): " + loadExp.Message);
+                Console.WriteLine(@"Error in Config(): " + loadExp.Message);
                 throw new Exception("Config()", loadExp);
-            }
-        }
-
-        public static bool GetSetting(string name)
-        {
-            try
-            {
-                return ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']"))).GetAttribute("value")
-                       == "true";
-            }
-            catch (Exception cExcp)
-            {
-                Console.WriteLine(
-                    "Error in config: Settings doc GeneralSettings.xml probably does not contain property name " + name
-                    + ".\r\nSys err; " + cExcp.Message);
-
-                return false;
             }
         }
 
@@ -51,49 +35,49 @@ namespace Budgetterarn
         {
             try
             {
-                return ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']"))).GetAttribute("value");
+                return ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))?.GetAttribute("value");
             }
             catch (Exception cExcp)
             {
                 Console.WriteLine(
-                    "Error in config: Settings doc GeneralSettings.xml probably does not contain property name " + name
-                    + ".\r\nSys err; " + cExcp.Message);
+                    @"Error in config: Settings doc GeneralSettings.xml probably does not contain property name " + name
+                    + @".\r\nSys err; " + cExcp.Message);
 
                 return "";
             }
         }
 
-        public static string GetTextfileStringSetting(string name)
+        public static string GetTextFileStringSetting(string name)
         {
             try
             {
-                var textfileRowNumber =
-                    ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']"))).GetAttribute(
+                var textFileRowNumber =
+                    ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))?.GetAttribute(
                         "rownumberInTextfile");
-                var textfilePath = AppDomain.CurrentDomain.BaseDirectory
-                                   + ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))
-                                         .GetAttribute("textfileName");
+                var textFilePath = AppDomain.CurrentDomain.BaseDirectory
+                                   + ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))?
+                                   .GetAttribute("textfileName");
 
-                TextReader fileReader = new System.IO.StreamReader(textfilePath);
+                TextReader fileReader = new StreamReader(textFilePath);
 
                 var stringFromFile = "";
-                for (var i = 0; i <= int.Parse(textfileRowNumber); i++)
+                for (var i = 0; i <= textFileRowNumber.SafeGetIntFromString(); i++)
                 {
                     stringFromFile = fileReader.ReadLine();
                 }
 
                 return stringFromFile;
             }
-            catch (Exception cExcp)
+            catch (Exception exception)
             {
                 var errMess =
                     "Error in config: Settings doc GeneralSettings.xml probably does not contain property name " + name
-                    + ".\r\nSys err; " + cExcp.Message;
+                    + ".\r\nSys err; " + exception.Message;
                 MessageBox.Show(errMess);
 
                 Console.WriteLine(errMess);
 
-                return "";
+                return string.Empty;
             }
         }
     }

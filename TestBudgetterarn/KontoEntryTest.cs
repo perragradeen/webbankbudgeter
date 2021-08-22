@@ -8,13 +8,12 @@ namespace TestBudgetterarn
         [TestMethod]
         public void RowThatExistsTest()
         {
-            var inArray = new[] { "test1", "223" };
-            var columnNumber = 1;
-            var expected = "223";
-            string actual;
+            var inArray = new object[] { "test1", "223" };
+            const int columnNumber = 1;
+            const string expected = "223";
 
             var ke = new Budgeter.Core.Entities.KontoEntry();
-            actual = ke.RowThatExists(inArray, columnNumber);
+            var actual = ke.RowThatExists(inArray, columnNumber);
 
             Assert.AreEqual(expected, actual);
         }

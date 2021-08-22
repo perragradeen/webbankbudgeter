@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+
 // ReSharper disable IdentifierTypo
 
 namespace Budgetterarn.InternalUtilities
@@ -39,11 +40,12 @@ namespace Budgetterarn.InternalUtilities
         /// Required designer variable.
         /// </summary>
         private readonly Container components = null;
+
         private Button btnOK;
         private Label lblPrompt;
         private TextBox txtInput;
 
-        public InputBoxDialog()
+        private InputBoxDialog()
         {
             // Required for Windows Form Designer support
             InitializeComponent();
@@ -155,10 +157,10 @@ namespace Budgetterarn.InternalUtilities
 
         #region Public Properties
 
-        public string FormCaption { get; set; } = string.Empty;
-        public string FormPrompt { get; set; } = string.Empty;
-        public string InputResponse { get; set; } = string.Empty;
-        public string DefaultValue { get; set; } = string.Empty;
+        private string FormCaption { get; set; } = string.Empty;
+        private string FormPrompt { get; set; } = string.Empty;
+        private string InputResponse { get; set; } = string.Empty;
+        private string DefaultValue { get; set; } = string.Empty;
 
         #endregion
 

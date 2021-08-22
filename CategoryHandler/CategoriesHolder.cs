@@ -6,11 +6,11 @@ using Serializers;
 
 namespace CategoryHandler
 {
-    public class CategoriesHolder
+    public static class CategoriesHolder
     {
-        public static Categories AllCategories = new Categories();
+        private static Categories AllCategories = new Categories();
         public static CategoriesHandler AllCategoriesHandler;
-        public static string SaveFilePath { get; set; }
+        private static string SaveFilePath { get; set; }
 
         /// <summary>
         /// Lägg innehållet i en xml-fil till minnet i den statiska vaiabeln AllCategories

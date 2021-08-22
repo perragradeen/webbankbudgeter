@@ -12,9 +12,11 @@ namespace TestBudgetterarn
         public void AutoLoadEtceTest()
         {
             var target = new ProgramSettings();
-            var expected = false;
-            bool actual;
-            actual = target.AutoLoadEtc;
+
+            const bool expected = false;
+
+            var actual = target.AutoLoadEtc;
+
             Assert.AreEqual(expected, actual);
         }
     }

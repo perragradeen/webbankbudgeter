@@ -17,6 +17,6 @@ namespace WebBankBudgeter.Service.Model
         /// <summary>
         /// Ex. "2016 January", -2215,22
         /// </summary>
-        public Dictionary<string, double> AmountsForMonth { get; set; }
+        public Dictionary<string, double> AmountsForMonth { get; }
     }
 }

@@ -12,6 +12,8 @@ using WebBankBudgeter.Service.MonthAvarages;
 using WebBankBudgeter.Service.Services;
 using WebBankBudgeter.UiBinders;
 
+// ReSharper disable UnusedParameter.Local
+
 namespace WebBankBudgeter
 {
     public partial class WebBankBudgeterUi : Form
@@ -27,7 +29,7 @@ namespace WebBankBudgeter
                 WriteToOutput,
                 tableGetter,
                 GetCategoryFilePath()
-                );
+            );
 
             InitializeComponent();
 
@@ -36,13 +38,13 @@ namespace WebBankBudgeter
 
             _utgiftsHanterareUiBinder = new UtgiftsHanterareUiBinder(gv_budget);
 
-            ReloadButton.Click += new EventHandler(async (s, e) =>
-                await ReloadButton_ClickAsync(s, e));
-            Load += new EventHandler(async (s, e) =>
-                 await Form1_LoadAsync(s, e));
+            ReloadButton.Click += async (s, e) =>
+                await ReloadButton_ClickAsync(s, e);
+            Load += async (s, e) =>
+                await Form1_LoadAsync(s, e);
         }
 
-        private string GetCategoryFilePath()
+        private static string GetCategoryFilePath()
         {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(
@@ -53,8 +55,9 @@ namespace WebBankBudgeter
             );
         }
 
-        private string InBudgetFilePath => GetInBudgetFilePath();
-        private string GetInBudgetFilePath()
+        private static string InBudgetFilePath => GetInBudgetFilePath();
+
+        private static string GetInBudgetFilePath()
         {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(appPath, @"TestData\BudgetIns.json");
@@ -70,7 +73,7 @@ namespace WebBankBudgeter
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(@"Error: " + ex.Message);
                 ReloadButton.Show();
             }
         }
@@ -99,11 +102,11 @@ namespace WebBankBudgeter
             // Koppla data till UI ---
             WriteMetaAsSaldoEtcToUi();
             BindTransactionListToUi();
-            DescribeReoccuringGroups();
+            DescribeReoccurringGroups();
             DescribeStartYear(table);
 
             BindToBudgetTableUi(table); // TODO: presentera utan decimaler och med tusen avgränsare (iofs nackdel om man ska kopiera till excel el. likn.)
-            BindMonthAvaragesToUi(summedAvaragesForCalc);
+            BindMonthAveragesToUi(summedAvaragesForCalc);
             // --- Koppla data till UI
 
             //await inPosterTask;
@@ -125,10 +128,11 @@ namespace WebBankBudgeter
         }
 
         private static List<Rad> SnurraIgenom(
-            List<Rad> inData,
+            IEnumerable<Rad> inData,
             List<Service.Model.BudgetRow> utgifter,
             Action<string> writeLineToOutputAndScrollDown)
         {
+            if (utgifter == null) throw new ArgumentNullException(nameof(utgifter));
             var kvarrader = new List<Rad>();
             foreach (var inBudget in inData)
             {
@@ -162,12 +166,13 @@ namespace WebBankBudgeter
                         {
                             // Fel
                             var message = "Hittar ingen motsvarande inpost för utgift i :"
-                                + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
+                                          + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
 
                             writeLineToOutputAndScrollDown(message);
                         }
                     }
                 }
+
                 kvarrader.Add(nuvarandeRad);
             }
 
@@ -176,9 +181,9 @@ namespace WebBankBudgeter
 
         private MonthAvarages CalculateMonthlyAvarages()
         {
-            var monthAvaragesCalcer = new MonthAvaragesCalcs(
+            var monthAveragesCalcer = new MonthAvaragesCalcs(
                 _transactionHandler.TransactionList);
-            var summedAvaragesForCalc = monthAvaragesCalcer.GetMonthAvarages();
+            var summedAvaragesForCalc = monthAveragesCalcer.GetMonthAvarages();
             return summedAvaragesForCalc;
         }
 
@@ -201,14 +206,12 @@ namespace WebBankBudgeter
         {
             return _transactionHandler.GetTextTableFromTransactions();
         }
+
         private const string CategoryNameColumnDescription = "Category . Month->";
 
         private void InitIncomesUi()
         {
             gv_incomes.Columns.Add("1", CategoryNameColumnDescription);
-
-            //gv_incomes.SortCompare += Gv_incomes_SortCompare;
-            //gv_incomes.SortCompare += new DataGridViewSortCompareEventHandler(nisse);
         }
 
         private void InitTotalsUi()
@@ -225,15 +228,15 @@ namespace WebBankBudgeter
             label1.Text += @"Börjar på år: " + table.SelectedStartYear;
         }
 
-        private void DescribeReoccuringGroups()
+        private void DescribeReoccurringGroups()
         {
-            foreach (var group in MonthAvaragesCalcs.RecurringCatGroups)
+            foreach (var group in MonthAvaragesCalcs.ReoccurringCatGroups)
             {
                 WriteToOutput(group + ". ");
             }
         }
 
-        private void BindMonthAvaragesToUi(MonthAvarages summedAvaragesForCalc)
+        private void BindMonthAveragesToUi(MonthAvarages summedAvaragesForCalc)
         {
             // bind to ui gv_totals
             AddRowWith2Cells(gv_Totals, "Återkommande snitt", summedAvaragesForCalc.ReccuringCosts);
@@ -260,10 +263,10 @@ namespace WebBankBudgeter
         private void WriteMetaAsSaldoEtcToUi()
         {
             label1.Text += @" Saldo: " +
-                _transactionHandler.TransactionList.Account.AvailableAmount;
+                           _transactionHandler.TransactionList.Account.AvailableAmount;
         }
 
-        public void BindToBudgetTableUi(TextToTableOutPuter table)
+        private void BindToBudgetTableUi(TextToTableOutPuter table)
         {
             _utgiftsHanterareUiBinder.BindToBudgetTableUi(table);
         }
@@ -287,7 +290,7 @@ namespace WebBankBudgeter
             }
         }
 
-        public void WriteToOutput(string message)
+        private void WriteToOutput(string message)
         {
             LogTexts.AppendText(message);
         }
@@ -312,7 +315,7 @@ namespace WebBankBudgeter
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show($@"Error: {ex.Message}");
                 ReloadButton.Show();
             }
         }

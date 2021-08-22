@@ -17,7 +17,7 @@ namespace Budgetterarn.WebCrawlers
         internal void AddSaldo(string saldoName, string startText, string endText)
         {
             var saldoAllkort =
-                StringFuncions.GetTextBetweenStartAndEndText(htmlBodyText,
+                StringFunctions.GetTextBetweenStartAndEndText(htmlBodyText,
                     startText, endText);
 
             saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoName,

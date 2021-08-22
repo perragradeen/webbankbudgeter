@@ -9,19 +9,24 @@ namespace Budgeter.Core.Entities
         {
             try
             {
-                if (x.GetType() == typeof(string))
+                if (x is string)
                 {
-                    return x.ToString().CompareTo(y.ToString()) * -1;
+                    return string.Compare(
+                        x.ToString(),
+                        y?.ToString(),
+                        StringComparison.Ordinal) * -1;
                 }
-                else
-                {
-                    return System.Convert.ToInt32(x).CompareTo(System.Convert.ToInt32(y)) * -1;
-                }
+
+                return Convert.ToInt32(x)
+                    .CompareTo(Convert.ToInt32(y)) * -1;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("No real exception in DescendingComparer.Compare(obj x, obj y): " + ex.Message);
-                return x.ToString().CompareTo(y.ToString());
+                return string.Compare(
+                    x?.ToString(),
+                    y?.ToString(),
+                    StringComparison.Ordinal);
             }
         }
     }

@@ -6,24 +6,18 @@ namespace UtilitiesTest
     [TestClass]
     public class StringTest
     {
-        public TestContext TestContext { get; set; }
-
         [TestMethod]
         public void TestGetTextBetweenStartAndEndText()
         {
-            var result = StringFuncions.GetTextBetweenStartAndEndText(TestText, "LÖNEKONTO - 629 010 552", "Att tänka på inför årsskiftet");
+            var result = StringFunctions.GetTextBetweenStartAndEndText(TestText, "LÖNEKONTO - 629 010 552", "Att tänka på inför årsskiftet");
 
             var splitResult = result.Substring(0, result.Length / 2);
 
             Assert.AreEqual("163421,75", splitResult);
         }
 
-        public string TestText
-        {
-            get
-            {
-
-                return @"
+        private static string TestText =>
+            @"
 
 
 
@@ -328,7 +322,5 @@ Villkor | Ansvarsbegränsning | För dig som bor utanför Sverige | Prislista
 
 Ekonomisk översikt
         ";
-            }
-        }
     }
 }

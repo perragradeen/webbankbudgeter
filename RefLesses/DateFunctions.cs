@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace RefLesses
 {
-    public class DateFunctions
+    public static class DateFunctions
     {
         public static DateTime ParseDateWithCultureEtc(string dateValue)
         {
