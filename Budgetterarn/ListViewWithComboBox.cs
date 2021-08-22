@@ -56,6 +56,12 @@ namespace Budgetterarn
             MouseDown += ListViewMouseDown;
 
             MouseClick += ListViewMouseClick;
+
+            View = View.Details;
+            GridLines = true;
+            FullRowSelect = true;
+
+            KeyPress += RowKeyPress;
         }
 
         public List<KontoEntry> ItemsAsKontoEntries

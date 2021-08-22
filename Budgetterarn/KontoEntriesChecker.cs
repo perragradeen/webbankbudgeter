@@ -26,7 +26,7 @@ namespace Budgetterarn
                 || !entry.KostnadEllerInkomst.Equals(newKe.KostnadEllerInkomst)) return true;
 
             // Ersätt skb
-            if (entry.Info.ToLower() == Skb.ToLower() || entry.Info.ToLower() == Pkk.ToLower())
+            if (entry.Info?.ToLower() == Skb.ToLower() || entry.Info?.ToLower() == Pkk.ToLower())
             {
                 newKe.FontFrontColor = entry.FontFrontColor = Color.DeepSkyBlue;
 
@@ -67,7 +67,8 @@ namespace Budgetterarn
             {
                 // Om entryn inte är av typen regulär skippa jämförelser av den.
                 // Det kan t.ex. vara mathandling, som delas upp i hemlagat o hygien, eller Periodens köp, som inte ska räknas med som vanlgt och ej heller jämföras
-                if (entry.EntryType != KontoEntryType.Regular)
+                if (entry.EntryType != KontoEntryType.Regular
+                    || string.IsNullOrEmpty(entry.Info))
                 {
                     continue;
                 }
