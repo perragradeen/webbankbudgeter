@@ -148,7 +148,7 @@ namespace Budgetterarn
         private bool Debug()
         {
             // ReSharper disable JoinDeclarationAndInitializer
-            bool debug;
+            bool debug = false;
 
             // ReSharper restore JoinDeclarationAndInitializer
 #if DEBUG
