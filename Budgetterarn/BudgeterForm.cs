@@ -213,7 +213,7 @@ namespace Budgetterarn
                 // Sätt nuvarande tråd som main
 
                 // läs in xls...
-                GetAllEntriesFromExcelFile(Filerefernces.ExcelFileSavePath, true);
+                GetAllEntriesFromExcelFile(true);
             }
             catch (Exception e)
             {
@@ -416,7 +416,7 @@ namespace Budgetterarn
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        private bool GetAllEntriesFromExcelFile(string excelFileSavePath, bool clearContentBeforeReadingNewFile)
+        private bool GetAllEntriesFromExcelFile(bool clearContentBeforeReadingNewFile)
         {
             var statusText = toolStripStatusLabel1.Text = @"Nothing loaded.";
             var changedExcelFileSavePath = Filerefernces.ExcelFileSavePath;
@@ -488,17 +488,10 @@ namespace Budgetterarn
             kontoutdragInfoForLoad.SomethingChanged = !CheckforUnsavedChanges;
 
             // Ev. har pathen ändrats.
-            if (excelFileSavePath == string.Empty)
-            {
-                // Om man lagt till nya rader från annan fil, så spara i den gamla.
-            }
-            else
-            {
-                // Har man däremot laddat in nya så ska den sökvägen gälla för sparningar
-                Filerefernces.ExcelFileSavePath = changedExcelFileSavePath;
+            // Har man däremot laddat in nya så ska den sökvägen gälla för sparningar
+            Filerefernces.ExcelFileSavePath = changedExcelFileSavePath;
 
-                // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska utan UI etc
-            }
+            // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska utan UI etc
 
             toolStripStatusLabel1.Text = statusText;
 
@@ -607,15 +600,14 @@ namespace Budgetterarn
             // Helt ny fil ska laddas, töm gammalt
             // Ev. Todo: Rensa UI också, eller lita på att funktionen klarar det iom laddning kan avbrytas etc.
             // Man vill öppna en annan fil som man ska välja och som man ska hämta värden ifrån. Sen spara som den filen man valt. Att börja om med annan fil
-            GetAllEntriesFromExcelFile(
-                debugGlobal ? Filerefernces.ExcelFileSavePath : string.Empty, true);
+            GetAllEntriesFromExcelFile(true);
         }
 
         private void FileMenuLoadNewFromXlsClick(object sender, EventArgs e)
         {
             // Adding entries here, no clear
             // Man vill lägga till fler värden ifrån en annan fil som man ska välja. Sen spara som den tidigare filen man valt. Att börja om med annan fil
-            var somethingLoadeded = GetAllEntriesFromExcelFile(string.Empty, false);
+            var somethingLoadeded = GetAllEntriesFromExcelFile(false);
             if (somethingLoadeded)
             {
                 CheckAndAddNewItems(); // Lägg till nya i GuiLista
