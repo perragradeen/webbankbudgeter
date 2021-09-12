@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gv_budget = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.LogTexts = new System.Windows.Forms.RichTextBox();
@@ -45,6 +45,8 @@
             this.tbl_nonReccuringCosts = new System.Windows.Forms.TabPage();
             this.tbl_NoCategory = new System.Windows.Forms.TabPage();
             this.SaveInPosterButton = new System.Windows.Forms.Button();
+            this.tbl_Kvar = new System.Windows.Forms.TabPage();
+            this.gv_Kvar = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gv_budget)).BeginInit();
             this.BudgetTabs.SuspendLayout();
             this.tbl_INCOME.SuspendLayout();
@@ -54,20 +56,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv_Totals)).BeginInit();
             this.tbl_Transactions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_Transactions)).BeginInit();
+            this.tbl_Kvar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Kvar)).BeginInit();
             this.SuspendLayout();
             // 
             // gv_budget
             // 
             this.gv_budget.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gv_budget.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gv_budget.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gv_budget.DefaultCellStyle = dataGridViewCellStyle1;
             this.gv_budget.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gv_budget.Location = new System.Drawing.Point(3, 3);
             this.gv_budget.Name = "gv_budget";
@@ -108,6 +112,7 @@
             this.BudgetTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BudgetTabs.Controls.Add(this.tbl_Kvar);
             this.BudgetTabs.Controls.Add(this.tbl_INCOME);
             this.BudgetTabs.Controls.Add(this.tbl_Budget);
             this.BudgetTabs.Controls.Add(this.tbl_Totals);
@@ -231,6 +236,26 @@
             this.SaveInPosterButton.UseVisualStyleBackColor = true;
             this.SaveInPosterButton.Click += new System.EventHandler(this.SaveInPosterButton_Click);
             // 
+            // tbl_Kvar
+            // 
+            this.tbl_Kvar.Controls.Add(this.gv_Kvar);
+            this.tbl_Kvar.Location = new System.Drawing.Point(4, 22);
+            this.tbl_Kvar.Name = "tbl_Kvar";
+            this.tbl_Kvar.Padding = new System.Windows.Forms.Padding(3);
+            this.tbl_Kvar.Size = new System.Drawing.Size(867, 471);
+            this.tbl_Kvar.TabIndex = 7;
+            this.tbl_Kvar.Text = "Kvar";
+            this.tbl_Kvar.UseVisualStyleBackColor = true;
+            // 
+            // gv_Kvar
+            // 
+            this.gv_Kvar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gv_Kvar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gv_Kvar.Location = new System.Drawing.Point(3, 3);
+            this.gv_Kvar.Name = "gv_Kvar";
+            this.gv_Kvar.Size = new System.Drawing.Size(861, 465);
+            this.gv_Kvar.TabIndex = 0;
+            // 
             // WebBankBudgeterUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +277,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv_Totals)).EndInit();
             this.tbl_Transactions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dg_Transactions)).EndInit();
+            this.tbl_Kvar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Kvar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +302,8 @@
         private System.Windows.Forms.TabPage tbl_Totals;
         private System.Windows.Forms.DataGridView gv_Totals;
         private System.Windows.Forms.Button SaveInPosterButton;
+        private System.Windows.Forms.TabPage tbl_Kvar;
+        private System.Windows.Forms.DataGridView gv_Kvar;
     }
 }
 

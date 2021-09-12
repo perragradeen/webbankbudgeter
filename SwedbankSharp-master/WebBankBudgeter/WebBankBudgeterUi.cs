@@ -122,7 +122,14 @@ namespace WebBankBudgeter
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                 SnurraIgenom(inData, utgifter, WriteLineToOutputAndScrollDown),
                 månadsRubriker,
-                gv_incomes);
+                gv_Kvar);
+
+            // Presentera tabell för inkomst i varje kategori budget.
+            _inBudgetUiHandler.BindInPosterRaderTillUi(
+                inData,
+                månadsRubriker,
+                gv_incomes
+                );
 
             // Presentera summor för varje kat.
         }
@@ -212,6 +219,7 @@ namespace WebBankBudgeter
         private void InitIncomesUi()
         {
             gv_incomes.Columns.Add("1", CategoryNameColumnDescription);
+            gv_Kvar.Columns.Add("1", CategoryNameColumnDescription);
         }
 
         private void InitTotalsUi()
