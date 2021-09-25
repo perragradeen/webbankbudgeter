@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebBankBudgeter.Service;
 using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Model.ViewModel;
 
 namespace InbudgetHandler
 {
@@ -32,26 +31,9 @@ namespace InbudgetHandler
 
             var inPoster = await _inBudgetHandler.GetInPoster();
 
-            //Datum månad år
-            // 2021-09	nu			
-            //	loopa alla rader			
-            //	YearAndMonth == nu?			
-            //		returnera	alla de inbudgetar?	eller
             var senasteDatum = _inBudgetHandler.HämtaSenasteDatum(inPoster, nuDatum.Value);
             senasteDatum = senasteDatum.AddMonths(1); // Den senaste finns redan så lägg till 1 månad.
-            //	hämta senaste finns			
-            //var förväntatDatum = new DateTime(2016, 07, 01);
 
-            //Assert.AreEqual(förväntatDatum, senasteDatum);
-
-            //Kat
-            //25 Hyra bla bla	Hämta alla kategorier			
-            var kategorier = _transactionHandler.AllCategories;
-
-            //Assert.IsNotNull(kategorier);
-            //Assert.IsTrue(kategorier.CategoryList.Any());
-
-            //Assert.IsTrue();
             if (transactionList != null)
             {
                 _transactionHandler.SetTransactionList(transactionList);
@@ -61,13 +43,13 @@ namespace InbudgetHandler
                 await _transactionHandler.GetTransactionsAsync();
             }
 
-            //Räkna ut snitt
-            //hyra 12k mat 6k etc	Snitt kostnad för alla tider finns ta den
+            // Räkna ut snitt
+            // hyra 12k mat 6k etc	Snitt kostnad för alla tider finns ta den
             var averagesForTransactions = GetAvarages(
                _transactionHandler.TransactionList,
                senasteDatum);
 
-            //Skapa en inrad för 1 månad med snitt
+            // Skapa en inrad för 1 månad med snitt
             // 2021-09	25 Hyra bla bla	hyra 12k mat 6k etc
             var inBudgetRows = new List<InBudget>();
             foreach (var row in averagesForTransactions)
@@ -84,8 +66,26 @@ namespace InbudgetHandler
             }
 
             // Fyll på med de kategorier som inte var med i utgifter...TODO:
+            // 25 Hyra bla bla	Hämta alla kategorier			
+            var kategorier = _transactionHandler.AllCategories;
+            foreach (var categoryName in kategorier.CategoryList)
+            {
+                var missingCategory = inBudgetRows
+                    .FirstOrDefault(a =>
+                        a.CategoryDescription != categoryName.Description);
 
-            //Assert.IsTrue(inBudgetRows.Any());
+                if (missingCategory != null)
+                {
+                    var inBudgetRow = new InBudget
+                    {
+                        CategoryDescription = categoryName.Description,
+                        BudgetValue = 0,
+                        YearAndMonth = senasteDatum
+                    };
+                    inBudgetRows.Add(inBudgetRow);
+                }
+            }
+
             return inBudgetRows;
         }
 
@@ -117,7 +117,8 @@ namespace InbudgetHandler
                 var averageFor1Kat = summKat / månaderEmellan;
 
                 var row = new BudgetRow() { CategoryText = transactionGroup.Key };
-                row.AmountsForMonth.Add(dateTime.ToShortDateString(), averageFor1Kat);
+                var dateText = Transaction.GetYearMonthName(dateTime);
+                row.AmountsForMonth.Add(dateText, averageFor1Kat);
                 budgetRows.Add(row);
             }
 
@@ -145,63 +146,6 @@ namespace InbudgetHandler
                 .OrderByDescending(t => t.DateAsDate)
                 .FirstOrDefault()
                 .DateAsDate;
-        }
-
-        public List<BudgetRow> GetAvarages()
-        {
-            var averagesForTransactions = new List<BudgetRow>();
-            var table = _transactionHandler.
-                 GetTextTableFromTransactions();
-
-            foreach (var row in table.BudgetRows)
-            {
-                //var n = _gv_budget.Rows.Add();
-
-                // Skriv ut 0 i de kolumner där det inte finns värde för månad
-                foreach (var header in table.ColumnHeaders)
-                {
-                    object value;
-                    switch (header)
-                    {
-                        case TextToTableOutPuter.AverageColumnDescription:
-                            var amounts = AverageCalcer.CalcMonthAveragesPerRow(
-                                row.AmountsForMonth, table.ColumnHeaders);
-                            var avgvalue = amounts.Average(d => d);
-                            //AverageCalcer.GetAverageValueAsText(amounts);
-
-                            var aomuntsForAverageRow = new BudgetRow
-                            {
-                                CategoryText = row.CategoryText
-                            };
-                            //amounts.ForEach(a =>
-                            //{
-                            //    if (!aomuntsForAverageRow.AmountsForMonth.ContainsKey(header))
-                            //    {
-                            aomuntsForAverageRow.AmountsForMonth.Add(header, avgvalue);
-                            //    }
-                            //    else
-                            //    {
-                            //        var valIndict = aomuntsForAverageRow.AmountsForMonth[header];
-                            //        aomuntsForAverageRow.AmountsForMonth[header] = valIndict + a;
-                            //    }
-                            //});
-                            averagesForTransactions.Add(aomuntsForAverageRow);
-
-                            break;
-                        case TextToTableOutPuter.CategoryNameColumnDescription:
-                            value = row.CategoryText;
-                            break;
-                        default:
-                            value = row.AmountsForMonth.ContainsKey(header)
-                                ? row.AmountsForMonth[header] : 0;
-                            break;
-                    }
-
-                    //_gv_budget.Rows[n].Cells[i++].Value = value;
-                }
-            }
-
-            return averagesForTransactions;
         }
     }
 }

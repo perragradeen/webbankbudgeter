@@ -28,6 +28,16 @@ namespace WebBankBudgeter.UiBinders
             _writeLineToOutputAndScrollDown = writeLineToOutputAndScrollDown;
         }
 
+        public async Task<List<InBudget>> GetInPoster()
+        {
+            return await _inBudgetHandler.GetInPoster();
+        }
+
+        public void SetInPoster(List<InBudget> inBudgets)
+        {
+            _inBudgetHandler.SetInPoster(inBudgets);
+        }
+
         public async Task<List<Rad>> HämtaRaderFörUiBindningAsync()
         {
             return await _inBudgetHandler.HämtaRaderFörUiBindningAsync();

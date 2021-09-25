@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace Budgeter.Core.Entities
 {
-    // Todo: lägg in en katalog "Entities"....
     public class KontoEntry
     {
         public DateTime Date { get; set; }
@@ -178,7 +177,7 @@ namespace Budgeter.Core.Entities
 
             #endregion
 
-            // TODO: Gör något med ack.salod
+            // ev: Gör något med ack.salod
 
             #region Sätt värden till denna klass
 

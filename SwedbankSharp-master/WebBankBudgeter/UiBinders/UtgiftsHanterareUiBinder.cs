@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using InbudgetHandler;
+using System;
+using System.Windows.Forms;
 using WebBankBudgeter.Service;
 using WebBankBudgeter.Service.Model.ViewModel;
 
@@ -17,7 +19,6 @@ namespace WebBankBudgeter.UiBinders
         {
             if (_gv_budget == null)
                 return;
-            //throw new ArgumentNullException(nameof(_gv_budget));
 
             foreach (var column in table.ColumnHeaders)
             {
@@ -26,7 +27,6 @@ namespace WebBankBudgeter.UiBinders
 
             _gv_budget.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            //TODO: hämta från ny hanterare för averages...var averagesForTransactions = new List<BudgetRow>();
             foreach (var row in table.BudgetRows)
             {
                 var n = _gv_budget.Rows.Add();
@@ -35,39 +35,34 @@ namespace WebBankBudgeter.UiBinders
                 var i = 0;
                 foreach (var header in table.ColumnHeaders)
                 {
+                    var categoryName = row.CategoryText;
                     object value;
                     switch (header)
                     {
                         case TextToTableOutPuter.AverageColumnDescription:
-                            var amounts = AverageCalcer.CalcMonthAveragesPerRow(
-                                row.AmountsForMonth, table.ColumnHeaders);
-                            value = AverageCalcer.GetAverageValueAsText(amounts);
-
-                            //amounts.ForEach(a =>
-                            //{
-                            //    var aomuntsForAverageRow = new BudgetRow
-                            //    {
-                            //        CategoryText = row.CategoryText
-                            //    };
-                            //    aomuntsForAverageRow.AmountsForMonth.Add(header, a);
-                            //    averagesForTransactions.Add(aomuntsForAverageRow);
-                            //});
-
+                            value = table.GetAverageForCategory(categoryName);
+                            value = DoubleTo1000SeparatedNoDecimals(value);
                             break;
+
                         case TextToTableOutPuter.CategoryNameColumnDescription:
                             value = row.CategoryText;
                             break;
+
                         default:
                             value = row.AmountsForMonth.ContainsKey(header)
                                 ? row.AmountsForMonth[header] : 0;
+                            value = DoubleTo1000SeparatedNoDecimals(value);
                             break;
                     }
 
                     _gv_budget.Rows[n].Cells[i++].Value = value;
                 }
             }
+        }
 
-            //table.AveragesForTransactions = averagesForTransactions;
+        private object DoubleTo1000SeparatedNoDecimals(object value)
+        {
+            return ((double)value).ToString("N0");
         }
     }
 }

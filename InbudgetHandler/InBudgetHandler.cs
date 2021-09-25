@@ -30,6 +30,16 @@ namespace InbudgetToTable
             _inBudgetHandlerFileHandler.SparaInPosterPåDisk(inPoster);
         }
 
+        internal async Task<List<InBudget>> SetInPosterFromDisk()
+        {
+            return await _inBudgetHandlerFileHandler.SetInPosterFromDisk();
+        }
+
+        public void SetInPoster(List<InBudget> inBudgets)
+        {
+            _inBudgetHandlerFileHandler.SetInPoster(inBudgets);
+        }
+
         /// <summary>
         /// Ex
         /// 2021-06

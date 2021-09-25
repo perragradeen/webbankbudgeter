@@ -33,6 +33,7 @@ namespace WebBankBudgeter.Service.Model
                 return categories.ToString();
             }
         }
+
         public string CategoryNameNoGroup
         {
             get

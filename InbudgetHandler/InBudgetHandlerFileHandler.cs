@@ -17,6 +17,17 @@ namespace InbudgetToTable
             return _inPoster ?? (_inPoster = await GetIncomesFromDisk());
         }
 
+        public void SetInPoster(List<InBudget> inBudgets)
+        {
+            _inPoster = inBudgets;
+        }
+
+        public async Task<List<InBudget>> SetInPosterFromDisk()
+        {
+            _inPoster = await GetIncomesFromDisk();
+            return _inPoster;
+        }
+
         public InBudgetHandlerFileHandler(string inBudgetFilePath)
         {
             _inBudgetFilePath = inBudgetFilePath;

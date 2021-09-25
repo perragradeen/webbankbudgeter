@@ -51,34 +51,22 @@ namespace InbudgetToTableTests
             Assert.IsNull(_globalLog);
         }
 
-        [TestMethod]//todo: ta bort
-        public async Task JämförAvarageFunktionerIInPosterTestAsync()
-        {
-            var handler = new SkapaInPosterHanterare(_inBudgetHandler, _transactionHandler);
-
-            var nuDatum = new DateTime(2021, 09, 01);
-            var results = await handler.SkapaInPoster(nuDatum);
-
-            Assert.IsTrue(results.Any());
-            Assert.IsNull(_globalLog);
-
-            var resultsNya = await handler.SkapaInPoster(nuDatum);
-
-            Assert.IsTrue(resultsNya.Any());
-            Assert.IsNull(_globalLog);
-            Assert.AreEqual(results.Count, resultsNya.Count);
-            var pellesHemligaNya = resultsNya
-                .FirstOrDefault(p => p.CategoryDescription == " Pelles hemliga");
-            var actual = Math.Round(pellesHemligaNya.BudgetValue, 2);
-            Assert.AreEqual(-232.39, actual);
-        }
-
         [TestMethod]
         public void GetCategoryFilePathTest()
         {
             var path = GetCategoryFilePath();
 
             Assert.IsTrue(File.Exists(path));
+        }
+
+        [TestMethod]
+        public void DoubleToStringFormat_Test()
+        {
+            var value = 1151.23;
+            var actual =
+                value.ToString("N0");
+
+            Assert.AreEqual("1 151", actual);
         }
 
         [TestMethod]

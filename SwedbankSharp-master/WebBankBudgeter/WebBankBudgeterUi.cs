@@ -117,6 +117,7 @@ namespace WebBankBudgeter
             RemoveDuplicates();
             var summedAvaragesForCalc = CalculateMonthlyAvarages();
             var table = TransformToTextTableFromTransactions();
+            AddAveragesToTable(table);
             // --- Behandla data
 
             // Koppla data till UI ---
@@ -125,7 +126,7 @@ namespace WebBankBudgeter
             DescribeReoccurringGroups();
             DescribeStartYear(table);
 
-            BindToBudgetTableUi(table); // TODO: presentera utan decimaler och med tusen avgränsare (iofs nackdel om man ska kopiera till excel el. likn.)
+            BindToBudgetTableUi(table);
             BindMonthAveragesToUi(summedAvaragesForCalc);
             // --- Koppla data till UI
 
@@ -145,6 +146,13 @@ namespace WebBankBudgeter
             VisaInRader_BindInPosterRaderTillUi(inDataRader, månadsRubriker);
 
             // Presentera summor för varje kat.
+        }
+
+        private void AddAveragesToTable(TextToTableOutPuter table)
+        {
+            table.AveragesForTransactions = SkapaInPosterHanterare.GetAvarages(
+                           _transactionHandler.TransactionList,
+                           DateTime.Today);
         }
 
         private void VisaInRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<string> månadsRubriker)
@@ -377,14 +385,19 @@ namespace WebBankBudgeter
             // Skapa en rad med alla valbara kategorier
             //      för nuvarande månad
             //          om det inte redan finns
+
+            // Hämta en lista på exempel inposter. Baserat på snitt för utgifter i varje kat
             var inPosterDefault = await _inPosterHanterare.SkapaInPoster(
                 transactionList: _transactionHandler.TransactionList);
 
-            //Spara i BudgetIns.json
-            _inBudgetUiHandler.SparaInPosterPåDisk(inPosterDefault);
-            //Ladda
+            // Merga med föregående inposter.
+            var inDataRaderTidigare = await _inBudgetUiHandler.GetInPoster();
+            inPosterDefault.AddRange(inDataRaderTidigare);
+            _inBudgetUiHandler.SetInPoster(inPosterDefault);
+
+            // Hämta rader i Ui-format
             var inDataRader = await _inBudgetUiHandler
-                .HämtaRaderFörUiBindningAsync();
+              .HämtaRaderFörUiBindningAsync();
 
             try
             {
@@ -397,8 +410,6 @@ namespace WebBankBudgeter
                     månadsRubriker,
                     gv_incomes
                     );
-
-                //Sen fyll i alla tomma inrader med detta
             }
             catch (Exception e)
             {

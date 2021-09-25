@@ -220,42 +220,4 @@ namespace WebBankBudgeter.Service
                 availableAmount;
         }
     }
-
-    //TODO: Move
-    public class AverageCalcer
-    {
-        public static List<double> CalcMonthAveragesPerRow(IReadOnlyDictionary<string, double> rowAmountsForMonth, IEnumerable<string> tableColumnHeaders)
-        {
-            var amounts = new List<double>();
-            foreach (var columnHeader in tableColumnHeaders)
-            {
-                switch (columnHeader)
-                {
-                    case TextToTableOutPuter.AverageColumnDescription:
-                        break;
-                    case TextToTableOutPuter.CategoryNameColumnDescription:
-                        break;
-                    default:
-                        if (rowAmountsForMonth.ContainsKey(columnHeader))
-                        {
-                            amounts.Add(rowAmountsForMonth[columnHeader]);
-                        }
-                        else
-                        {
-                            amounts.Add(0);
-                        }
-
-                        break;
-                }
-            }
-
-            return amounts;
-        }
-
-        public static string GetAverageValueAsText(List<double> amounts)
-        {
-            return amounts.Average(d => d).ToString("N");
-        }
-
-    }
 }
