@@ -31,12 +31,8 @@ namespace Budgetterarn
         {
             #region set comboBoxCategories (comboBox1)
 
-            // Ha xmlinläsningen av kat. här. nej den läses in innan init
             // Read the categories.
-            foreach (var cat in CategoriesHolder.GetCategoriesList())
-            {
-                comboBoxCategories.Items.Add(cat.Description);
-            }
+            LoadCategoriesToSelectBox();
 
             comboBoxCategories.Size = new Size(0, 0);
             comboBoxCategories.Location = new Point(0, 0);
@@ -62,6 +58,15 @@ namespace Budgetterarn
             FullRowSelect = true;
 
             KeyPress += RowKeyPress;
+        }
+
+        public void LoadCategoriesToSelectBox()
+        {
+            comboBoxCategories.Items.Clear();
+            foreach (var cat in CategoriesHolder.GetCategoriesList())
+            {
+                comboBoxCategories.Items.Add(cat.Description);
+            }
         }
 
         public List<KontoEntry> ItemsAsKontoEntries

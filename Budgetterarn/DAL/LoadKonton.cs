@@ -9,23 +9,16 @@ using LoadTransactionsFromFile.DAL;
 
 namespace Budgetterarn.DAL
 {
-    internal class LoadKonton : BankConstants
+    internal class LoadKonton
     {
         /// <summary>
         /// Sparar till Excel-fil
         /// </summary>
         public static LoadOrSaveResult GetAllEntriesFromExcelFile(
-            KontoutdragInfoForLoad kontoutdragInfoForLoad,
             SortedList saveToTable,
             SaldoHolder saldoHolder,
             Hashtable entriesLoadedFromDataStore)
         {
-            // Töm alla tidigare entries i minnet om det ska laddas helt ny fil el. likn. 
-            if (kontoutdragInfoForLoad.ClearContentBeforeReadingNewFile)
-            {
-                saveToTable.Clear();
-            }
-
             // Görs i Ui-handling, UpdateEntriesToSaveMemList();
             // Skapa kontoentries
             // För att se om det laddats något, så UI-uppdateras etc. Så returneras bool om det...
@@ -40,41 +33,23 @@ namespace Budgetterarn.DAL
 
         internal static bool GetAllVisibleEntriesFromWebBrowser(
             KontoEntriesHolder kontoEntriesHolder,
-            string text
-        )
+            string text)
         {
-            var noKe = kontoEntriesHolder.KontoEntries.Count; // Se om något ändras sen...
-            var noNewKontoEntriesBeforeLoading = kontoEntriesHolder.NewKontoEntries.Count;
+            var noNewKontoEntriesBeforeLoading =
+                kontoEntriesHolder.NewKontoEntries.Count;
 
             // Kolla browser efter entries.
-            if (text != null)
+            if (text != null
+                && ProgramSettings.BankType == BankType.Swedbank)
             {
-                switch (ProgramSettings.BankType)
-                {
-                    case BankType.Swedbank:
+                // TODO: läs saldon Get saldo
+                //GetSwedbankSaldo(webBrowser1.Document.Body, kontoEntriesHolder.SaldoHolder);
 
-                        #region Swedbank
-
-                        // TODO: läs saldon Get saldo
-                        //GetSwedbankSaldo(webBrowser1.Document.Body, kontoEntriesHolder.SaldoHolder);
-
-
-                        // Get Entries
-                        GetHtmlEntriesFromSwedBankv2(
-                            text,
-                            kontoEntriesHolder.KontoEntries,
-                            kontoEntriesHolder.NewKontoEntries);
-
-                        #endregion
-
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            if (kontoEntriesHolder.KontoEntries.Count != noKe)
-            {
+                // Get Entries
+                GetHtmlEntriesFromSwedBankv2(
+                    text,
+                    kontoEntriesHolder.KontoEntries,
+                    kontoEntriesHolder.NewKontoEntries);
             }
 
             // Returnera aom något ändrats. Är de nya inte samma som innan laddning, så är det sant att något ändrats.

@@ -30,12 +30,14 @@ namespace Budgetterarn.DAL
 
         private void BackupOrginialFile(string newFileName)
         {
-            // TODO: check that dir exists and path etc
+            var destinationPath = _excelFileSavePathWithoutFileName + @"bak\";
+            Directory.CreateDirectory(destinationPath);
+
             File.Copy(
                 sourceFileName:
                     _excelFileSavePath,
                 destFileName:
-                    _excelFileSavePathWithoutFileName + @"bak\" + newFileName + "."
+                    destinationPath + newFileName + "."
                     + GetTimeNowString + ".bak.xls",
                 overwrite:
                     true);

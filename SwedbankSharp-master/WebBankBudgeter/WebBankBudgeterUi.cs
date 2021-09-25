@@ -271,7 +271,7 @@ namespace WebBankBudgeter
 
         private void DescribeStartYear(TextToTableOutPuter table)
         {
-            label1.Text += @"Börjar på år: " + table.SelectedStartYear;
+            label1.Text += @"Utgifter börjar på år: " + table.UtgiftersStartYear;
         }
 
         private void DescribeReoccurringGroups()

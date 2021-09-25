@@ -13,8 +13,12 @@ namespace LoadTransactionsFromFile
             SaldoHolder = new SaldoHolder();
         }
 
+        /// <summary>
+        /// saveToTable
+        /// </summary>
         public SortedList KontoEntries { get; }
-        public SortedList NewKontoEntries { get; }
+
+        public SortedList NewKontoEntries { get; set; }
         public SaldoHolder SaldoHolder { get; }
     }
 }

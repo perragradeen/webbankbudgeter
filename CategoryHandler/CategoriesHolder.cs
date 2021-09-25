@@ -23,20 +23,26 @@ namespace CategoryHandler
 
             try
             {
-                AllCategories = SerializationFunctions.DeserializeObject(SaveFilePath, typeof(Categories)) as Categories;
+                AllCategories = SerializationFunctions.DeserializeObject(
+                    SaveFilePath,
+                    typeof(Categories)) as Categories;
 
                 AllCategoriesHandler = new CategoriesHandler(AllCategories);
             }
             catch (Exception e)
             {
                 throw new Exception(
-                    "Error in: CategoriesHolder, DeserializeObject! filname:" + filename + ". SysErr: " + e.Message);
+                    "Error in: CategoriesHolder, DeserializeObject! filname:" 
+                    + filename + ". SysErr: " + e.Message);
             }
         }
 
         public static void Save()
         {
-            SerializationFunctions.SerializeObject(SaveFilePath, typeof(Categories), AllCategories);
+            SerializationFunctions.SerializeObject(
+                SaveFilePath,
+                typeof(Categories),
+                AllCategories);
         }
 
         /// <summary>

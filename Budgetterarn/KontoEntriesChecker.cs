@@ -13,6 +13,9 @@ namespace Budgetterarn
     {
         const string Skb = "skyddat belopp";
         const string Pkk = "PREL. KORTKÖP";
+        private static bool okToAddFromOld;
+
+        public static bool OkToAddFromOld { get => okToAddFromOld; set => okToAddFromOld = value; }
 
         /// <summary>
         /// Sets color if some conditions exists
@@ -112,7 +115,7 @@ namespace Budgetterarn
                 lists.NewItemsListOrg?.Add(newKe);
 
                 // Kolla om det är en dubblet eller om det är finns ett motsvarade "skyddat belopp"
-                if (lists.KontoEntries.ContainsKey(newKe.KeyForThis))
+                if (lists.KontoEntries.ContainsKey(newKe.KeyForThis) && !okToAddFromOld)
                 {
                     continue;
                 }
@@ -129,6 +132,8 @@ namespace Budgetterarn
                 // Lägg till i edited
                 lists.NewItemsListEdited.Add(newKe);
             }
+
+            okToAddFromOld = false;
         }
     }
 }

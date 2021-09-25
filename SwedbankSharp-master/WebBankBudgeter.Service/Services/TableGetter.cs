@@ -67,7 +67,7 @@ namespace WebBankBudgeter.Service.Services
 
             var table = new TextToTableOutPuter
             {
-                SelectedStartYear = transactionsGrouped.FirstOrDefault()?
+                UtgiftersStartYear = transactionsGrouped.FirstOrDefault()?
                     .Key.Year.ToString()
             };
 

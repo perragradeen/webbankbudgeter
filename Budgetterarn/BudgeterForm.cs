@@ -48,13 +48,13 @@ namespace Budgetterarn
         private static string bankUrl = "LoadsVia_xml_settings";
 
         private static string categoryPath = @"Data\Categories.xml";
-        private bool debugGlobal; // For useSaveCheck
+        private bool debugGlobal = false; // For useSaveCheck
 
         private readonly KontoEntriesHolder kontoEntriesHolder = new KontoEntriesHolder();
         private bool somethingChanged;
 
         // Generic types for Designer
-        private KontoEntryListView entriesInToBeSaved;
+        private KontoEntryListView entriesInToBeSavedGrid;
         private ListViewWithComboBox newIitemsListEdited;
         private KontoEntryListView newIitemsListOrg;
         private KontoEntryListView xlsOrginalEntries;
@@ -225,7 +225,7 @@ namespace Budgetterarn
         {
             newIitemsListEdited = new ListViewWithComboBox();
             newIitemsListOrg = new KontoEntryListView();
-            entriesInToBeSaved = new KontoEntryListView();
+            entriesInToBeSavedGrid = new KontoEntryListView();
             xlsOrginalEntries = new KontoEntryListView();
 
             // tp_NewItemsEdited
@@ -273,18 +273,18 @@ namespace Budgetterarn
             newIitemsListOrg.UseCompatibleStateImageBehavior = false;
             newIitemsListOrg.View = View.Details;
 
-            m_inMemoryList.Controls.Add(entriesInToBeSaved);
+            m_inMemoryList.Controls.Add(entriesInToBeSavedGrid);
 
             // m_EntriesInToBeSaved
-            entriesInToBeSaved.Dock = DockStyle.Fill;
-            entriesInToBeSaved.FullRowSelect = true;
-            entriesInToBeSaved.GridLines = true;
-            entriesInToBeSaved.Location = new Point(3, 3);
-            entriesInToBeSaved.Name = "m_EntriesInToBeSaved";
-            entriesInToBeSaved.Size = new Size(288, 577);
-            entriesInToBeSaved.TabIndex = 0;
-            entriesInToBeSaved.UseCompatibleStateImageBehavior = false;
-            entriesInToBeSaved.View = View.Details;
+            entriesInToBeSavedGrid.Dock = DockStyle.Fill;
+            entriesInToBeSavedGrid.FullRowSelect = true;
+            entriesInToBeSavedGrid.GridLines = true;
+            entriesInToBeSavedGrid.Location = new Point(3, 3);
+            entriesInToBeSavedGrid.Name = "m_EntriesInToBeSaved";
+            entriesInToBeSavedGrid.Size = new Size(288, 577);
+            entriesInToBeSavedGrid.TabIndex = 0;
+            entriesInToBeSavedGrid.UseCompatibleStateImageBehavior = false;
+            entriesInToBeSavedGrid.View = View.Details;
 
             // m_originalXls
             m_originalXls.Controls.Add(xlsOrginalEntries);
@@ -307,7 +307,7 @@ namespace Budgetterarn
             xlsOrginalEntries.UseCompatibleStateImageBehavior = false;
             xlsOrginalEntries.View = View.Details;
 
-            entriesInToBeSaved.ListViewItemSorter = new ListViewColumnSorter();
+            entriesInToBeSavedGrid.ListViewItemSorter = new ListViewColumnSorter();
             xlsOrginalEntries.ListViewItemSorter = new ListViewColumnSorter();
             newIitemsListEdited.ListViewItemSorter = new ListViewColumnSorter();
             newIitemsListOrg.ListViewItemSorter = new ListViewColumnSorter();
@@ -401,6 +401,7 @@ namespace Budgetterarn
             toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
 
             if (!somethingLoadeded) return;
+
             CheckAndAddNewItems();
             toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
                                          + kontoEntriesHolder.NewKontoEntries.Count + @".";
@@ -474,8 +475,13 @@ namespace Budgetterarn
                 return false;
             }
 
+            // Töm alla tidigare entries i minnet om det ska laddas helt ny fil el. likn. 
+            if (kontoutdragInfoForLoad.ClearContentBeforeReadingNewFile)
+            {
+                kontoEntriesHolder.KontoEntries.Clear();
+            }
+
             var loadResult = LoadKonton.GetAllEntriesFromExcelFile(
-                kontoutdragInfoForLoad,
                 kontoEntriesHolder.KontoEntries,
                 kontoEntriesHolder.SaldoHolder,
                 entriesLoadedFromDataStore);
@@ -504,7 +510,7 @@ namespace Budgetterarn
             // Lägg till orginalraden, gör i UI-hanterare
             // Lägg in det som är satt att sparas till minnet (viasa alla _kontoEntries i listview). Även uppdatera färg på text.
             ViewUpdateUi.SetNewItemsListViewFromSortedList(xlsOrginalEntries, kontoEntriesHolder.KontoEntries);
-            ViewUpdateUi.SetNewItemsListViewFromSortedList(entriesInToBeSaved, kontoEntriesHolder.KontoEntries);
+            ViewUpdateUi.SetNewItemsListViewFromSortedList(entriesInToBeSavedGrid, kontoEntriesHolder.KontoEntries);
 
             return true;
         }
@@ -515,7 +521,9 @@ namespace Budgetterarn
 
         private void UpdateEntriesToSaveMemList()
         {
-            ViewUpdateUi.SetNewItemsListViewFromSortedList(entriesInToBeSaved, kontoEntriesHolder.KontoEntries);
+            ViewUpdateUi.SetNewItemsListViewFromSortedList(
+                entriesInToBeSavedGrid,
+                kontoEntriesHolder.KontoEntries);
         }
 
         private void CheckAndAddNewItems()
@@ -565,7 +573,6 @@ namespace Budgetterarn
             // Updatera memlistan för att se om någon entry fått ny färg
             UpdateEntriesToSaveMemList();
         }
-
         #endregion
 
         #region Events (button clicks etc)
@@ -580,17 +587,17 @@ namespace Budgetterarn
 
         private void NavigeraToolStripMenuItemClick(object sender, EventArgs e)
         {
-            autoGetEntriesHbMobilHandler.BrowserNavigator.NavigateToFirstItemInVisibleList();
+            //autoGetEntriesHbMobilHandler.BrowserNavigator.NavigateToFirstItemInVisibleList();
         }
 
         private void SetLoginToolStripMenuItemClick(object sender, EventArgs e)
         {
-            autoGetEntriesHbMobilHandler.BrowserNavigator.SetLoginUserEtc();
+            //autoGetEntriesHbMobilHandler.BrowserNavigator.SetLoginUserEtc();
         }
 
         private void NavigateToLöneToolStripMenuItemClick(object sender, EventArgs e)
         {
-            autoGetEntriesHbMobilHandler.BrowserNavigator.NavigateToLöneKonto();
+            //autoGetEntriesHbMobilHandler.BrowserNavigator.NavigateToLöneKonto();
         }
 
         private void LoadToolStripMenuItem1Click(object sender, EventArgs e)
@@ -687,6 +694,34 @@ namespace Budgetterarn
         private void BtnRecheckAutocatClick(object sender, EventArgs e)
         {
             ListViewWithComboBox.UpdateCategoriesWithAutoCatList(newIitemsListEdited.Items);
+        }
+
+        private void AddCatergoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
+            newIitemsListEdited.LoadCategoriesToSelectBox();
+        }
+
+        private void LoadOldEntriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Sätt de gamla inlästa transaktionerna i minnet in i nya lista för redigering av kategori
+            kontoEntriesHolder.NewKontoEntries = GetOldEntriesWithoutCategory();
+
+            KontoEntriesChecker.OkToAddFromOld = true;
+            CheckAndAddNewItems(); // Lägg till gamla i GuiLista för redigering
+            KontoEntriesChecker.OkToAddFromOld = false;
+        }
+
+        private SortedList GetOldEntriesWithoutCategory()
+        {
+            var size = kontoEntriesHolder.KontoEntries.Count;
+            KontoEntry[] tempOldEntries = new KontoEntry[size];
+            kontoEntriesHolder.KontoEntries.Values.CopyTo(tempOldEntries, 0);
+            var filteredOldEntries = tempOldEntries
+                .Where(el => string.IsNullOrEmpty(el.TypAvKostnad));
+            var dict = filteredOldEntries.ToDictionary(ell => ell.KeyForThis);
+            var sortedList = new SortedList(dict);
+            return sortedList;
         }
 
         #endregion
@@ -800,7 +835,7 @@ namespace Budgetterarn
             var newEntriesFromUi = new SortedList();
             foreach (ListViewItem item in mineNewIitemsListEdited.Items)
             {
-                if (item.Tag is KontoEntry newKe 
+                if (item.Tag is KontoEntry newKe
                     && !newEntriesFromUi.ContainsKey(newKe.KeyForThis))
                 {
                     newEntriesFromUi.Add(newKe.KeyForThis, newKe);
@@ -822,7 +857,7 @@ namespace Budgetterarn
 
         private void TestBackNavToolStripMenuItemClick(object sender, EventArgs e)
         {
-            autoGetEntriesHbMobilHandler.BrowserNavigator.BrowserGoBack();
+            //autoGetEntriesHbMobilHandler.BrowserNavigator.BrowserGoBack();
         }
 
         private void DebugbtnClick(object sender, EventArgs e)

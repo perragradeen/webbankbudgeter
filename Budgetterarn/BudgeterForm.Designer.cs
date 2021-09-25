@@ -38,6 +38,7 @@ namespace Budgetterarn
             this.openBankSiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCatergoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navigeraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,9 +72,9 @@ namespace Budgetterarn
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.debugbtn = new System.Windows.Forms.Button();
             this.btnLoadCurrentEntries = new System.Windows.Forms.Button();
+            this.loadOldEntriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -104,7 +105,8 @@ namespace Budgetterarn
             this.FileMenuLoadNewFromXls,
             this.openBankSiteToolStripMenuItem,
             this.openUrlToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.addCatergoryToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -112,37 +114,44 @@ namespace Budgetterarn
             // loadToolStripMenuItem1
             // 
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(209, 22);
             this.loadToolStripMenuItem1.Text = "Load new entries from xls";
             this.loadToolStripMenuItem1.Click += new System.EventHandler(this.LoadToolStripMenuItem1Click);
             // 
             // FileMenuLoadNewFromXls
             // 
             this.FileMenuLoadNewFromXls.Name = "FileMenuLoadNewFromXls";
-            this.FileMenuLoadNewFromXls.Size = new System.Drawing.Size(208, 22);
+            this.FileMenuLoadNewFromXls.Size = new System.Drawing.Size(209, 22);
             this.FileMenuLoadNewFromXls.Text = "Add new entries from xls";
             this.FileMenuLoadNewFromXls.Click += new System.EventHandler(this.FileMenuLoadNewFromXlsClick);
             // 
             // openBankSiteToolStripMenuItem
             // 
             this.openBankSiteToolStripMenuItem.Name = "openBankSiteToolStripMenuItem";
-            this.openBankSiteToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.openBankSiteToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.openBankSiteToolStripMenuItem.Text = "Open bank site";
             this.openBankSiteToolStripMenuItem.Click += new System.EventHandler(this.OpenBankSiteToolStripMenuItemClick);
             // 
             // openUrlToolStripMenuItem
             // 
             this.openUrlToolStripMenuItem.Name = "openUrlToolStripMenuItem";
-            this.openUrlToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.openUrlToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.openUrlToolStripMenuItem.Text = "Open Url";
             this.openUrlToolStripMenuItem.Click += new System.EventHandler(this.OpenUrlToolStripMenuItemClick);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItemClick);
+            // 
+            // addCatergoryToolStripMenuItem
+            // 
+            this.addCatergoryToolStripMenuItem.Name = "addCatergoryToolStripMenuItem";
+            this.addCatergoryToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.addCatergoryToolStripMenuItem.Text = "Add Catergory";
+            this.addCatergoryToolStripMenuItem.Click += new System.EventHandler(this.AddCatergoryToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
@@ -154,55 +163,56 @@ namespace Budgetterarn
             this.testNav1ToolStripMenuItem,
             this.testBackNavToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.testToolStripMenuItem.Text = "Test";
             // 
             // debugToolStripMenuItem
             // 
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.debugToolStripMenuItem.Text = "Debug";
             this.debugToolStripMenuItem.Click += new System.EventHandler(this.DebugToolStripMenuItemClick);
             // 
             // navigeraToolStripMenuItem
             // 
             this.navigeraToolStripMenuItem.Name = "navigeraToolStripMenuItem";
-            this.navigeraToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.navigeraToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.navigeraToolStripMenuItem.Text = "Navigera";
             this.navigeraToolStripMenuItem.Click += new System.EventHandler(this.NavigeraToolStripMenuItemClick);
             // 
             // setLoginToolStripMenuItem
             // 
             this.setLoginToolStripMenuItem.Name = "setLoginToolStripMenuItem";
-            this.setLoginToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.setLoginToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.setLoginToolStripMenuItem.Text = "Set Login";
             this.setLoginToolStripMenuItem.Click += new System.EventHandler(this.SetLoginToolStripMenuItemClick);
             // 
             // navigateToLöneToolStripMenuItem
             // 
             this.navigateToLöneToolStripMenuItem.Name = "navigateToLöneToolStripMenuItem";
-            this.navigateToLöneToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.navigateToLöneToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.navigateToLöneToolStripMenuItem.Text = "NavigateToLöne";
             this.navigateToLöneToolStripMenuItem.Click += new System.EventHandler(this.NavigateToLöneToolStripMenuItemClick);
             // 
             // testNav1ToolStripMenuItem
             // 
             this.testNav1ToolStripMenuItem.Name = "testNav1ToolStripMenuItem";
-            this.testNav1ToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.testNav1ToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.testNav1ToolStripMenuItem.Text = "Test nav1";
             this.testNav1ToolStripMenuItem.Click += new System.EventHandler(this.TestNav1ToolStripMenuItemClick);
             // 
             // testBackNavToolStripMenuItem
             // 
             this.testBackNavToolStripMenuItem.Name = "testBackNavToolStripMenuItem";
-            this.testBackNavToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.testBackNavToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.testBackNavToolStripMenuItem.Text = "TestBackNav";
             this.testBackNavToolStripMenuItem.Click += new System.EventHandler(this.TestBackNavToolStripMenuItemClick);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadCurrentEntriesToolStripMenuItem});
+            this.loadCurrentEntriesToolStripMenuItem,
+            this.loadOldEntriesToolStripMenuItem});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.loadToolStripMenuItem.Text = "Load";
@@ -430,6 +440,13 @@ namespace Budgetterarn
             this.btnLoadCurrentEntries.UseVisualStyleBackColor = true;
             this.btnLoadCurrentEntries.Click += new System.EventHandler(this.BtnLoadCurrentEntriesClick);
             // 
+            // loadOldEntriesToolStripMenuItem
+            // 
+            this.loadOldEntriesToolStripMenuItem.Name = "loadOldEntriesToolStripMenuItem";
+            this.loadOldEntriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.loadOldEntriesToolStripMenuItem.Text = "Load old entries";
+            this.loadOldEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadOldEntriesToolStripMenuItem_Click);
+            // 
             // BudgeterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,7 +463,6 @@ namespace Budgetterarn
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BudgeterFormClosing);
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -504,6 +520,8 @@ namespace Budgetterarn
         private ToolStripMenuItem navigateToLöneToolStripMenuItem;
         private ToolStripMenuItem testNav1ToolStripMenuItem;
         private ToolStripMenuItem testBackNavToolStripMenuItem;
+        private ToolStripMenuItem addCatergoryToolStripMenuItem;
+        private ToolStripMenuItem loadOldEntriesToolStripMenuItem;
     }
 }
 

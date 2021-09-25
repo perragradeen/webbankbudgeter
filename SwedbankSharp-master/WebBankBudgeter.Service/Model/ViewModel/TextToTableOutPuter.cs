@@ -14,7 +14,7 @@ namespace WebBankBudgeter.Service.Model.ViewModel
             ColumnHeaders = new List<string>();
         }
 
-        public string SelectedStartYear { get; set; }
+        public string UtgiftersStartYear { get; set; }
 
         public List<string> ColumnHeaders { get; }
 
