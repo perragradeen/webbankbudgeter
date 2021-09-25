@@ -17,5 +17,6 @@ namespace WebBankBudgeter.Service.Model.ViewModel
         public List<string> ColumnHeaders { get; }
 
         public IEnumerable<BudgetRow> BudgetRows { get; set; }
+        //TODO: public List<BudgetRow> AveragesForTransactions { get; set; }
     }
 }

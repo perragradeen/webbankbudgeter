@@ -18,5 +18,10 @@ namespace WebBankBudgeter.Service.Model
         /// Ex. "2016 January", -2215,22
         /// </summary>
         public Dictionary<string, double> AmountsForMonth { get; }
+
+        public override string ToString()
+        {
+            return CategoryText + " " + AmountsForMonth.Count.ToString();
+        }
     }
 }

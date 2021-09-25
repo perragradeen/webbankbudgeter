@@ -33,6 +33,26 @@ namespace WebBankBudgeter.Service.Model
                 return categories.ToString();
             }
         }
+        public string CategoryNameNoGroup
+        {
+            get
+            {
+                var categories = Categorizations?.Categories?.FirstOrDefault();
+                if (!(categories == null ||
+                      categories.Name == null))
+                {
+                    return categories.Name;
+                }
+
+                categories = new Categories
+                {
+                    Name = "No Category",
+                    Group = "No group"
+                };
+
+                return categories.Name;
+            }
+        }
 
         private DateTime _dateAsDate;
         public DateTime DateAsDate
@@ -75,6 +95,11 @@ namespace WebBankBudgeter.Service.Model
 
         public static DateTime GetDateFromYearMonthName(string yearAndMonthAsText)
         {
+            if (string.IsNullOrWhiteSpace(yearAndMonthAsText))
+            {
+                return DateTime.Today;
+            }
+
             return DateTime.ParseExact(yearAndMonthAsText, "yyyy MMMM", CultureInfo.InvariantCulture);
         }
 

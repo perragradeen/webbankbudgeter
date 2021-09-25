@@ -1,4 +1,5 @@
-﻿using InbudgetToTable;
+﻿using InbudgetHandler;
+using InbudgetToTable;
 using InbudgetToTable.Model;
 using System;
 using System.Collections.Generic;
@@ -21,27 +22,46 @@ namespace WebBankBudgeter
         private readonly TransactionHandler _transactionHandler;
         private readonly InBudgetUiHandler _inBudgetUiHandler;
         private readonly UtgiftsHanterareUiBinder _utgiftsHanterareUiBinder;
+        private readonly SkapaInPosterHanterare _inPosterHanterare;
+
+        // Todo: Viktig: gör en funktion för denna och filnamn. Ta från settings-fil
+        private const string _transactionTestFilePath = @"C:\Temp";
 
         public WebBankBudgeterUi()
         {
-            var tableGetter = new TableGetter { AddAverageColumn = true };
-            _transactionHandler = new TransactionHandler(
-                WriteToOutput,
-                tableGetter,
-                GetCategoryFilePath()
-            );
+            try
+            {
+                var tableGetter = new TableGetter { AddAverageColumn = true };
+                _transactionHandler = new TransactionHandler(
+                    WriteToOutput,
+                    tableGetter,
+                    GetCategoryFilePath(),
+                    _transactionTestFilePath
+                );
 
-            InitializeComponent();
+                InitializeComponent();
 
-            var inBudgetHandler = new InBudgetHandler(InBudgetFilePath);
-            _inBudgetUiHandler = new InBudgetUiHandler(inBudgetHandler, gv_incomes);
+                var inBudgetHandler = new InBudgetHandler(InBudgetFilePath);
+                _inBudgetUiHandler = new InBudgetUiHandler(inBudgetHandler, gv_incomes, WriteLineToOutputAndScrollDown);
 
-            _utgiftsHanterareUiBinder = new UtgiftsHanterareUiBinder(gv_budget);
+                _utgiftsHanterareUiBinder = new UtgiftsHanterareUiBinder(gv_budget);
 
-            ReloadButton.Click += async (s, e) =>
-                await ReloadButton_ClickAsync(s, e);
-            Load += async (s, e) =>
-                await Form1_LoadAsync(s, e);
+                _inPosterHanterare = new SkapaInPosterHanterare(inBudgetHandler, _transactionHandler);
+
+
+                ReloadButton.Click += async (s, e) =>
+                    await ReloadButton_ClickAsync(s, e);
+
+                Load += async (s, e) =>
+                    await Form1_LoadAsync(s, e);
+
+                SkapaTomRad.Click += async (s, e) =>
+                    await SkapaTomRad_Click(s, e);
+            }
+            catch (Exception e)
+            {
+                WriteLineToOutputAndScrollDown(e.Message);
+            }
         }
 
         private static string GetCategoryFilePath()
@@ -86,7 +106,7 @@ namespace WebBankBudgeter
             // Hämta, behandla och koppla data till UI
             // var inPosterTask = BindInPosterToUiAsync();
 
-            // Hämta data ---
+            // Hämta utgifter (transactioner) data ---
             var loadSuccess =
                 await GetTransactionsAsync();
             if (!loadSuccess) return;
@@ -114,24 +134,34 @@ namespace WebBankBudgeter
             //BindTotalsToUi();
 
             // Ta ut in-data och utgifter.
-            var inData = await _inBudgetUiHandler.HämtaRaderFörUiBindningAsync();
-            var utgifter = table.BudgetRows.ToList();
+            var inDataRader = await _inBudgetUiHandler.HämtaRaderFörUiBindningAsync();
+            var utgiftsRader = table.BudgetRows.ToList();
             var månadsRubriker = await _inBudgetUiHandler.HämtaRubrikePåInPosterAsync();
 
             // Presentera tabell för kvar budget.
-            _inBudgetUiHandler.BindInPosterRaderTillUi(
-                SnurraIgenom(inData, utgifter, WriteLineToOutputAndScrollDown),
-                månadsRubriker,
-                gv_Kvar);
+            VisaKvarRader_BindInPosterRaderTillUi(inDataRader, utgiftsRader, månadsRubriker);
 
             // Presentera tabell för inkomst i varje kategori budget.
-            _inBudgetUiHandler.BindInPosterRaderTillUi(
-                inData,
-                månadsRubriker,
-                gv_incomes
-                );
+            VisaInRader_BindInPosterRaderTillUi(inDataRader, månadsRubriker);
 
             // Presentera summor för varje kat.
+        }
+
+        private void VisaInRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<string> månadsRubriker)
+        {
+            _inBudgetUiHandler.BindInPosterRaderTillUi(
+                            inDataRader,
+                            månadsRubriker,
+                            gv_incomes
+                            );
+        }
+
+        private void VisaKvarRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<Service.Model.BudgetRow> utgiftsRader, List<string> månadsRubriker)
+        {
+            _inBudgetUiHandler.BindInPosterRaderTillUi(
+                SnurraIgenom(inDataRader, utgiftsRader, WriteLineToOutputAndScrollDown),
+                månadsRubriker,
+                gv_Kvar);
         }
 
         private static List<Rad> SnurraIgenom(
@@ -254,8 +284,7 @@ namespace WebBankBudgeter
 
         private void SparaInPosterPåDisk()
         {
-            _inBudgetUiHandler.SparaInPosterPåDisk(
-                _inBudgetUiHandler.HämtaInPosterFrånUi());
+            _inBudgetUiHandler.SparaInPosterPåDisk();
 
             WriteLineToOutputAndScrollDown("Sparat.");
         }
@@ -336,6 +365,45 @@ namespace WebBankBudgeter
         private void SaveInPosterButton_Click(object sender, EventArgs e)
         {
             SparaInPosterPåDisk();
+        }
+
+        private async Task SkapaTomRad_Click(object sender, EventArgs e)
+        {
+            await FyllIMedDefaultInposterFörSenasteMånadAsync();
+        }
+
+        private async Task FyllIMedDefaultInposterFörSenasteMånadAsync()
+        {
+            // Skapa en rad med alla valbara kategorier
+            //      för nuvarande månad
+            //          om det inte redan finns
+            var inPosterDefault = await _inPosterHanterare.SkapaInPoster(
+                transactionList: _transactionHandler.TransactionList);
+
+            //Spara i BudgetIns.json
+            _inBudgetUiHandler.SparaInPosterPåDisk(inPosterDefault);
+            //Ladda
+            var inDataRader = await _inBudgetUiHandler
+                .HämtaRaderFörUiBindningAsync();
+
+            try
+            {
+                //Skriv ut i Ui
+                gv_incomes.Columns.Clear();
+                gv_incomes.Rows.Clear();
+                var månadsRubriker = await _inBudgetUiHandler.HämtaRubrikePåInPosterAsync();
+                _inBudgetUiHandler.BindInPosterRaderTillUi(
+                    inDataRader,
+                    månadsRubriker,
+                    gv_incomes
+                    );
+
+                //Sen fyll i alla tomma inrader med detta
+            }
+            catch (Exception e)
+            {
+                WriteLineToOutputAndScrollDown(e.Message);
+            }
         }
     }
 }

@@ -113,9 +113,9 @@
       <Project>{bd8d683f-f43d-434d-b6ab-a900f458c0cc}</Project>
       <Name>Budgeter.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\InbudgetToTable\InbudgetToTable.csproj">
-      <Project>{fd517a53-dcaa-43fa-8b94-ce2506b07c4f}</Project>
-      <Name>InbudgetToTable</Name>
+    <ProjectReference Include="..\..\InbudgetHandler\InbudgetHandler.csproj">
+      <Project>{159331a1-ecb8-4d6c-9a66-2b279f78e5a0}</Project>
+      <Name>InbudgetHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebBankBudgeter.Service\WebBankBudgeter.Service.csproj">
       <Project>{3B8DF4A7-DC9F-4B3D-8759-290120A74218}</Project>

@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using WebBankBudgeter.Service;
 using WebBankBudgeter.Service.Model.ViewModel;
 
 namespace WebBankBudgeter.UiBinders
@@ -27,7 +26,7 @@ namespace WebBankBudgeter.UiBinders
 
             _gv_budget.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-
+            //TODO: hämta från ny hanterare för averages...var averagesForTransactions = new List<BudgetRow>();
             foreach (var row in table.BudgetRows)
             {
                 var n = _gv_budget.Rows.Add();
@@ -40,8 +39,20 @@ namespace WebBankBudgeter.UiBinders
                     switch (header)
                     {
                         case TextToTableOutPuter.AverageColumnDescription:
-                            value = CalcMonthAveragesPerRow(
+                            var amounts = AverageCalcer.CalcMonthAveragesPerRow(
                                 row.AmountsForMonth, table.ColumnHeaders);
+                            value = AverageCalcer.GetAverageValueAsText(amounts);
+
+                            //amounts.ForEach(a =>
+                            //{
+                            //    var aomuntsForAverageRow = new BudgetRow
+                            //    {
+                            //        CategoryText = row.CategoryText
+                            //    };
+                            //    aomuntsForAverageRow.AmountsForMonth.Add(header, a);
+                            //    averagesForTransactions.Add(aomuntsForAverageRow);
+                            //});
+
                             break;
                         case TextToTableOutPuter.CategoryNameColumnDescription:
                             value = row.CategoryText;
@@ -55,35 +66,8 @@ namespace WebBankBudgeter.UiBinders
                     _gv_budget.Rows[n].Cells[i++].Value = value;
                 }
             }
-        }
 
-
-        private static object CalcMonthAveragesPerRow(IReadOnlyDictionary<string, double> rowAmountsForMonth, IEnumerable<string> tableColumnHeaders)
-        {
-            var amounts = new List<double>();
-            foreach (var columnHeader in tableColumnHeaders)
-            {
-                switch (columnHeader)
-                {
-                    case TextToTableOutPuter.AverageColumnDescription:
-                        break;
-                    case TextToTableOutPuter.CategoryNameColumnDescription:
-                        break;
-                    default:
-                        if (rowAmountsForMonth.ContainsKey(columnHeader))
-                        {
-                            amounts.Add(rowAmountsForMonth[columnHeader]);
-                        }
-                        else
-                        {
-                            amounts.Add(0);
-                        }
-
-                        break;
-                }
-            }
-
-            return amounts.Average(d => d).ToString("N");
+            //table.AveragesForTransactions = averagesForTransactions;
         }
     }
 }

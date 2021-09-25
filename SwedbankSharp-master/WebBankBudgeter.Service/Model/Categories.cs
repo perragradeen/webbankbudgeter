@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return $"{Group} {Name}";
+            return $"{Group} {Name}";//TODO: lägg in kategori-grupp på allt
         }
     }
 }

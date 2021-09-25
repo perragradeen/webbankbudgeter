@@ -74,6 +74,11 @@ namespace InbudgetToTable
 
             var inPoster = await GetInPoster();
 
+            // Sortera på datum stigande
+            inPoster = inPoster
+                .OrderBy(i=>i.YearAndMonth)
+                .ToList();
+
             // Loopa data
             // Grupper på categori (per rad)
             foreach (var inPostGrupp in inPoster

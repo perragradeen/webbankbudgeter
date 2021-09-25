@@ -21,15 +21,24 @@ namespace WebBankBudgeter.Service
         private readonly Action<string> _writeToOutput;
 
         private TransactionCalcs _transactionCalcsHandler;
+        private readonly string _filePath;
         private readonly Categories _allCategories;
         private readonly TableGetter _tableGetter;
 
         public TransactionList TransactionList => _transactionCalcsHandler.TransactionList;
+        public void SetTransactionList(TransactionList list)
+        {
+            _transactionCalcsHandler =
+                new TransactionCalcs(list);
+        }
+
+        public Categories AllCategories => _allCategories;
 
         public TransactionHandler(
             Action<string> writeToOutput,
             TableGetter tableGetter,
-            string categoriesFilePath)
+            string categoriesFilePath,
+            string filePath)
         {
             _writeToOutput = writeToOutput;
             _tableGetter = tableGetter;
@@ -38,6 +47,7 @@ namespace WebBankBudgeter.Service
                     categoriesFilePath,
                     typeof(Categories))
                 as Categories;
+            _filePath = filePath;
         }
 
         public async Task<bool> GetTransactionsAsync()
@@ -115,12 +125,10 @@ namespace WebBankBudgeter.Service
 
         private SortedList GetTransactionsFromFile()
         {
-            // Todo: Viktig: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
-            var testfilePath = @"C:\Temp";
             var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
             {
-                FilePath = testfilePath,
-                ExcelFileSavePath = testfilePath,
+                FilePath = _filePath,
+                ExcelFileSavePath = _filePath,
                 ExcelFileSaveFileName = @"pelles budget.xls",
                 SheetName = BankConstants.SheetName,
             };
@@ -181,7 +189,7 @@ namespace WebBankBudgeter.Service
 
         private string LookUpCategoryGroup(string categoryName)
         {
-            return _allCategories.CategoryList.FirstOrDefault(c =>
+            return AllCategories.CategoryList.FirstOrDefault(c =>
                     c.Description == categoryName)
                 ?.Group;
         }
@@ -211,5 +219,43 @@ namespace WebBankBudgeter.Service
                 balance :
                 availableAmount;
         }
+    }
+
+    //TODO: Move
+    public class AverageCalcer
+    {
+        public static List<double> CalcMonthAveragesPerRow(IReadOnlyDictionary<string, double> rowAmountsForMonth, IEnumerable<string> tableColumnHeaders)
+        {
+            var amounts = new List<double>();
+            foreach (var columnHeader in tableColumnHeaders)
+            {
+                switch (columnHeader)
+                {
+                    case TextToTableOutPuter.AverageColumnDescription:
+                        break;
+                    case TextToTableOutPuter.CategoryNameColumnDescription:
+                        break;
+                    default:
+                        if (rowAmountsForMonth.ContainsKey(columnHeader))
+                        {
+                            amounts.Add(rowAmountsForMonth[columnHeader]);
+                        }
+                        else
+                        {
+                            amounts.Add(0);
+                        }
+
+                        break;
+                }
+            }
+
+            return amounts;
+        }
+
+        public static string GetAverageValueAsText(List<double> amounts)
+        {
+            return amounts.Average(d => d).ToString("N");
+        }
+
     }
 }
