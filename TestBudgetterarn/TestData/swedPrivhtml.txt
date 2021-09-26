@@ -1,587 +1,28 @@
-ï»¿using Budgeter.Core.Entities;
-using Budgetterarn.DAL;
-using LoadTransactionsFromFile;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-
-namespace TestBudgetterarn
-{
-    [TestClass]
-    public class GetAllVisibleEntriesFromWebBrowserTests
-    {
-        private readonly string _default_webBrowserText;
-        private readonly KontoEntriesHolder _default_KontoEntriesHolder
-            = new KontoEntriesHolder();
-
-        public GetAllVisibleEntriesFromWebBrowserTests()
-        {
-            _default_webBrowserText = GemensammaKontot;
-        }
-
-        private const string GemensammaKontot =
-@"GÃ¥ direkt till innehÃ¥llet
-LÃ¤mna synpunkter om internetbanken
-Gemensamt
-Clearing	Kontonummer
-8105-9	964 260 138-0
-TillgÃ¤ngligt belopp 7072.03 Saldo 7072.03 TillgÃ¤ngligt belopp 7072.03
-TillgÃ¤ngligt belopp
-7 072,03
-Saldo	7 072,03
-TillgÃ¤ngligt belopp	7 072,03
-Filter
-Belopp frÃ¥n
-Belopp till
-BokfÃ¶ringsdatum frÃ¥n
-BokfÃ¶ringsdatum till
-Transaktionstyper
-Alla
-Endast insÃ¤ttningar
-Endast uttag
-Rensa
-SÃ¶k
-Transaktioner
-Transaktioner
-Transaktionsdatum
-BokfÃ¶ringsdatum
-Belopp
-Saldo
-Ã–verfÃ¶ring Barnbidrag
-2021-09-25
-2021-09-27
--1 325,00
-7 072,03
-K*Foodora AB
-2021-09-24
-2021-09-24
--602,00
-8 397,03
-Pinsetter
-2021-09-24
-2021-09-24
--118,00
-8 999,03
-Ã…terbetalning 3108764560
-2021-09-23
-2021-09-23
-199,00
-9 117,03
-Coop infÃ¶r kalas
-2021-09-22
-2021-09-22
--717,00
-8 918,03
-Bensin
-2021-09-22
-2021-09-22
--530,00
-9 635,03
-TrÃ¤ngsel
-2021-09-22
-2021-09-22
--235,00
-10 165,03
-Akademssr
-2021-09-22
-2021-09-22
--390,00
-10 400,03
-Dagisavgift
-2021-09-22
-2021-09-22
--1 510,00
-10 790,03
-K*Webhallen
-2021-09-22
-2021-09-22
--353,00
-12 300,03
-Direktbetalning kalsong
-2021-09-19
-2021-09-20
--796,00
-12 653,03
-Ã–vf via internet 810599642601349
-2021-09-17
-2021-09-17
-514,00
-13 449,03
-Barnbidrag
-2021-09-20
-2021-09-16
-1 325,00
-12 935,03
-GÃ¶teborgs Stad
-2021-09-10
-2021-09-10
--400,00
-11 610,03
-Telia
-2021-09-06
-2021-09-06
--328,00
-12 010,03
-Csn
-2021-09-06
-2021-09-06
--650,00
-12 338,03
-Ã–vf via internet 816959831756623
-2021-09-04
-2021-09-06
--2 300,00
-12 988,03
-PaketTillGÃ¤ste
-2021-09-04
-2021-09-06
-1 135,00
-15 288,03
-MatKalas
-2021-09-03
-2021-09-03
-2 785,00
-14 153,03
-Mat.se
-2021-09-01
-2021-09-01
--1 316,00
-11 368,03
-Foodora 31/8
-2021-08-31
-2021-08-31
--556,00
-12 684,03
-TRE KRONOR
-2021-08-31
-2021-08-31
--663,00
-13 240,03
-DinEl, GÃ¶teborg
-2021-08-31
-2021-08-31
--1 188,00
-13 903,03
-Centrala Studies
-2021-08-31
-2021-08-31
--3 126,00
-15 091,03
-Ã–vf via internet 810599642601349
-2021-08-30
-2021-08-31
--1 565,00
-18 217,03
-Ã–vf via internet 816959831756623
-2021-08-30
-2021-08-30
--1 565,00
-19 782,03
-DagersÃ¤ttning
-2021-08-31
-2021-08-30
-567,00
-21 347,03
-SV INGENJ
-2021-08-30
-2021-08-30
--480,00
-20 780,03
-AKADEMIKERFÃ–
-2021-08-30
-2021-08-30
--384,00
-21 260,03
-Folksam
-2021-08-30
-2021-08-30
--135,00
-21 644,03
-Foodora
-2021-08-27
-2021-08-27
--419,00
-21 779,03
-Foodora
-2021-08-27
-2021-08-27
--460,00
-22 198,03
-GÃ¶teborgs Stad
-2021-08-27
-2021-08-27
--400,00
-22 658,03
-Ã–verfÃ¶ring lÃ¥n 0000002857934661
-2021-08-27
-2021-08-27
--6 040,00
-23 058,03
-Ã–verfÃ¶ring lÃ¥n 0000002857934653
-2021-08-27
-2021-08-27
--1 329,00
-29 098,03
-Ã–verfÃ¶ring lÃ¥n 0000002857934646
-2021-08-27
-2021-08-27
--1 329,00
-30 427,03
-Ã–verfÃ¶ring lÃ¥n 0000002857934638
-2021-08-27
-2021-08-27
--1 329,00
-31 756,03
-BuffertPG
-2021-08-27
-2021-08-27
-12 500,00
-33 085,03
-K*Foodora AB
-2021-08-26
-2021-08-26
--763,00
-20 585,03
-Ã–verfÃ¶ring Barnbidrag
-2021-08-25
-2021-08-25
--1 325,00
-21 348,03
-Qliro
-2021-08-24
-2021-08-24
--654,00
-22 673,03
-Qliro
-2021-08-24
-2021-08-24
--495,00
-23 327,03
-Dagis
-2021-08-23
-2021-08-23
--1 510,00
-23 822,03
-Ã–vf via internet 816959831756623
-2021-08-22
-2021-08-23
--1 600,00
-25 332,03
-Sagas fÃ¶delsedag
-2021-08-22
-2021-08-23
--450,00
-26 932,03
-K*Foodora AB
-2021-08-20
-2021-08-20
--476,00
-27 382,03
-Chatta med oss";
-
-        private const string PrivataKontotMedSkyddatBelopp =
-@"GÃ¥ direkt till innehÃ¥llet
-LÃ¤mna synpunkter om internetbanken
+Gå direkt till innehållet
+Lämna synpunkter om internetbanken
 PrivatPG
 Clearing	Kontonummer
 8105-9	964 260 134-9
-TillgÃ¤ngligt belopp 278406.14 Saldo 278644.04 Reserverade belopp -237,90 TillgÃ¤ngligt belopp 278406.14
-TillgÃ¤ngligt belopp
-278 406,14
-Saldo	278 644,04
-Reserverade belopp	-237,90
-TillgÃ¤ngligt belopp	278 406,14
-Filter
-Belopp frÃ¥n
-Belopp till
-BokfÃ¶ringsdatum frÃ¥n
-BokfÃ¶ringsdatum till
-Transaktionstyper
-Alla
-Endast insÃ¤ttningar
-Endast uttag
-Rensa
-SÃ¶k
-Transaktioner
-Reserverade belopp
-Transaktionsdatum
-BokfÃ¶ringsdatum
-Belopp
-Saldo
-APOTEKET AB STOCKHOLM
--
--
--227,90
--
-PARKERINGSBOLAGET GOTEBORG
--
--
--10,00
--
-Transaktioner
-Transaktionsdatum
-BokfÃ¶ringsdatum
-Belopp
-Saldo
-VASAKLINIKEN I S
-2021-09-25
-2021-09-27
--1 000,00
-278 644,04
-PARKERINGSBOLAGE
-2021-09-24
-2021-09-24
--33,00
-279 644,04
-Budbee AB
-2021-09-24
-2021-09-24
--39,00
-279 677,04
-LÃ–N
-2021-09-24
-2021-09-23
-36 166,00
-279 716,04
-Matse AB
-2021-09-21
-2021-09-21
--1 159,95
-243 550,04
-NETONNET
-2021-09-21
-2021-09-21
--1 484,00
-244 709,99
-UNDER PRODUKTION
-2021-09-21
-2021-09-21
--29,00
-246 193,99
-Jureskogs
-2021-09-20
-2021-09-20
--504,00
-246 222,99
-Ã–vf via internet 810599642601380
-2021-09-17
-2021-09-17
--514,00
-246 726,99
-1299254184107
-2021-09-17
-2021-09-17
-37 218,00
-247 240,99
-SNOVIT KONDITORI
-2021-09-13
-2021-09-13
--1 065,00
-210 022,99
-Matse AB
-2021-09-10
-2021-09-10
--1 062,40
-211 087,99
-PaketTillGÃ¤ste
-2021-09-04
-2021-09-06
--1 135,00
-212 150,39
-MatKalas
-2021-09-03
-2021-09-03
--2 785,00
-213 285,39
-PARKERINGSBOLAGE
-2021-09-03
-2021-09-03
--19,00
-216 070,39
-Ã–vf via internet 810599642601380
-2021-08-30
-2021-08-31
-1 565,00
-216 089,39
-BarnPaket
-2021-08-30
-2021-08-31
--1 565,00
-214 524,39
-WSPA SVERIGE
-2021-08-30
-2021-08-30
--150,00
-216 089,39
-PRIS NYCKELKUND
-2021-08-30
-2021-08-30
--39,00
-216 239,39
-Ã–verfÃ¶ring BuffertPG
-2021-08-27
-2021-08-27
--12 500,00
-216 278,39
-LÃ–N
-2021-08-25
-2021-08-25
-37 283,00
-228 778,39
-UNDER PRODUKTION
-2021-08-21
-2021-08-23
--29,00
-191 495,39
-WWW.PARKSTER.SE
-2021-08-18
-2021-08-18
--34,00
-191 524,39
-LISEBERG FAST F
-2021-08-17
-2021-08-17
--96,00
-191 558,39
-LISEBERG RESTAUR
-2021-08-17
-2021-08-17
--1 100,00
-191 654,39
-LISEBERG FAST F
-2021-08-17
-2021-08-17
--100,00
-192 754,39
-LISEBERG FAST F
-2021-08-17
-2021-08-17
--80,00
-192 854,39
-LIM*RESEKOSTNAD
-2021-08-14
-2021-08-16
--35,00
-192 934,39
-PARKERINGSBOLAGE
-2021-08-14
-2021-08-16
--110,00
-192 969,39
-LIM*RESEKOSTNAD
-2021-08-14
-2021-08-16
--30,00
-193 079,39
-CIRCLE K BOLLEBY
-2021-08-13
-2021-08-13
--917,45
-193 109,39
-Jureskogs
-2021-08-10
-2021-08-10
--19,00
-194 026,84
-Jureskogs
-2021-08-10
-2021-08-10
--77,00
-194 045,84
-TRADERA
-2021-08-06
-2021-08-06
--160,00
-194 122,84
-Jureskogs
-2021-08-06
-2021-08-06
--150,00
-194 282,84
-COOP VÃ„RNAMO
-2021-08-06
-2021-08-06
--323,04
-194 432,84
-HEMMAHALLEN VARN
-2021-08-06
-2021-08-06
--54,00
-194 755,88
-HEMMAHALLEN VARN
-2021-08-06
-2021-08-06
--241,80
-194 809,88
-Rosa-Mi Cafe
-2021-08-03
-2021-08-03
--177,00
-195 051,68
-INGO GOTEBORG, M
-2021-08-03
-2021-08-03
--556,26
-195 228,68
-IKEA BECKEBOL
-2021-08-02
-2021-08-02
--874,00
-195 784,94
-IKEA BECKEBOL
-2021-08-02
-2021-08-02
--161,00
-196 658,94
-EMMAUS BJORKA E
-2021-07-30
-2021-07-30
--300,00
-196 819,94
-HORNBACH GOTEBOR
-2021-07-29
-2021-07-29
--1 154,00
-197 119,94
-WSPA SVERIGE
-2021-07-28
-2021-07-28
--150,00
-198 273,94
-PRIS NYCKELKUND
-2021-07-28
-2021-07-28
--39,00
-198 423,94
-Chatta med oss";
-
-        private string PrivataStd()
-        {
-            return
-@"GÃ¥ direkt till innehÃ¥llet
-LÃ¤mna synpunkter om internetbanken
-PrivatPG
-Clearing	Kontonummer
-8105-9	964 260 134-9
-TillgÃ¤ngligt belopp 191495.39 Saldo 191495.39 TillgÃ¤ngligt belopp 191495.39
-TillgÃ¤ngligt belopp
+Tillgängligt belopp 191495.39 Saldo 191495.39 Tillgängligt belopp 191495.39
+Tillgängligt belopp
 191 495,39
 Saldo	191 495,39
-TillgÃ¤ngligt belopp	191 495,39
+Tillgängligt belopp	191 495,39
 Filter
-Belopp frÃ¥n
+Belopp från
 Belopp till
-BokfÃ¶ringsdatum frÃ¥n
-BokfÃ¶ringsdatum till
+Bokföringsdatum från
+Bokföringsdatum till
 Transaktionstyper
 Alla
-Endast insÃ¤ttningar
+Endast insättningar
 Endast uttag
 Rensa
-SÃ¶k
+Sök
 Transaktioner
 Transaktioner
 Transaktionsdatum
-BokfÃ¶ringsdatum
+Bokföringsdatum
 Belopp
 Saldo
 UNDER PRODUKTION
@@ -654,7 +95,7 @@ Jureskogs
 2021-08-06
 -150,00
 194 282,84
-COOP VÃ„RNAMO
+COOP VÄRNAMO
 2021-08-06
 2021-08-06
 -323,04
@@ -719,7 +160,7 @@ POLSEMANNEN HORN
 2021-07-27
 -185,00
 189 462,94
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-07-27
 2021-07-27
 -12 500,00
@@ -729,7 +170,7 @@ B518 JEM & FIX E
 2021-07-22
 -40,00
 202 147,94
-LÃ–N
+LÖN
 2021-07-23
 2021-07-22
 34 467,00
@@ -904,7 +345,7 @@ WSPA SVERIGE
 2021-06-28
 -150,00
 169 279,95
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-06-27
 2021-06-28
 -12 500,00
@@ -924,7 +365,7 @@ STORA COOP BACKA
 2021-06-28
 -2 075,87
 182 176,95
-LÃ–N
+LÖN
 2021-06-24
 2021-06-23
 34 343,00
@@ -939,7 +380,7 @@ Matse AB
 2021-06-21
 -1 860,18
 149 938,82
-Ã–verfÃ¶ring Sommarptil
+Överföring Sommarptil
 2021-06-17
 2021-06-17
 2 000,00
@@ -954,7 +395,7 @@ Villa Belparc AB
 2021-06-07
 -1 094,00
 149 865,00
-Ã–verfÃ¶ring Grattis
+Överföring Grattis
 2021-06-07
 2021-06-07
 1 000,00
@@ -979,12 +420,12 @@ APPLE.COM/BILL
 2021-05-27
 20,00
 151 426,10
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-05-27
 2021-05-27
 -12 500,00
 151 406,10
-LÃ–N
+LÖN
 2021-05-25
 2021-05-24
 36 585,00
@@ -999,7 +440,7 @@ EMMAUS BJORKA E
 2021-05-24
 -150,00
 127 341,10
-BostadsfÃ¶rmedlin
+Bostadsförmedlin
 2021-05-24
 2021-05-24
 -200,00
@@ -1094,12 +535,12 @@ PRIS NYCKELKUND
 2021-04-28
 -39,00
 131 927,35
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-04-27
 2021-04-27
 -12 500,00
 131 966,35
-LÃ–N
+LÖN
 2021-04-23
 2021-04-22
 33 732,00
@@ -1149,12 +590,12 @@ Mamma Rosa
 2021-04-09
 -537,00
 113 083,67
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-04-05
 2021-04-06
 -7 500,00
 113 620,67
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-04-02
 2021-04-06
 32 500,00
@@ -1174,7 +615,7 @@ WSPA SVERIGE
 2021-03-29
 -150,00
 88 987,67
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-03-27
 2021-03-29
 -12 500,00
@@ -1204,7 +645,7 @@ BURGER KING BAC
 2021-03-26
 -87,00
 102 534,16
-LÃ–N
+LÖN
 2021-03-25
 2021-03-24
 34 679,00
@@ -1244,7 +685,7 @@ MAX GOTEBORG 4 B
 2021-03-10
 -469,00
 70 380,29
-AA-stÃ¶d
+AA-stöd
 2021-03-09
 2021-03-09
 -50,00
@@ -1269,7 +710,7 @@ Matse AB
 2021-03-01
 -1 909,96
 76 929,09
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-02-27
 2021-03-01
 -12 500,00
@@ -1279,7 +720,7 @@ PRIS NYCKELKUND
 2021-02-26
 -39,00
 91 339,05
-LÃ–N
+LÖN
 2021-02-25
 2021-02-24
 37 885,00
@@ -1304,12 +745,12 @@ GOOGLE *YouTube
 2021-02-08
 -29,00
 53 630,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-30
 2021-02-01
 -47 482,53
 53 659,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-28
 2021-01-28
 47 482,53
@@ -1334,27 +775,27 @@ MR DONER
 2021-01-27
 -478,00
 54 463,88
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2021-01-27
 2021-01-27
 -12 500,00
 54 941,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-26
 2021-01-26
 -225 000,00
 67 441,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-25
 2021-01-25
 225 000,00
 292 441,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-25
 2021-01-25
 -12 850,00
 67 441,88
-LÃ–N
+LÖN
 2021-01-25
 2021-01-25
 35 534,00
@@ -1374,12 +815,12 @@ MAMMA ROSA
 2021-01-18
 -459,00
 31 936,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-12
 2021-01-12
 -454 000,00
 32 395,88
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2021-01-11
 2021-01-11
 454 000,00
@@ -1424,12 +865,12 @@ PRIS NYCKELKUND
 2020-12-29
 -39,00
 45 534,61
-Ã–vf via internet 890119641829735
+Övf via internet 890119641829735
 2020-12-28
 2020-12-28
 -10 000,00
 45 573,61
-Ã–vf via internet 95554132431
+Övf via internet 95554132431
 2020-12-28
 2020-12-28
 -10 000,00
@@ -1444,12 +885,12 @@ WSPA SVERIGE
 2020-12-28
 -150,00
 66 509,77
-Ã–verfÃ¶ring godjulMoP
+Överföring godjulMoP
 2020-12-24
 2020-12-28
 2 000,00
 66 659,77
-LÃ–N
+LÖN
 2020-12-23
 2020-12-22
 38 339,00
@@ -1499,7 +940,7 @@ STEAMGAMES.COM 4
 2020-11-30
 -38,07
 28 135,86
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-11-28
 2020-11-30
 -12 500,00
@@ -1509,7 +950,7 @@ BOPLATS GOTEBORG
 2020-11-25
 -200,00
 40 673,93
-LÃ–N
+LÖN
 2020-11-25
 2020-11-24
 32 605,00
@@ -1559,7 +1000,7 @@ WSPA SVERIGE
 2020-10-28
 -150,00
 23 251,93
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-10-28
 2020-10-28
 -12 500,00
@@ -1579,7 +1020,7 @@ MAMMA ROSA
 2020-10-22
 -163,00
 38 006,45
-LÃ–N
+LÖN
 2020-10-23
 2020-10-22
 35 167,00
@@ -1614,7 +1055,7 @@ MEDIA MARKT
 2020-10-12
 -4 389,00
 3 973,20
-STORA COOP BÃ„CKE
+STORA COOP BÄCKE
 2020-10-11
 2020-10-12
 -90,00
@@ -1649,17 +1090,17 @@ WSPA SVERIGE
 2020-09-28
 -150,00
 9 850,00
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-09-28
 2020-09-28
 -12 500,00
 10 000,00
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-09-27
 2020-09-28
 22 500,00
 22 500,00
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-09-27
 2020-09-28
 -120 715,83
@@ -1674,7 +1115,7 @@ Invest avanz
 2020-09-25
 -10 000,00
 100 715,83
-LÃ–N
+LÖN
 2020-09-25
 2020-09-24
 35 961,00
@@ -1749,7 +1190,7 @@ INGO GOTEBORG, M
 2020-09-03
 -506,23
 88 550,13
-Ã–vf via internet 816959831756623
+Övf via internet 816959831756623
 2020-09-02
 2020-09-02
 -20 000,00
@@ -1799,12 +1240,12 @@ PRIS NYCKELKUND
 2020-08-28
 -39,00
 120 730,56
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-08-28
 2020-08-28
 -12 500,00
 120 769,56
-LÃ–N
+LÖN
 2020-08-25
 2020-08-24
 35 591,00
@@ -1814,7 +1255,7 @@ UNDER PRODUKTION
 2020-08-21
 -29,00
 97 678,56
-Ã–vf via internet 810597044768393
+Övf via internet 810597044768393
 2020-08-19
 2020-08-19
 -25 000,00
@@ -1879,17 +1320,17 @@ CO 252 BACKAPLA
 2020-08-14
 -23,90
 118 085,44
-Ã–vf via internet 810597044768393
+Övf via internet 810597044768393
 2020-08-13
 2020-08-13
 -5 000,00
 118 109,34
-Ã–vf via internet 810597044768393
+Övf via internet 810597044768393
 2020-08-13
 2020-08-13
 -3 000,00
 123 109,34
-Ã–vf via internet 810597044768393
+Övf via internet 810597044768393
 2020-08-13
 2020-08-13
 -10 000,00
@@ -1914,7 +1355,7 @@ EasyPark AB
 2020-08-13
 -5,77
 138 454,06
-Ã–vf via internet 810597044768393
+Övf via internet 810597044768393
 2020-08-12
 2020-08-12
 -2 000,00
@@ -1924,7 +1365,7 @@ Bull
 2020-08-12
 -12 000,00
 140 459,83
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-08-12
 2020-08-12
 730,00
@@ -1939,12 +1380,12 @@ SAVANN REST K2
 2020-08-11
 -101,00
 151 946,83
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-08-09
 2020-08-10
 -1 000,00
 152 047,83
-KÃ¶rkort
+Körkort
 2020-08-07
 2020-08-07
 -125,00
@@ -1974,7 +1415,7 @@ I LOVE PIZZA FRI
 2020-08-03
 -323,00
 153 608,83
-HÃ¥kan
+Håkan
 2020-08-03
 2020-08-03
 -375,00
@@ -2029,7 +1470,7 @@ PRIS NYCKELKUND
 2020-07-28
 -39,00
 156 911,28
-KÃ¶rkort
+Körkort
 2020-07-27
 2020-07-27
 -280,00
@@ -2039,7 +1480,7 @@ EasyPark AB
 2020-07-27
 -12,30
 157 230,28
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-07-26
 2020-07-27
 -12 500,00
@@ -2054,7 +1495,7 @@ ZOOM.US
 2020-07-24
 1 697,35
 172 742,58
-LÃ–N
+LÖN
 2020-07-24
 2020-07-23
 33 774,00
@@ -2129,7 +1570,7 @@ BOLT.EU /R/20070
 2020-07-06
 -7,05
 139 929,53
-GÃ¶teborg Energi
+Göteborg Energi
 2020-07-02
 2020-07-02
 -3 557,00
@@ -2159,7 +1600,7 @@ WSPA SVERIGE
 2020-06-29
 -150,00
 144 831,58
-STORA COOP BÃ„CKE
+STORA COOP BÄCKE
 2020-06-28
 2020-06-29
 -2 046,88
@@ -2184,7 +1625,7 @@ TRADERA
 2020-06-24
 -90,00
 149 209,31
-LÃ–N
+LÖN
 2020-06-25
 2020-06-24
 29 383,00
@@ -2209,7 +1650,7 @@ UNDER PRODUKTION
 2020-06-22
 -29,00
 120 764,31
-Ã–verfÃ¶ring skobidrag
+Överföring skobidrag
 2020-06-19
 2020-06-22
 2 000,00
@@ -2289,7 +1730,7 @@ PRIS NYCKELKUND
 2020-05-28
 -39,00
 116 058,79
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-05-26
 2020-05-26
 -20 000,00
@@ -2299,12 +1740,12 @@ PengIAfekt
 2020-05-25
 57 000,00
 136 097,79
-BostadsfÃ¶rmedlin
+Bostadsförmedlin
 2020-05-25
 2020-05-25
 -200,00
 79 097,79
-LÃ–N
+LÖN
 2020-05-25
 2020-05-22
 35 193,00
@@ -2379,12 +1820,12 @@ GOG.COM
 2020-04-27
 -100,00
 47 040,31
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-04-26
 2020-04-27
 -20 000,00
 47 140,31
-LÃ–N
+LÖN
 2020-04-24
 2020-04-23
 32 319,00
@@ -2409,7 +1850,7 @@ PRIS NYCKELKUND
 2020-03-30
 -39,00
 35 055,31
-Ã–verfÃ¶ring BuffertPG
+Överföring BuffertPG
 2020-03-26
 2020-03-26
 -20 000,00
@@ -2419,7 +1860,7 @@ PARKERINGSBOLAGE
 2020-03-25
 -7,00
 55 094,31
-LÃ–N
+LÖN
 2020-03-25
 2020-03-24
 33 487,00
@@ -2454,7 +1895,7 @@ TIER SE 3-22408
 2020-03-06
 -23,50
 23 200,86
-Ã–verfÃ¶ring B-resekomp
+Överföring B-resekomp
 2020-03-06
 2020-03-06
 11 000,00
@@ -2484,12 +1925,12 @@ KALASDAX
 2020-03-02
 -75,00
 29 571,23
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-02-29
 2020-03-02
 -5 000,00
 29 646,23
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-02-29
 2020-03-02
 -5 000,00
@@ -2539,7 +1980,7 @@ PRIS NYCKELKUND
 2020-02-26
 -39,00
 42 018,63
-LÃ–N
+LÖN
 2020-02-25
 2020-02-24
 35 072,00
@@ -2599,7 +2040,7 @@ Lodging H WAZO H
 2020-02-20
 -358,87
 10 115,37
-KortkÃ¶p/uttag
+Kortköp/uttag
 2020-02-19
 2020-02-19
 -547,65
@@ -2629,7 +2070,7 @@ PARKERINGSBOLAGE
 2020-02-17
 -123,00
 12 769,95
-KortkÃ¶p/uttag
+Kortköp/uttag
 2020-02-17
 2020-02-17
 -1 053,80
@@ -2639,12 +2080,12 @@ Uttagsavgift
 2020-02-17
 -35,00
 13 946,75
-PRESSBYRÃ…N 41289
+PRESSBYRÅN 41289
 2020-02-16
 2020-02-17
 -42,00
 13 981,75
-TAXI GÃ–TEBORG
+TAXI GÖTEBORG
 2020-02-16
 2020-02-17
 -917,00
@@ -2674,7 +2115,7 @@ PRIS NYCKELKUND
 2020-01-28
 -39,00
 16 689,75
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2020-01-27
 2020-01-27
 -22 649,56
@@ -2709,7 +2150,7 @@ G@TEBORGS STAD
 2020-01-27
 -375,00
 40 180,96
-LÃ–N
+LÖN
 2020-01-24
 2020-01-24
 33 368,00
@@ -2794,7 +2235,7 @@ GOTEBORGS WOK
 2020-01-10
 -238,00
 10 593,96
-PRESSBYRÃ…N 40281
+PRESSBYRÅN 40281
 2020-01-10
 2020-01-10
 -40,00
@@ -2884,7 +2325,7 @@ SJ INTERNETBOKNI
 2019-12-27
 -390,00
 15 809,75
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-12-25
 2019-12-27
 -24 269,71
@@ -2894,7 +2335,7 @@ CITY GROSS LJUNG
 2019-12-27
 -883,69
 40 469,46
-Ã–verfÃ¶ring MoP
+Överföring MoP
 2019-12-23
 2019-12-27
 2 000,00
@@ -2954,7 +2395,7 @@ THE GOLDEN DAYS
 2019-12-20
 -110,00
 40 388,78
-LÃ–N
+LÖN
 2019-12-23
 2019-12-20
 32 460,00
@@ -3134,7 +2575,7 @@ APOTEKET CENTRAL
 2019-11-25
 -90,00
 47 087,00
-PRESSBYRÃ…N 41281
+PRESSBYRÅN 41281
 2019-11-24
 2019-11-25
 -86,00
@@ -3149,7 +2590,7 @@ Golvv{rmebutiken
 2019-11-22
 -1 496,00
 47 853,00
-LÃ–N
+LÖN
 2019-11-25
 2019-11-22
 35 317,00
@@ -3214,17 +2655,17 @@ CUCKOO'S NEST
 2019-11-08
 -55,00
 15 496,00
-Ã–verfÃ¶ring LucyFoF
+Överföring LucyFoF
 2019-11-07
 2019-11-08
 2 700,00
 15 551,00
-Ã–verfÃ¶ring AliceFoF
+Överföring AliceFoF
 2019-11-07
 2019-11-08
 2 700,00
 12 851,00
-parkeringsbÃ¶ter
+parkeringsböter
 2019-11-05
 2019-11-05
 -400,00
@@ -3234,7 +2675,7 @@ SMSPARK.SE
 2019-11-05
 -24,00
 10 551,00
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-11-05
 2019-11-05
 -174,00
@@ -3254,7 +2695,7 @@ ROLLIN BISTROS
 2019-11-04
 -99,00
 68 523,39
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-10-31
 2019-10-31
 -5 000,00
@@ -3274,7 +2715,7 @@ PARKERINGSBOLAGE
 2019-10-31
 -28,00
 73 729,39
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-10-31
 2019-10-31
 -76,00
@@ -3309,7 +2750,7 @@ CHALMERS STUDEN
 2019-10-29
 -400,00
 74 464,05
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-10-29
 2019-10-29
 -171,00
@@ -3334,7 +2775,7 @@ PARKERINGSBOLAGE
 2019-10-28
 -10,00
 75 198,05
-HEMKÃ–P GÃ–TEGORG
+HEMKÖP GÖTEGORG
 2019-10-28
 2019-10-28
 -10,00
@@ -3344,7 +2785,7 @@ APCOA PARKING
 2019-10-28
 -125,00
 75 218,05
-PRESSBYRÃ…N 40281
+PRESSBYRÅN 40281
 2019-10-27
 2019-10-28
 -116,00
@@ -3359,12 +2800,12 @@ KAPTEN NEMOS
 2019-10-25
 -89,00
 75 558,05
-LÃ–N
+LÖN
 2019-10-25
 2019-10-24
 34 763,00
 75 647,05
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-10-23
 2019-10-23
 -185,00
@@ -3379,7 +2820,7 @@ HELINS RESTAURAN
 2019-10-21
 -350,00
 41 183,05
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-10-19
 2019-10-21
 -117,00
@@ -3429,7 +2870,7 @@ CHALMERS STUDEN
 2019-10-14
 -200,00
 42 826,05
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-10-11
 2019-10-11
 -174,00
@@ -3444,7 +2885,7 @@ PARKERINGSBOLAGE
 2019-10-10
 -81,00
 43 299,05
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-10-10
 2019-10-10
 -27,00
@@ -3534,7 +2975,7 @@ PRIS NYCKELKUND
 2019-09-30
 -40,00
 45 830,05
-HÃ¤ck
+Häck
 2019-09-29
 2019-09-30
 -300,00
@@ -3579,12 +3020,12 @@ PARKERINGSBOLAGE
 2019-09-24
 -48,00
 47 671,05
-LÃ–N
+LÖN
 2019-09-25
 2019-09-24
 11 264,00
 47 719,05
-LÃ–N
+LÖN
 2019-09-25
 2019-09-24
 32 156,00
@@ -3644,7 +3085,7 @@ LIM*RIDE COST
 2019-09-18
 -22,00
 6 827,10
-PRESSBYRÃ…N 40281
+PRESSBYRÅN 40281
 2019-09-18
 2019-09-18
 -57,00
@@ -3684,12 +3125,12 @@ BILTEMA SWEDEN G
 2019-09-10
 -54,90
 7 782,10
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-09-09
 2019-09-09
 -32 689,49
 7 837,00
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-09-09
 2019-09-09
 -500,00
@@ -3819,7 +3260,7 @@ PRIS NYCKELKUND
 2019-08-28
 -39,00
 44 920,96
-PRESSBYRÃ…N 40281
+PRESSBYRÅN 40281
 2019-08-27
 2019-08-27
 -116,00
@@ -3829,7 +3270,7 @@ Easypark
 2019-08-26
 -20,00
 45 075,96
-PRESSBYRÃ…N 41281
+PRESSBYRÅN 41281
 2019-08-25
 2019-08-26
 -15,00
@@ -3839,17 +3280,17 @@ BISTROT
 2019-08-26
 -95,00
 45 110,96
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-08-23
 2019-08-23
 -5 000,00
 45 205,96
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-08-23
 2019-08-23
 -10 000,00
 50 205,96
-LÃ–N
+LÖN
 2019-08-23
 2019-08-22
 36 242,00
@@ -3894,7 +3335,7 @@ L S KITCHEN
 2019-08-16
 -90,00
 25 144,34
-PRESSBYRÃ…N 40251
+PRESSBYRÅN 40251
 2019-08-15
 2019-08-15
 -66,00
@@ -3939,12 +3380,12 @@ PARKERINGSBOLAGE
 2019-08-12
 -1,00
 25 745,24
-IKEA BÃ„CKEBOL
+IKEA BÄCKEBOL
 2019-08-12
 2019-08-12
 -1 651,00
 25 746,24
-IKEA BÃ„CKEBOL
+IKEA BÄCKEBOL
 2019-08-12
 2019-08-12
 -10,00
@@ -3964,7 +3405,7 @@ ELECTROMOBIL GMI
 2019-08-12
 -1 200,00
 28 057,00
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-08-10
 2019-08-12
 -27,00
@@ -3974,17 +3415,17 @@ BISTROT
 2019-08-12
 -95,00
 29 284,00
-PRESSBYRÃ…N 43251
+PRESSBYRÅN 43251
 2019-08-09
 2019-08-09
 -42,00
 29 379,00
-PRESSBYRÃ…N 40501
+PRESSBYRÅN 40501
 2019-08-09
 2019-08-09
 -30,00
 29 421,00
-PRESSBYRÃ…N 40281
+PRESSBYRÅN 40281
 2019-08-09
 2019-08-09
 -65,00
@@ -4099,7 +3540,7 @@ FLYGBUSSARNA/LAN
 2019-07-30
 -238,00
 31 782,94
-Ã–vf via internet 810599642601380
+Övf via internet 810599642601380
 2019-07-30
 2019-07-30
 -5 000,00
@@ -4129,7 +3570,7 @@ BLUE SEA
 2019-07-25
 -537,38
 38 257,19
-LÃ–N
+LÖN
 2019-07-25
 2019-07-24
 32 552,00
@@ -4139,12 +3580,12 @@ EPSILON TAVERNA
 2019-07-23
 -552,75
 6 242,57
-TAXI GÃ–TEBORG
+TAXI GÖTEBORG
 2019-07-22
 2019-07-22
 -747,00
 6 795,32
-PRESSBYRÃ…N 41289
+PRESSBYRÅN 41289
 2019-07-22
 2019-07-22
 -42,00
@@ -4169,122 +3610,4 @@ PARKERINGSBOLAGE
 2019-07-12
 -39,00
 2 872,82
-Chatta med oss";
-        }
-
-        [TestMethod]
-        public void Correct_Text_Found()
-        {
-            // if theese preconditions exists
-            // If begin value is
-            // >>> see default variables
-
-            // When this happens
-            var actual = LoadKonton.GetStartOfKontoEntries(_default_webBrowserText);
-
-            // Then it sholud be
-            const string expected = "Ã–verfÃ¶ring Barnbidrag";
-            if (actual.StartsWith(expected))
-            {
-                Assert.IsTrue(
-                    actual.StartsWith(expected));
-            }
-            else
-            {
-                Assert.AreEqual("", actual);
-            }
-        }
-
-        [TestMethod]
-        public void Check_If_SomeThingLoaded()
-        {
-            // if theese preconditions exists
-            // If begin value is
-            // >>> see default variables
-
-            // When this happens
-            LoadCurrentEntriesFromBrowser();
-
-            // Then it sholud be
-            var actual = _default_KontoEntriesHolder.NewKontoEntries;
-
-            Assert.AreEqual(46, actual.Count);
-            Assert.IsTrue(actual.Count > 0);
-        }
-
-        [TestMethod]
-        public void Check_If_SomeThingLoaded_Privata()
-        {
-            // if theese preconditions exists
-            // If begin value is
-            // >>> see default variables
-
-            // When this happens
-            LoadCurrentEntriesFromBrowser(PrivataKontotMedSkyddatBelopp);
-
-            // Then it sholud be
-            var actual = _default_KontoEntriesHolder.NewKontoEntries;
-            Assert.IsTrue(actual.Count > 0);
-            Assert.AreEqual(48, actual.Count);
-
-            var key = DateTime.Today.ToShortDateString() +
-                "APOTEKET AB STOCKHOLM-227.90";
-            var actualFirst = actual[key]
-                as KontoEntry;
-            Assert.AreEqual("APOTEKET AB STOCKHOLM", actualFirst.Info);
-            Assert.AreEqual(DateTime.Today, actualFirst.Date);
-        }
-
-        [TestMethod]
-        public void Check_If_SomeThingLoaded_Privata_Standard()
-        {
-            // if theese preconditions exists
-            // If begin value is
-            // >>> see default variables
-
-            // When this happens
-            LoadCurrentEntriesFromBrowser(PrivataStd());
-
-            // Then it sholud be
-            var actual = _default_KontoEntriesHolder.NewKontoEntries;
-            Assert.IsTrue(actual.Count > 0);
-            Assert.AreEqual(717, actual.Count);
-
-            //UNDER PRODUKTION
-            //2021-08-21
-            //2021-08-23 
-            //-29,00
-            //191495.39
-
-            var key =
-                "2021-08-21UNDER PRODUKTION-29191495.39";
-            var actualFirst = actual[key]
-                as KontoEntry;
-            Assert.AreEqual("UNDER PRODUKTION", actualFirst.Info);
-            Assert.AreEqual(new DateTime(2021, 08, 21), actualFirst.Date);
-        }
-
-        [TestMethod]
-        public void Check_If_No_Crash()
-        {
-            // if theese preconditions exists
-            // If begin value is
-            // >>> see default variables
-
-            // When this happens
-            LoadCurrentEntriesFromBrowser();
-
-            // Then it sholud be
-            Assert.IsTrue(true);
-        }
-
-        private bool LoadCurrentEntriesFromBrowser(
-            string text = GemensammaKontot)
-        {
-            return LoadKonton.GetAllVisibleEntriesFromWebBrowser(
-                _default_KontoEntriesHolder,
-                text
-            );
-        }
-    }
-}
+Chatta med oss

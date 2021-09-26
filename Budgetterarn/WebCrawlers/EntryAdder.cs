@@ -12,6 +12,8 @@ namespace Budgetterarn.WebCrawlers
             SortedList newKontoEntries,
             SortedList newBatchOfKontoEntriesAlreadyRed)
         {
+            if (!entryStrings.IsValidBankRow) return;
+
             var newKeyFromHtml = new KontoEntry(entryStrings);
             var key = newKeyFromHtml.KeyForThis;
 

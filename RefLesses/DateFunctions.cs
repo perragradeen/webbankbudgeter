@@ -41,5 +41,26 @@ namespace RefLesses
 
             return DateTime.Parse(DateValueFormated);
         }
+
+        public static bool IsValidDate(string dateValue)
+        {
+            var useThisCulture = new CultureInfo("en-US");
+            if (!IsValidDate(dateValue, useThisCulture))
+            {
+                useThisCulture = new CultureInfo("sv-SE");
+                return IsValidDate(dateValue, useThisCulture);
+            }
+
+            return true;
+        }
+
+        private static bool IsValidDate(string dateValue, CultureInfo useThisCulture)
+        {
+            return DateTime.TryParse(
+                                dateValue,
+                                useThisCulture,
+                                DateTimeStyles.AdjustToUniversal,
+                                out _);
+        }
     }
 }

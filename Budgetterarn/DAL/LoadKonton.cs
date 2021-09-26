@@ -5,13 +5,12 @@ using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using Budgetterarn.WebCrawlers;
 using LoadTransactionsFromFile;
-using LoadTransactionsFromFile.DAL;
 
 namespace Budgetterarn.DAL
 {
-    internal class LoadKonton
+    public class LoadKonton
     {
-        internal static bool GetAllVisibleEntriesFromWebBrowser(
+        public static bool GetAllVisibleEntriesFromWebBrowser(
             KontoEntriesHolder kontoEntriesHolder,
             string text)
         {
@@ -37,14 +36,20 @@ namespace Budgetterarn.DAL
         }
 
         private static void GetHtmlEntriesFromSwedBankv2(
-            string text, SortedList kontoEntries, SortedList newKontoEntries)
+            string text,
+            SortedList kontoEntries,
+            SortedList newKontoEntries)
         {
             // Spara en batch, dyker det upp dubletter i samma, så ska de ses som unika
-            var newBatchOfKontoEntriesAlreadyRed = EntryAdder.GetNewBatchOfKontoEntriesAlreadyRed(kontoEntries, newKontoEntries);
+            var newBatchOfKontoEntriesAlreadyRed =
+                EntryAdder.GetNewBatchOfKontoEntriesAlreadyRed(kontoEntries, newKontoEntries);
+            string entryBlob = GetStartOfKontoEntries(text);
 
-            var entryBlob = text.Substring(text.IndexOf("\nTransaktioner\nTransaktionsdatum\nBokföringsdatum\nBelopp\nSaldo\n", StringComparison.Ordinal) +
-                                           "\nTransaktioner\nTransaktionsdatum\nBokföringsdatum\nBelopp\nSaldo\n".Length);
-            var entries = entryBlob.Split('\n');
+            var rowBreakString = GetRowBreakString(text);
+            var entries = entryBlob.Split(
+                new string[] { rowBreakString },
+                StringSplitOptions.RemoveEmptyEntries);
+
             var currentColumnCount = 0;
             var rows = new List<List<string>>();
             var currentEntriesColumns = new List<string>();
@@ -57,7 +62,6 @@ namespace Budgetterarn.DAL
                 currentColumnCount = 0;
                 rows.Add(new List<string>(currentEntriesColumns));
                 currentEntriesColumns = new List<string>();
-
             }
 
             foreach (var htmlElement in rows)
@@ -69,6 +73,36 @@ namespace Budgetterarn.DAL
                     newKontoEntries,
                     newBatchOfKontoEntriesAlreadyRed);
             }
+        }
+
+        private static string GetRowBreakString(string text)
+        {
+            if (text.IndexOf(Environment.NewLine) >= 0)
+            {
+                return Environment.NewLine;
+            }
+
+            var standardRowBreak = "\n";
+            var altStandardRowBreak = "\r\n";
+            return (text.IndexOf(standardRowBreak) == -1
+                ? altStandardRowBreak
+                : standardRowBreak);
+        }
+
+        public static string GetStartOfKontoEntries(string text)
+        {
+            var rowBreakString = GetRowBreakString(text);
+            var findKey = "Belopp" + rowBreakString + "Saldo" + rowBreakString;
+
+            var index = text.IndexOf(findKey);
+            int length = findKey.Length;
+
+            if (index == -1)
+            {
+                throw new Exception("Fel. Hittar inte: " + findKey);
+            }
+
+            return text.Substring(index + length);
         }
 
         /// <summary>

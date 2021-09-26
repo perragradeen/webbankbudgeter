@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Budgeter.Core.Entities
 {
-    public class KontoEntry
+    public class KontoEntry //TODO: gör en databärare från inladdning och till save. Samt en vymodell för UI
     {
         public DateTime Date { get; set; }
         private int Year { get; }
@@ -240,7 +240,9 @@ namespace Budgeter.Core.Entities
 
         public KontoEntry(BankRow fromBank)
         {
-            Date = fromBank.Date;
+            Date = fromBank.Date == DateTime.MinValue
+                ? DateTime.Today
+                : fromBank.Date;
             Info = fromBank.EventValue;
             KostnadEllerInkomst = fromBank.BeloppValue.GetDoubleValueFromStringEntry();
             SaldoOrginal = fromBank.SaldoValue.GetDoubleValueFromStringEntry();
