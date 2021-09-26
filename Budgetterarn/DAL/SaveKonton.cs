@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using Utilities;
@@ -16,7 +15,8 @@ namespace Budgetterarn.DAL
         internal static LoadOrSaveResult Save(
             KontoutdragInfoForSave kontoutdragInfoForSave,
             SortedList kontoEntries,
-            SaldoHolder saldoHolder)
+            SaldoHolder saldoHolder,
+            Action<string> writeToOutput)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Budgetterarn.DAL
             }
             catch (Exception savExcp)
             {
-                MessageBox.Show(@"Error: " + savExcp.Message);
+                writeToOutput(@"Error: " + savExcp.Message);
                 return new LoadOrSaveResult();
             }
         }

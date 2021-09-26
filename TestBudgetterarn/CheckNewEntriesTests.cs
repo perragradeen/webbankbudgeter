@@ -101,7 +101,7 @@ namespace TestBudgetterarn
             {
                 // BudgeterForm
                 // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
-                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, testData.KontoEntries);
+                SkyddatBeloppChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, testData.KontoEntries);
             }
 
             var new1 = testData.NewItemsListEdited.First();

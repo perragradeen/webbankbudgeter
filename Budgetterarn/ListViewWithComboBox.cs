@@ -246,10 +246,15 @@ namespace Budgetterarn
             #endregion
         }
 
-        private static bool UserAcceptsFurtherAction(string message, string caption)
+        private static bool UserAcceptsFurtherAction(
+            string message,
+            string caption)
         {
             // Done:Popup mbox and ask user Are u sure?...etc
-            var saveAutocatOrNot = MessageBox.Show(message, caption, MessageBoxButtons.YesNoCancel);
+            var saveAutocatOrNot = MessageBox.Show(
+                message,
+                caption,
+                MessageBoxButtons.YesNoCancel);
 
             return saveAutocatOrNot.Equals(DialogResult.Yes);
         }

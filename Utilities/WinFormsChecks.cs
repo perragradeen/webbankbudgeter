@@ -20,9 +20,10 @@ namespace Utilities
             if (!somethingChanged)
                 return saveOr;
 
-            saveOr = MessageBox
-                .Show("Läget ej sparat! Spara nu?", "Spara?",
-                    MessageBoxButtons.YesNoCancel);
+            saveOr = MessageBox.Show(
+                "Läget ej sparat! Spara nu?",
+                "Spara?",
+                MessageBoxButtons.YesNoCancel);
 
             // Cancel
             if (saveOr == DialogResult.Yes)

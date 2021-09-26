@@ -6,13 +6,12 @@ namespace Budgetterarn.InternalUtilities
 {
     public static class FileOperations
     {
-        public static string OpenFileOfType(string dlgTitle, FileType fileType, string dirRelativeToBase)
-        {
-            return OpenFileOfType(dlgTitle, fileType, dirRelativeToBase, string.Empty);
-        }
-
-        private static string OpenFileOfType(
-            string dlgTitle, FileType fileType, string dirRelativeToBase, string absoluteDir)
+        public static string OpenFileOfType(
+            string dlgTitle,
+            FileType fileType,
+            string dirRelativeToBase,
+            Action<string> writeToOutput,
+            string absoluteDir = "")
         {
             try
             {
@@ -33,14 +32,15 @@ namespace Budgetterarn.InternalUtilities
                     dlg.InitialDirectory = absoluteDir;
                 }
 
-                dlg.Filter = OpenFileFunctions.UsedFileTypesFilterNames[fileType] + @"|*."
+                dlg.Filter = OpenFileFunctions.UsedFileTypesFilterNames[fileType]
+                    + @"|*."
                     + fileType;
                 return dlg.ShowDialog() != DialogResult.OK
                     ? string.Empty : dlg.FileName;
             }
             catch (Exception openFileOfTypeExp)
             {
-                MessageBox.Show(@"Error in OpenFileOfType(...): " + openFileOfTypeExp);
+                writeToOutput(@"Error in OpenFileOfType(...): " + openFileOfTypeExp);
                 return null;
             }
         }

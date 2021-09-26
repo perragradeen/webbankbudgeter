@@ -9,27 +9,35 @@ namespace Budgetterarn
 {
     internal static class ViewUpdateUi
     {
-        internal static void SetNewItemsListViewFromSortedList(ListView showEntriesInThis, SortedList kontoEntries)
+        internal static void SetNewItemsListViewFromSortedList(
+            ListView showEntriesInThisUiList,
+            SortedList kontoEntries)
         {
-            if (showEntriesInThis != null)
+            if (showEntriesInThisUiList != null)
             {
-                showEntriesInThis.Items.Clear();
+                showEntriesInThisUiList.Items.Clear();
             }
             else
             {
                 throw new Exception("New EntryList is null");
             }
 
+            // For performance
+            showEntriesInThisUiList.BeginUpdate();
+
             var rowCounter = 0;
             foreach (KontoEntry kontoEntry in kontoEntries.Values)
             {
-                AddToListview(showEntriesInThis, kontoEntry);
+                AddToListview(showEntriesInThisUiList, kontoEntry);
 
                 if (RowsExceedMax(ref rowCounter))
                 {
                     break; // Begränsa antal synliga rader
                 }
             }
+
+            // For performance
+            showEntriesInThisUiList.EndUpdate();
         }
 
         private static bool RowsExceedMax(ref int rowCounter)
@@ -43,15 +51,26 @@ namespace Budgetterarn
 
         internal static void AddToListview(ListView list, KontoEntry entry)
         {
-            // Sätt mellanslagstecken ifall en strän i listan kommer att bli tom eller null, så att det finns något att klicka på och så det inte uppstår exception senare.
+            // Sätt mellanslagstecken ifall en sträng i listan kommer att bli tom eller null,
+            // så att det finns något att klicka på och så det inte uppstår exception senare.
             entry.ForUi = true;
-            var kontoEntryElements = entry.RowToSaveToUiSwitched; // RowToSaveForThis;
+            var kontoEntryElements = entry.RowToSaveToUiSwitched;
             entry.ForUi = false;
 
-            list.Items.Add(new ListViewItem(kontoEntryElements, -1, entry.FontFrontColor, Color.Empty, null)).Tag =
-                entry;
+            var item = new ListViewItem(
+                kontoEntryElements,
+                -1,
+                entry.FontFrontColor,
+                Color.Empty,
+                null)
+            {
+                Tag = entry
+            };
 
-            // man slipper lite tecken och castningarna o likhetstecknet, iom att detta är en fkn//Overkill? hehe, anal. Trodde jag...nu fick jag ju nytta av det så det så
+            list.Items.Add(item);
+
+            // man slipper lite tecken och castningarna o likhetstecknet, iom att detta är en
+            // fkn//Overkill? hehe, anal. Trodde jag...nu fick jag ju nytta av det så det så
         }
 
         #endregion

@@ -30,16 +30,10 @@ namespace Budgetterarn
     /// </summary>
     public partial class BudgeterForm : Form
     {
-        private static string GetBankUrl()
-        {
-            return
-                //@"C:\Files\Dropbox\budget\Program\TestData\x.html"
-                bankUrl
-            ;
-        }
+        // TODO: Bugg när ke laddas från web. Dubbletter kommenr in i nya listan
 
-        // Bugg när ke laddas från web. Dubbletter kommenr in i nya listan
-        private const string VersionNumber = "1.0.1.16"; // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
+        // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
+        private const string VersionNumber = "1.0.1.16";
 
         #region Members
 
@@ -64,32 +58,6 @@ namespace Budgetterarn
         private ChromiumWebBrowser webBrowser1;
 
         #endregion
-
-        private void InitChromiumWebBrowser()
-        {
-            var settingsBrowse = new CefSettings();
-
-            Cef.Initialize(settingsBrowse);
-
-            webBrowser1 = new ChromiumWebBrowser(string.Empty);
-            Controls.Add(webBrowser1);
-
-            // 
-            // webBrowser1
-            // 
-            webBrowser1.Dock = DockStyle.Fill;
-            webBrowser1.Location = new Point(0, 0);
-            webBrowser1.MinimumSize = new Size(20, 20);
-            webBrowser1.Name = "webBrowser1";
-            webBrowser1.Size = new Size(80, 609);
-            webBrowser1.TabIndex = 0;
-            //this.webBrowser1.IsLoading.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
-
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(webBrowser1);
-        }
 
         public BudgeterForm() // Konstruktor
         {
@@ -123,8 +91,59 @@ namespace Budgetterarn
             }
             catch (Exception e)
             {
-                MessageBox.Show(@"Init Error! : " + e.Message);
+                WriteExceptionToOutput(e, @"Init Error! :");
             }
+        }
+
+        private static void WriteExceptionToOutput(Exception e, string message = "")
+        {
+            MessageBox.Show(message + " " + e.Message);
+        }
+
+        private static void WriteToOutput(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        private static void WriteToOutput(string message, string caption)
+        {
+            MessageBox.Show(message, caption);
+        }
+
+        private static void WriteToUiStatusLog(string statusInfo)
+        {
+            toolStripStatusLabel1.Text = statusInfo;
+        }
+
+        private static void AddToUiStatusLog(string statusInfo)
+        {
+            toolStripStatusLabel1.Text += statusInfo;
+        }
+
+        private void InitChromiumWebBrowser()
+        {
+            var settingsBrowse = new CefSettings();
+
+            Cef.Initialize(settingsBrowse);
+
+            webBrowser1 = new ChromiumWebBrowser(string.Empty);
+            Controls.Add(webBrowser1);
+
+            // 
+            // webBrowser1
+            // 
+            webBrowser1.Dock = DockStyle.Fill;
+            webBrowser1.Location = new Point(0, 0);
+            webBrowser1.MinimumSize = new Size(20, 20);
+            webBrowser1.Name = "webBrowser1";
+            webBrowser1.Size = new Size(80, 609);
+            webBrowser1.TabIndex = 0;
+            //this.webBrowser1.IsLoading.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1DocumentCompleted);
+
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(webBrowser1);
         }
 
         private void RunAutoLoadIfItIsEnabled()
@@ -143,6 +162,14 @@ namespace Budgetterarn
             {
                 Text += VersionNumber;
             }
+        }
+
+        private static string GetBankUrl()
+        {
+            return
+                //@"C:\Files\Dropbox\budget\Program\TestData\x.html"
+                bankUrl
+            ;
         }
 
         private bool Debug()
@@ -177,7 +204,7 @@ namespace Budgetterarn
         /// </summary>
         public static string StatusLabelText
         {
-            set => toolStripStatusLabel1.Text = value;
+            set => WriteToUiStatusLog(value);
         }
 
         /// <summary>
@@ -217,7 +244,7 @@ namespace Budgetterarn
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                WriteExceptionToOutput(e);
             }
         }
 
@@ -316,20 +343,32 @@ namespace Budgetterarn
         #region Load&Save
 
         private static DialogResult SaveCheckWithArgs(
-            KontoutdragInfoForLoad kontoutdragInfoForSave, SortedList kontoEntries, SaldoHolder saldoHolder)
+            KontoutdragInfoForLoad kontoutdragInfoForSave,
+            SortedList kontoEntries,
+            SaldoHolder saldoHolder)
         {
-            var saveOr = DialogResult.None;
-            if (!kontoutdragInfoForSave.SomethingChanged) return saveOr;
-            saveOr = MessageBox.Show(@"Läget ej sparat! Spara nu?", @"Spara?", MessageBoxButtons.YesNoCancel);
-
-            // Cancel
-            if (saveOr == DialogResult.Yes)
+            var saveNowOrNot = DialogResult.None;
+            if (!kontoutdragInfoForSave.SomethingChanged)
             {
-                SaveKonton.Save
-                    (kontoutdragInfoForSave, kontoEntries, saldoHolder);
+                return saveNowOrNot;
             }
 
-            return saveOr;
+            saveNowOrNot = MessageBox.Show(
+                @"Läget ej sparat! Spara nu?",
+                @"Spara?",
+                MessageBoxButtons.YesNoCancel);
+
+            // Cancel
+            if (saveNowOrNot == DialogResult.Yes)
+            {
+                SaveKonton.Save(
+                    kontoutdragInfoForSave,
+                    kontoEntries,
+                    saldoHolder,
+                    WriteToOutput);
+            }
+
+            return saveNowOrNot;
         }
 
         private bool SaveFirstCheck(
@@ -358,7 +397,6 @@ namespace Budgetterarn
 
         private void Save()
         {
-            var statusText = toolStripStatusLabel1.Text;
             var kontoutdragInfoForSave = new KontoutdragInfoForSave
             {
                 ExcelFileSaveFileName = Filerefernces.ExcelFileSaveFileName,
@@ -368,29 +406,43 @@ namespace Budgetterarn
                 SheetName = SheetName
             };
 
-            var saveResult = SaveKonton.Save(kontoutdragInfoForSave, kontoEntriesHolder.KontoEntries,
-                kontoEntriesHolder.SaldoHolder);
+            var saveResult = SaveKonton.Save(
+                kontoutdragInfoForSave,
+                kontoEntriesHolder.KontoEntries,
+                kontoEntriesHolder.SaldoHolder,
+                WriteToOutput);
 
             somethingChanged = saveResult.SomethingLoadedOrSaved;
 
-            //Precis sparat, så här har inget hunnit ändras 
-            statusText += "Saving done, saved entries; " + saveResult.SkippedOrSaved;
-
             // Räkna inte överskriften, den skrivs alltid om
 
+            CheckIfUserWantsToOpenExcel(kontoutdragInfoForSave);
+
+            //Precis sparat, så här har inget hunnit ändras 
+            var statusText = toolStripStatusLabel1.Text
+                             + " Saving done, saved entries; "
+                             + saveResult.SkippedOrSaved;
+            WriteToUiStatusLog(statusText);
+        }
+
+        private static void CheckIfUserWantsToOpenExcel(KontoutdragInfoForSave kontoutdragInfoForSave)
+        {
             // Fråga om man vill öppna Excel
-            if (MessageBox.Show(@"Open budget file (wait a litte while first)?", @"Open file", MessageBoxButtons.YesNo)
-                == DialogResult.Yes)
+            var question = @"Open budget file (wait a litte while first)?";
+            var userWantsToOpen = MessageBox.Show(
+                question,
+                @"Open file",
+                MessageBoxButtons.YesNo);
+
+            if (userWantsToOpen == DialogResult.Yes)
             {
                 ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.ExcelFileSavePath);
             }
-
-            toolStripStatusLabel1.Text = statusText;
         }
 
         private void LoadCurrentEntriesFromBrowser()
         {
-            toolStripStatusLabel1.Text = @"Processing";
+            WriteToUiStatusLog(@"Processing");
 
             var somethingLoadeded = LoadKonton.GetAllVisibleEntriesFromWebBrowser(
                 kontoEntriesHolder,
@@ -398,13 +450,14 @@ namespace Budgetterarn
             );
 
             // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
-            toolStripStatusLabel1.Text = @"Done processing  no new entries fond from html.";
+            WriteToUiStatusLog(@"Done processing  no new entries fond from html.");
 
             if (!somethingLoadeded) return;
 
             CheckAndAddNewItems();
-            toolStripStatusLabel1.Text = @"Done processing entries from html. New Entries found; "
-                                         + kontoEntriesHolder.NewKontoEntries.Count + @".";
+            WriteToUiStatusLog(@"Done processing entries from html. New Entries found; "
+                               + kontoEntriesHolder.NewKontoEntries.Count
+                               + @".");
         }
 
         /// <summary>
@@ -419,7 +472,6 @@ namespace Budgetterarn
         /// </returns>
         private bool GetAllEntriesFromExcelFile(bool clearContentBeforeReadingNewFile)
         {
-            var statusText = toolStripStatusLabel1.Text = @"Nothing loaded.";
             var changedExcelFileSavePath = Filerefernces.ExcelFileSavePath;
 
             // Todo: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
@@ -445,7 +497,7 @@ namespace Budgetterarn
             }
             catch (Exception)
             {
-                MessageBox.Show(@"File: " + kontoutdragInfoForLoad.FilePath +
+                WriteToOutput(@"File: " + kontoutdragInfoForLoad.FilePath +
                                 @" does not exist.", @"File error");
                 return false;
             }
@@ -454,12 +506,15 @@ namespace Budgetterarn
             var somethingLoadedFromFile = entriesLoadedFromDataStore != null
                                           && entriesLoadedFromDataStore.Count > 0;
 
+            var statusText =
+                toolStripStatusLabel1.Text =
+                    @"Nothing loaded.";
             if (entriesLoadedFromDataStore == null)
             {
                 statusText += kontoutdragInfoForLoad.FilePath;
             }
 
-            toolStripStatusLabel1.Text = statusText;
+            WriteToUiStatusLog(statusText);
 
             // kolla om något laddades från Excel
             if (!somethingLoadedFromFile)
@@ -499,7 +554,7 @@ namespace Budgetterarn
 
             // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska utan UI etc
 
-            toolStripStatusLabel1.Text = statusText;
+            WriteToUiStatusLog(statusText);
 
             // If nothing loaded return
             if (!loadResult.SomethingLoadedOrSaved)
@@ -564,7 +619,7 @@ namespace Budgetterarn
             foreach (var entry in lists.ToAddToListview)
             {
                 // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
-                KontoEntriesChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, kontoEntriesHolder.KontoEntries);
+                SkyddatBeloppChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, kontoEntriesHolder.KontoEntries);
 
                 // Lägg till i edited
                 ViewUpdateUi.AddToListview(newIitemsListEdited, entry);
@@ -633,7 +688,7 @@ namespace Budgetterarn
                 return;
             }
 
-            toolStripStatusLabel1.Text = @"Done";
+            WriteToUiStatusLog(@"Done");
 
             try
             {
@@ -641,7 +696,8 @@ namespace Budgetterarn
             }
             catch (Exception browseExp)
             {
-                MessageBox.Show(@"Error in WebBrowser1DocumentCompleted! : " + browseExp.Message);
+                WriteToOutput(@"Error in WebBrowser1DocumentCompleted! : "
+                                + browseExp.Message);
             }
         }
 
@@ -684,7 +740,11 @@ namespace Budgetterarn
 
         private void MbClearNewOnesClick(object sender, EventArgs e)
         {
-            var userSure = MessageBox.Show(@"Delete new entries", @"Are u sure?", MessageBoxButtons.YesNo);
+            var userSure = MessageBox.Show(
+                @"Delete new entries",
+                @"Are u sure?",
+                MessageBoxButtons.YesNo);
+
             if (userSure == DialogResult.Yes)
             {
                 ClearNewOnesFnc();
@@ -742,7 +802,7 @@ namespace Budgetterarn
 
         private void OpenBankSiteInBrowser()
         {
-            toolStripStatusLabel1.Text = @"Loading";
+            WriteToUiStatusLog(@"Loading");
 
             // Set spitter so webpage gets more room.
             var halfWindowWidth = (int)(Width * 0.5);
@@ -774,9 +834,15 @@ namespace Budgetterarn
         {
             if (string.IsNullOrWhiteSpace(kontoutdragInfoForLoad.FilePath))
             {
+                var filePath = FileOperations.OpenFileOfType(
+                            @"Open file",
+                            FileType.Xls,
+                            string.Empty,
+                            WriteToOutput); // Öppnar dialog
+
                 kontoutdragInfoForLoad.ExcelFileSavePath =
-                    kontoutdragInfoForLoad.FilePath =
-                        FileOperations.OpenFileOfType("Open file", FileType.Xls, ""); // Öppnar dialog
+                kontoutdragInfoForLoad.FilePath =
+                    filePath;
             }
         }
 
@@ -795,7 +861,7 @@ namespace Budgetterarn
             // toolStripStatusLabel1
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(109, 17);
-            toolStripStatusLabel1.Text = @"toolStripStatusLabel1";
+            WriteToUiStatusLog(@"toolStripStatusLabel1");
         }
 
         /// <summary>
@@ -804,19 +870,31 @@ namespace Budgetterarn
         /// <param name="autoSave"></param>
         private void AddNewEntriesToUiListsAndMem(bool autoSave)
         {
-            toolStripStatusLabel1.Text = @"Trying to add; " + kontoEntriesHolder.NewKontoEntries.Count + @"items";
+            WriteToUiStatusLog(@"Trying to add; " +
+                kontoEntriesHolder.NewKontoEntries.Count + @"items");
 
-            // Hämta nya entries från Ui. (slipper man om man binder ui-kontroller med de som är sparade och ändrade i minnet.)
+            // Hämta nya entries från Ui.
+            // (slipper man om man binder ui-kontroller med de som är
+            // sparade och ändrade i minnet.)
             var newEntriesFromUi = GetNewEntriesFromUI(newIitemsListEdited);
 
             // Lägg till/Updatera nya
-            var changeInfo = UiHelpersDependant.AddNewEntries(kontoEntriesHolder.KontoEntries, newEntriesFromUi);
-            somethingChanged = CheckIfSomethingWasChanged(somethingChanged, changeInfo.SomethingChanged);
+            var changeInfoHandler = new EntryAdderAndReplacer(
+                kontoEntriesHolder.KontoEntries,
+                WriteToOutput,
+                AddToUiStatusLog);
+            var changeInfo = changeInfoHandler.AddNewEntries(
+                newEntriesFromUi);
+
+            somethingChanged = CheckIfSomethingWasChanged(
+                somethingChanged,
+                changeInfo.SomethingChanged);
 
             UpdateEntriesToSaveMemList();
 
-            toolStripStatusLabel1.Text = @"Entries in memory updated. Added entries; " + changeInfo.Added
-                + @". Replaced entries; " + changeInfo.Replaced;
+            WriteToUiStatusLog(@"Entries in memory updated. " +
+                @"Added entries; " + changeInfo.Added + ". " +
+                @"Replaced entries; " + changeInfo.Replaced);
 
             if (autoSave)
             {

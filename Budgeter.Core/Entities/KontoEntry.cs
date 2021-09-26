@@ -72,6 +72,11 @@ namespace Budgeter.Core.Entities
             // Ta inte med TypAvKostnad, för det finns inget i Html om det, och då kan man inte jämföra med excel eftersom nycklarna e olika.
         }
 
+        public bool KeyEqauls(KontoEntry entryNew)
+        {
+            return KeyForThis.Equals(entryNew.KeyForThis);
+        }
+
         public object[] RowToSaveForThis
         {
             get
