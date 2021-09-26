@@ -19,8 +19,7 @@ namespace Budgetterarn
             }
 
             // Ersätt skb
-            if (entryOld.Info?.ToLower() == Skb.ToLower()
-                || entryOld.Info?.ToLower() == Pkk.ToLower())
+            if (EntryIsSkyddatBelopp(entryOld))
             {
                 entryNew.FontFrontColor =
                 entryOld.FontFrontColor =
@@ -56,13 +55,19 @@ namespace Budgetterarn
             return false; // En entry ska bara kunna ersätta En annan entry
         }
 
+        private static bool EntryIsSkyddatBelopp(KontoEntry entryOld)
+        {
+            return entryOld.Info?.ToLower() == Skb.ToLower()
+                            || entryOld.Info?.ToLower() == Pkk.ToLower();
+        }
+
         private static bool EntriesHasDiffrentBaseData(
             KontoEntry entryNew,
             KontoEntry entryOld)
         {
             return
                 entryOld.Date != entryNew.Date
-                
+
                 || !entryOld.KostnadEllerInkomst.Equals(
                         entryNew.KostnadEllerInkomst);
         }
@@ -80,13 +85,7 @@ namespace Budgetterarn
             // innan man ändrar entryn, med autokat
             foreach (KontoEntry entry in kontoEntries.Values)
             {
-                // Om entryn inte är av typen regulär skippa jämförelser
-                // av den.
-                // Det kan t.ex. vara mathandling, som delas upp i
-                // hemlagat o hygien, eller Periodens köp, som inte
-                // ska räknas med som vanlgt och ej heller jämföras
-                if (entry.EntryType != KontoEntryType.Regular
-                    || string.IsNullOrEmpty(entry.Info))
+                if (EntryIsNotOk(entry))
                 {
                     continue;
                 }
@@ -97,6 +96,17 @@ namespace Budgetterarn
                 }
 
             }
+        }
+
+        private static bool EntryIsNotOk(KontoEntry entry)
+        {
+            // Om entryn inte är av typen regulär skippa jämförelser
+            // av den.
+            // Det kan t.ex. vara mathandling, som delas upp i
+            // hemlagat o hygien, eller Periodens köp, som inte
+            // ska räknas med som vanlgt och ej heller jämföras
+            return entry.EntryType != KontoEntryType.Regular
+                   || string.IsNullOrEmpty(entry.Info);
         }
     }
 }

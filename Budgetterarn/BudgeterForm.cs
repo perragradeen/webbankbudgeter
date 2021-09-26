@@ -541,10 +541,6 @@ namespace Budgetterarn
                 kontoEntriesHolder.SaldoHolder,
                 entriesLoadedFromDataStore);
 
-            // Visa text för anv. om hur det gick etc.
-            statusText = "No. rows loaded; " + kontoEntriesHolder.KontoEntries.Count + " . Skpped: " + loadResult.SkippedOrSaved
-                         + ". File loaded; " + kontoutdragInfoForLoad.FilePath;
-
             // Nu har det precis rensats och laddats in nytt
             kontoutdragInfoForLoad.SomethingChanged = !CheckforUnsavedChanges;
 
@@ -554,6 +550,13 @@ namespace Budgetterarn
 
             // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska utan UI etc
 
+            // Visa text för anv. om hur det gick etc.
+            statusText = "No. rows loaded; "
+                         + kontoEntriesHolder.KontoEntries.Count
+                         + " . Skpped: "
+                         + loadResult.SkippedOrSaved
+                         + ". File loaded; "
+                         + kontoutdragInfoForLoad.FilePath;
             WriteToUiStatusLog(statusText);
 
             // If nothing loaded return
@@ -563,9 +566,14 @@ namespace Budgetterarn
             }
 
             // Lägg till orginalraden, gör i UI-hanterare
-            // Lägg in det som är satt att sparas till minnet (viasa alla _kontoEntries i listview). Även uppdatera färg på text.
-            ViewUpdateUi.SetNewItemsListViewFromSortedList(xlsOrginalEntries, kontoEntriesHolder.KontoEntries);
-            ViewUpdateUi.SetNewItemsListViewFromSortedList(entriesInToBeSavedGrid, kontoEntriesHolder.KontoEntries);
+            // Lägg in det som är satt att sparas till minnet
+            // (viasa alla _kontoEntries i listview). Även uppdatera färg på text.
+            ViewUpdateUi.ClearListAndSetEntriesToListView(
+                xlsOrginalEntries,
+                kontoEntriesHolder.KontoEntries);
+            ViewUpdateUi.ClearListAndSetEntriesToListView(
+                entriesInToBeSavedGrid,
+                kontoEntriesHolder.KontoEntries);
 
             return true;
         }
@@ -576,7 +584,7 @@ namespace Budgetterarn
 
         private void UpdateEntriesToSaveMemList()
         {
-            ViewUpdateUi.SetNewItemsListViewFromSortedList(
+            ViewUpdateUi.ClearListAndSetEntriesToListView(
                 entriesInToBeSavedGrid,
                 kontoEntriesHolder.KontoEntries);
         }
@@ -618,12 +626,15 @@ namespace Budgetterarn
 
             foreach (var entry in lists.ToAddToListview)
             {
-                // kolla om det är "Skyddat belopp", och se om det finns några gamla som matchar.
-                SkyddatBeloppChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(entry, kontoEntriesHolder.KontoEntries);
-
-                // Lägg till i edited
-                ViewUpdateUi.AddToListview(newIitemsListEdited, entry);
+                // kolla om det är "Skyddat belopp", och se om det finns några
+                // gamla som matchar.
+                SkyddatBeloppChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(
+                    entry,
+                    kontoEntriesHolder.KontoEntries);
             }
+
+            // Lägg till i edited
+            ViewUpdateUi.AddEntriesToListView(newIitemsListEdited, lists.ToAddToListview);
 
             // Updatera memlistan för att se om någon entry fått ny färg
             UpdateEntriesToSaveMemList();

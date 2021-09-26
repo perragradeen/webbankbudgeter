@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Budgeter.Core.Entities;
 using Budgetterarn.Application_Settings_and_constants;
+using System.Linq;
 
 namespace Budgetterarn
 {
     internal static class ViewUpdateUi
     {
-        internal static void SetNewItemsListViewFromSortedList(
+        internal static void ClearListAndSetEntriesToListView(
             ListView showEntriesInThisUiList,
             SortedList kontoEntries)
         {
@@ -22,11 +24,31 @@ namespace Budgetterarn
                 throw new Exception("New EntryList is null");
             }
 
+            AddEntriesToListView(showEntriesInThisUiList, kontoEntries);
+        }
+
+        internal static void AddEntriesToListView(
+            ListView showEntriesInThisUiList,
+            IEnumerable<KontoEntry> kontoEntries)
+        {
+            var list = new SortedList(
+                kontoEntries.ToDictionary(d => d.KeyForThis));
+
+            AddEntriesToListView(
+                showEntriesInThisUiList,
+                list
+            );
+        }
+
+        internal static void AddEntriesToListView(
+            ListView showEntriesInThisUiList,
+            SortedList kontoEntries)
+        {
             // For performance
             showEntriesInThisUiList.BeginUpdate();
 
             var rowCounter = 0;
-            foreach (KontoEntry kontoEntry in kontoEntries.Values)
+            foreach (KontoEntry kontoEntry in kontoEntries)
             {
                 AddToListview(showEntriesInThisUiList, kontoEntry);
 
