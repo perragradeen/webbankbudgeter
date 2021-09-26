@@ -48,7 +48,7 @@ namespace Budgetterarn
             showEntriesInThisUiList.BeginUpdate();
 
             var rowCounter = 0;
-            foreach (KontoEntry kontoEntry in kontoEntries)
+            foreach (KontoEntry kontoEntry in kontoEntries.Values)
             {
                 AddToListview(showEntriesInThisUiList, kontoEntry);
 
