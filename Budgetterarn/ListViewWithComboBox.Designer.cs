@@ -1,39 +1,32 @@
-﻿using System.ComponentModel;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace Budgetterarn
 {
-    partial class ListViewWithComboBox : KontoEntryListView
+    public partial class ListViewWithComboBox : KontoEntryListView
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private IContainer components = null;
+        private readonly ComboBox comboBoxCategories = new ComboBox();
+        private ListViewItem clickedItem;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        private void InitializeComponent()
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            comboBoxCategories.Size = new Size(0, 0);
+            comboBoxCategories.Location = new Point(0, 0);
+            Controls.AddRange(new Control[] { comboBoxCategories });
+
+            comboBoxCategories.SelectedIndexChanged += CategorySelected;
+            comboBoxCategories.LostFocus += CategoryFocusExit;
+            comboBoxCategories.KeyPress += CategoryKeyPress;
+            comboBoxCategories.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCategories.Hide();
+
+            Name = "listViewWithComboBox1";
+
+            TabIndex = 0;
+            MouseDown += ListViewMouseDown;
+
+            MouseClick += ListViewMouseClick;
         }
 
-        #region Component Designer generated code
-
-        ///// <summary> 
-        ///// Required method for Designer support - do not modify 
-        ///// the contents of this method with the code editor.
-        ///// </summary>
-        //private void InitializeComponentDummy()
-        //{
-        //    components = new System.ComponentModel.Container();
-        //    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        //}
-
-        #endregion
     }
 }

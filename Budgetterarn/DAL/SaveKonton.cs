@@ -14,7 +14,7 @@ namespace Budgetterarn.DAL
     public static class SaveKonton
     {
         internal static LoadOrSaveResult Save(
-            KontoutdragInfoForSave kontoutdragInfoForSave,
+            ExcelFileKontoutdragInfoForSave kontoutdragInfoForSave,
             KontoEntriesHolder kontoEntriesHolder,
             Action<string> writeToOutput)
         {
@@ -48,7 +48,7 @@ namespace Budgetterarn.DAL
             }
         }
 
-        private static void BackupOldFile(KontoutdragInfoForSave kontoutdragInfoForSave)
+        private static void BackupOldFile(ExcelFileKontoutdragInfoForSave kontoutdragInfoForSave)
         {
             // Gör någon backup el. likn. för att inte förlora data. Backupa dynamiskt. Så att om man skickar in en fil så backas den upp istället för huvudfilen...men de e rätt ok att backa huvudfilen
             new FileBackupper(

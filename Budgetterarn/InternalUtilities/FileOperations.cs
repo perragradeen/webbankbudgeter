@@ -25,14 +25,16 @@ namespace Budgetterarn.InternalUtilities
 
                 if (dirRelativeToBase != "")
                 {
-                    dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + dirRelativeToBase; // "Settings";
+                    dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
+                        + dirRelativeToBase; // "Settings";
                 }
                 else if (absoluteDir != "")
                 {
                     dlg.InitialDirectory = absoluteDir;
                 }
 
-                dlg.Filter = OpenFileFunctions.UsedFileTypesFilterNames[fileType]
+                dlg.Filter =
+                    OpenFileFunctions.UsedFileTypesFilterNames[fileType]
                     + @"|*."
                     + fileType;
                 return dlg.ShowDialog() != DialogResult.OK
@@ -40,7 +42,8 @@ namespace Budgetterarn.InternalUtilities
             }
             catch (Exception openFileOfTypeExp)
             {
-                writeToOutput(@"Error in OpenFileOfType(...): " + openFileOfTypeExp);
+                writeToOutput(@"Error in OpenFileOfType(...): "
+                    + openFileOfTypeExp);
                 return null;
             }
         }

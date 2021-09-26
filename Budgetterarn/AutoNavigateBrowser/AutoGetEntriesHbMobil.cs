@@ -9,7 +9,9 @@ namespace Budgetterarn.AutoNavigateBrowser
         private readonly Stack<DoneNavigationAction> navigatedNextActionIsStack;
         private readonly DoneNavigationAction LoadCurrentEntriesFromBrowser;
 
-        public AutoGetEntriesHbMobil(DoneNavigationAction loadCurrentEntriesFromBrowser, WebBrowser webBrowser)
+        public AutoGetEntriesHbMobil(
+            DoneNavigationAction loadCurrentEntriesFromBrowser,
+            WebBrowser webBrowser)
         {
             navigatedNextActionIsStack = new Stack<DoneNavigationAction>();
             BrowserNavigator = new BrowserNavigating(webBrowser);

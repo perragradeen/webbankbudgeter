@@ -9,7 +9,7 @@ namespace LoadTransactionsFromFile
     public static class LoadEntriesFromFileHandler
     {
         public static Hashtable LoadEntriesFromFile(
-            KontoutdragInfoForLoad kontoutdragInfoForLoad)
+            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad)
         {
             // Backa inte upp filen innan laddning, eftersom filen inte ändras vid laddning...
             // BackupOrginialFile("Before.Load");
@@ -23,7 +23,7 @@ namespace LoadTransactionsFromFile
 
             try
             {
-                var filePath = kontoutdragInfoForLoad.FilePath;
+                var filePath = kontoutdragInfoForLoad.ExcelFileSavePath;
 
                 if (string.IsNullOrEmpty(filePath))
                 {
@@ -43,8 +43,8 @@ namespace LoadTransactionsFromFile
             }
             catch (Exception fileOpneExcp)
             {
-                Console.WriteLine("User cancled or other error: " + fileOpneExcp.Message);
-                kontoutdragInfoForLoad.FilePath = fileOpneExcp.Message;
+                Console.WriteLine("User cancled or other error: "
+                    + fileOpneExcp.Message);
 
                 if (kontoUtdragXls.Count < 1)
                 {

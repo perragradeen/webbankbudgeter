@@ -37,8 +37,8 @@ namespace Budgetterarn
                     continue;
                 }
 
-                // Lägg till i org
-                lists.NewItemsListOrg?.Add(entryNew);
+                //// Lägg till i org
+                //lists.NewItemsListOrg?.Add(entryNew);
 
                 // Kolla om det är en dubblet eller om det är finns ett
                 // motsvarade "skyddat belopp"

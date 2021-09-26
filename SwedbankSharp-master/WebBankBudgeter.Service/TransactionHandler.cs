@@ -25,7 +25,8 @@ namespace WebBankBudgeter.Service
         private readonly Categories _allCategories;
         private readonly TableGetter _tableGetter;
 
-        public TransactionList TransactionList => _transactionCalcsHandler.TransactionList;
+        public TransactionList TransactionList =>
+            _transactionCalcsHandler.TransactionList;
         public void SetTransactionList(TransactionList list)
         {
             _transactionCalcsHandler =
@@ -125,26 +126,26 @@ namespace WebBankBudgeter.Service
 
         private SortedList GetTransactionsFromFile()
         {
-            var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
+            var kontoutdragInfoForLoad = new ExcelFileKontoutdragInfoForLoad
             {
-                FilePath = _filePath,
                 ExcelFileSavePath = _filePath,
                 ExcelFileSaveFileName = @"pelles budget.xls",
                 SheetName = BankConstants.SheetName,
             };
 
-            kontoutdragInfoForLoad.FilePath = System.IO.Path.Combine(
-                kontoutdragInfoForLoad.FilePath,
+            kontoutdragInfoForLoad.ExcelFileSavePath = System.IO.Path.Combine(
+                kontoutdragInfoForLoad.ExcelFileSavePath,
                 kontoutdragInfoForLoad.ExcelFileSaveFileName
             );
 
             // Ladda från fil
-            var entriesLoadedFromDataStore =
-                LoadEntriesFromFileHandler.LoadEntriesFromFile(kontoutdragInfoForLoad);
+            var entriesLoadedFromDataStore = 
+                LoadEntriesFromFileHandler.LoadEntriesFromFile(
+                    kontoutdragInfoForLoad);
 
-            var kontoEntriesHolder = new KontoEntriesHolder();
+            var kontoEntriesHolder = new KontoEntriesHolderForLoad();
 
-            _ = LoadKontonDal.TransFormEntriesFromExcelFileToTable(
+            _ = EntriesFromExcelTransFormer.TransformFromExcelFileToList(
                 kontoEntriesHolder,
                 entriesLoadedFromDataStore);
 

@@ -7,7 +7,7 @@ using Utilities;
 
 namespace LoadTransactionsFromFile.DAL
 {
-    public static class LoadKontonDal
+    public static class EntriesFromExcelTransFormer
     {
         /// <summary>
         /// Sparar till Excel-fil
@@ -16,11 +16,10 @@ namespace LoadTransactionsFromFile.DAL
         /// För att se om det laddats något, så UI-uppdateras etc.
         /// Så returneras bool om det...
         /// </summary>
-        public static LoadOrSaveResult TransFormEntriesFromExcelFileToTable(
-            KontoEntriesHolder kontoEntriesHolder,
+        public static LoadOrSaveResult TransformFromExcelFileToList(
+            KontoEntriesHolderForLoad kontoEntriesHolder,
             Hashtable entriesLoadedFromDataStore)
         {
-            var saveToTable = kontoEntriesHolder.KontoEntries;
             var loadResult = new LoadOrSaveResult();
 
             foreach (DictionaryEntry item in entriesLoadedFromDataStore)
@@ -32,11 +31,16 @@ namespace LoadTransactionsFromFile.DAL
 
                 if (DetÄrInteKolumnbeskrivning(entryArray))
                 {
-                    SparaNyKontoRad(saveToTable, loadResult, entryArray);
+                    SparaNyKontoRad(
+                        kontoEntriesHolder.KontoEntries,
+                        loadResult,
+                        entryArray);
                 }
                 else
                 {
-                    UpdateraSaldo(kontoEntriesHolder.SaldoHolder, entryArray);
+                    UpdateraSaldo(
+                        kontoEntriesHolder.SaldoHolder,
+                        entryArray);
                 }
             }
 
@@ -49,7 +53,7 @@ namespace LoadTransactionsFromFile.DAL
         }
 
         private static void SparaNyKontoRad(
-            SortedList saveToTable,
+            SortedList kontoEntries,
             LoadOrSaveResult loadResult,
             object[] entryArray)
         {
@@ -57,9 +61,9 @@ namespace LoadTransactionsFromFile.DAL
             var key = entryNew.KeyForThis;
 
             // Lägg till orginalraden, gör i UI-hanterare
-            if (!saveToTable.ContainsKey(key))
+            if (!kontoEntries.ContainsKey(key))
             {
-                saveToTable.Add(key, entryNew);
+                kontoEntries.Add(key, entryNew);
 
                 loadResult.SomethingLoadedOrSaved = true;
             }
@@ -75,9 +79,10 @@ namespace LoadTransactionsFromFile.DAL
         {
             // Detta ordnar sig, så länge saldot är med i nyckeln, det är den,
             // så det gäller bara att ha rätt saldo i xls
+
             // Om man tagit utt t.ex. 100kr 2 ggr samma dag, från samma bankomat.
             // hm, sätt 1 etta efteråt, men det göller ju bara det som är såna,
-            // hm, får ta dem manuellt
+            // hm, får ta dem manuellt (se även HandlePotientialDouble(...))
 
             // skulle kunna tillåta någon inläsning här ev. 
             // om man kan förutsätta att xls:en är kollad, 

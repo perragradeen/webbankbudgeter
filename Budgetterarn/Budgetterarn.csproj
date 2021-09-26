@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddedAndReplacedEntriesCounter.cs" />
-    <Compile Include="Application Settings and constants\Filerefernces.cs" />
+    <Compile Include="Application Settings and constants\FileReferences.cs" />
     <Compile Include="Application Settings and constants\UISettings.cs" />
     <Compile Include="AutoNavigateBrowser\AutoGetEntriesHbMobil.cs" />
     <Compile Include="AutoNavigateBrowser\BrowserNavigating.cs" />
@@ -106,13 +106,14 @@
     <Compile Include="DAL\SaveKonton.cs" />
     <Compile Include="DoneNavigationAction.cs" />
     <Compile Include="EntryLogicSetFlags\KontoEntriesChecker.cs" />
+    <Compile Include="InternalUtilities\LoadFromFileHelper.cs" />
     <Compile Include="KontoEntryListView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="KontoEntryListView.Designer.cs">
       <DependentUpon>KontoEntryListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\LoadKonton.cs" />
+    <Compile Include="DAL\LoadKontonFromWebBrowser.cs" />
     <Compile Include="ListViewWithComboBox.cs">
       <SubType>Component</SubType>
     </Compile>

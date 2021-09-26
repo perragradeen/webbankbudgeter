@@ -4180,7 +4180,7 @@ Chatta med oss";
             // >>> see default variables
 
             // When this happens
-            var actual = LoadKonton.GetStartOfKontoEntries(_default_webBrowserText);
+            var actual = LoadKontonFromWebBrowser.GetStartOfKontoEntries(_default_webBrowserText);
 
             // Then it sholud be
             const string expected = "Överföring Barnbidrag";
@@ -4278,13 +4278,10 @@ Chatta med oss";
             Assert.IsTrue(true);
         }
 
-        private bool LoadCurrentEntriesFromBrowser(
-            string text = GemensammaKontot)
+        private bool LoadCurrentEntriesFromBrowser(string text = GemensammaKontot)
         {
-            return LoadKonton.GetAllVisibleEntriesFromWebBrowser(
-                _default_KontoEntriesHolder,
-                text
-            );
+            var loadKontonHandler = new LoadKontonFromWebBrowser(_default_KontoEntriesHolder);
+            return loadKontonHandler.GetAllVisibleEntriesFromWebBrowser(text);
         }
     }
 }

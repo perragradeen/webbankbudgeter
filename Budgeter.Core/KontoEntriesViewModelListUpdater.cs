@@ -8,7 +8,7 @@ namespace Budgeter.Core
     {
         public KontoEntriesViewModelListUpdater()
         {
-            NewItemsListOrg = new List<KontoEntry>();
+            //NewItemsListOrg = new List<KontoEntry>();
             ToAddToListview = new List<KontoEntry>();
         }
 
@@ -35,6 +35,6 @@ namespace Budgeter.Core
         /// </summary>
         public List<KontoEntry> NewItemsListEdited { get; set; }
 
-        public List<KontoEntry> NewItemsListOrg { get; }
+        //public List<KontoEntry> NewItemsListOrg { get; }
     }
 }

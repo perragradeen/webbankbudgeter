@@ -46,8 +46,8 @@
     <Compile Include="Entities\KontoEntry.cs" />
     <Compile Include="Entities\KontoEntryType.cs" />
     <Compile Include="Entities\InBudget.cs" />
-    <Compile Include="Entities\KontoutdragInfoForLoad.cs" />
-    <Compile Include="Entities\KontoutdragInfoForSave.cs" />
+    <Compile Include="Entities\ExcelFileKontoutdragInfoForLoad.cs" />
+    <Compile Include="Entities\ExcelFileKontoutdragInfoForSave.cs" />
     <Compile Include="Entities\LoadOrSaveResult.cs" />
     <Compile Include="Entities\Saldo.cs" />
     <Compile Include="Entities\SaldoHolder.cs" />

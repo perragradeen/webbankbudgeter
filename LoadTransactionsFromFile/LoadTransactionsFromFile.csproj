@@ -37,7 +37,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\LoadKontonDal.cs" />
+    <Compile Include="DAL\EntriesFromExcelTransFormer.cs" />
     <Compile Include="KontoEntriesHolder.cs" />
     <Compile Include="LoadEntriesFromFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

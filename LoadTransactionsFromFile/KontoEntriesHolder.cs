@@ -3,22 +3,26 @@ using System.Collections;
 
 namespace LoadTransactionsFromFile
 {
-    public class KontoEntriesHolder
+    public class KontoEntriesHolderForLoad
     {
-        public KontoEntriesHolder()
+        public KontoEntriesHolderForLoad()
         {
             KontoEntries = new SortedList(new DescendingComparer());
-
-            NewKontoEntries = new SortedList();
             SaldoHolder = new SaldoHolder();
         }
 
-        /// <summary>
-        /// saveToTable
-        /// </summary>
         public SortedList KontoEntries { get; }
 
-        public SortedList NewKontoEntries { get; set; }
         public SaldoHolder SaldoHolder { get; }
+    }
+
+    public class KontoEntriesHolder : KontoEntriesHolderForLoad
+    {
+        public KontoEntriesHolder() : base()
+        {
+            NewKontoEntries = new SortedList();
+        }
+
+        public SortedList NewKontoEntries { get; set; }
     }
 }

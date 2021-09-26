@@ -1,6 +1,6 @@
 ﻿namespace Budgeter.Core.Entities
 {
-    public class KontoutdragInfoForSave
+    public class ExcelFileKontoutdragInfoForSave
     {
         public string ExcelFileSavePath { get; set; }
         public string ExcelFileSavePathWithoutFileName { get; set; }

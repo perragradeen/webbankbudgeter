@@ -116,14 +116,14 @@ namespace Budgetterarn
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
             this.loadToolStripMenuItem1.Size = new System.Drawing.Size(209, 22);
             this.loadToolStripMenuItem1.Text = "Load new entries from xls";
-            this.loadToolStripMenuItem1.Click += new System.EventHandler(this.LoadToolStripMenuItem1Click);
+            this.loadToolStripMenuItem1.Click += new System.EventHandler(this.LoadNewAndClearOld_FileMenuClick);
             // 
             // FileMenuLoadNewFromXls
             // 
             this.FileMenuLoadNewFromXls.Name = "FileMenuLoadNewFromXls";
             this.FileMenuLoadNewFromXls.Size = new System.Drawing.Size(209, 22);
             this.FileMenuLoadNewFromXls.Text = "Add new entries from xls";
-            this.FileMenuLoadNewFromXls.Click += new System.EventHandler(this.FileMenuLoadNewFromXlsClick);
+            this.FileMenuLoadNewFromXls.Click += new System.EventHandler(this.AddNew_FileMenuClick);
             // 
             // openBankSiteToolStripMenuItem
             // 

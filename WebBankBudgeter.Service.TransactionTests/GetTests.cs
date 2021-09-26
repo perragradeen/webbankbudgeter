@@ -7,14 +7,13 @@ namespace InbudgetToTableTests
     [TestClass]
     public class GetTests
     {
-        private static string _filePath =>
+        private static string FilePath =>
             //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json"
             @"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetInsRiktigaExempel.json"
             ;
 
         private InBudgetHandler Target =>
-            new InBudgetHandler(
-                _filePath);
+            new InBudgetHandler(FilePath);
 
         [TestMethod]
         public async Task HämtaRaderFörUiBindningAsyncTestAsync()

@@ -11,47 +11,24 @@ using CategoryHandler.Model;
 
 namespace Budgetterarn
 {
-    public partial class ListViewWithComboBox
+    public partial class ListViewWithComboBox : KontoEntryListView
     {
         #region Members
-
         private const string AutoCatCpation = "Spara kategorival (typ av kostnad) automatiskt?";
         private const int TypAvKostnadKolumnnummer = 2;
-        private readonly ComboBox comboBoxCategories = new ComboBox();
 
         private readonly List<object> previouslySelectedItems = new List<object>();
-        private ListViewItem clickedItem;
         private int selectedSubItem;
         private int x;
-
         #endregion
 
         // Constructor
         public ListViewWithComboBox()
         {
-            #region set comboBoxCategories (comboBox1)
-
             // Read the categories.
             LoadCategoriesToSelectBox();
 
-            comboBoxCategories.Size = new Size(0, 0);
-            comboBoxCategories.Location = new Point(0, 0);
-            Controls.AddRange(new Control[] { comboBoxCategories });
-
-            comboBoxCategories.SelectedIndexChanged += CategorySelected;
-            comboBoxCategories.LostFocus += CategoryFocusExit;
-            comboBoxCategories.KeyPress += CategoryKeyPress;
-            comboBoxCategories.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCategories.Hide();
-
-            #endregion
-
-            Name = "listViewWithComboBox1";
-
-            TabIndex = 0;
-            MouseDown += ListViewMouseDown;
-
-            MouseClick += ListViewMouseClick;
+            InitializeComponent();
 
             View = View.Details;
             GridLines = true;

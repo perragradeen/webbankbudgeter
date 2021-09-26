@@ -12,7 +12,7 @@ namespace InbudgetHandler
     public class SkapaInPosterHanterare
     {
         private readonly TransactionHandler _transactionHandler;
-        private InBudgetHandler _inBudgetHandler;
+        private readonly InBudgetHandler _inBudgetHandler;
 
         public SkapaInPosterHanterare(InBudgetHandler target, TransactionHandler transactionHandler)
         {
