@@ -14,6 +14,7 @@ using CategoryHandler;
 using CefSharp;
 using CefSharp.WinForms;
 using LoadTransactionsFromFile;
+using LoadTransactionsFromFile.DAL;
 using Utilities;
 
 // ReSharper disable CommentTypo
@@ -44,7 +45,8 @@ namespace Budgetterarn
         private static string categoryPath = @"Data\Categories.xml";
         private bool debugGlobal = false; // For useSaveCheck
 
-        private readonly KontoEntriesHolder kontoEntriesHolder = new KontoEntriesHolder();
+        private readonly KontoEntriesHolder kontoEntriesHolder
+            = new KontoEntriesHolder();
         private bool somethingChanged;
 
         // Generic types for Designer
@@ -344,8 +346,7 @@ namespace Budgetterarn
 
         private static DialogResult SaveCheckWithArgs(
             KontoutdragInfoForLoad kontoutdragInfoForSave,
-            SortedList kontoEntries,
-            SaldoHolder saldoHolder)
+            KontoEntriesHolder kontoEntriesHolder)
         {
             var saveNowOrNot = DialogResult.None;
             if (!kontoutdragInfoForSave.SomethingChanged)
@@ -363,8 +364,7 @@ namespace Budgetterarn
             {
                 SaveKonton.Save(
                     kontoutdragInfoForSave,
-                    kontoEntries,
-                    saldoHolder,
+                    kontoEntriesHolder,
                     WriteToOutput);
             }
 
@@ -380,8 +380,9 @@ namespace Budgetterarn
             if (kontoEntriesHolder.KontoEntries.Count > 0)
             {
                 // somethingChanged är alltid false här
-                var userResponse = SaveCheckWithArgs(kontoutdragInfoForLoad, kontoEntriesHolder.KontoEntries,
-                    kontoEntriesHolder.SaldoHolder);
+                var userResponse = SaveCheckWithArgs(
+                    kontoutdragInfoForLoad,
+                    kontoEntriesHolder);
                 if (userResponse == DialogResult.Cancel)
                 {
                     return true;
@@ -408,8 +409,7 @@ namespace Budgetterarn
 
             var saveResult = SaveKonton.Save(
                 kontoutdragInfoForSave,
-                kontoEntriesHolder.KontoEntries,
-                kontoEntriesHolder.SaldoHolder,
+                kontoEntriesHolder,
                 WriteToOutput);
 
             somethingChanged = saveResult.SomethingLoadedOrSaved;
@@ -472,20 +472,7 @@ namespace Budgetterarn
         /// </returns>
         private bool GetAllEntriesFromExcelFile(bool clearContentBeforeReadingNewFile)
         {
-            var changedExcelFileSavePath = Filerefernces.ExcelFileSavePath;
-
-            // Todo: gör en funktion för denna eller refa med en filnamns och sökvägsklass....
-            var kontoutdragInfoForLoad = new KontoutdragInfoForLoad
-            {
-                FilePath = Filerefernces.ExcelFileSavePath,
-                ExcelFileSavePath = changedExcelFileSavePath,
-                ExcelFileSavePathWithoutFileName =
-                    Filerefernces.ExcelFileSavePathWithoutFileName,
-                ExcelFileSaveFileName = Filerefernces.ExcelFileSaveFileName,
-                SheetName = SheetName,
-                ClearContentBeforeReadingNewFile = clearContentBeforeReadingNewFile,
-                SomethingChanged = somethingChanged,
-            };
+            var kontoutdragInfoForLoad = InitKontoInfo();
 
             CheckFileIfEmptyPromptUserIfEmptyPath(kontoutdragInfoForLoad);
 
@@ -493,7 +480,8 @@ namespace Budgetterarn
             Hashtable entriesLoadedFromDataStore;
             try
             {
-                entriesLoadedFromDataStore = LoadKonton.LoadEntriesFromFile(kontoutdragInfoForLoad);
+                entriesLoadedFromDataStore = LoadEntriesFromFileHandler
+                    .LoadEntriesFromFile(kontoutdragInfoForLoad);
             }
             catch (Exception)
             {
@@ -502,43 +490,36 @@ namespace Budgetterarn
                 return false;
             }
 
-            // För att se om något laddats från fil
-            var somethingLoadedFromFile = entriesLoadedFromDataStore != null
-                                          && entriesLoadedFromDataStore.Count > 0;
-
-            var statusText =
-                toolStripStatusLabel1.Text =
-                    @"Nothing loaded.";
-            if (entriesLoadedFromDataStore == null)
-            {
-                statusText += kontoutdragInfoForLoad.FilePath;
-            }
-
-            WriteToUiStatusLog(statusText);
+            VisaAnvändarenAttIngetLaddatsÄn(
+                kontoutdragInfoForLoad,
+                entriesLoadedFromDataStore);
 
             // kolla om något laddades från Excel
-            if (!somethingLoadedFromFile)
+            if (!SomethingLoadedFromFile(entriesLoadedFromDataStore))
             {
                 return false;
             }
 
             const bool CheckforUnsavedChanges = true;
-            var userCanceled = SaveFirstCheck(kontoutdragInfoForLoad, CheckforUnsavedChanges, true);
+            var userCanceled = SaveFirstCheck(
+                kontoutdragInfoForLoad,
+                CheckforUnsavedChanges,
+                true);
 
             if (userCanceled)
             {
                 return false;
             }
 
-            // Töm alla tidigare entries i minnet om det ska laddas helt ny fil el. likn. 
-            if (kontoutdragInfoForLoad.ClearContentBeforeReadingNewFile)
+            // Töm alla tidigare entries i minnet om det ska laddas
+            // helt ny fil el. likn. 
+            if (clearContentBeforeReadingNewFile)
             {
                 kontoEntriesHolder.KontoEntries.Clear();
             }
 
-            var loadResult = LoadKonton.GetAllEntriesFromExcelFile(
-                kontoEntriesHolder.KontoEntries,
-                kontoEntriesHolder.SaldoHolder,
+            var loadResult = LoadKontonDal.TransFormEntriesFromExcelFileToTable(
+                kontoEntriesHolder,
                 entriesLoadedFromDataStore);
 
             // Nu har det precis rensats och laddats in nytt
@@ -546,18 +527,14 @@ namespace Budgetterarn
 
             // Ev. har pathen ändrats.
             // Har man däremot laddat in nya så ska den sökvägen gälla för sparningar
-            Filerefernces.ExcelFileSavePath = changedExcelFileSavePath;
+            Filerefernces.ExcelFileSavePath = kontoutdragInfoForLoad.
+                ChangedExcelFileSavePath;
 
-            // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska utan UI etc
+            // Todo: sätt denna tidigare så att LoadNsave bara gör vad den ska
+            // utan UI etc
 
             // Visa text för anv. om hur det gick etc.
-            statusText = "No. rows loaded; "
-                         + kontoEntriesHolder.KontoEntries.Count
-                         + " . Skpped: "
-                         + loadResult.SkippedOrSaved
-                         + ". File loaded; "
-                         + kontoutdragInfoForLoad.FilePath;
-            WriteToUiStatusLog(statusText);
+            VisaFörAnvändarenHurDetGick(kontoutdragInfoForLoad, loadResult);
 
             // If nothing loaded return
             if (!loadResult.SomethingLoadedOrSaved)
@@ -576,6 +553,56 @@ namespace Budgetterarn
                 kontoEntriesHolder.KontoEntries);
 
             return true;
+        }
+
+        private KontoutdragInfoForLoad InitKontoInfo()
+        {
+            var changedExcelFileSavePath = Filerefernces.ExcelFileSavePath;
+
+            return new KontoutdragInfoForLoad
+            {
+                FilePath = Filerefernces.ExcelFileSavePath,
+                ExcelFileSavePath = changedExcelFileSavePath,
+                ExcelFileSavePathWithoutFileName =
+                    Filerefernces.ExcelFileSavePathWithoutFileName,
+                ExcelFileSaveFileName = Filerefernces.ExcelFileSaveFileName,
+                SheetName = SheetName,
+                SomethingChanged = somethingChanged,
+                ChangedExcelFileSavePath = changedExcelFileSavePath
+            };
+        }
+
+        private static bool SomethingLoadedFromFile(Hashtable entriesLoadedFromDataStore)
+        {
+            // För att se om något laddats från fil
+            return entriesLoadedFromDataStore != null
+                                          && entriesLoadedFromDataStore.Count > 0;
+        }
+
+        private static void VisaAnvändarenAttIngetLaddatsÄn(KontoutdragInfoForLoad kontoutdragInfoForLoad, Hashtable entriesLoadedFromDataStore)
+        {
+            var statusText =
+                            toolStripStatusLabel1.Text =
+                                @"Nothing loaded.";
+            if (entriesLoadedFromDataStore == null)
+            {
+                statusText += kontoutdragInfoForLoad.FilePath;
+            }
+
+            WriteToUiStatusLog(statusText);
+        }
+
+        private void VisaFörAnvändarenHurDetGick(
+            KontoutdragInfoForLoad kontoutdragInfoForLoad,
+            LoadOrSaveResult loadResult)
+        {
+            string statusText = "No. rows loaded; "
+                         + kontoEntriesHolder.KontoEntries.Count
+                         + " . Skpped: "
+                         + loadResult.SkippedOrSaved
+                         + ". File loaded; "
+                         + kontoutdragInfoForLoad.FilePath;
+            WriteToUiStatusLog(statusText);
         }
 
         #endregion

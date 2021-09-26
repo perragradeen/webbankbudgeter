@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
+using LoadTransactionsFromFile;
 using Utilities;
 
 // ReSharper disable IdentifierTypo
@@ -14,10 +15,11 @@ namespace Budgetterarn.DAL
     {
         internal static LoadOrSaveResult Save(
             KontoutdragInfoForSave kontoutdragInfoForSave,
-            SortedList kontoEntries,
-            SaldoHolder saldoHolder,
+            KontoEntriesHolder kontoEntriesHolder,
             Action<string> writeToOutput)
         {
+            var kontoEntries = kontoEntriesHolder.KontoEntries;
+
             try
             {
                 // If nothing to save, return
@@ -26,7 +28,7 @@ namespace Budgetterarn.DAL
                     return new LoadOrSaveResult();
                 }
 
-                var logArray = GetTopRowWithHeaders(saldoHolder);
+                var logArray = GetTopRowWithHeaders(kontoEntriesHolder.SaldoHolder);
                 var logThis = GetWhatToLogWithHeaders(logArray, kontoEntries);
 
                 ReIndexKontoentriesToLatestOnTop(kontoEntries, logThis);

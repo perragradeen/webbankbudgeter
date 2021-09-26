@@ -11,91 +11,102 @@ namespace LoadTransactionsFromFile.DAL
     {
         /// <summary>
         /// Sparar till Excel-fil
+        /// Görs i Ui-handling, UpdateEntriesToSaveMemList();
+        /// Skapa kontoentries
+        /// För att se om det laddats något, så UI-uppdateras etc.
+        /// Så returneras bool om det...
         /// </summary>
         public static LoadOrSaveResult TransFormEntriesFromExcelFileToTable(
-            KontoutdragInfoForLoad kontoutdragInfoForLoad,
-            SortedList saveToTable,
-            SaldoHolder saldoHolder,
+            KontoEntriesHolder kontoEntriesHolder,
             Hashtable entriesLoadedFromDataStore)
         {
-            // Töm alla tidigare entries i minnet om det ska laddas helt ny fil el. likn. 
-            if (kontoutdragInfoForLoad.ClearContentBeforeReadingNewFile)
-            {
-                saveToTable.Clear();
-            }
-
-            // Görs i Ui-handling, UpdateEntriesToSaveMemList();
-            // Skapa kontoentries
-            // För att se om det laddats något, så UI-uppdateras etc. Så returneras bool om det...
-            return SkapaKontoEntries(saveToTable, entriesLoadedFromDataStore, saldoHolder);
-        }
-
-        public static LoadOrSaveResult SkapaKontoEntries(
-            SortedList saveToTable,
-            Hashtable entriesLoadedFromDataStore,
-            SaldoHolder saldoHolder)
-        {
+            var saveToTable = kontoEntriesHolder.KontoEntries;
             var loadResult = new LoadOrSaveResult();
 
             foreach (DictionaryEntry item in entriesLoadedFromDataStore)
             {
-                if (item.Value != null)
+                if (item.Value == null) continue;
+
+                var entryArray = ((ExcelRowEntry)item.Value).Args;
+                if (entryArray == null) continue; // Om det är tomt
+
+                if (DetÄrInteKolumnbeskrivning(entryArray))
                 {
-                    var entryArray = ((ExcelRowEntry)item.Value).Args;
-
-                    // Om det är tomt
-                    if (entryArray == null)
-                    {
-                        continue;
-                    }
-
-                    // Om det är kolumnbeskrivning, skippa...
-                    if ((string)entryArray[0] == "y")
-                    {
-                        var saldoColumnNumber = 11;
-
-                        foreach (var saldoName in BankConstants.SwedbankSaldonames)
-                        {
-                            var saldot = entryArray.Length > saldoColumnNumber + 1
-                                ? entryArray[saldoColumnNumber + 1] ?? string.Empty
-                                : string.Empty; // Todo: byt empty mot värden i saldon
-
-                            saldoHolder.AddToOrChangeValueInDictionaryForKey(saldoName,
-                                saldot.ToString().GetDoubleValueFromStringEntry());
-
-                            saldoColumnNumber++;
-                        }
-
-                        // Hoppa över
-                        continue;
-                    }
-
-                    var newKe = new KontoEntry(entryArray, true);
-                    var key = newKe.KeyForThis;
-
-                    // Lägg till orginalraden, gör i UI-hanterare
-                    if (!saveToTable.ContainsKey(key))
-                    {
-                        saveToTable.Add(key, newKe);
-
-                        loadResult.SomethingLoadedOrSaved = true;
-                    }
-                    else
-                    {
-                        // Detta ordnar sig, så länge saldot är med i nyckeln, det är den, så det gäller bara att ha rätt saldo i xls //Om man tagit utt t.ex. 100kr 2 ggr samma dag, från samma bankomat. hm, sätt 1 etta efteråt, men det göller ju bara det som är såna, hm, får ta dem manuellt
-
-                        // skulle kunna tillåta någon inläsning här ev. 
-                        // om man kan förutsätta att xls:en är kollad, 
-                        // det får bli här man lägger till specialdubbletter manuellt
-                        Console.WriteLine("Entry Double found. Key = " + key);
-
-                        // meddela detta till usern, man ser de på skipped...
-                        loadResult.SkippedOrSaved++;
-                    }
+                    SparaNyKontoRad(saveToTable, loadResult, entryArray);
+                }
+                else
+                {
+                    UpdateraSaldo(kontoEntriesHolder.SaldoHolder, entryArray);
                 }
             }
 
             return loadResult;
+        }
+
+        private static bool DetÄrInteKolumnbeskrivning(object[] entryArray)
+        {
+            return (string)entryArray[0] != "y";
+        }
+
+        private static void SparaNyKontoRad(
+            SortedList saveToTable,
+            LoadOrSaveResult loadResult,
+            object[] entryArray)
+        {
+            var entryNew = new KontoEntry(entryArray, true);
+            var key = entryNew.KeyForThis;
+
+            // Lägg till orginalraden, gör i UI-hanterare
+            if (!saveToTable.ContainsKey(key))
+            {
+                saveToTable.Add(key, entryNew);
+
+                loadResult.SomethingLoadedOrSaved = true;
+            }
+            else
+            {
+                HanteraEvOviktigDubblett(loadResult, key);
+            }
+        }
+
+        private static void HanteraEvOviktigDubblett(
+            LoadOrSaveResult loadResult,
+            string key)
+        {
+            // Detta ordnar sig, så länge saldot är med i nyckeln, det är den,
+            // så det gäller bara att ha rätt saldo i xls
+            // Om man tagit utt t.ex. 100kr 2 ggr samma dag, från samma bankomat.
+            // hm, sätt 1 etta efteråt, men det göller ju bara det som är såna,
+            // hm, får ta dem manuellt
+
+            // skulle kunna tillåta någon inläsning här ev. 
+            // om man kan förutsätta att xls:en är kollad, 
+            // det får bli här man lägger till specialdubbletter manuellt
+            Console.WriteLine("Entry Double found. Key = " + key);
+
+            // meddela detta till usern, man ser de på skipped...
+            loadResult.SkippedOrSaved++;
+        }
+
+        private static void UpdateraSaldo(
+            SaldoHolder saldoHolder,
+            object[] entryArray)
+        {
+            var saldoColumnNumber = 11;
+
+            foreach (var saldoName in BankConstants.SwedbankSaldonames)
+            {
+                var saldot = entryArray.Length > saldoColumnNumber + 1
+                    ? entryArray[saldoColumnNumber + 1] ?? string.Empty
+                    : string.Empty; // Todo: byt empty mot värden i saldon
+
+                var saldoValue = saldot.ToString().GetDoubleValueFromStringEntry();
+                saldoHolder.AddToOrChangeValueInDictionaryForKey(
+                         saldoName,
+                         saldoValue);
+
+                saldoColumnNumber++;
+            }
         }
     }
 }

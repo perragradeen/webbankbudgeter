@@ -35,7 +35,11 @@ namespace LoadTransactionsFromFile
                     throw new FileNotFoundException(filePath);
                 }
 
-                OpenFileFunctions.OpenExcelSheet(filePath, kontoutdragInfoForLoad.SheetName, kontoUtdragXls, 0);
+                OpenFileFunctions.OpenExcelSheet(
+                    filePath,
+                    kontoutdragInfoForLoad.SheetName,
+                    kontoUtdragXls,
+                    0);
             }
             catch (Exception fileOpneExcp)
             {

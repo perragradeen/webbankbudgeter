@@ -4,7 +4,8 @@
     {
         public string FilePath { get; set; }
 
-        public bool ClearContentBeforeReadingNewFile { get; set; }
         public bool SomethingChanged { get; set; }
+
+        public string ChangedExcelFileSavePath { get; set; }
     }
 }

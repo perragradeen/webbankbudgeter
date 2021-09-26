@@ -11,26 +11,6 @@ namespace Budgetterarn.DAL
 {
     internal class LoadKonton
     {
-        /// <summary>
-        /// Sparar till Excel-fil
-        /// </summary>
-        public static LoadOrSaveResult GetAllEntriesFromExcelFile(
-            SortedList saveToTable,
-            SaldoHolder saldoHolder,
-            Hashtable entriesLoadedFromDataStore)
-        {
-            // Görs i Ui-handling, UpdateEntriesToSaveMemList();
-            // Skapa kontoentries
-            // För att se om det laddats något, så UI-uppdateras etc. Så returneras bool om det...
-            return LoadKontonDal.SkapaKontoEntries(saveToTable, entriesLoadedFromDataStore, saldoHolder);
-        }
-
-        public static Hashtable LoadEntriesFromFile(
-            KontoutdragInfoForLoad kontoutdragInfoForLoad)
-        {
-            return LoadEntriesFromFileHandler.LoadEntriesFromFile(kontoutdragInfoForLoad);
-        }
-
         internal static bool GetAllVisibleEntriesFromWebBrowser(
             KontoEntriesHolder kontoEntriesHolder,
             string text)

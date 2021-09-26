@@ -132,6 +132,7 @@ namespace WebBankBudgeter.Service
                 ExcelFileSaveFileName = @"pelles budget.xls",
                 SheetName = BankConstants.SheetName,
             };
+
             kontoutdragInfoForLoad.FilePath = System.IO.Path.Combine(
                 kontoutdragInfoForLoad.FilePath,
                 kontoutdragInfoForLoad.ExcelFileSaveFileName
@@ -142,8 +143,8 @@ namespace WebBankBudgeter.Service
                 LoadEntriesFromFileHandler.LoadEntriesFromFile(kontoutdragInfoForLoad);
 
             var kontoEntriesHolder = new KontoEntriesHolder();
+
             _ = LoadKontonDal.TransFormEntriesFromExcelFileToTable(
-                kontoutdragInfoForLoad,
                 kontoEntriesHolder.KontoEntries,
                 kontoEntriesHolder.SaldoHolder,
                 entriesLoadedFromDataStore);
