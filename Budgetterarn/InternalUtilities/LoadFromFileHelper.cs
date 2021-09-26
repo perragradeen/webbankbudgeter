@@ -8,79 +8,60 @@ namespace Budgetterarn.InternalUtilities
 {
     public class LoadFromFileHelper
     {
-        private readonly ExcelFileKontoutdragInfoForLoad excelFileKontoutdragInfoForLoad;
+        private readonly KontoutdragExcelFileInfo kontoutdragExcelFileInfo;
         private readonly KontoEntriesHolder kontoEntriesHolder;
         private readonly Action<string> writeToOutput;
         private readonly Action<string> writeToUiStatusLog;
 
         public LoadFromFileHelper(
-            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad,
+            KontoutdragExcelFileInfo kontoutdragExcelFileInfo,
             KontoEntriesHolder kontoEntriesHolder,
             Action<string> writeToOutput,
             Action<string> writeToUiStatusLog)
         {
-            this.excelFileKontoutdragInfoForLoad = kontoutdragInfoForLoad;
+            this.kontoutdragExcelFileInfo = kontoutdragExcelFileInfo;
             this.kontoEntriesHolder = kontoEntriesHolder;
             this.writeToOutput = writeToOutput;
             this.writeToUiStatusLog = writeToUiStatusLog;
         }
 
-        internal void SetEntriesFromFile(
-            bool clearContentBeforeReadingNewFile)
+        internal void SetEntriesFromFile()
         {
             // Ladda från fil
             var entriesLoadedFromDataStore = GetEntriesFromFile();
             if (entriesLoadedFromDataStore == null) return;
 
-            VisaAnvändarenAttIngetLaddatsÄn(
-                excelFileKontoutdragInfoForLoad,
-                entriesLoadedFromDataStore);
-
-            if (clearContentBeforeReadingNewFile)
-                ClearUiContents();
+            VisaAnvändarenAttIngetLaddatsÄn(entriesLoadedFromDataStore);
 
             var loadResult =
                 EntriesFromExcelTransFormer.TransformFromExcelFileToList(
                     kontoEntriesHolder,
                     entriesLoadedFromDataStore);
 
-            VisaFörAnvändarenHurDetGick(
-                excelFileKontoutdragInfoForLoad,
-                loadResult);
+            VisaFörAnvändarenHurDetGick(loadResult);
         }
 
-        private void ClearUiContents()
-        {
-            // Töm alla tidigare entries i minnet om det ska laddas
-            // helt ny fil el. likn. 
-            kontoEntriesHolder.KontoEntries.Clear();
-        }
-
-        private void VisaAnvändarenAttIngetLaddatsÄn(
-            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad,
-            Hashtable entriesLoadedFromDataStore)
+        private void VisaAnvändarenAttIngetLaddatsÄn(Hashtable entriesLoadedFromDataStore)
         {
             var statusText = @"Nothing loaded.";
             writeToUiStatusLog(statusText);
 
             if (entriesLoadedFromDataStore == null)
             {
-                statusText += kontoutdragInfoForLoad.ExcelFileSavePath;
+                statusText += kontoutdragExcelFileInfo.ExcelFileSavePath;
             }
 
             writeToUiStatusLog(statusText);
         }
 
-        private void VisaFörAnvändarenHurDetGick(
-            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad,
-            LoadOrSaveResult loadResult)
+        private void VisaFörAnvändarenHurDetGick(LoadOrSaveResult loadResult)
         {
             string statusText = "No. rows loaded; "
                          + kontoEntriesHolder.KontoEntries.Count
                          + " . Skpped: "
                          + loadResult.SkippedOrSaved
                          + ". File loaded; "
-                         + kontoutdragInfoForLoad.ExcelFileSavePath;
+                         + kontoutdragExcelFileInfo.ExcelFileSavePath;
             writeToUiStatusLog(statusText);
         }
 
@@ -88,14 +69,14 @@ namespace Budgetterarn.InternalUtilities
         {
             try
             {
-                return LoadEntriesFromFileHandler
-                    .LoadEntriesFromFile(excelFileKontoutdragInfoForLoad);
+                return LoadEntriesFromFileHandler.LoadEntriesFromFile(
+                    kontoutdragExcelFileInfo);
             }
             catch (Exception)
             {
                 writeToOutput(
                     @"File: " +
-                    excelFileKontoutdragInfoForLoad.ExcelFileSavePath +
+                    kontoutdragExcelFileInfo.ExcelFileSavePath +
                     @" does not exist.");
                 return null;
             }

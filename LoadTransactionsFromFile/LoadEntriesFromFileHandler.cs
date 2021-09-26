@@ -9,21 +9,23 @@ namespace LoadTransactionsFromFile
     public static class LoadEntriesFromFileHandler
     {
         public static Hashtable LoadEntriesFromFile(
-            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad)
+            KontoutdragExcelFileInfo kontoutdragExcelFileInfo)
         {
             // Backa inte upp filen innan laddning, eftersom filen inte ändras vid laddning...
             // BackupOrginialFile("Before.Load");
 
-            // Öppna fil först, och ladda, sen ev. spara ändringar, som inte ändrats av laddningen, av filöpnningen
+            // Öppna fil först, och ladda, sen ev. spara ändringar, som
+            // inte ändrats av laddningen, av filöpnningen
             var kontoUtdragXls = new Hashtable();
 
-            // Todo: Gör om till arraylist, eller lista av dictionary items, för att kunna välja ordning
+            // Todo: Gör om till arraylist, eller lista av dictionary items,
+            // för att kunna välja ordning
 
             #region Öppna fil och hämta rader
 
             try
             {
-                var filePath = kontoutdragInfoForLoad.ExcelFileSavePath;
+                var filePath = kontoutdragExcelFileInfo.ExcelFileSavePath;
 
                 if (string.IsNullOrEmpty(filePath))
                 {
@@ -37,7 +39,7 @@ namespace LoadTransactionsFromFile
 
                 OpenFileFunctions.OpenExcelSheet(
                     filePath,
-                    kontoutdragInfoForLoad.SheetName,
+                    kontoutdragExcelFileInfo.SheetName,
                     kontoUtdragXls,
                     0);
             }
@@ -55,7 +57,7 @@ namespace LoadTransactionsFromFile
 
             #endregion
 
-            return (Hashtable)kontoUtdragXls[kontoutdragInfoForLoad.SheetName];
+            return (Hashtable)kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
         }
     }
 }

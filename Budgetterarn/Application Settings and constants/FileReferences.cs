@@ -27,6 +27,6 @@ namespace Budgetterarn.Application_Settings_and_constants
 
         public static string ExcelFileSavePathWithoutFileName { get; }
         public static string ExcelFileSaveFileName { get; }
-        public static string ExcelFileSavePath { get; set; }
+        public static string ExcelFileSavePath { get; }
     }
 }

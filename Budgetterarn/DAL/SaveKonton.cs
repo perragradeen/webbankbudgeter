@@ -14,7 +14,7 @@ namespace Budgetterarn.DAL
     public static class SaveKonton
     {
         internal static LoadOrSaveResult Save(
-            ExcelFileKontoutdragInfoForSave kontoutdragInfoForSave,
+            KontoutdragExcelFileInfo kontoutdragExcelFileInfo,
             KontoEntriesHolder kontoEntriesHolder,
             Action<string> writeToOutput)
         {
@@ -33,13 +33,20 @@ namespace Budgetterarn.DAL
 
                 ReIndexKontoentriesToLatestOnTop(kontoEntries, logThis);
 
-                BackupOldFile(kontoutdragInfoForSave);
+                BackupOldFile(kontoutdragExcelFileInfo);
 
                 // spara över gammalt, innan skrevs det på sist
                 Logger.WriteToWorkBook(
-                    kontoutdragInfoForSave.ExcelFileSavePath, kontoutdragInfoForSave.SheetName, true, logThis);
+                    kontoutdragExcelFileInfo.ExcelFileSavePath,
+                    kontoutdragExcelFileInfo.SheetName,
+                    true,
+                    logThis);
 
-                return new LoadOrSaveResult { SkippedOrSaved = logThis.Count - 1, SomethingLoadedOrSaved = false };
+                return new LoadOrSaveResult
+                {
+                    SkippedOrSaved = logThis.Count - 1,
+                    SomethingLoadedOrSaved = false
+                };
             }
             catch (Exception savExcp)
             {
@@ -48,18 +55,18 @@ namespace Budgetterarn.DAL
             }
         }
 
-        private static void BackupOldFile(ExcelFileKontoutdragInfoForSave kontoutdragInfoForSave)
+        private static void BackupOldFile(KontoutdragExcelFileInfo kontoutdragExcelFileInfo)
         {
-            // Gör någon backup el. likn. för att inte förlora data. Backupa dynamiskt. Så att om man skickar in en fil så backas den upp istället för huvudfilen...men de e rätt ok att backa huvudfilen
-            new FileBackupper(
-                "Before.Save",
-                kontoutdragInfoForSave.ExcelFileSavePath,
-                kontoutdragInfoForSave.ExcelFileSavePathWithoutFileName,
-                kontoutdragInfoForSave.ExcelFileSaveFileName
-            ).BackupOrginialFile();
+            // Gör någon backup el. likn. för att inte förlora data. Backupa dynamiskt.
+            // Så att om man skickar in en fil så backas den upp istället för huvudfilen...
+            // men de e rätt ok att backa huvudfilen
+            new FileBackupper(kontoutdragExcelFileInfo)
+                .BackupOrginialFile();
         }
 
-        private static Hashtable GetWhatToLogWithHeaders(IEnumerable logArray, ICollection kontoEntries)
+        private static Hashtable GetWhatToLogWithHeaders(
+            IEnumerable logArray,
+            ICollection kontoEntries)
         {
             // Gör om till Arraylist för ordning, det blir i omvänd ordning, alltså först överst. Ex 2009-04-01 sen 2009-04-02 osv.
             Hashtable logThis;
@@ -81,7 +88,9 @@ namespace Budgetterarn.DAL
             return logThis;
         }
 
-        private static void ReIndexKontoentriesToLatestOnTop(ICollection kontoEntries, IDictionary logThis)
+        private static void ReIndexKontoentriesToLatestOnTop(
+            ICollection kontoEntries,
+            IDictionary logThis)
         {
             var indexKey = kontoEntries.Count;
             foreach (DictionaryEntry currentRow in kontoEntries)

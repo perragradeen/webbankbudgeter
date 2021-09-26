@@ -14,7 +14,6 @@ using CategoryHandler;
 using CefSharp;
 using CefSharp.WinForms;
 using LoadTransactionsFromFile;
-using LoadTransactionsFromFile.DAL;
 using Utilities;
 
 // ReSharper disable CommentTypo
@@ -58,6 +57,28 @@ namespace Budgetterarn
         private AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
         private ChromiumWebBrowser webBrowser1;
 
+        private KontoutdragExcelFileInfo _kontoutdragExcelFileInfo;
+        public KontoutdragExcelFileInfo KontoutdragExcelFileInfo
+        {
+            get
+            {
+                if (_kontoutdragExcelFileInfo != null)
+                {
+                    return _kontoutdragExcelFileInfo;
+                }
+
+                _kontoutdragExcelFileInfo = new KontoutdragExcelFileInfo
+                {
+                    ExcelFileSaveFileName = FileReferences.ExcelFileSaveFileName,
+                    ExcelFileSavePath = FileReferences.ExcelFileSavePath,
+                    ExcelFileSavePathWithoutFileName =
+                        FileReferences.ExcelFileSavePathWithoutFileName,
+                    SheetName = FileReferences.SheetName
+                };
+
+                return _kontoutdragExcelFileInfo;
+            }
+        }
         #endregion
 
         public BudgeterForm()
@@ -291,17 +312,8 @@ namespace Budgetterarn
 
         private void Save()
         {
-            var kontoutdragInfoForSave = new ExcelFileKontoutdragInfoForSave
-            {
-                ExcelFileSaveFileName = FileReferences.ExcelFileSaveFileName,
-                ExcelFileSavePath = FileReferences.ExcelFileSavePath,
-                ExcelFileSavePathWithoutFileName =
-                    FileReferences.ExcelFileSavePathWithoutFileName,
-                SheetName = FileReferences.SheetName
-            };
-
             var saveResult = SaveKonton.Save(
-                kontoutdragInfoForSave,
+                KontoutdragExcelFileInfo,
                 kontoEntriesHolder,
                 WriteToOutput);
 
@@ -309,7 +321,7 @@ namespace Budgetterarn
 
             // Räkna inte överskriften, den skrivs alltid om
 
-            CheckIfUserWantsToOpenExcel(kontoutdragInfoForSave);
+            CheckIfUserWantsToOpenExcel(KontoutdragExcelFileInfo);
 
             //Precis sparat, så här har inget hunnit ändras 
             var statusText = toolStripStatusLabel1.Text
@@ -318,7 +330,8 @@ namespace Budgetterarn
             WriteToUiStatusLog(statusText);
         }
 
-        private static void CheckIfUserWantsToOpenExcel(ExcelFileKontoutdragInfoForSave kontoutdragInfoForSave)
+        private static void CheckIfUserWantsToOpenExcel(
+            KontoutdragExcelFileInfo kontoutdragExcelFileInfo)
         {
             // Fråga om man vill öppna Excel
             var question = @"Open budget file (wait a litte while first)?";
@@ -329,7 +342,7 @@ namespace Budgetterarn
 
             if (userWantsToOpen == DialogResult.Yes)
             {
-                ExcelOpener.LoadExcelFileInExcel(kontoutdragInfoForSave.ExcelFileSavePath);
+                ExcelOpener.LoadExcelFileInExcel(kontoutdragExcelFileInfo.ExcelFileSavePath);
             }
         }
 
@@ -365,29 +378,33 @@ namespace Budgetterarn
         /// </returns>
         private void EntriesFromFileLoadedOk(bool clearContentBeforeReadingNewFile)
         {
-            SetAllEntriesFromExcelFile(clearContentBeforeReadingNewFile);
+            if (clearContentBeforeReadingNewFile)
+                ClearUiContents();
+
+            SetAllEntriesFromExcelFile();
 
             DisplayEntriesInUiGrids();
         }
 
-        private void SetAllEntriesFromExcelFile(bool clearContentBeforeReadingNewFile)
+        private void SetAllEntriesFromExcelFile()
         {
-            var kontoutdragInfoForLoad = InitKontoInfo();
+            CheckFileIfEmptyPromptUserIfEmptyPath();
 
-            CheckFileIfEmptyPromptUserIfEmptyPath(kontoutdragInfoForLoad);
-
-            GetLoadFromFileHelper(kontoutdragInfoForLoad)
-                .SetEntriesFromFile(clearContentBeforeReadingNewFile);
+            LoadFromFileHelper.SetEntriesFromFile();
         }
 
-        private LoadFromFileHelper GetLoadFromFileHelper(
-            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad)
-        {
-            return new LoadFromFileHelper(
-                kontoutdragInfoForLoad,
+        private LoadFromFileHelper LoadFromFileHelper =>
+            new LoadFromFileHelper(
+                KontoutdragExcelFileInfo,
                 kontoEntriesHolder,
                 WriteToOutput,
                 WriteToUiStatusLog);
+
+        private void ClearUiContents()
+        {
+            // Töm alla tidigare entries i minnet om det ska laddas
+            // helt ny fil el. likn. 
+            kontoEntriesHolder.KontoEntries.Clear();
         }
 
         private void DisplayEntriesInUiGrids()
@@ -403,28 +420,6 @@ namespace Budgetterarn
                 kontoEntriesHolder.KontoEntries);
         }
 
-        private ExcelFileKontoutdragInfoForLoad InitKontoInfo()
-        {
-            return new ExcelFileKontoutdragInfoForLoad
-            {
-                ExcelFileSavePath = FileReferences.ExcelFileSavePath,
-                ExcelFileSavePathWithoutFileName =
-                    FileReferences.ExcelFileSavePathWithoutFileName,
-                ExcelFileSaveFileName = FileReferences.ExcelFileSaveFileName,
-                SheetName = FileReferences.SheetName,
-            };
-        }
-
-        // TODO: Kolla om denna ska användas...
-        private static bool UserWantsToSave()
-        {
-            return MessageBox.Show(
-                    @"Läget ej sparat! Spara nu?",
-                    @"Spara?",
-                    MessageBoxButtons.YesNoCancel)
-                
-                 == DialogResult.Yes;
-        }
         #endregion
 
         #region Koppling av data till UI
@@ -567,9 +562,15 @@ namespace Budgetterarn
         private void BudgeterFormClosing(object sender, FormClosingEventArgs e)
         {
             if (debugGlobal) return;
-            if (WinFormsChecks.SaveCheck(somethingChanged, Save) == DialogResult.Cancel)
+
+            var saveCheckResults = WinFormsChecks.SaveCheck(somethingChanged);
+            if (saveCheckResults == DialogResult.Cancel)
             {
                 e.Cancel = true;
+            }
+            else if(saveCheckResults == DialogResult.Yes)
+            {
+                Save();
             }
         }
 
@@ -710,27 +711,21 @@ namespace Budgetterarn
             autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
         }
 
-        private static void CheckFileIfEmptyPromptUserIfEmptyPath(
-            ExcelFileKontoutdragInfoForLoad kontoutdragInfoForLoad)
+        private void CheckFileIfEmptyPromptUserIfEmptyPath()
         {
-            if (!string.IsNullOrWhiteSpace(
-                kontoutdragInfoForLoad.ExcelFileSavePath))
-            {
-                return;
-            }
+            if (FilePathAlreadySet) return;
 
-            var filePath = FileOperations.OpenFileOfType(
-                        @"Open file",
-                        FileType.Xls,
-                        string.Empty,
-                        WriteToOutput); // Öppnar dialog
+            // Öppnar dialog
+            var filePath = FileOperations.OpenFileOfType(WriteToOutput);
 
             // Ev. har pathen ändrats.
             // Har man däremot laddat in nya så ska den sökvägen gälla för sparningar
-            FileReferences.ExcelFileSavePath =
-            kontoutdragInfoForLoad.ExcelFileSavePath =
+            KontoutdragExcelFileInfo.ExcelFileSavePath =
                 filePath;
         }
+
+        private bool FilePathAlreadySet => !string.IsNullOrWhiteSpace(
+            KontoutdragExcelFileInfo.ExcelFileSavePath);
 
         private void SetStatusLabelProps()
         {
@@ -788,7 +783,9 @@ namespace Budgetterarn
             }
         }
 
-        private static bool CheckIfSomethingWasChanged(bool oldSomethingChanged, bool newSomethingChanged)
+        private static bool CheckIfSomethingWasChanged(
+            bool oldSomethingChanged,
+            bool newSomethingChanged)
         {
             return oldSomethingChanged || newSomethingChanged;
         }

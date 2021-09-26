@@ -13,6 +13,7 @@ using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Model.ViewModel;
 using WebBankBudgeter.Service.Services;
 using Categories = CategoryHandler.Model.Categories;
+using System.IO;
 
 namespace WebBankBudgeter.Service
 {
@@ -126,22 +127,18 @@ namespace WebBankBudgeter.Service
 
         private SortedList GetTransactionsFromFile()
         {
-            var kontoutdragInfoForLoad = new ExcelFileKontoutdragInfoForLoad
+            var kontoutdragExcelFileInfo = new KontoutdragExcelFileInfo
             {
-                ExcelFileSavePath = _filePath,
-                ExcelFileSaveFileName = @"pelles budget.xls",
                 SheetName = BankConstants.SheetName,
+                ExcelFileSavePath = Path.Combine(
+                    _filePath,
+                    @"pelles budget.xls")
             };
 
-            kontoutdragInfoForLoad.ExcelFileSavePath = System.IO.Path.Combine(
-                kontoutdragInfoForLoad.ExcelFileSavePath,
-                kontoutdragInfoForLoad.ExcelFileSaveFileName
-            );
-
             // Ladda från fil
-            var entriesLoadedFromDataStore = 
+            var entriesLoadedFromDataStore =
                 LoadEntriesFromFileHandler.LoadEntriesFromFile(
-                    kontoutdragInfoForLoad);
+                    kontoutdragExcelFileInfo);
 
             var kontoEntriesHolder = new KontoEntriesHolderForLoad();
 

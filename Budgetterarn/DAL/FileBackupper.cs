@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
+using System;
 using System.Globalization;
 using System.IO;
 
@@ -6,42 +7,53 @@ namespace Budgetterarn.DAL
 {
     public class FileBackupper
     {
-        private readonly string _typeOfBackup;
-        private readonly string _excelFileSavePath;
-        private readonly string _excelFileSavePathWithoutFileName;
-        private readonly string _excelFileSaveFileName;
+        private const string _typeOfBackup = "Before.Save";
+        private readonly KontoutdragExcelFileInfo excelFileInfo;
 
-        public FileBackupper(string v, string excelFileSavePath, string excelFileSavePathWithoutFileName, string excelFileSaveFileName)
+        public FileBackupper(KontoutdragExcelFileInfo excelFileInfo)
         {
-            _typeOfBackup = v;
-            _excelFileSavePath = excelFileSavePath;
-            _excelFileSavePathWithoutFileName = excelFileSavePathWithoutFileName;
-            _excelFileSaveFileName = excelFileSaveFileName;
+            this.excelFileInfo = excelFileInfo;
         }
 
         public void BackupOrginialFile()
         {
-            BackupOrginialFile(
-                _typeOfBackup + "." + _excelFileSaveFileName);
-        }
+            var destinationPath = Path.Combine(
+                excelFileInfo.ExcelFileSavePathWithoutFileName,
+                @"bak\");
 
-        private static string GetTimeNowString =>
-            DateTime.Now.ToString(new CultureInfo("sv-SE")).Replace(":", ".");
-
-        private void BackupOrginialFile(string newFileName)
-        {
-            var destinationPath = _excelFileSavePathWithoutFileName + @"bak\";
             Directory.CreateDirectory(destinationPath);
 
             File.Copy(
                 sourceFileName:
-                    _excelFileSavePath,
+                    excelFileInfo.ExcelFileSavePath,
+
                 destFileName:
-                    destinationPath + newFileName + "."
-                    + GetTimeNowString + ".bak.xls",
-                overwrite:
-                    true);
+                    GetFullDestinationFileName(
+                        GetFullDestinationFileName(),
+                        destinationPath),
+
+                overwrite: true);
         }
 
+        private string GetFullDestinationFileName(
+            string fileName,
+            string destinationPath)
+        {
+            return Path.Combine(destinationPath, fileName);
+        }
+
+        private string GetFullDestinationFileName()
+        {
+            return
+                _typeOfBackup + "." +
+                excelFileInfo.ExcelFileSaveFileName + "." +
+                GetTimeNowString +
+                ".bak.xls";
+        }
+
+        private static string GetTimeNowString =>
+            DateTime.Now
+            .ToString(new CultureInfo("sv-SE"))
+            .Replace(":", ".");
     }
 }
