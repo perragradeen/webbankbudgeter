@@ -1,18 +1,28 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Budgeter.Core;
 using Budgeter.Core.Entities;
 using CategoryHandler;
+using LoadTransactionsFromFile;
 
 // ReSharper disable CommentTypo
 
 namespace Budgetterarn
 {
-    public static class KontoEntriesChecker
+    public class KontoEntriesChecker
     {
-        public static bool OkToAddFromOld { get; set; }
+        private readonly KontoEntriesViewModelListUpdater lists;
+        private bool okToAddFromOld;
 
-        public static void CheckAndAddNewItemsForLists(
-            KontoEntriesViewModelListUpdater lists)
+        public KontoEntriesChecker(
+            KontoEntriesViewModelListUpdater lists,
+            bool okToAddFromOld = false)
+        {
+            this.lists = lists;
+            this.okToAddFromOld = okToAddFromOld;
+        }
+
+        public void CheckAndAddNewItemsForLists()
         {
             if (lists.NewKontoEntriesIn.Count <= 0) return;
 
@@ -25,7 +35,7 @@ namespace Budgetterarn
 
                 var entryNew = item as KontoEntry;
 
-                var foundDoubleInUList = 
+                var foundDoubleInUList =
                     lists.NewItemsListEdited.CheckIfKeyExistsInKontoEntries(
                         entryNew.KeyForThis)
                     || EntryMatchesKeyForEntryInList(lists, entryNew);
@@ -43,7 +53,7 @@ namespace Budgetterarn
                 // Kolla om det är en dubblet eller om det är finns ett
                 // motsvarade "skyddat belopp"
                 if (lists.KontoEntries.ContainsKey(entryNew.KeyForThis)
-                    && !OkToAddFromOld)
+                    && !okToAddFromOld)
                 {
                     continue;
                 }
@@ -59,13 +69,38 @@ namespace Budgetterarn
                 lists.NewItemsListEdited.Add(entryNew);
             }
 
-            OkToAddFromOld = false;
+            okToAddFromOld = false;
         }
 
         private static bool EntryMatchesKeyForEntryInList(KontoEntriesViewModelListUpdater lists, KontoEntry entryNew)
         {
             return lists.NewItemsListEdited.Any(
                 viewItem => viewItem.KeyEqauls(entryNew));
+        }
+
+        internal void AddInUiListAlreadyToAddList(
+            List<KontoEntry> inUiListAlready)
+        {
+            foreach (var entry in lists.NewItemsListEdited)
+            {
+                // TODO: Kolla prestanda?
+                if (inUiListAlready.All(e => e.KeyForThis != entry.KeyForThis))
+                {
+                    lists.ToAddToListview.Add(entry);
+                }
+            }
+        }
+
+        internal void CheckSkyddatBelopp(KontoEntriesHolder kontoEntriesHolder)
+        {
+            foreach (var entry in lists.ToAddToListview)
+            {
+                // kolla om det är "Skyddat belopp", och se om det finns några
+                // gamla som matchar.
+                SkyddatBeloppChecker.CheckForSkyddatBeloppMatcherAndGuessDouble(
+                    entry,
+                    kontoEntriesHolder.KontoEntries);
+            }
         }
     }
 }

@@ -223,7 +223,7 @@ namespace Budgetterarn
             this.loadCurrentEntriesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
             this.loadCurrentEntriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.loadCurrentEntriesToolStripMenuItem.Text = "Load current entries";
-            this.loadCurrentEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadCurrentEntriesToolStripMenuItemClick);
+            this.loadCurrentEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadCurrentVisibleEntries_LoadMenuClick);
             // 
             // optionsToolStripMenuItem
             // 
@@ -445,7 +445,7 @@ namespace Budgetterarn
             this.loadOldEntriesToolStripMenuItem.Name = "loadOldEntriesToolStripMenuItem";
             this.loadOldEntriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.loadOldEntriesToolStripMenuItem.Text = "Load old entries";
-            this.loadOldEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadOldEntriesToolStripMenuItem_Click);
+            this.loadOldEntriesToolStripMenuItem.Click += new System.EventHandler(this.LoadOldEntries_LoadMenuClick);
             // 
             // BudgeterForm
             // 
@@ -460,7 +460,7 @@ namespace Budgetterarn
             this.MainMenuStrip = this._MainMenu;
             this.Name = "BudgeterForm";
             this.Text = "The Budgeter, version ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BudgeterFormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormIsClosing);
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

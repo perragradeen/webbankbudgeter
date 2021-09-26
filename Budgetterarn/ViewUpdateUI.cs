@@ -11,6 +11,8 @@ namespace Budgetterarn
 {
     internal static class ViewUpdateUi
     {
+        public const int MaxRowDisplay = 100;
+
         internal static void ClearListAndSetEntriesToListView(
             ListView showEntriesInThisUiList,
             SortedList kontoEntries)
@@ -66,7 +68,7 @@ namespace Budgetterarn
         {
             // Begränsa antal synliga rader
             rowCounter++;
-            return rowCounter > UISettings.MaxRowDisplay;
+            return rowCounter > MaxRowDisplay;
         }
 
         #region Container adds

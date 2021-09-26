@@ -42,12 +42,13 @@ namespace TestBudgetterarn
         {
             // if theese preconditions exists
             var testData = TestDataGet;
+            var target = new KontoEntriesChecker(testData);
 
             // If begin value is
             var inCount = testData.NewKontoEntriesIn.Count;
 
             // When this happens
-            KontoEntriesChecker.CheckAndAddNewItemsForLists(testData);
+            target.CheckAndAddNewItemsForLists();
 
             // Then it sholud be
             var afterCount = testData.NewItemsListEdited.Count;
@@ -62,12 +63,13 @@ namespace TestBudgetterarn
             var oldData = TestDataGet;
             oldData.NewItemsListEdited.First().KostnadEllerInkomst = 9123;
             testData.NewItemsListEdited = oldData.NewItemsListEdited;
+            var target = new KontoEntriesChecker(testData);
 
             // If begin value is
             var inCount = testData.NewKontoEntriesIn.Count;
 
             // When this happens
-            KontoEntriesChecker.CheckAndAddNewItemsForLists(testData);
+            target.CheckAndAddNewItemsForLists();
 
             // Then it sholud be
             var afterCount = testData.NewItemsListEdited.Count;
@@ -85,12 +87,13 @@ namespace TestBudgetterarn
             testData.NewItemsListEdited = oldData.NewItemsListEdited;
 
             TestDataKoList.ForEach(x => testData.KontoEntries.Add(x.KeyForThis, x));
+            var target = new KontoEntriesChecker(testData);
 
             // If begin value is
             var inCount = testData.NewKontoEntriesIn.Count;
 
             // When this happens
-            KontoEntriesChecker.CheckAndAddNewItemsForLists(testData);
+            target.CheckAndAddNewItemsForLists();
 
             // Then it sholud be
             var afterCount = testData.NewItemsListEdited.Count;

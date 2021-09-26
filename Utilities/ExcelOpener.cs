@@ -23,7 +23,7 @@ namespace Utilities
                     var newFile = new FileInfo(excelFileSavePath);
                     if (File.Exists(excelFileSavePath))
                     {
-                        using (newFile.Open(System.IO.FileMode.Open))
+                        using (newFile.Open(FileMode.Open))
                         {
                         }
                     }
