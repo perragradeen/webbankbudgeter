@@ -145,8 +145,7 @@ namespace WebBankBudgeter.Service
             var kontoEntriesHolder = new KontoEntriesHolder();
 
             _ = LoadKontonDal.TransFormEntriesFromExcelFileToTable(
-                kontoEntriesHolder.KontoEntries,
-                kontoEntriesHolder.SaldoHolder,
+                kontoEntriesHolder,
                 entriesLoadedFromDataStore);
 
             return kontoEntriesHolder.KontoEntries;
