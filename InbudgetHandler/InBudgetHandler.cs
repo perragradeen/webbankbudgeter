@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Budgeter.Core.Entities;
+using InbudgetHandlle.Model;
 using WebBankBudgeter.Service.Model;
 
 namespace InbudgetHandler

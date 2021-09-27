@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using InbudgetHandler;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Services;
+using InbudgetHandlle.Model;
 
 namespace WebBankBudgeter.UiBinders
 {
