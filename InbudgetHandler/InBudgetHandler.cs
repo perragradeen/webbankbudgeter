@@ -1,12 +1,11 @@
-﻿using Budgeter.Core.Entities;
-using InbudgetToTable.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Budgeter.Core.Entities;
 using WebBankBudgeter.Service.Model;
 
-namespace InbudgetToTable
+namespace InbudgetHandler
 {
     public class InBudgetHandler
     {

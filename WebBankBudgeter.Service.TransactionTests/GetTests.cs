@@ -1,15 +1,15 @@
 using System;
 using System.IO;
-using InbudgetToTable;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
+using InbudgetHandler;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace InbudgetToTableTests
+namespace WebBankBudgeter.Service.TransactionTests
 {
     [TestClass]
     public class GetTests
     {
-        private string FilePath;
+        private readonly string FilePath;
             //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetInsRiktigaExempel.json"
 
         public GetTests()

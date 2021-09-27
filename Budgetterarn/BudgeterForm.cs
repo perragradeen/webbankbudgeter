@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 using Budgeter.Core;
 using Budgeter.Core.Entities;
 using Budgetterarn.Application_Settings_and_constants;
 using Budgetterarn.AutoNavigateBrowser;
 using Budgetterarn.DAL;
+using Budgetterarn.EntryLogicSetFlags;
 using Budgetterarn.InternalUtilities;
 using CategoryHandler;
 using CefSharp;

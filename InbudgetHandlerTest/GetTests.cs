@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using InbudgetToTable;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
+using InbudgetHandler;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace InbudgetToTableTests
+namespace InbudgetHandlerTest
 {
     [TestClass]
     public class GetTests

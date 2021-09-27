@@ -1,15 +1,15 @@
-﻿using Budgeter.Core.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using Budgeter.Core.Entities;
 
-namespace InbudgetToTable
+namespace InbudgetHandler
 {
     public class InBudgetHandlerFileHandler
     {
         private readonly string _inBudgetFilePath;
-        private JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
+        private readonly JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
 
         private List<InBudget> _inPoster;
         public async Task<List<InBudget>> GetInPoster()

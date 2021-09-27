@@ -1,12 +1,11 @@
 ﻿using Budgeter.Core.Entities;
-using InbudgetToTable;
-using InbudgetToTable.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using InbudgetHandler;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Services;
 

@@ -2,7 +2,7 @@
 using System.Linq;
 using Budgeter.Core.Entities;
 
-namespace Budgetterarn
+namespace Budgetterarn.EntryLogicSetFlags
 {
     public static class KontoEntryKeyChecker
     {

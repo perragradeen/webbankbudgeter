@@ -5,7 +5,7 @@ using Budgeter.Core.Entities;
 
 // ReSharper disable LocalizableElement
 
-namespace Budgetterarn
+namespace Budgetterarn.EntryLogicSetFlags
 {
     public class EntryAdderAndReplacer
     {

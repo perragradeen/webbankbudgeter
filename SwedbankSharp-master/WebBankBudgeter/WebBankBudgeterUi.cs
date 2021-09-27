@@ -1,6 +1,4 @@
 ﻿using InbudgetHandler;
-using InbudgetToTable;
-using InbudgetToTable.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

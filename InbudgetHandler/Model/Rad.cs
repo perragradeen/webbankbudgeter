@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace InbudgetToTable.Model
+namespace InbudgetHandlle.Model
 {
     public class Rad
     {

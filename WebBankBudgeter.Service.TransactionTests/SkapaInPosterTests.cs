@@ -1,16 +1,14 @@
-using InbudgetHandler;
-using InbudgetToTable;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using WebBankBudgeter.Service;
+using InbudgetHandler;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Services;
 
-namespace InbudgetToTableTests
+namespace WebBankBudgeter.Service.TransactionTests
 {
     [TestClass]
     public class SkapaInPosterTests
@@ -22,10 +20,10 @@ namespace InbudgetToTableTests
 
         private static string _globalLog;
 
-        private InBudgetHandler _inBudgetHandler =>
+        private static InBudgetHandler InBudgetHandler =>
             new InBudgetHandler(
                 _budgetInsFilePath);
-        private TransactionHandler _transactionHandler
+        private TransactionHandler TransactionHandler
         {
             get
             {
@@ -49,7 +47,9 @@ namespace InbudgetToTableTests
         [TestMethod]
         public async Task SkapaInPosterTestAsync()
         {
-            var handler = new SkapaInPosterHanterare(_inBudgetHandler, _transactionHandler);
+            var handler = new SkapaInPosterHanterare(
+                InBudgetHandler,
+                TransactionHandler);
 
             var nuDatum = new DateTime(2021, 09, 01);
             var results = await handler.SkapaInPoster(nuDatum);
@@ -110,7 +110,6 @@ namespace InbudgetToTableTests
         public void GetNrMonthsBetweenDates_Test()
         {
             // Arrange
-            var transactions = GetDefaultTransactions().Transactions;
             var date1 = new DateTime(2018, 6, 1);
             var date2 = new DateTime(2020, 7, 1);
             var expectedMonths = 25;
@@ -163,7 +162,7 @@ namespace InbudgetToTableTests
             };
         }
 
-        private string GetCategoryFilePath()
+        private static string GetCategoryFilePath()
         {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(

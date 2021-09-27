@@ -7,7 +7,7 @@ using LoadTransactionsFromFile;
 
 // ReSharper disable CommentTypo
 
-namespace Budgetterarn
+namespace Budgetterarn.EntryLogicSetFlags
 {
     public class KontoEntriesChecker
     {
