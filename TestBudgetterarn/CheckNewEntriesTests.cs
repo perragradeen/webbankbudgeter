@@ -1,11 +1,11 @@
-﻿using Budgeter.Core;
-using Budgeter.Core.Entities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Budgeter.Core;
+using Budgeter.Core.Entities;
 using Budgetterarn.EntryLogicSetFlags;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestBudgetterarn
 {
@@ -15,9 +15,21 @@ namespace TestBudgetterarn
         private static List<KontoEntry> TestDataKoList =>
             (new List<KontoEntry>
             {
-                new KontoEntry { Date = DateTime.Now.AddDays(-2), KostnadEllerInkomst = 1, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
-                new KontoEntry { Date = DateTime.Now.AddDays(-1), KostnadEllerInkomst = 2, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
-                new KontoEntry { Date = DateTime.Now.AddDays(-3), KostnadEllerInkomst = 3, TypAvKostnad = "hemförsäkring", Info = "testinkomst"},
+                new KontoEntry
+                {
+                    Date = DateTime.Now.AddDays(-2), KostnadEllerInkomst = 1, TypAvKostnad = "hemförsäkring",
+                    Info = "testinkomst"
+                },
+                new KontoEntry
+                {
+                    Date = DateTime.Now.AddDays(-1), KostnadEllerInkomst = 2, TypAvKostnad = "hemförsäkring",
+                    Info = "testinkomst"
+                },
+                new KontoEntry
+                {
+                    Date = DateTime.Now.AddDays(-3), KostnadEllerInkomst = 3, TypAvKostnad = "hemförsäkring",
+                    Info = "testinkomst"
+                },
             });
 
         private static KontoEntriesViewModelListUpdater TestDataGet

@@ -4,7 +4,7 @@ namespace LoadTransactionsFromFile
 {
     public class KontoEntriesHolder : KontoEntriesHolderForLoad
     {
-        public KontoEntriesHolder() : base()
+        public KontoEntriesHolder()
         {
             NewKontoEntries = new SortedList();
         }

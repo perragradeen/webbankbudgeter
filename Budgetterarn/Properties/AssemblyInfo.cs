@@ -51,5 +51,3 @@ using System.Runtime.InteropServices;
 // 1.0.1.0 PopupComboboxOfCaytegories had a bugg with wrong colwidth added when checking postion, only noticable if not all columns have same length. Nicer set autocat and popup. användaren kan sätta autokat.
 // 1.0.0.1 Nothing new yet, Later singleclick in newlist etc.
 // 1.0.0.0 Everything before, see Svn. Even Added mulitiselect etc.
-
-

@@ -9,14 +9,15 @@ namespace WebBankBudgeter.Service.MonthAvarages
     {
         private readonly TransactionList _transactionDatalist;
 
-        public static readonly string[] ReoccurringCatGroups = {
+        public static readonly string[] ReoccurringCatGroups =
+        {
             "ID_ACCOMMODATION",
             "ID_HOUSEHOLD",
             "ID_OTHER",
             "ID_TRANSPORT"
         };
 
-        private static readonly IEnumerable<string> IncomesCatGroup = new[] { "ID_INCOME" };
+        private static readonly IEnumerable<string> IncomesCatGroup = new[] {"ID_INCOME"};
 
         public MonthAvaragesCalcs(TransactionList transactionDatalist)
         {
@@ -31,7 +32,8 @@ namespace WebBankBudgeter.Service.MonthAvarages
             return GetMonthAveragesFromGroupTransactions(gropuedTrans);
         }
 
-        private static MonthAvarages GetMonthAveragesFromGroupTransactions(IEnumerable<IGrouping<TransGrouping, Transaction>> gropuedTrans)
+        private static MonthAvarages GetMonthAveragesFromGroupTransactions(
+            IEnumerable<IGrouping<TransGrouping, Transaction>> gropuedTrans)
         {
             var averages = new MonthAvarages();
             var averagesReoccurringCosts = new List<double>();

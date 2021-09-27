@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
 using Budgeter.Core.Entities;
 using CategoryHandler;
 using CategoryHandler.Model;
@@ -14,12 +13,14 @@ namespace Budgetterarn
     public partial class ListViewWithComboBox : KontoEntryListView
     {
         #region Members
+
         private const string AutoCatCpation = "Spara kategorival (typ av kostnad) automatiskt?";
         private const int TypAvKostnadKolumnnummer = 2;
 
         private readonly List<object> previouslySelectedItems = new List<object>();
         private int selectedSubItem;
         private int x;
+
         #endregion
 
         // Constructor
@@ -55,7 +56,7 @@ namespace Budgetterarn
                 if (Items.Count <= 0) return entries;
                 var items = Items.Cast<ListViewItem>();
                 items.ToList().ForEach(
-                    viewItem => entries.Add((KontoEntry)viewItem.Tag));
+                    viewItem => entries.Add((KontoEntry) viewItem.Tag));
 
                 return entries;
             }
@@ -113,21 +114,25 @@ namespace Budgetterarn
 
             // Get selected values
             // Get selected items cat
-            var selEntry = (KontoEntry)clickedItem.Tag;
+            var selEntry = (KontoEntry) clickedItem.Tag;
             var selItemsCat = selEntry != null && !string.IsNullOrEmpty(selEntry.TypAvKostnad)
                 ? selEntry.TypAvKostnad
                 : null;
 
             var selectedCategoryText = selItemsCat ?? comboBoxCategories.Items[i].ToString(); // Done:Byt namn
             var slectedInfoDescription = clickedItem.SubItems[1].Text;
-            var newAutoCategeory = new AutoCategorise { InfoDescription = slectedInfoDescription };
+            var newAutoCategeory = new AutoCategorise {InfoDescription = slectedInfoDescription};
 
             #region Fråga anv. om den är säker
 
             // Fråga anv. om den är säker
             var autoCatMessage = "Spara autokategori? Alltså att altid välja:" + Environment.NewLine
-                                                                               + selectedCategoryText + Environment.NewLine + "Varje gång info är:"
-                                                                               + Environment.NewLine + slectedInfoDescription + Environment.NewLine + "?";
+                                                                               + selectedCategoryText +
+                                                                               Environment.NewLine +
+                                                                               "Varje gång info är:"
+                                                                               + Environment.NewLine +
+                                                                               slectedInfoDescription +
+                                                                               Environment.NewLine + "?";
             if (!UserAcceptsFurtherAction(autoCatMessage, AutoCatCpation))
             {
                 return;
@@ -172,7 +177,7 @@ namespace Budgetterarn
             // Todo: uppdera listan men nya entries. ladda oxo om filen ev. . Om det kommer fler, fast då används ju minnet som är uppdaterat ändå.
             foreach (ListViewItem listViewItem in items)
             {
-                var newKe = (KontoEntry)listViewItem.Tag;
+                var newKe = (KontoEntry) listViewItem.Tag;
                 if (newKe == null)
                 {
                     continue;
@@ -273,7 +278,7 @@ namespace Budgetterarn
                 foreach (ListViewItem item in previouslySelectedItems)
                 {
                     item.SubItems[selectedSubItem].Text = str;
-                    ((KontoEntry)item.Tag).TypAvKostnad = str;
+                    ((KontoEntry) item.Tag).TypAvKostnad = str;
                 }
 
                 // items set, clear so next selection don't overwrite
@@ -283,7 +288,7 @@ namespace Budgetterarn
             {
                 if (clickedItem == null) return;
                 clickedItem.SubItems[selectedSubItem].Text = str;
-                ((KontoEntry)clickedItem.Tag).TypAvKostnad = str;
+                ((KontoEntry) clickedItem.Tag).TypAvKostnad = str;
             }
         }
 
@@ -364,7 +369,7 @@ namespace Budgetterarn
             // If Sent in selection is made
             if (selectedSubColumnItem != null)
             {
-                selectedSubItem = (int)selectedSubColumnItem;
+                selectedSubItem = (int) selectedSubColumnItem;
             }
 
             #endregion
@@ -439,7 +444,7 @@ namespace Budgetterarn
             // Sätt texten i cellen. Om flera inte är valda
             if (selectedSubColumnItem != null || clickedItem == null) return;
             clickedItem.SubItems[selectedSubItem].Text = selectedItemInCatText;
-            ((KontoEntry)clickedItem.Tag).TypAvKostnad = selectedItemInCatText;
+            ((KontoEntry) clickedItem.Tag).TypAvKostnad = selectedItemInCatText;
 
             #endregion
         }

@@ -1,8 +1,8 @@
-﻿using Budgeter.Core.Entities;
+﻿using System;
+using System.Collections;
+using Budgeter.Core.Entities;
 using LoadTransactionsFromFile;
 using LoadTransactionsFromFile.DAL;
-using System;
-using System.Collections;
 
 namespace Budgetterarn.InternalUtilities
 {
@@ -57,11 +57,11 @@ namespace Budgetterarn.InternalUtilities
         private void VisaFörAnvändarenHurDetGick(LoadOrSaveResult loadResult)
         {
             string statusText = "No. rows loaded; "
-                         + kontoEntriesHolder.KontoEntries.Count
-                         + " . Skpped: "
-                         + loadResult.SkippedOrSaved
-                         + ". File loaded; "
-                         + kontoutdragExcelFileInfo.ExcelFileSavePath;
+                                + kontoEntriesHolder.KontoEntries.Count
+                                + " . Skpped: "
+                                + loadResult.SkippedOrSaved
+                                + ". File loaded; "
+                                + kontoutdragExcelFileInfo.ExcelFileSavePath;
             writeToUiStatusLog(statusText);
         }
 

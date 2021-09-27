@@ -1,7 +1,7 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections;
 using System.Globalization;
+using Microsoft.Office.Interop.Excel;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -48,7 +48,7 @@ namespace Utilities
                         worksheet
                             .Range["A" + i.ToString(CultureInfo.InvariantCulture),
                                 column + (i + numOfRowsToReadAtATime).ToString(CultureInfo.InvariantCulture)]; // "IV" 
-                    var myvalues = (Array)range.Cells.Value[Type.Missing]; // Value;
+                    var myvalues = (Array) range.Cells.Value[Type.Missing]; // Value;
 
                     string[] strArrayIn = null;
                     string[,] strArrayIn2D = null;

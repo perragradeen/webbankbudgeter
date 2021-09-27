@@ -1,9 +1,8 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Application = Microsoft.Office.Interop.Excel.Application;
+using Microsoft.Office.Interop.Excel;
 
 namespace Utilities
 {
@@ -18,8 +17,8 @@ namespace Utilities
         {
             var returnNames = new Hashtable
             {
-                { FileType.Xls, "Excel XLS Log File" },
-                { FileType.Xml, "XML Setting File" }
+                {FileType.Xls, "Excel XLS Log File"},
+                {FileType.Xml, "XML Setting File"}
             };
 
             return returnNames;
@@ -75,10 +74,10 @@ namespace Utilities
                 const int startSheetNumber = 1;
                 for (var sheetNr = startSheetNumber; sheetNr <= numOfSheets; sheetNr++)
                 {
-                    var localSheetName = ((Worksheet)sheets.Item[sheetNr]).Name;
+                    var localSheetName = ((Worksheet) sheets.Item[sheetNr]).Name;
 
                     // Excelarknamnet
-                    var worksheet = (Worksheet)sheets.Item[sheetNr];
+                    var worksheet = (Worksheet) sheets.Item[sheetNr];
 
                     // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
                     var rows = new Hashtable(); // Behöver ej göras new, kan sättas till null eg.
@@ -88,7 +87,10 @@ namespace Utilities
                     book.Add(localSheetName, rows); // Lägg till i arbetsboken
                 }
 
-                if (sheetName != "" && selectedRow != 0) // ha detta som en annan fkn, för att kunna använda ovan som en mer generell fkn, och ev. ha en som kör båda sen, för MissingCSC
+                if (
+                    sheetName != "" &&
+                    selectedRow !=
+                    0) // ha detta som en annan fkn, för att kunna använda ovan som en mer generell fkn, och ev. ha en som kör båda sen, för MissingCSC
                 {
                     var rows = (book[sheetName] as Hashtable)?.Values
                                ?? throw new ArgumentNullException(nameof(excelBookPath));

@@ -87,7 +87,7 @@ namespace Budgetterarn.WebCrawlers
         {
             // Kollas även senare
             return !kontoEntriesHolder.KontoEntries.ContainsKey(key)
-                && !kontoEntriesHolder.NewKontoEntries.ContainsKey(key);
+                   && !kontoEntriesHolder.NewKontoEntries.ContainsKey(key);
         }
 
         /// <summary>

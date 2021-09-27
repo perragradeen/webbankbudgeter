@@ -14,14 +14,15 @@ namespace Budgetterarn
 
         private void ListView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            var lvwColumnSorter = (ListViewColumnSorter)ListViewItemSorter;
+            var lvwColumnSorter = (ListViewColumnSorter) ListViewItemSorter;
 
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == lvwColumnSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
                 lvwColumnSorter.Order = lvwColumnSorter.Order == SortOrder.Ascending
-                    ? SortOrder.Descending : SortOrder.Ascending;
+                    ? SortOrder.Descending
+                    : SortOrder.Ascending;
             }
             else
             {

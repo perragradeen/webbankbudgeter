@@ -1,9 +1,9 @@
-﻿using RefLesses;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using RefLesses;
 
 namespace Budgeter.Core.Entities
 {
@@ -95,10 +95,10 @@ namespace Budgeter.Core.Entities
                     Date.Day, // DateString, 
                     Info, KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
                     SaldoOrginal.ToString(CultureInfo.InvariantCulture),
-                    AckumuleratSaldo.ToString(CultureInfo.InvariantCulture), 
-                    TypAvKostnad, 
-                    ExtendedInfo, 
-                    Place, 
+                    AckumuleratSaldo.ToString(CultureInfo.InvariantCulture),
+                    TypAvKostnad,
+                    ExtendedInfo,
+                    Place,
                     TimeOfDay,
                     EntryType.ToString()
                 };
@@ -115,9 +115,9 @@ namespace Budgeter.Core.Entities
                 return new[]
                 {
                     DateString,
-                    Info, 
-                    TypAvKostnad, 
-                    KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture), 
+                    Info,
+                    TypAvKostnad,
+                    KostnadEllerInkomst.ToString(CultureInfo.InvariantCulture),
                     SaldoOrginal.ToString(CultureInfo.InvariantCulture),
                     AckumuleratSaldo.ToString(CultureInfo.InvariantCulture)
                 };
@@ -204,7 +204,6 @@ namespace Budgeter.Core.Entities
                 }
                 catch (Exception e)
                 {
-
                     throw new Exception("Datumfel. data: " + Year + " " + Month + " " + Day, e);
                 }
             }
@@ -277,7 +276,7 @@ namespace Budgeter.Core.Entities
 
             try
             {
-                kontoEntryType = (KontoEntryType)Enum.Parse(
+                kontoEntryType = (KontoEntryType) Enum.Parse(
                     typeof(KontoEntryType),
                     entryType,
                     true);

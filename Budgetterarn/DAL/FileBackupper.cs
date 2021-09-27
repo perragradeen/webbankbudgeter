@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
+using Budgeter.Core.Entities;
 
 namespace Budgetterarn.DAL
 {
@@ -25,13 +25,11 @@ namespace Budgetterarn.DAL
 
             File.Copy(
                 sourceFileName:
-                    excelFileInfo.ExcelFileSavePath,
-
+                excelFileInfo.ExcelFileSavePath,
                 destFileName:
-                    GetFullDestinationFileName(
-                        GetFullDestinationFileName(),
-                        destinationPath),
-
+                GetFullDestinationFileName(
+                    GetFullDestinationFileName(),
+                    destinationPath),
                 overwrite: true);
         }
 
@@ -53,7 +51,7 @@ namespace Budgetterarn.DAL
 
         private static string GetTimeNowString =>
             DateTime.Now
-            .ToString(new CultureInfo("sv-SE"))
-            .Replace(":", ".");
+                .ToString(new CultureInfo("sv-SE"))
+                .Replace(":", ".");
     }
 }

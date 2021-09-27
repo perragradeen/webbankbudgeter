@@ -1,14 +1,14 @@
-﻿using Budgeter.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Budgeter.Core.Entities;
 using InbudgetHandler;
+using InbudgetHandler.Model;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Services;
-using InbudgetHandlle.Model;
 
 namespace WebBankBudgeter.UiBinders
 {
@@ -61,7 +61,8 @@ namespace WebBankBudgeter.UiBinders
             _inBudgetHandler.SparaInPosterPåDisk(inPosterAttMerga);
         }
 
-        public void BindInPosterRaderTillUi(List<Rad> rader, List<string> inPosterKolumnRubriker, DataGridView bindToUiElement)
+        public void BindInPosterRaderTillUi(List<Rad> rader, List<string> inPosterKolumnRubriker,
+            DataGridView bindToUiElement)
         {
             // UI
             // Skriv ut år+månad på rad 1 med headers från vänster till höger
@@ -147,8 +148,8 @@ namespace WebBankBudgeter.UiBinders
         private static string GetHeaderText(List<DataGridViewTextBoxColumn> kolumnRubrikGet, DataGridViewCell kolumn)
         {
             return kolumnRubrikGet
-                                    .FirstOrDefault(kolumnLetare => kolumnLetare.Index == kolumn.ColumnIndex)
-                                        ?.HeaderText;
+                .FirstOrDefault(kolumnLetare => kolumnLetare.Index == kolumn.ColumnIndex)
+                ?.HeaderText;
         }
 
         private static string HämtaRubrik(List<DataGridViewCell> celler)

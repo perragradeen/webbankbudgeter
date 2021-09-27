@@ -1,6 +1,6 @@
-﻿using Budgeter.Core.Entities;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Budgeter.Core.Entities;
 
 namespace Budgeter.Core
 {

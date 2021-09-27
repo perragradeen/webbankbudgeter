@@ -14,7 +14,7 @@ namespace Serializers
     /// Ladda XML-filen till minnet med serialisering
     /// OneAccessoriesCatalog = DeserializeObject(accessoryCatalogIn, typeof(Accessories)) as Accessories;
     /// </summary>
-    public class SerializationFunctions
+    public static class SerializationFunctions
     {
         /// <summary>
         /// Lägg innehållet i en xml-fil till minnet i den statiska vaiabeln AllCategories
@@ -61,6 +61,7 @@ namespace Serializers
             try
             {
                 // Gör en serializer som matchar mot klassen accessories
+
                 #region Serializera ner till fil
 
                 var serializer = new XmlSerializer(serializeType);
@@ -94,7 +95,8 @@ namespace Serializers
         }
 
         private static void ErrorCatchForSerialze(
-            string filename, string deserializingOrSer, Stream fileStream, TextWriter fileWriteStream, Exception serExcp)
+            string filename, string deserializingOrSer, Stream fileStream, TextWriter fileWriteStream,
+            Exception serExcp)
         {
             Console.WriteLine(
                 "Error while " + deserializingOrSer + " object: " + filename + "- Sys err: " + serExcp.Message);

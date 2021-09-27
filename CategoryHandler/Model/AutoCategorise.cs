@@ -6,8 +6,7 @@ namespace CategoryHandler.Model
     public class AutoCategorise
     {
         // En beskrivning på entryn. Ex. "HSB GÖTEBORG"
-        [XmlText]
-        public string InfoDescription { get; set; }
+        [XmlText] public string InfoDescription { get; set; }
 
         ////For easier debugging
         public override string ToString()

@@ -38,7 +38,6 @@ namespace RefLesses
 
             //Saldo:44 476,09 Information och villkor om kontot
             return saldo;
-
         }
 
         private static bool ContainsClean(string compareThis, string withThis)

@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
-using System;
+﻿using System;
 using System.Collections;
 using System.IO;
+using Budgeter.Core.Entities;
 using Utilities;
 
 namespace LoadTransactionsFromFile
@@ -46,7 +46,7 @@ namespace LoadTransactionsFromFile
             catch (Exception fileOpneExcp)
             {
                 Console.WriteLine("User cancled or other error: "
-                    + fileOpneExcp.Message);
+                                  + fileOpneExcp.Message);
 
                 if (kontoUtdragXls.Count < 1)
                 {
@@ -57,7 +57,7 @@ namespace LoadTransactionsFromFile
 
             #endregion
 
-            return (Hashtable)kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
+            return (Hashtable) kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
         }
     }
 }

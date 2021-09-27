@@ -21,7 +21,7 @@ namespace WebBankBudgeter.Service.Model
 
         public override string ToString()
         {
-            return CategoryText + " " + AmountsForMonth.Count.ToString();
+            return CategoryText + " " + AmountsForMonth.Count;
         }
     }
 }

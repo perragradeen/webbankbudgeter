@@ -1,6 +1,6 @@
-﻿using CategoryHandler.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CategoryHandler.Model;
 
 namespace CategoryHandler.Service
 {
@@ -48,16 +48,17 @@ namespace CategoryHandler.Service
                     if (AutoCategoriseWithDescriptionExists(newAcId))
                     {
                         // Isåfall ta bort den och lägg till en i den nyavalda kategorien. Fråga användaren först.
+
                         #region Fråga anv. om den är säker
 
                         // Fråga anv. om den är säker
                         var autoCatMessage = "Autokategorin finns redan som annan kategori:" + Environment.NewLine
-                                                + GetCategoryForAutoCategoriseWithDescription(newAcId)
-                                                + Environment.NewLine + Environment.NewLine
-                                                + "Vill du skriva över med autokategorin:" + Environment.NewLine
-                                                + selCategory.Description + Environment.NewLine + "Varje gång info är:"
-                                                + Environment.NewLine + GetAutoCategoriseWithDescription(newAcId)
-                                                + Environment.NewLine + "Will du skriva over?";
+                            + GetCategoryForAutoCategoriseWithDescription(newAcId)
+                            + Environment.NewLine + Environment.NewLine
+                            + "Vill du skriva över med autokategorin:" + Environment.NewLine
+                            + selCategory.Description + Environment.NewLine + "Varje gång info är:"
+                            + Environment.NewLine + GetAutoCategoriseWithDescription(newAcId)
+                            + Environment.NewLine + "Will du skriva over?";
                         if (
                             !userAcceptsFurtherAction(
                                 autoCatMessage, autoCatCpation))
@@ -69,7 +70,8 @@ namespace CategoryHandler.Service
 
                         if (!RemoveAutoCategoriseWithDescriptionIfItExists(newAcId))
                         {
-                            var message = "SetNewAutoCategorize Mystical Error! " + newAcId + " did not exist or other error.";
+                            var message = "SetNewAutoCategorize Mystical Error! " + newAcId +
+                                          " did not exist or other error.";
                             Console.WriteLine(message);
                             //Todo: log funktion displayed to user Or catch keypress errors
                         }
@@ -85,7 +87,7 @@ namespace CategoryHandler.Service
                     new Category
                     {
                         Description = selectedCategoryText,
-                        AutoCategoriseList = new List<AutoCategorise> { newAutoCategeory }
+                        AutoCategoriseList = new List<AutoCategorise> {newAutoCategeory}
                     });
             }
 

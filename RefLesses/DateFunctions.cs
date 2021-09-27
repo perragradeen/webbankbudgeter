@@ -57,10 +57,10 @@ namespace RefLesses
         private static bool IsValidDate(string dateValue, CultureInfo useThisCulture)
         {
             return DateTime.TryParse(
-                                dateValue,
-                                useThisCulture,
-                                DateTimeStyles.AdjustToUniversal,
-                                out _);
+                dateValue,
+                useThisCulture,
+                DateTimeStyles.AdjustToUniversal,
+                out _);
         }
     }
 }

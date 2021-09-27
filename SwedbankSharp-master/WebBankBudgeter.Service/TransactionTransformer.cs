@@ -1,6 +1,6 @@
-﻿using Budgeter.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Budgeter.Core.Entities;
 using WebBankBudgeter.Service.Model;
 
 namespace WebBankBudgeter.Service
@@ -29,8 +29,10 @@ namespace WebBankBudgeter.Service
                 AmountAsDouble = _kontoEnry.KostnadEllerInkomst,
                 Categorizations = new Categorizations
                 {
-                    Categories = new List<Categories> {
-                        new Categories {
+                    Categories = new List<Categories>
+                    {
+                        new Categories
+                        {
                             Group = GetCategoryGroup(_kontoEnry.TypAvKostnad),
                             Name = _kontoEnry.TypAvKostnad
                         }

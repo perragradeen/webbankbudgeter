@@ -15,19 +15,21 @@ namespace WebBankBudgeter.Service.TransactionTests
     {
         private const string _transactionTestFilePath = @"C:\Temp";
         private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
+
         private static string _budgetInsFilePath;
-            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
+        //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
 
         private static string _globalLog;
 
         private static InBudgetHandler InBudgetHandler =>
             new InBudgetHandler(
                 _budgetInsFilePath);
+
         private TransactionHandler TransactionHandler
         {
             get
             {
-                var tableGetter = new TableGetter { AddAverageColumn = true };
+                var tableGetter = new TableGetter {AddAverageColumn = true};
                 return new TransactionHandler(
                     WriteToOutput,
                     tableGetter,
@@ -145,15 +147,15 @@ namespace WebBankBudgeter.Service.TransactionTests
             var cat1 = new Categorizations();
             var cats1 = new List<Categories>
             {
-                new Categories { Name = "kat1" },
+                new Categories {Name = "kat1"},
             };
             cat1.Categories = cats1;
             var transactions = new List<Transaction>
             {
-                new Transaction { Amount = 0, Categorizations = cat1, DateAsDate = new DateTime(2019, 1, 1) },
-                new Transaction { Amount = 0, Categorizations = cat1, DateAsDate = new DateTime(2019, 2, 1) },
-                new Transaction { Amount = 5, Categorizations = cat1, DateAsDate = new DateTime(2019, 3, 1) },
-                new Transaction { Amount = 10, Categorizations = cat1, DateAsDate = new DateTime(2019, 4, 1) }
+                new Transaction {Amount = 0, Categorizations = cat1, DateAsDate = new DateTime(2019, 1, 1)},
+                new Transaction {Amount = 0, Categorizations = cat1, DateAsDate = new DateTime(2019, 2, 1)},
+                new Transaction {Amount = 5, Categorizations = cat1, DateAsDate = new DateTime(2019, 3, 1)},
+                new Transaction {Amount = 10, Categorizations = cat1, DateAsDate = new DateTime(2019, 4, 1)}
             };
 
             return new TransactionList

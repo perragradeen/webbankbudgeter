@@ -1,8 +1,8 @@
-﻿using Budgeter.Core.Entities;
+﻿using System;
+using Budgeter.Core.Entities;
 using Budgetterarn.DAL;
 using LoadTransactionsFromFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace TestBudgetterarn
 {
@@ -10,6 +10,7 @@ namespace TestBudgetterarn
     public class GetAllVisibleEntriesFromWebBrowserTests
     {
         private readonly string _default_webBrowserText;
+
         private readonly KontoEntriesHolder _default_KontoEntriesHolder
             = new KontoEntriesHolder();
 
@@ -19,7 +20,7 @@ namespace TestBudgetterarn
         }
 
         private const string GemensammaKontot =
-@"Gå direkt till innehållet
+            @"Gå direkt till innehållet
 Lämna synpunkter om internetbanken
 Gemensamt
 Clearing	Kontonummer
@@ -279,7 +280,7 @@ K*Foodora AB
 Chatta med oss";
 
         private const string PrivataKontotMedSkyddatBelopp =
-@"Gå direkt till innehållet
+            @"Gå direkt till innehållet
 Lämna synpunkter om internetbanken
 PrivatPG
 Clearing	Kontonummer
@@ -557,7 +558,7 @@ Chatta med oss";
         private string PrivataStd()
         {
             return
-@"Gå direkt till innehållet
+                @"Gå direkt till innehållet
 Lämna synpunkter om internetbanken
 PrivatPG
 Clearing	Kontonummer
@@ -4228,7 +4229,7 @@ Chatta med oss";
             Assert.AreEqual(48, actual.Count);
 
             var key = DateTime.Today.ToShortDateString() +
-                "APOTEKET AB STOCKHOLM-227.90";
+                      "APOTEKET AB STOCKHOLM-227.90";
             var actualFirst = actual[key]
                 as KontoEntry;
             Assert.AreEqual("APOTEKET AB STOCKHOLM", actualFirst.Info);

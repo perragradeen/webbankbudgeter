@@ -47,8 +47,8 @@ namespace Budgetterarn.InternalUtilities
         public int Compare(object x, object y)
         {
             // Cast the objects to be compared to ListViewItem objects
-            var listviewX = (ListViewItem)x;
-            var listviewY = (ListViewItem)y;
+            var listviewX = (ListViewItem) x;
+            var listviewY = (ListViewItem) y;
 
             // Compare the two items
             var compareResult = ObjectCompare.Compare(

@@ -9,7 +9,8 @@ namespace WebBankBudgeter.Service.Services.Helpers
         private readonly IGrouping<TransGrouping, Transaction> _dateAndCatTransGroup;
         private readonly Dictionary<string, BudgetRow> _catChartModelRowList;
 
-        public BudgetRowFactory(IGrouping<TransGrouping, Transaction> dateAndCatTransGroup, Dictionary<string, BudgetRow> catChartModelRowList)
+        public BudgetRowFactory(IGrouping<TransGrouping, Transaction> dateAndCatTransGroup,
+            Dictionary<string, BudgetRow> catChartModelRowList)
         {
             _dateAndCatTransGroup = dateAndCatTransGroup;
             _catChartModelRowList = catChartModelRowList;

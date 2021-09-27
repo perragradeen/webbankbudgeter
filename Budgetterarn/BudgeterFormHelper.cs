@@ -1,10 +1,10 @@
-﻿using Budgeter.Core.Entities;
-using LoadTransactionsFromFile;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Budgeter.Core.Entities;
 using Budgetterarn.EntryLogicSetFlags;
+using LoadTransactionsFromFile;
 
 namespace Budgetterarn
 {
@@ -16,8 +16,8 @@ namespace Budgetterarn
         public BudgeterFormHelper(
             Action<string> writeToOutput
             , Action<string> WriteToUiStatusLog
-, KontoEntriesHolder kontoEntriesHolder
-            )
+            , KontoEntriesHolder kontoEntriesHolder
+        )
         {
             this.writeToOutput = writeToOutput;
             this.kontoEntriesHolder = kontoEntriesHolder;
@@ -65,10 +65,5 @@ namespace Budgetterarn
 
             kontoEntriesChecker.CheckSkyddatBelopp(kontoEntriesHolder);
         }
-
-
-
-
-
     }
 }

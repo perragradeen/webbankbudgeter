@@ -1,10 +1,10 @@
-using Budgeter.Core.Entities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using Budgeter.Core.Entities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FileTests
 {
@@ -37,8 +37,8 @@ namespace FileTests
             // Arrange
             return new()
             {
-                new InBudget { BudgetValue = 1 },
-                new InBudget { BudgetValue = 2 },
+                new InBudget {BudgetValue = 1},
+                new InBudget {BudgetValue = 2},
             };
         }
 

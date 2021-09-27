@@ -9,7 +9,8 @@ namespace UtilitiesTest
         [TestMethod]
         public void TestGetTextBetweenStartAndEndText()
         {
-            var result = StringFunctions.GetTextBetweenStartAndEndText(TestText, "LÖNEKONTO - 629 010 552", "Att tänka på inför årsskiftet");
+            var result = StringFunctions.GetTextBetweenStartAndEndText(TestText, "LÖNEKONTO - 629 010 552",
+                "Att tänka på inför årsskiftet");
 
             var splitResult = result.Substring(0, result.Length / 2);
 

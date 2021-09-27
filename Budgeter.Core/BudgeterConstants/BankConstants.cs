@@ -2,7 +2,7 @@
 
 namespace Budgeter.Core.BudgeterConstants
 {
-    public class BankConstants
+    public static class BankConstants
     {
         public const string SheetName = "Kontoutdrag_officiella";
 

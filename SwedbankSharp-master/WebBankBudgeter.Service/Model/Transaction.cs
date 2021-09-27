@@ -13,6 +13,7 @@ namespace WebBankBudgeter.Service.Model
 
         public string ExpenseControlIncluded { get; set; }
         public Categorizations Categorizations { get; set; }
+
         public string CategoryName
         {
             get
@@ -56,6 +57,7 @@ namespace WebBankBudgeter.Service.Model
         }
 
         private DateTime _dateAsDate;
+
         public DateTime DateAsDate
         {
             get
@@ -70,19 +72,14 @@ namespace WebBankBudgeter.Service.Model
 
                 _dateAsDate = date;
                 return _dateAsDate;
-
             }
-            set
-            {
-                _dateAsDate = value;
-            }
+            set { _dateAsDate = value; }
         }
 
         public string DateAsYearMothText
         {
             get
             {
-
                 var yearMonthNameName = GetYearMonthName(DateAsDate);
 
                 return yearMonthNameName;
@@ -140,10 +137,7 @@ namespace WebBankBudgeter.Service.Model
 
                 return 0;
             }
-            set
-            {
-                _amountAsDouble = value;
-            }
+            set { _amountAsDouble = value; }
         }
 
         public ExpenseControlIncludedAlternatives ExpenseControlIncludedAsEnum

@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections;
 using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Utilities;
 
 namespace UtilitiesTest
@@ -19,11 +19,11 @@ namespace UtilitiesTest
         {
             const string sheetName = "Blad1";
             var rowToWrite = new object[]
-                { "Testar", "kl:", DateTime.Now };
+                {"Testar", "kl:", DateTime.Now};
 
             const int expected = -1;
-            
-            var actual = 
+
+            var actual =
                 Logger.WriteToWorkBook(
                     ExcelBookPath,
                     sheetName,
@@ -42,8 +42,8 @@ namespace UtilitiesTest
 
             var rowsToWrite = new Hashtable
             {
-                { 1, new object[] { "afdf", "test", 7, DateTime.Now } },
-                { 2, new object[] { "tvåan", "test", 2, DateTime.Now.AddHours(1) } }
+                {1, new object[] {"afdf", "test", 7, DateTime.Now}},
+                {2, new object[] {"tvåan", "test", 2, DateTime.Now.AddHours(1)}}
             };
 
             const int expected = -1;

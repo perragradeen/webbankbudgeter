@@ -12,6 +12,7 @@ namespace InbudgetHandler
         private readonly JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
 
         private List<InBudget> _inPoster;
+
         public async Task<List<InBudget>> GetInPoster()
         {
             return _inPoster ?? (_inPoster = await GetIncomesFromDisk());
@@ -54,7 +55,7 @@ namespace InbudgetHandler
             var jsonString = await FileReadAllText();
 
             return JsonSerializer
-                           .Deserialize<List<InBudget>>(jsonString);
+                .Deserialize<List<InBudget>>(jsonString);
         }
 
         private async Task<string> FileReadAllText()

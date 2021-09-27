@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Budgeter.Core.Entities;
-using InbudgetHandlle.Model;
+using InbudgetHandler.Model;
 using WebBankBudgeter.Service.Model;
 
 namespace InbudgetHandler
@@ -75,7 +75,7 @@ namespace InbudgetHandler
         private bool MånadOchÅrÄrSamma(DateTime ena, DateTime andra)
         {
             return ena.Year == andra.Year
-                && ena.Month == andra.Month;
+                   && ena.Month == andra.Month;
         }
 
         public async Task<List<Rad>> HämtaRaderFörUiBindningAsync()
@@ -86,7 +86,7 @@ namespace InbudgetHandler
 
             // Sortera på datum stigande
             inPoster = inPoster
-                .OrderBy(i=>i.YearAndMonth)
+                .OrderBy(i => i.YearAndMonth)
                 .ToList();
 
             // Loopa data
@@ -95,7 +95,7 @@ namespace InbudgetHandler
                 .GroupBy(inPos => inPos.CategoryDescription))
             {
                 // Skriv ut cat i kolumn 1
-                var rad = new Rad { RadNamnY = inPostGrupp.Key };
+                var rad = new Rad {RadNamnY = inPostGrupp.Key};
 
 
                 // Skriv ut värdet i kr kolumner från vänster till höger

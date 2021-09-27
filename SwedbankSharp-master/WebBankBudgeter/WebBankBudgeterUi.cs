@@ -1,11 +1,11 @@
-﻿using InbudgetHandler;
-using InbudgetHandlle.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using InbudgetHandler;
+using InbudgetHandler.Model;
 using WebBankBudgeter.Service;
 using WebBankBudgeter.Service.Model.ViewModel;
 using WebBankBudgeter.Service.MonthAvarages;
@@ -30,7 +30,7 @@ namespace WebBankBudgeter
         {
             try
             {
-                var tableGetter = new TableGetter { AddAverageColumn = true };
+                var tableGetter = new TableGetter {AddAverageColumn = true};
                 _transactionHandler = new TransactionHandler(
                     WriteToOutput,
                     tableGetter,
@@ -150,20 +150,21 @@ namespace WebBankBudgeter
         private void AddAveragesToTable(TextToTableOutPuter table)
         {
             table.AveragesForTransactions = SkapaInPosterHanterare.GetAvarages(
-                           _transactionHandler.TransactionList,
-                           DateTime.Today);
+                _transactionHandler.TransactionList,
+                DateTime.Today);
         }
 
         private void VisaInRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<string> månadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
-                            inDataRader,
-                            månadsRubriker,
-                            gv_incomes
-                            );
+                inDataRader,
+                månadsRubriker,
+                gv_incomes
+            );
         }
 
-        private void VisaKvarRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<Service.Model.BudgetRow> utgiftsRader, List<string> månadsRubriker)
+        private void VisaKvarRader_BindInPosterRaderTillUi(List<Rad> inDataRader,
+            List<Service.Model.BudgetRow> utgiftsRader, List<string> månadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                 SnurraIgenom(inDataRader, utgiftsRader, WriteLineToOutputAndScrollDown),
@@ -186,7 +187,7 @@ namespace WebBankBudgeter
                     .Where(u => u.CategoryText.Trim() == inBudget.RadNamnY.Trim()
                     );
 
-                var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
+                var nuvarandeRad = new Rad {RadNamnY = inBudget.RadNamnY};
                 foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
                 {
                     foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)
@@ -396,7 +397,7 @@ namespace WebBankBudgeter
 
             // Hämta rader i Ui-format
             var inDataRader = await _inBudgetUiHandler
-              .HämtaRaderFörUiBindningAsync();
+                .HämtaRaderFörUiBindningAsync();
 
             try
             {
@@ -408,7 +409,7 @@ namespace WebBankBudgeter
                     inDataRader,
                     månadsRubriker,
                     gv_incomes
-                    );
+                );
             }
             catch (Exception e)
             {

@@ -10,7 +10,7 @@ namespace WebBankBudgeter.Service.TransactionTests
     public class GetTests
     {
         private readonly string FilePath;
-            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetInsRiktigaExempel.json"
+        //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetInsRiktigaExempel.json"
 
         public GetTests()
         {
@@ -36,7 +36,6 @@ namespace WebBankBudgeter.Service.TransactionTests
         {
             var results = await Target.H‰mtaRubrikerPÂInPosterAsync();
             Assert.IsNotNull(results);
-
         }
 
         [TestMethod]

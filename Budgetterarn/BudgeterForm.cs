@@ -43,14 +43,16 @@ namespace Budgetterarn
         private static string bankUrl = "LoadsVia_xml_settings";
 
         private static string categoryPath = @"Data\Categories.xml";
-        private bool debugGlobal = false; // For useSaveCheck
+        private bool debugGlobal; // For useSaveCheck
 
         private readonly KontoEntriesHolder kontoEntriesHolder
             = new KontoEntriesHolder();
+
         private bool somethingChanged;
 
         // Generic types for Designer
         private KontoEntryListView entriesInToBeSavedGrid;
+
         private ListViewWithComboBox newIitemsListEditedGrid;
         //private KontoEntryListView newIitemsListOrgGrid;
         //private KontoEntryListView xlsOrginalEntriesGrid;
@@ -60,6 +62,7 @@ namespace Budgetterarn
         private ChromiumWebBrowser webBrowser1;
 
         private KontoutdragExcelFileInfo _kontoutdragExcelFileInfo;
+
         public KontoutdragExcelFileInfo KontoutdragExcelFileInfo
         {
             get
@@ -81,6 +84,7 @@ namespace Budgetterarn
                 return _kontoutdragExcelFileInfo;
             }
         }
+
         #endregion
 
         public BudgeterForm()
@@ -125,6 +129,7 @@ namespace Budgetterarn
         }
 
         #region Write to Output functions
+
         private static void WriteExceptionToOutput(Exception e, string message = "")
         {
             MessageBox.Show(message + " " + e.Message);
@@ -161,9 +166,11 @@ namespace Budgetterarn
             get => base.Text;
             set => base.Text = value;
         }
+
         #endregion
 
         #region Inits
+
         private void InitChromiumWebBrowser()
         {
             var settingsBrowse = new CefSettings();
@@ -241,7 +248,7 @@ namespace Budgetterarn
 
             // m_newIitemsListEdited
             newIitemsListEditedGrid.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left)
-                                         | AnchorStyles.Right;
+                                             | AnchorStyles.Right;
             newIitemsListEditedGrid.FullRowSelect = true;
             newIitemsListEditedGrid.GridLines = true;
             newIitemsListEditedGrid.Location = new Point(3, 3);
@@ -313,6 +320,7 @@ namespace Budgetterarn
             newIitemsListEditedGrid.ListViewItemSorter = new ListViewColumnSorter();
             //newIitemsListOrgGrid.ListViewItemSorter = new ListViewColumnSorter();
         }
+
         #endregion
 
         #region Load&Save
@@ -511,7 +519,6 @@ namespace Budgetterarn
             CheckAndAddNewItems(true); // Lägg till gamla i GuiLista för redigering
 
             somethingChanged = kontoEntriesHolder.NewKontoEntries.Count > 0;
-
         }
 
         private void BtnLoadCurrentEntriesClick(object sender, EventArgs e)
@@ -556,6 +563,7 @@ namespace Budgetterarn
             CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
             newIitemsListEditedGrid.LoadCategoriesToSelectBox();
         }
+
         #endregion
 
         #region Funktioner, TODO: ha en del av dessa funktioner i egen fil. Typ alla till en ny fil "BudgetFormHelper". Ta även med alla grundMembers och grund data. Ha bara kvar UI-Element o klickfunktioner etc...
@@ -565,15 +573,15 @@ namespace Budgetterarn
             return
                 //@"C:\Files\Dropbox\budget\Program\TestData\x.html"
                 bankUrl
-            ;
+                ;
         }
 
         private void ClearNewOnes()
         {
             var userSure = MessageBox.Show(
-                            @"Delete new entries",
-                            @"Are u sure?",
-                            MessageBoxButtons.YesNo);
+                @"Delete new entries",
+                @"Are u sure?",
+                MessageBoxButtons.YesNo);
 
             if (userSure == DialogResult.Yes)
             {
@@ -617,7 +625,7 @@ namespace Budgetterarn
             WriteToUiStatusLog(@"Loading");
 
             // Set spitter so webpage gets more room.
-            var halfWindowWidth = (int)(Width * 0.5);
+            var halfWindowWidth = (int) (Width * 0.5);
             var hWw = halfWindowWidth;
             var oldSd = splitContainer1.SplitterDistance; // Save pos.
             splitContainer1.SplitterDistance = hWw > oldSd ? hWw : oldSd;
@@ -665,7 +673,7 @@ namespace Budgetterarn
             // TODO: Lägg alla UI-element i egen partial fil. Typ: ...Custom-elements.cs
 
             // statusStrip1
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] {toolStripStatusLabel1});
             statusStrip1.Location = new Point(0, 644);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1284, 22);
@@ -685,7 +693,7 @@ namespace Budgetterarn
         private void AddNewEntriesToUiListsAndMem(bool autoSave)
         {
             WriteToUiStatusLog(@"Trying to add; " +
-                kontoEntriesHolder.NewKontoEntries.Count + @"items");
+                               kontoEntriesHolder.NewKontoEntries.Count + @"items");
 
             // Hämta nya entries från Ui.
             // (slipper man om man binder ui-kontroller med de som är
@@ -704,8 +712,8 @@ namespace Budgetterarn
             UpdateEntriesToSaveMemList();
 
             WriteToUiStatusLog(@"Entries in memory updated. " +
-                @"Added entries; " + changeInfo.Added + ". " +
-                @"Replaced entries; " + changeInfo.Replaced);
+                               @"Added entries; " + changeInfo.Added + ". " +
+                               @"Replaced entries; " + changeInfo.Replaced);
 
             if (autoSave)
                 Save();
@@ -714,8 +722,8 @@ namespace Budgetterarn
         private void CheckIfSomethingWasChanged(AddedAndReplacedEntriesCounter changeInfo)
         {
             somethingChanged = CheckIfSomethingWasChanged(
-                            somethingChanged,
-                            changeInfo.SomethingChanged);
+                somethingChanged,
+                changeInfo.SomethingChanged);
         }
 
         private static bool CheckIfSomethingWasChanged(
@@ -746,6 +754,7 @@ namespace Budgetterarn
 
             return newEntriesFromUi;
         }
+
         #endregion
 
         #region AutoGetEntries AutoLoad
@@ -766,7 +775,7 @@ namespace Budgetterarn
             catch (Exception browseExp)
             {
                 WriteToOutput(@"Error in WebBrowser1DocumentCompleted! : "
-                                + browseExp.Message);
+                              + browseExp.Message);
             }
         }
 
@@ -783,6 +792,7 @@ namespace Budgetterarn
 
             autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
         }
+
         #endregion
 
         #region Test&Debug
@@ -849,7 +859,8 @@ namespace Budgetterarn
                 var testKey = "testkey" + i;
                 if (kontoEntriesHolder.NewKontoEntries.ContainsKey(testKey)) continue;
                 var newInfo = "test" + (i % 2 == 0 ? i.ToString(CultureInfo.InvariantCulture) : string.Empty);
-                kontoEntriesHolder.NewKontoEntries.Add(testKey, new KontoEntry { Date = DateTime.Now.AddDays(i), Info = newInfo });
+                kontoEntriesHolder.NewKontoEntries.Add(testKey,
+                    new KontoEntry {Date = DateTime.Now.AddDays(i), Info = newInfo});
                 sometheingadded = true;
             }
 
@@ -858,6 +869,7 @@ namespace Budgetterarn
                 CheckAndAddNewItems(); // Debug
             }
         }
+
         #endregion
     }
 }

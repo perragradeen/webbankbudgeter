@@ -42,13 +42,13 @@ namespace Budgetterarn.DAL
             // Returnera aom något ändrats. Är de nya inte samma som innan laddning,
             // så är det sant att något ändrats.
             return kontoEntriesHolder.NewKontoEntries.Count !=
-                            noNewKontoEntriesBeforeLoading;
+                   noNewKontoEntriesBeforeLoading;
         }
 
         private static bool TextAndBankChoiceIsInvalid(string text)
         {
             return text == null
-                || ProgramSettings.BankType != BankType.Swedbank;
+                   || ProgramSettings.BankType != BankType.Swedbank;
         }
 
         private void SparaKontoRaderTillNylistan(string text)
@@ -78,6 +78,7 @@ namespace Budgetterarn.DAL
 
                 kontoEntriesFromHtml.Add(new KontoEntry(entryStrings));
             }
+
             return kontoEntriesFromHtml;
         }
 
@@ -118,7 +119,7 @@ namespace Budgetterarn.DAL
             var rowBreakString = GetRowBreakString(text);
 
             return entryBlob.Split(
-                new string[] { rowBreakString },
+                new[] {rowBreakString},
                 StringSplitOptions.RemoveEmptyEntries);
         }
 

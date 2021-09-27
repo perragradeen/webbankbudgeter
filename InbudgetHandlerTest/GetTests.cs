@@ -10,6 +10,7 @@ namespace InbudgetHandlerTest
     public class GetTests
     {
         private static string _filePath;
+
         private InBudgetHandler Target =>
             new InBudgetHandler(
                 _filePath);
@@ -35,7 +36,6 @@ namespace InbudgetHandlerTest
         {
             var results = await Target.H‰mtaRubrikerPÂInPosterAsync();
             Assert.IsNotNull(results);
-
         }
 
         [TestMethod]

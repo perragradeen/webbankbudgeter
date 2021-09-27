@@ -13,8 +13,8 @@ namespace Budgetterarn.EntryLogicSetFlags
         private readonly Action<string> writeToOutput;
         private readonly Action<string> addToUiStatusLog;
 
-        private int addedEntries = 0;
-        private int replacedEntries = 0;
+        private int addedEntries;
+        private int replacedEntries;
 
         public EntryAdderAndReplacer(
             SortedList oldEntries,

@@ -41,7 +41,8 @@ namespace WebBankBudgeter.Service.Services
                 .OrderByDescending(row => row.CategoryText).ToList();
         }
 
-        public static IEnumerable<IGrouping<TransGrouping, Transaction>> GroupOnMonthAndCategory(List<Transaction> transactions)
+        public static IEnumerable<IGrouping<TransGrouping, Transaction>> GroupOnMonthAndCategory(
+            List<Transaction> transactions)
         {
             var g = transactions.GroupBy(t =>
                 new TransGrouping
@@ -61,7 +62,8 @@ namespace WebBankBudgeter.Service.Services
             return GetTextTableFromGroupedTransactions(grouped);
         }
 
-        private TextToTableOutPuter GetTextTableFromGroupedTransactions(IEnumerable<IGrouping<TransGrouping, Transaction>> grouped)
+        private TextToTableOutPuter GetTextTableFromGroupedTransactions(
+            IEnumerable<IGrouping<TransGrouping, Transaction>> grouped)
         {
             var transactionsGrouped = grouped as IList<IGrouping<TransGrouping, Transaction>> ?? grouped.ToList();
 
@@ -79,7 +81,8 @@ namespace WebBankBudgeter.Service.Services
             return table;
         }
 
-        private void AddColumnHeaderMonths(TextToTableOutPuter table, IEnumerable<IGrouping<TransGrouping, Transaction>> grouped)
+        private void AddColumnHeaderMonths(TextToTableOutPuter table,
+            IEnumerable<IGrouping<TransGrouping, Transaction>> grouped)
         {
             table.ColumnHeaders.Add(TextToTableOutPuter.CategoryNameColumnDescription);
 

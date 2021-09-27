@@ -26,7 +26,7 @@ namespace Budgetterarn.InternalUtilities
                 if (dirRelativeToBase != "")
                 {
                     dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
-                        + dirRelativeToBase;
+                                              + dirRelativeToBase;
                 }
                 else if (absoluteDir != "")
                 {
@@ -38,12 +38,13 @@ namespace Budgetterarn.InternalUtilities
                     + @"|*."
                     + fileType;
                 return dialog.ShowDialog() != DialogResult.OK
-                    ? string.Empty : dialog.FileName;
+                    ? string.Empty
+                    : dialog.FileName;
             }
             catch (Exception openFileOfTypeExp)
             {
                 writeToOutput(@"Error in OpenFileOfType(...): "
-                    + openFileOfTypeExp);
+                              + openFileOfTypeExp);
                 return null;
             }
         }

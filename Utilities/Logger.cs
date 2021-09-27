@@ -1,4 +1,3 @@
-using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Microsoft.Office.Interop.Excel;
 using RefLesses;
 
 namespace Utilities
@@ -125,7 +125,7 @@ namespace Utilities
                 var startSheetNumber = 1;
 
                 // get the first worksheet from the collection of worksheets
-                var workSheet = (Worksheet)sheets.Item[startSheetNumber];
+                var workSheet = (Worksheet) sheets.Item[startSheetNumber];
                 if (sheetName != "")
                 {
                     #region Hämta ut rätt sheet
@@ -170,7 +170,7 @@ namespace Utilities
 
                 #region Skriv en eller flera rader
 
-                var oa = new object[] { workSheet, orgRowCount + 1, 0 }; // +1 så den sista raden inte skrivs över
+                var oa = new object[] {workSheet, orgRowCount + 1, 0}; // +1 så den sista raden inte skrivs över
 
                 if (rowToWrite != null) // Skriver en rad
                 {
@@ -245,12 +245,12 @@ namespace Utilities
                         break;
                 }
 
-                var nextRow = (int)oa[1];
+                var nextRow = (int) oa[1];
 
                 // spara cellerna som det skrivs till i en sträng-array, skr sedan alla på en gång
                 if (args != null)
                 {
-                    var cellsToWrite = args.Length == 1 
+                    var cellsToWrite = args.Length == 1
                         ? new object[1, args.Length]
                         : new object[1, args.Length + insertInColumn];
 
@@ -377,15 +377,15 @@ namespace Utilities
             {
                 foreach (DictionaryEntry currentSetting in settings)
                 {
-                    var settingType = (CellLayOutSettings)currentSetting.Key;
+                    var settingType = (CellLayOutSettings) currentSetting.Key;
 
                     switch (settingType)
                     {
                         case CellLayOutSettings.Bold:
-                            cellRange.Font.Bold = (bool)currentSetting.Value;
+                            cellRange.Font.Bold = (bool) currentSetting.Value;
                             break;
                         case CellLayOutSettings.UnderLined:
-                            cellRange.Font.Underline = (bool)currentSetting.Value;
+                            cellRange.Font.Underline = (bool) currentSetting.Value;
                             break;
                         case CellLayOutSettings.FontStyle:
                             cellRange.Font.FontStyle =
@@ -393,14 +393,14 @@ namespace Utilities
                             break;
                         case CellLayOutSettings.TextColor:
                             cellRange.Font.Color =
-                                ColorTranslator.ToOle((Color)currentSetting.Value);
+                                ColorTranslator.ToOle((Color) currentSetting.Value);
                             break;
                         case CellLayOutSettings.InteriorColorSysDrawingType:
                             cellRange.Interior.Color =
-                                ColorTranslator.ToOle((Color)currentSetting.Value);
+                                ColorTranslator.ToOle((Color) currentSetting.Value);
                             break;
                         case CellLayOutSettings.InteriorColorColorIndexType:
-                            cellRange.Interior.ColorIndex = (int)currentSetting.Value;
+                            cellRange.Interior.ColorIndex = (int) currentSetting.Value;
                             break;
                     }
                 }

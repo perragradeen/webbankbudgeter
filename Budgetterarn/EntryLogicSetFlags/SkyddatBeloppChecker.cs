@@ -22,8 +22,8 @@ namespace Budgetterarn.EntryLogicSetFlags
             if (EntryIsSkyddatBelopp(entryOld))
             {
                 entryNew.FontFrontColor =
-                entryOld.FontFrontColor =
-                    Color.DeepSkyBlue;
+                    entryOld.FontFrontColor =
+                        Color.DeepSkyBlue;
 
                 // Ta de gamla saldot
                 entryNew.SaldoOrginal = entryOld.SaldoOrginal;
@@ -46,8 +46,8 @@ namespace Budgetterarn.EntryLogicSetFlags
             {
                 // Det är kanske en dubblett
                 entryNew.FontFrontColor =
-                entryOld.FontFrontColor =
-                    Color.Red;
+                    entryOld.FontFrontColor =
+                        Color.Red;
 
                 entryNew.ThisIsDoubleDoNotAdd = true;
             }
@@ -58,7 +58,7 @@ namespace Budgetterarn.EntryLogicSetFlags
         private static bool EntryIsSkyddatBelopp(KontoEntry entryOld)
         {
             return entryOld.Info?.ToLower() == Skb.ToLower()
-                            || entryOld.Info?.ToLower() == Pkk.ToLower();
+                   || entryOld.Info?.ToLower() == Pkk.ToLower();
         }
 
         private static bool EntriesHasDiffrentBaseData(
@@ -67,9 +67,8 @@ namespace Budgetterarn.EntryLogicSetFlags
         {
             return
                 entryOld.Date != entryNew.Date
-
                 || !entryOld.KostnadEllerInkomst.Equals(
-                        entryNew.KostnadEllerInkomst);
+                    entryNew.KostnadEllerInkomst);
         }
 
         /// <summary> Hjälpfunnktion till CheckAndAddNewItems
@@ -94,7 +93,6 @@ namespace Budgetterarn.EntryLogicSetFlags
                 {
                     return;
                 }
-
             }
         }
 

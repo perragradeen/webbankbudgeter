@@ -1,19 +1,19 @@
-using Budgeter.Core.BudgeterConstants;
-using Budgeter.Core.Entities;
-using LoadTransactionsFromFile;
-using LoadTransactionsFromFile.DAL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Budgeter.Core.BudgeterConstants;
+using Budgeter.Core.Entities;
+using LoadTransactionsFromFile;
+using LoadTransactionsFromFile.DAL;
 using Serializers;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Model.ViewModel;
 using WebBankBudgeter.Service.Services;
 using Categories = CategoryHandler.Model.Categories;
-using System.IO;
 
 namespace WebBankBudgeter.Service
 {
@@ -28,6 +28,7 @@ namespace WebBankBudgeter.Service
 
         public TransactionList TransactionList =>
             _transactionCalcsHandler.TransactionList;
+
         public void SetTransactionList(TransactionList list)
         {
             _transactionCalcsHandler =
@@ -155,7 +156,8 @@ namespace WebBankBudgeter.Service
         {
             var transactionsFromFile = GetTransactionsFromFile();
 
-            var transactions = GetTransFormedTransactionsFromFileToList(transactionsFromFile); // Add reoccuring and income categories
+            var transactions =
+                GetTransFormedTransactionsFromFileToList(transactionsFromFile); // Add reoccuring and income categories
 
             return transactions;
         }
@@ -213,9 +215,7 @@ namespace WebBankBudgeter.Service
             var balance = Conversions.SafeGetDouble(list.Account?.Balance);
             var availableAmount = Conversions.SafeGetDouble(list.Account?.AvailableAmount);
 
-            return balance > 0 ?
-                balance :
-                availableAmount;
+            return balance > 0 ? balance : availableAmount;
         }
     }
 }

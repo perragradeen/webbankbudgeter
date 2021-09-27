@@ -17,7 +17,8 @@ namespace WebBankBudgeter.Service.Services
 
         private static double DoubleParseAdvanced(string strToParse, char decimalSymbol = ',')
         {
-            var tmp = Regex.Match(strToParse, @"([-]?[0-9]+)([\s])?([0-9]+)?[." + decimalSymbol + "]?([0-9 ]+)?([0-9]+)?").Value;
+            var tmp = Regex.Match(strToParse,
+                @"([-]?[0-9]+)([\s])?([0-9]+)?[." + decimalSymbol + "]?([0-9 ]+)?([0-9]+)?").Value;
 
             if (tmp.Length <= 0 || !strToParse.Contains(tmp))
                 return 0;

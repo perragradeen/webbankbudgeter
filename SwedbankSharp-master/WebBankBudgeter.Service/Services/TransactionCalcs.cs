@@ -28,7 +28,7 @@ namespace WebBankBudgeter.Service.Services
 
                 if (id == null
                     || item.ExpenseControlIncludedAsEnum
-                        == ExpenseControlIncludedAlternatives.OUTDATED)
+                    == ExpenseControlIncludedAlternatives.OUTDATED)
                 {
                     continue;
                 }

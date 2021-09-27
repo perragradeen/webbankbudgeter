@@ -8,7 +8,7 @@ namespace TestBudgetterarn
         [TestMethod]
         public void RowThatExistsTest()
         {
-            var inArray = new object[] { "test1", "223" };
+            var inArray = new object[] {"test1", "223"};
             const int columnNumber = 1;
             const string expected = "223";
 

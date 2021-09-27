@@ -1,7 +1,4 @@
-﻿using InbudgetHandler;
-using System;
-using System.Windows.Forms;
-using WebBankBudgeter.Service;
+﻿using System.Windows.Forms;
 using WebBankBudgeter.Service.Model.ViewModel;
 
 namespace WebBankBudgeter.UiBinders
@@ -50,7 +47,8 @@ namespace WebBankBudgeter.UiBinders
 
                         default:
                             value = row.AmountsForMonth.ContainsKey(header)
-                                ? row.AmountsForMonth[header] : 0;
+                                ? row.AmountsForMonth[header]
+                                : 0;
                             value = DoubleTo1000SeparatedNoDecimals(value);
                             break;
                     }
@@ -62,7 +60,7 @@ namespace WebBankBudgeter.UiBinders
 
         private object DoubleTo1000SeparatedNoDecimals(object value)
         {
-            return ((double)value).ToString("N0");
+            return ((double) value).ToString("N0");
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Budgetterarn
         {
             try
             {
-                return ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))?.GetAttribute("value");
+                return ((XmlElement) (doc.SelectSingleNode("//property[@name='" + name + "']")))?.GetAttribute("value");
             }
             catch (Exception cExcp)
             {
@@ -52,10 +52,10 @@ namespace Budgetterarn
             try
             {
                 var textFileRowNumber =
-                    ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))?.GetAttribute(
+                    ((XmlElement) (doc.SelectSingleNode("//property[@name='" + name + "']")))?.GetAttribute(
                         "rownumberInTextfile");
                 var textFilePath = AppDomain.CurrentDomain.BaseDirectory
-                                   + ((XmlElement)(doc.SelectSingleNode("//property[@name='" + name + "']")))?
+                                   + ((XmlElement) (doc.SelectSingleNode("//property[@name='" + name + "']")))?
                                    .GetAttribute("textfileName");
 
                 TextReader fileReader = new StreamReader(textFilePath);

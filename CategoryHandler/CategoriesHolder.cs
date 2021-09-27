@@ -1,7 +1,7 @@
-﻿using CategoryHandler.Model;
-using CategoryHandler.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CategoryHandler.Model;
+using CategoryHandler.Service;
 using Serializers;
 
 namespace CategoryHandler
@@ -32,7 +32,7 @@ namespace CategoryHandler
             catch (Exception e)
             {
                 throw new Exception(
-                    "Error in: CategoriesHolder, DeserializeObject! filname:" 
+                    "Error in: CategoriesHolder, DeserializeObject! filname:"
                     + filename + ". SysErr: " + e.Message);
             }
         }

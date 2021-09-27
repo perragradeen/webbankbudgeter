@@ -154,6 +154,5 @@ namespace Budgetterarn.AutoNavigateBrowser
 
             return returnHtmlElement;
         }
-
     }
 }

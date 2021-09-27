@@ -1,6 +1,6 @@
-﻿using RefLesses;
-using System;
+﻿using System;
 using System.Linq;
+using RefLesses;
 
 namespace Budgeter.Core.Entities
 {

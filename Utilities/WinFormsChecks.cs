@@ -21,9 +21,9 @@ namespace Utilities
         private static DialogResult UserWantsToSave()
         {
             return MessageBox.Show(
-                    @"Läget ej sparat! Spara nu?",
-                    @"Spara?",
-                    MessageBoxButtons.YesNoCancel);
+                @"Läget ej sparat! Spara nu?",
+                @"Spara?",
+                MessageBoxButtons.YesNoCancel);
         }
     }
 }

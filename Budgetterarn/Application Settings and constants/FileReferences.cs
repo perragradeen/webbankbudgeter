@@ -1,6 +1,6 @@
-﻿using Budgeter.Core.BudgeterConstants;
-using System;
+﻿using System;
 using System.IO;
+using Budgeter.Core.BudgeterConstants;
 
 namespace Budgetterarn.Application_Settings_and_constants
 {
@@ -14,7 +14,7 @@ namespace Budgetterarn.Application_Settings_and_constants
         static FileReferences()
         {
             // Get file names from settings file
-            var appPath = AppDomain.CurrentDomain.BaseDirectory;// TODO: fixa en allmän funktion som ger sökväg relativ
+            var appPath = AppDomain.CurrentDomain.BaseDirectory; // TODO: fixa en allmän funktion som ger sökväg relativ
 
             ExcelFileSaveFileName =
                 GeneralSettings.GetStringSetting("ExcelFileSavePathFileName");
