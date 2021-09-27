@@ -101,6 +101,15 @@
     <Compile Include="BudgeterForm.Designer.cs">
       <DependentUpon>BudgeterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BudgeterFormWriteToOutputs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BudgeterFormEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BudgeterFormGenericUis.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BudgeterFormHelper.cs" />
     <Compile Include="DAL\FileBackupper.cs" />
     <Compile Include="DAL\SaveKonton.cs" />
