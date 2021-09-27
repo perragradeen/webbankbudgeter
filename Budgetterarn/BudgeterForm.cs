@@ -35,6 +35,8 @@ namespace Budgetterarn
         // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
         private const string VersionNumber = "1.0.1.16";
 
+        private readonly BudgeterFormHelper budgeterFormHelper;
+
         #region Members
 
         private static ToolStripStatusLabel toolStripStatusLabel1;
@@ -90,6 +92,11 @@ namespace Budgetterarn
                 InitSettingsEtc();
 
                 InitChromiumWebBrowser();
+
+                budgeterFormHelper = new  BudgeterFormHelper(
+                    WriteToOutput,
+                    WriteToUiStatusLog,
+                    kontoEntriesHolder);
 
                 #region Debug
 
@@ -514,7 +521,13 @@ namespace Budgetterarn
 
         private void LoadOldEntries_LoadMenuClick(object sender, EventArgs e)
         {
-            LoadOldEntries();
+            budgeterFormHelper.LoadOldEntries();
+
+            //TOOD: Move
+            CheckAndAddNewItems(true); // Lägg till gamla i GuiLista för redigering
+
+            somethingChanged = kontoEntriesHolder.NewKontoEntries.Count > 0;
+
         }
 
         private void BtnLoadCurrentEntriesClick(object sender, EventArgs e)
@@ -598,29 +611,6 @@ namespace Budgetterarn
         }
 
         #region Har med UIobjekt i denna klass att göra
-
-        private void LoadOldEntries()
-        {
-            // Sätt de gamla inlästa transaktionerna i minnet in i nya lista för redigering av kategori
-            kontoEntriesHolder.NewKontoEntries = GetOldEntriesWithoutCategory();
-
-            CheckAndAddNewItems(true); // Lägg till gamla i GuiLista för redigering
-
-            somethingChanged = kontoEntriesHolder.NewKontoEntries.Count > 0;
-        }
-
-        // TODO: Flytta
-        private SortedList GetOldEntriesWithoutCategory()
-        {
-            var size = kontoEntriesHolder.KontoEntries.Count;
-            KontoEntry[] tempOldEntries = new KontoEntry[size];
-            kontoEntriesHolder.KontoEntries.Values.CopyTo(tempOldEntries, 0);
-            var filteredOldEntries = tempOldEntries
-                .Where(el => string.IsNullOrEmpty(el.TypAvKostnad));
-            var dict = filteredOldEntries.ToDictionary(ell => ell.KeyForThis);
-            var sortedList = new SortedList(dict);
-            return sortedList;
-        }
 
         /// <summary>
         /// Sätt versionsnummer i titel

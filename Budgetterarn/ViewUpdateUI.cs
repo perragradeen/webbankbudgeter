@@ -73,7 +73,7 @@ namespace Budgetterarn
 
         #region Container adds
 
-        internal static void AddToListview(ListView list, KontoEntry entry)
+        private static void AddToListview(ListView list, KontoEntry entry)
         {
             // Sätt mellanslagstecken ifall en sträng i listan kommer att bli tom eller null,
             // så att det finns något att klicka på och så det inte uppstår exception senare.
