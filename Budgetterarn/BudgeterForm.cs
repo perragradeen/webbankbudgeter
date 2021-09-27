@@ -53,18 +53,18 @@ namespace Budgetterarn
         {
             try
             {
-                InitFields();
-
-                InitSettingsEtc();
-
-                InitChromiumWebBrowser();
-
                 budgeterFormHelper = new BudgeterFormHelper(
                     WriteToOutput,
                     WriteToUiStatusLog,
                     CheckAndAddNewItems,
                     kontoEntriesHolder
                 );
+
+                InitFields();
+
+                InitSettingsEtc();
+
+                InitChromiumWebBrowser();
 
                 if (DebugModeOff())
                 {
