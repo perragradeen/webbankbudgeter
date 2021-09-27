@@ -15,7 +15,7 @@ namespace InbudgetToTableTests
         public GetTests()
         {
             var baseDir = Environment.CurrentDirectory;
-            FilePath = Path.Combine(baseDir, @"TestData\BudgetInsRiktigaExempel.json");
+            FilePath = Path.Combine(baseDir, @"TestData\BudgetIns.json");
             // FilePath = Path.Combine(baseDir, @"TestData\BudgetInsRiktigaExempel.json");
             // BudgetIns
         }
