@@ -17,8 +17,8 @@ namespace InbudgetToTableTests
     {
         private const string _transactionTestFilePath = @"C:\Temp";
         private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
-        private static string _budgetInsFilePath =>
-            @"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
+        private static string _budgetInsFilePath;
+            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
 
         private static string _globalLog;
 
@@ -37,6 +37,13 @@ namespace InbudgetToTableTests
                     _transactionTestFilePath
                 );
             }
+        }
+
+        public SkapaInPosterTests()
+        {
+            var baseDir = Environment.CurrentDirectory;
+            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
+            _budgetInsFilePath = Path.Combine(baseDir, @"TestData\BudgetIns.json");
         }
 
         [TestMethod]

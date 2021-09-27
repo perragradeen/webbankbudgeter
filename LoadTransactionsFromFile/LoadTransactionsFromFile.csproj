@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="DAL\EntriesFromExcelTransFormer.cs" />
     <Compile Include="KontoEntriesHolder.cs" />
+    <Compile Include="KontoEntriesHolderForLoad.cs" />
     <Compile Include="LoadEntriesFromFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

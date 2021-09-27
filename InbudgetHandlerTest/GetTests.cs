@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using InbudgetToTable;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
@@ -7,11 +9,18 @@ namespace InbudgetToTableTests
     [TestClass]
     public class GetTests
     {
-        private static string _filePath =>
-            @"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
+        private static string _filePath;
         private InBudgetHandler Target =>
             new InBudgetHandler(
                 _filePath);
+
+        public GetTests()
+        {
+            var baseDir = Environment.CurrentDirectory;
+            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
+            _filePath = Path.Combine(baseDir, @"..\..\..\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json");
+            //BudgetInsRiktigaExempel.json
+        }
 
         [TestMethod]
         public async Task HämtaRaderFörUiBindningAsyncTest()

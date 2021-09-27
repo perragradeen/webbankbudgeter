@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using InbudgetToTable;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
@@ -7,10 +9,16 @@ namespace InbudgetToTableTests
     [TestClass]
     public class GetTests
     {
-        private static string FilePath =>
-            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json"
-            @"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetInsRiktigaExempel.json"
-            ;
+        private string FilePath;
+            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetInsRiktigaExempel.json"
+
+        public GetTests()
+        {
+            var baseDir = Environment.CurrentDirectory;
+            FilePath = Path.Combine(baseDir, @"TestData\BudgetInsRiktigaExempel.json");
+            // FilePath = Path.Combine(baseDir, @"TestData\BudgetInsRiktigaExempel.json");
+            // BudgetIns
+        }
 
         private InBudgetHandler Target =>
             new InBudgetHandler(FilePath);
