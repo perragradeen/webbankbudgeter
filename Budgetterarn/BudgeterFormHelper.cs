@@ -46,5 +46,30 @@ namespace Budgetterarn
             var sortedList = new SortedList(dict);
             return sortedList;
         }
+
+        /// <summary>Uppdatera UI för nya entries, gör gisningar av dubbletter, typ av kostnad etc
+        /// </summary>
+        internal void CheckAndAddNewItems(
+            KontoEntriesChecker kontoEntriesChecker,
+            List<KontoEntry> itemsAsKontoEntries)
+        {
+            // Flagga och se vad som är nytt etc.
+            kontoEntriesChecker.CheckAndAddNewItemsForLists();
+
+            //// Lägg till i org
+            //lists.NewItemsListOrg.ForEach(k =>
+            //    ViewUpdateUi.AddToListview(newIitemsListOrgGrid, k));
+
+            // Filtrera ut de som inte redan ligger i UI
+            var inUiListAlready = itemsAsKontoEntries;
+            kontoEntriesChecker.AddInUiListAlreadyToAddList(inUiListAlready);
+
+            kontoEntriesChecker.CheckSkyddatBelopp(kontoEntriesHolder);
+        }
+
+
+
+
+
     }
 }

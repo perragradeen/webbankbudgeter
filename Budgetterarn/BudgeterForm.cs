@@ -93,7 +93,7 @@ namespace Budgetterarn
 
                 InitChromiumWebBrowser();
 
-                budgeterFormHelper = new  BudgeterFormHelper(
+                budgeterFormHelper = new BudgeterFormHelper(
                     WriteToOutput,
                     WriteToUiStatusLog,
                     kontoEntriesHolder);
@@ -444,7 +444,8 @@ namespace Budgetterarn
                 NewKontoEntriesIn = kontoEntriesHolder.NewKontoEntries,
             };
 
-            CheckAndAddNewItems(new KontoEntriesChecker(lists, okToAddFromOld));
+            budgeterFormHelper.CheckAndAddNewItems(new KontoEntriesChecker(lists, okToAddFromOld)
+                , newIitemsListEditedGrid.ItemsAsKontoEntries);
 
             // Lägg till i edited
             ViewUpdateUi.AddEntriesToListView(
@@ -455,23 +456,6 @@ namespace Budgetterarn
             UpdateEntriesToSaveMemList();
         }
 
-        /// <summary>Uppdatera UI för nya entries, gör gisningar av dubbletter, typ av kostnad etc
-        /// </summary>
-        private void CheckAndAddNewItems(KontoEntriesChecker kontoEntriesChecker)
-        {
-            // Flagga och se vad som är nytt etc.
-            kontoEntriesChecker.CheckAndAddNewItemsForLists();
-
-            //// Lägg till i org
-            //lists.NewItemsListOrg.ForEach(k =>
-            //    ViewUpdateUi.AddToListview(newIitemsListOrgGrid, k));
-
-            // Filtrera ut de som inte redan ligger i UI
-            var inUiListAlready = newIitemsListEditedGrid.ItemsAsKontoEntries;
-            kontoEntriesChecker.AddInUiListAlreadyToAddList(inUiListAlready);
-
-            kontoEntriesChecker.CheckSkyddatBelopp(kontoEntriesHolder);
-        }
         #endregion
 
         #region Events (button clicks etc)
@@ -575,7 +559,7 @@ namespace Budgetterarn
         #endregion
 
         #region Funktioner, TODO: ha en del av dessa funktioner i egen fil. Typ alla till en ny fil "BudgetFormHelper". Ta även med alla grundMembers och grund data. Ha bara kvar UI-Element o klickfunktioner etc...
-        
+
         private static string GetBankUrl()
         {
             return
