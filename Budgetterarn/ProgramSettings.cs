@@ -1,24 +1,9 @@
-﻿using System;
-using Budgeter.Core.BudgeterConstants;
+﻿using Budgeter.Core.BudgeterConstants;
 
 namespace Budgetterarn
 {
     public class ProgramSettings
     {
-        //public ProgramSettings()
-        //{
-        //    AutoLoadEtc = AutoLoadEtcFromXml();
-        //}
-
-        //public bool AutoLoadEtc { get; }
-
-        //private static bool AutoLoadEtcFromXml()
-        //{
-        //    var s = GeneralSettingsGetter.GetStringSetting("AutonavigateEtc");
-
-        //    return bool.TryParse(s, out var b) && b;
-        //}
-
         public static BankType BankType
         {
             get
