@@ -113,6 +113,10 @@
       <Project>{bd8d683f-f43d-434d-b6ab-a900f458c0cc}</Project>
       <Name>Budgeter.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\GeneralSettingsHandler\GeneralSettingsHandler.csproj">
+      <Project>{0CACB8D4-46BA-4429-86AA-E92134259494}</Project>
+      <Name>GeneralSettingsHandler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\InbudgetHandler\InbudgetHandler.csproj">
       <Project>{159331a1-ecb8-4d6c-9a66-2b279f78e5a0}</Project>
       <Name>InbudgetHandler</Name>
@@ -125,7 +129,12 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\GeneralSettings.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

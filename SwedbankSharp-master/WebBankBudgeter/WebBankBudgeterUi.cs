@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GeneralSettingsHandler;
 using InbudgetHandler;
 using InbudgetHandler.Model;
 using WebBankBudgeter.Service;
@@ -18,18 +19,39 @@ namespace WebBankBudgeter
 {
     public partial class WebBankBudgeterUi : Form
     {
+        private readonly GeneralSettingsGetter generalSettingsGetter;
         private readonly TransactionHandler _transactionHandler;
         private readonly InBudgetUiHandler _inBudgetUiHandler;
         private readonly UtgiftsHanterareUiBinder _utgiftsHanterareUiBinder;
         private readonly SkapaInPosterHanterare _inPosterHanterare;
 
-        // Todo: Viktig: gör en funktion för denna och filnamn. Ta från settings-fil
-        private const string _transactionTestFilePath = @"C:\Temp";
+        private string TransactionFilePath =>
+            generalSettingsGetter.GetStringSetting("TransactionTestFilePath");
+        private string GetGeneralSettingsPath()
+        {
+            var path = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                @"Data\"
+            );
+            return Path.Combine(path, @"GeneralSettings.xml");
+        }
+
+        private string CategoryFilePath => GetCategoryFilePath();
+        private string GetCategoryFilePath()
+        {
+            var appPath = AppDomain.CurrentDomain.BaseDirectory;
+            return Path.Combine(
+                appPath,
+                generalSettingsGetter.GetStringSetting("CategoryPath")
+            );
+        }
 
         public WebBankBudgeterUi()
         {
             try
             {
+                generalSettingsGetter = new GeneralSettingsGetter(
+                    GetGeneralSettingsPath());
                 _transactionHandler = GetTransactionHandler();
 
                 InitializeComponent();
@@ -63,19 +85,8 @@ namespace WebBankBudgeter
             return new TransactionHandler(
                 WriteToOutput,
                 tableGetter,
-                GetCategoryFilePath(),
-                _transactionTestFilePath
-            );
-        }
-
-        private static string GetCategoryFilePath()
-        {
-            var appPath = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.Combine(
-                //< property name = "CategoryPath" value = "Data\Categories.xml" />
-                Path.Combine(appPath, @"..\..\..\..\Budgetterarn\Data"),
-                //@"\Files\Dropbox\budget\Budgeterarn Release\Data", //TODO:Viktig: fixa riktig sökväg, ev slå ihop winforms-apparna
-                @"Categories.xml"
+                CategoryFilePath,
+                TransactionFilePath
             );
         }
 

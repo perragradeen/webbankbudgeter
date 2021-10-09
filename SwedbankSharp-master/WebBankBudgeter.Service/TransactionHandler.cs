@@ -128,9 +128,7 @@ namespace WebBankBudgeter.Service
             var kontoutdragExcelFileInfo = new KontoutdragExcelFileInfo
             {
                 SheetName = BankConstants.SheetName,
-                ExcelFileSavePath = Path.Combine(
-                    _filePath,
-                    @"pelles budget.xls")
+                ExcelFileSavePath = _filePath
             };
 
             // Ladda från fil
