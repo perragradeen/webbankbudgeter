@@ -93,8 +93,6 @@
   <ItemGroup>
     <Compile Include="AddedAndReplacedEntriesCounter.cs" />
     <Compile Include="Application Settings and constants\FileReferences.cs" />
-    <Compile Include="AutoNavigateBrowser\AutoGetEntriesHbMobil.cs" />
-    <Compile Include="AutoNavigateBrowser\BrowserNavigating.cs" />
     <Compile Include="BudgeterForm.cs">
       <SubType>Form</SubType>
     </Compile>

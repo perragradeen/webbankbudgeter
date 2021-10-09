@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using Budgeter.Core;
 using Budgeter.Core.Entities;
-using Budgetterarn.AutoNavigateBrowser;
 using Budgetterarn.EntryLogicSetFlags;
 using CategoryHandler;
 using LoadTransactionsFromFile;
@@ -72,8 +71,6 @@ namespace Budgetterarn
                 {
                     // Öpnna banksidan direkt
                     OpenBankSiteInBrowser();
-
-                    RunAutoLoadIfItIsEnabled();
                 }
 
                 SetVersionsnummerToWindowTitle();
@@ -308,48 +305,6 @@ namespace Budgetterarn
             mineNewIitemsListEdited.EndUpdate();
 
             return newEntriesFromUi;
-        }
-
-        #endregion
-
-        #region AutoGetEntries AutoLoad
-        // TODO: Ta bort allt detta o lägg TODO: Skapa navigering automatiskt
-        private AutoGetEntriesHbMobil autoGetEntriesHbMobilHandler;
-
-        private void WebBrowser1DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            if (false) //!programSettings.AutoLoadEtc)
-            {
-                return;
-            }
-
-            WriteToUiStatusLog(@"Done");
-
-            try
-            {
-                autoGetEntriesHbMobilHandler.LoadingCompleted();
-            }
-            catch (Exception browseExp)
-            {
-                WriteToOutput(@"Error in WebBrowser1DocumentCompleted! : "
-                              + browseExp.Message);
-            }
-        }
-
-        private void RunAutoLoadIfItIsEnabled()
-        {
-            // TODO: sätt så detta kan användas. Sök om hur man invokar saker i
-            // en chrome browser
-
-            if (false
-                //!programSettings.AutoLoadEtc
-                ) return;
-
-            autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(
-                LoadCurrentEntriesFromBrowser, // AutoLoad
-                null);
-
-            autoGetEntriesHbMobilHandler.AutoNavigateToKontonEtc();
         }
 
         #endregion
