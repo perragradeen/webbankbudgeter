@@ -12,21 +12,10 @@ namespace LoadTransactionsFromFile
             KontoutdragExcelFileInfo kontoutdragExcelFileInfo)
         {
             // Backa inte upp filen innan laddning, eftersom filen inte ändras vid laddning...
-            // BackupOrginialFile("Before.Load");
-
-            // Öppna fil först, och ladda, sen ev. spara ändringar, som
-            // inte ändrats av laddningen, av filöpnningen
-            var kontoUtdragXls = new Hashtable();
-
-            // Todo: Gör om till arraylist, eller lista av dictionary items,
-            // för att kunna välja ordning
-
-            #region Öppna fil och hämta rader
 
             try
             {
                 var filePath = kontoutdragExcelFileInfo.ExcelFileSavePath;
-
                 if (string.IsNullOrEmpty(filePath))
                 {
                     return null;
@@ -37,27 +26,21 @@ namespace LoadTransactionsFromFile
                     throw new FileNotFoundException(filePath);
                 }
 
-                OpenFileFunctions.OpenExcelSheet(
-                    filePath,
-                    kontoutdragExcelFileInfo.SheetName,
-                    kontoUtdragXls,
-                    0);
+                var kontoUtdragXls = OpenFileFunctions.GetHashTableFromExcelSheet(
+                        filePath,
+                        kontoutdragExcelFileInfo.SheetName);
+
+                return (Hashtable)kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
+
             }
             catch (Exception fileOpneExcp)
             {
+                // TOOD: skriv ut till ui via action...
                 Console.WriteLine("User cancled or other error: "
                                   + fileOpneExcp.Message);
 
-                if (kontoUtdragXls.Count < 1)
-                {
-                    // throw fileOpneExcp;
-                    return null;
-                }
+                return null;
             }
-
-            #endregion
-
-            return (Hashtable) kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
         }
     }
 }

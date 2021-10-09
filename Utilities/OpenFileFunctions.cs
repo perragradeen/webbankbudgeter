@@ -32,72 +32,30 @@ namespace Utilities
         /// <param name="book">Hashtabell som ALLA celler eller rader lagras i, inte bara en kolumn även om man valt att få det, den returneras av funktionen istället</param>
         /// <param name="selectedRow">Rad som ska sparas, 0 för alla</param>
         /// <returns>Om selectedRow är annat än 0 och sheetName inte är tom sträng, så returneras en Hashtabell med den angivna raden </returns>
-        public static void OpenExcelSheet(
+        public static Hashtable GetHashTableFromExcelSheet(
                 string excelBookPath,
-                string sheetName,
-                Hashtable book,
-                int selectedRow)
-            // ev. returnera en bool om det lyckades, ev. lägg en Arraylist som innehåller allt inkl. dubletter
+                string sheetName = "",
+                bool onlyLoadSelectedSheetName = true)
         {
-            var returnHashtable = new Hashtable();
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-
-            #region read Old Log
-
             var excelApp = new ApplicationClass();
 
+            var book = new Hashtable();
             try
             {
-                // Öppna den gamla loggen
-                var excelBook = excelApp.Workbooks._Open(
-                    excelBookPath,
-                    // filename,
-                    Type.Missing,
-                    0,
-                    Type.Missing,
-                    XlPlatform.xlWindows,
-                    Type.Missing,
-                    Type.Missing,
-                    Type.Missing,
-                    false,
-                    // COMMA
-                    Type.Missing,
-                    Type.Missing,
-                    Type.Missing,
-                    Type.Missing);
+                var excelBook = OpenExcelBook(excelBookPath, excelApp);
 
                 // get the collection of sheets in the workbook
                 var sheets = excelBook.Worksheets;
                 var numOfSheets = excelBook.Worksheets.Count;
 
-                // Store old rows
-                const int startSheetNumber = 1;
-                for (var sheetNr = startSheetNumber; sheetNr <= numOfSheets; sheetNr++)
+                if (onlyLoadSelectedSheetName && !string.IsNullOrWhiteSpace(sheetName))
                 {
-                    var localSheetName = ((Worksheet) sheets.Item[sheetNr]).Name;
-
-                    // Excelarknamnet
-                    var worksheet = (Worksheet) sheets.Item[sheetNr];
-
-                    // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
-                    var rows = new Hashtable(); // Behöver ej göras new, kan sättas till null eg.
-                    ExcelLogRowComparer.GetExcelRows(worksheet, rows);
-
-                    // Hämta ut rader och lägg i rows från Excel arket worksheet
-                    book.Add(localSheetName, rows); // Lägg till i arbetsboken
+                    LoadOneSheet(book, sheets, sheetName);
                 }
-
-                if (
-                    sheetName != "" &&
-                    selectedRow !=
-                    0) // ha detta som en annan fkn, för att kunna använda ovan som en mer generell fkn, och ev. ha en som kör båda sen, för MissingCSC
+                else
                 {
-                    var rows = (book[sheetName] as Hashtable)?.Values
-                               ?? throw new ArgumentNullException(nameof(excelBookPath));
-                    foreach (ExcelRowEntry var in rows)
-                    {
-                        returnHashtable.Add(var.Args[selectedRow - 1], 1);
-                    }
+                    LoadAllSheets(book, sheets, numOfSheets);
                 }
 
                 // Stäng worbook utan att spara (man har ju bara läst nu)
@@ -108,21 +66,60 @@ namespace Utilities
                 excelApp.Quit(); // Stäng excel
                 Marshal.ReleaseComObject(excelApp);
 
-                if (returnHashtable.Count > 0)
-                {
-                    return;
-                }
-
                 throw new Exception(
-                    "Error in retrieving log. Was the log opened in Excel during compare processing?\r\n\r\n(Sys err: "
-                    + e.Message + ").",
-                    e);
+                    "Error in retrieving log. Was the log opened in Excel during compare processing?\r\n\r\n" +
+                        "(Sys err: " + e.Message + ")."
+                    , e);
             }
 
             // Stäng boken oven
             CloseApp(excelApp);
 
-            #endregion
+            return book;
+        }
+
+        private static Workbook OpenExcelBook(string excelBookPath, ApplicationClass excelApp)
+        {
+            return excelApp.Workbooks._Open(
+                excelBookPath,
+                // filename,
+                Type.Missing,
+                0,
+                Type.Missing,
+                XlPlatform.xlWindows,
+                Type.Missing,
+                Type.Missing,
+                Type.Missing,
+                false,
+                // COMMA
+                Type.Missing,
+                Type.Missing,
+                Type.Missing,
+                Type.Missing);
+        }
+
+        private static void LoadOneSheet(Hashtable book, Sheets sheets, string sheetName)
+        {
+            var worksheet = (Worksheet)sheets[sheetName];
+
+            // Här byts ju worksheet ändå, så att sätta worksheet ovan blir verkningslöst
+            var rows = new Hashtable(); // Behöver ej göras new, kan sättas till null eg.
+            ExcelLogRowComparer.GetExcelRows(worksheet, rows);
+
+            // Hämta ut rader och lägg i rows från Excel arket worksheet
+            book.Add(sheetName, rows); // Lägg till i arbetsboken
+        }
+
+        private static void LoadAllSheets(Hashtable book, Sheets sheets, int numOfSheets)
+        {
+            const int startSheetNumber = 1;
+            for (var sheetNr = startSheetNumber; sheetNr <= numOfSheets; sheetNr++)
+            {
+                // Excelarknamnet
+                var localSheetName = ((Worksheet)sheets.Item[sheetNr]).Name;
+
+                LoadOneSheet(book, sheets, localSheetName);
+            }
         }
 
         // För att stänga Excel efter användandet.

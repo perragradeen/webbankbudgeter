@@ -48,6 +48,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoadExcelFileTests.cs" />
     <Compile Include="LoggerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringTest.cs" />
