@@ -168,9 +168,7 @@ namespace WebBankBudgeter.Service.TransactionTests
         {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(
-                //< property name = "CategoryPath" value = "Data\Categories.xml" />
                 Path.Combine(appPath, _categoryRelativeDirPath),
-                //@"\Files\Dropbox\budget\Budgeterarn Release\Data", //TODO:Viktig: fixa riktig sökväg, ev slå ihop winforms-apparna
                 @"Categories.xml"
             );
         }

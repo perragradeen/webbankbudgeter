@@ -50,7 +50,7 @@ namespace Utilities
         /// <param name="overWrite"></param>
         /// <param name="rowsToWrite">Table with rows to write to file</param>
         /// <param name="sheetName">Name of sheet to write to</param>
-        /// <returns>Todo, return lastrow written to</returns>
+        /// <returns>lastrow written to</returns>
         public static int WriteToWorkBook(string excelBookPath, string sheetName, bool overWrite, Hashtable rowsToWrite)
         {
             return WriteToWorkBook(excelBookPath, sheetName, null, null, overWrite, rowsToWrite);
