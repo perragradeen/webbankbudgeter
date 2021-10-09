@@ -23,8 +23,6 @@ namespace Budgetterarn
     /// </summary>
     public partial class BudgeterForm : Form
     {
-        // TODO: Bugg när ke laddas från web. Dubbletter kommenr in i nya listan
-
         // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
         private const string VersionNumber = "1.0.1.16";
         private readonly GeneralSettingsGetter generalSettingsGetter;

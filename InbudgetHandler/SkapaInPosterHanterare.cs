@@ -64,7 +64,7 @@ namespace InbudgetHandler
                 inBudgetRows.Add(inBudgetRow);
             }
 
-            // Fyll på med de kategorier som inte var med i utgifter...TODO:
+            // Fyll på med de kategorier som inte var med i utgifter
             // 25 Hyra bla bla	Hämta alla kategorier			
             var kategorier = _transactionHandler.AllCategories;
             foreach (var categoryName in kategorier.CategoryList)

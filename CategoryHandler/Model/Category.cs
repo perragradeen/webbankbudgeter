@@ -20,7 +20,7 @@ namespace CategoryHandler.Model
         [XmlAttribute("group")]
         public string Group { get; set; }
 
-        // Todo: Gör listors inläsning till följande, så slipper man ha den extra taggen <AutoCategoriseList> med i xmlen, men iofs så sätter användaren autocats i programmet, och behöver aldrig fundera på listan...Om den inte vill se vilka auto som finns, men nu får man stå ut med att ändra i den "dula" filen.
+        // Todo: Gör listors inläsning till följande, så slipper man ha den extra taggen <AutoCategoriseList> med i xmlen, men iofs så sätter användaren autocats i programmet, och behöver aldrig fundera på listan...Om den inte vill se vilka auto som finns, men nu får man stå ut med att ändra i den "fula" filen.
         //[XmlElement("AutoCategorise")]
         //public List<AutoCategorise> AutoCategorise { get; set; }
 
