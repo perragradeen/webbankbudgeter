@@ -30,13 +30,7 @@ namespace WebBankBudgeter
         {
             try
             {
-                var tableGetter = new TableGetter {AddAverageColumn = true};
-                _transactionHandler = new TransactionHandler(
-                    WriteToOutput,
-                    tableGetter,
-                    GetCategoryFilePath(),
-                    _transactionTestFilePath
-                );
+                _transactionHandler = GetTransactionHandler();
 
                 InitializeComponent();
 
@@ -61,6 +55,17 @@ namespace WebBankBudgeter
             {
                 WriteLineToOutputAndScrollDown(e.Message);
             }
+        }
+
+        private TransactionHandler GetTransactionHandler()
+        {
+            var tableGetter = new TableGetter { AddAverageColumn = true };
+            return new TransactionHandler(
+                WriteToOutput,
+                tableGetter,
+                GetCategoryFilePath(),
+                _transactionTestFilePath
+            );
         }
 
         private static string GetCategoryFilePath()
@@ -187,7 +192,7 @@ namespace WebBankBudgeter
                     .Where(u => u.CategoryText.Trim() == inBudget.RadNamnY.Trim()
                     );
 
-                var nuvarandeRad = new Rad {RadNamnY = inBudget.RadNamnY};
+                var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
                 foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
                 {
                     foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)

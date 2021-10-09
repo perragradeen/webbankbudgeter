@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Budgetterarn
+namespace GeneralSettingsHandler
 {
     [XmlRoot(ElementName = "GeneralSettings")]
     public class GeneralSettings : List<Property>

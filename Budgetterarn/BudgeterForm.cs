@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using Budgeter.Core;
 using Budgeter.Core.Entities;
 using Budgetterarn.EntryLogicSetFlags;
 using CategoryHandler;
+using GeneralSettingsHandler;
 using LoadTransactionsFromFile;
 
 // ReSharper disable CommentTypo
@@ -44,20 +46,23 @@ namespace Budgetterarn
 
         private ProgramSettings programSettings;
 
+        private string GetGeneralSettingsPath()
+        {
+            var path = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                @"Data\"
+            );
+            return Path.Combine(path, @"GeneralSettings.xml");
+        }
+
         #endregion
 
         public BudgeterForm()
         {
             try
             {
-                generalSettingsGetter = new GeneralSettingsGetter();
-                budgeterFormHelper = new BudgeterFormHelper(
-                    WriteToOutput,
-                    WriteToUiStatusLog,
-                    CheckAndAddNewItems,
-                    kontoEntriesHolder,
-                    generalSettingsGetter
-                );
+                generalSettingsGetter = new GeneralSettingsGetter(GetGeneralSettingsPath());
+                budgeterFormHelper = GetBudgetFormHelper();
 
                 InitFields();
 
@@ -77,6 +82,17 @@ namespace Budgetterarn
             {
                 WriteExceptionToOutput(e, @"Init Error! :");
             }
+        }
+
+        private BudgeterFormHelper GetBudgetFormHelper()
+        {
+            return new BudgeterFormHelper(
+                    WriteToOutput,
+                    WriteToUiStatusLog,
+                    CheckAndAddNewItems,
+                    kontoEntriesHolder,
+                    generalSettingsGetter
+                );
         }
 
         #region Inits

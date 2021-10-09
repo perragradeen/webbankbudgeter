@@ -113,7 +113,6 @@
     <Compile Include="DAL\SaveKonton.cs" />
     <Compile Include="DoneNavigationAction.cs" />
     <Compile Include="EntryLogicSetFlags\KontoEntriesChecker.cs" />
-    <Compile Include="GeneralSettings.cs" />
     <Compile Include="InternalUtilities\LoadFromFileHelper.cs" />
     <Compile Include="KontoEntryListView.cs">
       <SubType>Component</SubType>
@@ -128,7 +127,6 @@
     <Compile Include="ListViewWithComboBox.Designer.cs">
       <DependentUpon>ListViewWithComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneralSettingsGetter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +210,10 @@
     <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj">
       <Project>{c707980b-cdac-4a23-be4c-5e41856541b0}</Project>
       <Name>CategoryHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneralSettingsHandler\GeneralSettingsHandler.csproj">
+      <Project>{0CACB8D4-46BA-4429-86AA-E92134259494}</Project>
+      <Name>GeneralSettingsHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj">
       <Project>{618a6f79-4251-4969-857b-e806c0f45882}</Project>

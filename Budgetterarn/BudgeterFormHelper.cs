@@ -8,6 +8,7 @@ using Budgetterarn.Application_Settings_and_constants;
 using Budgetterarn.DAL;
 using Budgetterarn.EntryLogicSetFlags;
 using Budgetterarn.InternalUtilities;
+using GeneralSettingsHandler;
 using LoadTransactionsFromFile;
 using Utilities;
 
