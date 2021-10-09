@@ -4,29 +4,29 @@ using Budgeter.Core.BudgeterConstants;
 
 namespace Budgetterarn.Application_Settings_and_constants
 {
-    internal static class FileReferences
+    internal class FileReferences
     {
         /// <summary>
         /// Kontoutdrag_officiella
         /// </summary>
         internal static readonly string SheetName = BankConstants.SheetName;
 
-        static FileReferences()
+        internal FileReferences(GeneralSettingsGetter generalSettingsGetter)
         {
             // Get file names from settings file
             var appPath = AppDomain.CurrentDomain.BaseDirectory; // TODO: fixa en allmän funktion som ger sökväg relativ
 
             ExcelFileSaveFileName =
-                GeneralSettings.GetStringSetting("ExcelFileSavePathFileName");
+                generalSettingsGetter.GetStringSetting("ExcelFileSavePathFileName");
             ExcelFileSavePathWithoutFileName =
-                GeneralSettings.GetStringSetting("ExcelFileSaveDirPath");
+                generalSettingsGetter.GetStringSetting("ExcelFileSaveDirPath");
             ExcelFileSavePath =
                 ExcelFileSavePathWithoutFileName + ExcelFileSaveFileName;
             ExcelFileSavePath = Path.Combine(appPath, ExcelFileSavePath);
         }
 
-        public static string ExcelFileSavePathWithoutFileName { get; }
-        public static string ExcelFileSaveFileName { get; }
-        public static string ExcelFileSavePath { get; }
+        public string ExcelFileSavePathWithoutFileName { get; }
+        public string ExcelFileSaveFileName { get; }
+        public string ExcelFileSavePath { get; }
     }
 }

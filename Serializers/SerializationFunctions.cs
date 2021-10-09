@@ -20,15 +20,14 @@ namespace Serializers
         /// Lägg innehållet i en xml-fil till minnet i den statiska vaiabeln AllCategories
         /// </summary>
         /// <param name="filename">xml-fil som ska läsas in</param>
-        /// <param name="serializeType">the return type, ie Accessories</param>
-        public static object DeserializeObject(string filename, Type serializeType)
+        public static T DeserializeObject<T>(string filename)
         {
             FileStream fileStream = null;
             try
             {
                 // Initiera variabler som behövs
                 // Gör en serializer som matchar mot klassen accessories
-                var serializer = new XmlSerializer(serializeType);
+                var serializer = new XmlSerializer(typeof(T));
 
                 // Öppna filen
                 fileStream = new FileStream(filename, FileMode.Open);
@@ -40,7 +39,7 @@ namespace Serializers
                 // Stäng filen, nu när läsningen är färdig
                 fileStream.Close();
 
-                return objectSerialized;
+                return (T)objectSerialized;
             }
             catch (Exception serExcp)
             {

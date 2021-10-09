@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <GeneralSettings>
-  <property name="ExcelFileSaveDirPath" value="..\"/>
+  <Property Name="ExcelFileSaveDirPath" Value="..\"/>
+  <Property Name="ExcelFileSavePathFileName" Value="Pelles Budget.xls"/>
 
-  <property name="ExcelFileSavePathFileName" value="Pelles Budget.xls"/>
-  <property name="CategoryPath" value="Data\Categories.xml"/>
-  <property name="AutonavigateEtc" value="false"/>
+  <Property Name="CategoryPath" Value="Data\Categories.xml"/>
+  <Property Name="AutonavigateEtc" Value="false"/>
 
-  <property name="BankUrl" value="swedbank" rownumberInTextfile="0" textfileName="Data\TrickyURLS.txt"/>
+  <Property Name="BankUrl" Value="swedbank" RownumberInTextfile="0" TextfileName="Data\TrickyURLS.txt"/>
 
 </GeneralSettings>

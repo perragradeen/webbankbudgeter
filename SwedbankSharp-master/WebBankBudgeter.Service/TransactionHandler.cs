@@ -46,10 +46,8 @@ namespace WebBankBudgeter.Service
             _writeToOutput = writeToOutput;
             _tableGetter = tableGetter;
 
-            _allCategories = SerializationFunctions.DeserializeObject(
-                    categoriesFilePath,
-                    typeof(Categories))
-                as Categories;
+            _allCategories = SerializationFunctions
+                .DeserializeObject<Categories>(categoriesFilePath);
             _filePath = filePath;
         }
 
@@ -58,8 +56,7 @@ namespace WebBankBudgeter.Service
             TransactionList transactionDatalist;
             try
             {
-                transactionDatalist =
-                    await GetData();
+                transactionDatalist = await GetData();
                 if (transactionDatalist == null)
                 {
                     _writeToOutput(Environment.NewLine + "No one logged in.");

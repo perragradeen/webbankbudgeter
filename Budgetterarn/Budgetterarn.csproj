@@ -115,6 +115,7 @@
     <Compile Include="DAL\SaveKonton.cs" />
     <Compile Include="DoneNavigationAction.cs" />
     <Compile Include="EntryLogicSetFlags\KontoEntriesChecker.cs" />
+    <Compile Include="GeneralSettings.cs" />
     <Compile Include="InternalUtilities\LoadFromFileHelper.cs" />
     <Compile Include="KontoEntryListView.cs">
       <SubType>Component</SubType>
@@ -129,7 +130,7 @@
     <Compile Include="ListViewWithComboBox.Designer.cs">
       <DependentUpon>ListViewWithComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneralSettings.cs" />
+    <Compile Include="GeneralSettingsGetter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,6 +218,10 @@
     <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj">
       <Project>{618a6f79-4251-4969-857b-e806c0f45882}</Project>
       <Name>LoadTransactionsFromFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serializers\Serializers.csproj">
+      <Project>{D9A75C48-AEED-4BEA-8C87-505146705DD6}</Project>
+      <Name>Serializers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}</Project>

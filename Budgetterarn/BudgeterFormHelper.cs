@@ -21,40 +21,36 @@ namespace Budgetterarn
         private readonly KontoEntriesHolder kontoEntriesHolder;
         private bool somethingChanged;
 
-        private KontoutdragExcelFileInfo _kontoutdragExcelFileInfo;
-        private KontoutdragExcelFileInfo KontoutdragExcelFileInfo
-        {
-            get
-            {
-                if (_kontoutdragExcelFileInfo != null)
-                {
-                    return _kontoutdragExcelFileInfo;
-                }
-
-                _kontoutdragExcelFileInfo = new KontoutdragExcelFileInfo
-                {
-                    ExcelFileSaveFileName = FileReferences.ExcelFileSaveFileName,
-                    ExcelFileSavePath = FileReferences.ExcelFileSavePath,
-                    ExcelFileSavePathWithoutFileName =
-                        FileReferences.ExcelFileSavePathWithoutFileName,
-                    SheetName = FileReferences.SheetName
-                };
-
-                return _kontoutdragExcelFileInfo;
-            }
-        }
+        private KontoutdragExcelFileInfo KontoutdragExcelFileInfo { get; }
 
         public BudgeterFormHelper(
             Action<string> writeToOutput
             , Action<string> writeToUiStatusLog
             , Action<bool> checkAndAddNewItems
             , KontoEntriesHolder kontoEntriesHolder
-            )
+            , GeneralSettingsGetter generalSettingsGetter)
         {
             this.writeToOutput = writeToOutput;
             this.writeToUiStatusLog = writeToUiStatusLog;
             this.checkAndAddNewItems = checkAndAddNewItems;
             this.kontoEntriesHolder = kontoEntriesHolder;
+
+            KontoutdragExcelFileInfo = GetExcelFileReferences(generalSettingsGetter);
+        }
+
+        private KontoutdragExcelFileInfo GetExcelFileReferences(
+            GeneralSettingsGetter generalSettingsGetter)
+        {
+            var fileReferences = new FileReferences(generalSettingsGetter);
+
+            return new KontoutdragExcelFileInfo
+            {
+                ExcelFileSaveFileName = fileReferences.ExcelFileSaveFileName,
+                ExcelFileSavePath = fileReferences.ExcelFileSavePath,
+                ExcelFileSavePathWithoutFileName =
+                      fileReferences.ExcelFileSavePathWithoutFileName,
+                SheetName = FileReferences.SheetName
+            };
         }
 
         internal void LoadOldEntries()

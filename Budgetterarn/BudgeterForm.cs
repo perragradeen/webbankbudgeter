@@ -28,7 +28,7 @@ namespace Budgetterarn
 
         // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
         private const string VersionNumber = "1.0.1.16";
-
+        private readonly GeneralSettingsGetter generalSettingsGetter;
         private readonly BudgeterFormHelper budgeterFormHelper;
 
         #region Members
@@ -53,11 +53,13 @@ namespace Budgetterarn
         {
             try
             {
+                generalSettingsGetter = new GeneralSettingsGetter();
                 budgeterFormHelper = new BudgeterFormHelper(
                     WriteToOutput,
                     WriteToUiStatusLog,
                     CheckAndAddNewItems,
-                    kontoEntriesHolder
+                    kontoEntriesHolder,
+                    generalSettingsGetter
                 );
 
                 InitFields();
@@ -94,8 +96,8 @@ namespace Budgetterarn
             try
             {
                 // Get file names from settings file
-                categoryPath = GeneralSettings.GetStringSetting("CategoryPath");
-                bankUrl = GeneralSettings.GetTextFileStringSetting("BankUrl");
+                categoryPath = generalSettingsGetter.GetStringSetting("CategoryPath");
+                bankUrl = generalSettingsGetter.GetTextFileStringSetting("BankUrl");
 
                 // Ladda kategorier som man har till att flagga olika kontohändelser
                 CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
@@ -316,7 +318,7 @@ namespace Budgetterarn
 
         private void WebBrowser1DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (!programSettings.AutoLoadEtc)
+            if (false) //!programSettings.AutoLoadEtc)
             {
                 return;
             }
@@ -339,7 +341,9 @@ namespace Budgetterarn
             // TODO: sätt så detta kan användas. Sök om hur man invokar saker i
             // en chrome browser
 
-            if (!programSettings.AutoLoadEtc) return;
+            if (false
+                //!programSettings.AutoLoadEtc
+                ) return;
 
             autoGetEntriesHbMobilHandler = new AutoGetEntriesHbMobil(
                 LoadCurrentEntriesFromBrowser, // AutoLoad

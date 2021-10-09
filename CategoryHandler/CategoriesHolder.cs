@@ -23,9 +23,8 @@ namespace CategoryHandler
 
             try
             {
-                AllCategories = SerializationFunctions.DeserializeObject(
-                    SaveFilePath,
-                    typeof(Categories)) as Categories;
+                AllCategories = SerializationFunctions
+                    .DeserializeObject<Categories>(SaveFilePath);
 
                 AllCategoriesHandler = new CategoriesHandler(AllCategories);
             }

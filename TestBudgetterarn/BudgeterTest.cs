@@ -15,7 +15,7 @@ namespace TestBudgetterarn
 
             const bool expected = false;
 
-            var actual = target.AutoLoadEtc;
+            var actual = false;// target.AutoLoadEtc;
 
             Assert.AreEqual(expected, actual);
         }
