@@ -14,7 +14,7 @@ namespace UtilitiesTest
             @"TestFiles\1.xls"
         );
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void WriteToWorkBookTest()
         {
             const string sheetName = "Blad1";
@@ -27,16 +27,14 @@ namespace UtilitiesTest
                 Logger.WriteToWorkBook(
                     ExcelBookPath,
                     sheetName,
-                    operation: null,
-                    rowToWrite,
-                    overWrite: true,
-                    rowsToWrite: null);
+                    rowsToWrite: null,
+                    rowToWrite: rowToWrite);
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void WriteToWorkBookTest1()
+        public void WriteToWorkBookSeveralRowsTest()
         {
             const string sheetName = "Sheet1";
 
@@ -52,7 +50,6 @@ namespace UtilitiesTest
                 Logger.WriteToWorkBook(
                     ExcelBookPath,
                     sheetName,
-                    overWrite: true,
                     rowsToWrite);
 
             Assert.AreEqual(expected, actual);

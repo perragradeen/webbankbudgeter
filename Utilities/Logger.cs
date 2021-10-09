@@ -44,35 +44,22 @@ namespace Utilities
         }
 
         /// <summary>
-        /// Loggar rader i tabellen till filen på angiven path
-        /// </summary>
-        /// <param name="excelBookPath">Path to Excel file</param>
-        /// <param name="overWrite"></param>
-        /// <param name="rowsToWrite">Table with rows to write to file</param>
-        /// <param name="sheetName">Name of sheet to write to</param>
-        /// <returns>lastrow written to</returns>
-        public static int WriteToWorkBook(string excelBookPath, string sheetName, bool overWrite, Hashtable rowsToWrite)
-        {
-            return WriteToWorkBook(excelBookPath, sheetName, null, null, overWrite, rowsToWrite);
-        }
-
-        /// <summary>
         /// Gets a workbook for saving purposes
         /// </summary>
         /// <param name="excelBookPath">path to Excel file</param>
         /// <param name="sheetName"></param>
-        /// <param name="operation"></param>
+        /// <param name="rowsToWrite"></param>
         /// <param name="rowToWrite"></param>
         /// <param name="overWrite"></param>
-        /// <param name="rowsToWrite"></param>
+        /// <param name="operation"></param>
         /// <returns></returns>
         public static int WriteToWorkBook(
             string excelBookPath,
             string sheetName,
-            OperationToPerformOnBook operation,
-            object[] rowToWrite,
-            bool overWrite,
-            Hashtable rowsToWrite)
+            Hashtable rowsToWrite,
+            object[] rowToWrite = null,
+            bool overWrite = true,
+            OperationToPerformOnBook operation = null)
         {
             #region Todo
 

@@ -13,7 +13,7 @@ namespace WebBankBudgeter.Service.TransactionTests
     [TestClass]
     public class SkapaInPosterTests
     {
-        private const string _transactionTestFilePath = @"C:\Temp";
+        private const string _transactionTestFilePath = @"C:\Temp\pelles budget.xls";
         private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
 
         private static string _budgetInsFilePath;

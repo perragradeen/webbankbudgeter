@@ -11,7 +11,8 @@ namespace LoadTransactionsFromFile
         public static Hashtable LoadEntriesFromFile(
             KontoutdragExcelFileInfo kontoutdragExcelFileInfo)
         {
-            // Backa inte upp filen innan laddning, eftersom filen inte ändras vid laddning...
+            // Backa inte upp filen innan laddning,
+            // eftersom filen inte ändras vid laddning...
 
             try
             {

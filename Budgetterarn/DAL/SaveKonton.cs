@@ -39,7 +39,6 @@ namespace Budgetterarn.DAL
                 Logger.WriteToWorkBook(
                     kontoutdragExcelFileInfo.ExcelFileSavePath,
                     kontoutdragExcelFileInfo.SheetName,
-                    true,
                     logThis);
 
                 return new LoadOrSaveResult
