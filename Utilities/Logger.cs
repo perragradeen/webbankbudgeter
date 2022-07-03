@@ -112,7 +112,7 @@ namespace Utilities
                 var startSheetNumber = 1;
 
                 // get the first worksheet from the collection of worksheets
-                var workSheet = (Worksheet) sheets.Item[startSheetNumber];
+                var workSheet = (Worksheet)sheets.Item[startSheetNumber];
                 if (sheetName != "")
                 {
                     #region Hämta ut rätt sheet

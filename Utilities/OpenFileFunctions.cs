@@ -38,12 +38,12 @@ namespace Utilities
                 bool onlyLoadSelectedSheetName = true)
         {
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            var excelApp = new ApplicationClass();
+            var excelApp = new Application();
 
             var book = new Hashtable();
             try
             {
-                var excelBook = OpenExcelBook(excelBookPath, excelApp);
+                var excelBook = OpenFileFunctionsHelpers.OpenExcelBook(excelBookPath, excelApp);
 
                 // get the collection of sheets in the workbook
                 var sheets = excelBook.Worksheets;
@@ -76,26 +76,6 @@ namespace Utilities
             CloseApp(excelApp);
 
             return book;
-        }
-
-        private static Workbook OpenExcelBook(string excelBookPath, ApplicationClass excelApp)
-        {
-            return excelApp.Workbooks._Open(
-                excelBookPath,
-                // filename,
-                Type.Missing,
-                0,
-                Type.Missing,
-                XlPlatform.xlWindows,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                false,
-                // COMMA
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing);
         }
 
         private static void LoadOneSheet(Hashtable book, Sheets sheets, string sheetName)
