@@ -10,7 +10,7 @@ namespace Budgetterarn
 {
     internal static class ViewUpdateUi
     {
-        public const int MaxRowDisplay = 100;
+        public const int MaxRowDisplay = 1000;
 
         internal static void ClearListAndSetEntriesToListView(
             ListView showEntriesInThisUiList,
