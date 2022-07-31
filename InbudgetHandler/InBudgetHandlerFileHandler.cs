@@ -13,6 +13,11 @@ namespace InbudgetHandler
 
         private List<InBudget> _inPoster;
 
+        public InBudgetHandlerFileHandler(string inBudgetFilePath)
+        {
+            _inBudgetFilePath = inBudgetFilePath;
+        }
+
         public async Task<List<InBudget>> GetInPoster()
         {
             return _inPoster ?? (_inPoster = await GetIncomesFromDisk());
@@ -27,11 +32,6 @@ namespace InbudgetHandler
         {
             _inPoster = await GetIncomesFromDisk();
             return _inPoster;
-        }
-
-        public InBudgetHandlerFileHandler(string inBudgetFilePath)
-        {
-            _inBudgetFilePath = inBudgetFilePath;
         }
 
         public void SparaInPosterPåDisk(List<InBudget> inPoster)

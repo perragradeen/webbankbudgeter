@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using InbudgetHandler;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace InbudgetHandlerTest
+namespace Test.InbudgetHandlerTest
 {
     [TestClass]
     public class GetTests

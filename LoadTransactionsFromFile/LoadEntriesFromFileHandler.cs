@@ -14,8 +14,8 @@ namespace LoadTransactionsFromFile
             // Backa inte upp filen innan laddning,
             // eftersom filen inte ändras vid laddning...
 
-            try
-            {
+            //try
+            //{
                 var filePath = kontoutdragExcelFileInfo.ExcelFileSavePath;
                 if (string.IsNullOrEmpty(filePath))
                 {
@@ -33,15 +33,15 @@ namespace LoadTransactionsFromFile
 
                 return (Hashtable)kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
 
-            }
-            catch (Exception fileOpneExcp)
-            {
-                // TOOD: skriv ut till ui via action...
-                Console.WriteLine("User cancled or other error: "
-                                  + fileOpneExcp.Message);
+            //}
+            //catch (Exception fileOpneExcp)
+            //{
+            //    // TOOD: skriv ut till ui via action...
+            //    Console.WriteLine("User cancled or other error: "
+            //                      + fileOpneExcp.Message);
 
-                return null;
-            }
+            //    return null;
+            //}
         }
     }
 }

@@ -14,15 +14,15 @@ namespace InbudgetHandler
 
         private readonly InBudgetHandlerFileHandler _inBudgetHandlerFileHandler;
 
-        public async Task<List<InBudget>> GetInPoster()
-        {
-            return await _inBudgetHandlerFileHandler.GetInPoster();
-        }
-
         public InBudgetHandler(string inBudgetFilePath)
         {
             _inBudgetHandlerFileHandler =
                 new InBudgetHandlerFileHandler(inBudgetFilePath);
+        }
+
+        public async Task<List<InBudget>> GetInPoster()
+        {
+            return await _inBudgetHandlerFileHandler.GetInPoster();
         }
 
         public void SparaInPosterPåDisk(List<InBudget> inPoster)
