@@ -41,6 +41,10 @@ namespace WebBankBudgeter.UiBinders
                             value = DoubleTo1000SeparatedNoDecimals(value);
                             break;
 
+                        case TextToTableOutPuter.AverageColumnDescriptionNotFormatted:
+                            value = table.GetAverageForCategory(categoryName);
+                            break;
+
                         case TextToTableOutPuter.CategoryNameColumnDescription:
                             value = row.CategoryText;
                             break;

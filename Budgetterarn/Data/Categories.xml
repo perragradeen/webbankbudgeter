@@ -1,202 +1,534 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Categories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <CategoryList>
-    <Category description="hyra (inkl. 1k amortering)">
-      <AutoCategoriseList>
-        <AutoCategorise>HSB GÖTEBORG</AutoCategorise>
-        <AutoCategorise>HS 12151444</AutoCategorise>
-        <AutoCategorise>HSB BOKVAR</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="si och akassa">
-      <AutoCategoriseList>
-        <AutoCategorise>SV INGENJ</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="hemförsäkring">
-      <AutoCategoriseList>
-        <AutoCategorise>LÄNSFÖRSÄKRING</AutoCategorise>
-        <AutoCategorise>LÄNSFÖRSÄKR</AutoCategorise>
-        <AutoCategorise>LF</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="liv- o sjukförsäkring etc">
-      <AutoCategoriseList>
-        <AutoCategorise>AKADEMIKERFÖRS</AutoCategorise>
-        <AutoCategorise>AKADEMIKERFÖ</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="stockholms stads bostadskö">
-      <AutoCategoriseList>
-        <AutoCategorise>Stockholms sta</AutoCategorise>
-        <AutoCategorise>STOCKHOLMS STA</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="csn">
-      <AutoCategoriseList>
-        <AutoCategorise>CENTRALA STUDI</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="röda korset">
-      <AutoCategoriseList>
-        <AutoCategorise>UNICEF</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="el">
-      <AutoCategoriseList>
-        <AutoCategorise>PLUSENERGI AB</AutoCategorise>
-        <AutoCategorise>GÖTEBORG ENERG</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="internet">
-      <AutoCategoriseList>
-        <AutoCategorise>BAHNHOF INT</AutoCategorise>
-        <AutoCategorise>TELE2 SVERIGE</AutoCategorise>
-        <AutoCategorise>TELE2 - FASTA</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="telefonsamtal">
-      <AutoCategoriseList>
-        <AutoCategorise>TELENOR SVERIG</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="hygien (disk, tvätt o tvål etc)">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="hemlagad mat">
-      <AutoCategoriseList>
-        <AutoCategorise>MEDMERA BANK A</AutoCategorise>
-        <AutoCategorise>WILLYS SISJON</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="hemlagad lunch">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="lunch utemat">
-      <AutoCategoriseList>
-        <AutoCategorise>QUALITY HOTEL 11</AutoCategorise>
-        <AutoCategorise>QUALITY HOTEL 11 </AutoCategorise>
-        <AutoCategorise>CLAUDIAS SMORGASBUTI</AutoCategorise>
-        <AutoCategorise>LYCKE GOLF RESTAURAN</AutoCategorise>
-        <AutoCategorise>REST KAJKANTEN</AutoCategorise>
-        <AutoCategorise>MASKINHALL 2</AutoCategorise>
-        <AutoCategorise>BAKDELEN</AutoCategorise>
-        <AutoCategorise>FRESTELSEN C &amp; G</AutoCategorise>
-        <AutoCategorise>PICADELI LINDHOLMEN</AutoCategorise>
-        <AutoCategorise>CHALMERS KONFERANS &amp;</AutoCategorise>
-        <AutoCategorise>KOOPERATIVET I GOTEB</AutoCategorise>
-        <AutoCategorise>RESTAURANG SAGERIET</AutoCategorise>
-        <AutoCategorise>RESTAURANG GOTA ALV</AutoCategorise>
-        <AutoCategorise>RESTAURANG GOTHIA</AutoCategorise>
-        <AutoCategorise>SMEDJA GRILLEN</AutoCategorise>
-        <AutoCategorise>SPACYS RESTAURANGE</AutoCategorise>
-        <AutoCategorise>AQUARELLE</AutoCategorise>
-        <AutoCategorise>GLADA PAPRIKAN</AutoCategorise>
-        <AutoCategorise>ROSE GARDEN SU</AutoCategorise>
-        <AutoCategorise>ROSE GARDEN SUPREME</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="nöjes utemat">
-      <AutoCategoriseList>
-        <AutoCategorise>PIZZERIA CLASS</AutoCategorise>
-        <AutoCategorise>NöjesUteMat</AutoCategorise>
-        <AutoCategorise>SANNEGARDENS PIZZERI</AutoCategorise>
-        <AutoCategorise>A.D. CAFE FORVALTNIN</AutoCategorise>
-        <AutoCategorise>TORGGRILLEN</AutoCategorise>
-        <AutoCategorise>HAGA PIZZERIA</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="mat i samband med supa">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="alkohol">
-      <AutoCategoriseList>
-        <AutoCategorise>Rockbaren</AutoCategorise>
-        <AutoCategorise>SEJDELN PUB</AutoCategorise>
-        <AutoCategorise>öl</AutoCategorise>
-        <AutoCategorise>STICKY FINGERS</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="taxi efter supa">
-      <AutoCategoriseList>
-        <AutoCategorise>TAXI LANDET</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="Buss etc i samband med  supa">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="oväntade utgifter">
-      <AutoCategoriseList>
-        <AutoCategorise>CHALMERSKA ING</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="Småresor ej supa">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="resor i samband med utflykt">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="värnamoresor+övriga">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="spara almänt">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="spara till amortering">
-      <AutoCategoriseList>
-        <AutoCategorise>LUX RÄNTA</AutoCategorise>
-        <AutoCategorise>00000047516877</AutoCategorise>
-        <AutoCategorise>SK7906072439</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="spara till sommarrussel">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="spara till dator">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="spara till russel övrigt">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="kläder">
-      <AutoCategoriseList>
-        <AutoCategorise>339 DRESSMANN FEMMAN</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description="presenter">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="Inträde i samband med supa">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="övrigt i samband med supa">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="hushåll, reparationer etc inköp av nya husshållsmaskiner">
-      <AutoCategoriseList />
-    </Category>
-    <Category description="+">
-      <AutoCategoriseList>
-        <AutoCategorise>LÖN</AutoCategorise>
-        <AutoCategorise>LÖN SEP</AutoCategorise>
-        <AutoCategorise>LÖN NOV</AutoCategorise>
-        <AutoCategorise>LÖN JAN</AutoCategorise>
-        <AutoCategorise>LÖN MARS</AutoCategorise>
-        <AutoCategorise>LÖN APRIL</AutoCategorise>
-        <AutoCategorise>LÖN MAJ</AutoCategorise>
-        <AutoCategorise>LÖN JULI</AutoCategorise>
-        <AutoCategorise>LÖN AUG</AutoCategorise>
-        <AutoCategorise>LÖN OKT</AutoCategorise>
-        <AutoCategorise>LÖN DEC</AutoCategorise>
-        <AutoCategorise>LÖN FEB</AutoCategorise>
-        <AutoCategorise>LÖN JUNI</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-    <Category description=" -">
-      <AutoCategoriseList>
-        <AutoCategorise>Månadsbuffert</AutoCategorise>
-        <AutoCategorise>Periodens köp</AutoCategorise>
-      </AutoCategoriseList>
-    </Category>
-  </CategoryList>
+<Categories xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CategoryList>
+		<Category description="hyra (inkl. 1k amortering)">
+			<AutoCategoriseList>
+				<AutoCategorise>HSB GÖTEBORG</AutoCategorise>
+				<AutoCategorise>HS 12151444</AutoCategorise>
+				<AutoCategorise>HSB BOKVAR</AutoCategorise>
+				<AutoCategorise>Överföring lån 2857934638</AutoCategorise>
+				<AutoCategorise>Överföring lån 2857934646</AutoCategorise>
+				<AutoCategorise>Överföring lån 2857934653</AutoCategorise>
+				<AutoCategorise>Överföring lån 2857934661</AutoCategorise>
+				<AutoCategorise>Överföring lån 0000002857934638  </AutoCategorise>
+				<AutoCategorise>Överföring lån 0000002857934653  </AutoCategorise>
+				<AutoCategorise>Överföring lån 0000002857934661  </AutoCategorise>
+				<AutoCategorise>Överföring lån 0000002857934646  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="si och akassa">
+			<AutoCategoriseList>
+				<AutoCategorise>SV INGENJ</AutoCategorise>
+				<AutoCategorise>Ssr</AutoCategorise>
+				<AutoCategorise>Akademssr</AutoCategorise>
+				<AutoCategorise>Akademssr  </AutoCategorise>
+				<AutoCategorise>Akadssr</AutoCategorise>
+				<AutoCategorise>Akadssr  </AutoCategorise>
+				<AutoCategorise>Akdssr  </AutoCategorise>
+				<AutoCategorise>Akademikerförbun  </AutoCategorise>
+				<AutoCategorise>AKADEMIKERFÖ  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="hemförsäkring">
+			<AutoCategoriseList>
+				<AutoCategorise>LÄNSFÖRSÄKRING</AutoCategorise>
+				<AutoCategorise>LÄNSFÖRSÄKR</AutoCategorise>
+				<AutoCategorise>LF</AutoCategorise>
+				<AutoCategorise>TRE KRONOR</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="liv- o sjukförsäkring etc">
+			<AutoCategoriseList>
+				<AutoCategorise>AKADEMIKERFÖRS</AutoCategorise>
+				<AutoCategorise>AKADEMIKERFÖ</AutoCategorise>
+				<AutoCategorise>Akademikerförbun</AutoCategorise>
+				<AutoCategorise>Akademikerförsäk</AutoCategorise>
+				<AutoCategorise>Akdssr</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="stockholms stads bostadskö">
+			<AutoCategoriseList>
+				<AutoCategorise>Stockholms sta</AutoCategorise>
+				<AutoCategorise>STOCKHOLMS STA</AutoCategorise>
+				<AutoCategorise>BOPLATS GOTEBORG</AutoCategorise>
+				<AutoCategorise>Bostadsförmedlin</AutoCategorise>
+				<AutoCategorise>NETS*nya.boplats</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="csn">
+			<AutoCategoriseList>
+				<AutoCategorise>CENTRALA STUDI</AutoCategorise>
+				<AutoCategorise>Csn</AutoCategorise>
+				<AutoCategorise>Centrala Studies</AutoCategorise>
+				<AutoCategorise>Centrala studies</AutoCategorise>
+				<AutoCategorise>Csn Vivi</AutoCategorise>
+				<AutoCategorise>Centrala studies  </AutoCategorise>
+				<AutoCategorise>Centrala Studies  </AutoCategorise>
+				<AutoCategorise>Csn  </AutoCategorise>
+				<AutoCategorise>Csn v  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="röda korset">
+			<AutoCategoriseList>
+				<AutoCategorise>UNICEF</AutoCategorise>
+				<AutoCategorise>WSPA SVERIGE</AutoCategorise>
+				<AutoCategorise>SAVE THE CHILDRE</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="el">
+			<AutoCategoriseList>
+				<AutoCategorise>PLUSENERGI AB</AutoCategorise>
+				<AutoCategorise>GÖTEBORG ENERG</AutoCategorise>
+				<AutoCategorise>DinEl, Göteborg</AutoCategorise>
+				<AutoCategorise>Göteborg Energi</AutoCategorise>
+				<AutoCategorise>Dinel  </AutoCategorise>
+				<AutoCategorise>El  </AutoCategorise>
+				<AutoCategorise>Gbg el  </AutoCategorise>
+				<AutoCategorise>Gbgel  </AutoCategorise>
+				<AutoCategorise>Göteborg Energi  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="internet">
+			<AutoCategoriseList>
+				<AutoCategorise>BAHNHOF INT</AutoCategorise>
+				<AutoCategorise>TELE2 SVERIGE</AutoCategorise>
+				<AutoCategorise>TELE2 - FASTA</AutoCategorise>
+				<AutoCategorise>Halebop Bredband</AutoCategorise>
+				<AutoCategorise>internet</AutoCategorise>
+				<AutoCategorise>Internet</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="telefonsamtal">
+			<AutoCategoriseList>
+				<AutoCategorise>TELENOR SVERIG</AutoCategorise>
+				<AutoCategorise>Telefon</AutoCategorise>
+				<AutoCategorise>Telia</AutoCategorise>
+				<AutoCategorise>Telia Sverige AB</AutoCategorise>
+				<AutoCategorise>Telia Sverige AB  </AutoCategorise>
+				<AutoCategorise>Telia mob  </AutoCategorise>
+				<AutoCategorise>Telia mob</AutoCategorise>
+				<AutoCategorise>Telia mobil  </AutoCategorise>
+				<AutoCategorise>Telia abon</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="hygien (disk, tvätt o tvål etc)">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="hemlagad mat">
+			<AutoCategoriseList>
+				<AutoCategorise>MEDMERA BANK A</AutoCategorise>
+				<AutoCategorise>WILLYS SISJON</AutoCategorise>
+				<AutoCategorise>Coop</AutoCategorise>
+				<AutoCategorise>IcaCoop</AutoCategorise>
+				<AutoCategorise>K*Coop Sveri</AutoCategorise>
+				<AutoCategorise>Lidl</AutoCategorise>
+				<AutoCategorise>Lidl mat</AutoCategorise>
+				<AutoCategorise>Lidl o Coop</AutoCategorise>
+				<AutoCategorise>Mat</AutoCategorise>
+				<AutoCategorise>Mat.se</AutoCategorise>
+				<AutoCategorise>COOP V#RNAMO</AutoCategorise>
+				<AutoCategorise>COOP VÄRNAMO</AutoCategorise>
+				<AutoCategorise>GOTEBORGS ORIEN</AutoCategorise>
+				<AutoCategorise>ICA SUPERMARKET</AutoCategorise>
+				<AutoCategorise>Klarna*coop.se</AutoCategorise>
+				<AutoCategorise>LIDL 162 / VERNA</AutoCategorise>
+				<AutoCategorise>LIDL 203 / GBG K</AutoCategorise>
+				<AutoCategorise>VERNAMO LIVSMEDE</AutoCategorise>
+				<AutoCategorise>Matse AB</AutoCategorise>
+				<AutoCategorise>STORA COOP BÄCKE</AutoCategorise>
+				<AutoCategorise>STORA COOP BACKA</AutoCategorise>
+				<AutoCategorise>16166 - NETTO OD  </AutoCategorise>
+				<AutoCategorise>16179 - NETTO KA  </AutoCategorise>
+				<AutoCategorise>Bara Bra Mat  </AutoCategorise>
+				<AutoCategorise>BARABRAMAT I GOT  </AutoCategorise>
+				<AutoCategorise>COOP FORUM BACKA  </AutoCategorise>
+				<AutoCategorise>LIDL 302 / GBG R  </AutoCategorise>
+				<AutoCategorise>COOP EXTRA ERIKS  </AutoCategorise>
+				<AutoCategorise>COOP FORUM BACKE  </AutoCategorise>
+				<AutoCategorise>COOP KONSUM AVEN  </AutoCategorise>
+				<AutoCategorise>MAX I VERNAMO  </AutoCategorise>
+				<AutoCategorise>MAXI ICA STORMAR  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="hemlagad lunch">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="lunch utemat">
+			<AutoCategoriseList>
+				<AutoCategorise>QUALITY HOTEL 11</AutoCategorise>
+				<AutoCategorise>QUALITY HOTEL 11 </AutoCategorise>
+				<AutoCategorise>CLAUDIAS SMORGASBUTI</AutoCategorise>
+				<AutoCategorise>LYCKE GOLF RESTAURAN</AutoCategorise>
+				<AutoCategorise>REST KAJKANTEN</AutoCategorise>
+				<AutoCategorise>MASKINHALL 2</AutoCategorise>
+				<AutoCategorise>BAKDELEN</AutoCategorise>
+				<AutoCategorise>FRESTELSEN C &amp; G</AutoCategorise>
+				<AutoCategorise>PICADELI LINDHOLMEN</AutoCategorise>
+				<AutoCategorise>CHALMERS KONFERANS &amp;</AutoCategorise>
+				<AutoCategorise>KOOPERATIVET I GOTEB</AutoCategorise>
+				<AutoCategorise>RESTAURANG SAGERIET</AutoCategorise>
+				<AutoCategorise>RESTAURANG GOTA ALV</AutoCategorise>
+				<AutoCategorise>RESTAURANG GOTHIA</AutoCategorise>
+				<AutoCategorise>SMEDJA GRILLEN</AutoCategorise>
+				<AutoCategorise>SPACYS RESTAURANGE</AutoCategorise>
+				<AutoCategorise>AQUARELLE</AutoCategorise>
+				<AutoCategorise>GLADA PAPRIKAN</AutoCategorise>
+				<AutoCategorise>ROSE GARDEN SU</AutoCategorise>
+				<AutoCategorise>ROSE GARDEN SUPREME</AutoCategorise>
+				<AutoCategorise>Bombay Bistro</AutoCategorise>
+				<AutoCategorise>KOOPERATIVET LIN</AutoCategorise>
+				<AutoCategorise>LINDHOLMENS MAT</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="nöjes utemat">
+			<AutoCategoriseList>
+				<AutoCategorise>PIZZERIA CLASS</AutoCategorise>
+				<AutoCategorise>NöjesUteMat</AutoCategorise>
+				<AutoCategorise>SANNEGARDENS PIZZERI</AutoCategorise>
+				<AutoCategorise>A.D. CAFE FORVALTNIN</AutoCategorise>
+				<AutoCategorise>TORGGRILLEN</AutoCategorise>
+				<AutoCategorise>HAGA PIZZERIA</AutoCategorise>
+				<AutoCategorise>Flinston</AutoCategorise>
+				<AutoCategorise>Foodora</AutoCategorise>
+				<AutoCategorise>K*Foodora AB</AutoCategorise>
+				<AutoCategorise>Sushi</AutoCategorise>
+				<AutoCategorise>AKROPOLIS PIZZER</AutoCategorise>
+				<AutoCategorise>BACKAPLAN WOK AB</AutoCategorise>
+				<AutoCategorise>CAFE AZALEA</AutoCategorise>
+				<AutoCategorise>CAFE ROSAMI</AutoCategorise>
+				<AutoCategorise>CYRANO SODRA VEG</AutoCategorise>
+				<AutoCategorise>FLINTSTON</AutoCategorise>
+				<AutoCategorise>FOODIE</AutoCategorise>
+				<AutoCategorise>Foodora AB</AutoCategorise>
+				<AutoCategorise>Foodora Sweden</AutoCategorise>
+				<AutoCategorise>Gaubi</AutoCategorise>
+				<AutoCategorise>GO BITE</AutoCategorise>
+				<AutoCategorise>GODISGUBBEN</AutoCategorise>
+				<AutoCategorise>Gourmetkorv City</AutoCategorise>
+				<AutoCategorise>Jureskogs</AutoCategorise>
+				<AutoCategorise>KOKET HOTWOK</AutoCategorise>
+				<AutoCategorise>LEVADURA PIZZERI</AutoCategorise>
+				<AutoCategorise>MAMMA ROSA</AutoCategorise>
+				<AutoCategorise>Mamma Rosa</AutoCategorise>
+				<AutoCategorise>MARIE SUSHI &amp; BI</AutoCategorise>
+				<AutoCategorise>MAX GOTEBORG 4 B</AutoCategorise>
+				<AutoCategorise>MR CAKE GOTEBORG</AutoCategorise>
+				<AutoCategorise>MR DONER</AutoCategorise>
+				<AutoCategorise>NYTTIG SNABBMAT</AutoCategorise>
+				<AutoCategorise>POLSEMANNEN HORN</AutoCategorise>
+				<AutoCategorise>PIZZAGARDEN</AutoCategorise>
+				<AutoCategorise>Restaurang Tomic</AutoCategorise>
+				<AutoCategorise>Rosa-Mi Cafe</AutoCategorise>
+				<AutoCategorise>SCANDIC STAR LU</AutoCategorise>
+				<AutoCategorise>SIBYLLA AR@D</AutoCategorise>
+				<AutoCategorise>SIMBAGRILLEN</AutoCategorise>
+				<AutoCategorise>ZAMENHOF</AutoCategorise>
+				<AutoCategorise>ZOZAKI JAPAN RE</AutoCategorise>
+				<AutoCategorise>Villa Belparc AB</AutoCategorise>
+				<AutoCategorise>Vastsvenska Bar</AutoCategorise>
+				<AutoCategorise>Restaurang Pita</AutoCategorise>
+				<AutoCategorise>RESTAURANG SILVE</AutoCategorise>
+				<AutoCategorise>RESTAURANG TABLA</AutoCategorise>
+				<AutoCategorise>PROJECT</AutoCategorise>
+				<AutoCategorise>POMODORO</AutoCategorise>
+				<AutoCategorise>BISTRO CYRANO</AutoCategorise>
+				<AutoCategorise>231 Lagkagehuset  </AutoCategorise>
+				<AutoCategorise>7Eleven B091  </AutoCategorise>
+				<AutoCategorise>ANDRUM VEGETARIS  </AutoCategorise>
+				<AutoCategorise>BAKES CAFE  </AutoCategorise>
+				<AutoCategorise>BISTRO CYRANO  </AutoCategorise>
+				<AutoCategorise>BURGER KING BAC  </AutoCategorise>
+				<AutoCategorise>FLINTSTON  </AutoCategorise>
+				<AutoCategorise>Foodora Sweden  </AutoCategorise>
+				<AutoCategorise>GO BITE AB  </AutoCategorise>
+				<AutoCategorise>LA VENEZIA RESTA  </AutoCategorise>
+				<AutoCategorise>LE PAIN PAIN FRA  </AutoCategorise>
+				<AutoCategorise>RESTAURANG THAI  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="mat i samband med supa">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="alkohol">
+			<AutoCategoriseList>
+				<AutoCategorise>Rockbaren</AutoCategorise>
+				<AutoCategorise>SEJDELN PUB</AutoCategorise>
+				<AutoCategorise>öl</AutoCategorise>
+				<AutoCategorise>STICKY FINGERS</AutoCategorise>
+				<AutoCategorise>Systemet</AutoCategorise>
+				<AutoCategorise>Light Your Fire</AutoCategorise>
+				<AutoCategorise>STEAM PURCHASE</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="taxi efter supa">
+			<AutoCategoriseList>
+				<AutoCategorise>TAXI LANDET</AutoCategorise>
+				<AutoCategorise>UBR* PENDING.UBE</AutoCategorise>
+				<AutoCategorise>UBER RIDES</AutoCategorise>
+				<AutoCategorise>TAXI G@TEBORG</AutoCategorise>
+				<AutoCategorise>iZ *O M Taxi AB</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="Buss etc i samband med  supa">
+			<AutoCategoriseList>
+				<AutoCategorise>Västtrafik AB  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="oväntade utgifter">
+			<AutoCategoriseList>
+				<AutoCategorise>CHALMERSKA ING</AutoCategorise>
+				<AutoCategorise>PRIS NYCKELKUND</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="Småresor ej supa">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="resor i samband med utflykt">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="värnamoresor+övriga">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="spara almänt">
+			<AutoCategoriseList>
+				<AutoCategorise>CO 252 BACKAPLA</AutoCategorise>
+				<AutoCategorise>FTC Goteborg Bac</AutoCategorise>
+				<AutoCategorise>HORNBACH GOTEBOR</AutoCategorise>
+				<AutoCategorise>IKEA BECKEBOL</AutoCategorise>
+				<AutoCategorise>XXL SPORT &amp; VIL</AutoCategorise>
+				<AutoCategorise>AHLENS City Goet  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="spara till amortering">
+			<AutoCategoriseList>
+				<AutoCategorise>LUX RÄNTA</AutoCategorise>
+				<AutoCategorise>00000047516877</AutoCategorise>
+				<AutoCategorise>SK7906072439</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="spara till sommarrussel">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="spara till dator">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="spara till russel övrigt">
+			<AutoCategoriseList>
+				<AutoCategorise>HEYNOW.AI</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="kläder">
+			<AutoCategoriseList>
+				<AutoCategorise>339 DRESSMANN FEMMAN</AutoCategorise>
+				<AutoCategorise>Kläder</AutoCategorise>
+				<AutoCategorise>STADIUM BACKAPL</AutoCategorise>
+				<AutoCategorise>ASICO</AutoCategorise>
+				<AutoCategorise>ASICO  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="presenter">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="Inträde i samband med supa">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="övrigt i samband med supa">
+			<AutoCategoriseList>
+				<AutoCategorise>Verisure Sverige</AutoCategorise>
+				<AutoCategorise>UDEMY: ONLINE CO</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="hushåll, reparationer etc inköp av nya husshållsmaskiner">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="+">
+			<AutoCategoriseList>
+				<AutoCategorise>LÖN</AutoCategorise>
+				<AutoCategorise>LÖN SEP</AutoCategorise>
+				<AutoCategorise>LÖN NOV</AutoCategorise>
+				<AutoCategorise>LÖN JAN</AutoCategorise>
+				<AutoCategorise>LÖN MARS</AutoCategorise>
+				<AutoCategorise>LÖN APRIL</AutoCategorise>
+				<AutoCategorise>LÖN MAJ</AutoCategorise>
+				<AutoCategorise>LÖN JULI</AutoCategorise>
+				<AutoCategorise>LÖN AUG</AutoCategorise>
+				<AutoCategorise>LÖN OKT</AutoCategorise>
+				<AutoCategorise>LÖN DEC</AutoCategorise>
+				<AutoCategorise>LÖN FEB</AutoCategorise>
+				<AutoCategorise>LÖN JUNI</AutoCategorise>
+				<AutoCategorise>Vivs del</AutoCategorise>
+				<AutoCategorise>Dagersättning</AutoCategorise>
+				<AutoCategorise>ÅTER UTLÄGG</AutoCategorise>
+				<AutoCategorise>Dagersättning  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description=" -">
+			<AutoCategoriseList>
+				<AutoCategorise>Månadsbuffert</AutoCategorise>
+				<AutoCategorise>Periodens köp</AutoCategorise>
+				<AutoCategorise>Överföring Barnbidrag</AutoCategorise>
+				<AutoCategorise>Barnbidrag</AutoCategorise>
+				<AutoCategorise>BuffertPG</AutoCategorise>
+				<AutoCategorise>Buffert</AutoCategorise>
+				<AutoCategorise>Överföring via internet</AutoCategorise>
+				<AutoCategorise>Överföring BuffertPG</AutoCategorise>
+				<AutoCategorise>Barnbidrag  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="apotek">
+			<AutoCategoriseList>
+				<AutoCategorise>Apohem</AutoCategorise>
+				<AutoCategorise>Apotek</AutoCategorise>
+				<AutoCategorise>Håkan</AutoCategorise>
+				<AutoCategorise>K*Apotea AB</AutoCategorise>
+				<AutoCategorise>APOTEKET BACKAPL</AutoCategorise>
+				<AutoCategorise>KD APOTEK</AutoCategorise>
+				<AutoCategorise>VASAKLINIKEN I S</AutoCategorise>
+				<AutoCategorise>Apotea  </AutoCategorise>
+				<AutoCategorise>Apotek  </AutoCategorise>
+				<AutoCategorise>APOTEK HJARTAT I  </AutoCategorise>
+				<AutoCategorise>APOTEK HJARTAT K  </AutoCategorise>
+				<AutoCategorise>APOTEK HJARTAT N  </AutoCategorise>
+				<AutoCategorise>APOTEKET BACKAPL  </AutoCategorise>
+				<AutoCategorise>APOTEKET KORPEN  </AutoCategorise>
+				<AutoCategorise>APOTEKET KORSVÄG  </AutoCategorise>
+				<AutoCategorise>APOTEKET MÖLNDAL  </AutoCategorise>
+				<AutoCategorise>APOTEKET SAMARAK  </AutoCategorise>
+				<AutoCategorise>APOTEKET ÖSTRA H  </AutoCategorise>
+				<AutoCategorise>APOTEKET ÖSTRA S  </AutoCategorise>
+				<AutoCategorise>APOTEKSGRUPPEN  </AutoCategorise>
+				<AutoCategorise>Håkan  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="barn">
+			<AutoCategoriseList>
+				<AutoCategorise>Dagis</AutoCategorise>
+				<AutoCategorise>Dagisavgift</AutoCategorise>
+				<AutoCategorise>Förskoleavgift</AutoCategorise>
+				<AutoCategorise>K*Liseberg A</AutoCategorise>
+				<AutoCategorise>PYSSLINGEN</AutoCategorise>
+				<AutoCategorise>Kontanten Lisebe</AutoCategorise>
+				<AutoCategorise>LEKIA NORDSTAN</AutoCategorise>
+				<AutoCategorise>Liseberg</AutoCategorise>
+				<AutoCategorise>LISEBERG ENTRE</AutoCategorise>
+				<AutoCategorise>LISEBERG FAST F</AutoCategorise>
+				<AutoCategorise>LISEBERG RESTAUR</AutoCategorise>
+				<AutoCategorise>Universeum</AutoCategorise>
+				<AutoCategorise>UNIVERSEUM</AutoCategorise>
+				<AutoCategorise>NIDS 4 KIDS</AutoCategorise>
+				<AutoCategorise>Universeum Shop</AutoCategorise>
+				<AutoCategorise>ATM LISEBERG</AutoCategorise>
+				<AutoCategorise>Barn  </AutoCategorise>
+				<AutoCategorise>barn  </AutoCategorise>
+				<AutoCategorise>Dagis  </AutoCategorise>
+				<AutoCategorise>dagis  </AutoCategorise>
+				<AutoCategorise>Dagis aug  </AutoCategorise>
+				<AutoCategorise>Dagis avgift nov  </AutoCategorise>
+				<AutoCategorise>Dagis dec  </AutoCategorise>
+				<AutoCategorise>Dagis juni  </AutoCategorise>
+				<AutoCategorise>Dagis mars  </AutoCategorise>
+				<AutoCategorise>Dagisavg nov</AutoCategorise>
+				<AutoCategorise>Dagisavgift  </AutoCategorise>
+				<AutoCategorise>LISEBERG AB  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="bil">
+			<AutoCategoriseList>
+				<AutoCategorise>Bensin</AutoCategorise>
+				<AutoCategorise>Bilförsäkring</AutoCategorise>
+				<AutoCategorise>Folksam</AutoCategorise>
+				<AutoCategorise>Folksam bil</AutoCategorise>
+				<AutoCategorise>Folksam bilförsä</AutoCategorise>
+				<AutoCategorise>Parkering</AutoCategorise>
+				<AutoCategorise>Tr.skatt</AutoCategorise>
+				<AutoCategorise>Transportstyrels</AutoCategorise>
+				<AutoCategorise>Trängsel</AutoCategorise>
+				<AutoCategorise>CIRCLE K BOLLEBY</AutoCategorise>
+				<AutoCategorise>CIRCLE K HISINGS</AutoCategorise>
+				<AutoCategorise>CIRCLE K MOLNDAL</AutoCategorise>
+				<AutoCategorise>EasyPark</AutoCategorise>
+				<AutoCategorise>EasyPark AB</AutoCategorise>
+				<AutoCategorise>INGO GOTEBORG, M</AutoCategorise>
+				<AutoCategorise>WWW.PARKSTER.SE</AutoCategorise>
+				<AutoCategorise>SMSPARK.SE</AutoCategorise>
+				<AutoCategorise>SNAPPCAR</AutoCategorise>
+				<AutoCategorise>NETS*APCOA FLOW</AutoCategorise>
+				<AutoCategorise>PARKERINGSBOLAGE</AutoCategorise>
+				<AutoCategorise>OKQ8</AutoCategorise>
+				<AutoCategorise>PARKERING G@TEB</AutoCategorise>
+				<AutoCategorise>PREEM</AutoCategorise>
+				<AutoCategorise>Bensin  </AutoCategorise>
+				<AutoCategorise>Bil  </AutoCategorise>
+				<AutoCategorise>FOLKSAM  </AutoCategorise>
+				<AutoCategorise>Folksam  </AutoCategorise>
+				<AutoCategorise>Trängselskatt  </AutoCategorise>
+				<AutoCategorise>trängselskatt  </AutoCategorise>
+				<AutoCategorise>Trängselskatt</AutoCategorise>
+				<AutoCategorise>Trängselsk  </AutoCategorise>
+				<AutoCategorise>Trängselsk.  </AutoCategorise>
+				<AutoCategorise>Trängselsk</AutoCategorise>
+				<AutoCategorise>Trängsel maj  </AutoCategorise>
+				<AutoCategorise>Trängsel nov  </AutoCategorise>
+				<AutoCategorise>Trängsel jun  </AutoCategorise>
+				<AutoCategorise>Trängsel dec  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="träning">
+			<AutoCategoriseList>
+				<AutoCategorise>FITNESS24</AutoCategorise>
+				<AutoCategorise>FITNESS24  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="vattenosopor">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="streaming">
+			<AutoCategoriseList>
+				<AutoCategorise>HboNet</AutoCategorise>
+				<AutoCategorise>Överföring AmazonPrim</AutoCategorise>
+				<AutoCategorise>UNDER PRODUKTION</AutoCategorise>
+				<AutoCategorise>HBO NORDIC AB  </AutoCategorise>
+				<AutoCategorise>HBO*NORDIC.COM  </AutoCategorise>
+				<AutoCategorise>NETFLIX.COM  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="shopping">
+			<AutoCategoriseList>
+				<AutoCategorise>Qliro</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="städning">
+			<AutoCategoriseList>
+				<AutoCategorise>Städ</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="småresor">
+			<AutoCategoriseList>
+				<AutoCategorise>LIM*RESEKOSTNAD</AutoCategorise>
+				<AutoCategorise>LIM*RIDE COST</AutoCategorise>
+				<AutoCategorise>TIER SE 7-76812</AutoCategorise>
+				<AutoCategorise>TIER SE 8-27151</AutoCategorise>
+				<AutoCategorise>VASTTRAFIK TO GO</AutoCategorise>
+				<AutoCategorise>VASTTRAFIK</AutoCategorise>
+				<AutoCategorise>BOLT.EU /R/20070</AutoCategorise>
+				<AutoCategorise>BOLT.EU /R/20073</AutoCategorise>
+				<AutoCategorise>BOLT.EU /R/21070</AutoCategorise>
+				<AutoCategorise>BOLT.EU /R/21112</AutoCategorise>
+				<AutoCategorise>BIRD* FEE</AutoCategorise>
+				<AutoCategorise>BOLT.EU/C/220310</AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="böcker">
+			<AutoCategoriseList>
+				<AutoCategorise>AKADEMIBOKHANDE  </AutoCategorise>
+				<AutoCategorise>AKADEMIBOKHANDEL  </AutoCategorise>
+			</AutoCategoriseList>
+		</Category>
+		<Category description="slask">
+			<AutoCategoriseList />
+		</Category>
+		<Category description="Vivis hemliga">
+			<AutoCategoriseList />
+		</Category>
+	</CategoryList>
 </Categories>

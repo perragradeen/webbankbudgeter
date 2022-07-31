@@ -113,6 +113,9 @@ namespace Budgetterarn
         {
             writeToUiStatusLog(@"Processing");
 
+            try
+            {
+
             var loadFromWeb = new LoadKontonFromWebBrowser(kontoEntriesHolder);
             var somethingLoadeded = loadFromWeb.GetAllVisibleEntriesFromWebBrowser(text);
 
@@ -125,6 +128,11 @@ namespace Budgetterarn
             writeToUiStatusLog(@"Done processing entries from html. New Entries found; "
                                + kontoEntriesHolder.NewKontoEntries.Count
                                + @".");
+            }
+            catch (Exception e)
+            {
+                writeToUiStatusLog(@"Error! " + e.Message);
+            }
         }
 
         internal bool UserSaveQuestionResultedInCancel(string uiText)

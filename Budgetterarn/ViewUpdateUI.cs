@@ -52,8 +52,8 @@ namespace Budgetterarn
             foreach (KontoEntry kontoEntry in kontoEntries.Values)
             {
                 AddToListview(showEntriesInThisUiList, kontoEntry);
-
-                if (RowsExceedMax(ref rowCounter))
+                // TODO: bestäm max antal om något
+                if (false && RowsExceedMax(ref rowCounter))
                 {
                     break; // Begränsa antal synliga rader
                 }

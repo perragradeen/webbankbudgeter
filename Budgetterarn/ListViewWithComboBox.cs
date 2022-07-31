@@ -182,6 +182,7 @@ namespace Budgetterarn
                 {
                     continue;
                 }
+                //var s = newKe.Info?.ToLower().Contains("K*Apotea AB".ToLower());
 
                 // Slå upp autokategori
                 var lookedUpCat = CategoriesHolder.AutocategorizeType(newKe.Info);
@@ -195,7 +196,7 @@ namespace Budgetterarn
                 {
                     continue;
                 }
-
+                
                 // Skippa att fråga om o sätta exakt samma kategori.
                 if (newKe.TypAvKostnad != null && newKe.TypAvKostnad.Equals(lookedUpCat))
                 {

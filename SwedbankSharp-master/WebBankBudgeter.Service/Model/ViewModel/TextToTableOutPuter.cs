@@ -7,6 +7,7 @@ namespace WebBankBudgeter.Service.Model.ViewModel
     {
         public const string CategoryNameColumnDescription = "Category . Month->";
         public const string AverageColumnDescription = "Average";
+        public const string AverageColumnDescriptionNotFormatted = "Average-nf";
 
         public TextToTableOutPuter()
         {
@@ -23,7 +24,9 @@ namespace WebBankBudgeter.Service.Model.ViewModel
         public double GetAverageForCategory(string categoryName)
         {
             var trans = AveragesForTransactions
-                .FirstOrDefault(a => a.CategoryText == categoryName);
+                .FirstOrDefault(a => 
+                    a.CategoryText.ToLower().Trim() ==
+                    categoryName.ToLower().Trim());
 
             if (trans == null)
             {

@@ -89,6 +89,7 @@ namespace WebBankBudgeter.Service.Services
             if (AddAverageColumn)
             {
                 table.ColumnHeaders.Add(TextToTableOutPuter.AverageColumnDescription);
+                table.ColumnHeaders.Add(TextToTableOutPuter.AverageColumnDescriptionNotFormatted);
             }
 
             // Add April, May etc

@@ -60,7 +60,9 @@ namespace CategoryHandler
                     // Om den nuvarande autokategorins infobeskrivning är samma som den inskickade entryns infobeskrivning. ignorera CaSe (gemener/VERSALER)
                     // Ex. inskickat argument = "HSB GÖTEBORG", autokategorins infobeskrivning = "HSB GÖTEBORG"
                     if (entryInfoDescription != null
-                        && currentAutoCategory.InfoDescription.ToLower() == entryInfoDescription.ToLower())
+                        && currentAutoCategory.InfoDescription.ToLower().Trim()
+                            == entryInfoDescription.ToLower().Trim()
+                       )
                     {
                         // Returnera den nuvarande kategorins (föräldern till autokategorins) kategoribeskrivning (typ av kostnadsbeskr.)
                         // Ex. "hyra..."
