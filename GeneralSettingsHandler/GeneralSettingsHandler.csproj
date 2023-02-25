@@ -46,9 +46,9 @@
       <Project>{7e82eb3e-c8c6-4084-adc8-47e8e24484f1}</Project>
       <Name>RefLesses</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Serializers\Serializers.csproj">
-      <Project>{D9A75C48-AEED-4BEA-8C87-505146705DD6}</Project>
-      <Name>Serializers</Name>
+    <ProjectReference Include="..\SerializerXml\SerializerXml.csproj">
+      <Project>{36c07547-df0f-49d5-8e36-93d05b348036}</Project>
+      <Name>SerializerXml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

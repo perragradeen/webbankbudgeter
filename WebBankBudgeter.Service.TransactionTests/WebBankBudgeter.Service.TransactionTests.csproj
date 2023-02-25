@@ -97,10 +97,6 @@
       <Project>{159331a1-ecb8-4d6c-9a66-2b279f78e5a0}</Project>
       <Name>InbudgetHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Serializers\Serializers.csproj">
-      <Project>{d9a75c48-aeed-4bea-8c87-505146705dd6}</Project>
-      <Name>Serializers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SwedbankSharp-master\WebBankBudgeter.Service\WebBankBudgeter.Service.csproj">
       <Project>{3b8df4a7-dc9f-4b3d-8759-290120a74218}</Project>
       <Name>WebBankBudgeter.Service</Name>

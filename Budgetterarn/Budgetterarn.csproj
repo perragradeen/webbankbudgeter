@@ -219,10 +219,6 @@
       <Project>{618a6f79-4251-4969-857b-e806c0f45882}</Project>
       <Name>LoadTransactionsFromFile</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Serializers\Serializers.csproj">
-      <Project>{D9A75C48-AEED-4BEA-8C87-505146705DD6}</Project>
-      <Name>Serializers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}</Project>
       <Name>Utilities</Name>

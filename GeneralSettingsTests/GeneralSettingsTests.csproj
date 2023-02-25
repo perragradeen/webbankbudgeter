@@ -64,9 +64,9 @@
       <Project>{0cacb8d4-46ba-4429-86aa-e92134259494}</Project>
       <Name>GeneralSettingsHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Serializers\Serializers.csproj">
-      <Project>{D9A75C48-AEED-4BEA-8C87-505146705DD6}</Project>
-      <Name>Serializers</Name>
+    <ProjectReference Include="..\SerializerXml\SerializerXml.csproj">
+      <Project>{36c07547-df0f-49d5-8e36-93d05b348036}</Project>
+      <Name>SerializerXml</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

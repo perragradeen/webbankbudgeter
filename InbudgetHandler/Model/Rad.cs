@@ -10,7 +10,7 @@ namespace InbudgetHandler.Model
         public string RadNamnY { get; set; }
 
         /// <summary>
-        /// Ex. 150, 2500, 10000
+        /// Ex. {2020-03, 150}, {2020-04, 2500}
         /// </summary>
         public Dictionary<string, double> Kolumner { get; set; } = new Dictionary<string, double>();
 

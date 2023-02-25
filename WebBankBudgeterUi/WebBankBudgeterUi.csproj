@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\GeneralSettings.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\GeneralSettings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Budgeter.Core\Budgeter.Core.csproj" />
+    <ProjectReference Include="..\GeneralSettingsHandler\GeneralSettingsHandler.csproj" />
+    <ProjectReference Include="..\InbudgetHandlerV2\InbudgetHandlerV2.csproj" />
+    <ProjectReference Include="..\SwedbankSharp-master\WebBankBudgeter.Service\WebBankBudgeter.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\BudgetIns.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
