@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using Utilities;
+﻿using Utilities;
 
 namespace Budgetterarn.InternalUtilities
 {

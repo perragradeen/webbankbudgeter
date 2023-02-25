@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
 using System.Collections;
-using System.Drawing;
-using Budgeter.Core.Entities;
 
 // ReSharper disable LocalizableElement
 

@@ -1,9 +1,6 @@
 ﻿using Budgetterarn.InternalUtilities;
-using System.Windows.Forms;
-using System.Drawing;
 using CefSharp;
 using CefSharp.WinForms;
-using Budgetterarn;
 
 namespace BudgetterarnUi
 {
@@ -12,7 +9,7 @@ namespace BudgetterarnUi
         private KontoEntryListView entriesInToBeSavedGrid;
 
         private ListViewWithComboBox newIitemsListEditedGrid;
-                private ChromiumWebBrowser webBrowser1;
+        private ChromiumWebBrowser webBrowser1;
 
         private void InitSpecialGenericUiElements()
         {
@@ -105,7 +102,7 @@ namespace BudgetterarnUi
             newIitemsListEditedGrid.ListViewItemSorter = new ListViewColumnSorter();
             //newIitemsListOrgGrid.ListViewItemSorter = new ListViewColumnSorter();
         }
-        
+
         private void InitChromiumWebBrowser()
         {
             var settingsBrowse = new CefSettings();

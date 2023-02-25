@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Budgeter.Core.BudgeterConstants;
+﻿using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using LoadTransactionsFromFile;
+using System.Collections;
 using Utilities;
 
 // ReSharper disable IdentifierTypo
@@ -77,7 +75,7 @@ namespace Budgetterarn.DAL
                 || ProgramSettings.BankType.Equals(BankType.Handelsbanken)
             )
             {
-                logThis = new Hashtable {{kontoEntries.Count + 1, logArray}};
+                logThis = new Hashtable { { kontoEntries.Count + 1, logArray } };
             }
             else
             {
@@ -103,7 +101,7 @@ namespace Budgetterarn.DAL
 
         private static IEnumerable<object> GetTopRowWithHeaders(SaldoHolder saldoHolder)
         {
-            var columnNames = new object[] {"y", "m", "d", "n", "t", "g", "s", "b", "", "", "", "c"};
+            var columnNames = new object[] { "y", "m", "d", "n", "t", "g", "s", "b", "", "", "", "c" };
 
             var saldoColumnNumber = 11 + 1;
 

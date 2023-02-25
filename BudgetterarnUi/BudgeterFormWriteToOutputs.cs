@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace BudgetterarnUi
+﻿namespace BudgetterarnUi
 {
     public partial class BudgeterGui
     {

@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Drawing;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
+using System.Collections;
 
 namespace Budgetterarn.EntryLogicSetFlags
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Budgeter.Core.BudgeterConstants;
+﻿using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using Budgetterarn.WebCrawlers;
 using LoadTransactionsFromFile;
@@ -119,7 +117,7 @@ namespace Budgetterarn.DAL
             var rowBreakString = GetRowBreakString(text);
 
             return entryBlob.Split(
-                new[] {rowBreakString},
+                new[] { rowBreakString },
                 StringSplitOptions.RemoveEmptyEntries);
         }
 

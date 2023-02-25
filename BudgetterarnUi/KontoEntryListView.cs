@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Budgetterarn.InternalUtilities;
+﻿using Budgetterarn.InternalUtilities;
 
 // ReSharper disable LocalizableElement
 

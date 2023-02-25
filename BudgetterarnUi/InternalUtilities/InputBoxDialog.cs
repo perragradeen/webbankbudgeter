@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 
 // ReSharper disable IdentifierTypo
 
@@ -97,7 +95,7 @@ namespace Budgetterarn.InternalUtilities
                 9.75F,
                 System.Drawing.FontStyle.Regular,
                 System.Drawing.GraphicsUnit.Point,
-                (byte) (0));
+                (byte)(0));
             lblPrompt.Location = new System.Drawing.Point(12, 9);
             lblPrompt.Name = "lblPrompt";
             lblPrompt.Size = new System.Drawing.Size(302, 82);

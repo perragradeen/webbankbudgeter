@@ -42,7 +42,8 @@ namespace BudgetterarnUi
 
         private ProgramSettings programSettings;
 
-        private string GetGeneralSettingsPath() {
+        private string GetGeneralSettingsPath()
+        {
             var path = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 @"Data\"
@@ -52,8 +53,10 @@ namespace BudgetterarnUi
 
         #endregion
 
-        public BudgeterGui() {
-            try {
+        public BudgeterGui()
+        {
+            try
+            {
                 generalSettingsGetter = new GeneralSettingsGetter(GetGeneralSettingsPath());
                 budgeterFormHelper = GetBudgetFormHelper();
 
@@ -63,19 +66,22 @@ namespace BudgetterarnUi
 
                 InitChromiumWebBrowser();
 
-                if (DebugModeOff()) {
+                if (DebugModeOff())
+                {
                     // Öpnna banksidan direkt
                     OpenBankSiteInBrowser();
                 }
 
                 SetVersionsnummerToWindowTitle();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 WriteExceptionToOutput(e, @"Init Error! :");
             }
         }
 
-        private BudgeterFormHelper GetBudgetFormHelper() {
+        private BudgeterFormHelper GetBudgetFormHelper()
+        {
             return new BudgeterFormHelper(
                     WriteToOutput,
                     WriteToUiStatusLog,
@@ -87,12 +93,15 @@ namespace BudgetterarnUi
 
         #region Inits
 
-        private void InitFields() {
+        private void InitFields()
+        {
             programSettings = new ProgramSettings();
         }
 
-        private void InitSettingsEtc() {
-            try {
+        private void InitSettingsEtc()
+        {
+            try
+            {
                 // Get file names from settings file
                 categoryPath = generalSettingsGetter.GetStringSetting("CategoryPath");
                 bankUrl = generalSettingsGetter.GetTextFileStringSetting("BankUrl");
@@ -110,7 +119,8 @@ namespace BudgetterarnUi
                 // läs in xls...
                 EntriesFromFileLoadedOk(true); // after ctor
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 WriteExceptionToOutput(e);
             }
         }
@@ -119,12 +129,14 @@ namespace BudgetterarnUi
 
         #region Koppling av data till UI
 
-        private void EntriesFromFileLoadedOk(bool clearContentBeforeReadingNewFile) {
+        private void EntriesFromFileLoadedOk(bool clearContentBeforeReadingNewFile)
+        {
             budgeterFormHelper.EntriesFromFileLoadedOk(clearContentBeforeReadingNewFile);
             DisplayEntriesInUiGrids();
         }
 
-        private void DisplayEntriesInUiGrids() {
+        private void DisplayEntriesInUiGrids()
+        {
             // Lägg in det som är satt att sparas till minnet
             // (viasa alla _kontoEntries i listview). Även uppdatera färg på text.
             ViewUpdateUi.ClearListAndSetEntriesToListView(
@@ -137,8 +149,10 @@ namespace BudgetterarnUi
             //    kontoEntriesHolder.KontoEntries);
         }
 
-        private void CheckAndAddNewItems(bool okToAddFromOld = false) {
-            var lists = new KontoEntriesViewModelListUpdater {
+        private void CheckAndAddNewItems(bool okToAddFromOld = false)
+        {
+            var lists = new KontoEntriesViewModelListUpdater
+            {
                 KontoEntries = kontoEntriesHolder.KontoEntries,
                 NewItemsListEdited = newIitemsListEditedGrid.ItemsAsKontoEntries,
                 NewKontoEntriesIn = kontoEntriesHolder.NewKontoEntries,
@@ -163,16 +177,19 @@ namespace BudgetterarnUi
 
         #region Funktioner
 
-        private static string GetBankUrl() {
+        private static string GetBankUrl()
+        {
             return
                 //@"C:\Files\Dropbox\budget\Program\TestData\x.html"
                 bankUrl
                 ;
         }
 
-        private void CheckIfUserWantsToSaveUnsavedChanges(FormClosingEventArgs e) {
+        private void CheckIfUserWantsToSaveUnsavedChanges(FormClosingEventArgs e)
+        {
             if (budgeterFormHelper.UserSaveQuestionResultedInCancel(
-                toolStripStatusLabel1.Text)) {
+                toolStripStatusLabel1.Text))
+            {
                 e.Cancel = true;
             }
         }
@@ -182,17 +199,21 @@ namespace BudgetterarnUi
         /// <summary>
         /// Sätt versionsnummer i titel
         /// </summary>
-        private void SetVersionsnummerToWindowTitle() {
-            if (Text != null) {
+        private void SetVersionsnummerToWindowTitle()
+        {
+            if (Text != null)
+            {
                 Text += VersionNumber;
             }
         }
 
-        internal void AddNewEntriesToUiListsAndMem() {
+        internal void AddNewEntriesToUiListsAndMem()
+        {
             AddNewEntriesToUiListsAndMem(menuItemAutoSaveCheck.Checked);
         }
 
-        private void OpenBankSiteInBrowser() {
+        private void OpenBankSiteInBrowser()
+        {
             WriteToUiStatusLog(@"Loading");
 
             // Set spitter so webpage gets more room.
@@ -210,7 +231,8 @@ namespace BudgetterarnUi
         /// <summary>
         /// Rensa minnet och m_newIitemsListOrg
         /// </summary>
-        private void ClearNewOnesFnc() {
+        private void ClearNewOnesFnc()
+        {
             //newIitemsListOrgGrid.Items.Clear();
             newIitemsListEditedGrid.Items.Clear();
             kontoEntriesHolder.NewKontoEntries.Clear();
@@ -220,7 +242,8 @@ namespace BudgetterarnUi
 
         #endregion
 
-        private void SetStatusLabelProps() {
+        private void SetStatusLabelProps()
+        {
             toolStripStatusLabel1 = new ToolStripStatusLabel();
 
             // TODO: Lägg alla UI-element i egen partial fil. Typ: ...Custom-elements.cs
@@ -243,7 +266,8 @@ namespace BudgetterarnUi
         /// Accessar status etikett-ui-elementet.
         /// </summary>
         /// <param name="autoSave"></param>
-        private void AddNewEntriesToUiListsAndMem(bool autoSave) {
+        private void AddNewEntriesToUiListsAndMem(bool autoSave)
+        {
             WriteToUiStatusLog(@"Trying to add; " +
                                kontoEntriesHolder.NewKontoEntries.Count + @"items");
 
@@ -271,15 +295,18 @@ namespace BudgetterarnUi
                 budgeterFormHelper.Save(toolStripStatusLabel1.Text);
         }
 
-        private static SortedList GetNewEntriesFromUI(ListView mineNewIitemsListEdited) {
+        private static SortedList GetNewEntriesFromUI(ListView mineNewIitemsListEdited)
+        {
             // For performance
             mineNewIitemsListEdited.BeginUpdate();
 
             // Hämta nya entries från Ui. (slipper man om man binder ui-kontroller med de som är sparade och ändrade i minnet.)
             var newEntriesFromUi = new SortedList();
-            foreach (ListViewItem item in mineNewIitemsListEdited.Items) {
+            foreach (ListViewItem item in mineNewIitemsListEdited.Items)
+            {
                 if (item.Tag is KontoEntry newKe
-                    && !newEntriesFromUi.ContainsKey(newKe.KeyForThis)) {
+                    && !newEntriesFromUi.ContainsKey(newKe.KeyForThis))
+                {
                     newEntriesFromUi.Add(newKe.KeyForThis, newKe);
                 }
             }
@@ -296,15 +323,18 @@ namespace BudgetterarnUi
 
         // TODO: Rensa all debug och commita i enskild commit. Ta fram i framtiden om det behövs då...
 
-        private bool DebugModeOff() {
+        private bool DebugModeOff()
+        {
             #region Debug
 
-            if (Debug()) {
+            if (Debug())
+            {
                 debugbtn.Visible = true;
                 DebugAddoNewList();
                 return false;
             }
-            else {
+            else
+            {
                 return true;
             }
 
@@ -312,7 +342,8 @@ namespace BudgetterarnUi
         }
 
         // TODO: ta bort alla tester o flytta ev till unit/integrationstester...
-        private bool Debug() {
+        private bool Debug()
+        {
             // ReSharper disable JoinDeclarationAndInitializer
             bool debug = false;
 
@@ -321,41 +352,51 @@ namespace BudgetterarnUi
             debug = true;
 #endif
 
-            if (!debugGlobal) {
+            if (!debugGlobal)
+            {
                 debug = debugGlobal;
             }
 
-            if (debugGlobal && debug) {
+            if (debugGlobal && debug)
+            {
                 debugGlobal = true;
             }
-            else {
+            else
+            {
                 debugGlobal = false;
             }
 
             return debug;
         }
 
-        private void DebugToolStripMenuItemClick(object sender, EventArgs e) {
+        private void DebugToolStripMenuItemClick(object sender, EventArgs e)
+        {
             webBrowser1.Load(
                 "https://secure.handelsbanken.se"
                 + "/bb/seip/servlet/UASipko?appAction=ShowAccountOverview&appName=ipko");
         }
 
-        private void TestNav1ToolStripMenuItemClick(object sender, EventArgs e) {
+        private void TestNav1ToolStripMenuItemClick(object sender, EventArgs e)
+        {
         }
 
-        private void TestBackNavToolStripMenuItemClick(object sender, EventArgs e) {
+        private void TestBackNavToolStripMenuItemClick(object sender, EventArgs e)
+        {
             //autoGetEntriesHbMobilHandler.BrowserNavigator.BrowserGoBack();
         }
 
-        private void DebugbtnClick(object sender, EventArgs e) {
+        private void DebugbtnClick(object sender, EventArgs e)
+        {
             DebugAddoNewList();
         }
 
-        private void DebugAddoNewList() {
+        private void DebugAddoNewList()
+        {
             var sometheingadded = false;
-            for (var i = 0; i < 8; i++) {
-                if (kontoEntriesHolder.NewKontoEntries == null) {
+            for (var i = 0; i < 8; i++)
+            {
+                if (kontoEntriesHolder.NewKontoEntries == null)
+                {
                     continue;
                 }
 
@@ -367,7 +408,8 @@ namespace BudgetterarnUi
                 sometheingadded = true;
             }
 
-            if (sometheingadded) {
+            if (sometheingadded)
+            {
                 CheckAndAddNewItems(); // Debug
             }
         }

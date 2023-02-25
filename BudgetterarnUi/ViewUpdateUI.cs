@@ -1,10 +1,5 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using Budgeter.Core.Entities;
 
 namespace Budgetterarn
 {

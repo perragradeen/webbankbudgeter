@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using Budgetterarn.Application_Settings_and_constants;
 using Budgetterarn.DAL;
 using Budgetterarn.EntryLogicSetFlags;
 using Budgetterarn.InternalUtilities;
 using GeneralSettingsHandler;
 using LoadTransactionsFromFile;
+using System.Collections;
 using Utilities;
 
 namespace Budgetterarn
@@ -116,18 +112,18 @@ namespace Budgetterarn
             try
             {
 
-            var loadFromWeb = new LoadKontonFromWebBrowser(kontoEntriesHolder);
-            var somethingLoadeded = loadFromWeb.GetAllVisibleEntriesFromWebBrowser(text);
+                var loadFromWeb = new LoadKontonFromWebBrowser(kontoEntriesHolder);
+                var somethingLoadeded = loadFromWeb.GetAllVisibleEntriesFromWebBrowser(text);
 
-            // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
-            writeToUiStatusLog(@"Done processing  no new entries fond from html.");
+                // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
+                writeToUiStatusLog(@"Done processing  no new entries fond from html.");
 
-            if (!somethingLoadeded) return;
+                if (!somethingLoadeded) return;
 
-            checkAndAddNewItems(false); // Lägg till nya i GuiLista FromBrowser
-            writeToUiStatusLog(@"Done processing entries from html. New Entries found; "
-                               + kontoEntriesHolder.NewKontoEntries.Count
-                               + @".");
+                checkAndAddNewItems(false); // Lägg till nya i GuiLista FromBrowser
+                writeToUiStatusLog(@"Done processing entries from html. New Entries found; "
+                                   + kontoEntriesHolder.NewKontoEntries.Count
+                                   + @".");
             }
             catch (Exception e)
             {

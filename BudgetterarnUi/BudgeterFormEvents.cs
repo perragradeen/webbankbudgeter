@@ -1,9 +1,6 @@
 ﻿using Budgetterarn.InternalUtilities;
-using System;
-using System.Windows.Forms;
 using CategoryHandler;
 using CefSharp;
-using Budgetterarn;
 
 namespace BudgetterarnUi
 {

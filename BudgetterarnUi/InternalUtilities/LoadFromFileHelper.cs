@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using LoadTransactionsFromFile;
 using LoadTransactionsFromFile.DAL;
+using System.Collections;
 
 namespace Budgetterarn.InternalUtilities
 {
