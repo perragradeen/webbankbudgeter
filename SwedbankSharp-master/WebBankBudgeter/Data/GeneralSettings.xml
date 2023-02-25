@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<GeneralSettings>
-<Property Name="TransactionTestFilePath" Value="C:\Files\Dropbox\budget\Program\webbankbudgeter\Budgetterarn\bin\Pelles Budget.xls"/>
-	<!--<Property Name="TransactionTestFilePath" Value="C:\temp\Pelles Budget.xls"/>-->
-  <Property Name="CategoryPath" Value="..\..\..\..\Budgetterarn\Data\Categories.xml"/>
-</GeneralSettings>
