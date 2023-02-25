@@ -3,29 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgetterarn", "Budgetterarn\Budgetterarn.csproj", "{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBudgetterarn", "TestBudgetterarn\TestBudgetterarn.csproj", "{9A7151F0-897B-470E-9AC2-2CEEE674AD2F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesTest", "UtilitiesTest\UtilitiesTest.csproj", "{106DAE0E-0FBB-45C4-B4E1-C2C9FFD58DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeter.Core", "Budgeter.Core\Budgeter.Core.csproj", "{BD8D683F-F43D-434D-B6AB-A900F458C0CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Budgeter.Core", "Budgeter.Core\Budgeter.Core.csproj", "{BD8D683F-F43D-434D-B6AB-A900F458C0CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefLesses", "RefLesses\RefLesses.csproj", "{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefLesses", "RefLesses\RefLesses.csproj", "{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FormsBudgeter", "FormsBudgeter", "{FD53D91B-89C8-4E78-8870-38429ACB27E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBankBudgeter.Service", "SwedbankSharp-master\WebBankBudgeter.Service\WebBankBudgeter.Service.csproj", "{3B8DF4A7-DC9F-4B3D-8759-290120A74218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBankBudgeter", "SwedbankSharp-master\WebBankBudgeter\WebBankBudgeter.csproj", "{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6AC71520-9D21-4146-972E-D9FA4DDD9019}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadTransactionsFromFile", "LoadTransactionsFromFile\LoadTransactionsFromFile.csproj", "{618A6F79-4251-4969-857B-E806C0F45882}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CategoryHandler", "CategoryHandler\CategoryHandler.csproj", "{C707980B-CDAC-4A23-BE4C-5E41856541B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CategoryHandler", "CategoryHandler\CategoryHandler.csproj", "{C707980B-CDAC-4A23-BE4C-5E41856541B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FE738935-FFAA-4B40-A051-A6F9B8D58964}"
 EndProject
@@ -59,9 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V2", "V2", "{3DBF51CF-4AB9-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InbudgetHandlerV2", "InbudgetHandlerV2\InbudgetHandlerV2.csproj", "{63CF2518-53E7-4640-8EBE-EA0AF1B634E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetterarnUi", "BudgetterarnUi\BudgetterarnUi.csproj", "{898782DA-6E44-4BC0-8402-347A5672E4F5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{D112A38C-E799-4C40-9FED-C1B11BE101A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetterarnUi", "BudgetterarnUi\BudgetterarnUi.csproj", "{898782DA-6E44-4BC0-8402-347A5672E4F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,18 +67,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Debug|Win32.Build.0 = Debug|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Release|Win32.ActiveCfg = Release|Any CPU
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB}.Release|Win32.Build.0 = Release|Any CPU
 		{9A7151F0-897B-470E-9AC2-2CEEE674AD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A7151F0-897B-470E-9AC2-2CEEE674AD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7151F0-897B-470E-9AC2-2CEEE674AD2F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -155,18 +137,6 @@ Global
 		{3B8DF4A7-DC9F-4B3D-8759-290120A74218}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3B8DF4A7-DC9F-4B3D-8759-290120A74218}.Release|Win32.ActiveCfg = Release|Any CPU
 		{3B8DF4A7-DC9F-4B3D-8759-290120A74218}.Release|Win32.Build.0 = Release|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Debug|Win32.Build.0 = Debug|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Release|Win32.ActiveCfg = Release|Any CPU
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0}.Release|Win32.Build.0 = Release|Any CPU
 		{618A6F79-4251-4969-857B-E806C0F45882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{618A6F79-4251-4969-857B-E806C0F45882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{618A6F79-4251-4969-857B-E806C0F45882}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -316,13 +286,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CAC91AEB-8F3D-4793-9A6F-4C761688A2DB} = {D112A38C-E799-4C40-9FED-C1B11BE101A5}
 		{9A7151F0-897B-470E-9AC2-2CEEE674AD2F} = {FE738935-FFAA-4B40-A051-A6F9B8D58964}
 		{E6BFFA45-E5F3-48D1-A5A8-953A37B6E7E7} = {ACB44254-D3B3-42F4-826E-63A377AEC494}
 		{106DAE0E-0FBB-45C4-B4E1-C2C9FFD58DE0} = {ACB44254-D3B3-42F4-826E-63A377AEC494}
 		{7E82EB3E-C8C6-4084-ADC8-47E8E24484F1} = {BB82934D-28DD-407E-984D-39767D8455B8}
 		{3B8DF4A7-DC9F-4B3D-8759-290120A74218} = {D6766080-123A-44CA-9F31-2638B9403286}
-		{B8CB21A0-8B03-4886-AAD5-C3CE983488B0} = {D112A38C-E799-4C40-9FED-C1B11BE101A5}
 		{618A6F79-4251-4969-857B-E806C0F45882} = {6AC71520-9D21-4146-972E-D9FA4DDD9019}
 		{C707980B-CDAC-4A23-BE4C-5E41856541B0} = {6AC71520-9D21-4146-972E-D9FA4DDD9019}
 		{FB7B9323-1BD7-4B36-9981-5EB88F3390EB} = {FE738935-FFAA-4B40-A051-A6F9B8D58964}
