@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\Categories.xml" />
+    <None Remove="Data\GeneralSettings.xml" />
+    <None Remove="Data\Todo.txt" />
+    <None Remove="Data\TrickyURLS.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\Categories.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Data\GeneralSettings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Data\Todo.txt" />
+    <Content Include="Data\TrickyURLS.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefSharp.Common.NETCore" Version="110.0.280" />
+    <PackageReference Include="CefSharp.WinForms.NETCore" Version="110.0.280" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Budgeter.Core\Budgeter.Core.csproj" />
+    <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj" />
+    <ProjectReference Include="..\GeneralSettingsHandler\GeneralSettingsHandler.csproj" />
+    <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj" />
+    <ProjectReference Include="..\RefLesses\RefLesses.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BudgeterFormEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BudgeterFormGenericUis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BudgeterFormWriteToOutputs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="InternalUtilities\InputBoxDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="KontoEntryListView.cs" />
+    <Compile Update="ListViewWithComboBox.cs" />
+  </ItemGroup>
+
+</Project>

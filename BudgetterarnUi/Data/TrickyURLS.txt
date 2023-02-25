@@ -1,0 +1,2 @@
+https://online.swedbank.se/app/ib/logga-in
+https://internetbank.swedbank.se/bviPrivat/privat?TDEApplName=TDEApplEngagemang&_flow_id_=HEMTA_FLER_KONTOINFORMATION_PRECLIENT&_new_flow_=false&requestId=3&WindowSessId=148800773916144931
