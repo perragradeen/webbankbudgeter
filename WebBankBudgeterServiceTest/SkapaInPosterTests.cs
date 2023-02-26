@@ -164,6 +164,44 @@ namespace WebBankBudgeter.Service.TransactionTests
                 results[0].AmountsForMonth.FirstOrDefault().Value);
         }
 
+        [TestMethod]
+        public void FilterTransactionsTest()
+        {
+            // Arrange
+            var expectedEntries = 2;
+
+            // Act
+            var actual = FilterTransactions();
+
+            // Assert
+            Assert.IsTrue(TransactionHandler.TransactionList.Transactions.Any());
+            Assert.AreEqual(expectedEntries,
+                //TransactionHandler.TransactionList.Transactions
+                actual.Transactions.Count);
+        }
+
+        private TransactionList FilterTransactions()
+        {
+            var transactionList = GetDefaultTransactions();
+            var trans =
+                transactionList.Transactions.Where(t =>
+                     t.DateAsDate >= new DateTime(2019 - 03 - 01)
+                ).ToList();
+            TransactionList filteredTrans = new TransactionList
+            {
+                Transactions = trans
+            };
+
+            //t =>
+            //        t.DateAsDate >= new DateTime(2021 - 01 - 01)
+            return filteredTrans;
+
+            //TransactionHandler.SetTransactionList(
+            //   filteredTrans
+            //);
+        }
+
+
         private static TransactionList GetDefaultTransactions()
         {
             var cat1 = new Categorizations();
