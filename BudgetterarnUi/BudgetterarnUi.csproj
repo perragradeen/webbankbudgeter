@@ -36,12 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Budgeter.Core\Budgeter.Core.csproj" />
+    <ProjectReference Include="..\BudgeterCore\BudgeterCore.csproj" />
+    <ProjectReference Include="..\BudgetterarnDAL\BudgetterarnDAL.csproj" />
     <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj" />
     <ProjectReference Include="..\GeneralSettingsHandler\GeneralSettingsHandler.csproj" />
     <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj" />
     <ProjectReference Include="..\RefLesses\RefLesses.csproj" />
-    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

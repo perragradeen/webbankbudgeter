@@ -112,7 +112,9 @@ namespace Budgetterarn
             try
             {
 
-                var loadFromWeb = new LoadKontonFromWebBrowser(kontoEntriesHolder);
+                var loadFromWeb = new LoadKontonFromWebBrowser(
+                    kontoEntriesHolder,
+                    WinFormsChecks.WriteLineToMessageBox);
                 var somethingLoadeded = loadFromWeb.GetAllVisibleEntriesFromWebBrowser(text);
 
                 // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar

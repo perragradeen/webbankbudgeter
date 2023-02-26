@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BudgeterCore\BudgeterCore.csproj" />
+    <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj" />
+    <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj" />
+    <ProjectReference Include="..\XmlSerializer\XmlSerializer.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -13,7 +13,8 @@ namespace UtilitiesTest
         private static string ExcelBookPath => Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
             //@"\Temp\pelles budget.xls"
-            @"..\..\..\Budgetterarn\bin\pelles budget.xls"
+            @"..\..\..\..\BudgetterarnUi\bin\Debug\pelles budget.xls"//TODO: Byt från joxiga relativa sökvägar. ev välj från UI och spara...
+                                                                     //@"..\..\..\Budgetterarn\bin\pelles budget.xls"
         );
         public const string SheetName = "Kontoutdrag_officiella";
 

@@ -20,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Budgeter.Core\Budgeter.Core.csproj" />
+    <ProjectReference Include="..\BudgeterCore\BudgeterCore.csproj" />
     <ProjectReference Include="..\GeneralSettingsHandler\GeneralSettingsHandler.csproj" />
-    <ProjectReference Include="..\InbudgetHandlerV2\InbudgetHandlerV2.csproj" />
-    <ProjectReference Include="..\SwedbankSharp-master\WebBankBudgeter.Service\WebBankBudgeter.Service.csproj" />
+    <ProjectReference Include="..\InbudgetHandler\InbudgetHandler.csproj" />
+    <ProjectReference Include="..\WebBankBudgeterService\WebBankBudgeterService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

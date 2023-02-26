@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
+﻿using System.Text.Json;
 using Budgeter.Core.Entities;
 
-namespace InbudgetHandler
-{
+namespace InbudgetHandler {
     public class InBudgetHandlerFileHandler
     {
         private readonly string _inBudgetFilePath;
-        private readonly JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
 
         private List<InBudget> _inPoster;
 
@@ -38,7 +33,9 @@ namespace InbudgetHandler
         {
             // Write to file
             var jsonString =
+                //JsonSerializer.Serialize(inPoster);
                 JsonSerializer.Serialize(inPoster);
+
             FileWriteAllText(jsonString);
         }
 

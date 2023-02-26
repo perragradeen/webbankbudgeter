@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using InbudgetHandler.Model;
 using WebBankBudgeter.Service.Model;
 
-namespace InbudgetHandler
-{
+namespace InbudgetHandler {
     public class InBudgetHandler
     {
         public const string SummaText = "Summa";
