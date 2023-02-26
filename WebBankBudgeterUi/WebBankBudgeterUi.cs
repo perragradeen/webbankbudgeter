@@ -8,7 +8,8 @@ using WebBankBudgeter.Service.Services;
 using WebBankBudgeter.Service;
 using WebBankBudgeterUi.UiBinders;
 
-namespace WebBankBudgeterUi {
+namespace WebBankBudgeterUi
+{
     public partial class WebBankBudgeterUi : Form
     {
         private readonly GeneralSettingsGetter generalSettingsGetter;
@@ -19,7 +20,8 @@ namespace WebBankBudgeterUi {
 
         private string TransactionFilePath =>
             generalSettingsGetter.GetStringSetting("TransactionTestFilePath");
-        private string GetGeneralSettingsPath() {
+        private string GetGeneralSettingsPath()
+        {
             var path = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 @"Data\"
@@ -28,7 +30,8 @@ namespace WebBankBudgeterUi {
         }
 
         private string CategoryFilePath => GetCategoryFilePath();
-        private string GetCategoryFilePath() {
+        private string GetCategoryFilePath()
+        {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(
                 appPath,
@@ -36,8 +39,10 @@ namespace WebBankBudgeterUi {
             );
         }
 
-        public WebBankBudgeterUi() {
-            try {
+        public WebBankBudgeterUi()
+        {
+            try
+            {
                 generalSettingsGetter = new GeneralSettingsGetter(
                     GetGeneralSettingsPath());
                 _transactionHandler = GetTransactionHandler();
@@ -61,12 +66,14 @@ namespace WebBankBudgeterUi {
                 SkapaTomRad.Click += async (s, e) =>
                     await SkapaTomRad_Click(s, e);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 WriteLineToOutputAndScrollDown(e.Message);
             }
         }
 
-        private TransactionHandler GetTransactionHandler() {
+        private TransactionHandler GetTransactionHandler()
+        {
             var tableGetter = new TableGetter { AddAverageColumn = true };
             return new TransactionHandler(
                 WriteToOutput,
@@ -78,24 +85,29 @@ namespace WebBankBudgeterUi {
 
         private static string InBudgetFilePath => GetInBudgetFilePath();
 
-        private static string GetInBudgetFilePath() {
+        private static string GetInBudgetFilePath()
+        {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(appPath, @"TestData\BudgetIns.json");
         }
 
-        private async Task Form1_LoadAsync(object sender, EventArgs e) {
-            try {
+        private async Task Form1_LoadAsync(object sender, EventArgs e)
+        {
+            try
+            {
                 ReloadButton.Show();
 
                 await FillTablesAsync();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(@"Error: " + ex.Message);
                 ReloadButton.Show();
             }
         }
 
-        private async Task FillTablesAsync() {
+        private async Task FillTablesAsync()
+        {
             InitIncomesUi();
             InitTotalsUi();
 
@@ -107,6 +119,9 @@ namespace WebBankBudgeterUi {
                 await GetTransactionsAsync();
             if (!loadSuccess) return;
             // --- Hämta data
+
+            // filtrera
+            FilterTransactions();
 
             // Behandla data ---
             SortTransactions();
@@ -144,13 +159,26 @@ namespace WebBankBudgeterUi {
             // Presentera summor för varje kat.
         }
 
-        private void AddAveragesToTable(TextToTableOutPuter table) {
+        private void FilterTransactions()
+        {
+            //TransactionList filteredTrans = 
+            //    _transactionHandler.TransactionList.Transactions.Where(t =>
+            //        t.DateAsDate >= new DateTime(2021 - 01 - 01)).ToList();
+
+            //_transactionHandler.SetTransactionList(
+            //   filteredTrans
+            //);
+        }
+
+        private void AddAveragesToTable(TextToTableOutPuter table)
+        {
             table.AveragesForTransactions = SkapaInPosterHanterare.GetAvarages(
                 _transactionHandler.TransactionList,
                 DateTime.Today);
         }
 
-        private void VisaInRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<string> månadsRubriker) {
+        private void VisaInRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<string> månadsRubriker)
+        {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                 inDataRader,
                 månadsRubriker,
@@ -159,7 +187,8 @@ namespace WebBankBudgeterUi {
         }
 
         private void VisaKvarRader_BindInPosterRaderTillUi(List<Rad> inDataRader,
-            List<BudgetRow> utgiftsRader, List<string> månadsRubriker) {
+            List<BudgetRow> utgiftsRader, List<string> månadsRubriker)
+        {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                 SnurraIgenom(inDataRader, utgiftsRader, WriteLineToOutputAndScrollDown),
                 månadsRubriker,
@@ -169,10 +198,12 @@ namespace WebBankBudgeterUi {
         private static List<Rad> SnurraIgenom(
             IEnumerable<Rad> inData,
             List<BudgetRow> utgifter,
-            Action<string> writeLineToOutputAndScrollDown) {
+            Action<string> writeLineToOutputAndScrollDown)
+        {
             if (utgifter == null) throw new ArgumentNullException(nameof(utgifter));
             var kvarrader = new List<Rad>();
-            foreach (var inBudget in inData) {
+            foreach (var inBudget in inData)
+            {
                 // Synka med kategori och månad.
                 // Hitta motsvarande utgift
                 var motsvarandeUtgifterRader = utgifter
@@ -180,22 +211,27 @@ namespace WebBankBudgeterUi {
                     );
 
                 var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
-                foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader) {
-                    foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth) {
-                        if (inBudget.Kolumner.ContainsKey(utgiftsMånad.Key)) {
+                foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
+                {
+                    foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)
+                    {
+                        if (inBudget.Kolumner.ContainsKey(utgiftsMånad.Key))
+                        {
                             // och räkna ut diff.
                             var kvar =
                                 // inkomst - utgift
                                 inBudget.Kolumner[utgiftsMånad.Key]
                                 + utgiftsMånad.Value; // Utgifter är negativa ie -1200
 
-                            if (!nuvarandeRad.Kolumner.ContainsKey(utgiftsMånad.Key)) {
+                            if (!nuvarandeRad.Kolumner.ContainsKey(utgiftsMånad.Key))
+                            {
                                 nuvarandeRad.Kolumner.Add(utgiftsMånad.Key, 0);
                             }
 
                             nuvarandeRad.Kolumner[utgiftsMånad.Key] += kvar;
                         }
-                        else {
+                        else
+                        {
                             // Fel
                             var message = "Hittar ingen motsvarande inpost för utgift i :"
                                           + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
@@ -211,37 +247,44 @@ namespace WebBankBudgeterUi {
             return kvarrader;
         }
 
-        private MonthAvarages CalculateMonthlyAvarages() {
+        private MonthAvarages CalculateMonthlyAvarages()
+        {
             var monthAveragesCalcer = new MonthAvaragesCalcs(
                 _transactionHandler.TransactionList);
             var summedAvaragesForCalc = monthAveragesCalcer.GetMonthAvarages();
             return summedAvaragesForCalc;
         }
 
-        private async Task<bool> GetTransactionsAsync() {
+        private async Task<bool> GetTransactionsAsync()
+        {
             return await _transactionHandler.GetTransactionsAsync();
         }
 
-        private void RemoveDuplicates() {
+        private void RemoveDuplicates()
+        {
             _transactionHandler.RemoveDuplicates();
         }
 
-        private void SortTransactions() {
+        private void SortTransactions()
+        {
             _transactionHandler.SortTransactions();
         }
 
-        private TextToTableOutPuter TransformToTextTableFromTransactions() {
+        private TextToTableOutPuter TransformToTextTableFromTransactions()
+        {
             return _transactionHandler.GetTextTableFromTransactions();
         }
 
         private const string CategoryNameColumnDescription = "Category . Month->";
 
-        private void InitIncomesUi() {
+        private void InitIncomesUi()
+        {
             gv_incomes.Columns.Add("1", CategoryNameColumnDescription);
             gv_Kvar.Columns.Add("1", CategoryNameColumnDescription);
         }
 
-        private void InitTotalsUi() {
+        private void InitTotalsUi()
+        {
             var cNo = gv_Totals.Columns.Add("1", "Description");
             gv_Totals.Columns[cNo].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             gv_Totals.Columns[cNo].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -249,52 +292,62 @@ namespace WebBankBudgeterUi {
             gv_Totals.Columns.Add("2", "Amount");
         }
 
-        private void DescribeStartYear(TextToTableOutPuter table) {
+        private void DescribeStartYear(TextToTableOutPuter table)
+        {
             label1.Text += @"Utgifter börjar på år: " + table.UtgiftersStartYear;
         }
 
-        private void DescribeReoccurringGroups() {
-            foreach (var group in MonthAvaragesCalcs.ReoccurringCatGroups) {
+        private void DescribeReoccurringGroups()
+        {
+            foreach (var group in MonthAvaragesCalcs.ReoccurringCatGroups)
+            {
                 WriteToOutput(group + ". ");
             }
         }
 
-        private void BindMonthAveragesToUi(MonthAvarages summedAvaragesForCalc) {
+        private void BindMonthAveragesToUi(MonthAvarages summedAvaragesForCalc)
+        {
             // bind to ui gv_totals
             AddRowWith2Cells(gv_Totals, "Återkommande snitt", summedAvaragesForCalc.ReccuringCosts);
             AddRowWith2Cells(gv_Totals, "Inkomster snitt", summedAvaragesForCalc.Incomes);
             AddRowWith2Cells(gv_Totals, "Diff snitt", summedAvaragesForCalc.IncomeDiffCosts);
         }
 
-        private void SparaInPosterPåDisk() {
+        private void SparaInPosterPåDisk()
+        {
             _inBudgetUiHandler.SparaInPosterPåDisk();
 
             WriteLineToOutputAndScrollDown("Sparat.");
         }
 
-        private static void AddRowWith2Cells(DataGridView gridView, string description, double amount) {
+        private static void AddRowWith2Cells(DataGridView gridView, string description, double amount)
+        {
             var columnNumber = 0;
             var rowNumber = gridView.Rows.Add();
             gridView.Rows[rowNumber].Cells[columnNumber++].Value = description;
             gridView.Rows[rowNumber].Cells[columnNumber].Value = amount.ToString("# ##0");
         }
 
-        private void WriteMetaAsSaldoEtcToUi() {
+        private void WriteMetaAsSaldoEtcToUi()
+        {
             label1.Text += @" Saldo: " +
                            _transactionHandler.TransactionList.Account.AvailableAmount;
         }
 
-        private void BindToBudgetTableUi(TextToTableOutPuter table) {
+        private void BindToBudgetTableUi(TextToTableOutPuter table)
+        {
             _utgiftsHanterareUiBinder.BindToBudgetTableUi(table);
         }
 
-        private void BindTransactionListToUi() {
+        private void BindTransactionListToUi()
+        {
             dg_Transactions.Columns.Add("1", "Date");
             dg_Transactions.Columns.Add("2", "Amount");
             dg_Transactions.Columns.Add("3", "Description");
             dg_Transactions.Columns.Add("4", "Category");
 
-            foreach (var row in _transactionHandler.TransactionList.Transactions) {
+            foreach (var row in _transactionHandler.TransactionList.Transactions)
+            {
                 var n = dg_Transactions.Rows.Add();
 
                 var i = 0;
@@ -305,44 +358,53 @@ namespace WebBankBudgeterUi {
             }
         }
 
-        private void WriteToOutput(string message) {
+        private void WriteToOutput(string message)
+        {
             LogTexts.AppendText(message);
         }
 
-        private void WriteLineToOutputAndScrollDown(string message) {
+        private void WriteLineToOutputAndScrollDown(string message)
+        {
             WriteToOutput(Environment.NewLine);
             WriteToOutput(message);
             LogTexts.ScrollToCaret();
         }
 
-        private async Task ResetUtgifterAsync() {
+        private async Task ResetUtgifterAsync()
+        {
             gv_budget.Rows.Clear();
             gv_budget.Columns.Clear();
             LogTexts.Clear();
             LogTexts.AppendText($"Reloading at {DateTime.Now}");
 
-            try {
+            try
+            {
                 await FillTablesAsync();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($@"Error: {ex.Message}");
                 ReloadButton.Show();
             }
         }
 
-        private async Task ReloadButton_ClickAsync(object sender, EventArgs e) {
+        private async Task ReloadButton_ClickAsync(object sender, EventArgs e)
+        {
             await ResetUtgifterAsync();
         }
 
-        private void SaveInPosterButton_Click(object sender, EventArgs e) {
+        private void SaveInPosterButton_Click(object sender, EventArgs e)
+        {
             SparaInPosterPåDisk();
         }
 
-        private async Task SkapaTomRad_Click(object sender, EventArgs e) {
+        private async Task SkapaTomRad_Click(object sender, EventArgs e)
+        {
             await FyllIMedDefaultInposterFörSenasteMånadAsync();
         }
 
-        private async Task FyllIMedDefaultInposterFörSenasteMånadAsync() {
+        private async Task FyllIMedDefaultInposterFörSenasteMånadAsync()
+        {
             // Skapa en rad med alla valbara kategorier
             //      för nuvarande månad
             //          om det inte redan finns
@@ -360,7 +422,8 @@ namespace WebBankBudgeterUi {
             var inDataRader = await _inBudgetUiHandler
                 .HämtaRaderFörUiBindningAsync();
 
-            try {
+            try
+            {
                 //Skriv ut i Ui
                 gv_incomes.Columns.Clear();
                 gv_incomes.Rows.Clear();
@@ -371,7 +434,8 @@ namespace WebBankBudgeterUi {
                     gv_incomes
                 );
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 WriteLineToOutputAndScrollDown(e.Message);
             }
         }

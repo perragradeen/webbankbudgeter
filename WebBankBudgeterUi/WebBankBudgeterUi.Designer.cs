@@ -1,5 +1,7 @@
-﻿namespace WebBankBudgeterUi {
-    partial class WebBankBudgeterUi {
+﻿namespace WebBankBudgeterUi
+{
+    partial class WebBankBudgeterUi
+    {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -9,8 +11,10 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -22,276 +26,309 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.ClientSize = new System.Drawing.Size(800, 450);
-
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.gv_budget = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LogTexts = new System.Windows.Forms.RichTextBox();
-            this.ReloadButton = new System.Windows.Forms.Button();
-            this.BudgetTabs = new System.Windows.Forms.TabControl();
-            this.tbl_Kvar = new System.Windows.Forms.TabPage();
-            this.gv_Kvar = new System.Windows.Forms.DataGridView();
-            this.tbl_INCOME = new System.Windows.Forms.TabPage();
-            this.gv_incomes = new System.Windows.Forms.DataGridView();
-            this.tbl_Budget = new System.Windows.Forms.TabPage();
-            this.tbl_Totals = new System.Windows.Forms.TabPage();
-            this.gv_Totals = new System.Windows.Forms.DataGridView();
-            this.tbl_Transactions = new System.Windows.Forms.TabPage();
-            this.dg_Transactions = new System.Windows.Forms.DataGridView();
-            this.tbl_reccuringCosts = new System.Windows.Forms.TabPage();
-            this.tbl_nonReccuringCosts = new System.Windows.Forms.TabPage();
-            this.tbl_NoCategory = new System.Windows.Forms.TabPage();
-            this.SaveInPosterButton = new System.Windows.Forms.Button();
-            this.SkapaTomRad = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_budget)).BeginInit();
-            this.BudgetTabs.SuspendLayout();
-            this.tbl_Kvar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_Kvar)).BeginInit();
-            this.tbl_INCOME.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_incomes)).BeginInit();
-            this.tbl_Budget.SuspendLayout();
-            this.tbl_Totals.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_Totals)).BeginInit();
-            this.tbl_Transactions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_Transactions)).BeginInit();
-            this.SuspendLayout();
+        private void InitializeComponent()
+        {
+            var dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            gv_budget = new DataGridView();
+            label1 = new Label();
+            LogTexts = new RichTextBox();
+            ReloadButton = new Button();
+            BudgetTabs = new TabControl();
+            tbl_Kvar = new TabPage();
+            gv_Kvar = new DataGridView();
+            tbl_INCOME = new TabPage();
+            gv_incomes = new DataGridView();
+            tbl_Budget = new TabPage();
+            tbl_Totals = new TabPage();
+            gv_Totals = new DataGridView();
+            tbl_Transactions = new TabPage();
+            dg_Transactions = new DataGridView();
+            tbl_reccuringCosts = new TabPage();
+            tbl_nonReccuringCosts = new TabPage();
+            tbl_NoCategory = new TabPage();
+            SaveInPosterButton = new Button();
+            SkapaTomRad = new Button();
+            label2 = new Label();
+            txtYearFilter = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)gv_budget).BeginInit();
+            BudgetTabs.SuspendLayout();
+            tbl_Kvar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gv_Kvar).BeginInit();
+            tbl_INCOME.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gv_incomes).BeginInit();
+            tbl_Budget.SuspendLayout();
+            tbl_Totals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gv_Totals).BeginInit();
+            tbl_Transactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dg_Transactions).BeginInit();
+            SuspendLayout();
             // 
             // gv_budget
             // 
-            this.gv_budget.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.gv_budget.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gv_budget.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gv_budget.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_budget.Location = new System.Drawing.Point(3, 3);
-            this.gv_budget.Name = "gv_budget";
-            this.gv_budget.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.gv_budget.Size = new System.Drawing.Size(861, 465);
-            this.gv_budget.TabIndex = 0;
+            gv_budget.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            gv_budget.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            gv_budget.DefaultCellStyle = dataGridViewCellStyle2;
+            gv_budget.Dock = DockStyle.Fill;
+            gv_budget.Location = new Point(4, 3);
+            gv_budget.Margin = new Padding(4, 3, 4, 3);
+            gv_budget.Name = "gv_budget";
+            gv_budget.RowTemplate.Resizable = DataGridViewTriState.True;
+            gv_budget.Size = new Size(1005, 539);
+            gv_budget.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Info: ";
+            label1.AutoSize = true;
+            label1.Location = new Point(28, 15);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(34, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Info: ";
             // 
             // LogTexts
             // 
-            this.LogTexts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogTexts.Location = new System.Drawing.Point(27, 603);
-            this.LogTexts.Name = "LogTexts";
-            this.LogTexts.Size = new System.Drawing.Size(871, 24);
-            this.LogTexts.TabIndex = 2;
-            this.LogTexts.Text = "";
+            LogTexts.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            LogTexts.Location = new Point(31, 696);
+            LogTexts.Margin = new Padding(4, 3, 4, 3);
+            LogTexts.Name = "LogTexts";
+            LogTexts.Size = new Size(1015, 27);
+            LogTexts.TabIndex = 2;
+            LogTexts.Text = "";
             // 
             // ReloadButton
             // 
-            this.ReloadButton.Location = new System.Drawing.Point(27, 53);
-            this.ReloadButton.Name = "ReloadButton";
-            this.ReloadButton.Size = new System.Drawing.Size(75, 23);
-            this.ReloadButton.TabIndex = 3;
-            this.ReloadButton.Text = "ReLoad";
-            this.ReloadButton.UseVisualStyleBackColor = true;
+            ReloadButton.Location = new Point(31, 61);
+            ReloadButton.Margin = new Padding(4, 3, 4, 3);
+            ReloadButton.Name = "ReloadButton";
+            ReloadButton.Size = new Size(88, 27);
+            ReloadButton.TabIndex = 3;
+            ReloadButton.Text = "ReLoad";
+            ReloadButton.UseVisualStyleBackColor = true;
             // 
             // BudgetTabs
             // 
-            this.BudgetTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BudgetTabs.Controls.Add(this.tbl_Kvar);
-            this.BudgetTabs.Controls.Add(this.tbl_INCOME);
-            this.BudgetTabs.Controls.Add(this.tbl_Budget);
-            this.BudgetTabs.Controls.Add(this.tbl_Totals);
-            this.BudgetTabs.Controls.Add(this.tbl_Transactions);
-            this.BudgetTabs.Controls.Add(this.tbl_reccuringCosts);
-            this.BudgetTabs.Controls.Add(this.tbl_nonReccuringCosts);
-            this.BudgetTabs.Controls.Add(this.tbl_NoCategory);
-            this.BudgetTabs.Location = new System.Drawing.Point(27, 100);
-            this.BudgetTabs.Name = "BudgetTabs";
-            this.BudgetTabs.SelectedIndex = 0;
-            this.BudgetTabs.Size = new System.Drawing.Size(875, 497);
-            this.BudgetTabs.TabIndex = 4;
+            BudgetTabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            BudgetTabs.Controls.Add(tbl_Kvar);
+            BudgetTabs.Controls.Add(tbl_INCOME);
+            BudgetTabs.Controls.Add(tbl_Budget);
+            BudgetTabs.Controls.Add(tbl_Totals);
+            BudgetTabs.Controls.Add(tbl_Transactions);
+            BudgetTabs.Controls.Add(tbl_reccuringCosts);
+            BudgetTabs.Controls.Add(tbl_nonReccuringCosts);
+            BudgetTabs.Controls.Add(tbl_NoCategory);
+            BudgetTabs.Location = new Point(31, 115);
+            BudgetTabs.Margin = new Padding(4, 3, 4, 3);
+            BudgetTabs.Name = "BudgetTabs";
+            BudgetTabs.SelectedIndex = 0;
+            BudgetTabs.Size = new Size(1021, 573);
+            BudgetTabs.TabIndex = 4;
             // 
             // tbl_Kvar
             // 
-            this.tbl_Kvar.Controls.Add(this.gv_Kvar);
-            this.tbl_Kvar.Location = new System.Drawing.Point(4, 22);
-            this.tbl_Kvar.Name = "tbl_Kvar";
-            this.tbl_Kvar.Padding = new System.Windows.Forms.Padding(3);
-            this.tbl_Kvar.Size = new System.Drawing.Size(867, 471);
-            this.tbl_Kvar.TabIndex = 7;
-            this.tbl_Kvar.Text = "Kvar";
-            this.tbl_Kvar.UseVisualStyleBackColor = true;
+            tbl_Kvar.Controls.Add(gv_Kvar);
+            tbl_Kvar.Location = new Point(4, 24);
+            tbl_Kvar.Margin = new Padding(4, 3, 4, 3);
+            tbl_Kvar.Name = "tbl_Kvar";
+            tbl_Kvar.Padding = new Padding(4, 3, 4, 3);
+            tbl_Kvar.Size = new Size(1013, 545);
+            tbl_Kvar.TabIndex = 7;
+            tbl_Kvar.Text = "Kvar";
+            tbl_Kvar.UseVisualStyleBackColor = true;
             // 
             // gv_Kvar
             // 
-            this.gv_Kvar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Kvar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_Kvar.Location = new System.Drawing.Point(3, 3);
-            this.gv_Kvar.Name = "gv_Kvar";
-            this.gv_Kvar.Size = new System.Drawing.Size(861, 465);
-            this.gv_Kvar.TabIndex = 0;
+            gv_Kvar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gv_Kvar.Dock = DockStyle.Fill;
+            gv_Kvar.Location = new Point(4, 3);
+            gv_Kvar.Margin = new Padding(4, 3, 4, 3);
+            gv_Kvar.Name = "gv_Kvar";
+            gv_Kvar.Size = new Size(1005, 539);
+            gv_Kvar.TabIndex = 0;
             // 
             // tbl_INCOME
             // 
-            this.tbl_INCOME.Controls.Add(this.gv_incomes);
-            this.tbl_INCOME.Location = new System.Drawing.Point(4, 22);
-            this.tbl_INCOME.Name = "tbl_INCOME";
-            this.tbl_INCOME.Size = new System.Drawing.Size(867, 471);
-            this.tbl_INCOME.TabIndex = 2;
-            this.tbl_INCOME.Text = "Incomes";
-            this.tbl_INCOME.UseVisualStyleBackColor = true;
+            tbl_INCOME.Controls.Add(gv_incomes);
+            tbl_INCOME.Location = new Point(4, 24);
+            tbl_INCOME.Margin = new Padding(4, 3, 4, 3);
+            tbl_INCOME.Name = "tbl_INCOME";
+            tbl_INCOME.Size = new Size(1013, 545);
+            tbl_INCOME.TabIndex = 2;
+            tbl_INCOME.Text = "Incomes";
+            tbl_INCOME.UseVisualStyleBackColor = true;
             // 
             // gv_incomes
             // 
-            this.gv_incomes.AllowDrop = true;
-            this.gv_incomes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_incomes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_incomes.Location = new System.Drawing.Point(0, 0);
-            this.gv_incomes.Name = "gv_incomes";
-            this.gv_incomes.Size = new System.Drawing.Size(867, 471);
-            this.gv_incomes.TabIndex = 0;
+            gv_incomes.AllowDrop = true;
+            gv_incomes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gv_incomes.Dock = DockStyle.Fill;
+            gv_incomes.Location = new Point(0, 0);
+            gv_incomes.Margin = new Padding(4, 3, 4, 3);
+            gv_incomes.Name = "gv_incomes";
+            gv_incomes.Size = new Size(1013, 545);
+            gv_incomes.TabIndex = 0;
             // 
             // tbl_Budget
             // 
-            this.tbl_Budget.Controls.Add(this.gv_budget);
-            this.tbl_Budget.Location = new System.Drawing.Point(4, 22);
-            this.tbl_Budget.Name = "tbl_Budget";
-            this.tbl_Budget.Padding = new System.Windows.Forms.Padding(3);
-            this.tbl_Budget.Size = new System.Drawing.Size(867, 471);
-            this.tbl_Budget.TabIndex = 0;
-            this.tbl_Budget.Text = "Budget Total";
-            this.tbl_Budget.UseVisualStyleBackColor = true;
+            tbl_Budget.Controls.Add(gv_budget);
+            tbl_Budget.Location = new Point(4, 24);
+            tbl_Budget.Margin = new Padding(4, 3, 4, 3);
+            tbl_Budget.Name = "tbl_Budget";
+            tbl_Budget.Padding = new Padding(4, 3, 4, 3);
+            tbl_Budget.Size = new Size(1013, 545);
+            tbl_Budget.TabIndex = 0;
+            tbl_Budget.Text = "Budget Total";
+            tbl_Budget.UseVisualStyleBackColor = true;
             // 
             // tbl_Totals
             // 
-            this.tbl_Totals.Controls.Add(this.gv_Totals);
-            this.tbl_Totals.Location = new System.Drawing.Point(4, 22);
-            this.tbl_Totals.Name = "tbl_Totals";
-            this.tbl_Totals.Size = new System.Drawing.Size(867, 471);
-            this.tbl_Totals.TabIndex = 6;
-            this.tbl_Totals.Text = "Totals";
-            this.tbl_Totals.UseVisualStyleBackColor = true;
+            tbl_Totals.Controls.Add(gv_Totals);
+            tbl_Totals.Location = new Point(4, 24);
+            tbl_Totals.Margin = new Padding(4, 3, 4, 3);
+            tbl_Totals.Name = "tbl_Totals";
+            tbl_Totals.Size = new Size(1013, 545);
+            tbl_Totals.TabIndex = 6;
+            tbl_Totals.Text = "Totals";
+            tbl_Totals.UseVisualStyleBackColor = true;
             // 
             // gv_Totals
             // 
-            this.gv_Totals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Totals.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_Totals.Location = new System.Drawing.Point(0, 0);
-            this.gv_Totals.Name = "gv_Totals";
-            this.gv_Totals.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.gv_Totals.Size = new System.Drawing.Size(867, 471);
-            this.gv_Totals.TabIndex = 0;
+            gv_Totals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gv_Totals.Dock = DockStyle.Fill;
+            gv_Totals.Location = new Point(0, 0);
+            gv_Totals.Margin = new Padding(4, 3, 4, 3);
+            gv_Totals.Name = "gv_Totals";
+            gv_Totals.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            gv_Totals.Size = new Size(1013, 545);
+            gv_Totals.TabIndex = 0;
             // 
             // tbl_Transactions
             // 
-            this.tbl_Transactions.Controls.Add(this.dg_Transactions);
-            this.tbl_Transactions.Location = new System.Drawing.Point(4, 22);
-            this.tbl_Transactions.Name = "tbl_Transactions";
-            this.tbl_Transactions.Padding = new System.Windows.Forms.Padding(3);
-            this.tbl_Transactions.Size = new System.Drawing.Size(867, 471);
-            this.tbl_Transactions.TabIndex = 1;
-            this.tbl_Transactions.Text = "Transactions";
-            this.tbl_Transactions.UseVisualStyleBackColor = true;
+            tbl_Transactions.Controls.Add(dg_Transactions);
+            tbl_Transactions.Location = new Point(4, 24);
+            tbl_Transactions.Margin = new Padding(4, 3, 4, 3);
+            tbl_Transactions.Name = "tbl_Transactions";
+            tbl_Transactions.Padding = new Padding(4, 3, 4, 3);
+            tbl_Transactions.Size = new Size(1013, 545);
+            tbl_Transactions.TabIndex = 1;
+            tbl_Transactions.Text = "Transactions";
+            tbl_Transactions.UseVisualStyleBackColor = true;
             // 
             // dg_Transactions
             // 
-            this.dg_Transactions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dg_Transactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_Transactions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dg_Transactions.Location = new System.Drawing.Point(3, 3);
-            this.dg_Transactions.Name = "dg_Transactions";
-            this.dg_Transactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dg_Transactions.Size = new System.Drawing.Size(861, 465);
-            this.dg_Transactions.TabIndex = 0;
+            dg_Transactions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dg_Transactions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dg_Transactions.Dock = DockStyle.Fill;
+            dg_Transactions.Location = new Point(4, 3);
+            dg_Transactions.Margin = new Padding(4, 3, 4, 3);
+            dg_Transactions.Name = "dg_Transactions";
+            dg_Transactions.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dg_Transactions.Size = new Size(1005, 539);
+            dg_Transactions.TabIndex = 0;
             // 
             // tbl_reccuringCosts
             // 
-            this.tbl_reccuringCosts.Location = new System.Drawing.Point(4, 22);
-            this.tbl_reccuringCosts.Name = "tbl_reccuringCosts";
-            this.tbl_reccuringCosts.Size = new System.Drawing.Size(867, 471);
-            this.tbl_reccuringCosts.TabIndex = 4;
-            this.tbl_reccuringCosts.Text = "Reccuring Costs";
-            this.tbl_reccuringCosts.UseVisualStyleBackColor = true;
+            tbl_reccuringCosts.Location = new Point(4, 24);
+            tbl_reccuringCosts.Margin = new Padding(4, 3, 4, 3);
+            tbl_reccuringCosts.Name = "tbl_reccuringCosts";
+            tbl_reccuringCosts.Size = new Size(1013, 545);
+            tbl_reccuringCosts.TabIndex = 4;
+            tbl_reccuringCosts.Text = "Reccuring Costs";
+            tbl_reccuringCosts.UseVisualStyleBackColor = true;
             // 
             // tbl_nonReccuringCosts
             // 
-            this.tbl_nonReccuringCosts.Location = new System.Drawing.Point(4, 22);
-            this.tbl_nonReccuringCosts.Name = "tbl_nonReccuringCosts";
-            this.tbl_nonReccuringCosts.Size = new System.Drawing.Size(867, 471);
-            this.tbl_nonReccuringCosts.TabIndex = 5;
-            this.tbl_nonReccuringCosts.Text = "Non Reccuring Costs";
-            this.tbl_nonReccuringCosts.UseVisualStyleBackColor = true;
+            tbl_nonReccuringCosts.Location = new Point(4, 24);
+            tbl_nonReccuringCosts.Margin = new Padding(4, 3, 4, 3);
+            tbl_nonReccuringCosts.Name = "tbl_nonReccuringCosts";
+            tbl_nonReccuringCosts.Size = new Size(1013, 545);
+            tbl_nonReccuringCosts.TabIndex = 5;
+            tbl_nonReccuringCosts.Text = "Non Reccuring Costs";
+            tbl_nonReccuringCosts.UseVisualStyleBackColor = true;
             // 
             // tbl_NoCategory
             // 
-            this.tbl_NoCategory.Location = new System.Drawing.Point(4, 22);
-            this.tbl_NoCategory.Name = "tbl_NoCategory";
-            this.tbl_NoCategory.Size = new System.Drawing.Size(867, 471);
-            this.tbl_NoCategory.TabIndex = 3;
-            this.tbl_NoCategory.Text = "No category";
-            this.tbl_NoCategory.UseVisualStyleBackColor = true;
+            tbl_NoCategory.Location = new Point(4, 24);
+            tbl_NoCategory.Margin = new Padding(4, 3, 4, 3);
+            tbl_NoCategory.Name = "tbl_NoCategory";
+            tbl_NoCategory.Size = new Size(1013, 545);
+            tbl_NoCategory.TabIndex = 3;
+            tbl_NoCategory.Text = "No category";
+            tbl_NoCategory.UseVisualStyleBackColor = true;
             // 
             // SaveInPosterButton
             // 
-            this.SaveInPosterButton.Location = new System.Drawing.Point(108, 53);
-            this.SaveInPosterButton.Name = "SaveInPosterButton";
-            this.SaveInPosterButton.Size = new System.Drawing.Size(89, 23);
-            this.SaveInPosterButton.TabIndex = 3;
-            this.SaveInPosterButton.Text = "Spara InPoster";
-            this.SaveInPosterButton.UseVisualStyleBackColor = true;
-            this.SaveInPosterButton.Click += new System.EventHandler(this.SaveInPosterButton_Click);
+            SaveInPosterButton.Location = new Point(126, 61);
+            SaveInPosterButton.Margin = new Padding(4, 3, 4, 3);
+            SaveInPosterButton.Name = "SaveInPosterButton";
+            SaveInPosterButton.Size = new Size(104, 27);
+            SaveInPosterButton.TabIndex = 3;
+            SaveInPosterButton.Text = "Spara InPoster";
+            SaveInPosterButton.UseVisualStyleBackColor = true;
+            SaveInPosterButton.Click += SaveInPosterButton_Click;
             // 
             // SkapaTomRad
             // 
-            this.SkapaTomRad.Location = new System.Drawing.Point(203, 53);
-            this.SkapaTomRad.Name = "SkapaTomRad";
-            this.SkapaTomRad.Size = new System.Drawing.Size(165, 23);
-            this.SkapaTomRad.TabIndex = 3;
-            this.SkapaTomRad.Text = "Skapa tom rad med Inposter";
-            this.SkapaTomRad.UseVisualStyleBackColor = true;
+            SkapaTomRad.Location = new Point(237, 61);
+            SkapaTomRad.Margin = new Padding(4, 3, 4, 3);
+            SkapaTomRad.Name = "SkapaTomRad";
+            SkapaTomRad.Size = new Size(192, 27);
+            SkapaTomRad.TabIndex = 3;
+            SkapaTomRad.Text = "Skapa tom rad med Inposter";
+            SkapaTomRad.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(466, 43);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Filter på år";
+            // 
+            // txtYearFilter
+            // 
+            txtYearFilter.Location = new Point(466, 61);
+            txtYearFilter.Name = "txtYearFilter";
+            txtYearFilter.Size = new Size(100, 23);
+            txtYearFilter.TabIndex = 6;
             // 
             // WebBankBudgeterUi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 639);
-            this.Controls.Add(this.SkapaTomRad);
-            this.Controls.Add(this.SaveInPosterButton);
-            this.Controls.Add(this.BudgetTabs);
-            this.Controls.Add(this.LogTexts);
-            this.Controls.Add(this.ReloadButton);
-            this.Controls.Add(this.label1);
-            this.Name = "WebBankBudgeterUi";
-            this.Text = "SwedBank budgeter";
-            ((System.ComponentModel.ISupportInitialize)(this.gv_budget)).EndInit();
-            this.BudgetTabs.ResumeLayout(false);
-            this.tbl_Kvar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gv_Kvar)).EndInit();
-            this.tbl_INCOME.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gv_incomes)).EndInit();
-            this.tbl_Budget.ResumeLayout(false);
-            this.tbl_Totals.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gv_Totals)).EndInit();
-            this.tbl_Transactions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dg_Transactions)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1066, 737);
+            Controls.Add(txtYearFilter);
+            Controls.Add(label2);
+            Controls.Add(SkapaTomRad);
+            Controls.Add(SaveInPosterButton);
+            Controls.Add(BudgetTabs);
+            Controls.Add(LogTexts);
+            Controls.Add(ReloadButton);
+            Controls.Add(label1);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "WebBankBudgeterUi";
+            Text = "SwedBank budgeter";
+            ((System.ComponentModel.ISupportInitialize)gv_budget).EndInit();
+            BudgetTabs.ResumeLayout(false);
+            tbl_Kvar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gv_Kvar).EndInit();
+            tbl_INCOME.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gv_incomes).EndInit();
+            tbl_Budget.ResumeLayout(false);
+            tbl_Totals.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gv_Totals).EndInit();
+            tbl_Transactions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dg_Transactions).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -315,6 +352,7 @@
         private System.Windows.Forms.TabPage tbl_Kvar;
         private System.Windows.Forms.DataGridView gv_Kvar;
         private System.Windows.Forms.Button SkapaTomRad;
-
+        private Label label2;
+        private TextBox txtYearFilter;
     }
 }
