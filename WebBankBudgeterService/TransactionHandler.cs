@@ -177,7 +177,7 @@ namespace WebBankBudgeterService
             return listOfSeveralAccounts;
         }
 
-        private string LookUpCategoryGroup(string categoryName)
+        private string? LookUpCategoryGroup(string categoryName)
         {
             return AllCategories.CategoryList.FirstOrDefault(c =>
                     c.Description == categoryName)

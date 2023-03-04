@@ -22,7 +22,7 @@ namespace CategoryHandler
             try
             {
                 AllCategories = SerializationFunctions
-                    .DeserializeObject<Categories>(SaveFilePath);
+                    .DeserializeObject<Categories>(SaveFilePath)!;
 
                 AllCategoriesHandler = new CategoriesHandler(AllCategories);
             }
@@ -47,7 +47,7 @@ namespace CategoryHandler
         /// </summary>
         /// <param name="entryInfoDescription">En beskrivning på entryn. Ex. "HSB GÖTEBORG"</param>
         /// <returns></returns>
-        public static string AutocategorizeType(string entryInfoDescription)
+        public static string? AutocategorizeType(string entryInfoDescription)
         {
             // Kolla alla kategorier (typer av kostnader) Ex. "hyra..."
             foreach (var currentCategory in GetCategoriesList())

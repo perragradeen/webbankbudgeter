@@ -55,7 +55,7 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
-        public async Task TransFileExistsTest()
+        public void TransFileExistsTest()
         {
             if (!File.Exists(_transactionTestFilePath))
             {

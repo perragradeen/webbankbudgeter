@@ -18,7 +18,7 @@ namespace XmlSerializer
         /// Lägg innehållet i en xml-fil till minnet i den statiska vaiabeln AllCategories
         /// </summary>
         /// <param name="filename">xml-fil som ska läsas in</param>
-        public static T DeserializeObject<T>(string filename)
+        public static T? DeserializeObject<T>(string filename)
         {
             FileStream fileStream = null;
             try
