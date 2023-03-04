@@ -1,9 +1,9 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using InbudgetHandler;
 using InbudgetHandler.Model;
 using System.Globalization;
-using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Services;
+using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Services;
 
 namespace WebBankBudgeterUi.UiBinders
 {

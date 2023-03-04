@@ -1,6 +1,6 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 
-namespace Budgetterarn.EntryLogicSetFlags
+namespace BudgetterarnDAL.EntryLogicSetFlags
 {
     public static class KontoEntryKeyChecker
     {

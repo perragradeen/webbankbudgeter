@@ -1,4 +1,4 @@
-﻿namespace Budgetterarn
+﻿namespace BudgetterarnDAL
 {
     public class AddedAndReplacedEntriesCounter
     {

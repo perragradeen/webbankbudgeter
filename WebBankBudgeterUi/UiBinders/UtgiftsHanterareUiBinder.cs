@@ -1,4 +1,4 @@
-﻿using WebBankBudgeter.Service.Model.ViewModel;
+﻿using WebBankBudgeterService.Model.ViewModel;
 
 namespace WebBankBudgeterUi.UiBinders
 {
@@ -14,7 +14,9 @@ namespace WebBankBudgeterUi.UiBinders
         public void BindToBudgetTableUi(TextToTableOutPuter table)
         {
             if (_gv_budget == null)
+            {
                 return;
+            }
 
             foreach (var column in table.ColumnHeaders)
             {

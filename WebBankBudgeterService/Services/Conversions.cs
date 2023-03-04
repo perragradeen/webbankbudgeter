@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace WebBankBudgeter.Service.Services
+namespace WebBankBudgeterService.Services
 {
     public static class Conversions
     {
@@ -20,7 +20,9 @@ namespace WebBankBudgeter.Service.Services
                 @"([-]?[0-9]+)([\s])?([0-9]+)?[." + decimalSymbol + "]?([0-9 ]+)?([0-9]+)?").Value;
 
             if (tmp.Length <= 0 || !strToParse.Contains(tmp))
+            {
                 return 0;
+            }
 
             var currentDecimalSeparator = Thread.CurrentThread
                 .CurrentCulture.NumberFormat.NumberDecimalSeparator;

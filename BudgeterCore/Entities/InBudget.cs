@@ -1,4 +1,4 @@
-﻿namespace Budgeter.Core.Entities
+﻿namespace BudgeterCore.Entities
 {
     public class InBudget
     {

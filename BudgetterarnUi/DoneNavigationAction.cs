@@ -1,4 +1,4 @@
-﻿namespace Budgetterarn
+﻿namespace BudgetterarnUi
 {
     public delegate void DoneNavigationAction();
 }

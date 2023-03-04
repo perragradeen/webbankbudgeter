@@ -1,14 +1,16 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using Budgetterarn.Application_Settings_and_constants;
-using Budgetterarn.DAL;
-using Budgetterarn.EntryLogicSetFlags;
-using Budgetterarn.InternalUtilities;
+using BudgetterarnDAL;
+using BudgetterarnDAL.DAL;
+using BudgetterarnDAL.EntryLogicSetFlags;
+using BudgetterarnUi.InternalUtilities;
+using BudgetterarnUi.WinFormsUtilities;
 using GeneralSettingsHandler;
 using LoadTransactionsFromFile;
 using System.Collections;
 using Utilities;
 
-namespace Budgetterarn
+namespace BudgetterarnUi
 {
     public class BudgeterFormHelper
     {
@@ -120,7 +122,10 @@ namespace Budgetterarn
                 // Meddela på nåt sätt att det är klart, och antal inlästa, i tex. statusbar
                 writeToUiStatusLog(@"Done processing  no new entries fond from html.");
 
-                if (!somethingLoadeded) return;
+                if (!somethingLoadeded)
+                {
+                    return;
+                }
 
                 checkAndAddNewItems(false); // Lägg till nya i GuiLista FromBrowser
                 writeToUiStatusLog(@"Done processing entries from html. New Entries found; "
@@ -162,7 +167,9 @@ namespace Budgetterarn
         internal void EntriesFromFileLoadedOk(bool clearContentBeforeReadingNewFile)
         {
             if (clearContentBeforeReadingNewFile)
+            {
                 ClearUiContents();
+            }
 
             CheckFileIfEmptyPromptUserIfEmptyPath();
 
@@ -197,7 +204,7 @@ namespace Budgetterarn
         private SortedList GetOldEntriesWithoutCategory()
         {
             var size = kontoEntriesHolder.KontoEntries.Count;
-            KontoEntry[] tempOldEntries = new KontoEntry[size];
+            var tempOldEntries = new KontoEntry[size];
             kontoEntriesHolder.KontoEntries.Values.CopyTo(tempOldEntries, 0);
             var filteredOldEntries = tempOldEntries
                 .Where(el => string.IsNullOrEmpty(el.TypAvKostnad));
@@ -207,7 +214,7 @@ namespace Budgetterarn
         }
 
         private LoadFromFileHelper LoadFromFileHelper =>
-            new LoadFromFileHelper(
+            new(
                 KontoutdragExcelFileInfo,
                 kontoEntriesHolder,
                 writeToOutput,
@@ -222,7 +229,10 @@ namespace Budgetterarn
 
         private void CheckFileIfEmptyPromptUserIfEmptyPath()
         {
-            if (FilePathAlreadySet) return;
+            if (FilePathAlreadySet)
+            {
+                return;
+            }
 
             // Öppnar dialog
             var filePath = FileOperations.OpenFileOfType(writeToOutput);

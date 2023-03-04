@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using System.Globalization;
 
-namespace Budgetterarn.DAL
+namespace BudgetterarnDAL.DAL
 {
     public class FileBackupper
     {

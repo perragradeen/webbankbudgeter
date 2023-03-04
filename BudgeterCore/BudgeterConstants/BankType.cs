@@ -1,4 +1,4 @@
-﻿namespace Budgeter.Core.BudgeterConstants
+﻿namespace BudgeterCore.BudgeterConstants
 {
     public enum BankType
     {

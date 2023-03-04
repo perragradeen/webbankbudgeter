@@ -1,6 +1,6 @@
 using InbudgetHandler;
 
-namespace Test.InbudgetHandlerTest
+namespace InbudgetHandlerTest
 {
     [TestClass]
     public class GetTests
@@ -8,7 +8,7 @@ namespace Test.InbudgetHandlerTest
         private static string _filePath;
 
         private InBudgetHandler Target =>
-            new InBudgetHandler(
+            new(
                 _filePath);
 
         public GetTests()

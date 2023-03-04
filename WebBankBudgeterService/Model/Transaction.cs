@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace WebBankBudgeter.Service.Model
+namespace WebBankBudgeterService.Model
 {
     public class Transaction
     {
@@ -66,7 +66,9 @@ namespace WebBankBudgeter.Service.Model
                 }
 
                 if (!DateTime.TryParse(Date, out var date))
+                {
                     return DateTime.MinValue;
+                }
 
                 _dateAsDate = date;
                 return _dateAsDate;

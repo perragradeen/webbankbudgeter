@@ -1,9 +1,9 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using LoadTransactionsFromFile;
 using LoadTransactionsFromFile.DAL;
 using System.Collections;
 
-namespace Budgetterarn.InternalUtilities
+namespace BudgetterarnUi.InternalUtilities
 {
     public class LoadFromFileHelper
     {
@@ -28,7 +28,10 @@ namespace Budgetterarn.InternalUtilities
         {
             // Ladda från fil
             var entriesLoadedFromDataStore = GetEntriesFromFile();
-            if (entriesLoadedFromDataStore == null) return;
+            if (entriesLoadedFromDataStore == null)
+            {
+                return;
+            }
 
             VisaAnvändarenAttIngetLaddatsÄn(entriesLoadedFromDataStore);
 
@@ -55,7 +58,7 @@ namespace Budgetterarn.InternalUtilities
 
         private void VisaFörAnvändarenHurDetGick(LoadOrSaveResult loadResult)
         {
-            string statusText = "No. rows loaded; "
+            var statusText = "No. rows loaded; "
                                 + kontoEntriesHolder.KontoEntries.Count
                                 + " . Skpped: "
                                 + loadResult.SkippedOrSaved

@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using RefLesses;
 
-namespace Budgetterarn.WebCrawlers
+namespace BudgetterarnDAL.WebCrawlers
 {
     public class SaldoValueAdder
     {

@@ -1,5 +1,6 @@
-﻿using Budgeter.Core.BudgeterConstants;
-using Budgeter.Core.Entities;
+﻿using BudgeterCore;
+using BudgeterCore.BudgeterConstants;
+using BudgeterCore.Entities;
 using LoadTransactionsFromFile;
 using System.Collections;
 using Utilities;
@@ -7,7 +8,7 @@ using Utilities;
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
 
-namespace Budgetterarn.DAL
+namespace BudgetterarnDAL.DAL
 {
     public static class SaveKonton
     {

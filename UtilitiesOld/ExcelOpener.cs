@@ -41,7 +41,9 @@ namespace Utilities
                 #endregion
 
                 if (!fileOkToOpen)
+                {
                     return;
+                }
 
                 #region Open log in Exel //before: tab window
 

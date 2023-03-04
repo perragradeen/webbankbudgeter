@@ -1,4 +1,6 @@
-﻿namespace WebBankBudgeter.Service.Model.ViewModel
+﻿using WebBankBudgeterService.Model;
+
+namespace WebBankBudgeterService.Model.ViewModel
 {
     public class TextToTableOutPuter
     {

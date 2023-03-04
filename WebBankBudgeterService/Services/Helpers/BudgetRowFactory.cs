@@ -1,6 +1,6 @@
-using WebBankBudgeter.Service.Model;
+using WebBankBudgeterService.Model;
 
-namespace WebBankBudgeter.Service.Services.Helpers
+namespace WebBankBudgeterService.Services.Helpers
 {
     internal class BudgetRowFactory
     {

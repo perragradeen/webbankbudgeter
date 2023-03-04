@@ -1,8 +1,8 @@
-﻿using Budgeter.Core.Entities;
-using Budgetterarn.DAL;
+﻿using BudgeterCore.Entities;
+using BudgetterarnDAL.DAL;
 using LoadTransactionsFromFile;
 
-namespace TestBudgetterarn
+namespace BudgetterarnUiTest
 {
     [TestClass]
     public class GetAllVisibleEntriesFromWebBrowserTests
@@ -10,7 +10,7 @@ namespace TestBudgetterarn
         private readonly string _default_webBrowserText;
 
         private readonly KontoEntriesHolder _default_KontoEntriesHolder
-            = new KontoEntriesHolder();
+            = new();
 
         public GetAllVisibleEntriesFromWebBrowserTests()
         {
@@ -4288,8 +4288,8 @@ Chatta med oss";
         private int WriteLineToMessageBox(
            string[] message) // TODO: gör egen klass o snygga till
         {
-            string? caption = message[0];
-            string? mess = message[1];
+            var caption = message[0];
+            var mess = message[1];
             return 4;
 
             //WriteToOutput(Environment.NewLine);

@@ -74,7 +74,10 @@ namespace BudgetterarnUi
 
         private void FormIsClosing(object sender, FormClosingEventArgs e)
         {
-            if (debugGlobal) return;
+            if (debugGlobal)
+            {
+                return;
+            }
 
             CheckIfUserWantsToSaveUnsavedChanges(e);
         }

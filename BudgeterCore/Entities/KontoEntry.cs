@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Globalization;
 
-namespace Budgeter.Core.Entities
+namespace BudgeterCore.Entities
 {
     public class KontoEntry //TODO: gör en databärare från inladdning och till save. Samt en vymodell för UI
     {

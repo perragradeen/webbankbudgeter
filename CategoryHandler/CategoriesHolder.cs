@@ -1,12 +1,12 @@
 ﻿using CategoryHandler.Model;
 using CategoryHandler.Service;
-using Serializers;
+using XmlSerializer;
 
 namespace CategoryHandler
 {
     public static class CategoriesHolder
     {
-        private static Categories AllCategories = new Categories();
+        private static Categories AllCategories = new();
         public static CategoriesHandler AllCategoriesHandler;
         private static string SaveFilePath { get; set; }
 

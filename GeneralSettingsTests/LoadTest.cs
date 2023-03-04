@@ -1,5 +1,5 @@
 ﻿using GeneralSettingsHandler;
-using Serializers;
+using XmlSerializer;
 
 namespace GeneralSettingsTests
 {

@@ -1,4 +1,6 @@
-﻿namespace TestBudgetterarn
+﻿using BudgeterCore.Entities;
+
+namespace BudgetterarnUiTest
 {
     [TestClass]
     public class KontoEntryTest
@@ -10,7 +12,7 @@
             const int columnNumber = 1;
             const string expected = "223";
 
-            var ke = new Budgeter.Core.Entities.KontoEntry();
+            var ke = new KontoEntry();
             var actual = ke.RowThatExists(inArray, columnNumber);
 
             Assert.AreEqual(expected, actual);

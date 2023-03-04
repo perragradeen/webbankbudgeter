@@ -1,6 +1,6 @@
-﻿using Budgeter.Core.BudgeterConstants;
+﻿using BudgeterCore.BudgeterConstants;
 
-namespace Budgetterarn
+namespace BudgeterCore
 {
     public class ProgramSettings
     {
@@ -14,7 +14,7 @@ namespace Budgetterarn
                 //var matchedString = fromXls.ToLower();
                 //matchedString = matchedString[0].ToString().ToUpper() + matchedString.Substring(1);
                 //return (BankType) Enum.Parse(typeof(BankType), matchedString);
-                return (BankType.Swedbank);
+                return BankType.Swedbank;
             }
         }
     }

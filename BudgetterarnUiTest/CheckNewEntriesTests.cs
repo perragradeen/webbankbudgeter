@@ -1,32 +1,38 @@
-﻿using Budgeter.Core;
-using Budgeter.Core.Entities;
-using Budgetterarn.EntryLogicSetFlags;
+﻿using BudgeterCore;
+using BudgeterCore.Entities;
+using BudgetterarnDAL.EntryLogicSetFlags;
 using System.Collections;
 
-namespace TestBudgetterarn
+namespace BudgetterarnUiTest
 {
     [TestClass]
     public class CheckNewEntriesTests
     {
         private static List<KontoEntry> TestDataKoList =>
-            (new List<KontoEntry>
+            new()
             {
                 new KontoEntry
                 {
-                    Date = DateTime.Now.AddDays(-2), KostnadEllerInkomst = 1, TypAvKostnad = "hemförsäkring",
+                    Date = DateTime.Now.AddDays(-2),
+                    KostnadEllerInkomst = 1,
+                    TypAvKostnad = "hemförsäkring",
                     Info = "testinkomst"
                 },
                 new KontoEntry
                 {
-                    Date = DateTime.Now.AddDays(-1), KostnadEllerInkomst = 2, TypAvKostnad = "hemförsäkring",
+                    Date = DateTime.Now.AddDays(-1),
+                    KostnadEllerInkomst = 2,
+                    TypAvKostnad = "hemförsäkring",
                     Info = "testinkomst"
                 },
                 new KontoEntry
                 {
-                    Date = DateTime.Now.AddDays(-3), KostnadEllerInkomst = 3, TypAvKostnad = "hemförsäkring",
+                    Date = DateTime.Now.AddDays(-3),
+                    KostnadEllerInkomst = 3,
+                    TypAvKostnad = "hemförsäkring",
                     Info = "testinkomst"
                 },
-            });
+            };
 
         private static KontoEntriesViewModelListUpdater TestDataGet
         {

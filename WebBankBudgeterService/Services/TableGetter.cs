@@ -1,8 +1,8 @@
-﻿using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Model.ViewModel;
-using WebBankBudgeter.Service.Services.Helpers;
+﻿using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Model.ViewModel;
+using WebBankBudgeterService.Services.Helpers;
 
-namespace WebBankBudgeter.Service.Services
+namespace WebBankBudgeterService.Services
 {
     public class TableGetter
     {
@@ -95,12 +95,17 @@ namespace WebBankBudgeter.Service.Services
             foreach (var g in grouped)
             {
                 var first = g.FirstOrDefault();
-                if (first == null) continue;
+                if (first == null)
+                {
+                    continue;
+                }
 
                 var monthNameName = first.DateAsYearMothText;
 
                 if (months.ContainsKey(monthNameName))
+                {
                     continue;
+                }
 
                 table.ColumnHeaders.Add(monthNameName);
                 months.Add(monthNameName, monthNameName);

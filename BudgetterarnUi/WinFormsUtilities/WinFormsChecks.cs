@@ -1,4 +1,4 @@
-﻿namespace Utilities
+﻿namespace BudgetterarnUi.WinFormsUtilities
 {
     public static class WinFormsChecks
     {
@@ -11,7 +11,9 @@
         {
             var saveOrNotResult = DialogResult.None;
             if (!somethingChanged)
+            {
                 return saveOrNotResult;
+            }
 
             return UserWantsToSave();
         }
@@ -27,8 +29,8 @@
         public static int WriteLineToMessageBox(
             string[] message) // TODO: gör egen klass o snygga till
         {
-            string? caption = message[0];
-            string? mess = message[1];
+            var caption = message[0];
+            var mess = message[1];
             return (int)MessageBox.Show(
                mess, // @"Läget ej sparat! Spara nu?",
                caption, //  @"Spara?",

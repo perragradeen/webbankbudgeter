@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Budgeter.Core.Entities
+namespace BudgeterCore.Entities
 {
     public class DescendingComparer : IComparer
     {

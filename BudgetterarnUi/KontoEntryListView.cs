@@ -1,4 +1,4 @@
-﻿using Budgetterarn.InternalUtilities;
+﻿using BudgetterarnUi.InternalUtilities;
 
 // ReSharper disable LocalizableElement
 

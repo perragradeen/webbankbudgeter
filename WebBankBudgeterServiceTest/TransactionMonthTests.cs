@@ -1,6 +1,6 @@
-using WebBankBudgeter.Service.Model;
+using WebBankBudgeterService.Model;
 
-namespace WebBankBudgeter.Service.TransactionTests
+namespace WebBankBudgeterServiceTest
 {
     [TestClass]
     public class TransactionMonthTests

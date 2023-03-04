@@ -1,4 +1,4 @@
-namespace WebBankBudgeter.Service.MonthAvarages
+namespace WebBankBudgeterService.MonthAvarages
 {
     public class MonthAvarages
     {

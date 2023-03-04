@@ -86,16 +86,16 @@ namespace Budgetterarn.InternalUtilities
 
             // lblPrompt
             lblPrompt.Anchor =
-                (System.Windows.Forms.AnchorStyles)
-                ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                   | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
+
+                System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
+                   | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             lblPrompt.BackColor = System.Drawing.SystemColors.Control;
             lblPrompt.Font = new System.Drawing.Font(
                 "Microsoft Sans Serif",
                 9.75F,
                 System.Drawing.FontStyle.Regular,
                 System.Drawing.GraphicsUnit.Point,
-                (byte)(0));
+                0);
             lblPrompt.Location = new System.Drawing.Point(12, 9);
             lblPrompt.Name = "lblPrompt";
             lblPrompt.Size = new System.Drawing.Size(302, 82);

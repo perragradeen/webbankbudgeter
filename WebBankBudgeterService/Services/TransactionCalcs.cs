@@ -1,6 +1,6 @@
-﻿using WebBankBudgeter.Service.Model;
+﻿using WebBankBudgeterService.Model;
 
-namespace WebBankBudgeter.Service.Services
+namespace WebBankBudgeterService.Services
 {
     public class TransactionCalcs
     {

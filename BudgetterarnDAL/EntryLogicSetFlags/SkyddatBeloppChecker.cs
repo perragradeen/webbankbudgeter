@@ -1,13 +1,13 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using System.Collections;
 using System.Drawing;
 
-namespace Budgetterarn.EntryLogicSetFlags
+namespace BudgetterarnDAL.EntryLogicSetFlags
 {
     public class SkyddatBeloppChecker
     {
-        const string Skb = "skyddat belopp";
-        const string Pkk = "PREL. KORTKÖP";
+        private const string Skb = "skyddat belopp";
+        private const string Pkk = "PREL. KORTKÖP";
 
         private static bool SetColorOnGridRowDependingOnCondition(
             KontoEntry entryNew,

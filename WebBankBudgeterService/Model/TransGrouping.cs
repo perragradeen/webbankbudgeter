@@ -1,4 +1,4 @@
-namespace WebBankBudgeter.Service.Model
+namespace WebBankBudgeterService.Model
 {
     public class TransGrouping
     {

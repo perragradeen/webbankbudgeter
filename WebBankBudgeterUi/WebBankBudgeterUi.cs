@@ -1,11 +1,11 @@
 using GeneralSettingsHandler;
 using InbudgetHandler;
 using InbudgetHandler.Model;
-using WebBankBudgeter.Service;
-using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Model.ViewModel;
-using WebBankBudgeter.Service.MonthAvarages;
-using WebBankBudgeter.Service.Services;
+using WebBankBudgeterService;
+using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Model.ViewModel;
+using WebBankBudgeterService.MonthAvarages;
+using WebBankBudgeterService.Services;
 using WebBankBudgeterUi.UiBinders;
 
 namespace WebBankBudgeterUi
@@ -117,7 +117,10 @@ namespace WebBankBudgeterUi
             // Hämta utgifter (transactioner) data ---
             var loadSuccess =
                 await GetTransactionsAsync();
-            if (!loadSuccess) return;
+            if (!loadSuccess)
+            {
+                return;
+            }
             // --- Hämta data
 
             // filtrera
@@ -200,7 +203,11 @@ namespace WebBankBudgeterUi
             List<BudgetRow> utgifter,
             Action<string> writeLineToOutputAndScrollDown)
         {
-            if (utgifter == null) throw new ArgumentNullException(nameof(utgifter));
+            if (utgifter == null)
+            {
+                throw new ArgumentNullException(nameof(utgifter));
+            }
+
             var kvarrader = new List<Rad>();
             foreach (var inBudget in inData)
             {

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Budgetterarn.InternalUtilities
+namespace BudgetterarnUi.InternalUtilities
 {
     /// <summary>
     /// This class is an implementation of the 'IComparer' interface.

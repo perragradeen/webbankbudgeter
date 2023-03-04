@@ -1,8 +1,9 @@
 using InbudgetHandler;
-using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Services;
+using WebBankBudgeterService;
+using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Services;
 
-namespace WebBankBudgeter.Service.TransactionTests
+namespace WebBankBudgeterServiceTest
 {
     [TestClass]
     public class SkapaInPosterTests
@@ -17,14 +18,14 @@ namespace WebBankBudgeter.Service.TransactionTests
         private const string _categoryRelativeDirPath = @"Data";
         //private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
 
-        private static string _budgetInsRelativeFilePath = @"Data\BudgetIns.json";
+        private static readonly string _budgetInsRelativeFilePath = @"Data\BudgetIns.json";
         private static string _budgetInsFilePath;
         //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
 
         private static string _globalLog;
 
         private static InBudgetHandler InBudgetHandler =>
-            new InBudgetHandler(
+            new(
                 _budgetInsFilePath);
 
         private TransactionHandler TransactionHandler

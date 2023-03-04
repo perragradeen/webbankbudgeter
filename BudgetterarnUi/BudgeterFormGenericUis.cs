@@ -1,4 +1,5 @@
 ﻿using Budgetterarn.InternalUtilities;
+using BudgetterarnUi.InternalUtilities;
 using CefSharp;
 using CefSharp.WinForms;
 
@@ -29,7 +30,7 @@ namespace BudgetterarnUi
             tp_NewItemsEdited.UseVisualStyleBackColor = true;
 
             // m_newIitemsListEdited
-            newIitemsListEditedGrid.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left)
+            newIitemsListEditedGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left
                                              | AnchorStyles.Right;
             newIitemsListEditedGrid.FullRowSelect = true;
             newIitemsListEditedGrid.GridLines = true;

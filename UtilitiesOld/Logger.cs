@@ -319,7 +319,7 @@ namespace Utilities
             }
             catch (Exception e)
             {
-                var allArgs = args.Aggregate(string.Empty, (current, item) => current + (";" + item));
+                var allArgs = args.Aggregate(string.Empty, (current, item) => current + ";" + item);
 
                 if (allArgs == string.Empty)
                 {
@@ -359,10 +359,10 @@ namespace Utilities
 
         public static string MergeStringArrayToString(IEnumerable<string> inArray, bool spaceBetweenThem = false)
         {
-            var space = (spaceBetweenThem ? " " : string.Empty);
+            var space = spaceBetweenThem ? " " : string.Empty;
 
             return inArray.Aggregate(string.Empty, (current, item) =>
-                current + (item + space));
+                current + item + space);
         }
 
         private static void EditCellLayOut(IEnumerable settings, Range cellRange)

@@ -1,11 +1,11 @@
-﻿using Budgeter.Core;
-using Budgeter.Core.Entities;
+﻿using BudgeterCore;
+using BudgeterCore.Entities;
 using CategoryHandler;
 using LoadTransactionsFromFile;
 
 // ReSharper disable CommentTypo
 
-namespace Budgetterarn.EntryLogicSetFlags
+namespace BudgetterarnDAL.EntryLogicSetFlags
 {
     public class KontoEntriesChecker
     {
@@ -22,7 +22,10 @@ namespace Budgetterarn.EntryLogicSetFlags
 
         public void CheckAndAddNewItemsForLists()
         {
-            if (lists.NewKontoEntriesIn.Count <= 0) return;
+            if (lists.NewKontoEntriesIn.Count <= 0)
+            {
+                return;
+            }
 
             foreach (var item in lists.NewKontoEntriesIn.Values)
             {

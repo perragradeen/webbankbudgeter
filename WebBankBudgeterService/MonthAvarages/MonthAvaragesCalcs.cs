@@ -1,7 +1,7 @@
-using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Services;
+using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Services;
 
-namespace WebBankBudgeter.Service.MonthAvarages
+namespace WebBankBudgeterService.MonthAvarages
 {
     public class MonthAvaragesCalcs
     {
@@ -42,8 +42,8 @@ namespace WebBankBudgeter.Service.MonthAvarages
             {
                 var averageValue = row.AmountsForMonth.Values.ToList().Average(d => d);
 
-                var catGroupIsIncome = IncomesCatGroup.Any(c => row.CategoryText.Contains(c));
-                var catGroupIsReoccurring = ReoccurringCatGroups.Any(c => row.CategoryText.Contains(c));
+                var catGroupIsIncome = IncomesCatGroup.Any(row.CategoryText.Contains);
+                var catGroupIsReoccurring = ReoccurringCatGroups.Any(row.CategoryText.Contains);
                 if (catGroupIsReoccurring)
                 {
                     averagesReoccurringCosts.Add(averageValue);

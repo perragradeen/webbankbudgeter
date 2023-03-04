@@ -1,6 +1,6 @@
 ﻿using Utilities;
 
-namespace Budgetterarn.InternalUtilities
+namespace BudgetterarnUi.InternalUtilities
 {
     public static class FileOperations
     {

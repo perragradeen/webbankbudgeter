@@ -1,4 +1,4 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using CategoryHandler;
 using CategoryHandler.Model;
 using System.Collections;
@@ -12,7 +12,7 @@ namespace BudgetterarnUi
         private const string AutoCatCpation = "Spara kategorival (typ av kostnad) automatiskt?";
         private const int TypAvKostnadKolumnnummer = 2;
 
-        private readonly List<object> previouslySelectedItems = new List<object>();
+        private readonly List<object> previouslySelectedItems = new();
         private int selectedSubItem;
         private int x;
 
@@ -48,7 +48,11 @@ namespace BudgetterarnUi
             {
                 var entries = new List<KontoEntry>();
 
-                if (Items.Count <= 0) return entries;
+                if (Items.Count <= 0)
+                {
+                    return entries;
+                }
+
                 var items = Items.Cast<ListViewItem>();
                 items.ToList().ForEach(
                     viewItem => entries.Add((KontoEntry)viewItem.Tag));
@@ -282,7 +286,11 @@ namespace BudgetterarnUi
             }
             else
             {
-                if (clickedItem == null) return;
+                if (clickedItem == null)
+                {
+                    return;
+                }
+
                 clickedItem.SubItems[selectedSubItem].Text = str;
                 ((KontoEntry)clickedItem.Tag).TypAvKostnad = str;
             }
@@ -438,7 +446,11 @@ namespace BudgetterarnUi
                 : comboBoxCategories.SelectedItem.ToString();
 
             // Sätt texten i cellen. Om flera inte är valda
-            if (selectedSubColumnItem != null || clickedItem == null) return;
+            if (selectedSubColumnItem != null || clickedItem == null)
+            {
+                return;
+            }
+
             clickedItem.SubItems[selectedSubItem].Text = selectedItemInCatText;
             ((KontoEntry)clickedItem.Tag).TypAvKostnad = selectedItemInCatText;
 

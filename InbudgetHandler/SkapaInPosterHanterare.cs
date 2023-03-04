@@ -1,6 +1,6 @@
-﻿using Budgeter.Core.Entities;
-using WebBankBudgeter.Service;
-using WebBankBudgeter.Service.Model;
+﻿using BudgeterCore.Entities;
+using WebBankBudgeterService;
+using WebBankBudgeterService.Model;
 
 namespace InbudgetHandler
 {

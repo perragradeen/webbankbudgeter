@@ -4,10 +4,10 @@
     {
         public static string MergeStringArrayToString(IEnumerable<string> inArray, bool spaceBetweenThem = false)
         {
-            var space = (spaceBetweenThem ? " " : string.Empty);
+            var space = spaceBetweenThem ? " " : string.Empty;
 
             return inArray.Aggregate(string.Empty, (current, item) =>
-                current + (item + space));
+                current + item + space);
         }
 
         public static string GetTextBetweenStartAndEndText(string inText, string startText, string endText)
@@ -16,7 +16,9 @@
             if (inText == null
                 || !ContainsClean(inText, startText)
                 || !ContainsClean(inText, endText))
+            {
                 return string.Empty;
+            }
 
             var elemText = inText.Trim();
             var startIndex = elemText

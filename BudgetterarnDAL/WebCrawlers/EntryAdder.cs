@@ -1,8 +1,8 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using LoadTransactionsFromFile;
 using System.Collections;
 
-namespace Budgetterarn.WebCrawlers
+namespace BudgetterarnDAL.WebCrawlers
 {
     public class EntryAdder
     {
@@ -66,7 +66,9 @@ namespace Budgetterarn.WebCrawlers
             );
 
             if (!userDecision.Equals(4))// DialogResult.Yes))
+            {
                 return;
+            }
 
             // Detta är en dubblett, men om det finns fler än 2 dubbletter så måste man
             // se till att nyckeln är unik

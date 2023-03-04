@@ -1,6 +1,6 @@
 ﻿using RefLesses;
 
-namespace Budgeter.Core.Entities
+namespace BudgeterCore.Entities
 {
     /// <summary>
     /// Från raden i banken. Från html. Kort

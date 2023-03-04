@@ -1,6 +1,6 @@
 using InbudgetHandler;
 
-namespace WebBankBudgeter.Service.TransactionTests
+namespace WebBankBudgeterServiceTest
 {
     [TestClass]
     public class GetTests
@@ -17,7 +17,7 @@ namespace WebBankBudgeter.Service.TransactionTests
         }
 
         private InBudgetHandler Target =>
-            new InBudgetHandler(FilePath);
+            new(FilePath);
 
         [TestMethod]
         public async Task HämtaRaderFörUiBindningAsyncTestAsync()

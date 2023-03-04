@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
 
-namespace Serializers
+namespace XmlSerializer
 {
     /// <summary>
     /// Serialisera eller Deserialisera något till/från fil.
@@ -25,7 +25,7 @@ namespace Serializers
             {
                 // Initiera variabler som behövs
                 // Gör en serializer som matchar mot klassen accessories
-                var serializer = new XmlSerializer(typeof(T)); // TODO: kolla varför och fixa:
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T)); // TODO: kolla varför och fixa:
                 /*
                  * System.IO.FileNotFoundException: 'Could not load file or assembly '
 
@@ -70,7 +70,7 @@ GeneralSettingsHandler.XmlSerializers
 
                 #region Serializera ner till fil
 
-                var serializer = new XmlSerializer(serializeType);
+                var serializer = new System.Xml.Serialization.XmlSerializer(serializeType);
 
                 myWriter = new StreamWriter(filename);
 

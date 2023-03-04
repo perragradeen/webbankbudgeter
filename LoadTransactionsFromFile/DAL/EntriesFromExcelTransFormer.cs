@@ -1,5 +1,5 @@
-﻿using Budgeter.Core.BudgeterConstants;
-using Budgeter.Core.Entities;
+﻿using BudgeterCore.BudgeterConstants;
+using BudgeterCore.Entities;
 using RefLesses;
 using System.Collections;
 using Utilities;
@@ -23,10 +23,16 @@ namespace LoadTransactionsFromFile.DAL
 
             foreach (DictionaryEntry item in entriesLoadedFromDataStore)
             {
-                if (item.Value == null) continue;
+                if (item.Value == null)
+                {
+                    continue;
+                }
 
                 var entryArray = ((ExcelRowEntry)item.Value).Args;
-                if (entryArray == null) continue; // Om det är tomt
+                if (entryArray == null)
+                {
+                    continue; // Om det är tomt
+                }
 
                 if (DetÄrInteKolumnbeskrivning(entryArray))
                 {

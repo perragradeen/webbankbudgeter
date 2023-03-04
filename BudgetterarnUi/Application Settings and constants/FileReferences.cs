@@ -1,4 +1,4 @@
-﻿using Budgeter.Core.BudgeterConstants;
+﻿using BudgeterCore.BudgeterConstants;
 using GeneralSettingsHandler;
 
 namespace Budgetterarn.Application_Settings_and_constants

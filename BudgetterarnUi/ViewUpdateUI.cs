@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using System.Collections;
 
-namespace Budgetterarn
+namespace BudgetterarnUi
 {
     internal static class ViewUpdateUi
     {

@@ -1,7 +1,6 @@
-using Budgeter.Core;
-using Budgeter.Core.Entities;
-using Budgetterarn;
-using Budgetterarn.EntryLogicSetFlags;
+using BudgeterCore;
+using BudgeterCore.Entities;
+using BudgetterarnDAL.EntryLogicSetFlags;
 using CategoryHandler;
 using GeneralSettingsHandler;
 using LoadTransactionsFromFile;
@@ -35,7 +34,7 @@ namespace BudgetterarnUi
         private bool debugGlobal; // For useSaveCheck
 
         private readonly KontoEntriesHolder kontoEntriesHolder
-            = new KontoEntriesHolder();
+            = new();
 
         //private KontoEntryListView newIitemsListOrgGrid;
         //private KontoEntryListView xlsOrginalEntriesGrid;
@@ -292,7 +291,9 @@ namespace BudgetterarnUi
                                @"Replaced entries; " + changeInfo.Replaced);
 
             if (autoSave)
+            {
                 budgeterFormHelper.Save(toolStripStatusLabel1.Text);
+            }
         }
 
         private static SortedList GetNewEntriesFromUI(ListView mineNewIitemsListEdited)
@@ -345,7 +346,7 @@ namespace BudgetterarnUi
         private bool Debug()
         {
             // ReSharper disable JoinDeclarationAndInitializer
-            bool debug = false;
+            var debug = false;
 
             // ReSharper restore JoinDeclarationAndInitializer
 #if DEBUG
@@ -401,7 +402,11 @@ namespace BudgetterarnUi
                 }
 
                 var testKey = "testkey" + i;
-                if (kontoEntriesHolder.NewKontoEntries.ContainsKey(testKey)) continue;
+                if (kontoEntriesHolder.NewKontoEntries.ContainsKey(testKey))
+                {
+                    continue;
+                }
+
                 var newInfo = "test" + (i % 2 == 0 ? i.ToString(CultureInfo.InvariantCulture) : string.Empty);
                 kontoEntriesHolder.NewKontoEntries.Add(testKey,
                     new KontoEntry { Date = DateTime.Now.AddDays(i), Info = newInfo });

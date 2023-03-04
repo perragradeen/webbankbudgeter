@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
-using WebBankBudgeter.Service.Model;
+﻿using BudgeterCore.Entities;
+using WebBankBudgeterService.Model;
 
-namespace WebBankBudgeter.Service
+namespace WebBankBudgeterService
 {
     internal class TransactionTransformer
     {

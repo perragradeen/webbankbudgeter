@@ -1,16 +1,16 @@
-using Budgeter.Core.BudgeterConstants;
-using Budgeter.Core.Entities;
+using BudgeterCore.BudgeterConstants;
+using BudgeterCore.Entities;
 using LoadTransactionsFromFile;
 using LoadTransactionsFromFile.DAL;
-using Serializers;
 using System.Collections;
 using System.Diagnostics;
-using WebBankBudgeter.Service.Model;
-using WebBankBudgeter.Service.Model.ViewModel;
-using WebBankBudgeter.Service.Services;
+using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Model.ViewModel;
+using WebBankBudgeterService.Services;
+using XmlSerializer;
 using Categories = CategoryHandler.Model.Categories;
 
-namespace WebBankBudgeter.Service
+namespace WebBankBudgeterService
 {
     public class TransactionHandler
     {

@@ -1,6 +1,6 @@
-﻿using WebBankBudgeter.Service.Model;
+﻿using WebBankBudgeterService.Model;
 
-namespace WebBankBudgeter.Service.TransactionTests
+namespace WebBankBudgeterServiceTest
 {
     public class TransFilterer
     {
@@ -18,7 +18,7 @@ namespace WebBankBudgeter.Service.TransactionTests
                   && t.DateAsDate <= endDate
                 ).ToList();
 
-            TransactionList filteredTrans = new TransactionList
+            var filteredTrans = new TransactionList
             {
                 Transactions = trans
             };

@@ -1,9 +1,10 @@
-﻿using Budgeter.Core.BudgeterConstants;
-using Budgeter.Core.Entities;
-using Budgetterarn.WebCrawlers;
+﻿using BudgeterCore;
+using BudgeterCore.BudgeterConstants;
+using BudgeterCore.Entities;
+using BudgetterarnDAL.WebCrawlers;
 using LoadTransactionsFromFile;
 
-namespace Budgetterarn.DAL
+namespace BudgetterarnDAL.DAL
 {
     public class LoadKontonFromWebBrowser
     {
@@ -29,7 +30,10 @@ namespace Budgetterarn.DAL
             var noNewKontoEntriesBeforeLoading =
                 kontoEntriesHolder.NewKontoEntries.Count;
 
-            if (TextAndBankChoiceIsInvalid(text)) return false;
+            if (TextAndBankChoiceIsInvalid(text))
+            {
+                return false;
+            }
 
             // TODO: läs saldon Get saldo
             //GetSwedbankSaldo(webBrowser1.Document.Body, kontoEntriesHolder.SaldoHolder);
@@ -76,10 +80,13 @@ namespace Budgetterarn.DAL
         private static List<KontoEntry> GetValidKontoEntriwsFromParsedBankRows(
             List<BankRow> parsedBankRows)
         {
-            List<KontoEntry> kontoEntriesFromHtml = new List<KontoEntry>();
+            var kontoEntriesFromHtml = new List<KontoEntry>();
             foreach (var entryStrings in parsedBankRows)
             {
-                if (!entryStrings.IsValidBankRow) continue;
+                if (!entryStrings.IsValidBankRow)
+                {
+                    continue;
+                }
 
                 kontoEntriesFromHtml.Add(new KontoEntry(entryStrings));
             }
@@ -109,7 +116,11 @@ namespace Budgetterarn.DAL
                 currentColumnCount++;
                 currentEntriesColumns.Add(textPart);
 
-                if (currentColumnCount <= 4) continue;
+                if (currentColumnCount <= 4)
+                {
+                    continue;
+                }
+
                 currentColumnCount = 0;
                 rows.Add(new List<string>(currentEntriesColumns));
                 currentEntriesColumns = new List<string>();
@@ -137,9 +148,9 @@ namespace Budgetterarn.DAL
 
             var standardRowBreak = "\n";
             var altStandardRowBreak = "\r\n";
-            return (text.IndexOf(standardRowBreak) == -1
+            return text.IndexOf(standardRowBreak) == -1
                 ? altStandardRowBreak
-                : standardRowBreak);
+                : standardRowBreak;
         }
 
         public static string GetStartOfKontoEntries(string text)
@@ -148,7 +159,7 @@ namespace Budgetterarn.DAL
             var findKey = "Belopp" + rowBreakString + "Saldo" + rowBreakString;
 
             var index = text.IndexOf(findKey);
-            int length = findKey.Length;
+            var length = findKey.Length;
 
             if (index == -1)
             {

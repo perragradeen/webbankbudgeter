@@ -1,10 +1,11 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
+using BudgetterarnDAL;
 using System.Collections;
 using System.Drawing;
 
 // ReSharper disable LocalizableElement
 
-namespace Budgetterarn.EntryLogicSetFlags
+namespace BudgetterarnDAL.EntryLogicSetFlags
 {
     public class EntryAdderAndReplacer
     {
@@ -32,7 +33,10 @@ namespace Budgetterarn.EntryLogicSetFlags
 
             foreach (KontoEntry entry in newEntries.Values)
             {
-                if (entry.ThisIsDoubleDoNotAdd) continue;
+                if (entry.ThisIsDoubleDoNotAdd)
+                {
+                    continue;
+                }
 
                 // (Kanske är detta redan kollat?)
                 if (oldEntries.ContainsKey(entry.KeyForThis))

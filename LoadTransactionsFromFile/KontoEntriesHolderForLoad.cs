@@ -1,4 +1,4 @@
-using Budgeter.Core.Entities;
+using BudgeterCore.Entities;
 using System.Collections;
 
 namespace LoadTransactionsFromFile

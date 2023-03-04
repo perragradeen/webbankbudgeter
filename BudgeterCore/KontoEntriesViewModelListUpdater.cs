@@ -1,7 +1,7 @@
-﻿using Budgeter.Core.Entities;
+﻿using BudgeterCore.Entities;
 using System.Collections;
 
-namespace Budgeter.Core
+namespace BudgeterCore
 {
     public class KontoEntriesViewModelListUpdater
     {
