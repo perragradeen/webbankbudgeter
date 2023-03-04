@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using CategoryHandler.Model;
+﻿using CategoryHandler.Model;
 using CategoryHandler.Service;
 using Serializers;
 

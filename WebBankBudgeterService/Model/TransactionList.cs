@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WebBankBudgeter.Service.Model
+﻿namespace WebBankBudgeter.Service.Model
 {
     public class TransactionList
     {

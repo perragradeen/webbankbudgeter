@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using WebBankBudgeter.Service.Model;
 
 namespace WebBankBudgeter.Service.Services.Helpers

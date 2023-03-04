@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections;
 using Utilities;
 
 namespace UtilitiesTest

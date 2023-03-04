@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using RefLesses;
+﻿using RefLesses;
 using Serializers;
 
 namespace GeneralSettingsHandler

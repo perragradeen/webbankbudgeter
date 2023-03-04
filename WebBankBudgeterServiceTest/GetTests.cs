@@ -1,8 +1,4 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using InbudgetHandler;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WebBankBudgeter.Service.TransactionTests
 {

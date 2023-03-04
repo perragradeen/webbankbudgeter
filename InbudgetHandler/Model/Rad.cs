@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace InbudgetHandler.Model
+﻿namespace InbudgetHandler.Model
 {
     public class Rad
     {

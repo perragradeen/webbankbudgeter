@@ -1,7 +1,8 @@
-﻿using System.Text.Json;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
+using System.Text.Json;
 
-namespace InbudgetHandler {
+namespace InbudgetHandler
+{
     public class InBudgetHandlerFileHandler
     {
         private readonly string _inBudgetFilePath;

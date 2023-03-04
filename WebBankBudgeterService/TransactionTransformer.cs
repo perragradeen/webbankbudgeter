@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using WebBankBudgeter.Service.Model;
 
 namespace WebBankBudgeter.Service

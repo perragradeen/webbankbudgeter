@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using CategoryHandler.Model;
+﻿using CategoryHandler.Model;
 
 namespace CategoryHandler.Service
 {
@@ -87,7 +85,7 @@ namespace CategoryHandler.Service
                     new Category
                     {
                         Description = selectedCategoryText,
-                        AutoCategoriseList = new List<AutoCategorise> {newAutoCategeory}
+                        AutoCategoriseList = new List<AutoCategorise> { newAutoCategeory }
                     });
             }
 

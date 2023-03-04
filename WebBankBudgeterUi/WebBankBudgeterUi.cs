@@ -1,11 +1,11 @@
 using GeneralSettingsHandler;
-using InbudgetHandler.Model;
 using InbudgetHandler;
+using InbudgetHandler.Model;
+using WebBankBudgeter.Service;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Model.ViewModel;
 using WebBankBudgeter.Service.MonthAvarages;
 using WebBankBudgeter.Service.Services;
-using WebBankBudgeter.Service;
 using WebBankBudgeterUi.UiBinders;
 
 namespace WebBankBudgeterUi

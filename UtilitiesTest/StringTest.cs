@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RefLesses;
+﻿using RefLesses;
 
 namespace UtilitiesTest
 {

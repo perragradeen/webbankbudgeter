@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RefLesses;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using RefLesses;
 
 namespace Budgeter.Core.Entities
 {
@@ -234,7 +231,7 @@ namespace Budgeter.Core.Entities
         private static bool InarrayEmpty(IEnumerable<object> inArray)
         {
             return inArray.All(item => string.IsNullOrEmpty(
-                (string) item));
+                (string)item));
         }
 
         public KontoEntry(BankRow fromBank)
@@ -276,7 +273,7 @@ namespace Budgeter.Core.Entities
 
             try
             {
-                kontoEntryType = (KontoEntryType) Enum.Parse(
+                kontoEntryType = (KontoEntryType)Enum.Parse(
                     typeof(KontoEntryType),
                     entryType,
                     true);

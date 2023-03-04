@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using WebBankBudgeter.Service.Model;
 using WebBankBudgeter.Service.Services;
 
@@ -17,7 +15,7 @@ namespace WebBankBudgeter.Service.MonthAvarages
             "ID_TRANSPORT"
         };
 
-        private static readonly IEnumerable<string> IncomesCatGroup = new[] {"ID_INCOME"};
+        private static readonly IEnumerable<string> IncomesCatGroup = new[] { "ID_INCOME" };
 
         public MonthAvaragesCalcs(TransactionList transactionDatalist)
         {

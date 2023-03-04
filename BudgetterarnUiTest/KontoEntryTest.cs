@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace TestBudgetterarn
+﻿namespace TestBudgetterarn
 {
     [TestClass]
     public class KontoEntryTest
@@ -8,7 +6,7 @@ namespace TestBudgetterarn
         [TestMethod]
         public void RowThatExistsTest()
         {
-            var inArray = new object[] {"test1", "223"};
+            var inArray = new object[] { "test1", "223" };
             const int columnNumber = 1;
             const string expected = "223";
 

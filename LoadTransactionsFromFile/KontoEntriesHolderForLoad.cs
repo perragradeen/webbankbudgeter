@@ -1,5 +1,5 @@
-using System.Collections;
 using Budgeter.Core.Entities;
+using System.Collections;
 
 namespace LoadTransactionsFromFile
 {

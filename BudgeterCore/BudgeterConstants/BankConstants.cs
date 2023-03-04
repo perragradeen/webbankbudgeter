@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Budgeter.Core.BudgeterConstants
+﻿namespace Budgeter.Core.BudgeterConstants
 {
     public static class BankConstants
     {

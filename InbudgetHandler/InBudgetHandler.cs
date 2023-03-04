@@ -2,7 +2,8 @@
 using InbudgetHandler.Model;
 using WebBankBudgeter.Service.Model;
 
-namespace InbudgetHandler {
+namespace InbudgetHandler
+{
     public class InBudgetHandler
     {
         public const string SummaText = "Summa";
@@ -90,7 +91,7 @@ namespace InbudgetHandler {
                 .GroupBy(inPos => inPos.CategoryDescription))
             {
                 // Skriv ut cat i kolumn 1
-                var rad = new Rad {RadNamnY = inPostGrupp.Key};
+                var rad = new Rad { RadNamnY = inPostGrupp.Key };
 
 
                 // Skriv ut värdet i kr kolumner från vänster till höger

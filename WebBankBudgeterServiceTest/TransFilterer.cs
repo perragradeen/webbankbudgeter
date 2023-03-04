@@ -14,8 +14,8 @@ namespace WebBankBudgeter.Service.TransactionTests
 
             var trans =
                 transactionList.Transactions.Where(t =>
-                     t.DateAsDate >= fromDate 
-                  && t.DateAsDate <= endDate// new DateTime(2019, 03, 01)
+                     t.DateAsDate >= fromDate
+                  && t.DateAsDate <= endDate
                 ).ToList();
 
             TransactionList filteredTrans = new TransactionList
@@ -23,13 +23,7 @@ namespace WebBankBudgeter.Service.TransactionTests
                 Transactions = trans
             };
 
-            //t =>
-            //        t.DateAsDate >= new DateTime(2021 - 01 - 01)
             return filteredTrans;
-
-            //TransactionHandler.SetTransactionList(
-            //   filteredTrans
-            //);
         }
 
         private static DateTime? GetFirstDateOfCurrentYear()

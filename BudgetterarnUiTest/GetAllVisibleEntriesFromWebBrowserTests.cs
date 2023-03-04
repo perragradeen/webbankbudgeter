@@ -1,8 +1,6 @@
-﻿using System;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using Budgetterarn.DAL;
 using LoadTransactionsFromFile;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestBudgetterarn
 {

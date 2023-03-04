@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using Budgeter.Core.BudgeterConstants;
+﻿using Budgeter.Core.BudgeterConstants;
 using Budgeter.Core.Entities;
 using RefLesses;
+using System.Collections;
 using Utilities;
 
 namespace LoadTransactionsFromFile.DAL
@@ -26,7 +25,7 @@ namespace LoadTransactionsFromFile.DAL
             {
                 if (item.Value == null) continue;
 
-                var entryArray = ((ExcelRowEntry) item.Value).Args;
+                var entryArray = ((ExcelRowEntry)item.Value).Args;
                 if (entryArray == null) continue; // Om det är tomt
 
                 if (DetÄrInteKolumnbeskrivning(entryArray))
@@ -49,7 +48,7 @@ namespace LoadTransactionsFromFile.DAL
 
         private static bool DetÄrInteKolumnbeskrivning(object[] entryArray)
         {
-            return (string) entryArray[0] != "y";
+            return (string)entryArray[0] != "y";
         }
 
         private static void SparaNyKontoRad(

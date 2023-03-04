@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Budgeter.Core.Entities;
 using System.Collections;
-using System.IO;
-using Budgeter.Core.Entities;
 using Utilities;
 
 namespace LoadTransactionsFromFile
@@ -16,22 +14,22 @@ namespace LoadTransactionsFromFile
 
             //try
             //{
-                var filePath = kontoutdragExcelFileInfo.ExcelFileSavePath;
-                if (string.IsNullOrEmpty(filePath))
-                {
-                    return null;
-                }
+            var filePath = kontoutdragExcelFileInfo.ExcelFileSavePath;
+            if (string.IsNullOrEmpty(filePath))
+            {
+                return null;
+            }
 
-                if (!File.Exists(filePath))
-                {
-                    throw new FileNotFoundException(filePath);
-                }
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException(filePath);
+            }
 
-                var kontoUtdragXls = OpenFileFunctions.GetHashTableFromExcelSheet(
-                        filePath,
-                        kontoutdragExcelFileInfo.SheetName);
+            var kontoUtdragXls = OpenFileFunctions.GetHashTableFromExcelSheet(
+                    filePath,
+                    kontoutdragExcelFileInfo.SheetName);
 
-                return (Hashtable)kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
+            return (Hashtable)kontoUtdragXls[kontoutdragExcelFileInfo.SheetName];
 
             //}
             //catch (Exception fileOpneExcp)

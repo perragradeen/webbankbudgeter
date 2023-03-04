@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Budgeter.Core.Entities;
+﻿using Budgeter.Core.Entities;
 using WebBankBudgeter.Service;
 using WebBankBudgeter.Service.Model;
 
@@ -115,7 +111,7 @@ namespace InbudgetHandler
                 // Dela summa med antal månader
                 var averageFor1Kat = summKat / månaderEmellan;
 
-                var row = new BudgetRow {CategoryText = transactionGroup.Key};
+                var row = new BudgetRow { CategoryText = transactionGroup.Key };
                 var dateText = Transaction.GetYearMonthName(dateTime);
                 row.AmountsForMonth.Add(dateText, averageFor1Kat);
                 budgetRows.Add(row);

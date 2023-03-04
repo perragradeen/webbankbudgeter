@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using RefLesses;
+﻿using RefLesses;
 
 namespace Budgeter.Core.Entities
 {

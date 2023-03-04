@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Budgeter.Core;
+﻿using Budgeter.Core;
 using Budgeter.Core.Entities;
 using Budgetterarn.EntryLogicSetFlags;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
 
 namespace TestBudgetterarn
 {

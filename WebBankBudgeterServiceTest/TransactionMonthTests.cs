@@ -1,5 +1,3 @@
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebBankBudgeter.Service.Model;
 
 namespace WebBankBudgeter.Service.TransactionTests

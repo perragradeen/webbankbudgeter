@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Microsoft.Office.Interop.Excel;
 
 namespace Utilities
 {

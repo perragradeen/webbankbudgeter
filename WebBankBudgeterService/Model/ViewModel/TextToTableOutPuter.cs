@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace WebBankBudgeter.Service.Model.ViewModel
+﻿namespace WebBankBudgeter.Service.Model.ViewModel
 {
     public class TextToTableOutPuter
     {
@@ -24,7 +21,7 @@ namespace WebBankBudgeter.Service.Model.ViewModel
         public double GetAverageForCategory(string categoryName)
         {
             var trans = AveragesForTransactions
-                .FirstOrDefault(a => 
+                .FirstOrDefault(a =>
                     a.CategoryText.ToLower().Trim() ==
                     categoryName.ToLower().Trim());
 

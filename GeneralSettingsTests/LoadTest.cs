@@ -1,7 +1,5 @@
 ﻿using GeneralSettingsHandler;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serializers;
-using System.Linq;
 
 namespace GeneralSettingsTests
 {
