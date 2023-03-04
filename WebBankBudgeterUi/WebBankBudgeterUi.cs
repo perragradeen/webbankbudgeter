@@ -58,6 +58,9 @@ namespace WebBankBudgeterUi
 
             await webBankBudgeter.FillTablesAsync();
 
+            // filtrera
+            webBankBudgeter.FilterTransactions();
+
             var table = webBankBudgeter.TransformToTextTableFromTransactions();
             webBankBudgeter.AddAveragesToTable(table);
             // --- Behandla data
@@ -174,7 +177,7 @@ namespace WebBankBudgeterUi
         {
             label1.Text += @" Saldo: " +
                 webBankBudgeter.TransactionHandler?
-                    .TransactionList?.Account.AvailableAmount;
+                    .TransactionList?.Account?.AvailableAmount;
         }
 
         private void BindToBudgetTableUi(TextToTableOutPuter table)

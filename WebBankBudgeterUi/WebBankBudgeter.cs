@@ -6,6 +6,7 @@ using WebBankBudgeterService.Model.ViewModel;
 using WebBankBudgeterService.Model;
 using WebBankBudgeterService.MonthAvarages;
 using WebBankBudgeterService.Services;
+using WebBankBudgeterServiceTest;
 
 namespace WebBankBudgeterUi
 {
@@ -98,23 +99,19 @@ namespace WebBankBudgeterUi
             }
             // --- Hämta data
 
-            // filtrera
-            FilterTransactions();
-
             // Behandla data ---
             SortTransactions();
             RemoveDuplicates();
         }
 
-        private void FilterTransactions()
+        internal void FilterTransactions()
         {
-            //TransactionList filteredTrans = 
-            //    _transactionHandler.TransactionList.Transactions.Where(t =>
-            //        t.DateAsDate >= new DateTime(2021 - 01 - 01)).ToList();
+            var filteredTrans = TransFilterer.FilterTransactions(
+                _transactionHandler.TransactionList);
 
-            //_transactionHandler.SetTransactionList(
-            //   filteredTrans
-            //);
+            _transactionHandler.SetTransactionList(
+               filteredTrans
+            );
         }
 
         internal void AddAveragesToTable(TextToTableOutPuter table)
