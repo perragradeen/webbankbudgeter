@@ -42,7 +42,7 @@ namespace WebBankBudgeter.Service.TransactionTests
                     throw new FileNotFoundException(_transactionTestFilePath);
                 }
 
-                var tableGetter = new TableGetter {AddAverageColumn = true};
+                var tableGetter = new TableGetter { AddAverageColumn = true };
                 return new TransactionHandler(
                     WriteToOutput,
                     tableGetter,
@@ -169,38 +169,38 @@ namespace WebBankBudgeter.Service.TransactionTests
         {
             // Arrange
             var expectedEntries = 2;
+            var transactionList = GetDefaultTransactions();
 
             // Act
-            var actual = FilterTransactions();
+            var actual = TransFilterer.FilterTransactions(
+                transactionList,
+                new DateTime(2019, 02, 01),
+                new DateTime(2019, 03, 01));
 
             // Assert
-            Assert.IsTrue(TransactionHandler.TransactionList.Transactions.Any());
+            Assert.IsTrue(actual.Transactions.Any());
             Assert.AreEqual(expectedEntries,
                 //TransactionHandler.TransactionList.Transactions
                 actual.Transactions.Count);
         }
 
-        private TransactionList FilterTransactions()
+        [TestMethod]
+        public void FilterTransactionsTest2()
         {
+            // Arrange
+            var expectedEntries = 0;
             var transactionList = GetDefaultTransactions();
-            var trans =
-                transactionList.Transactions.Where(t =>
-                     t.DateAsDate >= new DateTime(2019 - 03 - 01)
-                ).ToList();
-            TransactionList filteredTrans = new TransactionList
-            {
-                Transactions = trans
-            };
 
-            //t =>
-            //        t.DateAsDate >= new DateTime(2021 - 01 - 01)
-            return filteredTrans;
+            // Act
+            var actual = TransFilterer.FilterTransactions(
+                transactionList);
 
-            //TransactionHandler.SetTransactionList(
-            //   filteredTrans
-            //);
+            // Assert
+            Assert.IsFalse(actual.Transactions.Any());
+            Assert.AreEqual(expectedEntries,
+                //TransactionHandler.TransactionList.Transactions
+                actual.Transactions.Count);
         }
-
 
         private static TransactionList GetDefaultTransactions()
         {
