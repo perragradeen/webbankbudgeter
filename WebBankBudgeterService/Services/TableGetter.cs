@@ -9,7 +9,7 @@ namespace WebBankBudgeterService.Services
         public bool AddAverageColumn { get; set; }
 
         public static IEnumerable<BudgetRow> GetRowsFromGroupedRecords(
-            IEnumerable<IGrouping<TransGrouping, Transaction>> transactionsGrouped)
+            IEnumerable<IGrouping<TransGrouping, Transaction>>? transactionsGrouped)
         {
             // loop group
             // For each uniqe date
@@ -20,7 +20,7 @@ namespace WebBankBudgeterService.Services
 
             var catChartModelRowList =
                 new Dictionary<string, BudgetRow>();
-            foreach (var dateAndCatTransGroup in transactionsGrouped)
+            foreach (var dateAndCatTransGroup in transactionsGrouped!)
             {
                 var rowFactory = new BudgetRowFactory(
                     dateAndCatTransGroup, catChartModelRowList);
@@ -39,10 +39,10 @@ namespace WebBankBudgeterService.Services
                 .OrderByDescending(row => row.CategoryText).ToList();
         }
 
-        public static IEnumerable<IGrouping<TransGrouping, Transaction>> GroupOnMonthAndCategory(
-            List<Transaction> transactions)
+        public static IEnumerable<IGrouping<TransGrouping, Transaction>>? GroupOnMonthAndCategory(
+            List<Transaction>? transactions)
         {
-            var g = transactions.GroupBy(t =>
+            var g = transactions?.GroupBy(t =>
                 new TransGrouping
                 {
                     Year = t.DateAsDate.Year,
@@ -54,7 +54,8 @@ namespace WebBankBudgeterService.Services
             return g;
         }
 
-        public TextToTableOutPuter GetTextTableFromTransactions(List<Transaction> transactions)
+        public TextToTableOutPuter GetTextTableFromTransactions(
+            List<Transaction>? transactions)
         {
             var grouped = GroupOnMonthAndCategory(transactions);
             return GetTextTableFromGroupedTransactions(grouped);
@@ -67,7 +68,7 @@ namespace WebBankBudgeterService.Services
 
             var table = new TextToTableOutPuter
             {
-                UtgiftersStartYear = transactionsGrouped.FirstOrDefault()?
+                UtgiftersStartYear = transactionsGrouped?.FirstOrDefault()?
                     .Key.Year.ToString()
             };
 
@@ -79,8 +80,9 @@ namespace WebBankBudgeterService.Services
             return table;
         }
 
-        private void AddColumnHeaderMonths(TextToTableOutPuter table,
-            IEnumerable<IGrouping<TransGrouping, Transaction>> grouped)
+        private void AddColumnHeaderMonths(
+            TextToTableOutPuter? table,
+            IEnumerable<IGrouping<TransGrouping, Transaction>>? grouped)
         {
             table.ColumnHeaders.Add(TextToTableOutPuter.CategoryNameColumnDescription);
 

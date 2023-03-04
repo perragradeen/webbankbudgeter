@@ -4,14 +4,14 @@ namespace WebBankBudgeterService.Services
 {
     public static class Conversions
     {
-        public static double SafeGetDouble(object text)
+        public static double SafeGetDouble(object? text)
         {
             if (text == null)
             {
                 return 0;
             }
 
-            return DoubleParseAdvanced(text.ToString());
+            return DoubleParseAdvanced(text!.ToString()!);
         }
 
         private static double DoubleParseAdvanced(string strToParse, char decimalSymbol = ',')

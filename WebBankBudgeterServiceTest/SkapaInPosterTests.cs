@@ -19,10 +19,10 @@ namespace WebBankBudgeterServiceTest
         //private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
 
         private static readonly string _budgetInsRelativeFilePath = @"Data\BudgetIns.json";
-        private static string _budgetInsFilePath;
+        private static string? _budgetInsFilePath;
         //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
 
-        private static string _globalLog;
+        private static string? _globalLog;
 
         private static InBudgetHandler InBudgetHandler =>
             new(

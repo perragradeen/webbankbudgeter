@@ -16,13 +16,13 @@ namespace WebBankBudgeterService
     {
         private readonly Action<string> _writeToOutput;
 
-        private TransactionCalcs _transactionCalcsHandler;
-        private readonly string _filePath;
-        private readonly Categories _allCategories;
-        private readonly TableGetter _tableGetter;
+        private TransactionCalcs? _transactionCalcsHandler;
+        private readonly string? _filePath;
+        private readonly Categories? _allCategories;
+        private readonly TableGetter? _tableGetter;
 
-        public TransactionList TransactionList =>
-            _transactionCalcsHandler.TransactionList;
+        public TransactionList? TransactionList =>
+            _transactionCalcsHandler?.TransactionList;
 
         public void SetTransactionList(TransactionList list)
         {
@@ -30,7 +30,7 @@ namespace WebBankBudgeterService
                 new TransactionCalcs(list);
         }
 
-        public Categories AllCategories => _allCategories;
+        public Categories? AllCategories => _allCategories;
 
         public TransactionHandler(
             Action<string> writeToOutput,
@@ -70,20 +70,20 @@ namespace WebBankBudgeterService
             return true;
         }
 
-        public TextToTableOutPuter GetTextTableFromTransactions()
+        public TextToTableOutPuter? GetTextTableFromTransactions()
         {
-            return _tableGetter.GetTextTableFromTransactions(
-                TransactionList.Transactions);
+            return _tableGetter?.GetTextTableFromTransactions(
+                TransactionList?.Transactions);
         }
 
         public void RemoveDuplicates()
         {
-            _transactionCalcsHandler.RemoveDuplicates();
+            _transactionCalcsHandler?.RemoveDuplicates();
         }
 
         public void SortTransactions()
         {
-            _transactionCalcsHandler.SortTrans();
+            _transactionCalcsHandler?.SortTrans();
         }
 
         private void WriteLineToOutput(string message)
@@ -91,7 +91,7 @@ namespace WebBankBudgeterService
             _writeToOutput(message + Environment.NewLine);
         }
 
-        private async Task<TransactionList> GetData()
+        private async Task<TransactionList?> GetData()
         {
             var transactionLists =
                 await GetTransactionsTransFormedFromFile();
@@ -200,10 +200,10 @@ namespace WebBankBudgeterService
             return transactionLists.Sum(GetAmountNotZero);
         }
 
-        private static double GetAmountNotZero(TransactionList list)
+        private static double GetAmountNotZero(TransactionList? list)
         {
-            var balance = Conversions.SafeGetDouble(list.Account?.Balance);
-            var availableAmount = Conversions.SafeGetDouble(list.Account?.AvailableAmount);
+            var balance = Conversions.SafeGetDouble(list?.Account?.Balance);
+            var availableAmount = Conversions.SafeGetDouble(list?.Account?.AvailableAmount);
 
             return balance > 0 ? balance : availableAmount;
         }

@@ -28,12 +28,17 @@ namespace WebBankBudgeterServiceTest
 
         private static DateTime? GetFirstDateOfCurrentYear()
         {
-            return new DateTime(DateTime.Today.Year, 1, 1);
+            return new DateTime(LastYear(), 1, 1);
+        }
+
+        private static int LastYear()
+        {
+            return DateTime.Today.Year - 1;
         }
 
         private static DateTime? GetLastDateOfCurrentYear()
         {
-            return new DateTime(DateTime.Today.Year, 12, 31);
+            return new DateTime(LastYear(), 12, 31);
         }
     }
 }
