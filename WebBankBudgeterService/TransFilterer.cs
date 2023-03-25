@@ -9,8 +9,8 @@ namespace WebBankBudgeterServiceTest
             DateTime? fromDate = null,
             DateTime? endDate = null)
         {
-            fromDate ??= GetFirstDateOfCurrentYear();
-            endDate ??= GetLastDateOfCurrentYear();
+            fromDate ??= GetStartDateOfLastYear();
+            endDate ??= GetEndDateOfLastYear();
 
             var trans =
                 transactionList.Transactions.Where(t =>
@@ -26,7 +26,7 @@ namespace WebBankBudgeterServiceTest
             return filteredTrans;
         }
 
-        private static DateTime? GetFirstDateOfCurrentYear()
+        private static DateTime? GetStartDateOfLastYear()
         {
             return new DateTime(LastYear(), 1, 1);
         }
@@ -36,7 +36,7 @@ namespace WebBankBudgeterServiceTest
             return DateTime.Today.Year - 1;
         }
 
-        private static DateTime? GetLastDateOfCurrentYear()
+        private static DateTime? GetEndDateOfLastYear()
         {
             return new DateTime(LastYear(), 12, 31);
         }
