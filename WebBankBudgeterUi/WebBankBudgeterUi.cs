@@ -50,7 +50,6 @@ namespace WebBankBudgeterUi
             }
         }
 
-
         private async Task FillTablesAsync()
         {
             InitIncomesUi();
@@ -252,6 +251,8 @@ namespace WebBankBudgeterUi
 
         private async Task FyllIMedDefaultInposterFörSenasteMånadAsync()
         {
+            // TODO: Sätt Incomes fliken som fokus när knappen trycks...
+
             // Skapa en rad med alla valbara kategorier
             //      för nuvarande månad
             //          om det inte redan finns
@@ -274,8 +275,8 @@ namespace WebBankBudgeterUi
             try
             {
                 //Skriv ut i Ui
-                gv_incomes.Columns.Clear();
-                gv_incomes.Rows.Clear();
+                ÅterställInkomstGrid();
+
                 var månadsRubriker = await _inBudgetUiHandler
                     .HämtaRubrikePåInPosterAsync();
 
@@ -289,6 +290,14 @@ namespace WebBankBudgeterUi
             {
                 WriteLineToOutputAndScrollDown(e.Message);
             }
+        }
+
+        private void ÅterställInkomstGrid()
+        {
+            gv_incomes.Columns.Clear();
+            gv_incomes.Rows.Clear();
+
+            gv_incomes.Columns.Add("1", WebBankBudgeter.CategoryNameColumnDescription);
         }
     }
 }
