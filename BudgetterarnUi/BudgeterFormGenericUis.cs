@@ -1,5 +1,4 @@
-﻿using Budgetterarn.InternalUtilities;
-using BudgetterarnUi.InternalUtilities;
+﻿using BudgetterarnUi.InternalUtilities;
 using CefSharp;
 using CefSharp.WinForms;
 

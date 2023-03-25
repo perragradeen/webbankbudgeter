@@ -1,12 +1,8 @@
 #nullable disable
-using GeneralSettingsHandler;
-using InbudgetHandler;
 using InbudgetHandler.Model;
-using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
 using WebBankBudgeterService.Model.ViewModel;
 using WebBankBudgeterService.MonthAvarages;
-using WebBankBudgeterService.Services;
 using WebBankBudgeterUi.UiBinders;
 
 namespace WebBankBudgeterUi

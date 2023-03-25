@@ -1,5 +1,4 @@
 ﻿using System.Xml;
-using System.Xml.Serialization;
 
 namespace XmlSerializer
 {

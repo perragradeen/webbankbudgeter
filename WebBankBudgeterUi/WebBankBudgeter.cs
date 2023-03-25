@@ -2,8 +2,8 @@
 using InbudgetHandler;
 using InbudgetHandler.Model;
 using WebBankBudgeterService;
-using WebBankBudgeterService.Model.ViewModel;
 using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Model.ViewModel;
 using WebBankBudgeterService.MonthAvarages;
 using WebBankBudgeterService.Services;
 using WebBankBudgeterServiceTest;
