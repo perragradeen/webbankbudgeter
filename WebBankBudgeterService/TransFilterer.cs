@@ -1,6 +1,6 @@
 ﻿using WebBankBudgeterService.Model;
 
-namespace WebBankBudgeterServiceTest
+namespace WebBankBudgeterService
 {
     public class TransFilterer
     {
