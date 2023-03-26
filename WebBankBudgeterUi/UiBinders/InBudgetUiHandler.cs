@@ -93,6 +93,29 @@ namespace WebBankBudgeterUi.UiBinders
             }
         }
 
+        public async Task<List<Rad>> HämtaIndataRader(
+            string år,
+            WebBankBudgeter webBankBudgeter)
+        {
+            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum(år);
+
+            // Hämta en lista på exempel inposter. Baserat på snitt för utgifter i varje kat
+            var inPosterDefault = await webBankBudgeter.InPosterHanterare
+                .SkapaInPoster(
+                    nuDatum,
+                    transactionList: webBankBudgeter.TransactionHandler?
+                        .TransactionList);
+
+            // Merga med föregående inposter.
+            var inDataRaderTidigare = await GetInPoster();
+            inPosterDefault.AddRange(inDataRaderTidigare);
+            SetInPoster(inPosterDefault);
+
+            // Hämta rader i Ui-format
+            var inDataRader = await HämtaRaderFörUiBindningAsync();
+            return inDataRader;
+        }
+
         private static string SkrivVärdeSomText(KeyValuePair<string, double> kolumnVärde)
         {
             return kolumnVärde.Value.ToString(CultureInfo.InvariantCulture);

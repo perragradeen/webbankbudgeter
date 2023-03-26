@@ -281,25 +281,9 @@ namespace WebBankBudgeterUi
 
         private async Task<List<Rad>> HämtaIndataRader()
         {
-            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum(
-                            txtYearFilter.Text);
-
-            // Hämta en lista på exempel inposter. Baserat på snitt för utgifter i varje kat
-            var inPosterDefault = await webBankBudgeter.InPosterHanterare
-                .SkapaInPoster(
-                    nuDatum,
-                    transactionList: webBankBudgeter.TransactionHandler?
-                        .TransactionList);
-
-            // Merga med föregående inposter.
-            var inDataRaderTidigare = await _inBudgetUiHandler.GetInPoster();
-            inPosterDefault.AddRange(inDataRaderTidigare);
-            _inBudgetUiHandler.SetInPoster(inPosterDefault);
-
-            // Hämta rader i Ui-format
-            var inDataRader = await _inBudgetUiHandler
-                .HämtaRaderFörUiBindningAsync();
-            return inDataRader;
+            return await _inBudgetUiHandler.HämtaIndataRader(
+                txtYearFilter.Text,
+                webBankBudgeter);
         }
 
         private void ÅterställInkomstGrid()
