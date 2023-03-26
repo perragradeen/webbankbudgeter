@@ -93,7 +93,9 @@ namespace WebBankBudgeterUi
             // Presentera summor för varje kat.
         }
 
-        private void VisaInRader_BindInPosterRaderTillUi(List<Rad> inDataRader, List<string> månadsRubriker)
+        private void VisaInRader_BindInPosterRaderTillUi(
+            List<Rad> inDataRader,
+            List<string> månadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                 inDataRader,
@@ -102,8 +104,10 @@ namespace WebBankBudgeterUi
             );
         }
 
-        private void VisaKvarRader_BindInPosterRaderTillUi(List<Rad> inDataRader,
-            List<BudgetRow> utgiftsRader, List<string> månadsRubriker)
+        private void VisaKvarRader_BindInPosterRaderTillUi(
+            List<Rad> inDataRader,
+            List<BudgetRow> utgiftsRader,
+            List<string> månadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                 WebBankBudgeter.SnurraIgenom(
