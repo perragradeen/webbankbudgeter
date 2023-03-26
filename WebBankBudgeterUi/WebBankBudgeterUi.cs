@@ -1,5 +1,7 @@
 #nullable disable
+using InbudgetHandler;
 using InbudgetHandler.Model;
+using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
 using WebBankBudgeterService.Model.ViewModel;
 using WebBankBudgeterService.MonthAvarages;
@@ -31,6 +33,8 @@ namespace WebBankBudgeterUi
                 _utgiftsHanterareUiBinder = new UtgiftsHanterareUiBinder(
                     gv_budget);
 
+                txtYearFilter.Text = TransFilterer.LastYear().ToString();
+
                 ReloadButton.Click += async (s, e) =>
                     await ReloadButton_ClickAsync(s, e);
 
@@ -54,7 +58,7 @@ namespace WebBankBudgeterUi
             await webBankBudgeter.FillTablesAsync();
 
             // filtrera
-            webBankBudgeter.FilterTransactions();
+            webBankBudgeter.FilterTransactions(txtYearFilter.Text);
 
             var table = webBankBudgeter.TransformToTextTableFromTransactions();
             webBankBudgeter.AddAveragesToTable(table);
@@ -253,20 +257,7 @@ namespace WebBankBudgeterUi
             //      för nuvarande månad
             //          om det inte redan finns
 
-            // Hämta en lista på exempel inposter. Baserat på snitt för utgifter i varje kat
-            var inPosterDefault = await webBankBudgeter.InPosterHanterare
-                .SkapaInPoster(
-                    transactionList: webBankBudgeter.TransactionHandler?
-                        .TransactionList);
-
-            // Merga med föregående inposter.
-            var inDataRaderTidigare = await _inBudgetUiHandler.GetInPoster();
-            inPosterDefault.AddRange(inDataRaderTidigare);
-            _inBudgetUiHandler.SetInPoster(inPosterDefault);
-
-            // Hämta rader i Ui-format
-            var inDataRader = await _inBudgetUiHandler
-                .HämtaRaderFörUiBindningAsync();
+            var inDataRader = await HämtaIndataRader();
 
             try
             {
@@ -286,6 +277,29 @@ namespace WebBankBudgeterUi
             {
                 WriteLineToOutputAndScrollDown(e.Message);
             }
+        }
+
+        private async Task<List<Rad>> HämtaIndataRader()
+        {
+            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum(
+                            txtYearFilter.Text);
+
+            // Hämta en lista på exempel inposter. Baserat på snitt för utgifter i varje kat
+            var inPosterDefault = await webBankBudgeter.InPosterHanterare
+                .SkapaInPoster(
+                    nuDatum,
+                    transactionList: webBankBudgeter.TransactionHandler?
+                        .TransactionList);
+
+            // Merga med föregående inposter.
+            var inDataRaderTidigare = await _inBudgetUiHandler.GetInPoster();
+            inPosterDefault.AddRange(inDataRaderTidigare);
+            _inBudgetUiHandler.SetInPoster(inPosterDefault);
+
+            // Hämta rader i Ui-format
+            var inDataRader = await _inBudgetUiHandler
+                .HämtaRaderFörUiBindningAsync();
+            return inDataRader;
         }
 
         private void ÅterställInkomstGrid()

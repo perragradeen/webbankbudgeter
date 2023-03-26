@@ -1,6 +1,7 @@
 ﻿using GeneralSettingsHandler;
 using InbudgetHandler;
 using InbudgetHandler.Model;
+using RefLesses;
 using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
 using WebBankBudgeterService.Model.ViewModel;
@@ -103,14 +104,19 @@ namespace WebBankBudgeterUi
             RemoveDuplicates();
         }
 
-        internal void FilterTransactions()
+        internal void FilterTransactions(string txtYearFilter)
         {
-            var filteredTrans = TransFilterer.FilterTransactions(
-                _transactionHandler.TransactionList);
+            var selectedYear = MiscFunctions
+                .SafeGetIntFromString(txtYearFilter);
+            var transactionList = _transactionHandler.TransactionList;
 
-            _transactionHandler.SetTransactionList(
-               filteredTrans
-            );
+            var filteredTrans = string.IsNullOrWhiteSpace(txtYearFilter)
+                ? TransFilterer.FilterTransactions(
+                    transactionList)
+                : TransFilterer.FilterTransactions(
+                    transactionList, selectedYear);
+
+            _transactionHandler.SetTransactionList(filteredTrans);
         }
 
         internal void AddAveragesToTable(TextToTableOutPuter table)

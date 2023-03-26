@@ -8,7 +8,9 @@
         public string RadNamnY { get; set; }
 
         /// <summary>
-        /// Ex. {2020-03, 150}, {2020-04, 2500}
+        /// Ex.
+        /// {2020-03, 150},
+        /// {2020-04, 2500}
         /// </summary>
         public Dictionary<string, double> Kolumner { get; set; } = new Dictionary<string, double>();
 

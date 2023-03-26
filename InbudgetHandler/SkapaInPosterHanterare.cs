@@ -1,4 +1,5 @@
 ﻿using BudgeterCore.Entities;
+using RefLesses;
 using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
 
@@ -13,6 +14,14 @@ namespace InbudgetHandler
         {
             _inBudgetHandler = target;
             _transactionHandler = transactionHandler;
+        }
+
+        public static DateTime FrånÅrTillDatum(string år)
+        {
+            var selectedYear = MiscFunctions
+                .SafeGetIntFromString(år);
+
+            return new DateTime(selectedYear, 1, 1);
         }
 
         public async Task<List<InBudget>> SkapaInPoster(

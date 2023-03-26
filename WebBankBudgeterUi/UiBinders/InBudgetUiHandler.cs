@@ -56,7 +56,9 @@ namespace WebBankBudgeterUi.UiBinders
             _inBudgetHandler.SparaInPosterPåDisk(inPosterAttMerga);
         }
 
-        public void BindInPosterRaderTillUi(List<Rad> rader, List<string> inPosterKolumnRubriker,
+        public void BindInPosterRaderTillUi(
+            List<Rad> rader,
+            List<string> inPosterKolumnRubriker,
             DataGridView bindToUiElement)
         {
             // UI

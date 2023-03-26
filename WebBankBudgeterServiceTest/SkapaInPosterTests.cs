@@ -78,6 +78,20 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
+        public async Task SkapaInPosterTestAsync2()
+        {
+            var handler = new SkapaInPosterHanterare(
+                InBudgetHandler,
+                TransactionHandler);
+
+            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum("2022");
+            var results = await handler.SkapaInPoster(nuDatum);
+
+            Assert.IsTrue(results.Any());
+            Assert.IsNull(_globalLog);
+        }
+
+        [TestMethod]
         public void GetCategoryFilePathTest()
         {
             var path = GetCategoryFilePath();
@@ -180,6 +194,40 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
+        public void FilterTransactions_OneYear_Test()
+        {
+            // Arrange
+            var expectedEntries = 5;
+            var transactionList = GetDefaultTransactions();
+            transactionList.Transactions.Add(
+                new Transaction { DateAsDate = new DateTime(2020, 1, 1), Amount = 10, Categorizations = GetDefatultCat() }
+            );
+            transactionList.Transactions.Add(
+                new Transaction { DateAsDate = new DateTime(2019, 12, 31), Amount = 10, Categorizations = GetDefatultCat() }
+            );
+
+            // Act
+            var actual = TransFilterer.FilterTransactions(
+                transactionList,
+                2019);
+
+            // Assert
+            Assert.IsTrue(actual.Transactions.Any());
+            Assert.AreEqual(expectedEntries,
+                //TransactionHandler.TransactionList.Transactions
+                actual.Transactions.Count);
+        }
+
+        [TestMethod]
+        public void FilterTransactionsTest2s()
+        {
+            var results = SkapaInPosterHanterare
+                .FrånÅrTillDatum("2023");
+
+            Assert.AreEqual(new DateTime(2023, 01, 01), results);
+        }
+
+        [TestMethod]
         public void FilterTransactionsTest2()
         {
             // Arrange
@@ -199,12 +247,7 @@ namespace WebBankBudgeterServiceTest
 
         private static TransactionList GetDefaultTransactions()
         {
-            var cat1 = new Categorizations();
-            var cats1 = new List<Categories>
-            {
-                new Categories {Name = "kat1"},
-            };
-            cat1.Categories = cats1;
+            var cat1 = GetDefatultCat();
             var transactions = new List<Transaction>
             {
                 new Transaction {Amount = 0, Categorizations = cat1, DateAsDate = new DateTime(2019, 1, 1)},
@@ -217,6 +260,17 @@ namespace WebBankBudgeterServiceTest
             {
                 Transactions = transactions
             };
+        }
+
+        private static Categorizations GetDefatultCat()
+        {
+            var cat1 = new Categorizations();
+            var cats1 = new List<Categories>
+            {
+                new Categories {Name = "kat1"},
+            };
+            cat1.Categories = cats1;
+            return cat1;
         }
 
         private static string GetCategoryFilePath()
