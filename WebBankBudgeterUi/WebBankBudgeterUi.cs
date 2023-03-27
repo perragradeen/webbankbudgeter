@@ -112,6 +112,17 @@ namespace WebBankBudgeterUi
                         );
         }
 
+        private void BindKvarPosterRaderTillUi(
+            List<Rad> inDataRader,
+            List<string> månadsRubriker)
+        {
+            _inBudgetUiHandler.BindInPosterRaderTillUi(
+                            inDataRader,
+                            månadsRubriker,
+                            gv_Kvar
+                        );
+        }
+
         private async Task<List<string>> HämtaRubrikePåInPosterAsync()
         {
             return await _inBudgetUiHandler.HämtaRubrikePåInPosterAsync();
@@ -138,7 +149,7 @@ namespace WebBankBudgeterUi
                                 utgiftsRader,
                                 WriteLineToOutputAndScrollDown);
 
-            BindInPosterRaderTillUi(inDataRader, månadsRubriker);
+            BindKvarPosterRaderTillUi(rader, månadsRubriker);
         }
 
         private void SparaInPosterPåDisk()
@@ -245,8 +256,15 @@ namespace WebBankBudgeterUi
 
         private async Task ResetUtgifterAsync()
         {
+            gv_incomes.Rows.Clear();
+            gv_incomes.Columns.Clear();
+
+            gv_Kvar.Rows.Clear();
+            gv_Kvar.Columns.Clear();
+
             gv_budget.Rows.Clear();
             gv_budget.Columns.Clear();
+
             LogTexts.Clear();
             LogTexts.AppendText($"Reloading at {DateTime.Now}");
 

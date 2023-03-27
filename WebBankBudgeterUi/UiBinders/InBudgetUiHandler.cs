@@ -87,7 +87,29 @@ namespace WebBankBudgeterUi.UiBinders
 
                 try
                 {
-                    foreach (var kolumnVärde in rad.Kolumner)
+                    // Kolla så rader matchar rubriker:
+                    foreach (var kolumnRubrik in inPosterKolumnRubriker)
+                    {
+                        if (rad.Kolumner.ContainsKey(kolumnRubrik))
+                        {
+
+                        }
+                        else
+                        {
+                            rad.Kolumner.Add(kolumnRubrik, 0);
+                        }
+                    }
+
+                    //rad.Kolumner.OrderBy(k => DateTime.Parse(k.Key).ToShortDateString());
+
+                    //rad.Kolumner = rad.Kolumner
+                    //    .OrderBy(k => DateTime.Parse(k.Key))
+                    //    .ToDictionary(x=>x.Key)
+                    //    ;
+
+                    foreach (var kolumnVärde in rad.Kolumner
+                        .OrderBy(k => DateTime.Parse(k.Key))
+                        )
                     {
                         bindToUiElement
                             .Rows[radNummer]
@@ -100,6 +122,9 @@ namespace WebBankBudgeterUi.UiBinders
                     _writeLineToOutputAndScrollDown(e.Message);
                 }
             }
+            
+            bindToUiElement.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            bindToUiElement.Columns["1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
 
         public async Task SättHämtadeNyaIndataRader(
@@ -127,9 +152,13 @@ namespace WebBankBudgeterUi.UiBinders
             //return inDataRader;
         }
 
+        // TODO: flytta till misc för doubles...
         private static string SkrivVärdeSomText(KeyValuePair<string, double> kolumnVärde)
         {
-            return kolumnVärde.Value.ToString(CultureInfo.InvariantCulture);
+            var flyttalsVärde = kolumnVärde.Value;
+            var strängVärde = flyttalsVärde.ToString("# ##0", CultureInfo.InvariantCulture);
+
+            return strängVärde;
         }
 
         private static List<InBudget> HämtaInPosterFrånUITabell(DataGridView bindToUiElement)
