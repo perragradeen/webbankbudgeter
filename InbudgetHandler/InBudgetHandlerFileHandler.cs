@@ -1,4 +1,5 @@
 ﻿using BudgeterCore.Entities;
+using System.Linq;
 using System.Text.Json;
 
 namespace InbudgetHandler
@@ -32,10 +33,25 @@ namespace InbudgetHandler
 
         public void SparaInPosterPåDisk(List<InBudget> inPoster)
         {
+            // Merga med ej synliga inposter
+            foreach (var postFromUi in inPoster)
+            {
+                var postHidden = _inPoster.FirstOrDefault(p =>
+                    p.YearAndMonth == postFromUi.YearAndMonth
+                    && p.CategoryDescription == postFromUi.CategoryDescription);
+                if (postHidden != null)
+                {
+                    postHidden.BudgetValue = postFromUi.BudgetValue;
+                }
+                else
+                {
+                    _inPoster.Add(postFromUi);
+                }
+            }
+
             // Write to file
             var jsonString =
-                //JsonSerializer.Serialize(inPoster);
-                JsonSerializer.Serialize(inPoster);
+                JsonSerializer.Serialize(_inPoster);
 
             FileWriteAllText(jsonString);
         }

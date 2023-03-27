@@ -9,6 +9,8 @@ namespace InbudgetHandler
         public const string SummaText = "Summa";
 
         private readonly InBudgetHandlerFileHandler _inBudgetHandlerFileHandler;
+        private DateTime? _fromDate;
+        private DateTime? _endDate;
 
         public InBudgetHandler(string inBudgetFilePath)
         {
@@ -18,6 +20,17 @@ namespace InbudgetHandler
 
         public async Task<List<InBudget>> GetInPoster()
         {
+            //var inPoster = await _inBudgetHandlerFileHandler.GetInPoster();
+
+            //if (_fromDate.HasValue)
+            //{
+            //    inPoster = inPoster.Where(t =>
+            //         t.YearAndMonth >= _fromDate
+            //      && t.YearAndMonth <= _endDate
+            //    ).ToList();
+            //}
+
+            //return inPoster;
             return await _inBudgetHandlerFileHandler.GetInPoster();
         }
 
@@ -65,7 +78,9 @@ namespace InbudgetHandler
                 return nuvarandeDatum;
             }
 
-            throw new ArgumentException("Finns inga poster");
+            // Finns inga poster
+            return nu.AddMonths(-1);
+            //throw new ArgumentException("Finns inga poster");
         }
 
         private bool MånadOchÅrÄrSamma(DateTime ena, DateTime andra)
@@ -76,15 +91,15 @@ namespace InbudgetHandler
 
         public async Task<List<Rad>> HämtaRaderFörUiBindningAsync()
         {
-            var rader = new List<Rad>();
-
             var inPoster = await GetInPoster();
+            inPoster = FiltreraInPoster(inPoster);
 
             // Sortera på datum stigande
             inPoster = inPoster
                 .OrderBy(i => i.YearAndMonth)
                 .ToList();
 
+            var rader = new List<Rad>();
             // Loopa data
             // Grupper på categori (per rad)
             foreach (var inPostGrupp in inPoster
@@ -137,9 +152,24 @@ namespace InbudgetHandler
             return rader;
         }
 
+        private List<InBudget> FiltreraInPoster(List<InBudget> inPoster)
+        {
+            if (_fromDate.HasValue)
+            {
+                inPoster = inPoster.Where(t =>
+                     t.YearAndMonth >= _fromDate
+                  && t.YearAndMonth <= _endDate
+                ).ToList();
+            }
+
+            return inPoster;
+        }
+
         public async Task<List<string>> HämtaRubrikerPåInPosterAsync()
         {
             var inPoster = await GetInPoster();
+
+            inPoster = FiltreraInPoster(inPoster);
 
             var sorteradeÅrOMånader =
                 inPoster.OrderBy(tid => tid.YearAndMonth);
@@ -160,6 +190,12 @@ namespace InbudgetHandler
             }
 
             return inPosterKolumnRubriker;
+        }
+
+        public void SetInPosterFilter(DateTime? fromDate, DateTime? endDate)
+        {
+            _fromDate = fromDate;
+            _endDate = endDate;
         }
     }
 }

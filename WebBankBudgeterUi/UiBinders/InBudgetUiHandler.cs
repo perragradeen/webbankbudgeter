@@ -33,6 +33,15 @@ namespace WebBankBudgeterUi.UiBinders
             _inBudgetHandler.SetInPoster(inBudgets);
         }
 
+        public void SetInPosterFilter(
+            DateTime? fromDate = null,
+            DateTime? endDate = null)
+        {
+            _inBudgetHandler.SetInPosterFilter(
+                fromDate,
+                endDate);
+        }
+
         public async Task<List<Rad>> HämtaRaderFörUiBindningAsync()
         {
             return await _inBudgetHandler.HämtaRaderFörUiBindningAsync();
@@ -93,7 +102,7 @@ namespace WebBankBudgeterUi.UiBinders
             }
         }
 
-        public async Task<List<Rad>> HämtaIndataRader(
+        public async Task SättHämtadeNyaIndataRader(
             string år,
             WebBankBudgeter webBankBudgeter)
         {
@@ -110,10 +119,12 @@ namespace WebBankBudgeterUi.UiBinders
             var inDataRaderTidigare = await GetInPoster();
             inPosterDefault.AddRange(inDataRaderTidigare);
             SetInPoster(inPosterDefault);
+            //SetInPosterFilter(nuDatum,
+            //    new DateTime(nuDatum.Year, 12, 31));
 
             // Hämta rader i Ui-format
-            var inDataRader = await HämtaRaderFörUiBindningAsync();
-            return inDataRader;
+            //var inDataRader = await HämtaRaderFörUiBindningAsync();
+            //return inDataRader;
         }
 
         private static string SkrivVärdeSomText(KeyValuePair<string, double> kolumnVärde)

@@ -80,42 +80,65 @@ namespace WebBankBudgeterUi
             //BindTotalsToUi();
 
             // Ta ut in-data och utgifter.
-            var inDataRader = await _inBudgetUiHandler.HämtaRaderFörUiBindningAsync();
             var utgiftsRader = table.BudgetRows.ToList();
-            var månadsRubriker = await _inBudgetUiHandler.HämtaRubrikePåInPosterAsync();
 
             // Presentera tabell för kvar budget.
-            VisaKvarRader_BindInPosterRaderTillUi(inDataRader, utgiftsRader, månadsRubriker);
+            await VisaKvarRader_BindInPosterRaderTillUiAsync(
+                utgiftsRader);
 
             // Presentera tabell för inkomst i varje kategori budget.
-            VisaInRader_BindInPosterRaderTillUi(inDataRader, månadsRubriker);
+            await VisaInRader_BindInPosterRaderTillUiAsync(
+                //inDataRader, månadsRubriker
+                );
 
             // Presentera summor för varje kat.
         }
 
-        private void VisaInRader_BindInPosterRaderTillUi(
-            List<Rad> inDataRader,
-            List<string> månadsRubriker)
+        private async Task VisaInRader_BindInPosterRaderTillUiAsync()
         {
-            _inBudgetUiHandler.BindInPosterRaderTillUi(
-                inDataRader,
-                månadsRubriker,
-                gv_incomes
-            );
+            var inDataRader = await HämtaInDataRaderFiltrerat();
+            var månadsRubriker = await HämtaRubrikePåInPosterAsync();
+            BindInPosterRaderTillUi(inDataRader, månadsRubriker);
         }
 
-        private void VisaKvarRader_BindInPosterRaderTillUi(
+        private void BindInPosterRaderTillUi(
             List<Rad> inDataRader,
-            List<BudgetRow> utgiftsRader,
             List<string> månadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
-                WebBankBudgeter.SnurraIgenom(
-                    inDataRader,
-                    utgiftsRader,
-                    WriteLineToOutputAndScrollDown),
-                månadsRubriker,
-                gv_Kvar);
+                            inDataRader,
+                            månadsRubriker,
+                            gv_incomes
+                        );
+        }
+
+        private async Task<List<string>> HämtaRubrikePåInPosterAsync()
+        {
+            return await _inBudgetUiHandler.HämtaRubrikePåInPosterAsync();
+        }
+
+        private async Task<List<Rad>> HämtaInDataRaderFiltrerat()
+        {
+            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum(txtYearFilter.Text);
+            _inBudgetUiHandler.SetInPosterFilter(nuDatum,
+                new DateTime(nuDatum.Year, 12, 31));
+
+            var inDataRader = await _inBudgetUiHandler.HämtaRaderFörUiBindningAsync();
+            return inDataRader;
+        }
+
+        private async Task VisaKvarRader_BindInPosterRaderTillUiAsync(
+            List<BudgetRow> utgiftsRader)
+        {
+            var inDataRader = await HämtaInDataRaderFiltrerat();
+            var månadsRubriker = await HämtaRubrikePåInPosterAsync();
+
+            var rader = WebBankBudgeter.SnurraIgenom(
+                                inDataRader,
+                                utgiftsRader,
+                                WriteLineToOutputAndScrollDown);
+
+            BindInPosterRaderTillUi(inDataRader, månadsRubriker);
         }
 
         private void SparaInPosterPåDisk()
@@ -261,21 +284,21 @@ namespace WebBankBudgeterUi
             //      för nuvarande månad
             //          om det inte redan finns
 
-            var inDataRader = await HämtaIndataRader();
+            //var inDataRader = await HämtaIndataRader();
 
             try
             {
+                await SättHämtadeNyaIndataRader();
+
                 //Skriv ut i Ui
                 ÅterställInkomstGrid();
 
-                var månadsRubriker = await _inBudgetUiHandler
-                    .HämtaRubrikePåInPosterAsync();
+                //var månadsRubriker = await _inBudgetUiHandler
+                //    .HämtaRubrikePåInPosterAsync();
 
-                _inBudgetUiHandler.BindInPosterRaderTillUi(
-                    inDataRader,
-                    månadsRubriker,
-                    gv_incomes
-                );
+                await VisaInRader_BindInPosterRaderTillUiAsync(
+                    //månadsRubriker, inDataRader
+                    );
             }
             catch (Exception e)
             {
@@ -283,9 +306,9 @@ namespace WebBankBudgeterUi
             }
         }
 
-        private async Task<List<Rad>> HämtaIndataRader()
+        private async Task SättHämtadeNyaIndataRader()
         {
-            return await _inBudgetUiHandler.HämtaIndataRader(
+            await _inBudgetUiHandler.SättHämtadeNyaIndataRader(
                 txtYearFilter.Text,
                 webBankBudgeter);
         }
