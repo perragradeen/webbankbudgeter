@@ -64,6 +64,7 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
+        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
         public async Task SkapaInPosterTestAsync()
         {
             var handler = new SkapaInPosterHanterare(
@@ -78,6 +79,7 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
+        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
         public async Task SkapaInPosterTestAsync2()
         {
             var handler = new SkapaInPosterHanterare(

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefSharp.Common.NETCore" Version="117.2.20" />
-    <PackageReference Include="CefSharp.WinForms.NETCore" Version="110.0.280" />
+    <PackageReference Include="CefSharp.Common.NETCore" Version="140.1.140" />
+    <PackageReference Include="CefSharp.WinForms.NETCore" Version="140.1.140" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +59,18 @@
     </Compile>
     <Compile Update="KontoEntryListView.cs" />
     <Compile Update="ListViewWithComboBox.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="140.1.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="140.1.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="140.1.14" />
   </ItemGroup>
 
 </Project>

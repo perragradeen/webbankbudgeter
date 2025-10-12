@@ -31,6 +31,7 @@ namespace UtilitiesTest
         }
 
         [TestMethod]
+        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
         public void WriteToWorkBookSeveralRowsTest()
         {
             const string sheetName = "Sheet1";

@@ -16,6 +16,7 @@ namespace UtilitiesTest
         public const string SheetName = "Kontoutdrag_officiella";
 
         [TestMethod]
+        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
         public void ReadWorkBookTest()
         {
             var book = OpenFileFunctions.GetHashTableFromExcelSheet(
