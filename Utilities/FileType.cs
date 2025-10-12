@@ -1,8 +1,10 @@
-﻿namespace Utilities
+namespace Utilities
 {
     public enum FileType
     {
         Xls,
-        Xml,
+        Xlsx,
+        Xml
     }
 }
+

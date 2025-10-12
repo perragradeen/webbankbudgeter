@@ -137,18 +137,30 @@ namespace InbudgetHandler
 
         public static DateTime GetLowestDate(List<Transaction> transactions)
         {
-            return transactions
+            if (transactions == null || transactions.Count == 0)
+            {
+                return DateTime.MinValue;
+            }
+
+            var firstTransaction = transactions
                 .OrderBy(t => t.DateAsDate)
-                .FirstOrDefault()
-                .DateAsDate;
+                .FirstOrDefault();
+
+            return firstTransaction?.DateAsDate ?? DateTime.MinValue;
         }
 
         public static DateTime GetHighestDate(List<Transaction> transactions)
         {
-            return transactions
+            if (transactions == null || transactions.Count == 0)
+            {
+                return DateTime.MaxValue;
+            }
+
+            var lastTransaction = transactions
                 .OrderByDescending(t => t.DateAsDate)
-                .FirstOrDefault()
-                .DateAsDate;
+                .FirstOrDefault();
+
+            return lastTransaction?.DateAsDate ?? DateTime.MaxValue;
         }
     }
 }

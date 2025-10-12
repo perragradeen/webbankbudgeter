@@ -10,7 +10,7 @@
     <ProjectReference Include="..\BudgeterCore\BudgeterCore.csproj" />
     <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj" />
     <ProjectReference Include="..\LoadTransactionsFromFile\LoadTransactionsFromFile.csproj" />
-    <ProjectReference Include="..\UtilitiesOld\Utilities.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>
