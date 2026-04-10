@@ -1,4 +1,5 @@
 ﻿using WebBankBudgeterService.Model.ViewModel;
+using WebBankBudgeterService.Services;
 
 namespace WebBankBudgeterUi.UiBinders
 {
@@ -18,48 +19,130 @@ namespace WebBankBudgeterUi.UiBinders
                 return;
             }
 
-            foreach (var column in table.ColumnHeaders)
+            // PAUSA UPPDATERINGAR
+            _gv_budget.SuspendLayout();
+
+            try
             {
-                _gv_budget.Columns.Add(column, column);
-            }
+                // Använd den nya strukturerade budgetbyggaren
+                var budgetBuilder = new BudgetStructureBuilder();
+                var structuredBudget = budgetBuilder.BuildStructuredBudget(
+                    table.BudgetRows,
+                    table.ColumnHeaders);
 
-            _gv_budget.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-            foreach (var row in table.BudgetRows)
-            {
-                var n = _gv_budget.Rows.Add();
-
-                // Skriv ut 0 i de kolumner där det inte finns värde för månad
-                var i = 0;
-                foreach (var header in table.ColumnHeaders)
+                // Lägg till kolumnrubriker
+                foreach (var column in table.ColumnHeaders)
                 {
+                    _gv_budget.Columns.Add(column, column);
+                }
+
+                // Lägg till "Summa"-kolumn efter alla andra kolumner
+                var sumColumnIndex = _gv_budget.Columns.Add("Summa", "Summa");
+
+                _gv_budget.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                // Lägg till rader från den strukturerade budgeten
+                foreach (var row in structuredBudget.Rows)
+                {
+                    var n = _gv_budget.Rows.Add();
                     var categoryName = row.CategoryText;
-                    object value;
-                    switch (header)
+
+                    // Räkna ut radtotal och genomsnitt
+                    double rowTotal = 0;
+                    int monthCount = 0;
+
+                    // Skriv ut värden för varje kolumn
+                    var i = 0;
+                    foreach (var header in table.ColumnHeaders)
                     {
-                        case TextToTableOutPuter.AverageColumnDescription:
-                            value = table.GetAverageForCategory(categoryName);
-                            value = DoubleTo1000SeparatedNoDecimals(value);
-                            break;
+                        object value;
+                        switch (header)
+                        {
+                            case TextToTableOutPuter.AverageColumnDescription:
+                                // Beräkna genomsnitt baserat på månadskolumner
+                                var monthColumns = table.ColumnHeaders
+                                    .Where(h => !h.Contains("Category") && !h.Contains("Average"))
+                                    .ToList();
 
-                        case TextToTableOutPuter.AverageColumnDescriptionNotFormatted:
-                            value = table.GetAverageForCategory(categoryName);
-                            break;
+                                double sum = 0;
+                                int count = 0;
+                                foreach (var monthCol in monthColumns)
+                                {
+                                    if (row.AmountsForMonth.ContainsKey(monthCol))
+                                    {
+                                        sum += row.AmountsForMonth[monthCol];
+                                        count++;
+                                    }
+                                }
 
-                        case TextToTableOutPuter.CategoryNameColumnDescription:
-                            value = row.CategoryText;
-                            break;
+                                value = count > 0 ? sum / count : 0;
+                                value = DoubleTo1000SeparatedNoDecimals(value);
+                                break;
 
-                        default:
-                            value = row.AmountsForMonth.ContainsKey(header)
-                                ? row.AmountsForMonth[header]
-                                : 0;
-                            value = DoubleTo1000SeparatedNoDecimals(value);
-                            break;
+                            case TextToTableOutPuter.AverageColumnDescriptionNotFormatted:
+                                // Samma beräkning men oformaterad
+                                var monthCols = table.ColumnHeaders
+                                    .Where(h => !h.Contains("Category") && !h.Contains("Average"))
+                                    .ToList();
+
+                                double sumVal = 0;
+                                int countVal = 0;
+                                foreach (var monthCol in monthCols)
+                                {
+                                    if (row.AmountsForMonth.ContainsKey(monthCol))
+                                    {
+                                        sumVal += row.AmountsForMonth[monthCol];
+                                        countVal++;
+                                    }
+                                }
+
+                                value = countVal > 0 ? sumVal / countVal : 0;
+                                break;
+
+                            case TextToTableOutPuter.CategoryNameColumnDescription:
+                                value = row.CategoryText;
+                                break;
+
+                            default:
+                                // Månadsvärde
+                                double monthValue = row.AmountsForMonth.ContainsKey(header)
+                                    ? row.AmountsForMonth[header]
+                                    : 0;
+
+                                rowTotal += monthValue;
+                                monthCount++;
+
+                                value = DoubleTo1000SeparatedNoDecimals(monthValue);
+                                break;
+                        }
+
+                        _gv_budget.Rows[n].Cells[i++].Value = value;
+
+                        // Formatera summeringsrader med fet stil
+                        if (categoryName.Contains("==="))
+                        {
+                            _gv_budget.Rows[n].Cells[i - 1].Style.Font =
+                                new Font(_gv_budget.DefaultCellStyle.Font, FontStyle.Bold);
+                            _gv_budget.Rows[n].Cells[i - 1].Style.BackColor = Color.LightGray;
+                        }
                     }
 
-                    _gv_budget.Rows[n].Cells[i++].Value = value;
+                    // Lägg till radtotalen i sista kolumnen
+                    _gv_budget.Rows[n].Cells[sumColumnIndex].Value = DoubleTo1000SeparatedNoDecimals(rowTotal);
+
+                    // Formatera summakolumnen också för summeringsrader
+                    if (categoryName.Contains("==="))
+                    {
+                        _gv_budget.Rows[n].Cells[sumColumnIndex].Style.Font =
+                            new Font(_gv_budget.DefaultCellStyle.Font, FontStyle.Bold);
+                        _gv_budget.Rows[n].Cells[sumColumnIndex].Style.BackColor = Color.LightGray;
+                    }
                 }
+            }
+            finally
+            {
+                // ÅTERUPPTA UPPDATERINGAR
+                _gv_budget.ResumeLayout();
             }
         }
 

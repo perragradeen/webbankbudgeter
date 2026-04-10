@@ -33,7 +33,9 @@ namespace WebBankBudgeterUi
                 _utgiftsHanterareUiBinder = new UtgiftsHanterareUiBinder(
                     gv_budget);
 
-                txtYearFilter.Text = TransFilterer.LastYear().ToString();
+                txtYearFilter.Text = "2023"; //Testdata
+                //TODO: sätt alltid förra året
+                    //TransFilterer.LastYear().ToString();
 
                 ReloadButton.Click += async (s, e) =>
                     await ReloadButton_ClickAsync(s, e);
@@ -229,16 +231,31 @@ namespace WebBankBudgeterUi
             dg_Transactions.Columns.Add("3", "Description");
             dg_Transactions.Columns.Add("4", "Category");
 
-            foreach (var row in webBankBudgeter.TransactionHandler?
-                .TransactionList?.Transactions!)
+            dg_Transactions.SuspendLayout();
+            try
             {
-                var n = dg_Transactions.Rows.Add();
+                var totalNumberofRows = webBankBudgeter.TransactionHandler?.TransactionList?.Transactions.Count();
+                foreach (var row in webBankBudgeter.TransactionHandler?
+                    .TransactionList?.Transactions!)
+                {
+                    var n = dg_Transactions.Rows.Add();
 
-                var i = 0;
-                dg_Transactions.Rows[n].Cells[i++].Value = row.DateAsDate.ToShortDateString();
-                dg_Transactions.Rows[n].Cells[i++].Value = row.AmountAsDouble;
-                dg_Transactions.Rows[n].Cells[i++].Value = row.Description;
-                dg_Transactions.Rows[n].Cells[i].Value = row.CategoryName;
+                    var i = 0;
+                    dg_Transactions.Rows[n].Cells[i++].Value = row.DateAsDate.ToShortDateString();
+                    dg_Transactions.Rows[n].Cells[i++].Value = row.AmountAsDouble;
+                    dg_Transactions.Rows[n].Cells[i++].Value = row.Description;
+                    dg_Transactions.Rows[n].Cells[i].Value = row.CategoryName;
+
+                    if (n % 20 == 0)
+                    {
+                        WriteToOutput("Totalt klar: " + n + " av " + totalNumberofRows + Environment.NewLine);
+                    }
+                }
+            }
+            finally
+            {
+                // ÅTERUPPTA UPPDATERINGAR
+                dg_Transactions.ResumeLayout();
             }
         }
 
