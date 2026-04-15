@@ -1,4 +1,4 @@
-#nullable disable
+Ôªø#nullable disable
 using InbudgetHandler;
 using InbudgetHandler.Model;
 using WebBankBudgeterService;
@@ -34,7 +34,7 @@ namespace WebBankBudgeterUi
                     gv_budget);
 
                 txtYearFilter.Text = "2023"; //Testdata
-                //TODO: s‰tt alltid fˆrra Âret
+                //TODO: s√§tt alltid f√∂rra √•ret
                     //TransFilterer.LastYear().ToString();
 
                 ReloadButton.Click += async (s, e) =>
@@ -54,6 +54,9 @@ namespace WebBankBudgeterUi
 
         private async Task FillTablesAsync()
         {
+            SuspendLayout();
+            try
+            {
             InitIncomesUi();
             InitTotalsUi();
 
@@ -84,79 +87,84 @@ namespace WebBankBudgeterUi
             // Ta ut in-data och utgifter.
             var utgiftsRader = table.BudgetRows.ToList();
 
-            // Presentera tabell fˆr kvar budget.
+            // Presentera tabell f√∂r kvar budget.
             await VisaKvarRader_BindInPosterRaderTillUiAsync(
                 utgiftsRader);
 
-            // Presentera tabell fˆr inkomst i varje kategori budget.
+            // Presentera tabell f√∂r inkomst i varje kategori budget.
             await VisaInRader_BindInPosterRaderTillUiAsync(
-                //inDataRader, mÂnadsRubriker
+                //inDataRader, m√•nadsRubriker
                 );
 
-            // Presentera summor fˆr varje kat.
+            // Presentera summor f√∂r varje kat.
+            }
+            finally
+            {
+                ResumeLayout(true);
+            }
         }
 
         private async Task VisaInRader_BindInPosterRaderTillUiAsync()
         {
-            var inDataRader = await H‰mtaInDataRaderFiltrerat();
-            var mÂnadsRubriker = await H‰mtaRubrikePÂInPosterAsync();
-            BindInPosterRaderTillUi(inDataRader, mÂnadsRubriker);
+            var inDataRader = await H√§mtaInDataRaderFiltrerat();
+            var m√•nadsRubriker = await H√§mtaRubrikeP√•InPosterAsync();
+            BindInPosterRaderTillUi(inDataRader, m√•nadsRubriker);
         }
 
         private void BindInPosterRaderTillUi(
             List<Rad> inDataRader,
-            List<string> mÂnadsRubriker)
+            List<string> m√•nadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                             inDataRader,
-                            mÂnadsRubriker,
+                            m√•nadsRubriker,
                             gv_incomes
                         );
         }
 
         private void BindKvarPosterRaderTillUi(
             List<Rad> inDataRader,
-            List<string> mÂnadsRubriker)
+            List<string> m√•nadsRubriker)
         {
             _inBudgetUiHandler.BindInPosterRaderTillUi(
                             inDataRader,
-                            mÂnadsRubriker,
+                            m√•nadsRubriker,
                             gv_Kvar
                         );
         }
 
-        private async Task<List<string>> H‰mtaRubrikePÂInPosterAsync()
+        private async Task<List<string>> H√§mtaRubrikeP√•InPosterAsync()
         {
-            return await _inBudgetUiHandler.H‰mtaRubrikePÂInPosterAsync();
+            return await _inBudgetUiHandler.H√§mtaRubrikeP√•InPosterAsync();
         }
 
-        private async Task<List<Rad>> H‰mtaInDataRaderFiltrerat()
+        private async Task<List<Rad>> H√§mtaInDataRaderFiltrerat()
         {
-            var nuDatum = SkapaInPosterHanterare.FrÂn≈rTillDatum(txtYearFilter.Text);
+            var nuDatum = SkapaInPosterHanterare.Fr√•n√ÖrTillDatum(txtYearFilter.Text);
             _inBudgetUiHandler.SetInPosterFilter(nuDatum,
                 new DateTime(nuDatum.Year, 12, 31));
 
-            var inDataRader = await _inBudgetUiHandler.H‰mtaRaderFˆrUiBindningAsync();
+            var inDataRader = await _inBudgetUiHandler.H√§mtaRaderF√∂rUiBindningAsync();
             return inDataRader;
         }
 
         private async Task VisaKvarRader_BindInPosterRaderTillUiAsync(
             List<BudgetRow> utgiftsRader)
         {
-            var inDataRader = await H‰mtaInDataRaderFiltrerat();
-            var mÂnadsRubriker = await H‰mtaRubrikePÂInPosterAsync();
+            var inDataRader = await H√§mtaInDataRaderFiltrerat();
+            var m√•nadsRubriker = await H√§mtaRubrikeP√•InPosterAsync();
 
             var rader = WebBankBudgeter.SnurraIgenom(
                                 inDataRader,
                                 utgiftsRader,
                                 WriteLineToOutputAndScrollDown);
 
-            BindKvarPosterRaderTillUi(rader, mÂnadsRubriker);
+            BindKvarPosterRaderTillUi(rader, m√•nadsRubriker);
         }
 
-        private void SparaInPosterPÂDisk()
+        private void SparaInPosterP√•Disk()
         {
-            _inBudgetUiHandler.SparaInPosterPÂDisk();
+            _inBudgetUiHandler.SparaInPosterP√•Disk();
 
             WriteLineToOutputAndScrollDown("Sparat.");
         }
@@ -193,13 +201,13 @@ namespace WebBankBudgeterUi
 
         private void DescribeStartYear(TextToTableOutPuter table)
         {
-            label1.Text += @"Utgifter bˆrjar pÂ Âr: " + table.UtgiftersStartYear;
+            label1.Text += @"Utgifter b√∂rjar p√• √•r: " + table.UtgiftersStartYear;
         }
 
         private void BindMonthAveragesToUi(MonthAvarages summedAvaragesForCalc)
         {
             // bind to ui gv_totals
-            AddRowWith2Cells(gv_Totals, "≈terkommande snitt", summedAvaragesForCalc.ReccuringCosts);
+            AddRowWith2Cells(gv_Totals, "√Öterkommande snitt", summedAvaragesForCalc.ReccuringCosts);
             AddRowWith2Cells(gv_Totals, "Inkomster snitt", summedAvaragesForCalc.Incomes);
             AddRowWith2Cells(gv_Totals, "Diff snitt", summedAvaragesForCalc.IncomeDiffCosts);
         }
@@ -231,6 +239,7 @@ namespace WebBankBudgeterUi
             dg_Transactions.Columns.Add("3", "Description");
             dg_Transactions.Columns.Add("4", "Category");
 
+            dg_Transactions.Visible = false;
             dg_Transactions.SuspendLayout();
             try
             {
@@ -254,8 +263,9 @@ namespace WebBankBudgeterUi
             }
             finally
             {
-                // ≈TERUPPTA UPPDATERINGAR
+                // √ÖTERUPPTA UPPDATERINGAR
                 dg_Transactions.ResumeLayout();
+                dg_Transactions.Visible = true;
             }
         }
 
@@ -303,36 +313,36 @@ namespace WebBankBudgeterUi
 
         private void SaveInPosterButton_Click(object sender, EventArgs e)
         {
-            SparaInPosterPÂDisk();
+            SparaInPosterP√•Disk();
         }
 
         private async Task SkapaTomRad_Click(object sender, EventArgs e)
         {
-            await FyllIMedDefaultInposterFˆrSenasteMÂnadAsync();
+            await FyllIMedDefaultInposterF√∂rSenasteM√•nadAsync();
         }
 
-        private async Task FyllIMedDefaultInposterFˆrSenasteMÂnadAsync()
+        private async Task FyllIMedDefaultInposterF√∂rSenasteM√•nadAsync()
         {
-            // TODO: S‰tt Incomes fliken som fokus n‰r knappen trycks...
+            // TODO: S√§tt Incomes fliken som fokus n√§r knappen trycks...
 
             // Skapa en rad med alla valbara kategorier
-            //      fˆr nuvarande mÂnad
+            //      f√∂r nuvarande m√•nad
             //          om det inte redan finns
 
-            //var inDataRader = await H‰mtaIndataRader();
+            //var inDataRader = await H√§mtaIndataRader();
 
             try
             {
-                await S‰ttH‰mtadeNyaIndataRader();
+                await S√§ttH√§mtadeNyaIndataRader();
 
                 //Skriv ut i Ui
-                ≈terst‰llInkomstGrid();
+                √Öterst√§llInkomstGrid();
 
-                //var mÂnadsRubriker = await _inBudgetUiHandler
-                //    .H‰mtaRubrikePÂInPosterAsync();
+                //var m√•nadsRubriker = await _inBudgetUiHandler
+                //    .H√§mtaRubrikeP√•InPosterAsync();
 
                 await VisaInRader_BindInPosterRaderTillUiAsync(
-                    //mÂnadsRubriker, inDataRader
+                    //m√•nadsRubriker, inDataRader
                     );
             }
             catch (Exception e)
@@ -341,14 +351,14 @@ namespace WebBankBudgeterUi
             }
         }
 
-        private async Task S‰ttH‰mtadeNyaIndataRader()
+        private async Task S√§ttH√§mtadeNyaIndataRader()
         {
-            await _inBudgetUiHandler.S‰ttH‰mtadeNyaIndataRader(
+            await _inBudgetUiHandler.S√§ttH√§mtadeNyaIndataRader(
                 txtYearFilter.Text,
                 webBankBudgeter);
         }
 
-        private void ≈terst‰llInkomstGrid()
+        private void √Öterst√§llInkomstGrid()
         {
             gv_incomes.Columns.Clear();
             gv_incomes.Rows.Clear();

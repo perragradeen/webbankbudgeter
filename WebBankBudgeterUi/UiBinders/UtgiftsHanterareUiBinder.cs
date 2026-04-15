@@ -20,6 +20,7 @@ namespace WebBankBudgeterUi.UiBinders
             }
 
             // PAUSA UPPDATERINGAR
+            _gv_budget.Visible = false;
             _gv_budget.SuspendLayout();
 
             try
@@ -143,6 +144,7 @@ namespace WebBankBudgeterUi.UiBinders
             {
                 // ÅTERUPPTA UPPDATERINGAR
                 _gv_budget.ResumeLayout();
+                _gv_budget.Visible = true;
             }
         }
 

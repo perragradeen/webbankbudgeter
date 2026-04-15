@@ -70,6 +70,11 @@ namespace WebBankBudgeterUi.UiBinders
             List<string> inPosterKolumnRubriker,
             DataGridView bindToUiElement)
         {
+            bindToUiElement.Visible = false;
+            bindToUiElement.SuspendLayout();
+
+            try
+            {
             // UI
             // Skriv ut år+månad på rad 1 med headers från vänster till höger
             foreach (var rubrik in inPosterKolumnRubriker)
@@ -125,6 +130,13 @@ namespace WebBankBudgeterUi.UiBinders
             
             bindToUiElement.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             bindToUiElement.Columns["1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            }
+            finally
+            {
+                bindToUiElement.ResumeLayout();
+                bindToUiElement.Visible = true;
+            }
         }
 
         public async Task SättHämtadeNyaIndataRader(
