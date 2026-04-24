@@ -172,6 +172,11 @@ webbankbudgeter/
 **Symptom:** Tusentalsavskiljare var `,` istället för mellanslag
 **Lösning:** Explicit svensk kultur: `ToString("N0", new CultureInfo("sv-SE"))`
 
+### Problem 6: Path-separatorer i GeneralSettingsHandler
+**Symptom:** GeneralSettings.xml innehöll Windows-paths (`Data\file.txt`) som användes direkt
+**Lösning:** Normalisera i `GetTextFileStringSetting`: `.Replace('\\', Path.DirectorySeparatorChar)`
+**Påverkan:** GeneralSettingsTests (3 tester) började passera
+
 ### Problem 4: ClosedXML stöder inte .xls
 **Symptom:** "Extension 'xls' is not supported"
 **Lösning:** Bytte till ExcelDataReader som stöder båda formaten
@@ -190,10 +195,16 @@ webbankbudgeter/
 - **Rader tillagda:** ~33,000 (mest JSON-data)
 - **Nya projekt:** 2 (FacitExtractor, WebBankBudgeterTests.Facit)
 
-### Test Coverage
-- **Befintliga tester:** 15/15 passerar (100%)
-- **Ignorerade tester:** 2 (kräver Excel-fil)
-- **Nya test-filer:** 10 JSON facit-filer
+### Test Coverage (Slutligt)
+- **Alla Linux-kompatibla tester:** 24/24 passerar (100%)
+- **Skippade tester:** 6 (Excel och Logger tester som kräver externa filer)
+- **Test-projekt som passerar:**
+  - WebBankBudgeterServiceTest: 15 passed, 2 skipped
+  - InbudgetHandlerTest: 3 passed
+  - UtilitiesTest: 1 passed, 4 skipped
+  - FileTests: 2 passed
+  - GeneralSettingsTests: 3 passed
+- **Nya test-filer:** 10 JSON facit-filer (2014-2015 data)
 
 ### Build Status (Linux)
 - ✅ WebBankBudgeterService

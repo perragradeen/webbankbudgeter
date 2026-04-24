@@ -1,6 +1,10 @@
 # TODO: Visa samma data på "Kvar"-fliken som "Budget Total"
 
-## Problem
+## ✅ Status: SLUTFÖRT (Redan implementerat i koden)
+
+Verifierat 2026-04-24: Alla 4 steg var redan implementerade.
+
+## Problem (Ursprunglig)
 
 "Kvar"-fliken (`gv_Kvar`) är nästan tom medan "Budget Total" (`gv_budget`) visar full
 budgetdata med alla kategorier, medelvärden och månadskolumner.
@@ -9,7 +13,7 @@ budgetdata med alla kategorier, medelvärden och månadskolumner.
 som förlitar sig på InBudget-data från `BudgetIns.json`, medan "Budget Total" använder
 `UtgiftsHanterareUiBinder.BindToBudgetTableUi` som bygger på transaktionsdata.
 
-## Plan — 4 steg
+## Plan — 4 steg (✅ Alla implementerade)
 
 ### Steg 1: Gör `UtgiftsHanterareUiBinder.BindToBudgetTableUi` generisk
 
