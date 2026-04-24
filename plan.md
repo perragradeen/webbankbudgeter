@@ -260,9 +260,9 @@ TestData/BudgetIns.json
 ### 2.2 Viktiga detaljer i nuvarande kod
 
 - **Månadsnyckel**: `Transaction.GetYearMonthName` ger `"YYYY MMMM"` på invariant­kultur (t.ex. `"2014 January"`).
-- **Kategori­nyckel**: `Transaction.CategoryName` = `$"{Group} {Name}"` — dvs grupp-prefix. `BudgetRow.CategoryText` är samma sträng.
+- **Kategori­nyckel**: `Transaction.CategoryName` = `$"{Group} {Name}"` — dvs grupp-prefix. För budgettabell / facit-jämförelse (D7) används `BudgetTableCategoryKey`: rent `Name` när `Group` är tom, annars samma som `CategoryName`. `TableGetter.GroupOnMonthAndCategory` och `BudgetRowFactory` använder den nyckeln.
 - **Klassificering** i `BudgetStructureBuilder`:
-  - Inkomst: `CategoryText.Contains("+")`
+  - Inkomst: kategorinamn trimmat är exakt `"+"` (inte `Contains("+")` — undviker t.ex. `värnamoresor+övriga`)
   - Förflyttning: `CategoryText.Contains(" -")` (mellanslag före minus)
   - Utgift: övrigt
 - **Budget Total-fliken** (`gv_budget`) visar IN + UT + summerings­rader.
@@ -274,13 +274,13 @@ TestData/BudgetIns.json
 |---|--------|-------------|---------------|-----|
 | G1 | Budget Total | Tre sektioner: **IN**, **UT**, **KVAR** per kategori per månad | Inkomster = transaktioner som innehåller `"+"` i kategori­namnet; ingen riktig IN från BudgetIns.json visas per kategori | Budget Total måste hämta IN från `BudgetIns.json` och kombinera med UT från trans­aktioner |
 | G2 | Kvar-fliken | `IN + UT` per kategori per månad | Visar samma som Budget Total | Kalla `SnurraIgenom` → `BindKvarBudgetTableUi` (ny sorts bindning för `Rad`-modellen) |
-| G3 | Kategori-nyckel | Rent kategorinamn (t.ex. `"el"`) | `"Group Name"` (t.ex. `"Fast el"`) eller `" el"` (om Group är tom) — `Categories.ToString()` i `Model/Categories.cs:10` returnerar alltid `$"{Group} {Name}"` med ledande blanksteg | Se beslut **D7**. `CategoryNameNoGroup` finns redan i `Transaction.cs:36`; använd den i `TableGetter.GroupOnMonthAndCategory` när Group är tom/null |
+| G3 | Kategori-nyckel | Rent kategorinamn (t.ex. `"el"`) vid tom grupp | **Delvis åtgärdat:** `Transaction.BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory` använder rent namn när `Group` är tom; icke-tom grupp behåller `CategoryName` | Facit-jämförelse för rader med riktig grupp i XML kan fortfarande kräva uppföljning |
 | G4 | Tecken-konvention | IN ≥ 0, UT ≤ 0, KVAR = IN + UT | Samma i `SnurraIgenom` | OK |
 | G5 | Auto-kategorisering | `CategoryHandler` matchar hela `InfoDescription` exakt | Case-insensitive trim-jämförelse på hela beskrivningen | Facit visar många fria­texter (`PILEG$RDENS SERVICEBUT ASKIM`) → kräver substring/regex-matchning eller manuellt angivna aliaser |
 | G6 | BudgetIns.json täckning | 363 in-rader / år × 2 år = 726 rader | Testdata har 10 rader för år 2016 | Måste fyllas med riktig budget för 2014/2015 (kan genereras direkt ur facit-filen) |
 | G7 | Filkälla | Flera transaktioner per dag, sve-kultur­decimaler | Läser `.xls` via `TransactionHandler` | Kontrollera att läsningen levererar exakt samma 1 654 rader |
-| G8 | Regulatorflagga | `Regular` / `Ignore` i kol 12 | Oklart om den filtreras | Beslut **D12**: `Ignore`-rader inkluderas i facit men exkluderas i `expected-ut` så filterregeln blir testbar |
-| G9 | Månadskultur | `"YYYY January"` (engelska) | `Transaction.GetMonthAsFullString` — kultur ej verifierad i koden | Beslut **D10**: Verifiera att `MMMM`-formatteringen är invariant; om inte, ändra i M5 |
+| G8 | Regulatorflagga | `Regular` / `Ignore` i kol 12 | **Åtgärdat för budgettabell:** `TransactionTransformer` sätter `SourceEntryType` från `KontoEntry.EntryType`; `TableGetter.GroupOnMonthAndCategory` exkluderar `Ignore` från aggregering (D12). Transaktionslistan i UI kan fortfarande visa alla rader. |
+| G9 | Månadskultur | `"YYYY January"` (engelska) | `GetMonthAsFullString` använder redan `InvariantCulture` | **Verifierat** i `TableGetterCategoryKeyTests` (D10) |
 
 ---
 
@@ -641,14 +641,9 @@ Förkrav: M0 är klar.
    formateringen blir enhetlig mellan flikarna.
 3. **BudgetIns.json** (D9): Generera `BudgetIns.json` för 2014/2015 ur facit. Utvärdera
    enligt 0.4 om befintligt schema ska behållas eller migreras till facit-formatet.
-4. **Kategori-normalisering** (D7): Uppdatera `TableGetter.GroupOnMonthAndCategory`
-   (`Services/TableGetter.cs:42-55`) att använda `t.CategoryNameNoGroup` när `Group`
-   är tom/null. Berör **inte** `Categories.ToString()` så övrig kod påverkas inte.
-5. **Ignore-flagga** (D12): Säkerställ att `Ignore`-markerade transaktioner filtreras
-   bort där transaktioner laddas (i `TransactionHandler` eller i `WebBankBudgeter`).
-6. **Månadskultur** (D10): Ändra `Transaction.GetMonthAsFullString` till
-   `dateTime.ToString("MMMM", CultureInfo.InvariantCulture)`. Säkerställer `"January"`
-   och inte `"januari"` oavsett tråd-kultur.
+4. **Kategori-normalisering** (D7): **Klart** i service — `BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory`.
+5. **Ignore-flagga** (D12): **Klart** i `TableGetter` (exkludera `KontoEntryType.Ignore` vid budgetaggregering) + `SourceEntryType` från `TransactionTransformer`.
+6. **Månadskultur** (D10): **Klart** — `GetMonthAsFullString` använder redan `InvariantCulture`; test tillagt.
 7. **UI-presentation** (0.2): Formatsträng `# ##0` med `sv-SE` i grid-bindningen
    (tusentalsavgränsare, inga decimaler). Påverkar bara displayen, inte modellen.
 

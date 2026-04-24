@@ -19,8 +19,8 @@ namespace WebBankBudgeterService.Services.Helpers
         public BudgetRow GetOrAddRow()
         {
             BudgetRow row;
-            // Lägg till
-            var categoryText_AsKey = RecordOne.CategoryName;
+            // Lägg till (samma nyckel som GroupOnMonthAndCategory — D7 tom grupp)
+            var categoryText_AsKey = RecordOne.BudgetTableCategoryKey;
             if (_catChartModelRowList.ContainsKey(categoryText_AsKey))
             {
                 row = _catChartModelRowList[categoryText_AsKey];

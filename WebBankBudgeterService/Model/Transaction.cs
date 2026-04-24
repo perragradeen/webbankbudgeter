@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using BudgeterCore.Entities;
 
 namespace WebBankBudgeterService.Model
 {
@@ -8,6 +9,12 @@ namespace WebBankBudgeterService.Model
         private string Date { get; set; }
         public string Description { get; set; }
         public object Amount { get; set; }
+
+        /// <summary>
+        /// Satt vid inläsning från Excel (<see cref="KontoEntry.EntryType"/>). Används för D12: Ignore-rader
+        /// ska inte ingå i budgettabellaggregering.
+        /// </summary>
+        public KontoEntryType SourceEntryType { get; set; } = KontoEntryType.Regular;
 
         public string ExpenseControlIncluded { get; set; }
         public Categorizations Categorizations { get; set; }
@@ -51,6 +58,29 @@ namespace WebBankBudgeterService.Model
                 };
 
                 return categories.Name;
+            }
+        }
+
+        /// <summary>
+        /// Nyckel för budgettabell / gruppering: vid tom kategori-grupp (D7) använd rent namn,
+        /// annars samma som <see cref="CategoryName"/> (grupp + namn).
+        /// </summary>
+        public string BudgetTableCategoryKey
+        {
+            get
+            {
+                var categories = Categorizations?.Categories?.FirstOrDefault();
+                if (categories == null || categories.Name == null)
+                {
+                    return CategoryName;
+                }
+
+                if (string.IsNullOrWhiteSpace(categories.Group))
+                {
+                    return categories.Name.Trim();
+                }
+
+                return CategoryName;
             }
         }
 

@@ -21,6 +21,18 @@
 
 ---
 
+## ✅ Plan M5 — service (D7, D10, D12 delar)
+
+| Punkt | Status |
+|-------|--------|
+| D7: `BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory` (tom grupp → rent kategorinamn) | Klart i kod + `TableGetterCategoryKeyTests` |
+| D10: `GetMonthAsFullString` invariant | Verifierat i test (redan `InvariantCulture` i kod) |
+| D12: `Ignore` exkluderas från budgettabellaggregering (`SourceEntryType` från Excel-rad) | Klart i kod + test |
+
+**Nästa enligt plan:** M5.1 Budget Total med IN från `BudgetIns`, M5.3–M5.7 UI/format, WinForms val av in-poster (D16).
+
+---
+
 ## ⏳ Dela affärslogik mellan WinForms-UI och ConsoleBudgeter
 
 **Status:** PENDING
