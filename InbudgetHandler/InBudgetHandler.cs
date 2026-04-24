@@ -50,6 +50,16 @@ namespace InbudgetHandler
         }
 
         /// <summary>
+        /// Läser in-poster från facit <c>budget-in-{year}.json</c> (samma format som testdata).
+        /// </summary>
+        public void SetInPosterFromFacitFile(string facitDirectory, int year)
+        {
+            var path = FacitBudgetInLoader.GetDefaultFilePath(facitDirectory, year);
+            var list = FacitBudgetInLoader.Load(path, year);
+            SetInPoster(list);
+        }
+
+        /// <summary>
         /// Ex
         /// 2021-06
         /// 2016-05

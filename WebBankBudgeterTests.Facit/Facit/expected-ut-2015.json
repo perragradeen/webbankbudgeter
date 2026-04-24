@@ -1,0 +1,1542 @@
+[
+  {
+    "category": "-",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": 0
+  },
+  {
+    "category": "-",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": 0
+  },
+  {
+    "category": "-",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": 0
+  },
+  {
+    "category": "-",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": 0
+  },
+  {
+    "category": "-",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": 0
+  },
+  {
+    "category": "-",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": 0
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": 28273
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": 29213
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": 28441
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": 27501
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": 28273
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": 29683
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": 32079
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": 29291
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": 30623
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": 28805
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": 28687
+  },
+  {
+    "category": "\u002B",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": 28687
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -202
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -132
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -146
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -449
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -385
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -180
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -336
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -124
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -270
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -110
+  },
+  {
+    "category": "alkohol",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -125
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -3064
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -3064
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -3064
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -3061
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -443
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -200
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -256
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -182
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -266
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -201
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -441
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -251
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -130
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -291
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -153
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -151
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -153
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -608.6
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -2272.13
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -110
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -177.86
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -483.14
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -915.3
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -2616.66
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -12400.8
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -12182
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -12141
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -13313.8
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -13718.4
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -28455
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -21110.6
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -20892.8
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -7001.8
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -9926.8
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -21000.8
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -28785.8
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -299
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -299
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -96
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -2268
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -299
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -299
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -1140
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -299
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -299
+  },
+  {
+    "category": "Intr\u00E4de i samband med supa",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -906
+  },
+  {
+    "category": "Intr\u00E4de i samband med supa",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -4498.16
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -249
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -3559
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -303
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -298
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -1219
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -1299
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -1549
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -1515
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -666
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -524
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -890
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -1470
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -2704
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -1569
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -1655
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -647
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -1870
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -1274.3
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -4322.25
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -3812
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -915
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -3289
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -1573.51
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -10214.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -3327
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -951
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -1517
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -2026
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -4319.21
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -2256
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -2544.94
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -2730
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -1147
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -3152
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -798
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -3218
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -886
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -755
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -439
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": 397
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": 30
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -280
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": 242
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": 18
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -1985
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -111.1
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -13146
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -1879
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -230
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -145.01
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -640
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -129
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -129
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -3131.8
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -500
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -749
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -200
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -2924
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -350
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -100
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -100
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -320
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -580
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -580
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -1565
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -280
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -430
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -450
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -374
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": 300
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -15133
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -18357.4
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -18046.89
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -94353.69
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -20387.86
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -17301.64
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -11093.58
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": 49750
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": 10015
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -1250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": 750
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till amortering",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -250
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -748.07
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -836.6
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -354.26
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": 1500
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -790
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -6389
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -232
+  },
+  {
+    "category": "spara till russel \u00F6vrigt",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -545.22
+  },
+  {
+    "category": "spara till sommarrussel",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "actualAmount": -12718.25
+  },
+  {
+    "category": "spara till sommarrussel",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "actualAmount": 1184.06
+  },
+  {
+    "category": "spara till sommarrussel",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": 3502
+  },
+  {
+    "category": "spara till sommarrussel",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "actualAmount": -693.16
+  },
+  {
+    "category": "taxi efter supa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -200
+  },
+  {
+    "category": "taxi efter supa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "actualAmount": -300
+  },
+  {
+    "category": "telefonsamtal",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -569
+  },
+  {
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "actualAmount": -416
+  },
+  {
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "actualAmount": -505
+  },
+  {
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "actualAmount": -552
+  },
+  {
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "actualAmount": -569
+  },
+  {
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "actualAmount": -251
+  },
+  {
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "actualAmount": -228
+  }
+]

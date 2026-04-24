@@ -30,7 +30,7 @@ namespace GeneralSettingsHandler
         {
             var prop = GetSettingProperty(name);
             var textFileRowNumber = prop?.RownumberInTextfile;
-            var textFilePath = prop?.TextfileName;
+            var textFilePath = prop?.TextfileName?.Replace('\\', Path.DirectorySeparatorChar);
 
             TextReader fileReader = new StreamReader(textFilePath);
 

@@ -14,6 +14,12 @@ namespace WebBankBudgeterUi
     {
         internal const string CategoryNameColumnDescription = "Category . Month->";
 
+        /// <summary>Inställning <c>InPosterSource</c>: lokal <c>BudgetIns.json</c> (standard).</summary>
+        public const string InPosterSourceBudgetIns = "BudgetIns";
+
+        /// <summary>Inställning <c>InPosterSource</c>: facit <c>budget-in-ÅR.json</c> i <c>FacitBudgetInDirectory</c>.</summary>
+        public const string InPosterSourceFacitJson = "FacitJson";
+
         private readonly GeneralSettingsGetter generalSettingsGetter;
         private readonly TransactionHandler _transactionHandler;
         private readonly InBudgetHandler _inBudgetHandler;
@@ -85,6 +91,54 @@ namespace WebBankBudgeterUi
             return Path.Combine(appPath, @"TestData\BudgetIns.json");
         }
 
+        /// <summary>
+        /// Laddar om in-poster från vald källa (GeneralSettings: InPosterSource, FacitBudgetInDirectory).
+        /// Anropas från UI med filtreringsår innan tabeller fylls.
+        /// </summary>
+        internal async Task EnsureInPosterSourceAsync(string filterYearText)
+        {
+            var source = generalSettingsGetter.GetStringSetting("InPosterSource")?.Trim();
+            if (string.IsNullOrEmpty(source) ||
+                string.Equals(source, InPosterSourceBudgetIns, StringComparison.OrdinalIgnoreCase))
+            {
+                _ = await _inBudgetHandler.SetInPosterFromDisk();
+                return;
+            }
+
+            if (!string.Equals(source, InPosterSourceFacitJson, StringComparison.OrdinalIgnoreCase))
+            {
+                writeLineToOutputAndScrollDown(
+                    $"Okänd InPosterSource '{source}', använder {InPosterSourceBudgetIns}.{Environment.NewLine}");
+                _ = await _inBudgetHandler.SetInPosterFromDisk();
+                return;
+            }
+
+            if (!int.TryParse(filterYearText?.Trim(), System.Globalization.NumberStyles.Integer,
+                    System.Globalization.CultureInfo.InvariantCulture, out var year))
+            {
+                year = DateTime.Today.Year;
+            }
+
+            var facitDir = generalSettingsGetter.GetStringSetting("FacitBudgetInDirectory")?.Trim();
+            if (string.IsNullOrEmpty(facitDir))
+            {
+                facitDir = "Facit";
+            }
+
+            if (!Path.IsPathRooted(facitDir))
+            {
+                facitDir = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, facitDir));
+            }
+
+            _inBudgetHandler.SetInPosterFromFacitFile(facitDir, year);
+        }
+
+        public bool UsesFacitInPosterSource()
+        {
+            var source = generalSettingsGetter.GetStringSetting("InPosterSource")?.Trim();
+            return string.Equals(source, InPosterSourceFacitJson, StringComparison.OrdinalIgnoreCase);
+        }
+
         internal async Task FillTablesAsync()
         {
             // Hämta, behandla och koppla data till UI
@@ -129,58 +183,8 @@ namespace WebBankBudgeterUi
         internal static List<Rad> SnurraIgenom(
             IEnumerable<Rad> inData,
             List<BudgetRow> utgifter,
-            Action<string> writeLineToOutputAndScrollDown)
-        {
-            if (utgifter == null)
-            {
-                throw new ArgumentNullException(nameof(utgifter));
-            }
-
-            var kvarrader = new List<Rad>();
-            foreach (var inBudget in inData)
-            {
-                // Synka med kategori och månad.
-                // Hitta motsvarande utgift
-                var motsvarandeUtgifterRader = utgifter
-                    .Where(u => u.CategoryText.Trim() == inBudget.RadNamnY.Trim()
-                    );
-
-                var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
-                foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
-                {
-                    foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)
-                    {
-                        if (inBudget.Kolumner.ContainsKey(utgiftsMånad.Key))
-                        {
-                            // och räkna ut diff.
-                            var kvar =
-                                // inkomst - utgift
-                                inBudget.Kolumner[utgiftsMånad.Key]
-                                + utgiftsMånad.Value; // Utgifter är negativa ie -1200
-
-                            if (!nuvarandeRad.Kolumner.ContainsKey(utgiftsMånad.Key))
-                            {
-                                nuvarandeRad.Kolumner.Add(utgiftsMånad.Key, 0);
-                            }
-
-                            nuvarandeRad.Kolumner[utgiftsMånad.Key] += kvar;
-                        }
-                        else
-                        {
-                            // Fel
-                            var message = "Hittar ingen motsvarande inpost för utgift i :"
-                                          + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
-
-                            writeLineToOutputAndScrollDown(message);
-                        }
-                    }
-                }
-
-                kvarrader.Add(nuvarandeRad);
-            }
-
-            return kvarrader;
-        }
+            Action<string> writeLineToOutputAndScrollDown) =>
+            InBudgetMath.SnurraIgenom(inData, utgifter, writeLineToOutputAndScrollDown);
 
         internal MonthAvarages CalculateMonthlyAvarages()
         {
@@ -208,6 +212,33 @@ namespace WebBankBudgeterUi
         internal TextToTableOutPuter TransformToTextTableFromTransactions()
         {
             return _transactionHandler?.GetTextTableFromTransactions();
+        }
+
+        /// <summary>
+        /// Slår in budget-IN i samma tabell som transaktions-UT (plan M5.1 / G1).
+        /// </summary>
+        internal static void MergeBudgetInsIntoBudgetTextTable(TextToTableOutPuter table, List<Rad> inPosterRader)
+        {
+            if (table == null || inPosterRader == null || inPosterRader.Count == 0)
+            {
+                return;
+            }
+
+            BudgetTableInMerger.MergeInRows(table, inPosterRader);
+        }
+
+        /// <summary>
+        /// Kvar = IN + UT per kategori (befintlig <see cref="SnurraIgenom"/>), som <see cref="TextToTableOutPuter"/> för grid-bindning.
+        /// </summary>
+        internal TextToTableOutPuter BuildKvarTextTable(TextToTableOutPuter mergedExpenseTable, List<Rad> inPosterRader,
+            Action<string> logLine)
+        {
+            if (mergedExpenseTable?.BudgetRows == null)
+            {
+                return new TextToTableOutPuter();
+            }
+
+            return KvarTextTableBuilder.Build(mergedExpenseTable, inPosterRader, logLine);
         }
 
         internal void DescribeReoccurringGroups()

@@ -4,4 +4,8 @@
 	<!--<Property Name="TransactionTestFilePath" Value="C:\temp\Pelles Budget.xls"/>-->
 	<!--TODO: Byt från joxiga relativa sökvägar. ev välj från UI och spara...-->
   <Property Name="CategoryPath" Value="..\..\..\..\BudgetterarnUi\Data\Categories.xml"/>
+  <!-- In-poster (gv_incomes / merge mot Budget Total): BudgetIns | FacitJson -->
+  <Property Name="InPosterSource" Value="BudgetIns"/>
+  <!-- Vid FacitJson: katalog med budget-in-ÅR.json (relativt appens output om ej absolut) -->
+  <Property Name="FacitBudgetInDirectory" Value="Facit"/>
 </GeneralSettings>

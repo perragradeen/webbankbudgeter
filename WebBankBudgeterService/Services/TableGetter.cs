@@ -42,12 +42,16 @@ namespace WebBankBudgeterService.Services
         public static IEnumerable<IGrouping<TransGrouping, Transaction>>? GroupOnMonthAndCategory(
             List<Transaction>? transactions)
         {
-            var g = transactions?.GroupBy(t =>
+            var forBudget = transactions?
+                .Where(t => t.SourceEntryType != BudgeterCore.Entities.KontoEntryType.Ignore)
+                .ToList();
+
+            var g = forBudget?.GroupBy(t =>
                 new TransGrouping
                 {
                     Year = t.DateAsDate.Year,
                     Month = t.DateAsDate.Month,
-                    Category = t.CategoryName
+                    Category = t.BudgetTableCategoryKey
                 }
             );
 
