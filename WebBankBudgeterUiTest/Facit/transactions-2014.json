@@ -1,0 +1,7283 @@
+[
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 27,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 27,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 31,
+    "description": "Periodens k\u00F6p",
+    "amount": -12257.06,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 18,
+    "description": "buffer",
+    "amount": -50000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 18,
+    "description": "buffer",
+    "amount": 50000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 25,
+    "description": "buffer",
+    "amount": -50000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 25,
+    "description": "buffer",
+    "amount": 50000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "Periodens k\u00F6p",
+    "amount": -5564,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 5,
+    "description": "L\u00C4GENHET",
+    "amount": 300,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 7,
+    "description": "L\u00E4genhet",
+    "amount": -300,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 7,
+    "description": "buffer",
+    "amount": -30000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 7,
+    "description": "buffer",
+    "amount": 30000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 31,
+    "description": "Periodens k\u00F6p",
+    "amount": -6486.44,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "Periodens k\u00F6p",
+    "amount": -8206.9,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 26,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 26,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "Periodens k\u00F6p",
+    "amount": -8095.68,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "Periodens k\u00F6p",
+    "amount": -10897.55,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 31,
+    "description": "Periodens k\u00F6p",
+    "amount": -17502.95,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "Periodens k\u00F6p",
+    "amount": -20454.93,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": " -",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 30,
+    "description": "Periodens k\u00F6p",
+    "amount": -11310.38,
+    "category": " -",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 1,
+    "description": "Ok\u00E4nd ins\u00E4ttning missad",
+    "amount": 4421,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 27,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 27,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 31,
+    "description": "Periodens k\u00F6p",
+    "amount": -10100.87,
+    "category": "-",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 25,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 28,
+    "description": "Periodens k\u00F6p",
+    "amount": -11190.49,
+    "category": "-",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "M\u00E5nadsbuffert",
+    "amount": -5000,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "M\u00E5nadsbuffert",
+    "amount": 5000,
+    "category": "-",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 30,
+    "description": "Periodens k\u00F6p",
+    "amount": -8027.9,
+    "category": "-",
+    "flag": "Ignore"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 23,
+    "description": "L\u00D6N",
+    "amount": 28581,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 24,
+    "description": "L\u00D6N",
+    "amount": 29521,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 24,
+    "description": "L\u00D6N",
+    "amount": 28581,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 24,
+    "description": "L\u00D6N",
+    "amount": 28581,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 23,
+    "description": "L\u00D6N",
+    "amount": 29051,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 24,
+    "description": "L\u00D6N",
+    "amount": 29051,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 24,
+    "description": "L\u00D6N",
+    "amount": 28675,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 22,
+    "description": "L\u00D6N",
+    "amount": 32223,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 24,
+    "description": "L\u00D6N",
+    "amount": 23097,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 23,
+    "description": "L\u00D6N",
+    "amount": 30239,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 21,
+    "description": "L\u00D6N",
+    "amount": 29051,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 19,
+    "description": "L\u00D6N",
+    "amount": 31401,
+    "category": "\u002B",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 21,
+    "description": "NYA TEMPLE PUB",
+    "amount": -320,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 21,
+    "description": "BA 1101 GOTEBORGS KO",
+    "amount": -50,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 22,
+    "description": "Shell 7-11 61358 Cen",
+    "amount": -178,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 1,
+    "description": "HOGLUNDS GRILL",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 8,
+    "description": "PRESSBYRAN 4028142",
+    "amount": -111,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 16,
+    "description": "NORSTASKE BAB",
+    "amount": -55,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 16,
+    "description": "COOP EXTRA ERIKSBERG",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 22,
+    "description": "GODISAFFAREN",
+    "amount": -45,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 26,
+    "description": "PRESSBYRAN 4128121",
+    "amount": -45,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 2,
+    "description": "STATOIL ERIKSBE",
+    "amount": -45,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 5,
+    "description": "PRESSBYRAN 4150113",
+    "amount": -53,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 6,
+    "description": "PRESSBYRAN 4150113",
+    "amount": -84,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 17,
+    "description": "PRESSBYRAN 4128121",
+    "amount": -90,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 18,
+    "description": "PRESSBYRAN 4128810",
+    "amount": -104,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 25,
+    "description": "PRESSBYRAN 4128121",
+    "amount": -45,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 26,
+    "description": "PRESSBYRAN 4128810",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 1,
+    "description": "7-ELEVEN 4117142",
+    "amount": -48,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 1,
+    "description": "7-ELEVEN 4116157",
+    "amount": -110,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "7-ELEVEN 4117142",
+    "amount": -102,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 20,
+    "description": "STATOIL ERIKSBE",
+    "amount": -102,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 22,
+    "description": "7-ELEVEN 4116157",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 24,
+    "description": "7-ELEVEN 4217153",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 5,
+    "description": "PRESSBYRAN 4128121",
+    "amount": -66,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 13,
+    "description": "7-ELEVEN 4216151",
+    "amount": -65,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 13,
+    "description": "7-ELEVEN 4216151",
+    "amount": -40,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 24,
+    "description": "PRESSBYRAN 4250128",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 26,
+    "description": "HOGLUNDS GRILL",
+    "amount": -101,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 12,
+    "description": "7-ELEVEN 4116157",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 22,
+    "description": "CAFE VASA",
+    "amount": -110,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 22,
+    "description": "7-ELEVEN 4217153",
+    "amount": -116,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 23,
+    "description": "ROCKBAREN",
+    "amount": -92,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 23,
+    "description": "ROCKBAREN",
+    "amount": -78,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 23,
+    "description": "7-ELEVEN 4217153",
+    "amount": -154,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "Viggos I Lund",
+    "amount": -159,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "MEJERIET",
+    "amount": -253,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "MEJERIET",
+    "amount": -130,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 13,
+    "description": "7-ELEVEN 4316151",
+    "amount": -45,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 18,
+    "description": "7-ELEVEN 4116150",
+    "amount": -65,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 20,
+    "description": "7-ELEVEN 4217107",
+    "amount": -86,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 24,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -66,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 1,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 7,
+    "description": "STATOIL ERIKSBE",
+    "amount": -103,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 14,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -51,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 18,
+    "description": "STATOIL ERIKSBE",
+    "amount": -50,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 24,
+    "description": "HEMK@P G@TEBORG",
+    "amount": -103,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 30,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -66,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 10,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -57,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 14,
+    "description": "COOP FORUM SISJON",
+    "amount": -104,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 15,
+    "description": "CARDELLS B/S AB",
+    "amount": -56,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "7-ELEVEN 4116157",
+    "amount": -79,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 26,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -67,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 29,
+    "description": "PRESSBYR$N 4128115 G@TEBORG ",
+    "amount": -104,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "PRESSBYR$N 4128121 V. FR@LUNDA ",
+    "amount": -104,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "PRESSBYR$N 4025133 G@TEBORG ",
+    "amount": -52,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 17,
+    "description": "PRESSBYR$N 4128121 V. FR@LUNDA ",
+    "amount": -52,
+    "category": "alkohol",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "CENTRALA STUDI",
+    "amount": -3032,
+    "category": "csn",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "CENTRALA STUDI",
+    "amount": -3032,
+    "category": "csn",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "CENTRALA STUDI",
+    "amount": -3032,
+    "category": "csn",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 28,
+    "description": "CENTRALA STUDI",
+    "amount": -3032,
+    "category": "csn",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 2,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -241,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 3,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -192,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 6,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -169,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 31,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -244,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 7,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -203,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -247,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 4,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -163,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 3,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -164,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 30,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -241,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 5,
+    "description": "G\u00D6TEBORG ENERG",
+    "amount": -163,
+    "category": "el",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 2,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 3,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 3,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 2,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 2,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 1,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 1,
+    "description": "LF",
+    "amount": -119,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 1,
+    "description": "LF",
+    "amount": -132,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 1,
+    "description": "LF",
+    "amount": -130,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 3,
+    "description": "LF",
+    "amount": -130,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "LF",
+    "amount": -130,
+    "category": "hemf\u00F6rs\u00E4kring",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 3,
+    "description": "WILLYS SISJON",
+    "amount": -97.2,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 3,
+    "description": "WILLYS SISJON",
+    "amount": -51,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 3,
+    "description": "MEDMERA BANK A",
+    "amount": -1000,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 10,
+    "description": "MEDMERA BANK A",
+    "amount": -500,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 30,
+    "description": "KD APOTEK",
+    "amount": -180,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 24,
+    "description": "WILLYS SISJON",
+    "amount": -204.7,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 5,
+    "description": "MEDMERA BANK A",
+    "amount": -1000,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 26,
+    "description": "COOP EXTRA ERIKSBERG",
+    "amount": -576.87,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 25,
+    "description": "COOP EXTRA ERIKSBERG",
+    "amount": -294.91,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 14,
+    "description": "COOP FORUM SISJON",
+    "amount": -35.75,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 3,
+    "description": "WILLYS SISJ@N ASKIM ",
+    "amount": -8.9,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 3,
+    "description": "SEBASTIAN OLSS",
+    "amount": 23,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 23,
+    "description": "COOP KONSUM VARNAMO VARNAMO ",
+    "amount": -380.74,
+    "category": "hemlagad mat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 2,
+    "description": "HS 12151444",
+    "amount": -6239,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 10,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 31,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 31,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 3,
+    "description": "HS 12151444",
+    "amount": -6231,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 3,
+    "description": "HS 12151444",
+    "amount": -6156,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 28,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 31,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -6134,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 2,
+    "description": "HS 12151444",
+    "amount": -6127,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 2,
+    "description": "HS 12151444",
+    "amount": -6120,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -6113,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 31,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 31,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -6106,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -6026,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 30,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 30,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -5999,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 30,
+    "description": "HS 12151444",
+    "amount": -1279,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 31,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 31,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 3,
+    "description": "HS 12151444",
+    "amount": -4670,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 28,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 28,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -4569,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "HS 12151444",
+    "amount": -3665,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 30,
+    "description": "HSB G\u00D6TEBORG",
+    "amount": -4007,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 30,
+    "description": "HSB BOKVAR",
+    "amount": -207.8,
+    "category": "hyra (inkl. 1k amortering)",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 25,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 26,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 27,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 23,
+    "description": "TELE2 - FASTA",
+    "amount": -299,
+    "category": "internet",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 29,
+    "description": "Ticnet",
+    "amount": -2500,
+    "category": "Intr\u00E4de i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 29,
+    "description": "1 S-D BAT.",
+    "amount": 625,
+    "category": "Intr\u00E4de i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "SEBASTIAN OLSS",
+    "amount": 625,
+    "category": "Intr\u00E4de i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "H\u00E5rdrock",
+    "amount": 700,
+    "category": "Intr\u00E4de i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 19,
+    "description": "CHISTINE DESIGN/KONS",
+    "amount": -399,
+    "category": "kl\u00E4der",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "INTERSPORT SKARHOLME",
+    "amount": -499,
+    "category": "kl\u00E4der",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 25,
+    "description": "387 DRESSMANN VARNAM",
+    "amount": -2674,
+    "category": "kl\u00E4der",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 31,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 28,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 27,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 30,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 28,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 29,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 30,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 27,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -285,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "AKADEMIKERF\u00D6",
+    "amount": -303,
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 2,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 3,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 10,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 22,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 29,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 18,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 6,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 12,
+    "description": "WANXING RESTAURANG",
+    "amount": -70,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 24,
+    "description": "AQUARELLE",
+    "amount": -80,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 24,
+    "description": "AQUARELLE",
+    "amount": -720,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 31,
+    "description": "GLADA PAPRIKAN",
+    "amount": -85,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 11,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 21,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 22,
+    "description": "BOMBAY",
+    "amount": -79,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 12,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 19,
+    "description": "AQUARELLE",
+    "amount": -80,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 4,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 5,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 6,
+    "description": "EBBAS KOK",
+    "amount": -69,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 7,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 8,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 11,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 13,
+    "description": "WANXING RESTAURANG",
+    "amount": -70,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 25,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 27,
+    "description": "EBBAS KOK",
+    "amount": -69,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 28,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 2,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 4,
+    "description": "AQUARELLE",
+    "amount": -158,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 5,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 16,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 23,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 24,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 6,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 7,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 13,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 16,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 31,
+    "description": "PIZZERIA CLASS",
+    "amount": -80,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 3,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 4,
+    "description": "ROSE GARDEN SUPREME",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 6,
+    "description": "PIZZERIA CLASS",
+    "amount": -80,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 13,
+    "description": "PIZZERIA CLASS",
+    "amount": -80,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 17,
+    "description": "GLADA PAPRIKAN",
+    "amount": -75,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 20,
+    "description": "PIZZERIA CLASS",
+    "amount": -80,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 26,
+    "description": "AQUARELLE",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 10,
+    "description": "ROSE GARDEN SUPREME S. ASKIM ",
+    "amount": -95,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 18,
+    "description": "AQUARELLE ASKIM ",
+    "amount": -800,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 22,
+    "description": "EBBAS KOK Goteborg ",
+    "amount": -69,
+    "category": "lunch utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "TAXI KURIR GOTEBORG",
+    "amount": -148,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "ROCKBAREN",
+    "amount": -46,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "ROCKBAREN",
+    "amount": -46,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "ROCKBAREN",
+    "amount": -154,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "ROCKBAREN",
+    "amount": -149,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "KINGS HEAD",
+    "amount": -46,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "TAXI KURIR GOTEBORG",
+    "amount": -300,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "TAXI GOTEBORG",
+    "amount": -185,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "STATOIL GAARDA 2",
+    "amount": -255.5,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "ROCKBAREN",
+    "amount": -46,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "ROCKBAREN",
+    "amount": -230,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "ROCKBAREN",
+    "amount": -184,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 10,
+    "description": "ROCKBAREN",
+    "amount": -128,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 8,
+    "description": "ROCKBAREN",
+    "amount": -76,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 14,
+    "description": "SJ BISTRO OMBORD",
+    "amount": -124,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 18,
+    "description": "SVENSKA MESSAN MOTEN",
+    "amount": -136,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 18,
+    "description": "LISEBERGS REST",
+    "amount": -33,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 19,
+    "description": "STAGEDOOR",
+    "amount": -64,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 19,
+    "description": "STAGEDOOR",
+    "amount": -193,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 22,
+    "description": "FOXES",
+    "amount": -340,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 22,
+    "description": "FOXES",
+    "amount": -200,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 22,
+    "description": "FOXES",
+    "amount": -100,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 23,
+    "description": "BANKOMAT 4.44",
+    "amount": -600,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "ATM Kontanten1699",
+    "amount": -600,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 13,
+    "description": "BANKOMAT 21.29",
+    "amount": -700,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 19,
+    "description": "Scandic Hotels Grand",
+    "amount": -210,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 20,
+    "description": "Scandic Hotels Grand",
+    "amount": -59,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 20,
+    "description": "Scandic Hotels Grand",
+    "amount": -120,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 20,
+    "description": "OSCARSTEATERN ID3",
+    "amount": -90,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "Yaki-Da",
+    "amount": -58,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "GLENN SPORTSBAR",
+    "amount": -68,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 2,
+    "description": "OLD BEEFEATER INN",
+    "amount": -70,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 24,
+    "description": "MURVELN",
+    "amount": -276,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 24,
+    "description": "MURVELN",
+    "amount": -112,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 8,
+    "description": "MCDONALD S SCANDINAV",
+    "amount": -75,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 9,
+    "description": "7-ELEVEN 4317152",
+    "amount": -75,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 9,
+    "description": "7-ELEVEN 4115155",
+    "amount": -71,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 14,
+    "description": "SYSTEMBOLAGET ASKIM",
+    "amount": -29.3,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 19,
+    "description": "BRYGGHUSET",
+    "amount": -80,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 19,
+    "description": "BRYGGHUSET",
+    "amount": -65,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "STAGEDOOR",
+    "amount": -62,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "SOUPN BAGEL",
+    "amount": -107,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "REST STAGEDOOR",
+    "amount": -1200,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "Golden Days",
+    "amount": -60,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "GOLDEN DAYS",
+    "amount": -203,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "GOLDEN DAYS",
+    "amount": -180,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "THE DUBLINER",
+    "amount": -69,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "THE DUBLINER",
+    "amount": -58,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "THE DUBLINER",
+    "amount": -165,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "THE DUBLINER",
+    "amount": -161,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "THE DUBLINER",
+    "amount": -120,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "TAXI TUR",
+    "amount": -254,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "SVENSKA MESSAN MOTEN\u0026H GOTEBORG ",
+    "amount": -40,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "SVENSKA MESSAN MOTEN\u0026H GOTEBORG ",
+    "amount": -205,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "SVENSKA MESSAN MOTEN\u0026H GOTEBORG ",
+    "amount": -116,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "Gamla Ullevi Restauran G\u00A6teborg ",
+    "amount": -96,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "Gamla Ullevi Restauran G\u00A6teborg ",
+    "amount": -20,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "Gamla Ullevi Restauran G\u00A6teborg ",
+    "amount": -197,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "BEERISTA GOTEBORG ",
+    "amount": -60,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "BEERISTA GOTEBORG ",
+    "amount": -281,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 18,
+    "description": "THE DUBLINER GOTEBORG ",
+    "amount": -148,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 19,
+    "description": "THE DUBLINER GOTEBORG ",
+    "amount": -120,
+    "category": "mat i samband med supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 1,
+    "description": "PRESSBYRAN 4028324",
+    "amount": -87,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 1,
+    "description": "BURGER KING",
+    "amount": -80,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 7,
+    "description": "REST DA MARIO",
+    "amount": -95,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 8,
+    "description": "REST DA MARIO",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 15,
+    "description": "PRESSBYRAN 4025156",
+    "amount": -84,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 17,
+    "description": "ICA NARA STABBETORGE",
+    "amount": -219.25,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 18,
+    "description": "TRE INDIER",
+    "amount": -332,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 18,
+    "description": "SEGA GUBBEN",
+    "amount": -169.11,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 19,
+    "description": "JACOBS CAFE",
+    "amount": -38,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 21,
+    "description": "TORGGRILLEN",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 22,
+    "description": "TORGGRILLEN",
+    "amount": -45,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 23,
+    "description": "TORGGRILLEN",
+    "amount": -45,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 24,
+    "description": "TORGGRILLEN",
+    "amount": -45,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 25,
+    "description": "ICA NARA STABBETORGE",
+    "amount": -133.6,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 27,
+    "description": "TORGGRILLEN",
+    "amount": -45,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 28,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 29,
+    "description": "TORGGRILLEN",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 30,
+    "description": "TORGGRILLEN",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 30,
+    "description": "SPICE",
+    "amount": -90,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 2,
+    "description": "BURGER KING",
+    "amount": -82,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 3,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 4,
+    "description": "TORGGRILLEN",
+    "amount": -125,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 5,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 6,
+    "description": "TORGGRILLEN",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 7,
+    "description": "TORGGRILLEN",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 11,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 12,
+    "description": "ICA KVANTUM SANNEGAR",
+    "amount": -150.3,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 13,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 14,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 14,
+    "description": "SANNEGARDENS PIZZERI",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 15,
+    "description": "VERLDSKULTURS MUSEET",
+    "amount": -40,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 15,
+    "description": "RESTAURANG TABLA",
+    "amount": -25,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 18,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 19,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 22,
+    "description": "ONLINEPIZZA.SE",
+    "amount": -1242,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 24,
+    "description": "TORGGRILLEN",
+    "amount": -45,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 26,
+    "description": "TORGGRILLEN",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 27,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "PIZZERIA CLASS",
+    "amount": -486,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 1,
+    "description": "CAF\u00C9 ELENA HB",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 3,
+    "description": "TORGGRILLEN",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 4,
+    "description": "TORGGRILLEN",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 5,
+    "description": "TORGGRILLEN",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 8,
+    "description": "WILLYS HEMMA TUVE",
+    "amount": -241.44,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 8,
+    "description": "PIZZA HUT 214",
+    "amount": -24,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 8,
+    "description": "PIZZA HUT 214",
+    "amount": -197,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 10,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 11,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 12,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 15,
+    "description": "GIBRALTAR PIZZERIA",
+    "amount": -83,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 15,
+    "description": "FOXES",
+    "amount": -220,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 16,
+    "description": "BURGER KING",
+    "amount": -112,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 17,
+    "description": "HEDENSGATUKOK",
+    "amount": -69,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 18,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 19,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 20,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 21,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 21,
+    "description": "SYSTEMBOLAGET ASKIM",
+    "amount": -68.9,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 24,
+    "description": "TORGGRILLEN",
+    "amount": -59,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 25,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 26,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 27,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 30,
+    "description": "PIZZERIA CLASS",
+    "amount": -111,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 31,
+    "description": "GOOD THINGS",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 2,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 3,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 4,
+    "description": "Buffalo",
+    "amount": -728,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 4,
+    "description": "Buffalo",
+    "amount": -120,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 8,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 10,
+    "description": "TORGGRILLEN",
+    "amount": -40,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 12,
+    "description": "CYRANO ERIKSBERG",
+    "amount": -133,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 15,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 16,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 19,
+    "description": "CITY GROSS VARNAMO",
+    "amount": -180.48,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 20,
+    "description": "BURGER KING",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 21,
+    "description": "PIZZERIA CLASS",
+    "amount": -118,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 22,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 23,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 24,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 25,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 26,
+    "description": "Buffalo",
+    "amount": -174,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 27,
+    "description": "PRESSBYRAN 4150113",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 27,
+    "description": "BURGER KING",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 28,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 29,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 29,
+    "description": "TACOMANIA",
+    "amount": 150,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "NYA TEMPLE PUB",
+    "amount": -150,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 1,
+    "description": "THE BISHOP S ARMS JA",
+    "amount": -400,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 1,
+    "description": "CAF\u00C9 ELENA HB",
+    "amount": -120,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 3,
+    "description": "PRESSBYRAN 4128810",
+    "amount": -79,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 4,
+    "description": "BURGER KING",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 5,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 5,
+    "description": "PIZZREIA LA SULTANA",
+    "amount": -99,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 5,
+    "description": "Marcus Bjerkst",
+    "amount": 110,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 6,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 6,
+    "description": "Marcus Bjerkst",
+    "amount": 5,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 7,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 8,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 9,
+    "description": "NYA TEMPLE PUB",
+    "amount": -300,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 13,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 14,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 15,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 17,
+    "description": "HOTELL VILLAN AB",
+    "amount": -340,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 18,
+    "description": "KAPTEN NEMOS",
+    "amount": -121,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 18,
+    "description": "IZ UBEJO EVENEMAN",
+    "amount": -100,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 20,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 21,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 24,
+    "description": "SANNEGARDENS PIZZERI",
+    "amount": -102,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 25,
+    "description": "HEMKOP GOTEBORG",
+    "amount": -20,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 25,
+    "description": "BANKOMAT 13.10",
+    "amount": -400,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 27,
+    "description": "MARKLANDS GRILLHOUSE",
+    "amount": -49,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 28,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 29,
+    "description": "RASTA MARIESTAD",
+    "amount": -79,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "BANKOMAT 11.57",
+    "amount": -400,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 31,
+    "description": "PARMA KOK BAR",
+    "amount": -90,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 3,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 4,
+    "description": "TORGGRILLEN",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 5,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 13,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 74,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 13,
+    "description": "SYSTEMBOLAGET ASKIM",
+    "amount": -142.1,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 14,
+    "description": "COOP KONSUM VARNAMO",
+    "amount": -66.95,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 15,
+    "description": "BURGER KING",
+    "amount": -97,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 16,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 17,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 17,
+    "description": "BANKOMAT 11.51",
+    "amount": -300,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 18,
+    "description": "CAFE CURRY",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 19,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 21,
+    "description": "COOP KONSUM VARNAMO",
+    "amount": -519.43,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 21,
+    "description": "COOP KONSUM VARNAMO",
+    "amount": -149,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 7,
+    "description": "PIZZERIA CLASS",
+    "amount": -95,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 19,
+    "description": "ONLINEPIZZA.SE",
+    "amount": -670,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 24,
+    "description": "CAF TAKTIK",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 30,
+    "description": "SANNEGARDENS PIZZERI",
+    "amount": -89,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 3,
+    "description": "BURGER KING",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 4,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 5,
+    "description": "BURGER KING JERNBROT",
+    "amount": -58,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 7,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 8,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 8,
+    "description": "PRESSBYR$N 4025156",
+    "amount": -92,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 12,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 13,
+    "description": "KULTURKALASET",
+    "amount": -49,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 13,
+    "description": "BECKMANS",
+    "amount": -55,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 14,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 18,
+    "description": "PIZZERIA CLASS",
+    "amount": -170,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 19,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 20,
+    "description": "WILLYS SISJ@N",
+    "amount": -144.8,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 21,
+    "description": "TORGGRILLEN",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 23,
+    "description": "onlinepizza.se",
+    "amount": -1213,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "SEBASTIAN OLSS",
+    "amount": 27,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "PRESSBYR$N 4128810",
+    "amount": -38,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "PRESSBYR$N 4128100",
+    "amount": -25,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 31,
+    "description": "MOLLANS LIVS",
+    "amount": -42,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 31,
+    "description": "BURGER KING",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 1,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 2,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 3,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 6,
+    "description": "OOB NORDSTAN 184",
+    "amount": -67.8,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 8,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 9,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 10,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 10,
+    "description": "FREDRIK LARSSO",
+    "amount": 20,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 11,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 12,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 13,
+    "description": "HEMK@P G@TEBORG",
+    "amount": -23.95,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 14,
+    "description": "MC DONALD S",
+    "amount": -136,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 15,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 16,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 17,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 19,
+    "description": "SJ BISTRO HALLSBERG",
+    "amount": -198,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 20,
+    "description": "7-ELEVEN 4217107",
+    "amount": -143,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 21,
+    "description": "VAPIANO",
+    "amount": -97,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 21,
+    "description": "BURGER KING",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 22,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 22,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -66,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 24,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "TIMS THAIKOK",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "SVENSKA MESSAN MOTEN",
+    "amount": -84,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "SVENSKA MESSAN MOTEN",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "SVENSKA MESSAN MOTEN",
+    "amount": -54,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 29,
+    "description": "MARKLANDS GRILLHOUSE",
+    "amount": -69,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 30,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 1,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 4,
+    "description": "CAFE POMERANS",
+    "amount": -149,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 7,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 8,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 10,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 12,
+    "description": "MOTHER INDIA RESTAUR",
+    "amount": -135,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 13,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 14,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 17,
+    "description": "STATOIL ERIKSBE",
+    "amount": -153,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 17,
+    "description": "SANNEGARDENS PIZZERI",
+    "amount": -70,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 18,
+    "description": "HARMONI SUSHIBAR",
+    "amount": -119,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 19,
+    "description": "onlinepizza.se",
+    "amount": -1766,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 20,
+    "description": "TORGGRILLEN",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 21,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 22,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 23,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 28,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 29,
+    "description": "WILLYS SISJ@N",
+    "amount": -136.8,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 29,
+    "description": "SEBASTIAN OLSS",
+    "amount": 28.25,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 30,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 2,
+    "description": "BURGER KING",
+    "amount": -130,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 3,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 7,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 7,
+    "description": "PHRATES RESTAURANG",
+    "amount": -75,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 8,
+    "description": "CITY PIZZERIA",
+    "amount": -85,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 11,
+    "description": "TORGGRILLEN",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 12,
+    "description": "SANNEGARDENS PIZZERI",
+    "amount": -95,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 15,
+    "description": "PRESSBYR$N 4128810",
+    "amount": -37,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 15,
+    "description": "ICA KVANTUM MARIESTA",
+    "amount": -143.03,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 16,
+    "description": "ASIAN PALACE",
+    "amount": -212,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 22,
+    "description": "SOUPN BAGEL",
+    "amount": -54,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 25,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 26,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 27,
+    "description": "TORGGRILLEN",
+    "amount": -60,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 28,
+    "description": "SF BIO, FILMSTADEN BER",
+    "amount": -84,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 29,
+    "description": "REST SIMBA G@TEBORG ",
+    "amount": -90,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 29,
+    "description": "REST SIMBA G@TEBORG ",
+    "amount": -1100,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 1,
+    "description": "TORGGRILLEN VASTRA FROLUN ",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 8,
+    "description": "TORGGRILLEN VASTRA FROLUN ",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 9,
+    "description": "TORGGRILLEN VASTRA FROLUN ",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 10,
+    "description": "TORGGRILLEN VASTRA FROLUN ",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 12,
+    "description": "SANNEGARDENS PIZZERI Goteborg ",
+    "amount": -563,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "PRESSBYR$N 4028142 G@TEBORG ",
+    "amount": -21,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 25,
+    "description": "CITY GROSS V#RNAMO V#RNAMO ",
+    "amount": -156,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 25,
+    "description": "CITY GROSS V#RNAMO V#RNAMO ",
+    "amount": -111.95,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 28,
+    "description": "MAX GAMLA ULLEVI GOTEBORG ",
+    "amount": -65,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 28,
+    "description": "MAX GAMLA ULLEVI GOTEBORG ",
+    "amount": -116,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "SISJ@ GRILLEN ASKIM ",
+    "amount": -78,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "HARMONI SUSHIBAR Goteborg ",
+    "amount": -120,
+    "category": "n\u00F6jes utemat",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 27,
+    "description": "JERKSTRANDS KONDITOR",
+    "amount": -124,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 13,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 124,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 20,
+    "description": "JERKSTRANDS KONDITOR",
+    "amount": -124,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 124,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 15,
+    "description": "\u00C5RSAVGIFT",
+    "amount": -250,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 13,
+    "description": "WEBHALLEN",
+    "amount": -99,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 15,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 99,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 11,
+    "description": "TAXI KURIR GOTEBORG",
+    "amount": -371,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 13,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 371,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 18,
+    "description": "TAXI GOTEBORG",
+    "amount": -366,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 19,
+    "description": "TAXI KURIR GOTEBORG",
+    "amount": -286,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 4,
+    "description": "MAXI ICA STORMARKNAD",
+    "amount": -215,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 6,
+    "description": "BOPLATS GOTEBORG AB",
+    "amount": -100,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 13,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 366,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 22,
+    "description": "JULA AB",
+    "amount": -24.9,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 28,
+    "description": "Utl\u00E4gg spinit",
+    "amount": 24.9,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 18,
+    "description": "TAXI GOTEBORG GOTEBORG ",
+    "amount": -329,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 19,
+    "description": "TAXI GOTEBORG GOTEBORG ",
+    "amount": -325,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 30,
+    "description": "Utl\u00E4gg spinit",
+    "amount": 329,
+    "category": "ov\u00E4ntade utgifter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 25,
+    "description": "JUL METAL",
+    "amount": 2561,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 1,
+    "description": "HEMKOP VARNAMO",
+    "amount": -358.74,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 8,
+    "description": "INETDATA I GOTEBORG",
+    "amount": -1099,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 8,
+    "description": "CAF\u00C9 ELENA HB",
+    "amount": -135,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 15,
+    "description": "GOTEBORGS KONST",
+    "amount": -120,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 1,
+    "description": "SPOTIFY SPOTIFY PREM",
+    "amount": -99,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 16,
+    "description": "\u00D6vernatt",
+    "amount": -200,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 16,
+    "description": "FOXES",
+    "amount": -550,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 3,
+    "description": "INET SISJON",
+    "amount": -299,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 4,
+    "description": "JULA AB",
+    "amount": -468,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 4,
+    "description": "Buffalo",
+    "amount": -120,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 5,
+    "description": "CHINA TOWN",
+    "amount": -384,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 24,
+    "description": "barnsMinusKort",
+    "amount": -255,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 16,
+    "description": "NA ALVSTRANDEN SERVI",
+    "amount": -120,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 29,
+    "description": "PREL. KORTK\u00D6P",
+    "amount": -143,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 29,
+    "description": "OKQ8",
+    "amount": -149.5,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "STHLM FIELDS",
+    "amount": -305,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 14,
+    "description": "SJ BISTRO OMBORD",
+    "amount": -99,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 21,
+    "description": "ICA KVANTUM VARNAMO",
+    "amount": -218.6,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 31,
+    "description": "THE SIMS",
+    "amount": 3000,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 11,
+    "description": "Webhallen AB",
+    "amount": -8489,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 16,
+    "description": "ORIGIN COM EA",
+    "amount": -599,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 20,
+    "description": "PONTUS!",
+    "amount": -2950,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 22,
+    "description": "MOR60",
+    "amount": 3030,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 4,
+    "description": "KARRA GATUKOK",
+    "amount": -49,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 24,
+    "description": "OOB NORDSTAN 184",
+    "amount": -22.9,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 1,
+    "description": "SILL \u0026 DYNAMIT",
+    "amount": -3216,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "Norstaske BAB",
+    "amount": -215,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "MC DONALD S",
+    "amount": -134,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "BANKOMAT 5.06",
+    "amount": -2000,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 23,
+    "description": "BANKOMAT 3.55",
+    "amount": -1000,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 22,
+    "description": "ATM Kontanten1184 Goteborg ",
+    "amount": -300,
+    "category": "presenter",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 6,
+    "description": "HALLANDSTRAFIKEN 405",
+    "amount": -400,
+    "category": "resor i samband med utflykt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 4,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -977,
+    "category": "resor i samband med utflykt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "WEBBILJETT.SE",
+    "amount": -120,
+    "category": "resor i samband med utflykt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "ANAGRAM LIVE AB",
+    "amount": -100,
+    "category": "resor i samband med utflykt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 31,
+    "description": "SKANETRAFIKEN",
+    "amount": -200,
+    "category": "resor i samband med utflykt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 29,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 28,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "UNICEF",
+    "amount": -100,
+    "category": "r\u00F6da korset",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 30,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 27,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 28,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 29,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 28,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 27,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 31,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 28,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 29,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 30,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 27,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "SV INGENJ",
+    "amount": -320,
+    "category": "si och akassa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 1,
+    "description": "Vasttrafik AB",
+    "amount": -500,
+    "category": "Sm\u00E5resor ej supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 8,
+    "description": "PRESSBYRAN 4128121",
+    "amount": -1470,
+    "category": "Sm\u00E5resor ej supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 9,
+    "description": "7-ELEVEN 4116157",
+    "amount": -1521,
+    "category": "Sm\u00E5resor ej supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 4,
+    "description": "PRESSBYR$N 4128121",
+    "amount": -1821,
+    "category": "Sm\u00E5resor ej supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 28,
+    "description": "V#STTRAFIK BUTIK FR@",
+    "amount": -1470,
+    "category": "Sm\u00E5resor ej supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 8,
+    "description": "INETDATA I GOTEBORG",
+    "amount": -129,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 5,
+    "description": "HEM HOBBY SKOVDE",
+    "amount": -502,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 29,
+    "description": "Utl\u00E4gg Spinit",
+    "amount": 204.7,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 6,
+    "description": "Soffa",
+    "amount": -7000,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 7,
+    "description": "CURA APOTEKET SANNEG",
+    "amount": -59,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 7,
+    "description": "CURA APOTEKET SANNEG",
+    "amount": -421.5,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 23,
+    "description": "SALONG CLICHE",
+    "amount": -200,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 1,
+    "description": "Utl\u00E4gg spinit",
+    "amount": 158,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 12,
+    "description": "KJELL CO 38",
+    "amount": -199,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 10,
+    "description": "Boplats G\u00F6tebo",
+    "amount": -100,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 24,
+    "description": "GODJULMOP",
+    "amount": 1000,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 31,
+    "description": "INL\u00C5NINGSR\u00C4NTA",
+    "amount": 39,
+    "category": "spara alm\u00E4nt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 27,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "day": 28,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 28,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 4,
+    "description": "SK7906072439",
+    "amount": 23211,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 28,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 27,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 26,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 29,
+    "description": "LUX R\u00C4NTA",
+    "amount": -1250,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 30,
+    "description": "47516877",
+    "amount": 1000,
+    "category": "spara till amortering",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 3,
+    "description": "CLAS OHLSON",
+    "amount": -50,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 5,
+    "description": "k\u00F6star det n\u00E5t",
+    "amount": 700,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 19,
+    "description": "MARCUS BJERKST",
+    "amount": -15,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 17,
+    "description": "Bio Roy",
+    "amount": -150,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 18,
+    "description": "TAXI GOTEBORG",
+    "amount": -190,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 22,
+    "description": "VSLNLARMET",
+    "amount": 950,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 23,
+    "description": "PRESSBYRAN 4128121",
+    "amount": -300,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 25,
+    "description": "HOTELBOLLE",
+    "amount": 930,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 30,
+    "description": "k\u00F6star det n\u00E5t",
+    "amount": 1000,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 24,
+    "description": "NARHALSAN",
+    "amount": -100,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 24,
+    "description": "KD APOTEK",
+    "amount": -91,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 29,
+    "description": "PREL. KORTK\u00D6P",
+    "amount": -4278,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "TAXI 020 AB",
+    "amount": -143,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 31,
+    "description": "QUALITY P PHILI",
+    "amount": -3720,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 7,
+    "description": "CONCILIANCE",
+    "amount": -419,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 7,
+    "description": "CONCILIANCE PLAN 1:2",
+    "amount": -36,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 7,
+    "description": "CONCILIANCE PLAN 1:2",
+    "amount": -212,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 7,
+    "description": "CONCILIANCE PLAN 1:2",
+    "amount": -136,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 7,
+    "description": "CONCILIANCE PLAN 1:2",
+    "amount": -100,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 24,
+    "description": "Bensin SthlmFi",
+    "amount": -300,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "Yaki-Da",
+    "amount": -170,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "SVENSKA MESSAN",
+    "amount": -180,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 27,
+    "description": "LISEBERG AB",
+    "amount": -180,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "day": 15,
+    "description": "816 TEKNIKMAGASINET",
+    "amount": -169.9,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "PRESSBYR$N 4025133 G@TEBORG ",
+    "amount": -23,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 13,
+    "description": "EMMAUS BJ@RK$ E G@TEBORG ",
+    "amount": -40,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 15,
+    "description": "PRESSBYR$N 4025156 G@TEBORG ",
+    "amount": -8,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 28,
+    "description": "FRIHAMNEN G@TEBORG ",
+    "amount": -293.11,
+    "category": "spara till russel \u00F6vrigt",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "Ticnet",
+    "amount": -565,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "Ticnet",
+    "amount": -4520,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 14,
+    "description": "GRATTISMOP",
+    "amount": 1000,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 27,
+    "description": "AKROPOLIS PIZZERIA I",
+    "amount": -120,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 28,
+    "description": "TICNET.SE 3",
+    "amount": -460,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "OKQ8",
+    "amount": -169,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 30,
+    "description": "MAXI ICA STORMARKNAD",
+    "amount": -506.95,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 3,
+    "description": "GOSTAS CAFE RESTAU",
+    "amount": -227,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 4,
+    "description": "Svenska Turistforeni",
+    "amount": -2000,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 4,
+    "description": "MAXI ICA STORMARKNAD",
+    "amount": -112,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 4,
+    "description": "AVENTYRSLANDET",
+    "amount": -750,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 5,
+    "description": "HEMKOP HAVERDAL",
+    "amount": -40,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 5,
+    "description": "1 kilo oxe",
+    "amount": -2000,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 7,
+    "description": "STENA LINE SE INTERN",
+    "amount": -270,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 8,
+    "description": "TELENOR BUTIKKEN 83",
+    "amount": -188.76,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 8,
+    "description": "STENA DANICA RE",
+    "amount": -176,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 8,
+    "description": "NETTO SKOEJTEALLEEN",
+    "amount": -477.84,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 8,
+    "description": "LE CAMPING",
+    "amount": -478.87,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 8,
+    "description": "DANABURGER VMOGENS L",
+    "amount": -34.2,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 8,
+    "description": "ARAL STATION 1602661",
+    "amount": -491.03,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 9,
+    "description": "TACHELES",
+    "amount": -567.23,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 9,
+    "description": "SPK FREIBURG-NOERDLI",
+    "amount": -945.39,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 9,
+    "description": "BAB-Rastst.Graefenha",
+    "amount": -185.32,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 10,
+    "description": "VOLKSBANK FREIBURG E",
+    "amount": -945.39,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 10,
+    "description": "Shell 0894",
+    "amount": -179,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 12,
+    "description": "SPK ENGEN-GOTTMADING",
+    "amount": -937.67,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 12,
+    "description": "Shell 2252",
+    "amount": -181.81,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 12,
+    "description": "FREIBURG REMPARTSTR",
+    "amount": -46.97,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 13,
+    "description": "FREIE TANKSTELLE",
+    "amount": -655.99,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 15,
+    "description": "Passaggio Free Flow",
+    "amount": -112.92,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 15,
+    "description": "MIX SHOP SUED",
+    "amount": -234.47,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 15,
+    "description": "Change Nord",
+    "amount": -310.56,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 16,
+    "description": "TOTAL-BAB-TANKSTELLE",
+    "amount": -452.47,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 16,
+    "description": "Shell 2230",
+    "amount": -355.76,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 16,
+    "description": "Q8 SERVICE 8098",
+    "amount": -511.61,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 16,
+    "description": "Camping am Moslepark",
+    "amount": -1354.27,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 17,
+    "description": "TAXI GOTEBORG",
+    "amount": -320,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 21,
+    "description": "Marcus Bjerkst",
+    "amount": 5000,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 24,
+    "description": "PREL. KORTK\u00D6P",
+    "amount": -120,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 24,
+    "description": "JAMESONS PUB",
+    "amount": -50,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 24,
+    "description": "JAMESONS PUB",
+    "amount": -100,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "STATOIL ERIKSBE",
+    "amount": -102,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "PORT ARTHUR P B",
+    "amount": -1180,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "NORSTASKE BAB",
+    "amount": -116,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "JAMESONS PUB",
+    "amount": -120,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 26,
+    "description": "THE DUBLINER",
+    "amount": -68,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 26,
+    "description": "PRESSBYRAN 4128810",
+    "amount": -39,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 26,
+    "description": "NORWEGIAN AI32871417",
+    "amount": -3443,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 26,
+    "description": "GAMLA ULLEVI RESTAUR",
+    "amount": -245,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 27,
+    "description": "CAFE BOMMEN",
+    "amount": -30,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 28,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -278,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 28,
+    "description": "DD\u00C4E HVDD?",
+    "amount": 1721.5,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 29,
+    "description": "\u00F6vernattFar",
+    "amount": -100,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 30,
+    "description": "EUROPCAR DK",
+    "amount": -3334.39,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 1,
+    "description": "STATOIL V#RNAMO",
+    "amount": -159.71,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 1,
+    "description": "ICA KVANTUM VARNAMO",
+    "amount": -1494.92,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 1,
+    "description": "ICA KVANTUM VARNAMO",
+    "amount": -144.85,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 11,
+    "description": "MOSSENMIKAEL",
+    "amount": 1000,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 13,
+    "description": "NATURUPPL.",
+    "amount": 1000,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 13,
+    "description": "DR J\u00D6NSSON",
+    "amount": 800,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 15,
+    "description": "WWW.FLYGBUSSARNA.SE",
+    "amount": -356,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 15,
+    "description": "NEW SOUTHERN RAILW",
+    "amount": -497.37,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 15,
+    "description": "LONDON SOUTH EAS",
+    "amount": -116.23,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 15,
+    "description": "LONDON SOUTH EAS",
+    "amount": -116.23,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 15,
+    "description": "HSBC CASH MACHINE",
+    "amount": -2366.68,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 15,
+    "description": "4045 DELI",
+    "amount": -173,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 17,
+    "description": "TROIA CAFE RESTAURAN",
+    "amount": -468.8,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 17,
+    "description": "LUL TICKET MACHINE",
+    "amount": -58.12,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 17,
+    "description": "CWR ADMISSIONS",
+    "amount": -203.4,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 18,
+    "description": "Shell 7-11 61358 Cen",
+    "amount": -165,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 29,
+    "description": "London",
+    "amount": -95,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 4,
+    "description": "ACH SO",
+    "amount": 137.96,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 3,
+    "description": "MIKAEL ANDRE",
+    "amount": 121,
+    "category": "spara till sommarrussel",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 26,
+    "description": "BOSTADSF\u00D6RMEDL",
+    "amount": -225,
+    "category": "stockholms stads bostadsk\u00F6",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 8,
+    "description": "TAXI KURIR GOTEBORG",
+    "amount": -118,
+    "category": "taxi efter supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 25,
+    "description": "BANKOMAT 4.43",
+    "amount": -300,
+    "category": "taxi efter supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 23,
+    "description": "CHEAP TAXI",
+    "amount": -70,
+    "category": "taxi efter supa",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "day": 31,
+    "description": "TELENOR SVERIG",
+    "amount": -472,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "day": 4,
+    "description": "TELENOR SVERIG",
+    "amount": -475,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 1,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 2,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "day": 30,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "day": 2,
+    "description": "TELENOR SVERIG",
+    "amount": -505,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "day": 1,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "day": 1,
+    "description": "TELENOR SVERIG",
+    "amount": -612,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 2,
+    "description": "TELENOR SVERIG",
+    "amount": -526,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "day": 31,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 2,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 30,
+    "description": "TELENOR SVERIG",
+    "amount": -469,
+    "category": "telefonsamtal",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 16,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -568,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 29,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -551,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "day": 29,
+    "description": "\u00C5KE T\u00C5HG",
+    "amount": 142,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 8,
+    "description": "SJ AB OMBORD",
+    "amount": -320,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 11,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -154,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 12,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -212,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "day": 13,
+    "description": "SJ KUNDBOKNING INTER",
+    "amount": -519,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "day": 23,
+    "description": "SJ AB OMBORD NORRKOPING ",
+    "amount": -435,
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "flag": "Regular"
+  }
+]

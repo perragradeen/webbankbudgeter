@@ -1,6 +1,8 @@
-using ClosedXML.Excel;
+using System.Data;
 using System.Globalization;
+using System.Text;
 using System.Text.Json;
+using ExcelDataReader;
 
 namespace FacitExtractor;
 
@@ -16,7 +18,21 @@ class Program
 
         Directory.CreateDirectory(outputDir);
 
-        using var workbook = new XLWorkbook(excelPath);
+        // Register encoding provider for Excel reading
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+        DataSet workbook;
+        using (var stream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
+        {
+            using var reader = ExcelReaderFactory.CreateReader(stream);
+            workbook = reader.AsDataSet(new ExcelDataSetConfiguration()
+            {
+                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                {
+                    UseHeaderRow = false
+                }
+            });
+        }
 
         // Extract transactions
         Console.WriteLine("Extracting transactions...");
@@ -71,27 +87,27 @@ class Program
         Console.WriteLine("Done!");
     }
 
-    static List<TransactionFacit> ExtractTransactions(XLWorkbook workbook, int year)
+    static List<TransactionFacit> ExtractTransactions(DataSet workbook, int year)
     {
-        var worksheet = workbook.Worksheet("Kontoutdrag_officiella");
+        var worksheet = workbook.Tables["Kontoutdrag_officiella"];
+        if (worksheet == null) throw new Exception("Worksheet 'Kontoutdrag_officiella' not found");
+        
         var transactions = new List<TransactionFacit>();
 
-        var row = 2; // Skip header
-        while (!worksheet.Cell(row, 1).IsEmpty())
+        for (int row = 1; row < worksheet.Rows.Count; row++) // Skip header (row 0)
         {
-            var yearVal = (int)worksheet.Cell(row, 1).GetValue<double>();
-            if (yearVal != year)
-            {
-                row++;
-                continue;
-            }
+            var dataRow = worksheet.Rows[row];
+            if (dataRow[0] == DBNull.Value) break;
 
-            var month = (int)worksheet.Cell(row, 2).GetValue<double>();
-            var day = (int)worksheet.Cell(row, 3).GetValue<double>();
-            var description = worksheet.Cell(row, 4).GetString();
-            var amount = worksheet.Cell(row, 5).GetValue<double>();
-            var category = worksheet.Cell(row, 8).GetString();
-            var flag = worksheet.Cell(row, 12).GetString();
+            var yearVal = Convert.ToInt32(dataRow[0]);
+            if (yearVal != year) continue;
+
+            var month = Convert.ToInt32(dataRow[1]);
+            var day = Convert.ToInt32(dataRow[2]);
+            var description = dataRow[3]?.ToString() ?? "";
+            var amount = Convert.ToDouble(dataRow[4]);
+            var category = dataRow[7]?.ToString() ?? ""; // Column 8 = index 7
+            var flag = dataRow[11]?.ToString() ?? "Regular"; // Column 12 = index 11
 
             transactions.Add(new TransactionFacit
             {
@@ -103,8 +119,6 @@ class Program
                 Category = category,
                 Flag = string.IsNullOrWhiteSpace(flag) ? "Regular" : flag
             });
-
-            row++;
         }
 
         return transactions.OrderBy(t => t.Category)
@@ -114,41 +128,45 @@ class Program
                           .ToList();
     }
 
-    static List<BudgetInFacit> ExtractBudgetIn(XLWorkbook workbook, int year)
+    static List<BudgetInFacit> ExtractBudgetIn(DataSet workbook, int year)
     {
         var worksheetName = $"Budget ({year})";
-        var worksheet = workbook.Worksheet(worksheetName);
+        var worksheet = workbook.Tables[worksheetName];
+        if (worksheet == null) throw new Exception($"Worksheet '{worksheetName}' not found");
+        
         var budgetRows = new List<BudgetInFacit>();
 
         // IN section starts at row 25 (approximately, need to find "IN" marker)
         // Columns F-Q are months (Feb-Dec for 2014, Jan-Dec for 2015)
         
-        var startRow = 25; // Approximate, adjust based on actual file
-        var endRow = 57;   // Approximate
+        var startRow = 24; // Row 25 in Excel = index 24 (0-based)
+        var endRow = 56;   // Row 57 in Excel = index 56
         
-        for (int row = startRow; row <= endRow; row++)
+        for (int row = startRow; row <= endRow && row < worksheet.Rows.Count; row++)
         {
-            var categoryCell = worksheet.Cell(row, 5); // Column E
-            if (categoryCell.IsEmpty()) continue;
+            var dataRow = worksheet.Rows[row];
+            if (dataRow[4] == DBNull.Value) continue; // Column E = index 4
             
-            var category = categoryCell.GetString().Trim();
+            var category = dataRow[4]?.ToString()?.Trim() ?? "";
             if (string.IsNullOrWhiteSpace(category)) continue;
             if (category.Contains("===")) continue; // Skip summary rows
 
             // Columns F (6) through Q (17) are months
             var monthColumns = year == 2014 
-                ? Enumerable.Range(7, 11).ToList() // Feb-Dec (columns G-Q, 11 months)
-                : Enumerable.Range(6, 12).ToList(); // Jan-Dec (columns F-Q, 12 months)
+                ? Enumerable.Range(6, 11).ToList() // Feb-Dec (columns G-Q = indices 6-16, 11 months)
+                : Enumerable.Range(5, 12).ToList(); // Jan-Dec (columns F-Q = indices 5-16, 12 months)
 
             foreach (var colIndex in monthColumns)
             {
-                var cell = worksheet.Cell(row, colIndex);
-                if (cell.IsEmpty() || !cell.TryGetValue(out double value)) continue;
+                if (colIndex >= dataRow.ItemArray.Length) continue;
+                if (dataRow[colIndex] == DBNull.Value) continue;
+                
+                if (!double.TryParse(dataRow[colIndex]?.ToString(), out double value)) continue;
                 if (value == 0) continue;
 
                 var monthIndex = year == 2014 
-                    ? colIndex - 6  // Feb=2, Mar=3, ..., Dec=12
-                    : colIndex - 5; // Jan=1, Feb=2, ..., Dec=12
+                    ? colIndex - 5  // Column G (index 6) = Feb (2), etc.
+                    : colIndex - 4; // Column F (index 5) = Jan (1), etc.
 
                 budgetRows.Add(new BudgetInFacit
                 {
