@@ -195,13 +195,18 @@ webbankbudgeter/
 - **Ignorerade tester:** 2 (kräver Excel-fil)
 - **Nya test-filer:** 10 JSON facit-filer
 
-### Build Status
+### Build Status (Linux)
 - ✅ WebBankBudgeterService
-- ✅ WebBankBudgeterServiceTest  
+- ✅ WebBankBudgeterServiceTest (15/15 passed, 2 skipped)
+- ✅ InbudgetHandlerTest (3/3 passed)
+- ✅ UtilitiesTest (1/1 passed, 4 skipped)
 - ✅ WebBankBudgeterTests.Facit
 - ✅ InbudgetHandler
 - ✅ Tools/FacitExtractor
-- ⚠️ WebBankBudgeterUi (Windows-only, ej testad)
+- ⚠️ WebBankBudgeterUi (Windows-only, WinForms)
+- ⚠️ WebBankBudgeterUiTest (Windows-only, WinForms)
+
+**Total på Linux: 19/19 tester passerar, 6 skippade**
 
 ---
 
