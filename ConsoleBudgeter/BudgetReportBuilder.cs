@@ -24,16 +24,19 @@ public static class BudgetReportBuilder
         sb.AppendLine($"# WebBankBudgeter – rapport för {year}");
         sb.AppendLine();
 
+        // Samma flikordning som UI:t: In (gv_incomes) → Budget Total (gv_budget) → Kvar (gv_Kvar).
+        sb.AppendLine("## Incomes (gv_incomes)");
+        sb.AppendLine(IncomesRenderer.Render(year, budgetIn));
+
         var budgetTotal = BudgetTableBuilder.BuildExpensesTable(year, expectedUt, transfers);
         sb.AppendLine("## Budget Total (gv_budget)");
         sb.AppendLine(TableRenderer.Render(budgetTotal));
 
-        var kvar = BudgetTableBuilder.BuildKvarTable(year, expectedKvar);
+        // Kvar-fliken ska inte visa transaktions-/saldo-raden "-" (facit använder den för annat än kategorier).
+        var kvarFacitRows = expectedKvar.Where(k => k.Category.Trim() != "-").ToList();
+        var kvar = BudgetTableBuilder.BuildKvarTable(year, kvarFacitRows);
         sb.AppendLine("## Kvar (gv_Kvar)");
         sb.AppendLine(TableRenderer.Render(kvar));
-
-        sb.AppendLine("## Incomes (gv_incomes)");
-        sb.AppendLine(IncomesRenderer.Render(year, budgetIn));
 
         var recurringAvg = expectedUt
             .Where(u => !string.IsNullOrEmpty(u.Category))

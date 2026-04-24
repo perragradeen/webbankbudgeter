@@ -108,10 +108,10 @@ public static class BudgetTableBuilder
 
     private static BudgetTable BuildStructuredBudget(int year, List<BudgetRow> rows)
     {
-        var incomeRows = rows.Where(r => r.CategoryText.Contains(IncomeMarker)).ToList();
-        var transferRows = rows.Where(r => r.CategoryText.Contains(TransferMarker)).ToList();
+        var incomeRows = rows.Where(r => IsIncomeCategoryRow(r.CategoryText)).ToList();
+        var transferRows = rows.Where(r => IsTransferCategoryRow(r.CategoryText)).ToList();
         var expenseRows = rows
-            .Where(r => !r.CategoryText.Contains(IncomeMarker) && !r.CategoryText.Contains(TransferMarker))
+            .Where(r => !IsIncomeCategoryRow(r.CategoryText) && !IsTransferCategoryRow(r.CategoryText))
             .OrderBy(r => r.CategoryText, StringComparer.Ordinal)
             .ToList();
 
@@ -141,6 +141,12 @@ public static class BudgetTableBuilder
         table.Rows.Add(CreateBudgetTotalRow(incomeRows, expenseRows, headers));
         return table;
     }
+
+    private static bool IsIncomeCategoryRow(string categoryText) =>
+        string.Equals(categoryText.Trim(), IncomeMarker, StringComparison.Ordinal);
+
+    private static bool IsTransferCategoryRow(string categoryText) =>
+        categoryText.Contains(TransferMarker, StringComparison.Ordinal);
 
     private static List<BudgetRow> MergeRows(IEnumerable<BudgetRow> rows)
     {

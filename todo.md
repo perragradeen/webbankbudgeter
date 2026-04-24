@@ -1,5 +1,16 @@
 # TODO
 
+## Användarönskemål (ConsoleBudgeter) — markera **KLART** när du verifierat
+
+| Krav | Status |
+|------|--------|
+| Rapportordning: först **In** (`gv_incomes`), sen **Ut** / Budget Total (`gv_budget`), sen **Kvar** (`gv_Kvar`). | Väntar din verifiering |
+| Under **Kvar** ska raden **"-"** (transaktions-/saldoplaceholder i facit) inte visas. | Väntar din verifiering |
+| **Budget Total:** `värnamoresor+övriga` ska ligga bland övriga utgifter, inte under inkomstraden **"+"** (fix: inkomst = exakt kategori `"+"`, inte `Contains("+")`). | Väntar din verifiering |
+| Kör och lita på **ConsoleBudgeter** / `dotnet test` för verifiering (inte ad hoc Python). | Väntar din verifiering |
+
+---
+
 ## ⏳ Dela affärslogik mellan WinForms-UI och ConsoleBudgeter
 
 **Status:** PENDING

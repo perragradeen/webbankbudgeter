@@ -21,12 +21,11 @@ namespace WebBankBudgeterService.Services
             var result = new StructuredBudgetTable();
             var rows = budgetRows.ToList();
 
-            // Separera kategorier
-            var incomeRows = rows.Where(r => r.CategoryText.Contains(IncomeCategoryName)).ToList();
-            var transferRows = rows.Where(r => r.CategoryText.Contains(TransferCategoryName)).ToList();
+            // Inkomster är raden med namn "+" (trimmat), inte kategorier som råkar innehålla '+' (t.ex. "värnamoresor+övriga").
+            var incomeRows = rows.Where(r => IsIncomeCategoryRow(r.CategoryText)).ToList();
+            var transferRows = rows.Where(r => IsTransferCategoryRow(r.CategoryText)).ToList();
             var expenseRows = rows
-                .Where(r => !r.CategoryText.Contains(IncomeCategoryName) && 
-                           !r.CategoryText.Contains(TransferCategoryName))
+                .Where(r => !IsIncomeCategoryRow(r.CategoryText) && !IsTransferCategoryRow(r.CategoryText))
                 .OrderBy(r => r.CategoryText)
                 .ToList();
 
@@ -67,6 +66,12 @@ namespace WebBankBudgeterService.Services
 
             return result;
         }
+
+        private static bool IsIncomeCategoryRow(string categoryText) =>
+            string.Equals(categoryText.Trim(), IncomeCategoryName, StringComparison.Ordinal);
+
+        private static bool IsTransferCategoryRow(string categoryText) =>
+            categoryText.Contains(TransferCategoryName, StringComparison.Ordinal);
 
         private BudgetRow CreateSummaryRow(string rowName, List<BudgetRow> rows, List<string> columnHeaders)
         {

@@ -49,10 +49,11 @@ public class FacitAggregationTests
 
         var summaryRow = table.Rows.First(r => r.CategoryText == BudgetTableBuilder.ExpensesSummaryRowName);
 
+        // Inkomst är endast raden "+", inte kategorier som innehåller '+' (t.ex. "värnamoresor+övriga").
         var expenseRows = table.Rows
             .Where(r => !string.IsNullOrEmpty(r.CategoryText)
                         && !r.CategoryText.Contains("===")
-                        && !r.CategoryText.Contains("+")
+                        && r.CategoryText.Trim() != "+"
                         && !r.CategoryText.Contains(" -"))
             .ToList();
 
@@ -81,9 +82,9 @@ public class FacitAggregationTests
     public void BuildReport_ProducesAllSections(int year)
     {
         var report = ConsoleBudgeter.BudgetReportBuilder.BuildReport(year, transactionLimit: 5);
+        StringAssert.Contains(report, "Incomes (gv_incomes)");
         StringAssert.Contains(report, "Budget Total (gv_budget)");
         StringAssert.Contains(report, "Kvar (gv_Kvar)");
-        StringAssert.Contains(report, "Incomes (gv_incomes)");
         StringAssert.Contains(report, "Totals (gv_Totals)");
         StringAssert.Contains(report, "Transactions (dg_Transactions)");
         StringAssert.Contains(report, "=== Summa utgifter ===");
