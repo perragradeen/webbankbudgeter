@@ -34,6 +34,7 @@
     <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj" />
     <ProjectReference Include="..\InbudgetHandler\InbudgetHandler.csproj" />
     <ProjectReference Include="..\WebBankBudgeterService\WebBankBudgeterService.csproj" />
+    <ProjectReference Include="..\WebBankBudgeterTests.Facit\WebBankBudgeterTests.Facit.csproj" />
   </ItemGroup>
 
   <ItemGroup>
