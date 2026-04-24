@@ -1,42 +1,49 @@
 using System.Text;
-using ConsoleBudgeter.Builders;
 using ConsoleBudgeter.Rendering;
+using InbudgetHandler;
+using WebBankBudgeterService.Model.ViewModel;
+using WebBankBudgeterService.Services;
 using WebBankBudgeterTests.Facit;
 
 namespace ConsoleBudgeter;
 
 /// <summary>
-/// Bygger en komplett textbaserad rapport för ett år baserat på facit-data.
-/// Speglar vad WinForms-UI:t (flikarna Kvar, Incomes, Budget Total, Totals,
-/// Transactions) visar.
+/// Bygger rapport från facit-JSON med samma service-lager som WinForms:
+/// <see cref="FacitBudgetTextTableFactory"/>, <see cref="BudgetStructureBuilder"/>,
+/// <see cref="BudgetTableInMerger"/>, <see cref="KvarTextTableBuilder"/>.
 /// </summary>
 public static class BudgetReportBuilder
 {
     public static string BuildReport(int year, int? transactionLimit = 20)
     {
         var transactions = FacitLoader.LoadTransactions(year);
-        var budgetIn     = FacitLoader.LoadBudgetIn(year);
-        var expectedUt   = FacitLoader.LoadExpectedUt(year);
-        var transfers    = FacitLoader.LoadExpectedTransfers(year);
+        var budgetIn = FacitLoader.LoadBudgetIn(year);
+        var expectedUt = FacitLoader.LoadExpectedUt(year);
+        var transfers = FacitLoader.LoadExpectedTransfers(year);
         var expectedKvar = FacitLoader.LoadExpectedKvar(year);
 
         var sb = new StringBuilder();
         sb.AppendLine($"# WebBankBudgeter – rapport för {year}");
         sb.AppendLine();
 
-        // Samma flikordning som UI:t: In (gv_incomes) → utgifter/Budget Total (gv_budget) → Kvar (gv_Kvar).
         sb.AppendLine("## Incomes (gv_incomes)");
         sb.AppendLine(IncomesRenderer.Render(year, budgetIn));
 
-        var budgetTotal = BudgetTableBuilder.BuildExpensesTable(year, expectedUt, transfers);
-        sb.AppendLine("## Utgifter aka - Budget Total (gv_budget)");
-        sb.AppendLine(TableRenderer.Render(budgetTotal));
+        var utAmounts = expectedUt
+            .Select(u => (u.Category, u.Year, u.Month, u.ActualAmount))
+            .Concat(transfers.Select(t => (t.Category, t.Year, t.Month, t.ActualAmount)));
 
-        // Kvar-fliken ska inte visa transaktions-/saldo-raden "-" (facit använder den för annat än kategorier).
-        var kvarFacitRows = expectedKvar.Where(k => k.Category.Trim() != "-").ToList();
-        var kvar = BudgetTableBuilder.BuildKvarTable(year, kvarFacitRows);
+        var expenseTable = FacitBudgetTextTableFactory.Build(year, utAmounts, addAverageColumns: true);
+        var inRader = FacitInBudgetRows.FromFacit(budgetIn);
+        var tableBeforeIn = TextToTableOutPuterClone.Clone(expenseTable);
+        BudgetTableInMerger.MergeInRows(expenseTable, inRader);
+
+        sb.AppendLine("## Utgifter aka - Budget Total (gv_budget)");
+        sb.AppendLine(TableRenderer.Render(expenseTable));
+
+        var kvarTable = KvarTextTableBuilder.Build(tableBeforeIn, inRader);
         sb.AppendLine("## Kvar (gv_Kvar)");
-        sb.AppendLine(TableRenderer.Render(kvar));
+        sb.AppendLine(TableRenderer.Render(kvarTable));
 
         var recurringAvg = expectedUt
             .Where(u => !string.IsNullOrEmpty(u.Category))

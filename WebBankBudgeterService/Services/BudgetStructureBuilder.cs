@@ -11,10 +11,11 @@ namespace WebBankBudgeterService.Services
     {
         private const string IncomeCategoryName = "+";
         private const string TransferCategoryName = " -";
-        private const string ExpensesSummaryRowName = "=== Summa utgifter ===";
-        private const string IncomesSummaryRowName = "=== Summa inkomster ===";
-        private const string TransfersSummaryRowName = "=== Summa förflyttningar ===";
-        private const string TotalBudgetRowName = "=== BUDGET (Inkomster - Utgifter) ===";
+
+        public const string ExpensesSummaryRowName = "=== Summa utgifter ===";
+        public const string IncomesSummaryRowName = "=== Summa inkomster ===";
+        public const string TransfersSummaryRowName = "=== Summa förflyttningar ===";
+        public const string TotalBudgetRowName = "=== BUDGET (Inkomster - Utgifter) ===";
 
         /// <summary>
         /// Månadskolumner (exkl. kategori och Average) i samma ordning som i <paramref name="columnHeaders"/>.

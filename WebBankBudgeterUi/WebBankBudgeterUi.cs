@@ -69,6 +69,7 @@ namespace WebBankBudgeterUi
             webBankBudgeter.AddAveragesToTable(table);
 
             var inDataRader = await HämtaInDataRaderFiltrerat();
+            var tableBeforeInMerge = TextToTableOutPuterClone.Clone(table);
             WebBankBudgeter.MergeBudgetInsIntoBudgetTextTable(table, inDataRader);
 
             // --- Behandla data
@@ -88,7 +89,7 @@ namespace WebBankBudgeterUi
 
             //BindTotalsToUi();
 
-            var kvarTable = webBankBudgeter.BuildKvarTextTable(table, inDataRader, WriteLineToOutputAndScrollDown);
+            var kvarTable = webBankBudgeter.BuildKvarTextTable(tableBeforeInMerge, inDataRader, WriteLineToOutputAndScrollDown);
             BindKvarBudgetTableUi(kvarTable);
 
             // Presentera tabell för inkomst i varje kategori budget.

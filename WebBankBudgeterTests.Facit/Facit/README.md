@@ -12,7 +12,7 @@
 | budget-in-YYYY.json    | Budget per kategori per månad | `Budget (YYYY)` rad 25–57 |
 | expected-ut-YYYY.json  | Summa transaktioner per (kat, mån) | Beräknat ur transaktioner |
 | expected-kvar-YYYY.json| Budget + utfall per (kat, mån) | Beräknat (IN + UT) |
-| console-report-facit-reference.txt | Full textrapport (ConsoleBudgeter) för 2014+2015 — **facit för utskrift** | Genereras med `dotnet run --project ConsoleBudgeter -- --year 2014 --year 2015 --transactions 0 --out …/console-report-facit-reference.txt` när JSON-facit uppdaterats |
+| console-report-facit-reference.txt | Full textrapport (ConsoleBudgeter) för 2014+2015 — **facit för utskrift** | `dotnet run --project ConsoleBudgeter -- --year 2014 --year 2015 --transactions 0 --out …/console-report-facit-reference.txt`. Konsolen använder **samma** `WebBankBudgeterService` (`BudgetStructureBuilder`, `FacitBudgetTextTableFactory`) och `InbudgetHandler` (`BudgetTableInMerger`, `KvarTextTableBuilder`, `InBudgetMath`) som WinForms för Budget Total / Kvar; endast **textrendering** ligger i `ConsoleBudgeter`. |
 
 ## Invarianter som testas
 1. `sum(transactions.amount where Flag != "Ignore") per kategori per månad == expected-ut` (tolerans ±0.01)

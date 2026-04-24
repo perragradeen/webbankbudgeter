@@ -129,58 +129,8 @@ namespace WebBankBudgeterUi
         internal static List<Rad> SnurraIgenom(
             IEnumerable<Rad> inData,
             List<BudgetRow> utgifter,
-            Action<string> writeLineToOutputAndScrollDown)
-        {
-            if (utgifter == null)
-            {
-                throw new ArgumentNullException(nameof(utgifter));
-            }
-
-            var kvarrader = new List<Rad>();
-            foreach (var inBudget in inData)
-            {
-                // Synka med kategori och månad.
-                // Hitta motsvarande utgift
-                var motsvarandeUtgifterRader = utgifter
-                    .Where(u => u.CategoryText.Trim() == inBudget.RadNamnY.Trim()
-                    );
-
-                var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
-                foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
-                {
-                    foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)
-                    {
-                        if (inBudget.Kolumner.ContainsKey(utgiftsMånad.Key))
-                        {
-                            // och räkna ut diff.
-                            var kvar =
-                                // inkomst - utgift
-                                inBudget.Kolumner[utgiftsMånad.Key]
-                                + utgiftsMånad.Value; // Utgifter är negativa ie -1200
-
-                            if (!nuvarandeRad.Kolumner.ContainsKey(utgiftsMånad.Key))
-                            {
-                                nuvarandeRad.Kolumner.Add(utgiftsMånad.Key, 0);
-                            }
-
-                            nuvarandeRad.Kolumner[utgiftsMånad.Key] += kvar;
-                        }
-                        else
-                        {
-                            // Fel
-                            var message = "Hittar ingen motsvarande inpost för utgift i :"
-                                          + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
-
-                            writeLineToOutputAndScrollDown(message);
-                        }
-                    }
-                }
-
-                kvarrader.Add(nuvarandeRad);
-            }
-
-            return kvarrader;
-        }
+            Action<string> writeLineToOutputAndScrollDown) =>
+            InBudgetMath.SnurraIgenom(inData, utgifter, writeLineToOutputAndScrollDown);
 
         internal MonthAvarages CalculateMonthlyAvarages()
         {
@@ -234,45 +184,7 @@ namespace WebBankBudgeterUi
                 return new TextToTableOutPuter();
             }
 
-            var builder = new BudgetStructureBuilder();
-            var structured = builder.BuildStructuredBudget(
-                mergedExpenseTable.BudgetRows,
-                mergedExpenseTable.ColumnHeaders);
-
-            var utgiftRader = BudgetStructureBuilder.GetExpenseRowsBeforeFirstSummary(structured);
-            var kvarRader = SnurraIgenom(inPosterRader, utgiftRader, logLine);
-
-            var kvarTable = new TextToTableOutPuter
-            {
-                UtgiftersStartYear = mergedExpenseTable.UtgiftersStartYear,
-                ColumnHeaders = new List<string>(mergedExpenseTable.ColumnHeaders),
-                AveragesForTransactions = mergedExpenseTable.AveragesForTransactions
-            };
-
-            var monthKeys = BudgetStructureBuilder.MonthColumnKeys(mergedExpenseTable.ColumnHeaders);
-            var budgetRows = new List<BudgetRow>();
-
-            foreach (var rad in kvarRader)
-            {
-                if (string.Equals(rad.RadNamnY, InBudgetHandler.SummaText, StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                var row = new BudgetRow { CategoryText = rad.RadNamnY };
-                foreach (var mk in monthKeys)
-                {
-                    if (rad.Kolumner.TryGetValue(mk, out var v))
-                    {
-                        row.AmountsForMonth[mk] = v;
-                    }
-                }
-
-                budgetRows.Add(row);
-            }
-
-            kvarTable.BudgetRows = budgetRows;
-            return kvarTable;
+            return KvarTextTableBuilder.Build(mergedExpenseTable, inPosterRader, logLine);
         }
 
         internal void DescribeReoccurringGroups()

@@ -1,5 +1,6 @@
-using ConsoleBudgeter.Builders;
+using ConsoleBudgeter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WebBankBudgeterService.Services;
 using WebBankBudgeterTests.Facit;
 
 namespace ConsoleBudgeterTest;
@@ -20,8 +21,8 @@ public class FacitAggregationTests
     public void BudgetInPlusExpectedUt_Equals_ExpectedKvar(int year)
     {
         var budgetIn = FacitLoader.LoadBudgetIn(year);
-        var ut       = FacitLoader.LoadExpectedUt(year);
-        var kvar     = FacitLoader.LoadExpectedKvar(year);
+        var ut = FacitLoader.LoadExpectedUt(year);
+        var kvar = FacitLoader.LoadExpectedKvar(year);
 
         var inByKey = budgetIn
             .ToDictionary(x => (x.Category, x.Year, x.Month), x => x.BudgetAmount);
@@ -43,21 +44,21 @@ public class FacitAggregationTests
     [DataRow(2015)]
     public void BudgetTotal_SummaryRow_EqualsSumOfExpenses(int year)
     {
-        var table = BudgetTableBuilder.BuildExpensesTable(year,
-            FacitLoader.LoadExpectedUt(year),
-            FacitLoader.LoadExpectedTransfers(year));
+        var ut = FacitLoader.LoadExpectedUt(year);
+        var transfers = FacitLoader.LoadExpectedTransfers(year);
+        var amounts = ut
+            .Select(u => (u.Category, u.Year, u.Month, u.ActualAmount))
+            .Concat(transfers.Select(t => (t.Category, t.Year, t.Month, t.ActualAmount)));
 
-        var summaryRow = table.Rows.First(r => r.CategoryText == BudgetTableBuilder.ExpensesSummaryRowName);
+        var table = FacitBudgetTextTableFactory.Build(year, amounts, addAverageColumns: true);
+        var structured = new BudgetStructureBuilder().BuildStructuredBudget(
+            table.BudgetRows!.ToList(),
+            table.ColumnHeaders);
 
-        // Inkomst är endast raden "+", inte kategorier som innehåller '+' (t.ex. "värnamoresor+övriga").
-        var expenseRows = table.Rows
-            .Where(r => !string.IsNullOrEmpty(r.CategoryText)
-                        && !r.CategoryText.Contains("===")
-                        && r.CategoryText.Trim() != "+"
-                        && !r.CategoryText.Contains(" -"))
-            .ToList();
+        var summaryRow = structured.Rows.First(r => r.CategoryText == BudgetStructureBuilder.ExpensesSummaryRowName);
+        var expenseRows = BudgetStructureBuilder.GetExpenseRowsBeforeFirstSummary(structured);
 
-        foreach (var monthCol in BudgetTableBuilder.MonthColumns(table.ColumnHeaders))
+        foreach (var monthCol in BudgetStructureBuilder.MonthColumnKeys(table.ColumnHeaders))
         {
             var expected = expenseRows.Sum(r =>
                 r.AmountsForMonth.TryGetValue(monthCol, out var v) ? v : 0);
@@ -81,7 +82,7 @@ public class FacitAggregationTests
     [DataRow(2015)]
     public void BuildReport_ProducesAllSections(int year)
     {
-        var report = ConsoleBudgeter.BudgetReportBuilder.BuildReport(year, transactionLimit: 5);
+        var report = BudgetReportBuilder.BuildReport(year, transactionLimit: null);
         StringAssert.Contains(report, "Incomes (gv_incomes)");
         StringAssert.Contains(report, "Utgifter aka - Budget Total (gv_budget)");
         StringAssert.Contains(report, "Kvar (gv_Kvar)");

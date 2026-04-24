@@ -35,38 +35,14 @@
 
 ---
 
-## ⏳ Dela affärslogik mellan WinForms-UI och ConsoleBudgeter
+## ✅ Dela affärslogik mellan WinForms-UI och ConsoleBudgeter
 
-**Status:** PENDING
+**Status:** KLART (2026-04-24)
 
-**Problem:** `ConsoleBudgeter/Builders/BudgetTableBuilder.cs` duplicerar logiken
-i `WebBankBudgeterService.Services.BudgetStructureBuilder` (summeringsrader
-`=== Summa utgifter ===` etc., klassificering av inkomst/utgift/transfer).
-Om produktionskoden ändras fångar console-testerna det inte.
-
-**Mål:** Låt `ConsoleBudgeter` referera `WebBankBudgeterService` och använda
-`BudgetStructureBuilder` + `BudgetRow` + `TextToTableOutPuter` direkt så att
-**samma kod** testas som den WinForms-UI:t använder.
-
-**Plan:**
-1. Lägg till `ProjectReference` till `WebBankBudgeterService` i `ConsoleBudgeter.csproj`.
-2. Skriv en adapter `FacitToBudgetRows` som konverterar `BudgetUtFacit`,
-   `BudgetInFacit`, `BudgetKvarFacit` → `List<BudgetRow>` + `ColumnHeaders`.
-3. Anropa `new BudgetStructureBuilder().BuildStructuredBudget(rows, headers)`
-   i stället för `BudgetTableBuilder.BuildExpensesTable/BuildKvarTable`.
-4. Behåll `TableRenderer` men låt den ta en `StructuredBudgetTable` + headers.
-5. Ta bort duplikatkoden i `ConsoleBudgeter/Builders/BudgetTableBuilder.cs`
-   (behåll bara helpers som inte finns i service-lagret).
-6. Uppdatera snapshots (de kan ändras något).
-7. Lägg till test som verifierar att console-output bygger på
-   `BudgetStructureBuilder` (t.ex. via spy/typ-kontroll).
-
-**Filer som ändras:**
-- `ConsoleBudgeter/ConsoleBudgeter.csproj`
-- `ConsoleBudgeter/Builders/BudgetTableBuilder.cs` (ta bort det mesta)
-- `ConsoleBudgeter/BudgetReportBuilder.cs` (anropa servicen)
-- `ConsoleBudgeter/Rendering/TableRenderer.cs` (acceptera service-typer)
-- `ConsoleBudgeterTest/Snapshots/report-{2014,2015}.txt` (ev. regenerera)
+- `ConsoleBudgeter` refererar **`WebBankBudgeterService`** och **`InbudgetHandler`**.
+- Gemensamt: `FacitBudgetTextTableFactory`, `BudgetStructureBuilder`, `BudgetTableInMerger`, `KvarTextTableBuilder`, `InBudgetMath`, `TextToTableOutPuterClone`.
+- Konsolen mappar facit med `FacitInBudgetRows`; `TableRenderer` skriver text från `TextToTableOutPuter`.
+- `BudgetTableBuilder.cs` borttagen. Snapshot-tester: `BuildReport(..., transactionLimit: null)`.
 
 ---
 

@@ -1,34 +1,40 @@
 using System.Globalization;
 using System.Text;
-using ConsoleBudgeter.Builders;
+using WebBankBudgeterService.Model;
+using WebBankBudgeterService.Model.ViewModel;
+using WebBankBudgeterService.Services;
 
 namespace ConsoleBudgeter.Rendering;
 
 /// <summary>
-/// Renderar en <see cref="BudgetTable"/> som text-tabell. Efterliknar det
-/// WinForms-DataGridView visar: kolumnen "Category . Month->", Average/Average-nf,
-/// månadskolumner (yyyy MMMM InvariantCulture) och en "Summa"-kolumn på slutet.
-/// Summeringsrader (innehåller "===") får en separator-ram runt sig.
+/// Renderar <see cref="TextToTableOutPuter"/> som text via <see cref="BudgetStructureBuilder"/>
+/// (samma struktur som <see cref="UiBinders.UtgiftsHanterareUiBinder"/>).
 /// </summary>
 public static class TableRenderer
 {
-    // Fast kultur så utskrifter är deterministiska över plattformar och språk.
+    public const string SummaColumnDescription = "Summa";
+
     private static readonly CultureInfo NumberCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-    public static string Render(BudgetTable table, string? title = null)
+    public static string Render(TextToTableOutPuter source, string? title = null)
     {
-        var headers = new List<string>(table.ColumnHeaders);
-        var hasSumma = headers.Count > 1 && !headers.Contains(BudgetTableBuilder.SummaColumnDescription);
-        if (hasSumma) headers.Add(BudgetTableBuilder.SummaColumnDescription);
+        var builder = new BudgetStructureBuilder();
+        var structured = builder.BuildStructuredBudget(
+            source.BudgetRows?.ToList() ?? new List<BudgetRow>(),
+            source.ColumnHeaders);
+
+        var headers = new List<string>(source.ColumnHeaders);
+        var hasSumma = headers.Count > 1 && !headers.Contains(SummaColumnDescription);
+        if (hasSumma) headers.Add(SummaColumnDescription);
 
         var columnIsAverageNf = headers
-            .Select(h => h == BudgetTableBuilder.AverageColumnDescriptionNotFormatted)
+            .Select(h => h == TextToTableOutPuter.AverageColumnDescriptionNotFormatted)
             .ToArray();
 
-        var monthColumns = BudgetTableBuilder.MonthColumns(headers);
+        var monthColumns = BudgetStructureBuilder.MonthColumnKeys(headers);
 
         var rowCells = new List<string[]>();
-        foreach (var row in table.Rows)
+        foreach (var row in structured.Rows)
         {
             var cells = new string[headers.Count];
             double rowTotal = 0;
@@ -37,24 +43,24 @@ public static class TableRenderer
                 var header = headers[i];
                 switch (header)
                 {
-                    case BudgetTableBuilder.CategoryNameColumnDescription:
+                    case TextToTableOutPuter.CategoryNameColumnDescription:
                         cells[i] = row.CategoryText ?? string.Empty;
                         break;
-                    case BudgetTableBuilder.AverageColumnDescription:
+                    case TextToTableOutPuter.AverageColumnDescription:
                     {
                         var (sum, count) = AverageOverMonths(row, monthColumns);
                         var avg = count > 0 ? sum / count : 0;
                         cells[i] = IsSeparator(row) ? string.Empty : FormatN0(avg);
                         break;
                     }
-                    case BudgetTableBuilder.AverageColumnDescriptionNotFormatted:
+                    case TextToTableOutPuter.AverageColumnDescriptionNotFormatted:
                     {
                         var (sum, count) = AverageOverMonths(row, monthColumns);
                         var avg = count > 0 ? sum / count : 0;
                         cells[i] = IsSeparator(row) ? string.Empty : avg.ToString("R", CultureInfo.InvariantCulture);
                         break;
                     }
-                    case BudgetTableBuilder.SummaColumnDescription:
+                    case SummaColumnDescription:
                         cells[i] = IsSeparator(row) ? string.Empty : FormatN0(rowTotal);
                         break;
                     default:
@@ -82,7 +88,7 @@ public static class TableRenderer
             rowCells.Add(cells);
         }
 
-        return RenderGrid(headers, rowCells, title, columnIsAverageNf, table.Rows);
+        return RenderGrid(headers, rowCells, title, columnIsAverageNf, structured.Rows);
     }
 
     private static (double sum, int count) AverageOverMonths(BudgetRow row, List<string> monthColumns)
@@ -97,6 +103,7 @@ public static class TableRenderer
                 count++;
             }
         }
+
         return (sum, count);
     }
 
@@ -132,7 +139,7 @@ public static class TableRenderer
         {
             var cells = rows[r];
             var meta = rowMeta[r];
-            var isSummary = meta.CategoryText.Contains("===");
+            var isSummary = meta.CategoryText.Contains("===", StringComparison.Ordinal);
             var isSeparator = string.IsNullOrEmpty(meta.CategoryText);
 
             if (isSeparator)
@@ -159,6 +166,7 @@ public static class TableRenderer
             sb.Append(new string(fill, w + 2));
             sb.Append('+');
         }
+
         return sb.ToString();
     }
 
@@ -184,9 +192,11 @@ public static class TableRenderer
             {
                 sb.Append(value.PadLeft(widths[i]));
             }
+
             sb.Append(' ');
             sb.Append('|');
         }
+
         return sb.ToString();
     }
 

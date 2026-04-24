@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InbudgetHandler\InbudgetHandler.csproj" />
+    <ProjectReference Include="..\WebBankBudgeterService\WebBankBudgeterService.csproj" />
     <ProjectReference Include="..\WebBankBudgeterTests.Facit\WebBankBudgeterTests.Facit.csproj" />
   </ItemGroup>
 

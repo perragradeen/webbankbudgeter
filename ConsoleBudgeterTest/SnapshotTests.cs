@@ -17,7 +17,8 @@ public class SnapshotTests
     [DataRow(2015)]
     public void FullReport_MatchesSnapshot(int year)
     {
-        var report = BudgetReportBuilder.BuildReport(year, transactionLimit: 5);
+        // Full transaktionslista så snapshotten matchar facit-referens (samma som --transactions 0).
+        var report = BudgetReportBuilder.BuildReport(year, transactionLimit: null);
         var snapshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
             "Snapshots", $"report-{year}.txt");
         var actualPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
