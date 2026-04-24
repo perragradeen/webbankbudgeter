@@ -29,6 +29,8 @@ Målet är att UI:t ska visa exakt samma struktur och data som Excel-förlagan:
 | D12 | `Ignore`-rader i facit | **(a) Inkludera i `transactions-*.json`**, exkludera i `expected-ut-*.json` | Gör filterregeln testbar. |
 | D13 | Assert-strategi | **(b) FluentAssertions** — `BeApproximately(value, 0.01m)` | Lägg till paketref i testprojektet om det saknas. |
 | D14 | Sortering | **(b) Behåll kodens sortering; jämför som dictionary** | Se 0.5 — bara siffrorna behöver matcha. |
+| D15 | Textfacit för hela rapporten | **(a) Committad fil + samma pipeline som ConsoleBudgeter** | `WebBankBudgeterTests.Facit/Facit/console-report-facit-reference.txt` är facit för **hela** konsolrapporten (In, Ut, Kvar, Totals, Transactions). Uppdateras när JSON-facit ändras genom att köra `ConsoleBudgeter` med `--out` till den filen. Excel-extraktorn (`tools/FacitExtractor/`) ska **inte** duplicera tabell-layout: den ska fortsätta producera JSON; rapporttexten härleds alltid från samma kod som `BudgetReportBuilder` (ev. delad bibliotekskörning i M1/M5). |
+| D16 | Var IN i rapporten kommer ifrån | **(b) Användarval i WinForms** | Facit-JSON (`budget-in-*.json`) kan fortsätta användas i tester/CI. I **produktions-UI** ska användaren kunna **välja källa för in-poster** (t.ex. nuvarande `BudgetIns.json` / lokal fil / annat) så att `gv_incomes` och därmed In-sektionen i rapporten speglar valet — se avsnitt **0.6**. |
 
 ### 0.1 D3/D4 förtydligade med exempel ur facit
 
@@ -142,6 +144,21 @@ foreach (var key in facitDict.Keys)
 ```
 
 **Ingen ändring i `TableGetter`-sorteringen behövs.**
+
+### 0.6 Textfacit för rapport + val av in-poster i WinForms (D15 / D16)
+
+**Textfacit (hela konsolrapporten):**
+- Fil: `WebBankBudgeterTests.Facit/Facit/console-report-facit-reference.txt`.
+- Innehåller `ConsoleBudgeter`-utskrift för **2014 och 2015** (In, Ut, Kvar, Totals, alla transaktioner), UTF-8.
+- **Uppdateringsregel:** varje gång committade JSON-facit (`transactions-*`, `budget-in-*`, `expected-*`) ändras ska filen regenereras med samma kommando som i `Facit/README.md`, så texten förblir sanningsunderlag för snapshot/integration.
+- **Excel / FacitExtractor:** ska fortsätta leverera **JSON** enligt M1. Tabelltext ska **inte** härledas separat i extraktorn — samma renderingskedja som `BudgetReportBuilder` (undvik drift mellan verktyg och app).
+
+**In-poster — användarval i WinForms (produkt):**
+- Tester och CI kan fortsätta ladda **`budget-in-*.json`** som idag.
+- I **`WebBankBudgeterUi`** ska användaren kunna **välja källa för in-poster** som matar `gv_incomes` (och därmed den budget-IN-data som ska ingå i Kvar/Budget Total när det kopplas till `SnurraIgenom` / inläsning):
+  - Minst: nuvarande lokala `BudgetIns.json` (eller motsvarande sparad väg).
+  - Utöka med: importera **facit-format** (`budget-in-YYYY.json`) eller annan vald fil/mapp per år.
+- **M5 / UI-uppgift:** lägg inställning (t.ex. i `GeneralSettings`, eller dialog vid start / under Inställningar) som `InBudgetHandler` / `InBudgetUiHandler` respekterar vid laddning och sparande.
 
 ---
 
@@ -560,6 +577,9 @@ WebBankBudgeterTests.Facit/Facit/            # Shared-projekt (D11 = b), commita
 
 Extraktorn körs **en gång**, genererar JSON, och resultatet committas. Verktyget
 är inte en del av bygget — bara körbart manuellt om facit behöver uppdateras.
+Efter lyckad extraktion: kör `ConsoleBudgeter` med `--out` mot
+`Facit/console-report-facit-reference.txt` (se 0.6 / `Facit/README.md`) så **textfacit**
+följer samma kod som appen.
 
 _Status:_ Prototyp finns i `C:\Users\nisse\AppData\Local\Temp\xlsx-reader\`.
 Genererar `transactions-*.json` (809/845 poster **utan `Flag`**) och `budget-in-*.json`
@@ -576,6 +596,7 @@ men **inkluderar** transfers (` -`). `budget-kvar-*.json` är 2 byte (tomma).
    (D5 — resulterar i 396 poster istället för 363).
 6. `expected-kvar-*.json` genereras som union av IN ∪ UT enligt D3/D4.
 7. Extraktorn skriver `Facit/README.md` med de 7 invarianterna från 3.4.
+8. Efter lyckad körning: regenerera `console-report-facit-reference.txt` via `ConsoleBudgeter --out` (se 0.6).
 
 ### M2 — Facit-infrastruktur i shared-projekt
 

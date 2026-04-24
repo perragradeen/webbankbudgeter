@@ -11,6 +11,16 @@
 
 ---
 
+## ⏳ Textfacit + Excel-pipeline (plan D15 / D16)
+
+| Uppgift | Status |
+|---------|--------|
+| Committad **`WebBankBudgeterTests.Facit/Facit/console-report-facit-reference.txt`** (full rapport 2014+2015) som facit för utskrift; kopieras till test-output via `.csproj`. | Väntar din verifiering |
+| **`Facit/README.md`** + **`plan.md`** (0.6, D15/D16, M1-notis): JSON från Excel-extraktorn; textfacit = `ConsoleBudgeter` `--out`, inte duplicerad layout i extraktorn. | Väntar din verifiering |
+| **WinForms:** användaren ska kunna **välja källa för in-poster** (`gv_incomes` / `BudgetIns` vs facit `budget-in-*.json` / fil) — se `plan.md` 0.6. | PENDING (implementation) |
+
+---
+
 ## ⏳ Dela affärslogik mellan WinForms-UI och ConsoleBudgeter
 
 **Status:** PENDING
