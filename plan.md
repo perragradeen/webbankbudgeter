@@ -643,16 +643,16 @@ Förkrav: M0 är klar.
 
 ## 6. Risker och oklarheter
 
-| # | Risk | Mitigering |
-|---|------|------------|
-| R1 | `dotnet build` kan fallera med `MSB3021/MSB3027` när `WebBankBudgeterUi` kör och låser `bin`-DLL:er | M0: stoppa UI-processen före full build/test (eller kör build utan UI-projekt) |
-| R2 | UT/KVAR är `#VALUE!` i Excel-filen | Accepteras — vi räknar dem själva ur transaktionerna; det är ju precis det appen ska göra |
-| R3 | Kategori­namn i Excel har specialtecken (`ö`, `å`, `£`) | JSON/UTF-8 hanterar det; kontrollera att `.csproj` använder `utf-8` BOM eller explicit encoding |
-| R4 | Svensk kultur i Excel vs invariant i koden | Extraktorn använder `sv-SE` på Excel-sidan, skriver punkt-decimaler i JSON; koden använder invariant → match OK |
-| R5 | Transaktioner för 2013-december finns i filen (Allkortsfaktura) | Filtrera strikt på `Year == 2014` resp `Year == 2015` |
-| R6 | Pågående ändring: `gv_Kvar` visar just nu Budget Total-data (TODO.md-arbetet utfört, se `WebBankBudgeterUi.cs:230-233`) | M5.2 avgör om tillståndet behålls eller om riktig Kvar-vy återinförs |
-| R7 | Floating-point-drift vid summering av >100 rader om D1 = c | Beslut D1 (default a) hanterar detta med olika toleranser för cell vs aggregat |
-| R8 | Sorteringsskillnad: kod sorterar `OrderByDescending(CategoryText)` (`TableGetter.cs:39`), facit sorterar stigande | Beslut D14 (default b): jämför som dictionary i tester |
+| # | Risk | Status / mitigering |
+|---|------|---------------------|
+| R1 | `dotnet build` kan fallera med `MSB3021/MSB3027` när `WebBankBudgeterUi` kör och låser `bin`-DLL:er | **Mitigerad:** använd solution filter `Budgetterarn.NoWindowsUi.slnf` för `dotnet build` / `dotnet test` på Linux eller i CI (exkluderar `WebBankBudgeterUi`, `BudgetterarnUi`, `WebBankBudgeterUiTest`). På Windows: stäng WinForms-appen före full `dotnet build` på hela `Budgetterarn.sln`, eller bygg med filtret om du bara behöver bibliotek + tester. Se `README.md`. |
+| R2 | UT/KVAR är `#VALUE!` i Excel-filen | **Ingen kodändring:** appen beräknar UT/Kvar ur transaktioner och facit-JSON — Excel-felceller ignoreras. |
+| R3 | Kategori­namn i Excel har specialtecken (`ö`, `å`, `£`) | **Hanterat:** facit och kod kör UTF-8; SDK-style-projekt kompilerar källfiler som UTF-8 som standard. |
+| R4 | Svensk kultur i Excel vs invariant i koden | **Beslut enligt plan:** extraktorn / visning kan använda `sv-SE`; interna nycklar och `GetMonthAsFullString` använder invariant engelska månadsnamn (D10). |
+| R5 | Transaktioner för 2013-december finns i filen (Allkortsfaktura) | **Mitigerad i kod:** `TransFilterer.FilterTransactions(..., selectedYear)` kräver nu `DateAsDate.Year == selectedYear` utöver datumintervallet 1 jan–31 dec, så grannår inte följer med. Test: `TransFiltererTests.FilterTransactions_SelectedYear_ExcludesAdjacentCalendarYears`. |
+| R6 | ~~`gv_Kvar` visade samma data som Budget Total~~ | **Utfasad:** Kvar byggs via `KvarTextTableBuilder` + `InBudgetMath.SnurraIgenom` (se M5.2). |
+| R7 | Floating-point-drift vid summering av >100 rader om D1 = c | **Beslut D1 = (a) `decimal`:** primärt irrelevant; där `double` används i äldre lager finns testtoleranser (t.ex. ±0.01 i facit-tester). |
+| R8 | Sorteringsskillnad: kod vs facit-listordning | **Beslut D14:** jämför som dictionary / per-nyckel i tester — listordning behöver inte matcha. |
 
 ---
 

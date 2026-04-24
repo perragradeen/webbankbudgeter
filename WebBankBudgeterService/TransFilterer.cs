@@ -11,7 +11,16 @@ namespace WebBankBudgeterService
             var startDate = GetStartDate(selectedYear);
             var endDate = GetEndDate(selectedYear);
 
-            return FilterTransactions(transactionList, startDate, endDate);
+            // Strikt kalenderår (plan R5): t.ex. december 2013 eller januari 2016
+            // ska aldrig följa med när användaren valt 2014/2015.
+            var trans =
+                transactionList.Transactions.Where(t =>
+                    t.DateAsDate.Year == selectedYear
+                    && t.DateAsDate >= startDate
+                    && t.DateAsDate <= endDate
+                ).ToList();
+
+            return new TransactionList { Transactions = trans };
         }
 
         public static TransactionList FilterTransactions(
