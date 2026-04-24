@@ -24,12 +24,12 @@ public static class BudgetReportBuilder
         sb.AppendLine($"# WebBankBudgeter – rapport för {year}");
         sb.AppendLine();
 
-        // Samma flikordning som UI:t: In (gv_incomes) → Budget Total (gv_budget) → Kvar (gv_Kvar).
+        // Samma flikordning som UI:t: In (gv_incomes) → utgifter/Budget Total (gv_budget) → Kvar (gv_Kvar).
         sb.AppendLine("## Incomes (gv_incomes)");
         sb.AppendLine(IncomesRenderer.Render(year, budgetIn));
 
         var budgetTotal = BudgetTableBuilder.BuildExpensesTable(year, expectedUt, transfers);
-        sb.AppendLine("## Budget Total (gv_budget)");
+        sb.AppendLine("## Utgifter aka - Budget Total (gv_budget)");
         sb.AppendLine(TableRenderer.Render(budgetTotal));
 
         // Kvar-fliken ska inte visa transaktions-/saldo-raden "-" (facit använder den för annat än kategorier).
