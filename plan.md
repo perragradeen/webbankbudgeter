@@ -87,10 +87,9 @@ trans­aktioner från `Kontoutdrag_officiella` och räkna ut `KVAR = IN + UT`
 
 IN-sektionen är däremot **intakt** och innehåller riktiga budgetvärden.
 
-**Observation om IN 2014**: I `Budget (2014)` finns inga IN-rader för **januari** —
-första månadskolumnen med data är februari. Facit ärver denna lucka (33 kategorier
-× 11 månader = 363 rader). Se beslut D5 ovan för hur januari ska representeras i
-`expected-kvar`.
+**Observation om IN 2014**: I `Budget (2014)` finns IN-rader för **alla 12 månader** inklusive januari.
+Data visar 28 kategorier × 12 månader = 336 rader per år för både 2014 och 2015.
+Kolumn 6 = Januari, Kolumn 7 = Februari, ..., Kolumn 17 = December.
 
 ### 1.3 Kategoriexempel (2014 IN-sektion)
 
@@ -236,8 +235,7 @@ Placering styrs av beslut **D11** (default: eget shared-projekt).
 
 - **D3** — om kategori finns i UT men inte i IN: `BudgetAmount = 0` (default).
 - **D4** — om kategori finns i IN men inte i UT: `ActualAmount = 0`, `Remaining = BudgetAmount`.
-- **D5** — januari 2014 saknas helt i IN; raden för januari får `BudgetAmount = 0` om
-  motsvarande UT finns för den månaden.
+- ~~**D5** — januari 2014 saknas~~ RÄTTELSE: Januari finns för både 2014 och 2015.
 
 ```json
 [
@@ -286,8 +284,8 @@ Placering styrs av beslut **D11** (default: eget shared-projekt).
 2. `budget-in + expected-ut == expected-kvar` (per kategori per månad, unionsregler per D3/D4)
 3. Transaktioner med `Flag == "Ignore"` räknas **inte** med i UT.
 4. Antal transaktioner per år: 2014 = 809, 2015 = 845.
-5. IN 2014 har 363 rader (33 kategorier × 11 månader; januari saknas, se D5).
-6. IN 2015 har 363 rader.
+5. IN 2014 har 336 rader (28 kategorier × 12 månader inklusive januari).
+6. IN 2015 har 336 rader (28 kategorier × 12 månader).
 7. Transfers (`" -"`) ingår enligt D2 (default: egen fil, ej i `expected-ut`).
 ```
 
