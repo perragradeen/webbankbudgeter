@@ -15,8 +15,7 @@ namespace InbudgetHandlerTest
         {
             var baseDir = Environment.CurrentDirectory;
             //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
-            _filePath = Path.Combine(baseDir,
-                @"Data\BudgetIns.json");
+            _filePath = Path.Combine(baseDir, "Data", "BudgetIns.json");
             //@"..\..\..\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json");
             //BudgetInsRiktigaExempel.json
         }
