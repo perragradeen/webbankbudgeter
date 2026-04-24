@@ -127,7 +127,19 @@ Vid redigering av Latin-1-filer (t.ex. med script eller verktyg):
 
 ## Bygga och köra
 
+**Hela lösningen (kräver Windows Desktop SDK + WinForms):**
+
 ```bash
 dotnet build Budgetterarn.sln
 dotnet run --project WebBankBudgeterUi
 ```
+
+**Linux / CI / när WinForms-appen kör och låser `bin` (MSB3021/MSB3027):**  
+Bygg och testa utan Windows-UI-projekt med solution filter:
+
+```bash
+dotnet build Budgetterarn.NoWindowsUi.slnf
+dotnet test Budgetterarn.NoWindowsUi.slnf
+```
+
+Filtret exkluderar `WebBankBudgeterUi`, `BudgetterarnUi` och `WebBankBudgeterUiTest`. Uppdatera listan i `Budgetterarn.NoWindowsUi.slnf` om nya `net8.0-windows`-projekt läggs till i lösningen.

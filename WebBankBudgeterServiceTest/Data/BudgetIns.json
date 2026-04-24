@@ -1,22 +1,3362 @@
 [
   {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
     "CategoryDescription": "el",
-    "BudgetValue": 1100,
-    "YearAndMonth": "2016-05-01T00:00:00"
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 900,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 900,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2014-12-01T00:00:00"
   },
   {
     "CategoryDescription": "hyra (inkl. 1k amortering)",
-    "BudgetValue": 2100,
-    "YearAndMonth": "2016-02-01T00:00:00"
-  },
-  {
-    "CategoryDescription": "el",
-    "BudgetValue": 1200,
-    "YearAndMonth": "2016-06-01T00:00:00"
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-01-01T00:00:00"
   },
   {
     "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 200,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 7400,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 1400,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
     "BudgetValue": 2200,
-    "YearAndMonth": "2016-03-01T00:00:00"
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 4700,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 4700,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 500,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 500,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 300,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": -5398.28,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 1061.72,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 1651.72,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": -1788.28,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": -1788.28,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 101.72,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 101.72,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 905.72,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 2703.72,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": -3922.28,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 3219.72,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 2031.72,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3007,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3007,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3007,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3007,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3007,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3472,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3472,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 3257,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 450,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 450,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 450,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 450,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 450,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 400,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 400,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 400,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 400,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 400,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 1315,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 1315,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 350,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 5671,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 3750,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 469,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 469,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 100,
+    "YearAndMonth": "2014-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "alkohol",
+    "BudgetValue": 247.5,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "csn",
+    "BudgetValue": 1012.17,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "el",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemf\u00F6rs\u00E4kring",
+    "BudgetValue": 119,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hemlagad mat",
+    "BudgetValue": 600,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "BudgetValue": 30,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "hyra (inkl. 1k amortering)",
+    "BudgetValue": 12283,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "internet",
+    "BudgetValue": 299,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "kl\u00E4der",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "BudgetValue": 280,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "lunch utemat",
+    "BudgetValue": 1441.36,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "mat i samband med supa",
+    "BudgetValue": 1477.5,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "n\u00F6jes utemat",
+    "BudgetValue": 2100,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "ov\u00E4ntade utgifter",
+    "BudgetValue": 100,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "presenter",
+    "BudgetValue": 1000,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "resor i samband med utflykt",
+    "BudgetValue": 250,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "r\u00F6da korset",
+    "BudgetValue": 150,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "si och akassa",
+    "BudgetValue": 320,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "Sm\u00E5resor ej supa",
+    "BudgetValue": 285,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 3481.72,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 353.72,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 1293.72,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 521.72,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": -418.28,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 353.72,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 1763.72,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 4159.72,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 1371.72,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 2703.72,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 885.72,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara alm\u00E4nt",
+    "BudgetValue": 767.72,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till amortering",
+    "BudgetValue": 2507,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till dator",
+    "BudgetValue": 350,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till russel \u00F6vrigt",
+    "BudgetValue": 450,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "spara till sommarrussel",
+    "BudgetValue": 1250,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "stockholms stads bostadsk\u00F6",
+    "BudgetValue": 18.75,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "telefonsamtal",
+    "BudgetValue": 519,
+    "YearAndMonth": "2015-12-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-01-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-02-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-03-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-04-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-05-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-06-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-07-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-08-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-09-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-10-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-11-01T00:00:00"
+  },
+  {
+    "CategoryDescription": "v\u00E4rnamoresor\u002B\u00F6vriga",
+    "BudgetValue": 200,
+    "YearAndMonth": "2015-12-01T00:00:00"
   }
 ]

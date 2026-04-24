@@ -1,0 +1,26 @@
+{
+  "solution": {
+    "path": "Budgetterarn.sln",
+    "projects": [
+      "BudgeterCore/BudgeterCore.csproj",
+      "BudgetterarnDAL/BudgetterarnDAL.csproj",
+      "BudgetterarnUiTest/BudgetterarnUiTest.csproj",
+      "CategoryHandler/CategoryHandler.csproj",
+      "ConsoleBudgeter/ConsoleBudgeter.csproj",
+      "ConsoleBudgeterTest/ConsoleBudgeterTest.csproj",
+      "FileTests/FileTests.csproj",
+      "GeneralSettingsHandler/GeneralSettingsHandler.csproj",
+      "GeneralSettingsTests/GeneralSettingsTests.csproj",
+      "InbudgetHandler/InbudgetHandler.csproj",
+      "InbudgetHandlerTest/InbudgetHandlerTest.csproj",
+      "LoadTransactionsFromFile/LoadTransactionsFromFile.csproj",
+      "RefLesses/RefLesses.csproj",
+      "Utilities/Utilities.csproj",
+      "UtilitiesTest/UtilitiesTest.csproj",
+      "WebBankBudgeterService/WebBankBudgeterService.csproj",
+      "WebBankBudgeterServiceTest/WebBankBudgeterServiceTest.csproj",
+      "WebBankBudgeterTests.Facit/WebBankBudgeterTests.Facit.csproj",
+      "XmlSerializer/XmlSerializer.csproj"
+    ]
+  }
+}

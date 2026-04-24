@@ -25,6 +25,7 @@ namespace WebBankBudgeterService
                 DateAsDate = _kontoEnry.Date,
                 Description = _kontoEnry.Info,
                 AmountAsDouble = _kontoEnry.KostnadEllerInkomst,
+                SourceEntryType = _kontoEnry.EntryType,
                 Categorizations = new Categorizations
                 {
                     Categories = new List<Categories>

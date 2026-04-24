@@ -22,9 +22,13 @@ namespace UtilitiesTest
             var book = OpenFileFunctions.GetHashTableFromExcelSheet(
                 ExcelBookPath,
                 SheetName);
-            var table = (Hashtable)book[SheetName];
+            Assert.IsNotNull(book);
+            Assert.IsTrue(book.ContainsKey(SheetName));
 
-            Assert.IsTrue(table.Count > 0);
+            var table = book[SheetName] as Hashtable;
+            Assert.IsNotNull(table);
+
+            Assert.IsNotEmpty(table.Keys);
         }
 
         [TestMethod, Ignore]
