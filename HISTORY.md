@@ -1,5 +1,10 @@
 # Projekt Historik - WebBankBudgeter Facit Implementation
 
+> **Om denna fil:** Denna historikfil uppdateras löpande under utvecklingsarbetet för att dokumentera
+> beslut, problem, lösningar och framsteg. Vid merge till master arkiveras innehållet till 
+> `HISTORY_ARCHIVE.md` och denna fil rensas för att endast innehålla senaste arbetets historik.
+> Detta håller filen lättläst och relevant medan fullständig historik bevaras i arkivet.
+
 ## Sammanfattning
 Agentteam uppsatt för att implementera facit-baserade integrationstester för WebBankBudgeter-projektet. Arbetet utfördes på branch `feature/facit-implementation`.
 
