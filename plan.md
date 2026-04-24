@@ -23,7 +23,7 @@ alternativ direkt i denna fil innan extraktorn körs igen.
 | D3 | **`expected-kvar` när IN saknas** för en (kat, månad) (UT-only) | (a) `BudgetAmount = 0`, raden inkluderas · (b) Hoppa raden helt · (c) Inkludera men markera `BudgetAmount = null` | (a) | _____ |
 | D4 | **`expected-kvar` när UT saknas** (IN-only, ingen spend) | (a) `ActualAmount = 0`, `Remaining = BudgetAmount` · (b) Hoppa raden | (a) | _____ |
 | D5 | **Januari 2014 i IN-sektionen** (faktiskt saknas i Excel: 0 rader) | (a) Behåll som tomt — dokumentera som invariant · (b) Generera januari-rader med `BudgetAmount = 0` · (c) Kopiera februari som proxy | (a) — dokumentera; spegla Excel | _____ |
-| D6 | **`TransactionHandler` (saknas fysiskt)** | (a) Leta i git-historik och återställ · (b) Skriv om från grunden mot facit-data · (c) Ersätt med ny tunn klass som läser direkt från facit i tester och från `.xls` i prod | (a) först; (b) som plan B | _____ |
+| D6 | **`TransactionHandler`-strategi** | (a) Behåll nuvarande klass, verifiera inläsning mot facit · (b) Skriv om från grunden mot facit-data · (c) Ersätt med ny tunn klass som läser direkt från facit i tester och från `.xls` i prod | (a) först; (b) som plan B | _____ |
 | D7 | **Group-prefix-normalisering** så `"el"` matchar `"Fast el"` | (a) Ändra `Categories.ToString()` att returnera enbart `Name` om `Group` är tom · (b) Använd befintlig `CategoryNameNoGroup` i `TableGetter.GroupOnMonthAndCategory` · (c) Skapa ny `CategoryNameNormalized` | (b) — `CategoryNameNoGroup` finns redan, minst risk | _____ |
 | D8 | **Sparrader** (`spara almänt`, `spara till amortering`) | (a) Behandla som utgifter (default i koden idag) · (b) Egen sektion "sparande" i UI och facit | (a) | _____ |
 | D9 | **`BudgetIns.json`-format** för 2014/2015 i prod-koden | (a) Behåll befintligt schema (`CategoryDescription`/`BudgetValue`/`YearAndMonth`) — generera dem från facit · (b) Migrera prod-koden till samma format som `budget-in-YYYY.json` | (a) — minst kodändring i InbudgetHandler | _____ |
@@ -109,7 +109,7 @@ Kategorierna inkluderar `hyra (inkl. 1k amortering)`, `si och akassa`,
 
 ```
 Excel (`Pelles Budget.xls`)
-  └─► TransactionHandler  (saknas fysiskt i repo; refererad)
+  └─► TransactionHandler
         └─► Transaction { DateAsDate, Description, AmountAsDouble,
                           Categorizations.Categories[0].{Group, Name} }
               └─► CategoryName = "Group Name"  (← sammanslagning!)
@@ -152,7 +152,7 @@ TestData/BudgetIns.json
 | G4 | Tecken-konvention | IN ≥ 0, UT ≤ 0, KVAR = IN + UT | Samma i `SnurraIgenom` | OK |
 | G5 | Auto-kategorisering | `CategoryHandler` matchar hela `InfoDescription` exakt | Case-insensitive trim-jämförelse på hela beskrivningen | Facit visar många fria­texter (`PILEG$RDENS SERVICEBUT ASKIM`) → kräver substring/regex-matchning eller manuellt angivna aliaser |
 | G6 | BudgetIns.json täckning | 363 in-rader / år × 2 år = 726 rader | Testdata har 10 rader för år 2016 | Måste fyllas med riktig budget för 2014/2015 (kan genereras direkt ur facit-filen) |
-| G7 | Filkälla | Flera transaktioner per dag, sve-kultur­decimaler | Läser `.xls` via `TransactionHandler` (klassen **saknas fysiskt** — se M0 nedan) | Kontrollera att läsningen levererar exakt samma 1 654 rader |
+| G7 | Filkälla | Flera transaktioner per dag, sve-kultur­decimaler | Läser `.xls` via `TransactionHandler` | Kontrollera att läsningen levererar exakt samma 1 654 rader |
 | G8 | Regulatorflagga | `Regular` / `Ignore` i kol 12 | Oklart om den filtreras | Beslut **D12**: `Ignore`-rader inkluderas i facit men exkluderas i `expected-ut` så filterregeln blir testbar |
 | G9 | Månadskultur | `"YYYY January"` (engelska) | `Transaction.GetMonthAsFullString` — kultur ej verifierad i koden | Beslut **D10**: Verifiera att `MMMM`-formatteringen är invariant; om inte, ändra i M5 |
 
@@ -390,14 +390,16 @@ Fil: `WebBankBudgeterUiTest/BudgetIntegrationTests.cs` (ny)
 
 ## 5. Implementations­plan — 6 milstolpar
 
-### M0 — Återställ eller ersätt `TransactionHandler` (förkrav för M5)
+### M0 — Stabil bygg/test-miljö + verifiera `TransactionHandler` (förkrav för M5)
 
-`WebBankBudgeter.cs:18` refererar `TransactionHandler` men ingen `class TransactionHandler`
-finns i kodbasen (verifierat med Grep). Beslut **D6** styr vägen:
+`TransactionHandler` finns i kodbasen (`WebBankBudgeterService/TransactionHandler.cs`).
+Det som blockerar repeterbar build är i stället fil­låsning när `WebBankBudgeterUi`
+kör samtidigt (MSBuild `MSB3021`/`MSB3027` vid copy till `WebBankBudgeterUi/bin/...`).
+Beslut **D6** styr fortsatt väg:
 
-- **D6 = a** (default): Sök i git-historiken (`git log --all --diff-filter=D -- '**/TransactionHandler.cs'`)
-  och återställ. Verifiera att den fortfarande kompilerar och att `TransactionList.Account.AvailableAmount`
-  + `TransactionList.Transactions` exponeras som `WebBankBudgeter.cs:222` förväntar.
+- **D6 = a** (default): Behåll nuvarande klass. Verifiera att den kompilerar och att
+  `TransactionList.Account.AvailableAmount` + `TransactionList.Transactions`
+  exponeras som `WebBankBudgeter.cs:222` förväntar, samt att inlästa data matchar facit.
 - **D6 = b**: Skriv om mot facit-data först, sedan generalisera till `.xls` när M3 är grön.
 - **D6 = c**: Inför ett `ITransactionSource`-interface; två impl: `FacitTransactionSource` (för
   tester) och `XlsTransactionSource` (för prod). `WebBankBudgeter` får interfacet via constructor.
@@ -493,7 +495,7 @@ Förkrav: M0 är klar.
    `t.CategoryNameNoGroup` när `Group` är tom/null. Berör **inte** `Categories.ToString()`
    så övrig kod påverkas inte.
 5. **Ignore-flagga**: Säkerställ att `Ignore`-markerade transaktioner filtreras bort
-   där transaktioner laddas (se M0 — exakt plats beror på D6).
+  där transaktioner laddas (exakt plats beror på D6).
 6. **Månadskultur** (D10): Kontrollera att `Transaction.GetMonthAsFullString` använder
    `CultureInfo.InvariantCulture` när `MMMM` formatteras. Annars rätta.
 
@@ -503,7 +505,7 @@ Förkrav: M0 är klar.
 
 | # | Risk | Mitigering |
 |---|------|------------|
-| R1 | `TransactionHandler.cs` finns inte fysiskt i arbetskopian (men refereras från `WebBankBudgeter.cs:18, 28, 58, 69, 72`) | M0 (ny milstolpe) hanterar detta enligt D6 — måste vara löst innan M5 |
+| R1 | `dotnet build` kan fallera med `MSB3021/MSB3027` när `WebBankBudgeterUi` kör och låser `bin`-DLL:er | M0: stoppa UI-processen före full build/test (eller kör build utan UI-projekt) |
 | R2 | UT/KVAR är `#VALUE!` i Excel-filen | Accepteras — vi räknar dem själva ur transaktionerna; det är ju precis det appen ska göra |
 | R3 | Kategori­namn i Excel har specialtecken (`ö`, `å`, `£`) | JSON/UTF-8 hanterar det; kontrollera att `.csproj` använder `utf-8` BOM eller explicit encoding |
 | R4 | Svensk kultur i Excel vs invariant i koden | Extraktorn använder `sv-SE` på Excel-sidan, skriver punkt-decimaler i JSON; koden använder invariant → match OK |
@@ -522,7 +524,7 @@ Förkrav: M0 är klar.
 3. **M3** (service­tester) — validerar tran­saktions­aggregering och Kvar-matte.
 4. **Commit** — allt ovan kan committas utan att ändra produktions­kod.
 5. **M4** (UI-tester som failar) — dokumenterar exakt vilka gap som finns.
-6. **M0** (`TransactionHandler` återställs/skrivs om) — kan göras parallellt med M3/M4.
+6. **M0** (stabil byggmiljö + verifierad `TransactionHandler`) — kan göras parallellt med M3/M4.
 7. **M5** (driv in koden) — en punkt i taget tills alla tester grönar.
 
 Varje milstolpe ska vara committable på egen hand och ha alla tester gröna.
