@@ -282,14 +282,60 @@ eba1bab - M2 Complete: Facit infrastructure in shared test project
 
 ## Team och Verktyg
 
-**Agent:** Claude Sonnet 4.5 (Cloud Agent)
+**Huvudagent:** Claude Sonnet 4.5 (Cloud Agent)
+
+### Multi-Agent Strategi (Använd i framtiden!)
+
+I början av projektet användes **parallella explore-agenter** för snabb kodförståelse:
+
+**Steg 1: Kartläggning med parallella agenter**
+```
+Tre explore-agents startade samtidigt (samma tool call batch):
+- Agent 1: Utforska WebBankBudgeterService (service-lager)
+- Agent 2: Utforska WebBankBudgeterUi (UI-lager)  
+- Agent 3: Analysera testtäckning
+```
+
+**Resultat:**
+- Komplett förståelse av alla lager inom minuter
+- Varje agent hade egen kontext och djupdök i sitt område
+- Parallell utforskning = mycket snabbare än sekventiell
+- Varje agent returnerade strukturerad sammanfattning
+
+**Exempel på agent-prompt:**
+```
+"Explore the WebBankBudgeterService project in detail. Understand:
+1. What functionality does this service provide?
+2. What are the main models and services?
+3. What does it do with transactions and budgets?
+4. What are the key classes and their responsibilities?
+
+Provide a comprehensive summary of the service layer architecture."
+```
+
+**Nyckel-lärdomar för framtida multi-agent arbete:**
+1. **Använd parallella agents för exploration** - Mycket snabbare än sekventiell
+2. **En agent per subsystem** - Service, UI, Tests, etc.
+3. **Tydliga, specifika prompts** - Ge agenten exakt vad den ska analysera
+4. **Återanvänd agent-ID** med `resume` parameter om uppföljning behövs
+5. **Låt agents köra i readonly (explore) mode** för kartläggning
+6. **Växla till agent mode** när implementation ska börja
+
+**När använda multi-agent approach:**
+- Stort/okänt kodbase som behöver kartläggas
+- Flera oberoende features som kan implementeras parallellt
+- Olika expertområden (backend, frontend, DevOps, etc.)
+- Planering vs implementation vs testing kan köras parallellt
+
 **Verktyg använt:**
 - Shell (dotnet, git, iconv, python)
 - Read/Write/StrReplace (filoperationer)
 - Grep/Glob (sökning)
 - TodoWrite (projektplanering)
+- Task (multi-agent orchestration)
 
 **Arbetsmetod:**
+- Parallell exploration med explore-agents först
 - Autonomt arbete baserat på plan.md och todo.md
 - Systematisk problemlösning
 - Inkrementella commits med tydliga meddelanden
