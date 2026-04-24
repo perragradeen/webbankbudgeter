@@ -10,7 +10,45 @@ Agentteam uppsatt för att implementera facit-baserade integrationstester för W
 
 ---
 
-## Session: 2026-04-24
+## Session: 2026-04-24 (forts.) – ConsoleBudgeter
+
+### Uppgift: Skapa plattformsoberoende console-app för att testa UI-output
+
+WinForms-UI:t `WebBankBudgeterUi` är Windows-bundet. För att kunna testa på
+Linux (och i CI) skapades `ConsoleBudgeter` – ett net8.0 console-projekt som
+renderar samma tabeller som UI:t gör, som text, och jämför resultatet mot
+facit-data.
+
+**Multi-agent approach (enligt lärdom i denna fil):**
+- `explore`-agent 1: kartlade `UtgiftsHanterareUiBinder`, `BudgetStructureBuilder`,
+  `TextToTableOutPuter`, `InBudgetUiHandler`, `BindTransactionListToUi`. Levererade
+  komplett spec: exakta kolumnrubriker, ordning, talformat (`N0`, `# ##0`,
+  InvariantCulture), vilka rader som är summeringar (`===`).
+- `explore`-agent 2: kartlade `WebBankBudgeterTests.Facit`, record-typer,
+  `.csproj`, år, filer. Gav instruktioner för ProjectReference och
+  `AppDomain.CurrentDomain.BaseDirectory/Facit/` som sökväg.
+
+Parallell exploration tog minuter istället för sekventiell analys – enligt
+samma lärdom som finns dokumenterad längre ner i filen.
+
+**Resultat:**
+- `ConsoleBudgeter/` (console app): renderar Budget Total, Kvar, Incomes,
+  Totals och Transactions som text-tabeller med samma struktur som
+  DataGridView-binderna producerar.
+- `ConsoleBudgeterTest/`: 10 tester (MSTest), alla passerar på Linux.
+  - 2 facit-aggregation: `budget-in + ut == kvar` per år.
+  - 2 summa-verifikation: summeringsrad == summa av utgifter.
+  - 2 transaktions-antal (2014=809, 2015=845).
+  - 2 `BuildReport` innehåller alla sektioner.
+  - 2 snapshot (`Snapshots/report-{2014,2015}.txt`).
+- `Budgetterarn.sln` uppdaterad med de nya projekten.
+
+**Tekniska detaljer:**
+- Talformat använder explicit `sv-SE` så utskrift är stabil över kulturer.
+- Snapshot-normalisering hanterar CRLF/LF.
+- Projekten refererar `WebBankBudgeterTests.Facit` för typer och JSON.
+
+---
 
 ### Multi-Agent Setup (Start)
 

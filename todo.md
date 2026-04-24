@@ -1,6 +1,54 @@
-# TODO: Visa samma data på "Kvar"-fliken som "Budget Total"
+# TODO
 
-## ✅ Status: SLUTFÖRT (Redan implementerat i koden)
+## Användarönskemål (ConsoleBudgeter) — markera **KLART** när du verifierat
+
+| Krav | Status |
+|------|--------|
+| Rapportordning: först **In** (`gv_incomes`), sen **Ut** / Budget Total (`gv_budget`), sen **Kvar** (`gv_Kvar`). | Väntar din verifiering |
+| Under **Kvar** ska raden **"-"** (transaktions-/saldoplaceholder i facit) inte visas. | Väntar din verifiering |
+| **Budget Total:** `värnamoresor+övriga` ska ligga bland övriga utgifter, inte under inkomstraden **"+"** (fix: inkomst = exakt kategori `"+"`, inte `Contains("+")`). | Väntar din verifiering |
+| Kör och lita på **ConsoleBudgeter** / `dotnet test` för verifiering (inte ad hoc Python). | Väntar din verifiering |
+
+---
+
+## ⏳ Textfacit + Excel-pipeline (plan D15 / D16)
+
+| Uppgift | Status |
+|---------|--------|
+| Committad **`WebBankBudgeterTests.Facit/Facit/console-report-facit-reference.txt`** (full rapport 2014+2015) som facit för utskrift; kopieras till test-output via `.csproj`. | Väntar din verifiering |
+| **`Facit/README.md`** + **`plan.md`** (0.6, D15/D16, M1-notis): JSON från Excel-extraktorn; textfacit = `ConsoleBudgeter` `--out`, inte duplicerad layout i extraktorn. | Väntar din verifiering |
+| **WinForms:** användaren ska kunna **välja källa för in-poster** (`gv_incomes` / `BudgetIns` vs facit `budget-in-*.json` / fil) — se `plan.md` 0.6. | PENDING (implementation) |
+
+---
+
+## ✅ Plan M5 — service (D7, D10, D12 delar)
+
+| Punkt | Status |
+|-------|--------|
+| D7: `BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory` (tom grupp → rent kategorinamn) | Klart i kod + `TableGetterCategoryKeyTests` |
+| D10: `GetMonthAsFullString` invariant | Verifierat i test (redan `InvariantCulture` i kod) |
+| D12: `Ignore` exkluderas från budgettabellaggregering (`SourceEntryType` från Excel-rad) | Klart i kod + test |
+
+**Klart i kod:** M5.1 (IN slås in i Budget Total-tabell), M5.2 (Kvar via `SnurraIgenom`), M5.7 (`sv-SE` i `UtgiftsHanterareUiBinder`), `UtgiftsHanterareUiBinder` rensar kolumner/rader vid ombindning.
+
+**Nästa:** M5.3 `BudgetIns` från facit / täckning, M5.4–M5.6, WinForms val av in-poster (D16), ev. utöka `SnurraIgenom` för IN-only-kategorier.
+
+---
+
+## ✅ Dela affärslogik mellan WinForms-UI och ConsoleBudgeter
+
+**Status:** KLART (2026-04-24)
+
+- `ConsoleBudgeter` refererar **`WebBankBudgeterService`** och **`InbudgetHandler`**.
+- Gemensamt: `FacitBudgetTextTableFactory`, `BudgetStructureBuilder`, `BudgetTableInMerger`, `KvarTextTableBuilder`, `InBudgetMath`, `TextToTableOutPuterClone`.
+- Konsolen mappar facit med `FacitInBudgetRows`; `TableRenderer` skriver text från `TextToTableOutPuter`.
+- `BudgetTableBuilder.cs` borttagen. Snapshot-tester: `BuildReport(..., transactionLimit: null)`.
+
+---
+
+## ✅ Visa samma data på "Kvar"-fliken som "Budget Total"
+
+**Status:** SLUTFÖRT (Redan implementerat i koden)
 
 Verifierat 2026-04-24: Alla 4 steg var redan implementerade.
 

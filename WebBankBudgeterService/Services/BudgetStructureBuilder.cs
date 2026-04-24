@@ -11,22 +11,62 @@ namespace WebBankBudgeterService.Services
     {
         private const string IncomeCategoryName = "+";
         private const string TransferCategoryName = " -";
-        private const string ExpensesSummaryRowName = "=== Summa utgifter ===";
-        private const string IncomesSummaryRowName = "=== Summa inkomster ===";
-        private const string TransfersSummaryRowName = "=== Summa förflyttningar ===";
-        private const string TotalBudgetRowName = "=== BUDGET (Inkomster - Utgifter) ===";
+
+        public const string ExpensesSummaryRowName = "=== Summa utgifter ===";
+        public const string IncomesSummaryRowName = "=== Summa inkomster ===";
+        public const string TransfersSummaryRowName = "=== Summa förflyttningar ===";
+        public const string TotalBudgetRowName = "=== BUDGET (Inkomster - Utgifter) ===";
+
+        /// <summary>
+        /// Månadskolumner (exkl. kategori och Average) i samma ordning som i <paramref name="columnHeaders"/>.
+        /// </summary>
+        public static List<string> MonthColumnKeys(IEnumerable<string> columnHeaders) =>
+            columnHeaders
+                .Where(h => !h.Contains("Category", StringComparison.Ordinal) &&
+                            !h.Contains("Average", StringComparison.Ordinal))
+                .ToList();
+
+        /// <summary>
+        /// Bygger om strukturerad vy från en platt radlista (t.ex. efter att IN slagits in i utgiftsrader).
+        /// </summary>
+        public StructuredBudgetTable RebuildStructuredBudget(IEnumerable<BudgetRow> budgetRows, List<string> columnHeaders) =>
+            BuildStructuredBudget(budgetRows, columnHeaders);
+
+        /// <summary>
+        /// Rader som räknas som utgifter i strukturen (före första summeringsrad), för att slå ihop med budget-IN.
+        /// </summary>
+        public static List<BudgetRow> GetExpenseRowsBeforeFirstSummary(StructuredBudgetTable structured)
+        {
+            var result = new List<BudgetRow>();
+            foreach (var r in structured.Rows)
+            {
+                var c = r.CategoryText ?? string.Empty;
+                if (string.IsNullOrWhiteSpace(c))
+                {
+                    continue;
+                }
+
+                if (c.Contains("===", StringComparison.Ordinal))
+                {
+                    break;
+                }
+
+                result.Add(r);
+            }
+
+            return result;
+        }
 
         public StructuredBudgetTable BuildStructuredBudget(IEnumerable<BudgetRow> budgetRows, List<string> columnHeaders)
         {
             var result = new StructuredBudgetTable();
             var rows = budgetRows.ToList();
 
-            // Separera kategorier
-            var incomeRows = rows.Where(r => r.CategoryText.Contains(IncomeCategoryName)).ToList();
-            var transferRows = rows.Where(r => r.CategoryText.Contains(TransferCategoryName)).ToList();
+            // Inkomster är raden med namn "+" (trimmat), inte kategorier som råkar innehålla '+' (t.ex. "värnamoresor+övriga").
+            var incomeRows = rows.Where(r => IsIncomeCategoryRow(r.CategoryText)).ToList();
+            var transferRows = rows.Where(r => IsTransferCategoryRow(r.CategoryText)).ToList();
             var expenseRows = rows
-                .Where(r => !r.CategoryText.Contains(IncomeCategoryName) && 
-                           !r.CategoryText.Contains(TransferCategoryName))
+                .Where(r => !IsIncomeCategoryRow(r.CategoryText) && !IsTransferCategoryRow(r.CategoryText))
                 .OrderBy(r => r.CategoryText)
                 .ToList();
 
@@ -68,14 +108,18 @@ namespace WebBankBudgeterService.Services
             return result;
         }
 
+        private static bool IsIncomeCategoryRow(string categoryText) =>
+            string.Equals(categoryText.Trim(), IncomeCategoryName, StringComparison.Ordinal);
+
+        private static bool IsTransferCategoryRow(string categoryText) =>
+            categoryText.Contains(TransferCategoryName, StringComparison.Ordinal);
+
         private BudgetRow CreateSummaryRow(string rowName, List<BudgetRow> rows, List<string> columnHeaders)
         {
             var summaryRow = new BudgetRow { CategoryText = rowName };
 
             // Filtrera bort kategorikolumnen och eventuella genomsnittskolumner
-            var monthColumns = columnHeaders
-                .Where(h => !h.Contains("Category") && !h.Contains("Average"))
-                .ToList();
+            var monthColumns = MonthColumnKeys(columnHeaders);
 
             foreach (var monthColumn in monthColumns)
             {
@@ -98,10 +142,7 @@ namespace WebBankBudgeterService.Services
         {
             var budgetRow = new BudgetRow { CategoryText = TotalBudgetRowName };
 
-            // Filtrera bort kategorikolumnen och eventuella genomsnittskolumner
-            var monthColumns = columnHeaders
-                .Where(h => !h.Contains("Category") && !h.Contains("Average"))
-                .ToList();
+            var monthColumns = MonthColumnKeys(columnHeaders);
 
             foreach (var monthColumn in monthColumns)
             {
