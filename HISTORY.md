@@ -200,13 +200,17 @@ webbankbudgeter/
 - ✅ WebBankBudgeterServiceTest (15/15 passed, 2 skipped)
 - ✅ InbudgetHandlerTest (3/3 passed)
 - ✅ UtilitiesTest (1/1 passed, 4 skipped)
+- ✅ FileTests (2/2 passed)
+- ✅ GeneralSettingsTests (3/3 passed)
 - ✅ WebBankBudgeterTests.Facit
 - ✅ InbudgetHandler
 - ✅ Tools/FacitExtractor
 - ⚠️ WebBankBudgeterUi (Windows-only, WinForms)
 - ⚠️ WebBankBudgeterUiTest (Windows-only, WinForms)
+- ⚠️ BudgetterarnUiTest (Windows-only, WinForms)
 
-**Total på Linux: 19/19 tester passerar, 6 skippade**
+**Total på Linux: 24/24 tester passerar, 6 skippade**
+**Samma resultat som på Windows!**
 
 ---
 
