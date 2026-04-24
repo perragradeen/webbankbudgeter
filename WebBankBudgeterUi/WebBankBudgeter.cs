@@ -210,6 +210,71 @@ namespace WebBankBudgeterUi
             return _transactionHandler?.GetTextTableFromTransactions();
         }
 
+        /// <summary>
+        /// Slår in budget-IN i samma tabell som transaktions-UT (plan M5.1 / G1).
+        /// </summary>
+        internal static void MergeBudgetInsIntoBudgetTextTable(TextToTableOutPuter table, List<Rad> inPosterRader)
+        {
+            if (table == null || inPosterRader == null || inPosterRader.Count == 0)
+            {
+                return;
+            }
+
+            BudgetTableInMerger.MergeInRows(table, inPosterRader);
+        }
+
+        /// <summary>
+        /// Kvar = IN + UT per kategori (befintlig <see cref="SnurraIgenom"/>), som <see cref="TextToTableOutPuter"/> för grid-bindning.
+        /// </summary>
+        internal TextToTableOutPuter BuildKvarTextTable(TextToTableOutPuter mergedExpenseTable, List<Rad> inPosterRader,
+            Action<string> logLine)
+        {
+            if (mergedExpenseTable?.BudgetRows == null)
+            {
+                return new TextToTableOutPuter();
+            }
+
+            var builder = new BudgetStructureBuilder();
+            var structured = builder.BuildStructuredBudget(
+                mergedExpenseTable.BudgetRows,
+                mergedExpenseTable.ColumnHeaders);
+
+            var utgiftRader = BudgetStructureBuilder.GetExpenseRowsBeforeFirstSummary(structured);
+            var kvarRader = SnurraIgenom(inPosterRader, utgiftRader, logLine);
+
+            var kvarTable = new TextToTableOutPuter
+            {
+                UtgiftersStartYear = mergedExpenseTable.UtgiftersStartYear,
+                ColumnHeaders = new List<string>(mergedExpenseTable.ColumnHeaders),
+                AveragesForTransactions = mergedExpenseTable.AveragesForTransactions
+            };
+
+            var monthKeys = BudgetStructureBuilder.MonthColumnKeys(mergedExpenseTable.ColumnHeaders);
+            var budgetRows = new List<BudgetRow>();
+
+            foreach (var rad in kvarRader)
+            {
+                if (string.Equals(rad.RadNamnY, InBudgetHandler.SummaText, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                var row = new BudgetRow { CategoryText = rad.RadNamnY };
+                foreach (var mk in monthKeys)
+                {
+                    if (rad.Kolumner.TryGetValue(mk, out var v))
+                    {
+                        row.AmountsForMonth[mk] = v;
+                    }
+                }
+
+                budgetRows.Add(row);
+            }
+
+            kvarTable.BudgetRows = budgetRows;
+            return kvarTable;
+        }
+
         internal void DescribeReoccurringGroups()
         {
             foreach (var group in MonthAvaragesCalcs.ReoccurringCatGroups)

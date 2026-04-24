@@ -29,7 +29,9 @@
 | D10: `GetMonthAsFullString` invariant | Verifierat i test (redan `InvariantCulture` i kod) |
 | D12: `Ignore` exkluderas från budgettabellaggregering (`SourceEntryType` från Excel-rad) | Klart i kod + test |
 
-**Nästa enligt plan:** M5.1 Budget Total med IN från `BudgetIns`, M5.3–M5.7 UI/format, WinForms val av in-poster (D16).
+**Klart i kod:** M5.1 (IN slås in i Budget Total-tabell), M5.2 (Kvar via `SnurraIgenom`), M5.7 (`sv-SE` i `UtgiftsHanterareUiBinder`), `UtgiftsHanterareUiBinder` rensar kolumner/rader vid ombindning.
+
+**Nästa:** M5.3 `BudgetIns` från facit / täckning, M5.4–M5.6, WinForms val av in-poster (D16), ev. utöka `SnurraIgenom` för IN-only-kategorier.
 
 ---
 

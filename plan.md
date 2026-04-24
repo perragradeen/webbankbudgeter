@@ -272,8 +272,8 @@ TestData/BudgetIns.json
 
 | # | Område | Facit kräver | Nuvarande kod | Gap |
 |---|--------|-------------|---------------|-----|
-| G1 | Budget Total | Tre sektioner: **IN**, **UT**, **KVAR** per kategori per månad | Inkomster = transaktioner som innehåller `"+"` i kategori­namnet; ingen riktig IN från BudgetIns.json visas per kategori | Budget Total måste hämta IN från `BudgetIns.json` och kombinera med UT från trans­aktioner |
-| G2 | Kvar-fliken | `IN + UT` per kategori per månad | Visar samma som Budget Total | Kalla `SnurraIgenom` → `BindKvarBudgetTableUi` (ny sorts bindning för `Rad`-modellen) |
+| G1 | Budget Total | **IN + UT** per kategori i samma tabell (summerat per månad) | **Delvis åtgärdat:** IN från `BudgetIns` adderas till `BudgetRow` före struktur/summering | Full IN/UT/KVAR-sektion som i Excel (tre block) kan fortfarande kräva UI-uppdelning |
+| G2 | Kvar-fliken | `IN + UT` per kategori per månad | **Åtgärdat:** `SnurraIgenom` + egen `TextToTableOutPuter` till `gv_Kvar` | Kategorier som bara finns i IN utan UT-rad får tomma kvarceller tills `SnurraIgenom` utökas |
 | G3 | Kategori-nyckel | Rent kategorinamn (t.ex. `"el"`) vid tom grupp | **Delvis åtgärdat:** `Transaction.BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory` använder rent namn när `Group` är tom; icke-tom grupp behåller `CategoryName` | Facit-jämförelse för rader med riktig grupp i XML kan fortfarande kräva uppföljning |
 | G4 | Tecken-konvention | IN ≥ 0, UT ≤ 0, KVAR = IN + UT | Samma i `SnurraIgenom` | OK |
 | G5 | Auto-kategorisering | `CategoryHandler` matchar hela `InfoDescription` exakt | Case-insensitive trim-jämförelse på hela beskrivningen | Facit visar många fria­texter (`PILEG$RDENS SERVICEBUT ASKIM`) → kräver substring/regex-matchning eller manuellt angivna aliaser |
@@ -633,19 +633,14 @@ AssertGridMatchesExpectedUt(grid, FacitLoader.LoadExpectedUt(2014));
 
 Förkrav: M0 är klar.
 
-1. **Budget Total**: Ändra `FillTablesAsync` (`WebBankBudgeterUi.cs:55`) så IN-data
-   (från `BudgetIns.json`) visas i Budget Total — inte bara utgift-härledda inkomster.
-2. **Kvar**: TODO.md-arbetet är redan utfört (`BindKvarBudgetTableUi` finns på rad 230
-   och anropas på rad 88). Antingen behåll så, eller — för riktig "kvar"-vy — återinför
-   `SnurraIgenom`-flödet och skicka resultatet via `UtgiftsHanterareUiBinder` så
-   formateringen blir enhetlig mellan flikarna.
+1. **Budget Total**: `FillTablesAsync` slår in IN-rader (`HämtaInDataRaderFiltrerat`) i transaktionstabellen via `InbudgetHandler.BudgetTableInMerger` innan `BindToBudgetTableUi` (M5.1 / G1).
+2. **Kvar**: `BuildKvarTextTable` använder `SnurraIgenom` mot utgiftsblocket i den strukturerade tabellen (`BudgetStructureBuilder.GetExpenseRowsBeforeFirstSummary`) och binder resultatet till `gv_Kvar` (samma `UtgiftsHanterareUiBinder` som Budget Total).
 3. **BudgetIns.json** (D9): Generera `BudgetIns.json` för 2014/2015 ur facit. Utvärdera
    enligt 0.4 om befintligt schema ska behållas eller migreras till facit-formatet.
 4. **Kategori-normalisering** (D7): **Klart** i service — `BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory`.
 5. **Ignore-flagga** (D12): **Klart** i `TableGetter` (exkludera `KontoEntryType.Ignore` vid budgetaggregering) + `SourceEntryType` från `TransactionTransformer`.
 6. **Månadskultur** (D10): **Klart** — `GetMonthAsFullString` använder redan `InvariantCulture`; test tillagt.
-7. **UI-presentation** (0.2): Formatsträng `# ##0` med `sv-SE` i grid-bindningen
-   (tusentalsavgränsare, inga decimaler). Påverkar bara displayen, inte modellen.
+7. **UI-presentation** (0.2): `UtgiftsHanterareUiBinder.DoubleTo1000SeparatedNoDecimals` använder `N0` med **`sv-SE`** (tusentalsavgränsare enligt plan). Påverkar bara displayen, inte modellen.
 
 ---
 

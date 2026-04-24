@@ -16,6 +16,46 @@ namespace WebBankBudgeterService.Services
         private const string TransfersSummaryRowName = "=== Summa förflyttningar ===";
         private const string TotalBudgetRowName = "=== BUDGET (Inkomster - Utgifter) ===";
 
+        /// <summary>
+        /// Månadskolumner (exkl. kategori och Average) i samma ordning som i <paramref name="columnHeaders"/>.
+        /// </summary>
+        public static List<string> MonthColumnKeys(IEnumerable<string> columnHeaders) =>
+            columnHeaders
+                .Where(h => !h.Contains("Category", StringComparison.Ordinal) &&
+                            !h.Contains("Average", StringComparison.Ordinal))
+                .ToList();
+
+        /// <summary>
+        /// Bygger om strukturerad vy från en platt radlista (t.ex. efter att IN slagits in i utgiftsrader).
+        /// </summary>
+        public StructuredBudgetTable RebuildStructuredBudget(IEnumerable<BudgetRow> budgetRows, List<string> columnHeaders) =>
+            BuildStructuredBudget(budgetRows, columnHeaders);
+
+        /// <summary>
+        /// Rader som räknas som utgifter i strukturen (före första summeringsrad), för att slå ihop med budget-IN.
+        /// </summary>
+        public static List<BudgetRow> GetExpenseRowsBeforeFirstSummary(StructuredBudgetTable structured)
+        {
+            var result = new List<BudgetRow>();
+            foreach (var r in structured.Rows)
+            {
+                var c = r.CategoryText ?? string.Empty;
+                if (string.IsNullOrWhiteSpace(c))
+                {
+                    continue;
+                }
+
+                if (c.Contains("===", StringComparison.Ordinal))
+                {
+                    break;
+                }
+
+                result.Add(r);
+            }
+
+            return result;
+        }
+
         public StructuredBudgetTable BuildStructuredBudget(IEnumerable<BudgetRow> budgetRows, List<string> columnHeaders)
         {
             var result = new StructuredBudgetTable();
@@ -78,9 +118,7 @@ namespace WebBankBudgeterService.Services
             var summaryRow = new BudgetRow { CategoryText = rowName };
 
             // Filtrera bort kategorikolumnen och eventuella genomsnittskolumner
-            var monthColumns = columnHeaders
-                .Where(h => !h.Contains("Category") && !h.Contains("Average"))
-                .ToList();
+            var monthColumns = MonthColumnKeys(columnHeaders);
 
             foreach (var monthColumn in monthColumns)
             {
@@ -103,10 +141,7 @@ namespace WebBankBudgeterService.Services
         {
             var budgetRow = new BudgetRow { CategoryText = TotalBudgetRowName };
 
-            // Filtrera bort kategorikolumnen och eventuella genomsnittskolumner
-            var monthColumns = columnHeaders
-                .Where(h => !h.Contains("Category") && !h.Contains("Average"))
-                .ToList();
+            var monthColumns = MonthColumnKeys(columnHeaders);
 
             foreach (var monthColumn in monthColumns)
             {
