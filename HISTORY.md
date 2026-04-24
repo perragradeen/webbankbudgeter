@@ -130,6 +130,13 @@ Efter kartläggning fortsatte en huvudagent (Sonnet 4.5) med implementation.
 - **Resultat:** 336 rader per år (28 kategorier × 12 månader), alla kategorier korrekta
 - **Commit:** `c93156d` - "Fix FacitExtractor column mapping"
 
+**Rättelse av plan.md (viktigt!):**
+- Plan.md påstod felaktigt att Januari 2014 saknades i Excel
+- Faktisk verifiering visade att Januari FINNS för både 2014 och 2015
+- Korrigerat D5-beslut och alla invarianter
+- Uppdaterat: 28 kategorier × 12 månader = 336 rader (inte 33 × 11 = 363)
+- **Commit:** `6b7cc90` - "Correct plan.md - January 2014 data exists"
+
 ---
 
 ### Fas 4: M2 - Facit-infrastruktur
