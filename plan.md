@@ -11,27 +11,137 @@ Målet är att UI:t ska visa exakt samma struktur och data som Excel-förlagan:
 
 ---
 
-## 0. Beslut som behöver tas innan M2 startar
+## 0. Beslut (tagna)
 
-Dessa val styr facit-format, tester och normalisering. Märk varje rad med valt
-alternativ direkt i denna fil innan extraktorn körs igen.
+| # | Område | Valt alternativ | Kommentar |
+|---|--------|-----------------|-----------|
+| D1 | Beloppsprecision | **(b) `decimal` internt** | Pengar i SEK, 2 decimaler från Kontoutdraget. Presentation: se 0.2. |
+| D2 | Transfers (`" -"`) | **(c) Egen fil** `expected-transfers-YYYY.json` | Håller `expected-ut` synkad med `BudgetStructureBuilder` som redan filtrerar bort transfers. |
+| D3 | `expected-kvar` när IN saknas | **(a) `BudgetAmount = 0`** | Se 0.1 för konkreta facit-exempel. |
+| D4 | `expected-kvar` när UT saknas | **(a) `ActualAmount = 0`** | Se 0.1 för konkreta facit-exempel. |
+| D5 | Januari 2014 i IN | **(b) Generera januari-rader med testdata** | Efterliknar de andra månaderna. Avviker medvetet från Excel. |
+| D6 | `TransactionHandler` | **(a) Behåll nuvarande klass, verifiera inläsning mot facit** | Filen finns i `WebBankBudgeterService/TransactionHandler.cs`. Bekräfta att `TransactionList.Transactions` + `TransactionList.Account.AvailableAmount` matchar vad `WebBankBudgeter.cs` förväntar, och att inläsningen levererar 1 654 rader för facit-året. |
+| D7 | Group-normalisering | **(b) `CategoryNameNoGroup` i `TableGetter.GroupOnMonthAndCategory`** | Minst ingrepp; funktionen finns redan. |
+| D8 | Sparrader | **(a) Utgifter (för nu)** | Kan flyttas till egen sektion senare. |
+| D9 | `BudgetIns.json`-format | **(b) Migrera om det ger förbättring** | Utvärderas i M5 — se 0.4. |
+| D10 | Månadskultur | **(b) Ändra direkt till `InvariantCulture`** i M5 | Datumparsning från Excel: se 0.3. |
+| D11 | Facit-placering | **(b) Eget shared-projekt** | Alla testprojekt (unit, integration, referens) länkar det. |
+| D12 | `Ignore`-rader i facit | **(a) Inkludera i `transactions-*.json`**, exkludera i `expected-ut-*.json` | Gör filterregeln testbar. |
+| D13 | Assert-strategi | **(b) FluentAssertions** — `BeApproximately(value, 0.01m)` | Lägg till paketref i testprojektet om det saknas. |
+| D14 | Sortering | **(b) Behåll kodens sortering; jämför som dictionary** | Se 0.5 — bara siffrorna behöver matcha. |
 
-| # | Område | Alternativ | Default-förslag | Beslut |
-|---|--------|-----------|-----------------|--------|
-| D1 | **Beloppsprecision** i extraktor och tester | (a) `double` med tolerans ±0,01 per cell och ±0,10 för aggregat · (b) `decimal` hela vägen · (c) `double` men tolerans ±0,01 överallt (kan failas av summor) | (a) | _____ |
-| D2 | **Transfers (`" -"`)** i `expected-ut-YYYY.json` | (a) Inkluderas (nuvarande prototyp) · (b) Exkluderas helt · (c) Bryts ut till egen fil `expected-transfers-YYYY.json` | (c) — egen fil; håller `expected-ut` i synk med `BudgetStructureBuilder` som ändå filtrerar bort transfers från utgifts-summan | _____ |
-| D3 | **`expected-kvar` när IN saknas** för en (kat, månad) (UT-only) | (a) `BudgetAmount = 0`, raden inkluderas · (b) Hoppa raden helt · (c) Inkludera men markera `BudgetAmount = null` | (a) | _____ |
-| D4 | **`expected-kvar` när UT saknas** (IN-only, ingen spend) | (a) `ActualAmount = 0`, `Remaining = BudgetAmount` · (b) Hoppa raden | (a) | _____ |
-| D5 | **Januari 2014 i IN-sektionen** (faktiskt saknas i Excel: 0 rader) | (a) Behåll som tomt — dokumentera som invariant · (b) Generera januari-rader med `BudgetAmount = 0` · (c) Kopiera februari som proxy | (a) — dokumentera; spegla Excel | _____ |
-| D6 | **`TransactionHandler`-strategi** | (a) Behåll nuvarande klass, verifiera inläsning mot facit · (b) Skriv om från grunden mot facit-data · (c) Ersätt med ny tunn klass som läser direkt från facit i tester och från `.xls` i prod | (a) först; (b) som plan B | _____ |
-| D7 | **Group-prefix-normalisering** så `"el"` matchar `"Fast el"` | (a) Ändra `Categories.ToString()` att returnera enbart `Name` om `Group` är tom · (b) Använd befintlig `CategoryNameNoGroup` i `TableGetter.GroupOnMonthAndCategory` · (c) Skapa ny `CategoryNameNormalized` | (b) — `CategoryNameNoGroup` finns redan, minst risk | _____ |
-| D8 | **Sparrader** (`spara almänt`, `spara till amortering`) | (a) Behandla som utgifter (default i koden idag) · (b) Egen sektion "sparande" i UI och facit | (a) | _____ |
-| D9 | **`BudgetIns.json`-format** för 2014/2015 i prod-koden | (a) Behåll befintligt schema (`CategoryDescription`/`BudgetValue`/`YearAndMonth`) — generera dem från facit · (b) Migrera prod-koden till samma format som `budget-in-YYYY.json` | (a) — minst kodändring i InbudgetHandler | _____ |
-| D10 | **Kultur i `GetMonthAsFullString`** | (a) Verifiera först, ändra bara om den inte redan är invariant · (b) Ändra till `CultureInfo.InvariantCulture` direkt i M5 | (a) | _____ |
-| D11 | **Facit-mappens placering** | (a) `WebBankBudgeterUiTest/Facit/` (per nuvarande plan) · (b) Eget `WebBankBudgeterTests.Facit/` shared-projekt som både UI- och Service-tester refererar | (b) — undviker dubblering av loader och JSON-filer | _____ |
-| D12 | **`Ignore`-rader i facit** | (a) Inkludera dem i `transactions-YYYY.json` med `Flag = "Ignore"`, exkludera dem ur `expected-ut` (testar filtreringen) · (b) Filtrera bort redan i extraktorn (då testas inte filtreringen) | (a) — gör filterregeln testbar | _____ |
-| D13 | **Toleransstrategi i asserts** | (a) Per-cell `Math.Abs(a-b) <= 0.01` · (b) Använd FluentAssertions `BeApproximately(0.01)` · (c) `Math.Round(x, 2)`-jämförelse | (b) om FluentAssertions redan är referens, annars (a) | _____ |
-| D14 | **Stabil sortering i koden** vs facit | Facit sorteras `Category` → `Year` → `Month`. `TableGetter` sorterar `OrderByDescending(CategoryText)`. (a) Ändra koden att sortera som facit · (b) Behåll kodens sortering, jämför som dictionary i tester | (b) — sorteringsskillnad bör inte fela tester | _____ |
+### 0.1 D3/D4 förtydligade med exempel ur facit
+
+**Kategorier som finns i `expected-ut-2014.json` men INTE i `budget-in-2014.json`**
+(verifierat genom att diffa unika kategorier):
+
+| Kategori i UT | Finns i IN? |
+|---------------|-------------|
+| `" -"` (transfers — flyttas till egen fil enligt D2) | Nej |
+| `"+"` (inkomster — utfall av löner etc) | Nej (inkomsternas budget hanteras separat) |
+| `"-"` | Nej — 1 enstaka rad, troligen skrivfel i Excel |
+
+→ Med **D3 = a** blir exempelraden för `"+"` januari 2014 (om utfall är +22 500 kr):
+
+```json
+{ "Category": "+", "Year": 2014, "Month": 1, "MonthName": "January",
+  "BudgetAmount": 0.00, "ActualAmount": 22500.00, "Remaining": 22500.00 }
+```
+
+(`Remaining = 0 + 22500 = 22500` — "22 500 kr kom in utan registrerad budget")
+
+**Kategorier som finns i `budget-in-2014.json` men INTE i `expected-ut-2014.json`**
+(kategorier med budget men inga matchande transaktioner 2014):
+
+| Kategori i IN | Finns i UT? |
+|---------------|-------------|
+| `"hushåll, reparationer etc inköp av nya husshållsmaskiner"` | Nej |
+| `"hemlagad lunch"` | Nej |
+| `"hygien (disk, tvätt o tvål etc)"` | Nej |
+| `"övrigt i samband med supa"` | Nej |
+| `"Buss etc i samband med  supa"` | Nej |
+| `"spara till dator"` | Nej |
+
+→ Med **D4 = a** blir exempelraden för `"hemlagad lunch"` mars 2014 (budget 300 kr, inga transaktioner):
+
+```json
+{ "Category": "hemlagad lunch", "Year": 2014, "Month": 3, "MonthName": "March",
+  "BudgetAmount": 300.00, "ActualAmount": 0.00, "Remaining": 300.00 }
+```
+
+(`Remaining = 300 + 0 = 300` — "hela budgeten kvar, inget spenderat")
+
+**Sammanfattning:** `expected-kvar` täcker **unionen** av alla kategorier. Där en
+sida saknas fylls 0 i. Enhetligt format utan `null`, speglar "positivt = under
+budget, negativt = över budget".
+
+### 0.2 Presentation i UI (tillhör D1)
+
+Beloppen lagras som `decimal` i alla lager. Presentation i grid:
+
+- **Format**: `# ##0` (tusentalsavgränsare som hård mellanslag, **inga decimaler**).
+- **Negativa belopp**: minustecken före — `-1 234` (inte parenteser).
+- **Kultur**: `sv-SE` för formatsträngen:
+  `value.ToString("# ##0", CultureInfo.GetCultureInfo("sv-SE"))`.
+
+Motivering: pengar lagras exakt (2 decimaler) men visas grovt för
+läsbarhet i månadstabellen. Summor och toleranser gäller den exakta
+`decimal`-representationen, inte den formatterade strängen.
+
+### 0.3 Datumparsning (tillhör D10)
+
+Excel-kontoutdraget lagrar datum som **tre separata celler** (år / månad / dag)
+— t.ex. `2014 \t 1 \t 27`. Det är **inte** en kulturberoende sträng, så extraktorn
+bygger `new DateTime(year, month, day)` direkt utan `Parse`.
+
+Svensk kultur behövs **bara** för visning i UI:t (`2014-01-27`). All intern
+jämförelse sker mot `int Year, Month, Day` eller `DateTime`.
+
+`Transaction.GetMonthAsFullString` ändras i M5 till `InvariantCulture` så
+`"YYYY January"` blir stabil oavsett tråd-kultur (facit använder engelska
+månadsnamn; behövs för att nyckeln i `BudgetRow.AmountsForMonth` ska matcha).
+
+### 0.4 Om D9 — migrering av `BudgetIns.json`
+
+Nuvarande format (`WebBankBudgeterUi/TestData/BudgetIns.json`):
+```json
+{ "CategoryDescription": "el", "BudgetValue": 1100, "YearAndMonth": "2016-05-01T00:00:00" }
+```
+
+Facit-format (`budget-in-YYYY.json`):
+```json
+{ "Category": "el", "Year": 2014, "Month": 5, "MonthName": "May", "BudgetAmount": 1100.00 }
+```
+
+**Utvärderas i M5** mot:
+- Kan `InbudgetHandler` läsa båda formaten via adapter (migrationsväg utan migration)?
+- Är `YearAndMonth` som full `DateTime` nödvändigt för någon befintlig funktion?
+- Förloras något om `MonthName` slopas?
+
+Om svaret är "lika bra åt båda hållen" → migrera till facit-formatet för enhetlighet.
+Annars → behåll nuvarande format och transformera från facit vid generering.
+
+### 0.5 Om D14 — vad "sortering" betyder här
+
+Facit-JSON är en **array** sorterad på `Category → Year → Month`. Koden producerar
+`Dictionary<MonthColumn, decimal>` per `BudgetRow`, i en lista sorterad
+`OrderByDescending(CategoryText)` (`TableGetter.cs:39`).
+
+**Testet bryr sig bara om siffrorna.** Därför jämförs facit och kodutdata som
+nycklade uppslagstabeller (`(Category, Year, Month) → Amount`). Listordningen
+spelar ingen roll.
+
+```csharp
+// Pseudokod för assert med FluentAssertions
+var facitDict = facit.ToDictionary(x => (x.Category, x.Year, x.Month), x => x.Amount);
+var kodDict   = code .ToDictionary(x => (x.Category, x.Year, x.Month), x => x.Amount);
+
+foreach (var key in facitDict.Keys)
+    kodDict[key].Should().BeApproximately(facitDict[key], 0.01m,
+        because: $"kategori {key.Item1} {key.Item2}-{key.Item3}");
+```
+
+**Ingen ändring i `TableGetter`-sorteringen behövs.**
 
 ---
 
@@ -159,28 +269,28 @@ TestData/BudgetIns.json
 
 ## 3. Facit-format (AI-läsbart)
 
-All facit läggs under `WebBankBudgeterUiTest/Facit/` som **UTF-8 JSON med
-indentation**. JSON är AI-läsbart, går att diffa, och kan laddas i C#-tester
-via `System.Text.Json`. En mapp per år hade varit OK, men en fil per år är
-enklare (736 rader/år max för budget-in, 845 rader/år för transaktioner).
+All facit läggs i ett **eget shared-projekt** (D11 = b). UTF-8 JSON med
+indentation. JSON är AI-läsbart, går att diffa, och kan laddas i C#-tester
+via `System.Text.Json`.
 
 ### 3.1 Filer
 
-Placering styrs av beslut **D11** (default: eget shared-projekt).
-
 ```
-<Facit-rot>/
-├── README.md                       # Förklarar ursprung, format och regler
-├── transactions-2014.json          # 809 poster
-├── transactions-2015.json          # 845 poster
-├── budget-in-2014.json             # 363 poster (33 kat × 11 mån, januari saknas)
-├── budget-in-2015.json             # 363 poster
-├── expected-ut-2014.json           # Σ transaktioner per (kat, mån) — exkl. transfers per D2
-├── expected-ut-2015.json
-├── expected-transfers-2014.json    # Bara " -"-transfers (om D2 = c)
-├── expected-transfers-2015.json
-├── expected-kvar-2014.json         # Per (kat, mån) enligt D3+D4-regler
-└── expected-kvar-2015.json
+WebBankBudgeterTests.Facit/
+├── Facit/
+│   ├── README.md                       # Förklarar ursprung, format och regler
+│   ├── transactions-2014.json          # 809 poster (inkl. Ignore-rader per D12)
+│   ├── transactions-2015.json          # 845 poster
+│   ├── budget-in-2014.json             # 396 poster (33 kat × 12 mån — januari genererad per D5)
+│   ├── budget-in-2015.json             # 396 poster
+│   ├── expected-ut-2014.json           # Σ transaktioner per (kat, mån) — exkl. transfers (D2) och Ignore (D12)
+│   ├── expected-ut-2015.json
+│   ├── expected-transfers-2014.json    # Bara " -"-transfers (D2 = c)
+│   ├── expected-transfers-2015.json
+│   ├── expected-kvar-2014.json         # Union av IN ∪ UT, 0 där sida saknas (D3/D4)
+│   └── expected-kvar-2015.json
+├── FacitLoader.cs
+└── WebBankBudgeterTests.Facit.csproj
 ```
 
 ### 3.2 Schema per fil
@@ -231,11 +341,14 @@ Placering styrs av beslut **D11** (default: eget shared-projekt).
 ```
 
 **`expected-kvar-YYYY.json`** — per (kategori, månad): `Remaining = BudgetAmount + ActualAmount`
-(UT är negativt → positivt = under budget). Unionsregler styrs av besluten:
+(UT är negativt → positivt = under budget). Unionsregler:
 
-- **D3** — om kategori finns i UT men inte i IN: `BudgetAmount = 0` (default).
+- **D3** — om kategori finns i UT men inte i IN: `BudgetAmount = 0`.
 - **D4** — om kategori finns i IN men inte i UT: `ActualAmount = 0`, `Remaining = BudgetAmount`.
-- ~~**D5** — januari 2014 saknas~~ RÄTTELSE: Januari finns för både 2014 och 2015.
+- **D5** — januari saknas i IN för **både 2014 och 2015** i Excel (verifierat: 0 rader med
+  `"MonthName": "January"` i `budget-in-2014.json` och `budget-in-2015.json`; alla andra
+  månader har 33 rader). Extraktorn genererar januari med testdata likt övriga månader
+  (se 0.1 M1-steg nedan).
 
 ```json
 [
@@ -256,7 +369,7 @@ Placering styrs av beslut **D11** (default: eget shared-projekt).
 1. **Platta fält** — inga nästlade objekt utöver det helt nödvändiga. Gör sök­ning och diff lätt.
 2. **Stabil sortering** — alltid `Category` → `Year` → `Month` stigande. Gör diff mellan körningar deterministisk.
 3. **Explicita månadsnamn** (`MonthName`) — gör det lätt att läsa utan att räkna mappning `int → str`.
-4. **Belopp som `double` (två decimaler)** — matchar svensk redovisnings­konvention och Excel.
+4. **Belopp som `decimal` med två decimaler** (D1) — JSON-tal serialiseras med 2 decimaler (`"BudgetAmount": 247.50`).
 5. **En fil per dimension × år** — lätt att byta ut / utöka utan att röra allt.
 6. **Indentation** — human readable och git-diff-vänligt (radbrytnings­diffar).
 7. **Kultur­oberoende** — alla tal med punkt som decimalavskiljare, JSON enligt RFC 8259.
@@ -280,13 +393,13 @@ Placering styrs av beslut **D11** (default: eget shared-projekt).
 | expected-kvar-YYYY.json| Budget + utfall per (kat, mån) | Beräknat (IN + UT) |
 
 ## Invarianter som testas
-1. `sum(transactions.amount where Flag != "Ignore") per kategori per månad == expected-ut` (tolerans per D1)
+1. `sum(transactions.amount where Flag != "Ignore") per kategori per månad == expected-ut` (FluentAssertions `BeApproximately(0.01m)`)
 2. `budget-in + expected-ut == expected-kvar` (per kategori per månad, unionsregler per D3/D4)
 3. Transaktioner med `Flag == "Ignore"` räknas **inte** med i UT.
-4. Antal transaktioner per år: 2014 = 809, 2015 = 845.
-5. IN 2014 har 336 rader (28 kategorier × 12 månader inklusive januari).
-6. IN 2015 har 336 rader (28 kategorier × 12 månader).
-7. Transfers (`" -"`) ingår enligt D2 (default: egen fil, ej i `expected-ut`).
+4. Antal transaktioner per år: 2014 = 809, 2015 = 845 (inkluderar Ignore-rader, D12).
+5. IN 2014 har **396 rader** (33 kategorier × 12 månader — januari genererad per D5).
+6. IN 2015 har **396 rader** (33 kategorier × 12 månader — januari genererad per D5).
+7. Transfers (`" -"`) ligger i `expected-transfers-YYYY.json`, **ej** i `expected-ut-YYYY.json` (D2).
 ```
 
 ---
@@ -298,7 +411,11 @@ nytt **`WebBankBudgeterServiceTest/FacitIntegrationTests.cs`** för service-niv�
 
 ### 4.1 Hjälpinfrastruktur
 
-**`WebBankBudgeterUiTest/Facit/FacitLoader.cs`** (ny):
+Shared-projekt `WebBankBudgeterTests.Facit/` (D11 = b). Båda testprojekten
+(`WebBankBudgeterServiceTest`, `WebBankBudgeterUiTest`) lägger till en
+`ProjectReference` till detta.
+
+**`WebBankBudgeterTests.Facit/FacitLoader.cs`**:
 
 ```csharp
 public static class FacitLoader
@@ -315,35 +432,47 @@ public static class FacitLoader
     public static List<BudgetUtFacit> LoadExpectedUt(int year) =>
         Load<List<BudgetUtFacit>>($"expected-ut-{year}.json");
 
+    public static List<BudgetUtFacit> LoadExpectedTransfers(int year) =>
+        Load<List<BudgetUtFacit>>($"expected-transfers-{year}.json");
+
     public static List<BudgetKvarFacit> LoadExpectedKvar(int year) =>
         Load<List<BudgetKvarFacit>>($"expected-kvar-{year}.json");
 
     private static T Load<T>(string name) =>
-        JsonSerializer.Deserialize<T>(File.ReadAllText(Path.Combine(FacitDir, name)))!;
+        JsonSerializer.Deserialize<T>(
+            File.ReadAllText(Path.Combine(FacitDir, name)),
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
 }
 
+// Belopp är decimal överallt (D1).
 public record TransactionFacit(int Year, int Month, int Day,
-    string Description, double Amount, string Category, string Flag);
+    string Description, decimal Amount, string Category, string Flag);
 public record BudgetInFacit(string Category, int Year, int Month,
-    string MonthName, double BudgetAmount);
+    string MonthName, decimal BudgetAmount);
 public record BudgetUtFacit(string Category, int Year, int Month,
-    string MonthName, double ActualAmount);
+    string MonthName, decimal ActualAmount);
 public record BudgetKvarFacit(string Category, int Year, int Month,
-    string MonthName, double BudgetAmount, double ActualAmount, double Remaining);
+    string MonthName, decimal BudgetAmount, decimal ActualAmount, decimal Remaining);
 ```
 
-`.csproj`-tillägg (rätt syntax för SDK-style xUnit-projekt):
+`WebBankBudgeterTests.Facit.csproj` (SDK-style):
 
 ```xml
-<ItemGroup>
-  <None Update="Facit\**\*.json">
-    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  </None>
-</ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="Facit\**\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
 ```
 
-(`<Content Update="...">` fungerar **inte** om filen inte redan är `Content`-item;
-i SDK-style-projekt är JSON inte det per default.)
+(`<Content Update="...">` fungerar **inte** här eftersom JSON inte är `Content`-item
+per default i SDK-style-projekt.)
 
 ### 4.2 Tester på service-nivå (snabba, isolerade)
 
@@ -374,35 +503,37 @@ Fil: `WebBankBudgeterUiTest/BudgetIntegrationTests.cs` (ny)
 
 | Test | Verifierar |
 |------|------------|
-| `Facit_FileCounts_AreStable` | Antal rader i varje facit-fil är fasta (809 / 845 / 363 / 363 / …) — om extrakten regenereras och antal ändras slår testet |
-| `FacitSum_TotalIn_2014_EqualsExpected` | Σ av alla `BudgetAmount` i `budget-in-2014.json` == 349 193,00 (från Excel-summa-raden) |
+| `Facit_FileCounts_AreStable` | Antal poster i varje facit-fil är fasta: `transactions-2014.json` = 809, `-2015.json` = 845, `budget-in-{2014,2015}.json` = 396 (33 kat × 12 mån efter D5-genereringen) — om extrakten regenereras och antal ändras slår testet |
+| `FacitSum_TotalIn_2014_EqualsExpected` | Σ av alla `BudgetAmount` i `budget-in-2014.json` matchar Excel-summa-raden (konstanten fastställs vid första körning av extraktorn, verifieras mot cell i `Budget (2014)`) |
 
-### 4.5 Toleranser
+### 4.5 Toleranser (D1 + D13)
 
-- Belopps­jämförelser: absolut­tolerans **0,01 kr** (kapabel att fånga ören men
-  robust mot dubbelkonverteringar).
-- Negativa belopp: både `expected-ut` och `remaining` får vara negativa → inga
-  absolut­värden i asserts.
+- Alla belopp är `decimal`. Jämförelse: `value.Should().BeApproximately(expected, 0.01m)`.
+- Tolerans behövs i praktiken inte (decimal är exakt) men lämnas för robusthet mot
+  eventuella avrundningar under aggregering.
+- Negativa belopp: både `expected-ut` och `Remaining` får vara negativa → inga
+  `Math.Abs`-anrop i asserts.
 
 ---
 
 ## 5. Implementations­plan — 6 milstolpar
 
-### M0 — Stabil bygg/test-miljö + verifiera `TransactionHandler` (förkrav för M5)
+### M0 — Verifiera `TransactionHandler` + stabil bygg (förkrav för M5)
 
-`TransactionHandler` finns i kodbasen (`WebBankBudgeterService/TransactionHandler.cs`).
-Det som blockerar repeterbar build är i stället fil­låsning när `WebBankBudgeterUi`
-kör samtidigt (MSBuild `MSB3021`/`MSB3027` vid copy till `WebBankBudgeterUi/bin/...`).
-Beslut **D6** styr fortsatt väg:
+`TransactionHandler` **finns** i kodbasen (`WebBankBudgeterService/TransactionHandler.cs`)
+— ingen återställning från git-historik behövs. D6 = a (verifiera nuvarande klass).
 
-- **D6 = a** (default): Behåll nuvarande klass. Verifiera att den kompilerar och att
-  `TransactionList.Account.AvailableAmount` + `TransactionList.Transactions`
-  exponeras som `WebBankBudgeter.cs:222` förväntar, samt att inlästa data matchar facit.
-- **D6 = b**: Skriv om mot facit-data först, sedan generalisera till `.xls` när M3 är grön.
-- **D6 = c**: Inför ett `ITransactionSource`-interface; två impl: `FacitTransactionSource` (för
-  tester) och `XlsTransactionSource` (för prod). `WebBankBudgeter` får interfacet via constructor.
+**Att göra i M0:**
+1. Läs `WebBankBudgeterService/TransactionHandler.cs` och bekräfta att
+   `TransactionList.Account.AvailableAmount` + `TransactionList.Transactions`
+   exponeras som `WebBankBudgeter.cs:222` förväntar.
+2. Kör inläsning mot `pelles-budget-slim-2014-2015.xlsx` eller motsvarande och bekräfta
+   antal transaktioner (≈ 1 654 rader över 2014 + 2015).
+3. Åtgärda filhands-konflikten som gör att bygget failar när `WebBankBudgeterUi`
+   kör samtidigt (MSBuild `MSB3021`/`MSB3027` vid kopiering till `WebBankBudgeterUi/bin/...`).
+   Detta blockerar CI men inte facit-test­körningen.
 
-Denna milstolpe blockerar inte M1–M4 (facit + tester körs utan att ladda riktiga `.xls`).
+M0 blockerar **inte** M1–M4 (facit-tester körs utan att ladda riktiga `.xls`).
 Måste vara klar innan M5.
 
 ### M1 — Skapa facit-mappen och extraktor-verktyget
@@ -411,49 +542,51 @@ Måste vara klar innan M5.
 
 ```
 tools/FacitExtractor/
-├── FacitExtractor.csproj        # net8.0, ClosedXML + System.Text.Json
-└── Program.cs                   # Extraherar .xlsx → Facit/*.json
-WebBankBudgeterUiTest/Facit/     # Generered output, commitas in
+├── FacitExtractor.csproj                    # net8.0, ClosedXML + System.Text.Json
+└── Program.cs                               # Extraherar .xlsx → Facit/*.json
+WebBankBudgeterTests.Facit/Facit/            # Shared-projekt (D11 = b), commitas in
 │   ├── README.md
-│   ├── transactions-2014.json   (≈ 115 KB)
-│   ├── transactions-2015.json   (≈ 126 KB)
-│   ├── budget-in-2014.json      (≈ 52 KB)
-│   ├── budget-in-2015.json      (≈ 52 KB)
-│   ├── expected-ut-2014.json    (genereras)
-│   ├── expected-ut-2015.json    (genereras)
-│   ├── expected-kvar-2014.json  (genereras)
-│   └── expected-kvar-2015.json  (genereras)
+│   ├── transactions-2014.json               # 809 poster inkl. Ignore (D12)
+│   ├── transactions-2015.json               # 845 poster
+│   ├── budget-in-2014.json                  # 396 poster (33 × 12, januari genererad per D5)
+│   ├── budget-in-2015.json                  # 396 poster
+│   ├── expected-ut-2014.json                # exkl. transfers (D2) och Ignore (D12)
+│   ├── expected-ut-2015.json
+│   ├── expected-transfers-2014.json         # endast " -"-transfers
+│   ├── expected-transfers-2015.json
+│   ├── expected-kvar-2014.json              # union IN ∪ UT, 0 där sida saknas (D3/D4)
+│   └── expected-kvar-2015.json
 ```
 
 Extraktorn körs **en gång**, genererar JSON, och resultatet committas. Verktyget
-behöver inte vara en del av bygget — bara körbart manuellt om facit behöver
-uppdateras.
+är inte en del av bygget — bara körbart manuellt om facit behöver uppdateras.
 
 _Status:_ Prototyp finns i `C:\Users\nisse\AppData\Local\Temp\xlsx-reader\`.
-Genererar korrekt `transactions-*.json` (809/845 poster) och `budget-in-*.json`
-(363 poster per år). `expected-ut-*.json` genereras från transaktioner men
-inkluderar transfers (` -`) — se D2. `budget-kvar-*.json` är 2 byte (tomma).
+Genererar `transactions-*.json` (809/845 poster **utan `Flag`**) och `budget-in-*.json`
+(363 poster — januari saknas). `expected-ut-*.json` genereras från transaktioner
+men **inkluderar** transfers (` -`). `budget-kvar-*.json` är 2 byte (tomma).
 
 **M1 är inte klar förrän:**
-1. `Flag`-kolumnen ("Regular"/"Ignore" från Excel kol 12) skrivs ut i `transactions-*.json`.
-2. `expected-ut-*.json` följer beslut D2 (default: filtrera bort transfers).
-3. `expected-transfers-*.json` produceras om D2 = c.
-4. `expected-kvar-*.json` genereras enligt D3/D4/D5.
-5. Extraktorn använder `decimal` om D1 = b.
+1. Extraktorn använder `decimal` genomgående (D1).
+2. `Flag`-kolumnen (`"Regular"` / `"Ignore"` från Excel kol 12) skrivs ut i `transactions-*.json`
+   (D12 — Ignore-rader inkluderas, men exkluderas senare i `expected-ut`).
+3. `expected-ut-*.json` exkluderar både transfers och Ignore-rader (D2 + D12).
+4. `expected-transfers-*.json` produceras för ` -`-kategorin (D2 = c).
+5. `budget-in-*.json` fylls på med januari-rader med testvärden likt övriga månader
+   (D5 — resulterar i 396 poster istället för 363).
+6. `expected-kvar-*.json` genereras som union av IN ∪ UT enligt D3/D4.
+7. Extraktorn skriver `Facit/README.md` med de 7 invarianterna från 3.4.
 
-### M2 — Facit-infrastruktur i test-projektet
+### M2 — Facit-infrastruktur i shared-projekt
 
-Placering styrs av D11.
+D11 = b (eget shared-projekt `WebBankBudgeterTests.Facit/`):
 
-- **D11 = a**: `WebBankBudgeterUiTest/Facit/FacitLoader.cs` + records, dupliceras i
-  `WebBankBudgeterServiceTest/Facit/`.
-- **D11 = b** (default): Eget projekt `WebBankBudgeterTests.Facit/` med loader, records,
-  och JSON-filer som `Content`/`None`-items. Båda testprojekten refererar projektet.
-
-I bägge fallen:
-1. Loader-funktioner per dimension (`LoadTransactions(year)` etc).
-2. `.csproj` använder `<None Update="...">`-syntaxen (se 4.1).
-3. JSON-deserialisering använder `JsonSerializerOptions { PropertyNameCaseInsensitive = true }`.
+1. Skapa projektet med `.csproj` enligt 4.1 (net8.0, `None Update` för JSON).
+2. Flytta facit-filerna från extraktor-outputen in i `WebBankBudgeterTests.Facit/Facit/`.
+3. Lägg till `FacitLoader.cs` med records enligt 4.1 (alla belopp som `decimal`).
+4. Lägg till `ProjectReference` från `WebBankBudgeterServiceTest` och
+   `WebBankBudgeterUiTest` till det nya projektet.
+5. Lägg till `FluentAssertions` som paketref i båda testprojekten (D13) om det saknas.
 
 ### M3 — Service-integrations­tester
 
@@ -485,17 +618,18 @@ Förkrav: M0 är klar.
    och anropas på rad 88). Antingen behåll så, eller — för riktig "kvar"-vy — återinför
    `SnurraIgenom`-flödet och skicka resultatet via `UtgiftsHanterareUiBinder` så
    formateringen blir enhetlig mellan flikarna.
-3. **BudgetIns.json**: Generera en realistisk `BudgetIns.json` för 2014/2015 direkt ur
-   facit. Format styrs av D9 (default: behåll befintligt `CategoryDescription`/
-   `BudgetValue`/`YearAndMonth`-schema, transformera från `budget-in-YYYY.json`).
-4. **Kategori-normalisering** (D7): Default-vägen är att uppdatera
-   `TableGetter.GroupOnMonthAndCategory` (`Services/TableGetter.cs:42-55`) att använda
-   `t.CategoryNameNoGroup` när `Group` är tom/null. Berör **inte** `Categories.ToString()`
-   så övrig kod påverkas inte.
-5. **Ignore-flagga**: Säkerställ att `Ignore`-markerade transaktioner filtreras bort
-  där transaktioner laddas (exakt plats beror på D6).
-6. **Månadskultur** (D10): Kontrollera att `Transaction.GetMonthAsFullString` använder
-   `CultureInfo.InvariantCulture` när `MMMM` formatteras. Annars rätta.
+3. **BudgetIns.json** (D9): Generera `BudgetIns.json` för 2014/2015 ur facit. Utvärdera
+   enligt 0.4 om befintligt schema ska behållas eller migreras till facit-formatet.
+4. **Kategori-normalisering** (D7): Uppdatera `TableGetter.GroupOnMonthAndCategory`
+   (`Services/TableGetter.cs:42-55`) att använda `t.CategoryNameNoGroup` när `Group`
+   är tom/null. Berör **inte** `Categories.ToString()` så övrig kod påverkas inte.
+5. **Ignore-flagga** (D12): Säkerställ att `Ignore`-markerade transaktioner filtreras
+   bort där transaktioner laddas (i `TransactionHandler` eller i `WebBankBudgeter`).
+6. **Månadskultur** (D10): Ändra `Transaction.GetMonthAsFullString` till
+   `dateTime.ToString("MMMM", CultureInfo.InvariantCulture)`. Säkerställer `"January"`
+   och inte `"januari"` oavsett tråd-kultur.
+7. **UI-presentation** (0.2): Formatsträng `# ##0` med `sv-SE` i grid-bindningen
+   (tusentalsavgränsare, inga decimaler). Påverkar bara displayen, inte modellen.
 
 ---
 
