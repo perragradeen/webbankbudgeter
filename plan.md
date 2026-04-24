@@ -1,6 +1,6 @@
-# Plan: Efterlikna `pelles-budget-slim-2014-2015.xlsx` i WebBankBudgeter
+# Plan: Efterlikna `Pelles-budget-slim-2014-2015-gform.xlsx` i WebBankBudgeter
 
-Facit: `C:\Files\Dropbox\budget\bak\pelles-budget-slim-2014-2015.xlsx`
+Facit: `C:\Files\Dropbox\budget\Program\webbankbudgeter\Pelles-budget-slim-2014-2015-gform.xlsx`
 
 Målet är att UI:t ska visa exakt samma struktur och data som Excel-förlagan:
 
@@ -266,10 +266,10 @@ Placering styrs av beslut **D11** (default: eget shared-projekt).
 ### 3.4 Exempel på `Facit/README.md`
 
 ```markdown
-# Facit-data (utdragen ur pelles-budget-slim-2014-2015.xlsx)
+# Facit-data (utdragen ur Pelles-budget-slim-2014-2015-gform.xlsx)
 
 ## Ursprung
-- Källa: `C:\Files\Dropbox\budget\bak\pelles-budget-slim-2014-2015.xlsx`
+- Källa: `C:\Files\Dropbox\budget\Program\webbankbudgeter\Pelles-budget-slim-2014-2015-gform.xlsx`
 - Filen är ett fryst snapshot av användarens riktiga budget 2014–2015.
 - Extrakt gjort av `tools/FacitExtractor/` (engångs­körning, inte en del av bygget).
 

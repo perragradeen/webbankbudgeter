@@ -107,6 +107,7 @@ UtgiftsHanterareUiBinder → gv_budget (Budget Total-fliken)
 
 - `WebBankBudgeterUi/Data/GeneralSettings.xml` — sökväg till transaktionsfil, kategorifil
 - `WebBankBudgeterUi/TestData/BudgetIns.json` — budgeterade belopp per kategori/månad
+- `Pelles-budget-slim-2014-2015-gform.xlsx` (i repo-rot) — Excel-facit som `plan.md` refererar (kontoutdrag + budget 2014/2015)
 
 ## Teckenkodning
 
