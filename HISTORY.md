@@ -12,6 +12,36 @@ Agentteam uppsatt för att implementera facit-baserade integrationstester för W
 
 ## Session: 2026-04-24
 
+### Multi-Agent Setup (Start)
+
+Vid projektstart användes **parallell multi-agent exploration** för snabb kod-kartläggning:
+
+**3 explore-agents startades samtidigt:**
+1. **Service-agent:** Analyserade WebBankBudgeterService (transaktionslogik, models, services)
+2. **UI-agent:** Analyserade WebBankBudgeterUi (WinForms UI, databindningar, workflows)
+3. **Test-agent:** Analyserade alla testprojekt (täckning, gaps, struktur)
+
+**Resultat från parallell exploration:**
+- Komplett systemförståelse inom minuter istället för sekventiell analys
+- Varje agent fick egen kontext och kunde djupdyka i sitt område
+- Strukturerade sammanfattningar som bas för implementation
+- Identifierade: TransactionHandler, TextToTableOutPuter, BudgetRow, kategorisering, tabs-struktur
+
+**Agent IDs för uppföljning:**
+- Service-agent: `2ed4e278-fbe0-44f8-91be-956b7cb74253`
+- UI-agent: `54220857-98f4-4a03-98e2-24b2d78f16e2`
+- Test-agent: `087b2bcc-7ec8-41d3-a633-25b5936e7d7b`
+
+**Lärdomar:**
+- Använd ALLTID parallella explore-agents för stora/okända kodbaser
+- En agent per subsystem ger djupare analys än bred översikt
+- Specify exactly what each agent should analyze och return
+- Explore-agents i readonly mode, sedan agent mode för implementation
+
+Efter kartläggning fortsatte en huvudagent (Sonnet 4.5) med implementation.
+
+---
+
 ### Fas 1: Setup och Förberedelser
 
 #### Problem: Projektet byggde inte på Linux
@@ -91,6 +121,14 @@ Agentteam uppsatt för att implementera facit-baserade integrationstester för W
 - `README.md` (1.2KB)
 
 **Commit:** `7bb28a2` - "M1 Complete: Generate facit test data from Excel"
+
+**Kritisk bugg upptäckt och fixad (2026-04-24 12:05):**
+- **Problem:** Kategorinamn lästes från fel kolumn (kolumn 4 "Kvar ref" istället av kolumn 1)
+- **Symptom:** `"category": "-11506.74"` istället för riktiga kategorinamn
+- **Orsak:** Felaktig kolumn-indexering i `ExtractBudgetIn`
+- **Lösning:** Korrigerade till kolumn 1 för kategori, kolumner 6-17 för månader
+- **Resultat:** 336 rader per år (28 kategorier × 12 månader), alla kategorier korrekta
+- **Commit:** `c93156d` - "Fix FacitExtractor column mapping"
 
 ---
 
