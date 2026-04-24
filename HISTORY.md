@@ -207,9 +207,11 @@ webbankbudgeter/
 
 ## Nästa Steg (Återstående)
 
-### M0: Återställ TransactionHandler
+### M0: Verifiera TransactionHandler och stabil bygg/test-miljö
 - **Status:** PENDING
 - **Blocker för:** M5
+- **Not:** TransactionHandler finns redan i `WebBankBudgeterService/TransactionHandler.cs`
+- **Uppgift:** Verifiera att klassen fungerar och matchar facit-data
 - **Beslut:** Beslut D6 i plan.md måste fattas
 
 ### M3: Service-integrationstester
