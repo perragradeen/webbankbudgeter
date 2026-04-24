@@ -8,11 +8,11 @@ namespace WebBankBudgeterServiceTest
         [TestMethod]
         public void DateTest()
         {
-            var förväntatDatum = new DateTime(2021, 1, 1);
+            var fÃ¶rvÃ¤ntatDatum = new DateTime(2021, 1, 1);
             var datum = Transaction.GetDateFromYearMonthName("2021 January");
 
-            Assert.AreEqual(förväntatDatum.Year, datum.Year);
-            Assert.AreEqual(förväntatDatum.Month, datum.Month);
+            Assert.AreEqual(fÃ¶rvÃ¤ntatDatum.Year, datum.Year);
+            Assert.AreEqual(fÃ¶rvÃ¤ntatDatum.Month, datum.Month);
         }
     }
 }

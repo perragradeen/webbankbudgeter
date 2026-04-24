@@ -22,17 +22,17 @@ namespace InbudgetHandlerTest
         }
 
         [TestMethod]
-        public async Task HämtaRaderFörUiBindningAsyncTest()
+        public async Task HÃ¤mtaRaderFÃ¶rUiBindningAsyncTest()
         {
-            var results = await Target.HämtaRaderFörUiBindningAsync();
+            var results = await Target.HÃ¤mtaRaderFÃ¶rUiBindningAsync();
 
             Assert.IsNotNull(results);
         }
 
         [TestMethod]
-        public async Task HämtaRubrikerPåInPosterAsyncTestAsync()
+        public async Task HÃ¤mtaRubrikerPÃ¥InPosterAsyncTestAsync()
         {
-            var results = await Target.HämtaRubrikerPåInPosterAsync();
+            var results = await Target.HÃ¤mtaRubrikerPÃ¥InPosterAsync();
             Assert.IsNotNull(results);
         }
 

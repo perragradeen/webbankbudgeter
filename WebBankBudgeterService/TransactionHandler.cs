@@ -126,7 +126,7 @@ namespace WebBankBudgeterService
                 ExcelFileSavePath = _filePath
             };
 
-            // Ladda från fil
+            // Ladda frÃ¥n fil
             var entriesLoadedFromDataStore =
                 LoadEntriesFromFileHandler.LoadEntriesFromFile(
                     kontoutdragExcelFileInfo);
