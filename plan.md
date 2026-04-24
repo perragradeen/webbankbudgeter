@@ -155,10 +155,8 @@ foreach (var key in facitDict.Keys)
 
 **In-poster — användarval i WinForms (produkt):**
 - Tester och CI kan fortsätta ladda **`budget-in-*.json`** som idag.
-- I **`WebBankBudgeterUi`** ska användaren kunna **välja källa för in-poster** som matar `gv_incomes` (och därmed den budget-IN-data som ska ingå i Kvar/Budget Total när det kopplas till `InBudgetMath.SnurraIgenom` / inläsning):
-  - Minst: nuvarande lokala `BudgetIns.json` (eller motsvarande sparad väg).
-  - Utöka med: importera **facit-format** (`budget-in-YYYY.json`) eller annan vald fil/mapp per år.
-- **M5 / UI-uppgift:** lägg inställning (t.ex. i `GeneralSettings`, eller dialog vid start / under Inställningar) som `InBudgetHandler` / `InBudgetUiHandler` respekterar vid laddning och sparande.
+- **`WebBankBudgeterUi` / `Data/GeneralSettings.xml`:** `InPosterSource` = `BudgetIns` (standard, `TestData/BudgetIns.json`) eller `FacitJson` (läser `Facit/budget-in-{filterår}.json` från `FacitBudgetInDirectory`, default `Facit`). Vid `FacitJson` anropas `InBudgetHandler.SetInPosterFromFacitFile` innan tabeller fylls; **Spara in-poster** visar meddelande (facit är skrivskyddad källa).
+- Projektet kopierar `budget-in-2014.json` / `budget-in-2015.json` till output under `Facit/` så `FacitJson` fungerar utan manuell kopia.
 
 ---
 
@@ -634,9 +632,8 @@ AssertGridMatchesExpectedUt(grid, FacitLoader.LoadExpectedUt(2014));
 Förkrav: M0 är klar.
 
 1. **Budget Total**: `FillTablesAsync` slår in IN-rader (`HämtaInDataRaderFiltrerat`) i transaktionstabellen via `InbudgetHandler.BudgetTableInMerger` innan `BindToBudgetTableUi` (M5.1 / G1).
-2. **Kvar**: `BuildKvarTextTable` delegerar till `KvarTextTableBuilder` (samma som konsolen från facit): `InBudgetMath.SnurraIgenom` mot utgiftsrader före IN-merge, sedan bindning via `UtgiftsHanterareUiBinder`.
-3. **BudgetIns.json** (D9): Generera `BudgetIns.json` för 2014/2015 ur facit. Utvärdera
-   enligt 0.4 om befintligt schema ska behållas eller migreras till facit-formatet.
+2. **Kvar**: `BuildKvarTextTable` delegerar till `KvarTextTableBuilder` (samma som konsolen från facit): `InBudgetMath.SnurraIgenom` mot **alla** platta `BudgetRow` före IN-merge (union med facit `expected-kvar`, inkl. `+` och transfers), sedan bindning via `UtgiftsHanterareUiBinder`. Raden **"-"** utelämnas i Kvar-vyn.
+3. **BudgetIns.json** (D9): **Klart** — `WebBankBudgeterUi/TestData/BudgetIns.json` (och parallella testkopior) genereras ur `budget-in-2014/2015.json` med verktyget `tools/FacitBudgetInsExport` (672 rader). Befintligt `InBudget`-schema behålls; facit-JSON används som källa vid export.
 4. **Kategori-normalisering** (D7): **Klart** i service — `BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory`.
 5. **Ignore-flagga** (D12): **Klart** i `TableGetter` (exkludera `KontoEntryType.Ignore` vid budgetaggregering) + `SourceEntryType` från `TransactionTransformer`.
 6. **Månadskultur** (D10): **Klart** — `GetMonthAsFullString` använder redan `InvariantCulture`; test tillagt.

@@ -18,38 +18,112 @@ public static class InBudgetMath
             throw new ArgumentNullException(nameof(utgifter));
         }
 
-        var kvarrader = new List<Rad>();
-        foreach (var inBudget in inData)
+        static string CatKey(string? s) => (s ?? string.Empty).Trim();
+
+        var inList = (inData ?? Enumerable.Empty<Rad>())
+            .Where(r => !string.Equals(r.RadNamnY, InBudgetHandler.SummaText, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        var inByCat = new Dictionary<string, Rad>(StringComparer.Ordinal);
+        foreach (var r in inList)
         {
-            var motsvarandeUtgifterRader = utgifter
-                .Where(u => u.CategoryText.Trim() == inBudget.RadNamnY.Trim());
-
-            var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
-            foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
+            var key = CatKey(r.RadNamnY);
+            if (string.IsNullOrEmpty(key))
             {
-                foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)
+                continue;
+            }
+
+            if (!inByCat.TryGetValue(key, out var existing))
+            {
+                inByCat[key] = new Rad { RadNamnY = r.RadNamnY };
+                existing = inByCat[key];
+            }
+
+            foreach (var (mk, v) in r.Kolumner)
+            {
+                existing.Kolumner.TryGetValue(mk, out var sum);
+                existing.Kolumner[mk] = sum + v;
+            }
+        }
+
+        var utByCat = utgifter
+            .GroupBy(u => CatKey(u.CategoryText))
+            .ToDictionary(g => g.Key, g => g.ToList(), StringComparer.Ordinal);
+
+        var allCats = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var k in inByCat.Keys)
+        {
+            if (!string.IsNullOrEmpty(k))
+            {
+                allCats.Add(k);
+            }
+        }
+
+        foreach (var k in utByCat.Keys)
+        {
+            if (!string.IsNullOrEmpty(k))
+            {
+                allCats.Add(k);
+            }
+        }
+
+        var kvarrader = new List<Rad>();
+        foreach (var cat in allCats.OrderBy(c => c, StringComparer.Ordinal))
+        {
+            inByCat.TryGetValue(cat, out var inBudget);
+            utByCat.TryGetValue(cat, out var utRowsForCat);
+
+            var nuvarandeRad = new Rad { RadNamnY = cat };
+
+            var monthKeys = new HashSet<string>(StringComparer.Ordinal);
+            if (inBudget != null)
+            {
+                foreach (var k in inBudget.Kolumner.Keys)
                 {
-                    if (inBudget.Kolumner.ContainsKey(utgiftsMånad.Key))
+                    monthKeys.Add(k);
+                }
+            }
+
+            if (utRowsForCat != null)
+            {
+                foreach (var utRow in utRowsForCat)
+                {
+                    foreach (var k in utRow.AmountsForMonth.Keys)
                     {
-                        var kvar =
-                            inBudget.Kolumner[utgiftsMånad.Key]
-                            + utgiftsMånad.Value;
-
-                        if (!nuvarandeRad.Kolumner.ContainsKey(utgiftsMånad.Key))
-                        {
-                            nuvarandeRad.Kolumner.Add(utgiftsMånad.Key, 0);
-                        }
-
-                        nuvarandeRad.Kolumner[utgiftsMånad.Key] += kvar;
-                    }
-                    else
-                    {
-                        var message = "Hittar ingen motsvarande inpost för utgift i :"
-                                      + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
-
-                        writeLineToOutputAndScrollDown(message);
+                        monthKeys.Add(k);
                     }
                 }
+            }
+
+            foreach (var monthKey in monthKeys.OrderBy(k => k, StringComparer.Ordinal))
+            {
+                var inAmount = 0.0;
+                if (inBudget != null && inBudget.Kolumner.TryGetValue(monthKey, out var iv))
+                {
+                    inAmount = iv;
+                }
+
+                var utAmount = 0.0;
+                if (utRowsForCat != null)
+                {
+                    foreach (var utRow in utRowsForCat)
+                    {
+                        if (utRow.AmountsForMonth.TryGetValue(monthKey, out var uv))
+                        {
+                            utAmount += uv;
+                        }
+                    }
+                }
+
+                if (inBudget != null && !inBudget.Kolumner.ContainsKey(monthKey) && utRowsForCat != null &&
+                    utRowsForCat.Any(r => r.AmountsForMonth.ContainsKey(monthKey)))
+                {
+                    var message = "Hittar ingen motsvarande inpost för utgift i :"
+                                  + monthKey + " och kategori: " + cat;
+                    writeLineToOutputAndScrollDown(message);
+                }
+
+                nuvarandeRad.Kolumner[monthKey] = inAmount + utAmount;
             }
 
             kvarrader.Add(nuvarandeRad);
