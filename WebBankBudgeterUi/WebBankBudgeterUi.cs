@@ -84,12 +84,8 @@ namespace WebBankBudgeterUi
 
             //BindTotalsToUi();
 
-            // Ta ut in-data och utgifter.
-            var utgiftsRader = table.BudgetRows.ToList();
-
-            // Presentera tabell för kvar budget.
-            await VisaKvarRader_BindInPosterRaderTillUiAsync(
-                utgiftsRader);
+            // Presentera tabell för kvar budget (samma data som Budget Total).
+            BindKvarBudgetTableUi(table);
 
             // Presentera tabell för inkomst i varje kategori budget.
             await VisaInRader_BindInPosterRaderTillUiAsync(
@@ -187,7 +183,6 @@ namespace WebBankBudgeterUi
         private void InitIncomesUi()
         {
             gv_incomes.Columns.Add("1", WebBankBudgeter.CategoryNameColumnDescription);
-            gv_Kvar.Columns.Add("1", WebBankBudgeter.CategoryNameColumnDescription);
         }
 
         private void InitTotalsUi()
@@ -230,6 +225,11 @@ namespace WebBankBudgeterUi
         private void BindToBudgetTableUi(TextToTableOutPuter table)
         {
             _utgiftsHanterareUiBinder.BindToBudgetTableUi(table);
+        }
+
+        private void BindKvarBudgetTableUi(TextToTableOutPuter table)
+        {
+            _utgiftsHanterareUiBinder.BindToBudgetTableUi(table, gv_Kvar);
         }
 
         private void BindTransactionListToUi()

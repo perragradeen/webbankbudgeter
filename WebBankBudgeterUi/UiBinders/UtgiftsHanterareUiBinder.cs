@@ -12,16 +12,16 @@ namespace WebBankBudgeterUi.UiBinders
             _gv_budget = gv_budget;
         }
 
-        public void BindToBudgetTableUi(TextToTableOutPuter table)
+        public void BindToBudgetTableUi(TextToTableOutPuter table, DataGridView targetGrid = null)
         {
-            if (_gv_budget == null)
+            var grid = targetGrid ?? _gv_budget;
+            if (grid == null)
             {
                 return;
             }
 
-            // PAUSA UPPDATERINGAR
-            _gv_budget.Visible = false;
-            _gv_budget.SuspendLayout();
+            grid.Visible = false;
+            grid.SuspendLayout();
 
             try
             {
@@ -34,18 +34,18 @@ namespace WebBankBudgeterUi.UiBinders
                 // Lägg till kolumnrubriker
                 foreach (var column in table.ColumnHeaders)
                 {
-                    _gv_budget.Columns.Add(column, column);
+                    grid.Columns.Add(column, column);
                 }
 
                 // Lägg till "Summa"-kolumn efter alla andra kolumner
-                var sumColumnIndex = _gv_budget.Columns.Add("Summa", "Summa");
+                var sumColumnIndex = grid.Columns.Add("Summa", "Summa");
 
-                _gv_budget.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                grid.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 // Lägg till rader från den strukturerade budgeten
                 foreach (var row in structuredBudget.Rows)
                 {
-                    var n = _gv_budget.Rows.Add();
+                    var n = grid.Rows.Add();
                     var categoryName = row.CategoryText;
 
                     // Räkna ut radtotal och genomsnitt
@@ -117,34 +117,33 @@ namespace WebBankBudgeterUi.UiBinders
                                 break;
                         }
 
-                        _gv_budget.Rows[n].Cells[i++].Value = value;
+                        grid.Rows[n].Cells[i++].Value = value;
 
                         // Formatera summeringsrader med fet stil
                         if (categoryName.Contains("==="))
                         {
-                            _gv_budget.Rows[n].Cells[i - 1].Style.Font =
-                                new Font(_gv_budget.DefaultCellStyle.Font, FontStyle.Bold);
-                            _gv_budget.Rows[n].Cells[i - 1].Style.BackColor = Color.LightGray;
+                            grid.Rows[n].Cells[i - 1].Style.Font =
+                                new Font(grid.DefaultCellStyle.Font, FontStyle.Bold);
+                            grid.Rows[n].Cells[i - 1].Style.BackColor = Color.LightGray;
                         }
                     }
 
                     // Lägg till radtotalen i sista kolumnen
-                    _gv_budget.Rows[n].Cells[sumColumnIndex].Value = DoubleTo1000SeparatedNoDecimals(rowTotal);
+                    grid.Rows[n].Cells[sumColumnIndex].Value = DoubleTo1000SeparatedNoDecimals(rowTotal);
 
                     // Formatera summakolumnen också för summeringsrader
                     if (categoryName.Contains("==="))
                     {
-                        _gv_budget.Rows[n].Cells[sumColumnIndex].Style.Font =
-                            new Font(_gv_budget.DefaultCellStyle.Font, FontStyle.Bold);
-                        _gv_budget.Rows[n].Cells[sumColumnIndex].Style.BackColor = Color.LightGray;
+                        grid.Rows[n].Cells[sumColumnIndex].Style.Font =
+                            new Font(grid.DefaultCellStyle.Font, FontStyle.Bold);
+                        grid.Rows[n].Cells[sumColumnIndex].Style.BackColor = Color.LightGray;
                     }
                 }
             }
             finally
             {
-                // ÅTERUPPTA UPPDATERINGAR
-                _gv_budget.ResumeLayout();
-                _gv_budget.Visible = true;
+                grid.ResumeLayout();
+                grid.Visible = true;
             }
         }
 

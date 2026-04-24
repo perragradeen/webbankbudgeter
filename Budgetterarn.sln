@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetterarnDAL", "Budgette
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{31F679A2-C7A2-48EF-90DB-7305493D6457}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBankBudgeterUiTest", "WebBankBudgeterUiTest\WebBankBudgeterUiTest.csproj", "{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -429,6 +431,26 @@ Global
 		{31F679A2-C7A2-48EF-90DB-7305493D6457}.Release|x64.Build.0 = Release|Any CPU
 		{31F679A2-C7A2-48EF-90DB-7305493D6457}.Release|x86.ActiveCfg = Release|Any CPU
 		{31F679A2-C7A2-48EF-90DB-7305493D6457}.Release|x86.Build.0 = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|Win32.Build.0 = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|x64.Build.0 = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Debug|x86.Build.0 = Debug|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|Win32.ActiveCfg = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|Win32.Build.0 = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|x64.ActiveCfg = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|x64.Build.0 = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|x86.ActiveCfg = Release|Any CPU
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -453,6 +475,7 @@ Global
 		{719B28C1-9B4C-4DAB-A7CD-0169724949FA} = {D6766080-123A-44CA-9F31-2638B9403286}
 		{6AAAADFC-AC1C-4EB9-9BB6-11D8BE6FFD69} = {181DDD13-5842-4AEF-B89F-B2F4F4861346}
 		{0E238DA8-D393-4502-A90B-E4E3BF744F12} = {9C9A93BC-FC73-4C77-B0D3-62B3B7F2B8AF}
+		{0ADD4DD2-4790-4729-9F26-B44943DAD3D1} = {FE738935-FFAA-4B40-A051-A6F9B8D58964}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E1C4CD8-26A7-4A10-804E-67B76E8DBCF8}
