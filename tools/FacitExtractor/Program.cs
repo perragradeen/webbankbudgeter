@@ -145,16 +145,15 @@ class Program
         for (int row = startRow; row <= endRow && row < worksheet.Rows.Count; row++)
         {
             var dataRow = worksheet.Rows[row];
-            if (dataRow[4] == DBNull.Value) continue; // Column E = index 4
+            if (dataRow[1] == DBNull.Value) continue; // Column B (category name) = index 1
             
-            var category = dataRow[4]?.ToString()?.Trim() ?? "";
+            var category = dataRow[1]?.ToString()?.Trim() ?? "";
             if (string.IsNullOrWhiteSpace(category)) continue;
-            if (category.Contains("===")) continue; // Skip summary rows
+            if (category.Contains("===") || category.Contains("Summa")) continue; // Skip summary rows
 
-            // Columns F (6) through Q (17) are months
-            var monthColumns = year == 2014 
-                ? Enumerable.Range(6, 11).ToList() // Feb-Dec (columns G-Q = indices 6-16, 11 months)
-                : Enumerable.Range(5, 12).ToList(); // Jan-Dec (columns F-Q = indices 5-16, 12 months)
+            // Columns 6-17 are months (Jan-Dec)
+            // Column 6 = Januari, Column 7 = Februari, ..., Column 17 = December
+            var monthColumns = Enumerable.Range(6, 12).ToList(); // Jan-Dec (columns 6-17)
 
             foreach (var colIndex in monthColumns)
             {
@@ -164,9 +163,7 @@ class Program
                 if (!double.TryParse(dataRow[colIndex]?.ToString(), out double value)) continue;
                 if (value == 0) continue;
 
-                var monthIndex = year == 2014 
-                    ? colIndex - 5  // Column G (index 6) = Feb (2), etc.
-                    : colIndex - 4; // Column F (index 5) = Jan (1), etc.
+                var monthIndex = colIndex - 5; // Column 6 = Jan (1), Column 7 = Feb (2), etc.
 
                 budgetRows.Add(new BudgetInFacit
                 {

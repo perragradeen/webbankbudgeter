@@ -1,2347 +1,2354 @@
 [
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": -1699
+    "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 2,
     "monthName": "February",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 3,
     "monthName": "March",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 4,
     "monthName": "April",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 5,
     "monthName": "May",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 6,
     "monthName": "June",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 7,
     "monthName": "July",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 8,
     "monthName": "August",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 9,
     "monthName": "September",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 10,
     "monthName": "October",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 11,
     "monthName": "November",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1188",
+    "category": "alkohol",
     "year": 2015,
     "month": 12,
     "monthName": "December",
     "budgetAmount": 247.5
   },
   {
-    "category": "-1538",
+    "category": "csn",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": -1417
+    "budgetAmount": 1012.17
   },
   {
-    "category": "-1538",
+    "category": "csn",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "csn",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 1012.17
+  },
+  {
+    "category": "el",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 200
+  },
+  {
+    "category": "el",
     "year": 2015,
     "month": 2,
     "monthName": "February",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 3,
     "monthName": "March",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 4,
     "monthName": "April",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 5,
     "monthName": "May",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 6,
     "monthName": "June",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 7,
     "monthName": "July",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 8,
     "monthName": "August",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 9,
     "monthName": "September",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 10,
     "monthName": "October",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 11,
     "monthName": "November",
     "budgetAmount": 200
   },
   {
-    "category": "-1538",
+    "category": "el",
     "year": 2015,
     "month": 12,
     "monthName": "December",
     "budgetAmount": 200
   },
   {
-    "category": "-1710",
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemf\u00F6rs\u00E4kring",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 119
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hemlagad mat",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 600
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hush\u00E5ll, reparationer etc ink\u00F6p av nya hussh\u00E5llsmaskiner",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 280
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hygien (disk, tv\u00E4tt o tv\u00E5l etc)",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 30
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "hyra (inkl. 1k amortering)",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 12283
+  },
+  {
+    "category": "internet",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 299
+  },
+  {
+    "category": "internet",
     "year": 2015,
     "month": 2,
     "monthName": "February",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 3,
     "monthName": "March",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 4,
     "monthName": "April",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 5,
     "monthName": "May",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 6,
     "monthName": "June",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 7,
     "monthName": "July",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 8,
     "monthName": "August",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 9,
     "monthName": "September",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 10,
     "monthName": "October",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 11,
     "monthName": "November",
     "budgetAmount": 299
   },
   {
-    "category": "-1710",
+    "category": "internet",
     "year": 2015,
     "month": 12,
     "monthName": "December",
     "budgetAmount": 299
   },
   {
-    "category": "-185463.58",
+    "category": "kl\u00E4der",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": -8328.16
+    "budgetAmount": 150
   },
   {
-    "category": "-185463.58",
+    "category": "kl\u00E4der",
     "year": 2015,
     "month": 2,
     "monthName": "February",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 150
+  },
+  {
+    "category": "kl\u00E4der",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 150
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 280
+  },
+  {
+    "category": "liv- o sjukf\u00F6rs\u00E4kring etc",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 280
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "lunch utemat",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 1441.36
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "mat i samband med supa",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 1477.5
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "n\u00F6jes utemat",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 2100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 100
+  },
+  {
+    "category": "ov\u00E4ntade utgifter",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 100
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "presenter",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 1000
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 250
+  },
+  {
+    "category": "resor i samband med utflykt",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 250
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 150
+  },
+  {
+    "category": "r\u00F6da korset",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 150
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 320
+  },
+  {
+    "category": "si och akassa",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 320
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 2,
+    "monthName": "February",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 3,
+    "monthName": "March",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 4,
+    "monthName": "April",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 5,
+    "monthName": "May",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 6,
+    "monthName": "June",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 7,
+    "monthName": "July",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 8,
+    "monthName": "August",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 9,
+    "monthName": "September",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 10,
+    "monthName": "October",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 11,
+    "monthName": "November",
+    "budgetAmount": 285
+  },
+  {
+    "category": "Sm\u00E5resor ej supa",
+    "year": 2015,
+    "month": 12,
+    "monthName": "December",
+    "budgetAmount": 285
+  },
+  {
+    "category": "spara alm\u00E4nt",
+    "year": 2015,
+    "month": 1,
+    "monthName": "January",
     "budgetAmount": 3481.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 3,
-    "monthName": "March",
+    "month": 2,
+    "monthName": "February",
     "budgetAmount": 353.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 4,
-    "monthName": "April",
+    "month": 3,
+    "monthName": "March",
     "budgetAmount": 1293.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 5,
-    "monthName": "May",
+    "month": 4,
+    "monthName": "April",
     "budgetAmount": 521.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 6,
-    "monthName": "June",
+    "month": 5,
+    "monthName": "May",
     "budgetAmount": -418.28
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 7,
-    "monthName": "July",
+    "month": 6,
+    "monthName": "June",
     "budgetAmount": 353.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 8,
-    "monthName": "August",
+    "month": 7,
+    "monthName": "July",
     "budgetAmount": 1763.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 9,
-    "monthName": "September",
+    "month": 8,
+    "monthName": "August",
     "budgetAmount": 4159.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 10,
-    "monthName": "October",
+    "month": 9,
+    "monthName": "September",
     "budgetAmount": 1371.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 11,
-    "monthName": "November",
+    "month": 10,
+    "monthName": "October",
     "budgetAmount": 2703.72
   },
   {
-    "category": "-185463.58",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
-    "month": 12,
-    "monthName": "December",
+    "month": 11,
+    "monthName": "November",
     "budgetAmount": 885.72
   },
   {
-    "category": "-1874",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 600
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-1874",
+    "category": "spara alm\u00E4nt",
     "year": 2015,
     "month": 12,
     "monthName": "December",
-    "budgetAmount": 150
+    "budgetAmount": 767.72
   },
   {
-    "category": "-21032.65",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": -11506.74
+    "budgetAmount": 2507
   },
   {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-21032.65",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 1000
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 21176.6
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-32357",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 12283
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -78
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-349",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 280
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -1522
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-3530",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 150
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -46
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-406",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 119
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -3362
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4201",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 285
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -1344.01
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-4339.16",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 450
-  },
-  {
-    "category": "-5954.16",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -550
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 7266.2
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-6552.367273",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 1477.5
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 18
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-89",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 1012.17
-  },
-  {
-    "category": "-988",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -488
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 320
-  },
-  {
-    "category": "0",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 320
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 24
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1192",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 100
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": -4922.72
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "1351.93",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 1250
-  },
-  {
-    "category": "142824",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 55475
-  },
-  {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 2,
     "monthName": "February",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 3,
     "monthName": "March",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 4,
     "monthName": "April",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 5,
     "monthName": "May",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 6,
     "monthName": "June",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 7,
     "monthName": "July",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 8,
     "monthName": "August",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 9,
     "monthName": "September",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 10,
     "monthName": "October",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 11,
     "monthName": "November",
     "budgetAmount": 2507
   },
   {
-    "category": "142824",
+    "category": "spara till amortering",
     "year": 2015,
     "month": 12,
     "monthName": "December",
     "budgetAmount": 2507
   },
   {
-    "category": "225",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "225",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 18.75
-  },
-  {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": 1453
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 2,
     "monthName": "February",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 3,
     "monthName": "March",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 4,
     "monthName": "April",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 5,
     "monthName": "May",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 6,
     "monthName": "June",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 7,
     "monthName": "July",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 8,
     "monthName": "August",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 9,
     "monthName": "September",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 10,
     "monthName": "October",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 11,
     "monthName": "November",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3204",
+    "category": "spara till dator",
     "year": 2015,
     "month": 12,
     "monthName": "December",
-    "budgetAmount": 250
+    "budgetAmount": 350
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": 3492.93
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 2,
     "monthName": "February",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 3,
     "monthName": "March",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 4,
     "monthName": "April",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 5,
     "monthName": "May",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 6,
     "monthName": "June",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 7,
     "monthName": "July",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 8,
     "monthName": "August",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 9,
     "monthName": "September",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 10,
     "monthName": "October",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 11,
     "monthName": "November",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "3509.24",
+    "category": "spara till russel \u00F6vrigt",
     "year": 2015,
     "month": 12,
     "monthName": "December",
-    "budgetAmount": 600
+    "budgetAmount": 450
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": 2622.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 2,
     "monthName": "February",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 3,
     "monthName": "March",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 4,
     "monthName": "April",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 5,
     "monthName": "May",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 6,
     "monthName": "June",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 7,
     "monthName": "July",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 8,
     "monthName": "August",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 9,
     "monthName": "September",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 10,
     "monthName": "October",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 11,
     "monthName": "November",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "4211.727273",
+    "category": "spara till sommarrussel",
     "year": 2015,
     "month": 12,
     "monthName": "December",
-    "budgetAmount": 1441.36
+    "budgetAmount": 1250
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": 373
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 2,
     "monthName": "February",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 3,
     "monthName": "March",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 4,
     "monthName": "April",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 5,
     "monthName": "May",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 6,
     "monthName": "June",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 7,
     "monthName": "July",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 8,
     "monthName": "August",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 9,
     "monthName": "September",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 10,
     "monthName": "October",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 11,
     "monthName": "November",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "533",
+    "category": "stockholms stads bostadsk\u00F6",
     "year": 2015,
     "month": 12,
     "monthName": "December",
-    "budgetAmount": 200
+    "budgetAmount": 18.75
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": 255
+    "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 2,
     "monthName": "February",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 3,
     "monthName": "March",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 4,
     "monthName": "April",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 5,
     "monthName": "May",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 6,
     "monthName": "June",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 7,
     "monthName": "July",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 8,
     "monthName": "August",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 9,
     "monthName": "September",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 10,
     "monthName": "October",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 11,
     "monthName": "November",
     "budgetAmount": 519
   },
   {
-    "category": "5914",
+    "category": "telefonsamtal",
     "year": 2015,
     "month": 12,
     "monthName": "December",
     "budgetAmount": 519
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 1,
     "monthName": "January",
-    "budgetAmount": 3360
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 2,
     "monthName": "February",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 3,
     "monthName": "March",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 4,
     "monthName": "April",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 5,
     "monthName": "May",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 6,
     "monthName": "June",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 7,
     "monthName": "July",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 8,
     "monthName": "August",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 9,
     "monthName": "September",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 10,
     "monthName": "October",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 11,
     "monthName": "November",
-    "budgetAmount": 280
+    "budgetAmount": 200
   },
   {
-    "category": "6720",
+    "category": "v\u00E4rnamoresor\u002B\u00F6vriga",
     "year": 2015,
     "month": 12,
     "monthName": "December",
-    "budgetAmount": 280
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 360
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 30
-  },
-  {
-    "category": "720",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 30
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 7804.36
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "7655.21",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 2100
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 1,
-    "monthName": "January",
-    "budgetAmount": 4700
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 2,
-    "monthName": "February",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 3,
-    "monthName": "March",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 4,
-    "monthName": "April",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 5,
-    "monthName": "May",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 6,
-    "monthName": "June",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 7,
-    "monthName": "July",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 8,
-    "monthName": "August",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 9,
-    "monthName": "September",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 10,
-    "monthName": "October",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 11,
-    "monthName": "November",
-    "budgetAmount": 350
-  },
-  {
-    "category": "8900",
-    "year": 2015,
-    "month": 12,
-    "monthName": "December",
-    "budgetAmount": 350
+    "budgetAmount": 200
   }
 ]

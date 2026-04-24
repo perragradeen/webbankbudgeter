@@ -18,6 +18,6 @@
 2. `budget-in + expected-ut == expected-kvar` (per kategori per månad)
 3. Transaktioner med `Flag == "Ignore"` räknas **inte** med i UT.
 4. Antal transaktioner per år: 2014 = 809, 2015 = 845.
-5. IN 2014 har 308 rader.
-6. IN 2015 har 335 rader.
+5. IN 2014 har 336 rader.
+6. IN 2015 har 336 rader.
 7. Transfers (`" -"`) ingår i egen fil `expected-transfers-YYYY.json`.
