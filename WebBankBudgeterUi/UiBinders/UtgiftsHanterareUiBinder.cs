@@ -25,6 +25,9 @@ namespace WebBankBudgeterUi.UiBinders
 
             try
             {
+                grid.Columns.Clear();
+                grid.Rows.Clear();
+
                 // Använd den nya strukturerade budgetbyggaren
                 var budgetBuilder = new BudgetStructureBuilder();
                 var structuredBudget = budgetBuilder.BuildStructuredBudget(

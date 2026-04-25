@@ -1,3 +1,4 @@
+using System.Globalization;
 using InbudgetHandler;
 using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
@@ -8,12 +9,8 @@ namespace WebBankBudgeterServiceTest
     [TestClass]
     public class SkapaInPosterTests
     {
-        private static string _transactionTestFilePath => Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
-            //@"\Temp\pelles budget.xls"
-            @"..\..\..\..\BudgetterarnUi\bin\Debug\pelles budget.xls" //TODO: Byt från joxiga relativa sökvägar.ev välj från UI och spara...
-        //C:\files\Dropbox\budget\Program\webbankbudgeter\BudgetterarnUi\bin\Debug
-        );
+        private static string _transactionTestFilePath =>
+            Path.Combine(AppContext.BaseDirectory, "pelles budget.xls");
 
         private const string _categoryRelativeDirPath = @"Data";
         //private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
@@ -49,8 +46,7 @@ namespace WebBankBudgeterServiceTest
 
         public SkapaInPosterTests()
         {
-            var baseDir = Environment.CurrentDirectory;
-            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
+            var baseDir = AppContext.BaseDirectory;
             _budgetInsFilePath = Path.Combine(baseDir, _budgetInsRelativeFilePath);
         }
 
@@ -59,12 +55,14 @@ namespace WebBankBudgeterServiceTest
         {
             if (!File.Exists(_transactionTestFilePath))
             {
-                throw new FileNotFoundException(_transactionTestFilePath);
+                Assert.Inconclusive(
+                    $"Saknar transaktionsfil för M0-test: {_transactionTestFilePath}. " +
+                    "Kopiera `pelles budget.xls` till testprojektets output (Data) eller kör från repo med filen i workspace.");
             }
         }
 
         [TestMethod]
-        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
+        [Ignore]//SlÃ¥ pÃ¥ fÃ¶r genomgÃ¥ngar. TODO: gÃ¶r dÃ¥ o dÃ¥, inte varje bygge
         public async Task SkapaInPosterTestAsync()
         {
             var handler = new SkapaInPosterHanterare(
@@ -79,14 +77,14 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
-        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
+        [Ignore]//SlÃ¥ pÃ¥ fÃ¶r genomgÃ¥ngar. TODO: gÃ¶r dÃ¥ o dÃ¥, inte varje bygge
         public async Task SkapaInPosterTestAsync2()
         {
             var handler = new SkapaInPosterHanterare(
                 InBudgetHandler,
                 TransactionHandler);
 
-            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum("2022");
+            var nuDatum = SkapaInPosterHanterare.FrÃ¥nÃ…rTillDatum("2022");
             var results = await handler.SkapaInPoster(nuDatum);
 
             Assert.IsTrue(results.Any());
@@ -105,10 +103,8 @@ namespace WebBankBudgeterServiceTest
         public void DoubleToStringFormat_Test()
         {
             var value = 1151.23;
-            var actual =
-                value.ToString("N0");
-
-            Assert.AreEqual("1 151", actual);
+            var actual = value.ToString("N0", CultureInfo.GetCultureInfo("sv-SE"));
+            Assert.IsTrue(actual is "1\u00a0151" or "1 151", $"Oväntat format: {actual}");
         }
 
         [TestMethod]
@@ -224,7 +220,7 @@ namespace WebBankBudgeterServiceTest
         public void FilterTransactionsTest2s()
         {
             var results = SkapaInPosterHanterare
-                .FrånÅrTillDatum("2023");
+                .FrÃ¥nÃ…rTillDatum("2023");
 
             Assert.AreEqual(new DateTime(2023, 01, 01), results);
         }
@@ -277,11 +273,10 @@ namespace WebBankBudgeterServiceTest
 
         private static string GetCategoryFilePath()
         {
-            var appPath = AppDomain.CurrentDomain.BaseDirectory;
+            var appPath = AppContext.BaseDirectory;
             return Path.Combine(
                 Path.Combine(appPath, _categoryRelativeDirPath),
-                @"Categories.xml"
-            );
+                "Categories.xml");
         }
 
         private static void WriteToOutput(string message)

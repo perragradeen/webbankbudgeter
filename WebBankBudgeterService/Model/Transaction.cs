@@ -54,6 +54,24 @@ namespace WebBankBudgeterService.Model
             }
         }
 
+        /// <summary>
+        /// Nyckel för budgettabell/facit: vid tom grupp används kategorinamn utan gruppprefix (D7).
+        /// </summary>
+        public string BudgetTableCategoryKey
+        {
+            get
+            {
+                var categories = Categorizations?.Categories?.FirstOrDefault();
+                if (categories == null || categories.Name == null)
+                    return "No Category";
+
+                if (string.IsNullOrWhiteSpace(categories.Group))
+                    return categories.Name.Trim();
+
+                return CategoryName.Trim();
+            }
+        }
+
         private DateTime _dateAsDate;
 
         public DateTime DateAsDate

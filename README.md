@@ -65,6 +65,9 @@ Budgetterarn.sln
 ├── BudgetterarnUi/             # Äldre WinForms-UI (parallell/legacy)
 ├── BudgetterarnDAL/            # Äldre DAL med WebCrawlers
 │
+├── WebBankBudgeterTests.Facit/  # JSON-facit + FacitLoader (delas av service-tester)
+├── tools/FacitExtractor/        # Extraherar facit från `Pelles-budget-slim-2014-2015-gform.xlsx`
+│
 └── *Test-projekt:*
     ├── WebBankBudgeterServiceTest/
     ├── InbudgetHandlerTest/
@@ -78,7 +81,7 @@ Budgetterarn.sln
 
 | Flik | DataGridView | Beskrivning |
 |------|-------------|-------------|
-| **Kvar** | `gv_Kvar` | Kvarvarande budget (budgeterat - faktisk utgift) |
+| **Kvar** | `gv_Kvar` | Budgeterat IN + transaktionsutfall (UT) per kategori/månad via `SnurraIgenom` |
 | **Incomes** | `gv_incomes` | Budgeterade inkomster per kategori och månad |
 | **Budget Total** | `gv_budget` | Alla utgifter/inkomster per kategori och månad med summor |
 | **Totals** | `gv_Totals` | Sammanfattande siffror (snitt, diff) |
@@ -108,6 +111,12 @@ UtgiftsHanterareUiBinder → gv_budget (Budget Total-fliken)
 - `WebBankBudgeterUi/Data/GeneralSettings.xml` — sökväg till transaktionsfil, kategorifil
 - `WebBankBudgeterUi/TestData/BudgetIns.json` — budgeterade belopp per kategori/månad
 - `Pelles-budget-slim-2014-2015-gform.xlsx` (i repo-rot) — Excel-facit som `plan.md` refererar (kontoutdrag + budget 2014/2015)
+
+## Facit och regressionstester
+
+- JSON under `WebBankBudgeterTests.Facit/Facit/` (transaktioner, budget IN, `expected-ut`, `expected-transfers`, `expected-kvar`).
+- Regenerera med: `dotnet run --project tools/FacitExtractor -- Pelles-budget-slim-2014-2015-gform.xlsx WebBankBudgeterTests.Facit/Facit`
+- Kör facit-tester (Linux/CI, utan WinForms): `dotnet test WebBankBudgeterServiceTest/WebBankBudgeterServiceTest.csproj`
 
 ## Teckenkodning
 

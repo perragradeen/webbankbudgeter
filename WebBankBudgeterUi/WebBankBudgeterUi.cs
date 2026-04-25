@@ -84,8 +84,8 @@ namespace WebBankBudgeterUi
 
             //BindTotalsToUi();
 
-            // Presentera tabell för kvar budget (samma data som Budget Total).
-            BindKvarBudgetTableUi(table);
+            // Kvar = IN (BudgetIns) + UT per kategori/månad (SnurraIgenom)
+            await VisaKvarRader_BindInPosterRaderTillUiAsync(table.BudgetRows?.ToList() ?? []);
 
             // Presentera tabell för inkomst i varje kategori budget.
             await VisaInRader_BindInPosterRaderTillUiAsync(
@@ -225,11 +225,6 @@ namespace WebBankBudgeterUi
         private void BindToBudgetTableUi(TextToTableOutPuter table)
         {
             _utgiftsHanterareUiBinder.BindToBudgetTableUi(table);
-        }
-
-        private void BindKvarBudgetTableUi(TextToTableOutPuter table)
-        {
-            _utgiftsHanterareUiBinder.BindToBudgetTableUi(table, gv_Kvar);
         }
 
         private void BindTransactionListToUi()

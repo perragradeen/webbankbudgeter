@@ -13,26 +13,24 @@ namespace InbudgetHandlerTest
 
         public GetTests()
         {
-            var baseDir = Environment.CurrentDirectory;
-            //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
-            _filePath = Path.Combine(baseDir,
-                @"Data\BudgetIns.json");
+            var baseDir = AppContext.BaseDirectory;
+            _filePath = Path.Combine(baseDir, "Data", "BudgetIns.json");
             //@"..\..\..\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json");
             //BudgetInsRiktigaExempel.json
         }
 
         [TestMethod]
-        public async Task HämtaRaderFörUiBindningAsyncTest()
+        public async Task HÃ¤mtaRaderFÃ¶rUiBindningAsyncTest()
         {
-            var results = await Target.HämtaRaderFörUiBindningAsync();
+            var results = await Target.HÃ¤mtaRaderFÃ¶rUiBindningAsync();
 
             Assert.IsNotNull(results);
         }
 
         [TestMethod]
-        public async Task HämtaRubrikerPåInPosterAsyncTestAsync()
+        public async Task HÃ¤mtaRubrikerPÃ¥InPosterAsyncTestAsync()
         {
-            var results = await Target.HämtaRubrikerPåInPosterAsync();
+            var results = await Target.HÃ¤mtaRubrikerPÃ¥InPosterAsync();
             Assert.IsNotNull(results);
         }
 
