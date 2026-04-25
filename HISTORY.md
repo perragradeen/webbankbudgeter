@@ -1,431 +1,95 @@
-# Projekt Historik - WebBankBudgeter Facit Implementation
+# Projekt­historik — WebBankBudgeter
 
-> **Om denna fil:** Denna historikfil uppdateras löpande under utvecklingsarbetet för att dokumentera
-> beslut, problem, lösningar och framsteg. Vid merge till master arkiveras innehållet till 
-> `HISTORY_ARCHIVE.md` och denna fil rensas för att endast innehålla senaste arbetets historik.
-> Detta håller filen lättläst och relevant medan fullständig historik bevaras i arkivet.
-
-## Sammanfattning
-Agentteam uppsatt för att implementera facit-baserade integrationstester för WebBankBudgeter-projektet. Arbetet utfördes på branch `feature/facit-implementation`.
+> **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och **bakgrund** (hur vi kom dit).  
+> **Underhåll:** Lägg nya upptäckter under *Aktuellt — viktigt att komma ihåg*. Flytta äldre sessionshit till *Arkiv* när de mest är tidsstämplar och agent-ID:n.
 
 ---
 
-## Session: 2026-04-24 (forts.) – ConsoleBudgeter
+## Del A — Aktuellt (viktigt att komma ihåg)
 
-### Uppgift: Skapa plattformsoberoende console-app för att testa UI-output
+### Facit och sanning
 
-WinForms-UI:t `WebBankBudgeterUi` är Windows-bundet. För att kunna testa på
-Linux (och i CI) skapades `ConsoleBudgeter` – ett net8.0 console-projekt som
-renderar samma tabeller som UI:t gör, som text, och jämför resultatet mot
-facit-data.
+- **Facit-JSON och referenstext** (`WebBankBudgeterTests.Facit/Facit/`, `console-report-facit-reference.txt`) är **sanning**: koden och testerna ska anpassas till dem, inte tvärtom.
+- **`ConsoleBudgeter`** kör samma kedja som WinForms för tabell­logik: `WebBankBudgeterService` (`FacitBudgetTextTableFactory`, `BudgetStructureBuilder`, …) + `InbudgetHandler` (`BudgetTableInMerger`, `KvarTextTableBuilder`, `InBudgetMath`). Endast **textrendering** ligger i konsolprojektet.
+- **Inkomstkategori i budgetstruktur:** endast **exakt** kategorinamn `"+"` räknas som inkomst — **inte** `Contains("+")` (annars hamnar t.ex. `värnamoresor+övriga` fel).
+- **Kvar:** `IN + UT` per kategori/månad; `KvarTextTableBuilder` använder **alla** platta `BudgetRow` *före* IN-merge (union som `expected-kvar`). Raden **"-"** (placeholder) visas **inte** i Kvar-vyn.
+- **`BudgetIns.json`** kan fyllas från facit: `tools/FacitBudgetInsExport` → samma budget som `budget-in-*.json` i UI-format (672 rader = 336×2 år när båda åren exporteras).
 
-**Multi-agent approach (enligt lärdom i denna fil):**
-- `explore`-agent 1: kartlade `UtgiftsHanterareUiBinder`, `BudgetStructureBuilder`,
-  `TextToTableOutPuter`, `InBudgetUiHandler`, `BindTransactionListToUi`. Levererade
-  komplett spec: exakta kolumnrubriker, ordning, talformat (`N0`, `# ##0`,
-  InvariantCulture), vilka rader som är summeringar (`===`).
-- `explore`-agent 2: kartlade `WebBankBudgeterTests.Facit`, record-typer,
-  `.csproj`, år, filer. Gav instruktioner för ProjectReference och
-  `AppDomain.CurrentDomain.BaseDirectory/Facit/` som sökväg.
+### Linux, CI och bygge
 
-Parallell exploration tog minuter istället för sekventiell analys – enligt
-samma lärdom som finns dokumenterad längre ner i filen.
+- **`WebBankBudgeterUi`** och **`WebBankBudgeterUiTest`** kräver **Windows Desktop SDK** (`net8.0-windows`) — de bygger **inte** på ren Linux-SDK.
+- **`Budgetterarn.NoWindowsUi.slnf`:** bygg/test **utan** WinForms-projekt → CI och Linux utan `Microsoft.NET.Sdk.WindowsDesktop`. Kommandon: `dotnet build Budgetterarn.NoWindowsUi.slnf`, `dotnet test Budgetterarn.NoWindowsUi.slnf`. **Uppdatera filtret** om nya `net8.0-windows`-projekt läggs till i lösningen.
+- **MSB3021/MSB3027:** uppstår när en **körande** WinForms-app låser DLL:er under `dotnet build` på hela `Budgetterarn.sln` — stäng appen eller använd `.slnf` för headless-bygge.
+- **`.NET SDK`:** `dotnet-sdk-8.0` behövs för bygge/test (t.ex. `apt`-installation i headless-miljöer).
 
-**Resultat:**
-- `ConsoleBudgeter/` (console app): renderar Budget Total, Kvar, Incomes,
-  Totals och Transactions som text-tabeller med samma struktur som
-  DataGridView-binderna producerar.
-- `ConsoleBudgeterTest/`: 10 tester (MSTest), alla passerar på Linux.
-  - 2 facit-aggregation: `budget-in + ut == kvar` per år.
-  - 2 summa-verifikation: summeringsrad == summa av utgifter.
-  - 2 transaktions-antal (2014=809, 2015=845).
-  - 2 `BuildReport` innehåller alla sektioner.
-  - 2 snapshot (`Snapshots/report-{2014,2015}.txt`).
-- `Budgetterarn.sln` uppdaterad med de nya projekten.
+### Transaktionsfilter (år)
 
-**Tekniska detaljer:**
-- Talformat använder explicit `sv-SE` så utskrift är stabil över kulturer.
-- Snapshot-normalisering hanterar CRLF/LF.
-- Projekten refererar `WebBankBudgeterTests.Facit` för typer och JSON.
+- **`TransFilterer.FilterTransactions(list, selectedYear)`** kräver `DateAsDate.Year == selectedYear` utöver 1 jan–31 dec, så t.ex. **december 2013** inte följer med vid filter **2014** (plan R5).
 
----
+### WinForms — var IN kommer ifrån
 
-### Multi-Agent Setup (Start)
+- **`GeneralSettings.xml`:** `InPosterSource` = `BudgetIns` (standard, `TestData/BudgetIns.json`) eller `FacitJson` (`Facit/budget-in-{år}.json` under `FacitBudgetInDirectory`). Vid facit-källa är **Spara in-poster** inaktiverat (meddelande till användaren).
+- Projektet kan kopiera `budget-in-2014.json` / `2015.json` till output under `Facit/` (se `WebBankBudgeterUi.csproj`).
 
-Vid projektstart användes **parallell multi-agent exploration** för snabb kod-kartläggning:
+### Tekniska detaljer som återkommer
 
-**3 explore-agents startades samtidigt:**
-1. **Service-agent:** Analyserade WebBankBudgeterService (transaktionslogik, models, services)
-2. **UI-agent:** Analyserade WebBankBudgeterUi (WinForms UI, databindningar, workflows)
-3. **Test-agent:** Analyserade alla testprojekt (täckning, gaps, struktur)
+- **Månadsnycklar** i tabeller: `YYYY MMMM` med **`InvariantCulture`** (engelska månadsnamn) så facit och kod matchar oberoende av trådkultur.
+- **Visning av belopp i UI:** `sv-SE` och format enligt plan (t.ex. `# ##0` / `N0` där det är implementerat).
+- **`ColumnHeaders`** på `TextToTableOutPuter` är **read-only** — använd `ColumnHeaders.AddRange`, inte tilldelning till propertyn.
+- **`BudgetRow.AmountsForMonth`** är get-only dictionary — initiera värden med `row.AmountsForMonth[key] = …`, inte objektinitierare som sätter hela dictionaryt.
+- **Cirkulär referens:** `BudgetTableInMerger` ligger i **`InbudgetHandler`** (inte i `WebBankBudgeterService`), för att undvika cykel `Service` ↔ `InbudgetHandler`.
 
-**Resultat från parallell exploration:**
-- Komplett systemförståelse inom minuter istället för sekventiell analys
-- Varje agent fick egen kontext och kunde djupdyka i sitt område
-- Strukturerade sammanfattningar som bas för implementation
-- Identifierade: TransactionHandler, TextToTableOutPuter, BudgetRow, kategorisering, tabs-struktur
+### Plan vs. repo
 
-**Agent IDs för uppföljning:**
-- Service-agent: `2ed4e278-fbe0-44f8-91be-956b7cb74253`
-- UI-agent: `54220857-98f4-4a03-98e2-24b2d78f16e2`
-- Test-agent: `087b2bcc-7ec8-41d3-a633-25b5936e7d7b`
+- **`plan.md` avsnitt M1** kan fortfarande beskriva **äldre** extraktor-prototyp (antal rader, januari) — **verifiera alltid mot committad facit** och `Facit/README.md` innan du litar på M1-texten ordagrant.
+- **`plan.md` §6 (risker)** har uppdaterats med mitigeringar (R1 `.slnf`, R5 årsfilter, R6 utfasad Kvar).
 
-**Lärdomar:**
-- Använd ALLTID parallella explore-agents för stora/okända kodbaser
-- En agent per subsystem ger djupare analys än bred översikt
-- Specify exactly what each agent should analyze och return
-- Explore-agents i readonly mode, sedan agent mode för implementation
+### Tester som är “källan till sanning” på Linux
 
-Efter kartläggning fortsatte en huvudagent (Sonnet 4.5) med implementation.
+- `ConsoleBudgeterTest` — snapshot av full rapport, facit-aggregation.
+- `WebBankBudgeterServiceTest` — bl.a. `TableGetter`, `BudgetStructureBuilder`, `BudgetTableInMerger`, `InBudgetMath` / `SnurraIgenom` mot facit, `TransFilterer`, `FacitBudgetInLoader`.
 
 ---
 
-### Fas 1: Setup och Förberedelser
+## Del B — Arkiv (bakgrund — mindre relevant för dagens kod)
 
-#### Problem: Projektet byggde inte på Linux
-- **Problem:** Projektet är ett Windows WinForms-projekt som inte kan byggas fullt ut på Linux
-- **Lösning:** Fokuserade på service-lagret och test-projekt som kan byggas plattformsoberoende
-- **Status:** Service-projekt och tester bygger framgångsrikt
+> Här ligger **process**, gamla branch-namn, agent-ID:n, tidiga iterationsfel och metrics. Läs om du undrar *hur* vi kom fram hit — inte för att veta *vad* som gäller nu.
 
-#### Kritiskt Problem: Encoding-fel i C#-filer
-- **Problem:** Alla C#-filer var i ISO-8859-1 encoding istället för UTF-8
-  - Svenska tecken (å, ä, ö) orsakade kompileringsfel
-  - Windows-specifika sökvägar (`\`) fungerade inte på Linux
-- **Åtgärd:** 
-  - Konverterade alla filer från ISO-8859-1 till UTF-8 med `iconv`
-  - Fixade sökvägar att använda `Path.Combine` korrekt
-  - Uppdaterade kultur-specifika tester (svenskt talformat)
-- **Resultat:** 15/15 tester passerar i WebBankBudgeterServiceTest
-- **Commit:** `148fff2` - "Fix encoding issues"
+### Session 2026-04-24 — Multi-agent, ConsoleBudgeter, facit M1/M2
 
----
+- **Branch då:** `feature/facit-implementation` (nutida arbete kan ligga på `cursor/*`-grenar).
+- **Multi-agent:** tre parallella `explore`-agenter (service / UI / test) gav snabb kartläggning; lärdom: en agent per subsystem med tydlig prompt.
+- **ConsoleBudgeter:** skapades för att testa UI-liknande output på Linux; `sv-SE` i rendering; snapshot-normalisering CRLF/LF.
+- **Encoding-historik:** tidiga ISO-8859-1-problem i vissa filer → konvertering till UTF-8; **nuvarande UI-filer** kan fortfarande vara **blandad** kodning (se `README.md` — Latin-1 i vissa WinForms-filer).
+- **FacitExtractor:** först ClosedXML (bara `.xlsx`) → **ExcelDataReader** för `.xls`/`.xlsx` + CodePages för svenska tecken. Stora zip-uppladdningar via webb misslyckades — **Git push** av filer är mer pålitligt.
+- **Extraktor-bugg (fixad):** fel kolumn för kategori i `ExtractBudgetIn` → gav `"category": "-11506.74"`; rättades till kolumn 1 + månader 6–17.
+- **Plan D5 / januari:** plan påstod först att januari 2014 saknades — **verifiering visade att januari finns**; plan och invariant (28×12 = 336 rader per år) korrigerades.
+- **M2:** `WebBankBudgeterTests.Facit` + `FacitLoader` + records + JSON kopieras till output.
+- **Gamla “Nästa steg” i denna fil** nämnde M0/M3/M4/M5 som pending — **status har ändrats** (mycket av M5 och delar av facit-kedjan är implementerat); se `plan.md` och `todo.md` för aktuell kö.
 
-### Fas 2: TODO.md - Kvar-fliken
+### Agent-ID:n (endast spårbarhet i gamla loggar)
 
-#### Uppgift: Implementera Kvar-fliken enligt todo.md
-- **Plan:** 4 steg för att visa samma data på Kvar-fliken som Budget Total
-- **Resultat:** Alla 4 steg var redan implementerade i koden!
-  - `BindToBudgetTableUi` hade redan `targetGrid` parameter
-  - `BindKvarBudgetTableUi` wrapper-metod fanns och kallades
-  - Ingen gammal init-kod för Kvar-kolumner
-  - Gammal `VisaKvarRader_BindInPosterRaderTillUiAsync` anropades aldrig
-- **Status:** ✅ Färdig (redan implementerat)
+- Service: `2ed4e278-fbe0-44f8-91be-956b7cb74253`
+- UI: `54220857-98f4-4a03-98e2-24b2d78f16e2`
+- Test: `087b2bcc-7ec8-41d3-a633-25b5936e7d7b`
 
----
+### Äldre metrics (ungefärliga — repo har växt)
 
-### Fas 3: M1 - FacitExtractor Verktyg
+- Tidiga commits nämnde t.ex. `148fff2` encoding, `7bb28a2` M1, `eba1bab` M2 — använd `git log` för exakt historia.
+- “24/24 tester på Linux” i gamla text avser **dåvarande** uppsättning; kör `dotnet test Budgetterarn.NoWindowsUi.slnf` för aktuellt tal.
 
-#### Uppgift: Skapa verktyg för att extrahera testdata från Excel
+### Övriga gamla “problem och lösningar”
 
-**Steg 1: Första försöket med ClosedXML**
-- Skapade `tools/FacitExtractor/` projekt
-- Använde ClosedXML för Excel-läsning
-- **Problem:** ClosedXML stöder bara .xlsx, inte äldre .xls-format
-- **Commit:** `1113328` - "Add FacitExtractor tool"
-
-**Steg 2: Filöverföring utmaningar**
-- Försökte få .xlsx-fil via Slack - fungerade inte automatiskt
-- Försökte få .zip-fil via Cursor web - filen blev korrupt (332KB av ~4GB)
-- **Lärdom:** Filuppladdning via Cursor har storleksbegränsningar/problem
-
-**Steg 3: Omskrivning till ExcelDataReader**
-- Bytte från ClosedXML till ExcelDataReader
-- Stöder både .xls och .xlsx format
-- Lade till `System.Text.Encoding.CodePages` för svenska tecken
-- Testade med befintlig `pelles budget.xls` (innehöll 2018-2023 data)
-
-**Steg 4: Rätt fil hittad**
-- Användaren pushade `Pelles-budget-slim-2014-2015-gform.xlsx` till master
-- Mergeade från master till feature-branch
-- Körde extraktorn framgångsrikt!
-
-**Resultat:**
-```
-2014: 809 transactions, 308 budget rows
-2015: 845 transactions, 335 budget rows
-```
-
-**Genererade filer:**
-- `transactions-2014.json` (140KB)
-- `transactions-2015.json` (153KB)
-- `budget-in-2014.json` (37KB)
-- `budget-in-2015.json` (40KB)
-- `expected-ut-2014.json` (30KB)
-- `expected-ut-2015.json` (29KB)
-- `expected-transfers-2014.json` (1.1KB)
-- `expected-transfers-2015.json` (695B)
-- `expected-kvar-2014.json` (86KB)
-- `expected-kvar-2015.json` (94KB)
-- `README.md` (1.2KB)
-
-**Commit:** `7bb28a2` - "M1 Complete: Generate facit test data from Excel"
-
-**Kritisk bugg upptäckt och fixad (2026-04-24 12:05):**
-- **Problem:** Kategorinamn lästes från fel kolumn (kolumn 4 "Kvar ref" istället av kolumn 1)
-- **Symptom:** `"category": "-11506.74"` istället för riktiga kategorinamn
-- **Orsak:** Felaktig kolumn-indexering i `ExtractBudgetIn`
-- **Lösning:** Korrigerade till kolumn 1 för kategori, kolumner 6-17 för månader
-- **Resultat:** 336 rader per år (28 kategorier × 12 månader), alla kategorier korrekta
-- **Commit:** `c93156d` - "Fix FacitExtractor column mapping"
-
-**Rättelse av plan.md (viktigt!):**
-- Plan.md påstod felaktigt att Januari 2014 saknades i Excel
-- Faktisk verifiering visade att Januari FINNS för både 2014 och 2015
-- Korrigerat D5-beslut och alla invarianter
-- Uppdaterat: 28 kategorier × 12 månader = 336 rader (inte 33 × 11 = 363)
-- **Commit:** `6b7cc90` - "Correct plan.md - January 2014 data exists"
+- Windows-sökvägar i test → `Path.Combine`.
+- `GeneralSettingsHandler`: normalisera `\` till `Path.DirectorySeparatorChar`.
+- Tusentalsavskiljare i tester → explicit `sv-SE` där det behövs.
 
 ---
 
-### Fas 4: M2 - Facit-infrastruktur
+## Arkivering (valfri framtida rutin)
 
-#### Uppgift: Skapa delad testinfrastruktur för facit-data
-
-**Implementation:**
-1. Skapade nytt projekt `WebBankBudgeterTests.Facit/`
-2. Implementerade `FacitLoader` klass med statiska metoder:
-   - `LoadTransactions(int year)`
-   - `LoadBudgetIn(int year)`
-   - `LoadExpectedUt(int year)`
-   - `LoadExpectedTransfers(int year)`
-   - `LoadExpectedKvar(int year)`
-
-3. Skapade type-safe record models:
-   - `TransactionFacit`
-   - `BudgetInFacit`
-   - `BudgetUtFacit`
-   - `BudgetKvarFacit`
-
-4. Flyttade alla facit JSON-filer till det delade projektet
-5. Konfigurerade .csproj att kopiera JSON-filer till output
-6. Lade till i solution och referens från WebBankBudgeterServiceTest
-
-**Resultat:**
-- Delad, återanvändbar facit-infrastruktur
-- Clean API för att ladda testdata
-- Projekt bygger och kompilerar framgångsrikt
-
-**Commit:** `eba1bab` - "M2 Complete: Facit infrastructure in shared test project"
+Om filen blir för lång: flytta **Del B** till `HISTORY_ARCHIVE.md` och behåll **Del A** + senaste session i `HISTORY.md`. Det finns ännu ingen `HISTORY_ARCHIVE.md` i repo — skapa vid första arkivering.
 
 ---
 
-## Tekniska Detaljer
-
-### Verktyg och Teknologier
-- **.NET 8.0** - Target framework
-- **MSTest** - Test framework (v4.0.0)
-- **ExcelDataReader** - För Excel .xls/.xlsx läsning
-- **System.Text.Json** - För JSON serialisering
-- **ClosedXML** - Ursprunglig plan (bytt till ExcelDataReader)
-
-### Projekt-struktur
-```
-webbankbudgeter/
-├── tools/
-│   └── FacitExtractor/          # Verktyg för Excel → JSON
-├── WebBankBudgeterTests.Facit/  # Delad testinfrastruktur
-│   ├── Facit/                   # JSON testdata
-│   └── FacitLoader.cs           # API för att ladda facit
-├── WebBankBudgeterService/      # Kärnlogik (bygger ✅)
-├── WebBankBudgeterServiceTest/  # Service-tester (15/15 ✅)
-└── WebBankBudgeterUi/           # WinForms UI (Windows-only)
-```
-
-### Environment Setup
-- **OS:** Linux (Ubuntu)
-- **Build:** Plattformsoberoende för service-lager
-- **Encoding:** UTF-8 för alla källfiler
-- **.NET SDK:** 8.0.420 installerad via dotnet-install.sh
-
----
-
-## Problem och Lösningar
-
-### Problem 1: Encoding (ISO-8859-1 → UTF-8)
-**Symptom:** Kompileringsfel med svenska tecken
-**Lösning:** `iconv -f ISO-8859-1 -t UTF-8` på alla .cs-filer
-**Påverkade filer:** 8 filer (tester + service)
-
-### Problem 2: Windows-sökvägar
-**Symptom:** `@"..\..\file.xls"` fungerade inte på Linux
-**Lösning:** Använda `Path.Combine("..", "..", "file.xls")`
-**Påverkade:** Test-projektet SkapaInPosterTests.cs
-
-### Problem 3: Kultur-skillnader i tester
-**Symptom:** Tusentalsavskiljare var `,` istället för mellanslag
-**Lösning:** Explicit svensk kultur: `ToString("N0", new CultureInfo("sv-SE"))`
-
-### Problem 6: Path-separatorer i GeneralSettingsHandler
-**Symptom:** GeneralSettings.xml innehöll Windows-paths (`Data\file.txt`) som användes direkt
-**Lösning:** Normalisera i `GetTextFileStringSetting`: `.Replace('\\', Path.DirectorySeparatorChar)`
-**Påverkan:** GeneralSettingsTests (3 tester) började passera
-
-### Problem 4: ClosedXML stöder inte .xls
-**Symptom:** "Extension 'xls' is not supported"
-**Lösning:** Bytte till ExcelDataReader som stöder båda formaten
-
-### Problem 5: Filuppladdning via Cursor
-**Symptom:** Zip-fil korrupt (saknade ~4GB data)
-**Lösning:** Användaren pushade direkt till GitHub istället
-
----
-
-## Metrics
-
-### Code Changes
-- **Commits:** 3 huvudcommits
-- **Filer ändrade:** 28 filer
-- **Rader tillagda:** ~33,000 (mest JSON-data)
-- **Nya projekt:** 2 (FacitExtractor, WebBankBudgeterTests.Facit)
-
-### Test Coverage (Slutligt)
-- **Alla Linux-kompatibla tester:** 24/24 passerar (100%)
-- **Skippade tester:** 6 (Excel och Logger tester som kräver externa filer)
-- **Test-projekt som passerar:**
-  - WebBankBudgeterServiceTest: 15 passed, 2 skipped
-  - InbudgetHandlerTest: 3 passed
-  - UtilitiesTest: 1 passed, 4 skipped
-  - FileTests: 2 passed
-  - GeneralSettingsTests: 3 passed
-- **Nya test-filer:** 10 JSON facit-filer (2014-2015 data)
-
-### Build Status (Linux)
-- ✅ WebBankBudgeterService
-- ✅ WebBankBudgeterServiceTest (15/15 passed, 2 skipped)
-- ✅ InbudgetHandlerTest (3/3 passed)
-- ✅ UtilitiesTest (1/1 passed, 4 skipped)
-- ✅ FileTests (2/2 passed)
-- ✅ GeneralSettingsTests (3/3 passed)
-- ✅ WebBankBudgeterTests.Facit
-- ✅ InbudgetHandler
-- ✅ Tools/FacitExtractor
-- ⚠️ WebBankBudgeterUi (Windows-only, WinForms)
-- ⚠️ WebBankBudgeterUiTest (Windows-only, WinForms)
-- ⚠️ BudgetterarnUiTest (Windows-only, WinForms)
-
-**Total på Linux: 24/24 tester passerar, 6 skippade**
-**Samma resultat som på Windows!**
-
----
-
-## Nästa Steg (Återstående)
-
-### M0: Verifiera TransactionHandler och stabil bygg/test-miljö
-- **Status:** PENDING
-- **Blocker för:** M5
-- **Not:** TransactionHandler finns redan i `WebBankBudgeterService/TransactionHandler.cs`
-- **Uppgift:** Verifiera att klassen fungerar och matchar facit-data
-- **Beslut:** Beslut D6 i plan.md måste fattas
-
-### M3: Service-integrationstester
-- **Status:** PENDING
-- **Dependencies:** Facit-infrastruktur (✅ klar)
-- **Tester att skriva:** 6-7 enligt plan.md sektion 4.2
-
-### M4: UI-integrationstester
-- **Status:** PENDING
-- **Dependencies:** Facit-infrastruktur (✅ klar)
-- **Utmaning:** Kräver WinForms på Windows eller mock
-
-### M5: Driv in koden mot facit
-- **Status:** PENDING
-- **Dependencies:** M0, M3, M4
-- **Omfattning:** 6 punkter enligt plan.md sektion 5
-
-### Planering: Beslut D1-D14
-- **Status:** PENDING
-- **Omfattning:** 14 designbeslut i plan.md sektion 0
-- **Påverkar:** M3-M5 implementation
-
----
-
-## Git Historik
-
-```bash
-148fff2 - Fix encoding issues - Convert all C# files from ISO-8859-1 to UTF-8
-1113328 - Add FacitExtractor tool - Extracts test data from Excel to JSON  
-7bb28a2 - M1 Complete: Generate facit test data from Excel
-eba1bab - M2 Complete: Facit infrastructure in shared test project
-```
-
-**Branch:** `feature/facit-implementation`
-**Base:** `master` (merged commits from master for Excel file)
-
----
-
-## Lärdomar
-
-1. **Encoding matters:** Alltid kontrollera filencoding i internationella projekt
-2. **Plattformsoberoende sökvägar:** Använd `Path.Combine`, inte hårdkodade separatorer
-3. **Filuppladdning:** GitHub push är mer pålitligt än webgränssnitt för stora filer
-4. **Excel-bibliotek:** ExcelDataReader är mer flexibelt än ClosedXML för legacy-filer
-5. **Test-infrastruktur:** Delad facit-projekt minskar duplicering mellan test-projekt
-
----
-
-## Team och Verktyg
-
-**Huvudagent:** Claude Sonnet 4.5 (Cloud Agent)
-
-### Multi-Agent Strategi (Använd i framtiden!)
-
-I början av projektet användes **parallella explore-agenter** för snabb kodförståelse:
-
-**Steg 1: Kartläggning med parallella agenter**
-```
-Tre explore-agents startade samtidigt (samma tool call batch):
-- Agent 1: Utforska WebBankBudgeterService (service-lager)
-- Agent 2: Utforska WebBankBudgeterUi (UI-lager)  
-- Agent 3: Analysera testtäckning
-```
-
-**Resultat:**
-- Komplett förståelse av alla lager inom minuter
-- Varje agent hade egen kontext och djupdök i sitt område
-- Parallell utforskning = mycket snabbare än sekventiell
-- Varje agent returnerade strukturerad sammanfattning
-
-**Exempel på agent-prompt:**
-```
-"Explore the WebBankBudgeterService project in detail. Understand:
-1. What functionality does this service provide?
-2. What are the main models and services?
-3. What does it do with transactions and budgets?
-4. What are the key classes and their responsibilities?
-
-Provide a comprehensive summary of the service layer architecture."
-```
-
-**Nyckel-lärdomar för framtida multi-agent arbete:**
-1. **Använd parallella agents för exploration** - Mycket snabbare än sekventiell
-2. **En agent per subsystem** - Service, UI, Tests, etc.
-3. **Tydliga, specifika prompts** - Ge agenten exakt vad den ska analysera
-4. **Återanvänd agent-ID** med `resume` parameter om uppföljning behövs
-5. **Låt agents köra i readonly (explore) mode** för kartläggning
-6. **Växla till agent mode** när implementation ska börja
-
-**När använda multi-agent approach:**
-- Stort/okänt kodbase som behöver kartläggas
-- Flera oberoende features som kan implementeras parallellt
-- Olika expertområden (backend, frontend, DevOps, etc.)
-- Planering vs implementation vs testing kan köras parallellt
-
-**Verktyg använt:**
-- Shell (dotnet, git, iconv, python)
-- Read/Write/StrReplace (filoperationer)
-- Grep/Glob (sökning)
-- TodoWrite (projektplanering)
-- Task (multi-agent orchestration)
-
-**Arbetsmetod:**
-- Parallell exploration med explore-agents först
-- Autonomt arbete baserat på plan.md och todo.md
-- Systematisk problemlösning
-- Inkrementella commits med tydliga meddelanden
-- Kontinuerlig testning och verifiering
-
----
-
-*Genererad: 2026-04-24*
-*Branch: feature/facit-implementation*
-*Status: M1 ✅ M2 ✅ | M0 M3 M4 M5 ⏳*
+*Senast uppdaterad: 2026-04-24 (omstrukturering + sammanslagning av senare upptäckter).*
