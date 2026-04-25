@@ -9,6 +9,16 @@ Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategor
 - **Solution:** `Budgetterarn.sln` (Visual Studio 2022+)
 - **Startprojekt:** `WebBankBudgeterUi`
 
+## Utveckling med Cursor (multi-agent)
+
+Arbetet i repot sker ofta via **Cursor** med flera sätt att få hjälp av en modell samtidigt:
+
+- **Flera agenter / parallella uppdrag:** Olika konversationer eller bakgrundsjobb (t.ex. *Cloud Agent*) kan arbeta i samma repo **samtidigt**. De skapar då ofta **egna grenar** (prefix `cursor/…`) och **pull requests** mot `master`.
+- **Samordning:** Innan merge, kontrollera att grenar inte krockar i samma filer och att tester fortfarande är gröna. Historik om tidigare agent-sessioner kan finnas i `HISTORY.md` om den filen finns i grenen — den är **bakgrund**, inte facit; **committad facit + tester** är den bindande referensen.
+- **Headless / Linux:** WinForms-projektet kräver Windows Desktop SDK. För CI eller Linux-miljöer: bygg och testa det som **inte** kräver WinForms (se `plan.md` eller repo för *solution filter* `.slnf` om det finns), och använd konsol-/servicetester där det går.
+
+Kort sagt: *multi-agent* här betyder **flera automatiserade eller parallella kodvägar** — planera merges och lita på **test + facit**, inte bara på en enskild agents utskrift i chatten.
+
 ## Vad applikationen gör
 
 Applikationen laddar banktransaktioner från fil, kategoriserar dem och visar:
