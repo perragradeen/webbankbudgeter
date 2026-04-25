@@ -11,7 +11,19 @@ namespace WebBankBudgeterService
             var startDate = GetStartDate(selectedYear);
             var endDate = GetEndDate(selectedYear);
 
-            return FilterTransactions(transactionList, startDate, endDate);
+            var inRange = FilterTransactions(transactionList, startDate, endDate);
+
+            // Strikt kalenderår: undvik att rader från grannår "läcker" in om de råkar
+            // ligga inom 1 jan–31 dec men tillhör annat år (R5 i plan.md).
+            var sameYear = inRange.Transactions
+                .Where(t => t.DateAsDate.Year == selectedYear)
+                .ToList();
+
+            return new TransactionList
+            {
+                Transactions = sameYear,
+                Account = inRange.Account
+            };
         }
 
         public static TransactionList FilterTransactions(

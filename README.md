@@ -2,6 +2,17 @@
 
 Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategoriserad budgetöversikt.
 
+## Dokumentation och milstolpar
+
+- **`plan.md`** — målbild mot Excel-facit, beslut D1–D14, milstolpar M0–M5, risker.
+- **`todo.md`** — korta öppna punkter och vad som redan verifierats i kod.
+
+**Rutin:** När något har **byggts, testats och verifierats**, uppdatera alltid **`plan.md`** och **`todo.md`** så att de speglar verkligheten (samma sak gäller ändringar i denna `README.md` när arbetsflöde eller bygginstruktioner ändras). Då slipper ni att plan och kod divergerar.
+
+## Utveckling med Cursor (flera agenter)
+
+Projektet kan utvecklas med **Cursor** och **flera agenter** parallellt (olika grenar med prefix `cursor/…`, var sin PR mot `master`). Samordna merges och kör relevanta `dotnet test`-projekt efter varje merge. Facit + automatiserade tester är tänkta som referens när de finns i repot; tills dess gäller `plan.md` / `todo.md` som checklista.
+
 ## Typ av projekt
 
 - **Plattform:** Windows Forms (.NET 8.0)
@@ -74,11 +85,13 @@ Budgetterarn.sln
     └── BudgetterarnUiTest/
 ```
 
+**Linux / headless:** Bygg och testa bibliotek som `WebBankBudgeterService` och `WebBankBudgeterServiceTest` med `dotnet` på Linux. **`WebBankBudgeterUi`** kräver **Windows Desktop**-SDK (`net8.0-windows`) — kör UI-bygge på en Windows-maskin om full lösning ska valideras.
+
 ## UI-flikar i huvudformuläret
 
 | Flik | DataGridView | Beskrivning |
 |------|-------------|-------------|
-| **Kvar** | `gv_Kvar` | Kvarvarande budget (budgeterat - faktisk utgift) |
+| **Kvar** | `gv_Kvar` | **Mål:** kvar per kategori/månad = **IN + UT** (facit). **Nu:** samma transaktionsbaserade tabell som Budget Total (`BindKvarBudgetTableUi`); se `todo.md` för att koppla in `SnurraIgenom`-vägen. |
 | **Incomes** | `gv_incomes` | Budgeterade inkomster per kategori och månad |
 | **Budget Total** | `gv_budget` | Alla utgifter/inkomster per kategori och månad med summor |
 | **Totals** | `gv_Totals` | Sammanfattande siffror (snitt, diff) |
@@ -131,3 +144,11 @@ Vid redigering av Latin-1-filer (t.ex. med script eller verktyg):
 dotnet build Budgetterarn.sln
 dotnet run --project WebBankBudgeterUi
 ```
+
+**Service-tester (fungerar på Linux utan WinForms):**
+
+```bash
+dotnet test WebBankBudgeterServiceTest/WebBankBudgeterServiceTest.csproj
+```
+
+Efter ändringar: kör relevanta tester, verifiera beteendet, uppdatera **`plan.md`** och **`todo.md`** enligt rutinen ovan.

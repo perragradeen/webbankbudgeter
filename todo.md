@@ -1,97 +1,28 @@
-# TODO: Visa samma data på "Kvar"-fliken som "Budget Total"
+# TODO — WebBankBudgeter (levande lista)
 
-## Problem
+Uppdatera denna fil **efter** att något byggts, testats och verifierats (lokalt eller CI), i linje med `plan.md` och `README.md`.
 
-"Kvar"-fliken (`gv_Kvar`) är nästan tom medan "Budget Total" (`gv_budget`) visar full
-budgetdata med alla kategorier, medelvärden och månadskolumner.
+## Verifierat i kod (denna branch)
 
-**Orsak:** "Kvar" använder en helt annan databindnings-kedja (`InBudgetUiHandler.BindInPosterRaderTillUi`)
-som förlitar sig på InBudget-data från `BudgetIns.json`, medan "Budget Total" använder
-`UtgiftsHanterareUiBinder.BindToBudgetTableUi` som bygger på transaktionsdata.
+| Punkt | Status | Notis |
+|--------|--------|--------|
+| Inkomst i strukturerad budget = **endast** kategori trimmat lika med `"+"` (inte `Contains`) | Klart | `BudgetStructureBuilder` — undviker fel på t.ex. `värnamoresor+övriga` |
+| `TransFilterer.FilterTransactions(list, year)` — strikt **`DateAsDate.Year == year`** | Klart | `TransFiltererTests` |
+| `Transaction.GetMonthAsFullString` invariant (D10) | Klart | befintlig implementation |
 
-## Plan — 4 steg
+## Öppet / väntar arbete eller filer
 
-### Steg 1: Gör `UtgiftsHanterareUiBinder.BindToBudgetTableUi` generisk
+| Punkt | Status | Notis |
+|--------|--------|--------|
+| Committad **facit-JSON** + **FacitExtractor** (M1) | Öppen | Saknas i repot — se `plan.md` §3, M1 |
+| **FacitLoader** + service-tester mot JSON (M2–M3) | Öppen | Efter M1 |
+| **gv_Kvar** = **IN + UT** (`SnurraIgenom` / `VisaKvarRader_BindInPosterRaderTillUiAsync`) | Öppen | Idag: `BindKvarBudgetTableUi` = samma tabell som Budget Total |
+| **D7** — gruppering på `CategoryNameNoGroup` när grupp saknas | Öppen | `TableGetter` använder fortfarande `CategoryName` |
+| **M0** — räkna/verifiera transaktioner mot riktig `.xls` (~1 654 för 2014+2015) | Öppen | Manuell verifiering |
+| **M4** — WinForms-integrationstester | Öppen | Kräver Windows |
+| **BudgetIns.json** fylld/sync från facit när JSON finns | Öppen | D9 |
+| Valfritt: grafiskt val av **in-källa** (facit vs fil) | Öppen | Se plan tidigare D16-idé |
 
-**Fil:** `WebBankBudgeterUi/UiBinders/UtgiftsHanterareUiBinder.cs`
+## Arkiverad idé (historik — använd inte som nuvarande mål)
 
-Lägg till en `DataGridView`-parameter så metoden kan binda till vilken grid som helst:
-
-```csharp
-// Från:
-public void BindToBudgetTableUi(TextToTableOutPuter table)
-{
-    var grid = _gv_budget;
-
-// Till:
-public void BindToBudgetTableUi(TextToTableOutPuter table, DataGridView targetGrid = null)
-{
-    var grid = targetGrid ?? _gv_budget;
-```
-
-Byt alla `_gv_budget`-referenser i metoden till `grid`.
-
-### Steg 2: Anropa bind-metoden för `gv_Kvar`
-
-**Fil:** `WebBankBudgeterUi/WebBankBudgeterUi.cs`
-
-I `FillTablesAsync()`, efter `BindToBudgetTableUi(table)` (rad ~78), lägg till:
-
-```csharp
-BindToBudgetTableUi(table);       // befintligt (gv_budget)
-BindKvarBudgetTableUi(table);     // NYTT (gv_Kvar)
-```
-
-Ny wrapper-metod:
-
-```csharp
-private void BindKvarBudgetTableUi(TextToTableOutPuter table)
-{
-    _utgiftsHanterareUiBinder.BindToBudgetTableUi(table, gv_Kvar);
-}
-```
-
-### Steg 3: Ta bort gammal Kvar-kolumninitiering
-
-**Fil:** `WebBankBudgeterUi/WebBankBudgeterUi.cs`
-
-I `InitIncomesUi()` (rad ~190), ta bort raden:
-
-```csharp
-gv_Kvar.Columns.Add("1", WebBankBudgeter.CategoryNameColumnDescription);
-```
-
-Kolumnerna skapas nu istället av `UtgiftsHanterareUiBinder`.
-
-### Steg 4: Ersätt gammal Kvar-bindning med den nya
-
-**Fil:** `WebBankBudgeterUi/WebBankBudgeterUi.cs`
-
-I `FillTablesAsync()`, ersätt anropet (rad ~91-92):
-
-```csharp
-// FRÅN (gammal — ger nästan tom tabell):
-await VisaKvarRader_BindInPosterRaderTillUiAsync(utgiftsRader);
-
-// TILL (ny — samma data som Budget Total):
-BindKvarBudgetTableUi(table);
-```
-
-**OBS:** "Budget Total"-fliken (`gv_budget`) ändras INTE. Den förblir exakt som idag.
-Bara "Kvar"-fliken (`gv_Kvar`) får ny data — genom att använda samma
-bindningslogik som redan fungerar för Budget Total.
-
-## Förväntat resultat
-
-- **Budget Total** — helt oförändrad
-- **Kvar** — visar nu samma kolumner som Budget Total:
-  `Category . Month->`, `Average`, `Average-nf`, månadskolumner, `Summa`
-- Samma rader med samma gruppering (utgifter, summa utgifter, inkomster, förflyttningar, budgettotal)
-- Samma formatering (fetstil och grå bakgrund på summeringsrader)
-
-## Filer som ändras
-
-| Fil | Ändring |
-|-----|---------|
-| `WebBankBudgeterUi/UiBinders/UtgiftsHanterareUiBinder.cs` | Ny parameter `DataGridView targetGrid` |
-| `WebBankBudgeterUi/WebBankBudgeterUi.cs` | Ny `BindKvarBudgetTableUi`, anrop i `FillTablesAsync`, bort med gammal kvar-logik och init |
+Den gamla fyra-stegs-planen som sa att **Kvar** skulle visa *samma* data som Budget Total (`BindKvarBudgetTableUi`) är **ersatt**: facit-målet är **Kvar = IN + UT**. Den gamla texten fanns i tidigare version av `todo.md` och motsvarar inte längre önskat beteende.
