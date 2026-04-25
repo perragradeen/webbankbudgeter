@@ -11,7 +11,12 @@ namespace WebBankBudgeterService
             var startDate = GetStartDate(selectedYear);
             var endDate = GetEndDate(selectedYear);
 
-            return FilterTransactions(transactionList, startDate, endDate);
+            var trans = transactionList.Transactions.Where(t =>
+                t.DateAsDate.Year == selectedYear
+                && t.DateAsDate >= startDate
+                && t.DateAsDate <= endDate).ToList();
+
+            return new TransactionList { Transactions = trans };
         }
 
         public static TransactionList FilterTransactions(
@@ -24,8 +29,8 @@ namespace WebBankBudgeterService
 
             var trans =
                 transactionList.Transactions.Where(t =>
-                     t.DateAsDate >= fromDate
-                  && t.DateAsDate <= endDate
+                    t.DateAsDate >= fromDate
+                    && t.DateAsDate <= endDate
                 ).ToList();
 
             var filteredTrans = new TransactionList

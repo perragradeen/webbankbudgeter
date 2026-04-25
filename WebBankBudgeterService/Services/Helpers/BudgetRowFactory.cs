@@ -20,7 +20,7 @@ namespace WebBankBudgeterService.Services.Helpers
         {
             BudgetRow row;
             // Lägg till
-            var categoryText_AsKey = RecordOne.CategoryName;
+            var categoryText_AsKey = RecordOne.BudgetTableCategoryKey;
             if (_catChartModelRowList.ContainsKey(categoryText_AsKey))
             {
                 row = _catChartModelRowList[categoryText_AsKey];

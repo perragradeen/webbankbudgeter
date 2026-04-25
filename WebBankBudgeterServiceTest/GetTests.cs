@@ -10,8 +10,8 @@ namespace WebBankBudgeterServiceTest
 
         public GetTests()
         {
-            var baseDir = Environment.CurrentDirectory;
-            FilePath = Path.Combine(baseDir, @"Data\BudgetIns.json");
+            var baseDir = AppContext.BaseDirectory;
+            FilePath = Path.Combine(baseDir, "Data", "BudgetIns.json");
             // FilePath = Path.Combine(baseDir, @"TestData\BudgetInsRiktigaExempel.json");
             // BudgetIns
         }
@@ -20,17 +20,17 @@ namespace WebBankBudgeterServiceTest
             new(FilePath);
 
         [TestMethod]
-        public async Task HämtaRaderFörUiBindningAsyncTestAsync()
+        public async Task HÃ¤mtaRaderFÃ¶rUiBindningAsyncTestAsync()
         {
-            var results = await Target.HämtaRaderFörUiBindningAsync();
+            var results = await Target.HÃ¤mtaRaderFÃ¶rUiBindningAsync();
 
             Assert.IsNotNull(results);
         }
 
         [TestMethod]
-        public async Task HämtaRubrikerPåInPosterAsyncTestAsync()
+        public async Task HÃ¤mtaRubrikerPÃ¥InPosterAsyncTestAsync()
         {
-            var results = await Target.HämtaRubrikerPåInPosterAsync();
+            var results = await Target.HÃ¤mtaRubrikerPÃ¥InPosterAsync();
             Assert.IsNotNull(results);
         }
 

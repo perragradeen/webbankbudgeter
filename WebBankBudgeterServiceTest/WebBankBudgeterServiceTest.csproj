@@ -34,10 +34,17 @@
     <ProjectReference Include="..\CategoryHandler\CategoryHandler.csproj" />
     <ProjectReference Include="..\InbudgetHandler\InbudgetHandler.csproj" />
     <ProjectReference Include="..\WebBankBudgeterService\WebBankBudgeterService.csproj" />
+    <ProjectReference Include="..\WebBankBudgeterTests.Facit\WebBankBudgeterTests.Facit.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Data\BudgetIns.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\pelles budget.xls" Link="pelles budget.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

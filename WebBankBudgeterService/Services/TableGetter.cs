@@ -47,7 +47,7 @@ namespace WebBankBudgeterService.Services
                 {
                     Year = t.DateAsDate.Year,
                     Month = t.DateAsDate.Month,
-                    Category = t.CategoryName
+                    Category = t.BudgetTableCategoryKey
                 }
             );
 
