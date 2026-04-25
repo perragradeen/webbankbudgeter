@@ -21,12 +21,16 @@ namespace WebBankBudgeterService.Services
             var result = new StructuredBudgetTable();
             var rows = budgetRows.ToList();
 
-            // Separera kategorier
-            var incomeRows = rows.Where(r => r.CategoryText.Contains(IncomeCategoryName)).ToList();
+            // Inkomst = endast raden med exakt "+" (trimmat), inte Contains — annars matchar
+            // t.ex. "värnamoresor+övriga" felaktigt som inkomst.
+            var incomeRows = rows
+                .Where(r => string.Equals(r.CategoryText?.Trim(), IncomeCategoryName, StringComparison.Ordinal))
+                .ToList();
             var transferRows = rows.Where(r => r.CategoryText.Contains(TransferCategoryName)).ToList();
             var expenseRows = rows
-                .Where(r => !r.CategoryText.Contains(IncomeCategoryName) && 
-                           !r.CategoryText.Contains(TransferCategoryName))
+                .Where(r =>
+                    !string.Equals(r.CategoryText?.Trim(), IncomeCategoryName, StringComparison.Ordinal) &&
+                    !r.CategoryText.Contains(TransferCategoryName))
                 .OrderBy(r => r.CategoryText)
                 .ToList();
 
