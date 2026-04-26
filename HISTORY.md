@@ -5,6 +5,16 @@
 > `HISTORY_ARCHIVE.md` och denna fil rensas för att endast innehålla senaste arbetets historik.
 > Detta håller filen lättläst och relevant medan fullständig historik bevaras i arkivet.
 
+## 2026-04-26 — `master` synkad med `origin/cursor/console-budgeter-app-1a34`
+
+**Git-fakta (denna klon, innan merge):** `master` låg på `5e1c121` (Excel + plan/README). `origin/cursor/console-budgeter-app-1a34` hade **29 commits** ovanför gemensam ancestor `90a5331` och bar därmed `ConsoleBudgeter`, `WebBankBudgeterTests.Facit`, `InbudgetHandler`-delar (Kvar/IN-merge), m.m. Det förklarar “gren på gren” i `git log --graph`: en lång serie `cursor/`-commits på samma funktionella kedja, medan `master` hade en avstickare (`5e1c121`) som inte fanns på console-grenen. **Åtgärd:** merge av `origin/cursor/console-budgeter-app-1a34` in i `master` (ingen ny `cursor/…`-gren för just denna leverans).
+
+**Användarens krav:** `AGENTS.md` med bindande regler (facit = `ConsoleBudgeter --out`, ingen Python-sidospår utan beslut, facit ändras bara vid ny källa/regel, uppdatera plan/todo/README/HISTORY efter verifierad build, läs faktisk repo — inte gissa “okända” grenar). Textfacit-fil i repot heter nu **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`** (samma innehåll som tidigare `console-report-facit-reference.txt`; gamla namnet borttaget för tydlighet).
+
+**Varför “tjatas” om TransactionHandler i äldre svar:** en äldre version av `plan.md` på `master` påstod att klassen saknades trots att den alltid funnits under `WebBankBudgeterService/TransactionHandler.cs` — det var **dokumentationsfel**, inte kodfel. Efter merge stämmer `plan.md` med verkligheten; `AGENTS.md` påminner om att inte upprepa myten.
+
+---
+
 ## Sammanfattning
 Agentteam uppsatt för att implementera facit-baserade integrationstester för WebBankBudgeter-projektet. Arbetet utfördes på branch `feature/facit-implementation`.
 

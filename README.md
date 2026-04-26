@@ -2,6 +2,12 @@
 
 Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategoriserad budgetöversikt.
 
+## Agent- och dokumentationsrutiner
+
+Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att textfacit skapas med `ConsoleBudgeter` och `--out`, att facit inte “justeras” bara för gröna tester, och att du ska utgå från **faktisk** `git`-status i arbetskopian.
+
+Efter **verifierad** build/test: uppdatera vid behov `plan.md`, `todo.md`, denna `README.md` och `HISTORY.md` i samma leverans.
+
 ## Typ av projekt
 
 - **Plattform:** Windows Forms (.NET 8.0)
@@ -31,6 +37,8 @@ Budgetterarn.sln
 │   │   └── InBudgetUiHandler.cs         # Binder inkomst/kvar-tabellen till DataGridView
 │   └── TestData/BudgetIns.json      # Budgeterade inposter (inkomster per kategori)
 │
+├── ConsoleBudgeter/            # Konsolapp (net8.0) — samma budgetkedja som UI, textutskrift + `--out`
+├── WebBankBudgeterTests.Facit/ # Delat facit-projekt (JSON + `Facit/facit-2014-2015.txt`)
 ├── WebBankBudgeterService/     # Tjänstelager — transaktionshantering, beräkningar
 │   ├── TransactionHandler.cs        # Läser och hanterar transaktioner
 │   ├── TransFilterer.cs             # Filtrerar transaktioner på år
@@ -78,7 +86,7 @@ Budgetterarn.sln
 
 | Flik | DataGridView | Beskrivning |
 |------|-------------|-------------|
-| **Kvar** | `gv_Kvar` | Kvarvarande budget (budgeterat - faktisk utgift) |
+| **Kvar** | `gv_Kvar` | Rest per kategori och månad (budget IN + utfall; utgifter som negativa belopp) |
 | **Incomes** | `gv_incomes` | Budgeterade inkomster per kategori och månad |
 | **Budget Total** | `gv_budget` | Alla utgifter/inkomster per kategori och månad med summor |
 | **Totals** | `gv_Totals` | Sammanfattande siffror (snitt, diff) |
@@ -131,3 +139,15 @@ Vid redigering av Latin-1-filer (t.ex. med script eller verktyg):
 dotnet build Budgetterarn.sln
 dotnet run --project WebBankBudgeterUi
 ```
+
+### ConsoleBudgeter och textfacit (2014–2015)
+
+Full textfacit (alla transaktioner) ligger i **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`**. För att regenerera efter medveten kodändring (jämför diff mot facit, committa bara om det är avsiktligt):
+
+```bash
+dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- \
+  --year 2014 --year 2015 --transactions 0 \
+  --out WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt
+```
+
+Tester: `dotnet test ConsoleBudgeterTest/ConsoleBudgeterTest.csproj`
