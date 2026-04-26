@@ -11,7 +11,7 @@ Målet är att UI:t ska visa exakt samma struktur och data som Excel-förlagan:
 
 ## Rutin för agenter och dokumentation
 
-Se **`AGENTS.md`** i repo-roten: textfacit (`facit-2014-2015.txt`) skapas endast via `ConsoleBudgeter --out`; facit ändras inte bara för att “få grönt”; efter verifierad build uppdateras denna plan, `todo.md`, `README.md` och `HISTORY.md` vid behov.
+Se **`AGENTS.md`** i repo-roten: textfacit (`facit-2014-2015.txt`) skapas endast via `ConsoleBudgeter --out`; facit ändras inte bara för att “få grönt”; efter verifierad build uppdateras denna plan, `todo.md`, `README.md` och `HISTORY.md` vid behov. För att **köra** `ConsoleBudgeter` på Linux utan installerad .NET-runtime på målmaskinen: självmantlad publicering (`Linux-x64-SelfContained.pubxml`, skript under `scripts/`) — se `README.md`.
 
 ---
 

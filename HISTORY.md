@@ -5,6 +5,12 @@
 > `HISTORY_ARCHIVE.md` och denna fil rensas för att endast innehålla senaste arbetets historik.
 > Detta håller filen lättläst och relevant medan fullständig historik bevaras i arkivet.
 
+## 2026-04-26 — ConsoleBudgeter: självmantlad Linux-publicering
+
+**Vad:** `PublishProfiles/Linux-x64-SelfContained.pubxml` + `scripts/publish-console-budgeter-linux.sh`; utdata till `artifacts/ConsoleBudgeter/linux-x64/`. **Varför:** köra `ConsoleBudgeter` på Linux utan installerad .NET SDK/runtime på målmaskinen (runtime följer med vid publicering). **`/artifacts/`** tillagd i `.gitignore`. **Git:** branch `cursor/console-budgeter-self-contained-8460` (molnmiljöns PR-krav); användaren önskade arbetsbas `master`.
+
+---
+
 ## 2026-04-26 — `master` synkad med `origin/cursor/console-budgeter-app-1a34`
 
 **Git-fakta (denna klon, innan merge):** `master` låg på `5e1c121` (Excel + plan/README). `origin/cursor/console-budgeter-app-1a34` hade **29 commits** ovanför gemensam ancestor `90a5331` och bar därmed `ConsoleBudgeter`, `WebBankBudgeterTests.Facit`, `InbudgetHandler`-delar (Kvar/IN-merge), m.m. Det förklarar “gren på gren” i `git log --graph`: en lång serie `cursor/`-commits på samma funktionella kedja, medan `master` hade en avstickare (`5e1c121`) som inte fanns på console-grenen. **Åtgärd:** merge av `origin/cursor/console-budgeter-app-1a34` in i `master` (ingen ny `cursor/…`-gren för just denna leverans).

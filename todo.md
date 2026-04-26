@@ -16,9 +16,10 @@
 2. [x] Lägga `AGENTS.md` i repo-roten.
 3. [x] Skapa/uppdatera `HISTORY.md` (branchläge, merge, förklaring av TransactionHandler vs gammal plan-text).
 4. [ ] Kör `dotnet build` / `dotnet test` (lämpliga projekt) lokalt eller i CI — markera när grönt. *(Cloud Agent-miljön här saknade `dotnet` i PATH vid senaste körning — kör samma kommandon på din maskin.)*
-5. [x] Uppdatera `plan.md` (textfacit-filnamn `facit-2014-2015.txt`; övrig plan fanns redan uppdaterad efter merge).
-6. [x] Uppdatera `README.md` (`AGENTS.md`, textfacit, regenerate-kommando).
-7. [x] Committa merge + dokumentation på `master` och pusha `master`.
+5. [ ] Verifiera `./scripts/publish-console-budgeter-linux.sh` och kör `./artifacts/ConsoleBudgeter/linux-x64/ConsoleBudgeter --help` på en maskin med SDK (publicerad binär ska fungera utan .NET på en ren Linux-målmaskin).
+6. [x] Uppdatera `plan.md` (textfacit-filnamn `facit-2014-2015.txt`; övrig plan fanns redan uppdaterad efter merge).
+7. [x] Uppdatera `README.md` (`AGENTS.md`, textfacit, regenerate-kommando).
+8. [x] Committa merge + dokumentation på `master` och pusha `master`.
 
 ---
 
