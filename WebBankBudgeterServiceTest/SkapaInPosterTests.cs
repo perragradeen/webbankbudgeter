@@ -10,15 +10,13 @@ namespace WebBankBudgeterServiceTest
     {
         private static string _transactionTestFilePath => Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
-            //@"\Temp\pelles budget.xls"
-            @"..\..\..\..\BudgetterarnUi\bin\Debug\pelles budget.xls" //TODO: Byt från joxiga relativa sökvägar.ev välj från UI och spara...
-        //C:\files\Dropbox\budget\Program\webbankbudgeter\BudgetterarnUi\bin\Debug
+            "..", "..", "..", "..", "pelles budget.xls"
         );
 
-        private const string _categoryRelativeDirPath = @"Data";
+        private const string _categoryRelativeDirPath = "Data";
         //private const string _categoryRelativeDirPath = @"..\..\..\Budgetterarn\Data";
 
-        private static readonly string _budgetInsRelativeFilePath = @"Data\BudgetIns.json";
+        private static readonly string _budgetInsRelativeFilePath = Path.Combine("Data", "BudgetIns.json");
         private static string? _budgetInsFilePath;
         //@"C:\Files\Dropbox\budget\Program\webbankbudgeter\SwedbankSharp-master\WebBankBudgeter\TestData\BudgetIns.json";
 
@@ -64,7 +62,7 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
-        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
+        [Ignore]//SlÃ¥ pÃ¥ fÃ¶r genomgÃ¥ngar. TODO: gÃ¶r dÃ¥ o dÃ¥, inte varje bygge
         public async Task SkapaInPosterTestAsync()
         {
             var handler = new SkapaInPosterHanterare(
@@ -79,14 +77,14 @@ namespace WebBankBudgeterServiceTest
         }
 
         [TestMethod]
-        [Ignore]//Slå på för genomgångar. TODO: gör då o då, inte varje bygge
+        [Ignore]//SlÃ¥ pÃ¥ fÃ¶r genomgÃ¥ngar. TODO: gÃ¶r dÃ¥ o dÃ¥, inte varje bygge
         public async Task SkapaInPosterTestAsync2()
         {
             var handler = new SkapaInPosterHanterare(
                 InBudgetHandler,
                 TransactionHandler);
 
-            var nuDatum = SkapaInPosterHanterare.FrånÅrTillDatum("2022");
+            var nuDatum = SkapaInPosterHanterare.FrÃ¥nÃ…rTillDatum("2022");
             var results = await handler.SkapaInPoster(nuDatum);
 
             Assert.IsTrue(results.Any());
@@ -106,9 +104,9 @@ namespace WebBankBudgeterServiceTest
         {
             var value = 1151.23;
             var actual =
-                value.ToString("N0");
+                value.ToString("N0", new System.Globalization.CultureInfo("sv-SE"));
 
-            Assert.AreEqual("1 151", actual);
+            Assert.AreEqual("1Â 151", actual);
         }
 
         [TestMethod]
@@ -224,7 +222,7 @@ namespace WebBankBudgeterServiceTest
         public void FilterTransactionsTest2s()
         {
             var results = SkapaInPosterHanterare
-                .FrånÅrTillDatum("2023");
+                .FrÃ¥nÃ…rTillDatum("2023");
 
             Assert.AreEqual(new DateTime(2023, 01, 01), results);
         }

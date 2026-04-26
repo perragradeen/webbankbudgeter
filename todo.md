@@ -1,34 +1,58 @@
-# TODO — levande lista
+# TODO
 
 ## Stämning av senaste instruktioner (bekräfta om något är fel tolkat)
 
 | Punkt | Min tolkning | Status |
 |-------|----------------|--------|
-| **Ingen ny feature-gren** | Arbeta på befintlig `master`, merga in saknad kod från remote om det behövs — inte skapa `cursor/...` om du uttryckligen vill undvika nya grenar i det här läget. | Väntar din OK om molnmiljön kräver `cursor/`-gren |
-| **Git-historik på *denna* klon** | `master` är vid `5e1c121` (xlsx + plan/README). `origin/cursor/console-budgeter-app-1a34` har **29 commits** ovanpå gemensam bas `90a5331` och innehåller bl.a. `ConsoleBudgeter`, facit-JSON, textfacit-kedja — **saknas** på nuvarande `master`. `master` har **en** commit (`5e1c121`) som grenen inte har. | Dokumenterat |
-| **`AGENTS.md`** | Bindande regler: facit = konsol `--out`, ingen Python-sidospår utan beslut; facit ändras bara vid ny källa/regel; efter verifierad build uppdateras plan/todo/README/HISTORY; agenter ska läsa faktisk branch/repo, inte gissa okända grenar. | PENDING |
-| **`HISTORY.md`** | Finns inte i denna `master`; skapas/uppdateras med denna åtgärd + pekare på att `plan.md` fortfarande påstod att `TransactionHandler` saknades trots att den finns i `WebBankBudgeterService/TransactionHandler.cs`. | PENDING |
-| **Textfacit 2014–2015** | Kör `ConsoleBudgeter` med alla transaktioner för båda åren, spara stdout till en namngiven fil (t.ex. `facit-2014-2015.txt`) via `--out` om projektet stödjer det — annars shell-redirect. | PENDING (efter merge) |
-| **`plan.md` om TransactionHandler** | Uppdatera så M0/D6/G7/R1 inte påstår att klassen saknas (den ligger i `WebBankBudgeterService`). | PENDING |
+| **Ingen ny feature-gren** | Arbeta och pusha på `master` när det går; merga in remote-grenar i `master` i stället för att starta nya `cursor/…`-grenar om du uttryckligen vill undvika det. Molnmiljön kan ändå kräva `cursor/`-prefix i andra körningar. | Öppen |
+| **Git-historik (denna klon, före merge)** | `master` hade `5e1c121` (xlsx + plan) medan `origin/cursor/console-budgeter-app-1a34` hade **29 commits** ovanför gemensam bas `90a5331` (ConsoleBudgeter, facit-JSON, Kvar/IN-kedja). Det förklarade “gren på gren” i grafer: serien av `cursor/`-jobb på samma kedja, plus en commit på `master` som inte fanns på console-grenen — **löst genom merge** in i `master`. | Klart (dokumenterat i `HISTORY.md`) |
+| **`AGENTS.md`** | Bindande regler för agenter: facit = `ConsoleBudgeter` + `--out`; ingen parallell Python-pipeline utan uttryckligt beslut; facit ändras bara vid ny Excel-källa eller medveten extraktionsändring; efter verifierad build uppdateras plan/todo/README/HISTORY; läs alltid faktisk branch — spekulera inte om “okända” grenar utan `git branch -a` / `git log`. | Se checklist nedan |
+| **`HISTORY.md`** | Logga varje större åtgärd; notera när `plan.md` var ur synk (t.ex. `TransactionHandler` “saknas” i plan trots att klassen finns i `WebBankBudgeterService`). | Se checklist nedan |
+| **Textfacit 2014–2015** | Full konsolrapport för 2014 och 2015, alla transaktioner, sparad till fil (namn: `facit-2014-2015.txt` eller motsvarande); samma kommando som i `AGENTS.md` / README. | Väntar din verifiering av filinnehåll |
 
-## Planerade åtgärder (i ordning)
+## Planerade åtgärder (checklista)
 
-1. [ ] Merga `origin/cursor/console-budgeter-app-1a34` in i `master` så all kod (ConsoleBudgeter, facit, delad logik) finns på senaste `master`.
-2. [ ] Lägga `AGENTS.md` i repo-roten enligt tabellen ovan.
-3. [ ] Skapa/uppdatera `HISTORY.md` med: nuvarande branchläge, att console-grenen var “eftersläpning” vs xlsx-commit, och planfix om TransactionHandler.
-4. [ ] Kör `dotnet build` / `dotnet test` (lämpliga projekt) och generera `facit-2014-2015.txt` via konsolappen.
-5. [ ] Uppdatera `plan.md` (TransactionHandler-stämpling + kort länk till `AGENTS.md`).
-6. [ ] Uppdatera `README.md` med länk till `AGENTS.md` och var textfacit-filen ligger + kommando för att regenerera.
-7. [ ] Committa på `master` och pusha `master` (ingen ny gren om du inte kräver annat).
-
-## Arkiverad / föråldrad riktning (ersätts av merge + Kvar via SnurraIgenom)
-
-Den gamla fyra-stegs-planen (“Kvar = samma bindning som Budget Total”) var fel i förhållande till senare beslut (Kvar = IN+UT / `SnurraIgenom`). Själva implementationen finns på console-grenen; efter merge ska denna fil peka på `plan.md` och tester som sanning.
+1. [x] Merga `origin/cursor/console-budgeter-app-1a34` in i `master` (ConsoleBudgeter, facit-JSON, delad logik).
+2. [x] Lägga `AGENTS.md` i repo-roten.
+3. [x] Skapa/uppdatera `HISTORY.md` (branchläge, merge, planstäd `TransactionHandler`).
+4. [ ] Kör `dotnet build` / `dotnet test` (lämpliga projekt) lokalt eller i CI — markera när grönt.
+5. [x] Uppdatera `plan.md` (TransactionHandler m.m. + länk till `AGENTS.md`).
+6. [x] Uppdatera `README.md` (`AGENTS.md`, textfacit, regenerate-kommando).
+7. [x] Committa merge + dokumentation på `master` och pusha `master`.
 
 ---
 
-*Detaljer nedan behålls tillfälligt som referens till gamla problembeskrivningen — ska tas bort eller ersättas när merge är klar och dokumentationen är synkad.*
+## Användarönskemål (ConsoleBudgeter) — markera **KLART** när du verifierat
 
-## Problem (historisk)
+| Krav | Status |
+|------|--------|
+| Rapportordning: först **In** (`gv_incomes`), sen **Ut** / Budget Total (`gv_budget`), sen **Kvar** (`gv_Kvar`). | Väntar din verifiering |
+| Under **Kvar** ska raden **"-"** (transaktions-/saldoplaceholder i facit) inte visas. | Väntar din verifiering |
+| **Budget Total:** `värnamoresor+övriga` ska ligga bland övriga utgifter, inte under inkomstraden **"+"** (inkomst = exakt kategori `"+"`, trimmat). | Väntar din verifiering |
+| Kör och lita på **ConsoleBudgeter** / `dotnet test` (inte ad hoc Python). | Väntar din verifiering |
 
-"Kvar"-fliken (`gv_Kvar`) var nästan tom medan "Budget Total" (`gv_budget`) visade full data — **lösningen är inte** att kopiera samma tabell till Kvar, utan korrekt IN+UT-kedja (se merge från `console-budgeter-app-1a34`).
+---
+
+## Textfacit + Excel-pipeline (plan D15 / D16)
+
+| Uppgift | Status |
+|---------|--------|
+| **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`** — full rapport 2014+2015 (alla transaktioner), UTF-8; samma pipeline som `ConsoleBudgeter --out`. Referensfil **`console-report-facit-reference.txt`** kan finnas kvar parallellt tills ni enar er om ett filnamn. | Väntar din verifiering |
+| **`Facit/README.md`** + **`plan.md`**: JSON från extraktorn; textfacit = endast konsol `--out`, ingen duplicerad layout i extraktorn. | Väntar din verifiering |
+| **WinForms:** användaren ska kunna **välja källa för in-poster** — se `plan.md` 0.6 / D16. | PENDING (implementation) |
+
+---
+
+## Plan M5 — status (kod)
+
+| Punkt | Status |
+|-------|--------|
+| D7, D10, D12 | Klart i kod + tester (se `WebBankBudgeterServiceTest`) |
+| M5.1 IN i Budget Total, M5.2 Kvar via `SnurraIgenom`, M5.7 `sv-SE` i grid, rensning före ombindning | Klart i kod |
+| M5.3 `BudgetIns` / union IN–UT, D16 WinForms val av in-källa | Se `plan.md` / öppna punkter ovan |
+
+---
+
+## Arkiverad riktning (får inte följas som “sanning”)
+
+Tidigare förslag att **Kvar** skulle vara en kopia av **Budget Total**-griden är **ersatt** av IN+UT via `SnurraIgenom` / `KvarTextTableBuilder` (se merge `console-budgeter-app-1a34` och `plan.md`).

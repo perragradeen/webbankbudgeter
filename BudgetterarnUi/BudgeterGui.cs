@@ -15,12 +15,12 @@ namespace BudgetterarnUi
 {
     // Todos se Data/Todos.txt
     /// <summary>
-    /// Xls-fil som läses in förutsätts ha Kontoutdrag_officiella som ark med 6 celler ejämte varann enligt ex. nedan:
+    /// Xls-fil som lÃ¤ses in fÃ¶rutsÃ¤tts ha Kontoutdrag_officiella som ark med 6 celler ejÃ¤mte varann enligt ex. nedan:
     /// 2007-09-05 SkyDDat belopp -120,00 100 991,24 127,02 telefonsamtal
     /// </summary>
     public partial class BudgeterGui : Form
     {
-        // Ändra i \Budgetterarn\Properties\AssemblyInfo.cs
+        // Ã„ndra i \Budgetterarn\Properties\AssemblyInfo.cs
         private const string VersionNumber = "1.0.1.16";
         private readonly GeneralSettingsGetter generalSettingsGetter;
         private readonly BudgeterFormHelper budgeterFormHelper;
@@ -67,7 +67,7 @@ namespace BudgetterarnUi
 
                 if (DebugModeOff())
                 {
-                    // Öpnna banksidan direkt
+                    // Ã–pnna banksidan direkt
                     OpenBankSiteInBrowser();
                 }
 
@@ -105,7 +105,7 @@ namespace BudgetterarnUi
                 categoryPath = generalSettingsGetter.GetStringSetting("CategoryPath");
                 bankUrl = generalSettingsGetter.GetTextFileStringSetting("BankUrl");
 
-                // Ladda kategorier som man har till att flagga olika kontohändelser
+                // Ladda kategorier som man har till att flagga olika kontohÃ¤ndelser
                 CategoriesHolder.LoadAllCategoriesAndCreateHandler(categoryPath);
 
                 // Initiera UI-objekt
@@ -113,9 +113,9 @@ namespace BudgetterarnUi
                 InitSpecialGenericUiElements();
                 SetStatusLabelProps();
 
-                // Sätt nuvarande tråd som main
+                // SÃ¤tt nuvarande trÃ¥d som main
 
-                // läs in xls...
+                // lÃ¤s in xls...
                 EntriesFromFileLoadedOk(true); // after ctor
             }
             catch (Exception e)
@@ -136,13 +136,13 @@ namespace BudgetterarnUi
 
         private void DisplayEntriesInUiGrids()
         {
-            // Lägg in det som är satt att sparas till minnet
-            // (viasa alla _kontoEntries i listview). Även uppdatera färg på text.
+            // LÃ¤gg in det som Ã¤r satt att sparas till minnet
+            // (viasa alla _kontoEntries i listview). Ã„ven uppdatera fÃ¤rg pÃ¥ text.
             ViewUpdateUi.ClearListAndSetEntriesToListView(
                 entriesInToBeSavedGrid,
                 kontoEntriesHolder.KontoEntries);
 
-            // Lägg till orginalraden, gör i UI-hanterare
+            // LÃ¤gg till orginalraden, gÃ¶r i UI-hanterare
             //ViewUpdateUi.ClearListAndSetEntriesToListView(
             //    xlsOrginalEntriesGrid,
             //    kontoEntriesHolder.KontoEntries);
@@ -163,12 +163,12 @@ namespace BudgetterarnUi
                     okToAddFromOld),
                 newIitemsListEditedGrid.ItemsAsKontoEntries);
 
-            // Lägg till i edited
+            // LÃ¤gg till i edited
             ViewUpdateUi.AddEntriesToListView(
                 newIitemsListEditedGrid,
                 lists.ToAddToListview);
 
-            // Updatera memlistan för att se om någon entry fått ny färg
+            // Updatera memlistan fÃ¶r att se om nÃ¥gon entry fÃ¥tt ny fÃ¤rg
             DisplayEntriesInUiGrids();
         }
 
@@ -193,10 +193,10 @@ namespace BudgetterarnUi
             }
         }
 
-        #region Har med UIobjekt i denna klass att göra
+        #region Har med UIobjekt i denna klass att gÃ¶ra
 
         /// <summary>
-        /// Sätt versionsnummer i titel
+        /// SÃ¤tt versionsnummer i titel
         /// </summary>
         private void SetVersionsnummerToWindowTitle()
         {
@@ -223,7 +223,7 @@ namespace BudgetterarnUi
             splitContainer1.ResumeLayout(false);
             PerformLayout();
 
-            // läs in html...
+            // lÃ¤s in html...
             webBrowser1.Load(GetBankUrl());
         }
 
@@ -236,7 +236,7 @@ namespace BudgetterarnUi
             newIitemsListEditedGrid.Items.Clear();
             kontoEntriesHolder.NewKontoEntries.Clear();
 
-            // Rensa även listan som är en kopia av Guilistan för nya ke
+            // Rensa Ã¤ven listan som Ã¤r en kopia av Guilistan fÃ¶r nya ke
         }
 
         #endregion
@@ -245,7 +245,7 @@ namespace BudgetterarnUi
         {
             toolStripStatusLabel1 = new ToolStripStatusLabel();
 
-            // TODO: Lägg alla UI-element i egen partial fil. Typ: ...Custom-elements.cs
+            // TODO: LÃ¤gg alla UI-element i egen partial fil. Typ: ...Custom-elements.cs
 
             // statusStrip1
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
@@ -270,12 +270,12 @@ namespace BudgetterarnUi
             WriteToUiStatusLog(@"Trying to add; " +
                                kontoEntriesHolder.NewKontoEntries.Count + @"items");
 
-            // Hämta nya entries från Ui.
-            // (slipper man om man binder ui-kontroller med de som är
-            // sparade och ändrade i minnet.)
+            // HÃ¤mta nya entries frÃ¥n Ui.
+            // (slipper man om man binder ui-kontroller med de som Ã¤r
+            // sparade och Ã¤ndrade i minnet.)
             var newEntriesFromUi = GetNewEntriesFromUI(newIitemsListEditedGrid);
 
-            // Lägg till/Updatera nya
+            // LÃ¤gg till/Updatera nya
             var changeInfoHandler = new EntryAdderAndReplacer(
                 kontoEntriesHolder.KontoEntries,
                 WriteToOutput,
@@ -301,7 +301,7 @@ namespace BudgetterarnUi
             // For performance
             mineNewIitemsListEdited.BeginUpdate();
 
-            // Hämta nya entries från Ui. (slipper man om man binder ui-kontroller med de som är sparade och ändrade i minnet.)
+            // HÃ¤mta nya entries frÃ¥n Ui. (slipper man om man binder ui-kontroller med de som Ã¤r sparade och Ã¤ndrade i minnet.)
             var newEntriesFromUi = new SortedList();
             foreach (ListViewItem item in mineNewIitemsListEdited.Items)
             {
@@ -322,7 +322,7 @@ namespace BudgetterarnUi
 
         #region Test&Debug
 
-        // TODO: Rensa all debug och commita i enskild commit. Ta fram i framtiden om det behövs då...
+        // TODO: Rensa all debug och commita i enskild commit. Ta fram i framtiden om det behÃ¶vs dÃ¥...
 
         private bool DebugModeOff()
         {

@@ -129,58 +129,8 @@ namespace WebBankBudgeterUi
         internal static List<Rad> SnurraIgenom(
             IEnumerable<Rad> inData,
             List<BudgetRow> utgifter,
-            Action<string> writeLineToOutputAndScrollDown)
-        {
-            if (utgifter == null)
-            {
-                throw new ArgumentNullException(nameof(utgifter));
-            }
-
-            var kvarrader = new List<Rad>();
-            foreach (var inBudget in inData)
-            {
-                // Synka med kategori och månad.
-                // Hitta motsvarande utgift
-                var motsvarandeUtgifterRader = utgifter
-                    .Where(u => u.CategoryText.Trim() == inBudget.RadNamnY.Trim()
-                    );
-
-                var nuvarandeRad = new Rad { RadNamnY = inBudget.RadNamnY };
-                foreach (var motsvarandeUtgiftsRad in motsvarandeUtgifterRader)
-                {
-                    foreach (var utgiftsMånad in motsvarandeUtgiftsRad.AmountsForMonth)
-                    {
-                        if (inBudget.Kolumner.ContainsKey(utgiftsMånad.Key))
-                        {
-                            // och räkna ut diff.
-                            var kvar =
-                                // inkomst - utgift
-                                inBudget.Kolumner[utgiftsMånad.Key]
-                                + utgiftsMånad.Value; // Utgifter är negativa ie -1200
-
-                            if (!nuvarandeRad.Kolumner.ContainsKey(utgiftsMånad.Key))
-                            {
-                                nuvarandeRad.Kolumner.Add(utgiftsMånad.Key, 0);
-                            }
-
-                            nuvarandeRad.Kolumner[utgiftsMånad.Key] += kvar;
-                        }
-                        else
-                        {
-                            // Fel
-                            var message = "Hittar ingen motsvarande inpost för utgift i :"
-                                          + utgiftsMånad.Key + " och kategori: " + inBudget.RadNamnY;
-
-                            writeLineToOutputAndScrollDown(message);
-                        }
-                    }
-                }
-
-                kvarrader.Add(nuvarandeRad);
-            }
-
-            return kvarrader;
-        }
+            Action<string> writeLineToOutputAndScrollDown) =>
+            InBudgetMath.SnurraIgenom(inData, utgifter, writeLineToOutputAndScrollDown);
 
         internal MonthAvarages CalculateMonthlyAvarages()
         {
@@ -208,6 +158,33 @@ namespace WebBankBudgeterUi
         internal TextToTableOutPuter TransformToTextTableFromTransactions()
         {
             return _transactionHandler?.GetTextTableFromTransactions();
+        }
+
+        /// <summary>
+        /// Slår in budget-IN i samma tabell som transaktions-UT (plan M5.1 / G1).
+        /// </summary>
+        internal static void MergeBudgetInsIntoBudgetTextTable(TextToTableOutPuter table, List<Rad> inPosterRader)
+        {
+            if (table == null || inPosterRader == null || inPosterRader.Count == 0)
+            {
+                return;
+            }
+
+            BudgetTableInMerger.MergeInRows(table, inPosterRader);
+        }
+
+        /// <summary>
+        /// Kvar = IN + UT per kategori (befintlig <see cref="SnurraIgenom"/>), som <see cref="TextToTableOutPuter"/> för grid-bindning.
+        /// </summary>
+        internal TextToTableOutPuter BuildKvarTextTable(TextToTableOutPuter mergedExpenseTable, List<Rad> inPosterRader,
+            Action<string> logLine)
+        {
+            if (mergedExpenseTable?.BudgetRows == null)
+            {
+                return new TextToTableOutPuter();
+            }
+
+            return KvarTextTableBuilder.Build(mergedExpenseTable, inPosterRader, logLine);
         }
 
         internal void DescribeReoccurringGroups()

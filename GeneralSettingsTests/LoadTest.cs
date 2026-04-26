@@ -9,7 +9,7 @@ namespace GeneralSettingsTests
         [TestMethod]
         public void LoadAndSerializeTest()
         {
-            var filePath = @"Data\GeneralSettings.xml";
+            var filePath = Path.Combine("Data", "GeneralSettings.xml");
             var result = SerializationFunctions
                 .DeserializeObject<GeneralSettings>(filePath);
 
@@ -25,7 +25,7 @@ namespace GeneralSettingsTests
         [TestMethod]
         public void GetSettingTest()
         {
-            var filePath = @"Data\GeneralSettings.xml";
+            var filePath = Path.Combine("Data", "GeneralSettings.xml");
             var target = new GeneralSettingsGetter(filePath);
             var result = target.AllGeneralSettings;
 
@@ -41,7 +41,7 @@ namespace GeneralSettingsTests
         [TestMethod]
         public void GetFileSettingsTest()
         {
-            var filePath = @"Data\GeneralSettings.xml";
+            var filePath = Path.Combine("Data", "GeneralSettings.xml");
             var target = new GeneralSettingsGetter(filePath);
             var result = target.GetTextFileStringSetting("BankUrl");
 

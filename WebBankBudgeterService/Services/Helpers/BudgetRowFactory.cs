@@ -19,8 +19,8 @@ namespace WebBankBudgeterService.Services.Helpers
         public BudgetRow GetOrAddRow()
         {
             BudgetRow row;
-            // Lägg till
-            var categoryText_AsKey = RecordOne.CategoryName;
+            // LÃ¤gg till (samma nyckel som GroupOnMonthAndCategory â€” D7 tom grupp)
+            var categoryText_AsKey = RecordOne.BudgetTableCategoryKey;
             if (_catChartModelRowList.ContainsKey(categoryText_AsKey))
             {
                 row = _catChartModelRowList[categoryText_AsKey];
@@ -43,7 +43,7 @@ namespace WebBankBudgeterService.Services.Helpers
             var summedAmountsExpenses = _dateAndCatTransGroup
                 .Sum(r => r.AmountAsDouble);
 
-            // Lägg till summa av Amount
+            // LÃ¤gg till summa av Amount
             var monthNameNameAsKey = RecordOne.DateAsYearMothText;
             if (row.AmountsForMonth.ContainsKey(monthNameNameAsKey))
             {

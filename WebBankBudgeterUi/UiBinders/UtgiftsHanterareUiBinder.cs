@@ -1,10 +1,13 @@
-﻿using WebBankBudgeterService.Model.ViewModel;
+﻿using System.Globalization;
+using WebBankBudgeterService.Model.ViewModel;
 using WebBankBudgeterService.Services;
 
 namespace WebBankBudgeterUi.UiBinders
 {
     public class UtgiftsHanterareUiBinder
     {
+        private static readonly CultureInfo NumberCulture = CultureInfo.GetCultureInfo("sv-SE");
+
         private readonly DataGridView _gv_budget;
 
         public UtgiftsHanterareUiBinder(DataGridView gv_budget)
@@ -25,6 +28,9 @@ namespace WebBankBudgeterUi.UiBinders
 
             try
             {
+                grid.Columns.Clear();
+                grid.Rows.Clear();
+
                 // Använd den nya strukturerade budgetbyggaren
                 var budgetBuilder = new BudgetStructureBuilder();
                 var structuredBudget = budgetBuilder.BuildStructuredBudget(
@@ -149,7 +155,7 @@ namespace WebBankBudgeterUi.UiBinders
 
         private object DoubleTo1000SeparatedNoDecimals(object value)
         {
-            return ((double)value).ToString("N0");
+            return ((double)value).ToString("N0", NumberCulture);
         }
     }
 }
