@@ -151,3 +151,35 @@ dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- \
 ```
 
 Tester: `dotnet test ConsoleBudgeterTest/ConsoleBudgeterTest.csproj`
+
+### ConsoleBudgeter utan .NET på målmaskinen (Linux x64)
+
+Med **självmantlad** publicering följer .NET-runtime med i utdata. På en annan Linux (t.ex. din laptop) behöver du då **inte** installera SDK eller runtime — bara kopiera publiceringsmappen och köra binären.
+
+Bygg (kräver .NET SDK **på byggmaskinen**, t.ex. CI eller din dev-dator):
+
+```bash
+./scripts/publish-console-budgeter-linux.sh
+```
+
+Alternativt utan skript:
+
+```bash
+dotnet publish ConsoleBudgeter/ConsoleBudgeter.csproj -c Release -p:PublishProfile=Linux-x64-SelfContained
+```
+
+Utdata hamnar under **`artifacts/ConsoleBudgeter/linux-x64/`** (mappen är ignorerad av git). Kör t.ex.:
+
+```bash
+./artifacts/ConsoleBudgeter/linux-x64/ConsoleBudgeter --help
+```
+
+För textfacit (samma som i `AGENTS.md`):
+
+```bash
+./artifacts/ConsoleBudgeter/linux-x64/ConsoleBudgeter -- \
+  --year 2014 --year 2015 --transactions 0 \
+  --out WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt
+```
+
+För Windows eller andra RID:er kan du lägga en egen `PublishProfiles/*.pubxml` med annat `RuntimeIdentifier` (t.ex. `win-x64`).
