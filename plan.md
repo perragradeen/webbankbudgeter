@@ -657,13 +657,13 @@ Förkrav: M0 är klar.
 
 ## 7. Leverans­ordning (rekommenderad)
 
-0. **Beslutslistan i sektion 0** — fyll i alla 14 valen.
-1. **M1** (extraktor + facit-filer, klar enligt M1-checklistan) — ger sanningsunderlag.
-2. **M2** (FacitLoader) — möjliggör tester.
-3. **M3** (service­tester) — validerar tran­saktions­aggregering och Kvar-matte.
-4. **Commit** — allt ovan kan committas utan att ändra produktions­kod.
-5. **M4** (UI-tester som failar) — dokumenterar exakt vilka gap som finns.
-6. **M0** (stabil byggmiljö + verifierad `TransactionHandler`) — kan göras parallellt med M3/M4.
-7. **M5** (driv in koden) — en punkt i taget tills alla tester grönar.
+**Läge i repot (2026-04):** M1/M2 och huvuddelen av M5 är **implementerade** (committad facit, `FacitLoader`, konsol + service-tester, IN-merge och Kvar-kedja). Följande är fortfarande **öppna** i praktiken: **M0** (verifiering mot riktig `.xls`/antal), **M3** (utökning mot alla punkter i §4.2 om önskat), **M4** (WinForms-integrationstester på Windows).
 
-Varje milstolpe ska vara committable på egen hand och ha alla tester gröna.
+0. **Beslut i sektion 0** — tabellen är ifylld; ändra bara vid nytt beslut.
+1. **M0** — verifiera `TransactionHandler` + transaktionsantal mot avsedd källa (se §5 M0).
+2. **M1** — vid **ändrad Excel eller extraktionsregler:** kör extraktorn, granska diff, uppdatera JSON + `facit-2014-2015.txt` (`ConsoleBudgeter --out`).
+3. **M3** — utöka eller byt namn på tester så de speglar §4.2 om ni vill låsa exakt den tabellen (delar täcks redan av `ConsoleBudgeterTest` / `InBudgetMathSnurraIgenomTests`).
+4. **M4** — UI-integrationstester enligt §4.3 (kräver `net8.0-windows`).
+5. **M5** — återstående förbättringar (t.ex. valfri grafisk IN-inställning) enligt `todo.md`.
+
+Varje leverans bör ha **gröna tester** för de projekt som ingår i CI (t.ex. `Budgetterarn.NoWindowsUi.slnf` på Linux).
