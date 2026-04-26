@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GeneralSettings>
+  <!-- Relativa till ConsoleBudgeter/bin/Debug/net8.0/ (eller motsvarande output) -->
+  <Property Name="TransactionTestFilePath" Value="../../../../pelles budget.xls"/>
+  <Property Name="CategoryPath" Value="../../../../BudgetterarnUi/Data/Categories.xml"/>
+</GeneralSettings>

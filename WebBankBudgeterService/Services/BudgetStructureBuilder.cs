@@ -63,6 +63,7 @@ namespace WebBankBudgeterService.Services
             var rows = budgetRows.ToList();
 
             // Inkomster är raden med namn "+" (trimmat), inte kategorier som råkar innehålla '+' (t.ex. "värnamoresor+övriga").
+            // Förflyttning är exakt trimmat " -" (inte Contains), samma skäl.
             var incomeRows = rows.Where(r => IsIncomeCategoryRow(r.CategoryText)).ToList();
             var transferRows = rows.Where(r => IsTransferCategoryRow(r.CategoryText)).ToList();
             var expenseRows = rows
@@ -112,7 +113,7 @@ namespace WebBankBudgeterService.Services
             string.Equals(categoryText.Trim(), IncomeCategoryName, StringComparison.Ordinal);
 
         private static bool IsTransferCategoryRow(string categoryText) =>
-            categoryText.Contains(TransferCategoryName, StringComparison.Ordinal);
+            string.Equals(categoryText?.Trim(), TransferCategoryName, StringComparison.Ordinal);
 
         private BudgetRow CreateSummaryRow(string rowName, List<BudgetRow> rows, List<string> columnHeaders)
         {
