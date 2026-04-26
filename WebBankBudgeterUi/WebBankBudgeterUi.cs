@@ -60,6 +60,7 @@ namespace WebBankBudgeterUi
             InitIncomesUi();
             InitTotalsUi();
 
+            await webBankBudgeter.EnsureInPosterSourceAsync(txtYearFilter.Text);
             await webBankBudgeter.FillTablesAsync();
 
             // filtrera
@@ -165,6 +166,14 @@ namespace WebBankBudgeterUi
 
         private void SparaInPosterPåDisk()
         {
+            if (webBankBudgeter.UsesFacitInPosterSource())
+            {
+                MessageBox.Show(
+                    "In-poster laddas från facit (budget-in-*.json). Sparning till BudgetIns.json är inaktiverad för denna källa. " +
+                    "Byt InPosterSource till BudgetIns i Data\\GeneralSettings.xml om du vill spara egna in-poster.");
+                return;
+            }
+
             _inBudgetUiHandler.SparaInPosterPåDisk();
 
             WriteLineToOutputAndScrollDown("Sparat.");
@@ -302,6 +311,7 @@ namespace WebBankBudgeterUi
 
             try
             {
+                await webBankBudgeter.EnsureInPosterSourceAsync(txtYearFilter.Text);
                 await FillTablesAsync();
             }
             catch (Exception ex)

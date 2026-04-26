@@ -37,9 +37,9 @@
 
 | Uppgift | Status |
 |---------|--------|
-| **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`** — full rapport 2014+2015 (alla transaktioner), UTF-8; samma pipeline som `ConsoleBudgeter --out`. Tidigare namn `console-report-facit-reference.txt` är borttaget till förmån för detta namn. | Väntar din verifiering |
-| **`Facit/README.md`** + **`plan.md`**: JSON från extraktorn; textfacit = endast konsol `--out`, ingen duplicerad layout i extraktorn. | Väntar din verifiering |
-| **WinForms:** användaren ska kunna **välja källa för in-poster** — se `plan.md` 0.6 / D16. | PENDING (implementation) |
+| **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`** — full rapport 2014+2015 (alla transaktioner), UTF-8; samma pipeline som `ConsoleBudgeter --out`; kopieras till test-output via `.csproj`. Tidigare namn `console-report-facit-reference.txt` är borttaget till förmån för detta namn. | Väntar din verifiering |
+| **`Facit/README.md`** + **`plan.md`** (0.6, D15/D16, M1-notis): JSON från Excel-extraktorn; textfacit = `ConsoleBudgeter` `--out`, inte duplicerad layout i extraktorn. | Väntar din verifiering |
+| **WinForms:** val av in-källa via `GeneralSettings.xml` (`InPosterSource` = `BudgetIns` \| `FacitJson`, `FacitBudgetInDirectory`); grafiskt val enligt `plan.md` 0.6 / D16 om det byggs ut. | Väntar din verifiering / PENDING (UI) |
 
 ---
 
@@ -47,9 +47,15 @@
 
 | Punkt | Status |
 |-------|--------|
-| D7, D10, D12 | Klart i kod + tester (se `WebBankBudgeterServiceTest`) |
-| M5.1 IN i Budget Total, M5.2 Kvar via `SnurraIgenom`, M5.7 `sv-SE` i grid, rensning före ombindning | Klart i kod |
-| M5.3 `BudgetIns` / union IN–UT, D16 WinForms val av in-källa | Se `plan.md` / öppna punkter ovan |
+| D7: `BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory` (tom grupp → rent kategorinamn) | Klart i kod + `TableGetterCategoryKeyTests` |
+| D10: `GetMonthAsFullString` invariant | Verifierat i test (redan `InvariantCulture` i kod) |
+| D12: `Ignore` exkluderas från budgettabellaggregering (`SourceEntryType` från Excel-rad) | Klart i kod + test |
+
+**Klart i kod:** M5.1 (IN slås in i Budget Total-tabell), M5.2 (Kvar via `SnurraIgenom`), M5.7 (`sv-SE` i `UtgiftsHanterareUiBinder`), `UtgiftsHanterareUiBinder` rensar kolumner/rader vid ombindning.
+
+**Klart i kod (M5.3 / D9-del):** `InBudgetMath.SnurraIgenom` räknar **union** av IN- och UT-kategorier (samma som facit `expected-kvar`); `KvarTextTableBuilder` använder alla platta `BudgetRow` från tabellen före IN-merge och **filtrerar bort** Kvar-raden **"-"**. `BudgetIns.json` (UI + testdata) fylld med **672 rader** (336×2 år) från facit via `tools/FacitBudgetInsExport`.
+
+**Nästa:** M5.4–M5.6, ev. grafiskt val av in-källa i UI (nu: XML). D16 WinForms — se öppna punkter ovan.
 
 ---
 

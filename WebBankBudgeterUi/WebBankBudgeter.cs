@@ -14,6 +14,12 @@ namespace WebBankBudgeterUi
     {
         internal const string CategoryNameColumnDescription = "Category . Month->";
 
+        /// <summary>Inställning <c>InPosterSource</c>: lokal <c>BudgetIns.json</c> (standard).</summary>
+        public const string InPosterSourceBudgetIns = "BudgetIns";
+
+        /// <summary>Inställning <c>InPosterSource</c>: facit <c>budget-in-ÅR.json</c> i <c>FacitBudgetInDirectory</c>.</summary>
+        public const string InPosterSourceFacitJson = "FacitJson";
+
         private readonly GeneralSettingsGetter generalSettingsGetter;
         private readonly TransactionHandler _transactionHandler;
         private readonly InBudgetHandler _inBudgetHandler;
@@ -83,6 +89,54 @@ namespace WebBankBudgeterUi
         {
             var appPath = AppDomain.CurrentDomain.BaseDirectory;
             return Path.Combine(appPath, @"TestData\BudgetIns.json");
+        }
+
+        /// <summary>
+        /// Laddar om in-poster från vald källa (GeneralSettings: InPosterSource, FacitBudgetInDirectory).
+        /// Anropas från UI med filtreringsår innan tabeller fylls.
+        /// </summary>
+        internal async Task EnsureInPosterSourceAsync(string filterYearText)
+        {
+            var source = generalSettingsGetter.GetStringSetting("InPosterSource")?.Trim();
+            if (string.IsNullOrEmpty(source) ||
+                string.Equals(source, InPosterSourceBudgetIns, StringComparison.OrdinalIgnoreCase))
+            {
+                _ = await _inBudgetHandler.SetInPosterFromDisk();
+                return;
+            }
+
+            if (!string.Equals(source, InPosterSourceFacitJson, StringComparison.OrdinalIgnoreCase))
+            {
+                writeLineToOutputAndScrollDown(
+                    $"Okänd InPosterSource '{source}', använder {InPosterSourceBudgetIns}.{Environment.NewLine}");
+                _ = await _inBudgetHandler.SetInPosterFromDisk();
+                return;
+            }
+
+            if (!int.TryParse(filterYearText?.Trim(), System.Globalization.NumberStyles.Integer,
+                    System.Globalization.CultureInfo.InvariantCulture, out var year))
+            {
+                year = DateTime.Today.Year;
+            }
+
+            var facitDir = generalSettingsGetter.GetStringSetting("FacitBudgetInDirectory")?.Trim();
+            if (string.IsNullOrEmpty(facitDir))
+            {
+                facitDir = "Facit";
+            }
+
+            if (!Path.IsPathRooted(facitDir))
+            {
+                facitDir = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, facitDir));
+            }
+
+            _inBudgetHandler.SetInPosterFromFacitFile(facitDir, year);
+        }
+
+        public bool UsesFacitInPosterSource()
+        {
+            var source = generalSettingsGetter.GetStringSetting("InPosterSource")?.Trim();
+            return string.Equals(source, InPosterSourceFacitJson, StringComparison.OrdinalIgnoreCase);
         }
 
         internal async Task FillTablesAsync()

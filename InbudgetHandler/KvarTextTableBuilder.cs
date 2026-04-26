@@ -21,12 +21,9 @@ public static class KvarTextTableBuilder
             return new TextToTableOutPuter();
         }
 
-        var builder = new BudgetStructureBuilder();
-        var structured = builder.BuildStructuredBudget(
-            mergedExpenseTable.BudgetRows,
-            mergedExpenseTable.ColumnHeaders);
-
-        var utgiftRader = BudgetStructureBuilder.GetExpenseRowsBeforeFirstSummary(structured);
+        // Alla kategorirader (inkl. "+", " -", "-", …) — samma union som facit expected-kvar (IN + UT).
+        // Inte bara "utgiftsblocket" före första summeringsrad i en strukturerad vy.
+        var utgiftRader = mergedExpenseTable.BudgetRows.ToList();
         var kvarRader = InBudgetMath.SnurraIgenom(inPosterRader, utgiftRader, logLine ?? (_ => { }));
 
         var kvarTable = new TextToTableOutPuter
@@ -46,7 +43,13 @@ public static class KvarTextTableBuilder
                 continue;
             }
 
-            var row = new BudgetRow { CategoryText = rad.RadNamnY };
+            // Facit placeholder-rad "-" (saldoplaceholder) ska inte visas i Kvar-vyn.
+            if (string.Equals(rad.RadNamnY?.Trim(), "-", StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            var row = new BudgetRow { CategoryText = rad.RadNamnY ?? string.Empty };
             foreach (var mk in monthKeys)
             {
                 if (rad.Kolumner.TryGetValue(mk, out var v))

@@ -32,4 +32,15 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\WebBankBudgeterTests.Facit\Facit\budget-in-2014.json">
+      <Link>Facit\budget-in-2014.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\WebBankBudgeterTests.Facit\Facit\budget-in-2015.json">
+      <Link>Facit\budget-in-2015.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
