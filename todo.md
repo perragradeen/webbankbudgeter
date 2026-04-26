@@ -14,9 +14,9 @@
 
 1. [x] Merga `origin/cursor/console-budgeter-app-1a34` in i `master` (ConsoleBudgeter, facit-JSON, delad logik).
 2. [x] Lägga `AGENTS.md` i repo-roten.
-3. [x] Skapa/uppdatera `HISTORY.md` (branchläge, merge, planstäd `TransactionHandler`).
+3. [x] Skapa/uppdatera `HISTORY.md` (branchläge, merge, förklaring av TransactionHandler vs gammal plan-text).
 4. [ ] Kör `dotnet build` / `dotnet test` (lämpliga projekt) lokalt eller i CI — markera när grönt. *(Cloud Agent-miljön här saknade `dotnet` i PATH vid senaste körning — kör samma kommandon på din maskin.)*
-5. [x] Uppdatera `plan.md` (TransactionHandler m.m. + länk till `AGENTS.md`).
+5. [x] Uppdatera `plan.md` (textfacit-filnamn `facit-2014-2015.txt`; övrig plan fanns redan uppdaterad efter merge).
 6. [x] Uppdatera `README.md` (`AGENTS.md`, textfacit, regenerate-kommando).
 7. [x] Committa merge + dokumentation på `master` och pusha `master`.
 

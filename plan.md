@@ -9,6 +9,10 @@ Målet är att UI:t ska visa exakt samma struktur och data som Excel-förlagan:
 - **Kvar per månad** = `IN + UT` per kategori per år/månad
   (UT är negativt → positivt resultat = under budget)
 
+## Rutin för agenter och dokumentation
+
+Se **`AGENTS.md`** i repo-roten: textfacit (`facit-2014-2015.txt`) skapas endast via `ConsoleBudgeter --out`; facit ändras inte bara för att “få grönt”; efter verifierad build uppdateras denna plan, `todo.md`, `README.md` och `HISTORY.md` vid behov.
+
 ---
 
 ## 0. Beslut (tagna)
