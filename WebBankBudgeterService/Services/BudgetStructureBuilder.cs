@@ -21,12 +21,30 @@ namespace WebBankBudgeterService.Services
             var result = new StructuredBudgetTable();
             var rows = budgetRows.ToList();
 
-            // Separera kategorier
-            var incomeRows = rows.Where(r => r.CategoryText.Contains(IncomeCategoryName)).ToList();
-            var transferRows = rows.Where(r => r.CategoryText.Contains(TransferCategoryName)).ToList();
+            // Separera kategorier: inkomst/förflyttning ska matcha exakt (trim),
+            // annars klassas t.ex. "värnamoresor+övriga" felaktigt som inkomst.
+            var incomeRows = rows
+                .Where(r => string.Equals(
+                    r.CategoryText?.Trim(),
+                    IncomeCategoryName,
+                    StringComparison.Ordinal))
+                .ToList();
+            var transferRows = rows
+                .Where(r => string.Equals(
+                    r.CategoryText?.Trim(),
+                    TransferCategoryName,
+                    StringComparison.Ordinal))
+                .ToList();
             var expenseRows = rows
-                .Where(r => !r.CategoryText.Contains(IncomeCategoryName) && 
-                           !r.CategoryText.Contains(TransferCategoryName))
+                .Where(r =>
+                    !string.Equals(
+                        r.CategoryText?.Trim(),
+                        IncomeCategoryName,
+                        StringComparison.Ordinal)
+                    && !string.Equals(
+                        r.CategoryText?.Trim(),
+                        TransferCategoryName,
+                        StringComparison.Ordinal))
                 .OrderBy(r => r.CategoryText)
                 .ToList();
 

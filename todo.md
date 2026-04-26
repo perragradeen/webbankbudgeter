@@ -1,97 +1,23 @@
-# TODO: Visa samma data på "Kvar"-fliken som "Budget Total"
+# TODO (levande lista)
 
-## Problem
+Uppdatera denna fil när något **byggts, testats och verifierats** (samma rutin som `AGENTS.md` / `README.md`).
 
-"Kvar"-fliken (`gv_Kvar`) är nästan tom medan "Budget Total" (`gv_budget`) visar full
-budgetdata med alla kategorier, medelvärden och månadskolumner.
+## Klart i kod (denna arbetskopia)
 
-**Orsak:** "Kvar" använder en helt annan databindnings-kedja (`InBudgetUiHandler.BindInPosterRaderTillUi`)
-som förlitar sig på InBudget-data från `BudgetIns.json`, medan "Budget Total" använder
-`UtgiftsHanterareUiBinder.BindToBudgetTableUi` som bygger på transaktionsdata.
+- **`TransactionHandler`:** finns i `WebBankBudgeterService/TransactionHandler.cs` (planens gamla “saknas” är inaktuellt — se `plan.md` D6/M0).
+- **`BudgetStructureBuilder`:** inkomst/förflyttning klassas med **exakt** trimmat `"+"` resp. `" -"`.
+- **`TransFilterer`:** vid filter på ett helt kalenderår krävs `DateAsDate.Year == valt år` (plan R5).
+- **`ConsoleBudgeter`:** konsolprojekt som kan skriva textfacit med `--out` (se `README.md`).
+- **`InBudgetKvarCalculator.SnurraIgenom`:** delad implementation i `InbudgetHandler` (används från `WebBankBudgeter.SnurraIgenom`).
 
-## Plan — 4 steg
+## Öppet / nästa
 
-### Steg 1: Gör `UtgiftsHanterareUiBinder.BindToBudgetTableUi` generisk
+- **`gv_Kvar` i WinForms:** `FillTablesAsync` använder `BindKvarBudgetTableUi` (samma data som Budget Total). Koppla in `VisaKvarRader_BindInPosterRaderTillUiAsync` om fliken ska visa **IN+UT-kvar** enligt `SnurraIgenom`.
+- **Facit JSON + extraktor:** enligt `plan.md` M1–M3 (filer under t.ex. shared test-projekt) — **inte** implementerat i denna clone utöver Excel i roten + plan.
+- **Textfacit-fil:** generera med `ConsoleBudgeter` och committa när innehållet är granskat (`Facit/facit-2014-2015-console.txt` eller enad sökväg).
 
-**Fil:** `WebBankBudgeterUi/UiBinders/UtgiftsHanterareUiBinder.cs`
+---
 
-Lägg till en `DataGridView`-parameter så metoden kan binda till vilken grid som helst:
+## Arkiv: gammal fyra-stegs-plan (Kvar = kopia av Budget Total)
 
-```csharp
-// Från:
-public void BindToBudgetTableUi(TextToTableOutPuter table)
-{
-    var grid = _gv_budget;
-
-// Till:
-public void BindToBudgetTableUi(TextToTableOutPuter table, DataGridView targetGrid = null)
-{
-    var grid = targetGrid ?? _gv_budget;
-```
-
-Byt alla `_gv_budget`-referenser i metoden till `grid`.
-
-### Steg 2: Anropa bind-metoden för `gv_Kvar`
-
-**Fil:** `WebBankBudgeterUi/WebBankBudgeterUi.cs`
-
-I `FillTablesAsync()`, efter `BindToBudgetTableUi(table)` (rad ~78), lägg till:
-
-```csharp
-BindToBudgetTableUi(table);       // befintligt (gv_budget)
-BindKvarBudgetTableUi(table);     // NYTT (gv_Kvar)
-```
-
-Ny wrapper-metod:
-
-```csharp
-private void BindKvarBudgetTableUi(TextToTableOutPuter table)
-{
-    _utgiftsHanterareUiBinder.BindToBudgetTableUi(table, gv_Kvar);
-}
-```
-
-### Steg 3: Ta bort gammal Kvar-kolumninitiering
-
-**Fil:** `WebBankBudgeterUi/WebBankBudgeterUi.cs`
-
-I `InitIncomesUi()` (rad ~190), ta bort raden:
-
-```csharp
-gv_Kvar.Columns.Add("1", WebBankBudgeter.CategoryNameColumnDescription);
-```
-
-Kolumnerna skapas nu istället av `UtgiftsHanterareUiBinder`.
-
-### Steg 4: Ersätt gammal Kvar-bindning med den nya
-
-**Fil:** `WebBankBudgeterUi/WebBankBudgeterUi.cs`
-
-I `FillTablesAsync()`, ersätt anropet (rad ~91-92):
-
-```csharp
-// FRÅN (gammal — ger nästan tom tabell):
-await VisaKvarRader_BindInPosterRaderTillUiAsync(utgiftsRader);
-
-// TILL (ny — samma data som Budget Total):
-BindKvarBudgetTableUi(table);
-```
-
-**OBS:** "Budget Total"-fliken (`gv_budget`) ändras INTE. Den förblir exakt som idag.
-Bara "Kvar"-fliken (`gv_Kvar`) får ny data — genom att använda samma
-bindningslogik som redan fungerar för Budget Total.
-
-## Förväntat resultat
-
-- **Budget Total** — helt oförändrad
-- **Kvar** — visar nu samma kolumner som Budget Total:
-  `Category . Month->`, `Average`, `Average-nf`, månadskolumner, `Summa`
-- Samma rader med samma gruppering (utgifter, summa utgifter, inkomster, förflyttningar, budgettotal)
-- Samma formatering (fetstil och grå bakgrund på summeringsrader)
-
-## Filer som ändras
-
-| Fil | Ändring |
-|-----|---------|
-| `WebBankBudgeterUi/UiBinders/UtgiftsHanterareUiBinder.cs` | Ny parameter `DataGridView targetGrid` |
-| `WebBankBudgeterUi/WebBankBudgeterUi.cs` | Ny `BindKvarBudgetTableUi`, anrop i `FillTablesAsync`, bort med gammal kvar-logik och init |
+Den gamla `todo.md` beskrev medvetet att låta `gv_Kvar` använda samma bindning som `gv_budget`. Det är fortfarande så i `WebBankBudgeterUi.FillTablesAsync` (`BindKvarBudgetTableUi`). Om målet ändras till **SnurraIgenom**-Kvar, ersätts det av punkten “Öppet” ovan — inte av den arkiverade listan.
