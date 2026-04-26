@@ -1,7 +1,13 @@
 # Projekt­historik — WebBankBudgeter
 
-> **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och **bakgrund** (hur vi kom dit).  
-> **Underhåll:** Lägg nya upptäckter under *Del A*. Flytta äldre sessionshit till *Del B* när de mest är tidsstämplar och agent-ID:n. Vid merge till `master` kan äldre innehåll arkiveras till `HISTORY_ARCHIVE.md` enligt teamets rutin.
+> **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och korta **sessionsfakta**.  
+> **Underhåll:** Lägg nya upptäckter under *Del A*. Långa bakgrundsposter ligger i **`HISTORY_ARCHIVE.md`**.
+
+## 2026-04-26 — Dokumentstäd: `plan` / `todo` vs genomförd kod (gren `ai`)
+
+**Syfte:** Ta bort dubbletter där samma arbete stod som både “klart i kod” och “väntar verifiering” i `todo.md`, synka `plan.md` (dataflöde §2.1–2.3, M1-status, G6) med repot, och flytta arkivdelen till `HISTORY_ARCHIVE.md` så `HISTORY.md` bara bär aktuellt innehåll.
+
+---
 
 ## 2026-04-26 — Gren `ai`: sammanslagning av remote-grenar från `master`
 
@@ -16,8 +22,6 @@
 **Användarens krav:** `AGENTS.md` med bindande regler (facit = `ConsoleBudgeter --out`, ingen Python-sidospår utan beslut, facit ändras bara vid ny källa/regel, uppdatera plan/todo/README/HISTORY efter verifierad build, läs faktisk repo — inte gissa “okända” grenar). Textfacit-fil i repot heter **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`** (samma innehåll som tidigare `console-report-facit-reference.txt`; gamla namnet borttaget för tydlighet).
 
 **Varför “tjatas” om TransactionHandler i äldre svar:** en äldre version av `plan.md` på `master` påstod att klassen saknades trots att den alltid funnits under `WebBankBudgeterService/TransactionHandler.cs` — det var **dokumentationsfel**, inte kodfel. Efter merge stämmer `plan.md` med verkligheten; `AGENTS.md` påminner om att inte upprepa myten.
-
----
 
 ---
 
@@ -57,7 +61,7 @@
 
 ### Plan vs. repo
 
-- **`plan.md` avsnitt M1** kan fortfarande beskriva **äldre** extraktor-prototyp (antal rader, januari) — **verifiera alltid mot committad facit** och `Facit/README.md` innan du litar på M1-texten ordagrant.
+- **`plan.md` avsnitt M1** beskriver fortfarande en **checklista** vid regenerering av facit — följ den när Excel eller extraktionsregler ändras; **faktiska filantal** finns i committad facit och `Facit/README.md`.
 - **`plan.md` §6 (risker)** har uppdaterats med mitigeringar (R1 `.slnf`, R5 årsfilter, R6 utfasad Kvar).
 
 ### Tester som är “källan till sanning” på Linux
@@ -67,45 +71,4 @@
 
 ---
 
-## Del B — Arkiv (bakgrund — mindre relevant för dagens kod)
-
-> Här ligger **process**, gamla branch-namn, agent-ID:n, tidiga iterationsfel och metrics. Läs om du undrar *hur* vi kom fram hit — inte för att veta *vad* som gäller nu.
-
-### Session 2026-04-24 — Multi-agent, ConsoleBudgeter, facit M1/M2
-
-- **Branch då:** `feature/facit-implementation` (nutida arbete kan ligga på `cursor/*`-grenar).
-- **Multi-agent:** tre parallella `explore`-agenter (service / UI / test) gav snabb kartläggning; lärdom: en agent per subsystem med tydlig prompt.
-- **ConsoleBudgeter:** skapades för att testa UI-liknande output på Linux; `sv-SE` i rendering; snapshot-normalisering CRLF/LF.
-- **Encoding-historik:** tidiga ISO-8859-1-problem i vissa filer → konvertering till UTF-8; **nuvarande UI-filer** kan fortfarande vara **blandad** kodning (se `README.md` — Latin-1 i vissa WinForms-filer).
-- **FacitExtractor:** först ClosedXML (bara `.xlsx`) → **ExcelDataReader** för `.xls`/`.xlsx` + CodePages för svenska tecken. Stora zip-uppladdningar via webb misslyckades — **Git push** av filer är mer pålitligt.
-- **Extraktor-bugg (fixad):** fel kolumn för kategori i `ExtractBudgetIn` → gav `"category": "-11506.74"`; rättades till kolumn 1 + månader 6–17.
-- **Plan D5 / januari:** plan påstod först att januari 2014 saknades — **verifiering visade att januari finns**; plan och invariant (28×12 = 336 rader per år) korrigerades.
-- **M2:** `WebBankBudgeterTests.Facit` + `FacitLoader` + records + JSON kopieras till output.
-- **Gamla “Nästa steg” i denna fil** nämnde M0/M3/M4/M5 som pending — **status har ändrats** (mycket av M5 och delar av facit-kedjan är implementerat); se `plan.md` och `todo.md` för aktuell kö.
-
-### Agent-ID:n (endast spårbarhet i gamla loggar)
-
-- Service: `2ed4e278-fbe0-44f8-91be-956b7cb74253`
-- UI: `54220857-98f4-4a03-98e2-24b2d78f16e2`
-- Test: `087b2bcc-7ec8-41d3-a633-25b5936e7d7b`
-
-### Äldre metrics (ungefärliga — repo har växt)
-
-- Tidiga commits nämnde t.ex. `148fff2` encoding, `7bb28a2` M1, `eba1bab` M2 — använd `git log` för exakt historia.
-- “24/24 tester på Linux” i gamla text avser **dåvarande** uppsättning; kör `dotnet test Budgetterarn.NoWindowsUi.slnf` för aktuellt tal.
-
-### Övriga gamla “problem och lösningar”
-
-- Windows-sökvägar i test → `Path.Combine`.
-- `GeneralSettingsHandler`: normalisera `\` till `Path.DirectorySeparatorChar`.
-- Tusentalsavskiljare i tester → explicit `sv-SE` där det behövs.
-
----
-
-## Arkivering (valfri framtida rutin)
-
-Om filen blir för lång: flytta **Del B** till `HISTORY_ARCHIVE.md` och behåll **Del A** + senaste session i `HISTORY.md`. Det finns ännu ingen `HISTORY_ARCHIVE.md` i repo — skapa vid första arkivering.
-
----
-
-*Senast uppdaterad: 2026-04-26 (gren `ai` + merge av `mitigate-plan-risks`).*
+*Senast uppdaterad: 2026-04-26 (dokumentstäd + `HISTORY_ARCHIVE.md`).*

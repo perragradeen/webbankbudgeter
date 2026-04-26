@@ -157,10 +157,11 @@ foreach (var key in facitDict.Keys)
 - **Uppdateringsregel:** varje gång committade JSON-facit (`transactions-*`, `budget-in-*`, `expected-*`) ändras ska filen regenereras med samma kommando som i `Facit/README.md`, så texten förblir sanningsunderlag för snapshot/integration.
 - **Excel / FacitExtractor:** ska fortsätta leverera **JSON** enligt M1. Tabelltext ska **inte** härledas separat i extraktorn — kör `ConsoleBudgeter` (`BudgetReportBuilder` → service + InbudgetHandler + textrendering i konsolprojektet).
 
-**In-poster — användarval i WinForms (produkt):**
+**In-poster — användarval i WinForms (D16, produkt):**
 - Tester och CI kan fortsätta ladda **`budget-in-*.json`** som idag.
 - **`WebBankBudgeterUi` / `Data/GeneralSettings.xml`:** `InPosterSource` = `BudgetIns` (standard, `TestData/BudgetIns.json`) eller `FacitJson` (läser `Facit/budget-in-{filterår}.json` från `FacitBudgetInDirectory`, default `Facit`). Vid `FacitJson` anropas `InBudgetHandler.SetInPosterFromFacitFile` innan tabeller fylls; **Spara in-poster** visar meddelande (facit är skrivskyddad källa).
 - Projektet kopierar `budget-in-2014.json` / `budget-in-2015.json` till output under `Facit/` så `FacitJson` fungerar utan manuell kopia.
+- **Utökning (valfri):** grafisk inställningsdialog i stället för XML — samma två källor; inget krav för att D16 ska anses uppfylld i kod.
 
 ---
 
@@ -248,15 +249,15 @@ Excel (`Pelles Budget.xls`)
                                             └─► UtgiftsHanterareUiBinder → gv_budget / gv_Kvar
 ```
 
-`InBudget`-sidan:
+`InBudget`-sidan (WinForms — källa väljs via `GeneralSettings.xml`):
 
 ```
-TestData/BudgetIns.json
-  └─► List<InBudget> { CategoryDescription, BudgetValue, YearAndMonth }
-        └─► InBudgetHandler → List<Rad> { RadNamnY, Kolumner["2014 January"] = ... }
-              └─► InBudgetMath.SnurraIgenom(inBudget, utgifter)
-                    └─► kvar = inBudget.Kolumner[key] + utgiftsMånad.Value
-                          └─► gv_Kvar  (⚠ INTE aktiv just nu — se 2.3)
+TestData/BudgetIns.json  (InPosterSource = BudgetIns)
+  eller  Facit/budget-in-{år}.json  (InPosterSource = FacitJson)
+  └─► InBudgetHandler → List<Rad> { RadNamnY, Kolumner["2014 January"] = ... }
+        └─► (Budget Total) BudgetTableInMerger slår IN i platta BudgetRow före struktur
+        └─► (Kvar) klon av tabell före merge → KvarTextTableBuilder
+              └─► InBudgetMath.SnurraIgenom(in, utgifter) → gv_Kvar
 ```
 
 ### 2.2 Viktiga detaljer i nuvarande kod
@@ -265,7 +266,7 @@ TestData/BudgetIns.json
 - **Kategori­nyckel**: `Transaction.CategoryName` = `$"{Group} {Name}"` — dvs grupp-prefix. För budgettabell / facit-jämförelse (D7) används `BudgetTableCategoryKey`: rent `Name` när `Group` är tom, annars samma som `CategoryName`. `TableGetter.GroupOnMonthAndCategory` och `BudgetRowFactory` använder den nyckeln.
 - **Klassificering** i `BudgetStructureBuilder`:
   - Inkomst: kategorinamn trimmat är exakt `"+"` (inte `Contains("+")` — undviker t.ex. `värnamoresor+övriga`)
-  - Förflyttning: `CategoryText.Contains(" -")` (mellanslag före minus)
+  - Förflyttning: kategorinamn trimmat är exakt `" -"` (samma skäl som för `"+"`)
   - Utgift: övrigt
 - **Budget Total-fliken** (`gv_budget`) visar IN + UT + summerings­rader.
 - **Kvar-fliken** (`gv_Kvar`): `KvarTextTableBuilder` + `InBudgetMath.SnurraIgenom` (samma som `ConsoleBudgeter` från facit).
@@ -274,12 +275,12 @@ TestData/BudgetIns.json
 
 | # | Område | Facit kräver | Nuvarande kod | Gap |
 |---|--------|-------------|---------------|-----|
-| G1 | Budget Total | **IN + UT** per kategori i samma tabell (summerat per månad) | **Delvis åtgärdat:** IN från `BudgetIns` adderas till `BudgetRow` före struktur/summering | Full IN/UT/KVAR-sektion som i Excel (tre block) kan fortfarande kräva UI-uppdelning |
-| G2 | Kvar-fliken | `IN + UT` per kategori per månad | **Åtgärdat:** `KvarTextTableBuilder` / `InBudgetMath.SnurraIgenom` + `TextToTableOutPuter` till `gv_Kvar` (delat med konsol) | Kategorier som bara finns i IN utan UT-rad får tomma kvarceller tills logiken utökas |
+| G1 | Budget Total | **IN + UT** per kategori i samma tabell (summerat per månad) | **Åtgärdat:** `BudgetTableInMerger` adderar IN på `BudgetRow` innan `BudgetStructureBuilder` / bindning | Eventuell framtida UI-uppdelning i tre Excel-liknande block (ren presentation) |
+| G2 | Kvar-fliken | `IN + UT` per kategori per månad | **Åtgärdat:** `KvarTextTableBuilder` / `InBudgetMath.SnurraIgenom` + `TextToTableOutPuter` till `gv_Kvar` (delat med konsol) | Kategorier som bara finns i IN utan UT-rad kan visa tomma celler tills logiken utökas (låg prioritet om facit redan täcker unionen) |
 | G3 | Kategori-nyckel | Rent kategorinamn (t.ex. `"el"`) vid tom grupp | **Delvis åtgärdat:** `Transaction.BudgetTableCategoryKey` + `TableGetter` / `BudgetRowFactory` använder rent namn när `Group` är tom; icke-tom grupp behåller `CategoryName` | Facit-jämförelse för rader med riktig grupp i XML kan fortfarande kräva uppföljning |
 | G4 | Tecken-konvention | IN ≥ 0, UT ≤ 0, KVAR = IN + UT | Samma i `InBudgetMath.SnurraIgenom` | OK |
 | G5 | Auto-kategorisering | `CategoryHandler` matchar hela `InfoDescription` exakt | Case-insensitive trim-jämförelse på hela beskrivningen | Facit visar många fria­texter (`PILEG$RDENS SERVICEBUT ASKIM`) → kräver substring/regex-matchning eller manuellt angivna aliaser |
-| G6 | BudgetIns.json täckning | 363 in-rader / år × 2 år = 726 rader | Testdata har 10 rader för år 2016 | Måste fyllas med riktig budget för 2014/2015 (kan genereras direkt ur facit-filen) |
+| G6 | BudgetIns.json täckning | 336 rader per år × 2 år (672) i linje med facit `budget-in-*.json` | **Åtgärdat:** `WebBankBudgeterUi/TestData/BudgetIns.json` fylld från facit (`tools/FacitBudgetInsExport`) | Underhåll: regenerera vid ändrad facit-IN |
 | G7 | Filkälla | Flera transaktioner per dag, sve-kultur­decimaler | Läser `.xls` via `TransactionHandler` | Kontrollera att läsningen levererar exakt samma 1 654 rader |
 | G8 | Regulatorflagga | `Regular` / `Ignore` i kol 12 | **Åtgärdat för budgettabell:** `TransactionTransformer` sätter `SourceEntryType` från `KontoEntry.EntryType`; `TableGetter.GroupOnMonthAndCategory` exkluderar `Ignore` från aggregering (D12). Transaktionslistan i UI kan fortfarande visa alla rader. |
 | G9 | Månadskultur | `"YYYY January"` (engelska) | `GetMonthAsFullString` använder redan `InvariantCulture` | **Verifierat** i `TableGetterCategoryKeyTests` (D10) |
@@ -364,10 +365,7 @@ WebBankBudgeterTests.Facit/
 
 - **D3** — om kategori finns i UT men inte i IN: `BudgetAmount = 0`.
 - **D4** — om kategori finns i IN men inte i UT: `ActualAmount = 0`, `Remaining = BudgetAmount`.
-- **D5** — januari saknas i IN för **både 2014 och 2015** i Excel (verifierat: 0 rader med
-  `"MonthName": "January"` i `budget-in-2014.json` och `budget-in-2015.json`; alla andra
-  månader har 33 rader). Extraktorn genererar januari med testdata likt övriga månader
-  (se 0.1 M1-steg nedan).
+- **D5** — om januari saknas i rå Excel-IN fyller extraktorn januari med testdata likt övriga månader (**D5 = b** i beslutstabellen). **Committad** `budget-in-*.json` har **396 rader per år** (33 kategorier × 12 månader) — verifiera alltid mot filerna och `Facit/README.md`, inte mot äldre utkast i denna plan.
 
 ```json
 [
@@ -583,12 +581,9 @@ Efter lyckad extraktion: kör `ConsoleBudgeter` med `--out` mot
 `Facit/facit-2014-2015.txt` (se 0.6 / `Facit/README.md`) så **textfacit**
 följer samma kod som appen.
 
-_Status:_ Prototyp finns i `C:\Users\nisse\AppData\Local\Temp\xlsx-reader\`.
-Genererar `transactions-*.json` (809/845 poster **utan `Flag`**) och `budget-in-*.json`
-(363 poster — januari saknas). `expected-ut-*.json` genereras från transaktioner
-men **inkluderar** transfers (` -`). `budget-kvar-*.json` är 2 byte (tomma).
+**Status (nuvarande repo):** Committad facit ligger i `WebBankBudgeterTests.Facit/Facit/` med `Flag` i transaktioner, separata `expected-transfers-*.json`, `expected-kvar-*.json`, m.m. — se `Facit/README.md` för exakta invariant­er och antal. Verktyget `tools/FacitExtractor/` används när Excel eller extraktionsregler ändras; därefter regenereras `facit-2014-2015.txt` via `ConsoleBudgeter --out` (0.6).
 
-**M1 är inte klar förrän:**
+**M1-checklistan vid nästa extraktion (regenerering):**
 1. Extraktorn använder `decimal` genomgående (D1).
 2. `Flag`-kolumnen (`"Regular"` / `"Ignore"` från Excel kol 12) skrivs ut i `transactions-*.json`
    (D12 — Ignore-rader inkluderas, men exkluderas senare i `expected-ut`).

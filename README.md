@@ -8,7 +8,8 @@ Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att
 
 - **`plan.md`** — målbild mot Excel-facit, beslut D1–D14, milstolpar M0–M5, risker.
 - **`todo.md`** — korta öppna punkter och vad som redan verifierats i kod.
-- **[`HISTORY.md`](HISTORY.md)** — aktuellt viktigt vs. arkiv (gamla sessioner, agent-ID:n).
+- **[`HISTORY.md`](HISTORY.md)** — kort aktuellt (beslut, Linux, facit-kedja).
+- **[`HISTORY_ARCHIVE.md`](HISTORY_ARCHIVE.md)** — längre bakgrund (gamla sessioner, agent-ID:n).
 
 **Rutin:** När något har **byggts, testats och verifierats**, uppdatera **`plan.md`**, **`todo.md`**, denna **`README.md`** och **`HISTORY.md`** så att de speglar verkligheten — då slipper ni att plan och kod divergerar.
 
