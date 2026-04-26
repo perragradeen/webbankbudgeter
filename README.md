@@ -6,7 +6,7 @@ Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategor
 
 Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att textfacit skapas med `ConsoleBudgeter` och `--out`, att facit inte “justeras” bara för gröna tester, och att du ska utgå från **faktisk** `git`-status i arbetskopian.
 
-- **[`HISTORY.md`](HISTORY.md)** — kort logg över väsentliga ändringar.
+- **[`HISTORY.md`](HISTORY.md)** — aktuellt viktigt vs. arkiv (gamla sessioner, agent-ID:n).
 - **`plan.md` / `todo.md`** — hålls i synk med faktisk kod efter verifierad build (se `AGENTS.md`).
 
 Efter **verifierad** build/test: uppdatera vid behov `plan.md`, `todo.md`, denna `README.md` och `HISTORY.md` i samma leverans.
@@ -75,9 +75,9 @@ Budgetterarn.sln
 │
 ├── BudgetterarnUi/             # Äldre WinForms-UI (parallell/legacy)
 ├── BudgetterarnDAL/            # Äldre DAL med WebCrawlers
-├── ConsoleBudgeter/          # Konsol: textfacit / rapport (net8.0), `--out` för sparad utskrift
 │
 └── *Test-projekt:*
+    ├── ConsoleBudgeterTest/
     ├── WebBankBudgeterServiceTest/
     ├── InbudgetHandlerTest/
     ├── UtilitiesTest/
@@ -90,7 +90,7 @@ Budgetterarn.sln
 
 | Flik | DataGridView | Beskrivning |
 |------|-------------|-------------|
-| **Kvar** | `gv_Kvar` | Rest per kategori och månad (budget IN + utfall; utgifter som negativa belopp) |
+| **Kvar** | `gv_Kvar` | Kvar per kategori/månad: **IN + UT** (facit `expected-kvar`; utgifter som negativa belopp; placeholder-raden **"-"** visas inte här) |
 | **Incomes** | `gv_incomes` | Budgeterade inkomster per kategori och månad |
 | **Budget Total** | `gv_budget` | Alla utgifter/inkomster per kategori och månad med summor |
 | **Totals** | `gv_Totals` | Sammanfattande siffror (snitt, diff) |
@@ -117,20 +117,30 @@ UtgiftsHanterareUiBinder → gv_budget (Budget Total-fliken)
 
 ## Konfiguration
 
-- `WebBankBudgeterUi/Data/GeneralSettings.xml` — sökväg till transaktionsfil, kategorifil
-- `WebBankBudgeterUi/TestData/BudgetIns.json` — budgeterade belopp per kategori/månad
-- `ConsoleBudgeter/Data/GeneralSettings.xml` — relativa sökvägar till `pelles budget.xls` och `BudgetterarnUi/Data/Categories.xml` (för textfacit-körning)
-- `Pelles-budget-slim-2014-2015-gform.xlsx` (i repo-rot) — Excel-facit som `plan.md` refererar (kontoutdrag + budget 2014/2015)
+- `WebBankBudgeterUi/Data/GeneralSettings.xml` — sökväg till transaktionsfil, kategorifil, samt **`InPosterSource`** (`BudgetIns` \| `FacitJson`) och **`FacitBudgetInDirectory`** när IN ska läsas från `budget-in-{år}.json`
+- `WebBankBudgeterUi/TestData/BudgetIns.json` — budgeterade in-poster (kan regenereras från facit: `dotnet run --project tools/FacitBudgetInsExport`)
+- `Pelles-budget-slim-2014-2015-gform.xlsx` (i repo-rot) — Excel-facit som `plan.md` refererar (kontoutdrag + budget 2014/2015), när den finns i arbetskopian
+
+## Facit (oföränderlig testdata)
+
+- JSON under `WebBankBudgeterTests.Facit/Facit/` och textreferens **`facit-2014-2015.txt`** (se `AGENTS.md` för exakt `--out`-sökväg) är **facit** — ändra dem bara när Excel/källan ändrats; anpassa i så fall kod och regenerera referenstext enligt `WebBankBudgeterTests.Facit/Facit/README.md`.
+- **`dotnet test`** mot `ConsoleBudgeterTest` och `WebBankBudgeterServiceTest` (via `Budgetterarn.NoWindowsUi.slnf` på Linux) är det avsedda sättet att regressionstesta mot facit.
+
+## Gemensam logik mellan WinForms och konsol
+
+WinForms använder samma **service-** och **InbudgetHandler**-komponenter som `ConsoleBudgeter` för tabell­bygge: bland annat `FacitBudgetTextTableFactory`, `BudgetStructureBuilder`, `BudgetTableInMerger`, `KvarTextTableBuilder`, `InBudgetMath`, `TextToTableOutPuterClone`. Konsolen lägger endast till **textrendering** (`TableRenderer`, `BudgetReportBuilder`).
 
 ## Textfacit (konsol, 2014–2015)
 
-Kör samma pipeline som tjänstelagret och skriv full utskrift till fil (UTF-8). Skapa gärna mappen `Facit/` först.
+Kör samma pipeline som tjänstelagret och skriv full utskrift till fil (UTF-8). Standardfilnamn i repot enligt `AGENTS.md`:
 
 ```bash
-dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- --year 2014 --year 2015 --out Facit/facit-2014-2015-console.txt
+dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- \
+  --year 2014 --year 2015 --transactions 0 \
+  --out WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt
 ```
 
-Valfritt: `--transaction-file <sökväg>` om `pelles budget.xls` i repo-roten inte är samma export som innehåller alla år (konsolutskriften börjar med diagnostik: antal rader per år).
+Valfritt: `--transaction-file <sökväg>` om standardtransaktionsfilen inte innehåller rätt år.
 
 Om `dotnet` saknas i miljön (t.ex. vissa sandlådor), kör samma kommando lokalt med .NET 8 SDK installerat.
 
@@ -152,6 +162,8 @@ Vid redigering av Latin-1-filer (t.ex. med script eller verktyg):
 
 ## Bygga och köra
 
+**Hela lösningen (kräver Windows Desktop SDK + WinForms):**
+
 ```bash
 dotnet build Budgetterarn.sln
 dotnet run --project WebBankBudgeterUi
@@ -159,12 +171,29 @@ dotnet run --project WebBankBudgeterUi
 
 ### ConsoleBudgeter och textfacit (2014–2015)
 
-Full textfacit (alla transaktioner) ligger i **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`**. För att regenerera efter medveten kodändring (jämför diff mot facit, committa bara om det är avsiktligt):
+Full textfacit (alla transaktioner) ligger i **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`**. För att regenerera efter medveten kodändring (jämför diff mot facit, committa bara om det är avsiktligt): se kommandot under *Textfacit* ovan.
+
+Tester (enbart konsol): `dotnet test ConsoleBudgeterTest/ConsoleBudgeterTest.csproj`
+
+**Linux / CI / när WinForms-appen kör och låser `bin` (MSB3021/MSB3027):**  
+Bygg och testa utan Windows-UI-projekt med solution filter:
 
 ```bash
-dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- \
-  --year 2014 --year 2015 --transactions 0 \
-  --out WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt
+dotnet build Budgetterarn.NoWindowsUi.slnf
+dotnet test Budgetterarn.NoWindowsUi.slnf
 ```
 
-Tester: `dotnet test ConsoleBudgeterTest/ConsoleBudgeterTest.csproj`
+Filtret exkluderar `WebBankBudgeterUi`, `BudgetterarnUi` och `WebBankBudgeterUiTest`. Uppdatera listan i `Budgetterarn.NoWindowsUi.slnf` om nya `net8.0-windows`-projekt läggs till i lösningen.
+
+**På Linux utan Windows Desktop SDK kan du ändå:**
+
+| Åtgärd | Kommando / notis |
+|--------|-------------------|
+| Bygga kärna + tester | `dotnet build Budgetterarn.NoWindowsUi.slnf` |
+| Köra facit- och servicetester | `dotnet test Budgetterarn.NoWindowsUi.slnf` |
+| Kör enbart konsol­snapshots | `dotnet test ConsoleBudgeterTest/ConsoleBudgeterTest.csproj` |
+| Full rapport till fil (facit) | samma som under *Textfacit* ovan |
+
+**SDK:** installera **.NET 8 SDK** (`dotnet-sdk-8.0`). Utan `dotnet` i `PATH` misslyckas alla steg ovan.
+
+**Vanliga fel:** om WinForms-appen kör samtidigt som `dotnet build Budgetterarn.sln` kan MSBuild rapportera **MSB3021/MSB3027** (filer låsta under `bin/`). Stäng appen eller använd `.slnf`.
