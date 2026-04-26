@@ -6,6 +6,9 @@ Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategor
 
 Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att textfacit skapas med `ConsoleBudgeter` och `--out`, att facit inte “justeras” bara för gröna tester, och att du ska utgå från **faktisk** `git`-status i arbetskopian.
 
+- **[`HISTORY.md`](HISTORY.md)** — kort logg över väsentliga ändringar.
+- **`plan.md` / `todo.md`** — hålls i synk med faktisk kod efter verifierad build (se `AGENTS.md`).
+
 Efter **verifierad** build/test: uppdatera vid behov `plan.md`, `todo.md`, denna `README.md` och `HISTORY.md` i samma leverans.
 
 ## Typ av projekt
@@ -72,6 +75,7 @@ Budgetterarn.sln
 │
 ├── BudgetterarnUi/             # Äldre WinForms-UI (parallell/legacy)
 ├── BudgetterarnDAL/            # Äldre DAL med WebCrawlers
+├── ConsoleBudgeter/          # Konsol: textfacit / rapport (net8.0), `--out` för sparad utskrift
 │
 └── *Test-projekt:*
     ├── WebBankBudgeterServiceTest/
@@ -115,7 +119,20 @@ UtgiftsHanterareUiBinder → gv_budget (Budget Total-fliken)
 
 - `WebBankBudgeterUi/Data/GeneralSettings.xml` — sökväg till transaktionsfil, kategorifil
 - `WebBankBudgeterUi/TestData/BudgetIns.json` — budgeterade belopp per kategori/månad
+- `ConsoleBudgeter/Data/GeneralSettings.xml` — relativa sökvägar till `pelles budget.xls` och `BudgetterarnUi/Data/Categories.xml` (för textfacit-körning)
 - `Pelles-budget-slim-2014-2015-gform.xlsx` (i repo-rot) — Excel-facit som `plan.md` refererar (kontoutdrag + budget 2014/2015)
+
+## Textfacit (konsol, 2014–2015)
+
+Kör samma pipeline som tjänstelagret och skriv full utskrift till fil (UTF-8). Skapa gärna mappen `Facit/` först.
+
+```bash
+dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- --year 2014 --year 2015 --out Facit/facit-2014-2015-console.txt
+```
+
+Valfritt: `--transaction-file <sökväg>` om `pelles budget.xls` i repo-roten inte är samma export som innehåller alla år (konsolutskriften börjar med diagnostik: antal rader per år).
+
+Om `dotnet` saknas i miljön (t.ex. vissa sandlådor), kör samma kommando lokalt med .NET 8 SDK installerat.
 
 ## Teckenkodning
 

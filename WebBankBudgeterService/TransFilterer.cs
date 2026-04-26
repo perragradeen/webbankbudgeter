@@ -28,6 +28,13 @@ namespace WebBankBudgeterService
                   && t.DateAsDate <= endDate
                 ).ToList();
 
+            if (fromDate.HasValue && endDate.HasValue
+                && fromDate.Value.Year == endDate.Value.Year)
+            {
+                var y = fromDate.Value.Year;
+                trans = trans.Where(t => t.DateAsDate.Year == y).ToList();
+            }
+
             var filteredTrans = new TransactionList
             {
                 Transactions = trans

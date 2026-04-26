@@ -5,6 +5,12 @@
 > `HISTORY_ARCHIVE.md` och denna fil rensas för att endast innehålla senaste arbetets historik.
 > Detta håller filen lättläst och relevant medan fullständig historik bevaras i arkivet.
 
+## 2026-04-26 — Gren `ai`: sammanslagning av remote-grenar från `master`
+
+**Syfte:** En arbetsgren `ai` skapad från `master` där alla relevanta `origin/*`-featuregrenar (exkl. `master` och dependabot) mergats in så att en enda gren bär samlad kod och dokumentation. Första merge (`origin/cursor/agents-history-console-facit-d200`) gav konflikter mot befintlig `master`; lösningen prioriterade `master`-konsolflödet (`BudgetReportBuilder` + `WebBankBudgeterTests.Facit`), behöll `TransFilterer`-ändring från agents-grenen, tog bort duplicerad `InBudgetKvarCalculator` (samma logik som `InBudgetMath`), och skärpte `BudgetStructureBuilder` så förflyttning matchar exakt trimmat `" -"`.
+
+---
+
 ## 2026-04-26 — `master` synkad med `origin/cursor/console-budgeter-app-1a34`
 
 **Git-fakta (denna klon, innan merge):** `master` låg på `5e1c121` (Excel + plan/README). `origin/cursor/console-budgeter-app-1a34` hade **29 commits** ovanför gemensam ancestor `90a5331` och bar därmed `ConsoleBudgeter`, `WebBankBudgeterTests.Facit`, `InbudgetHandler`-delar (Kvar/IN-merge), m.m. Det förklarar “gren på gren” i `git log --graph`: en lång serie `cursor/`-commits på samma funktionella kedja, medan `master` hade en avstickare (`5e1c121`) som inte fanns på console-grenen. **Åtgärd:** merge av `origin/cursor/console-budgeter-app-1a34` in i `master` (ingen ny `cursor/…`-gren för just denna leverans).
