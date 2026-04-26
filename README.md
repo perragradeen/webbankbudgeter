@@ -6,10 +6,11 @@ Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategor
 
 Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att textfacit skapas med `ConsoleBudgeter` och `--out`, att facit inte “justeras” bara för gröna tester, och att du ska utgå från **faktisk** `git`-status i arbetskopian.
 
+- **`plan.md`** — målbild mot Excel-facit, beslut D1–D14, milstolpar M0–M5, risker.
+- **`todo.md`** — korta öppna punkter och vad som redan verifierats i kod.
 - **[`HISTORY.md`](HISTORY.md)** — aktuellt viktigt vs. arkiv (gamla sessioner, agent-ID:n).
-- **`plan.md` / `todo.md`** — hålls i synk med faktisk kod efter verifierad build (se `AGENTS.md`).
 
-Efter **verifierad** build/test: uppdatera vid behov `plan.md`, `todo.md`, denna `README.md` och `HISTORY.md` i samma leverans.
+**Rutin:** När något har **byggts, testats och verifierats**, uppdatera **`plan.md`**, **`todo.md`**, denna **`README.md`** och **`HISTORY.md`** så att de speglar verkligheten — då slipper ni att plan och kod divergerar.
 
 ## Typ av projekt
 
@@ -95,6 +96,8 @@ Budgetterarn.sln
     ├── FileTests/
     └── BudgetterarnUiTest/
 ```
+
+**Linux / headless:** Bygg och testa bibliotek som `WebBankBudgeterService` och `WebBankBudgeterServiceTest` med `dotnet` på Linux. **`WebBankBudgeterUi`** kräver **Windows Desktop**-SDK (`net8.0-windows`) — kör UI-bygge på en Windows-maskin om full lösning ska valideras.
 
 ## UI-flikar i huvudformuläret
 
@@ -184,6 +187,12 @@ dotnet run --project WebBankBudgeterUi
 Full textfacit (alla transaktioner) ligger i **`WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt`**. För att regenerera efter medveten kodändring (jämför diff mot facit, committa bara om det är avsiktligt): se kommandot under *Textfacit* ovan.
 
 Tester (enbart konsol): `dotnet test ConsoleBudgeterTest/ConsoleBudgeterTest.csproj`
+
+**Service-tester (Linux utan WinForms, enbart det projektet):**
+
+```bash
+dotnet test WebBankBudgeterServiceTest/WebBankBudgeterServiceTest.csproj
+```
 
 **Linux / CI / när WinForms-appen kör och låser `bin` (MSB3021/MSB3027):**  
 Bygg och testa utan Windows-UI-projekt med solution filter:
