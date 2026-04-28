@@ -3,6 +3,12 @@
 > **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och korta **sessionsfakta**.  
 > **Underhåll:** Lägg nya upptäckter under *Del A*. Långa bakgrundsposter ligger i **`HISTORY_ARCHIVE.md`**.
 
+## 2026-04-28 — Tester: snapshots + `Check_If_SomeThingLoaded_Privata`
+
+**Syfte:** `dotnet test Budgetterarn.NoWindowsUi.slnf` grönt. Uppdaterade `ConsoleBudgeterTest/Snapshots/report-2014.txt` och `report-2015.txt` till aktuell rapport (radordning `" -"` i budgettabell, borttagen förflyttnings-summeringsblock). `SnapshotTests.Normalize` strippar UTF-8 BOM. `GetAllVisibleEntriesFromWebBrowserTests.Check_If_SomeThingLoaded_Privata` sökte med `DateTime.Today.ToShortDateString()` som nyckel — stämmer inte med `KontoEntry.KeyForThis` (`yyyy-MM-dd`); bytt till uppslag via `Info`.
+
+---
+
 ## 2026-04-27 — `plan.md` / `todo.md` rensade; snapshot i `todo-history-arkiv.md`
 
 **Syfte:** Lämna endast **återstående** arbete i `plan.md` och `todo.md`. All tidigare full plan (beslut D1–D16, Excel-analys, dataflöde, facit-schema, M1–M5 i detalj, risker) och den dåvarande `todo.md` ligger fryst i **`todo-history-arkiv.md`**. `README.md` och `HISTORY_ARCHIVE.md` pekar på arkivet där längre text behövs.
@@ -77,4 +83,4 @@
 
 ---
 
-*Senast uppdaterad: 2026-04-27 (`todo-history-arkiv.md` + rensade plan/todo).*
+*Senast uppdaterad: 2026-04-28 (testfix snapshots + Swedbank HTML-test).*
