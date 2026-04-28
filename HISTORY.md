@@ -3,9 +3,11 @@
 > **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och korta **sessionsfakta**.  
 > **Underhåll:** Lägg nya upptäckter under *Del A*. Långa bakgrundsposter ligger i **`HISTORY_ARCHIVE.md`**.
 
-## 2026-04-28 — Tester: snapshots + `Check_If_SomeThingLoaded_Privata`
+## 2026-04-28 — Tester (snapshots, Swedbank-test) och M0 facit-räkning
 
-**Syfte:** `dotnet test Budgetterarn.NoWindowsUi.slnf` grönt. Uppdaterade `ConsoleBudgeterTest/Snapshots/report-2014.txt` och `report-2015.txt` till aktuell rapport (radordning `" -"` i budgettabell, borttagen förflyttnings-summeringsblock). `SnapshotTests.Normalize` strippar UTF-8 BOM. `GetAllVisibleEntriesFromWebBrowserTests.Check_If_SomeThingLoaded_Privata` sökte med `DateTime.Today.ToShortDateString()` som nyckel — stämmer inte med `KontoEntry.KeyForThis` (`yyyy-MM-dd`); bytt till uppslag via `Info`.
+**Snapshots / UI-test:** `dotnet test Budgetterarn.NoWindowsUi.slnf` grönt efter uppdaterade `ConsoleBudgeterTest/Snapshots/report-2014.txt` och `report-2015.txt`, samt `SnapshotTests.Normalize` som strippar UTF-8 BOM. `Check_If_SomeThingLoaded_Privata` fixad (nyckel via `Info`, inte `DateTime.Today`).
+
+**M0 (del):** `WebBankBudgeterServiceTest/FacitTransactionCountTests.cs` — 809 + 845 transaktioner i facit-JSON enligt `WebBankBudgeterTests.Facit/Facit/README.md`. Full `TransactionHandler` + `.xls` kvar manuellt där filen finns.
 
 ---
 

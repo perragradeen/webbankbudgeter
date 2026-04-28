@@ -12,9 +12,10 @@ Målbild: UI ska matcha struktur och data mot Excel-facit `Pelles-budget-slim-20
 
 ### M0 — `TransactionHandler` och transaktionsantal
 
-1. Bekräfta att `WebBankBudgeterService/TransactionHandler.cs` exponerar det som `WebBankBudgeterUi/WebBankBudgeter.cs` förväntar (`TransactionList.Transactions`, `TransactionList.Account.AvailableAmount` m.m. — exakta rader: läs koden).
-2. Läs in avsedd källfil (t.ex. `Pelles Budget.xls` / motsvarande) och verifiera **~1 654** transaktioner över 2014+2015 enligt facitunderlag.
-3. Vid `MSB3021`/`MSB3027` under full build: stäng körande WinForms eller bygg med `Budgetterarn.NoWindowsUi.slnf`.
+1. Bekräfta att `WebBankBudgeterService/TransactionHandler.cs` exponerar det som `WebBankBudgeterUi/WebBankBudgeter.cs` förväntar (`TransactionList.Transactions`, `TransactionList.Account` m.m. — läs koden).
+2. **Facit-JSON (CI):** antal transaktioner per år enligt `WebBankBudgeterTests.Facit/Facit/README.md` (2014 = 809, 2015 = 845, summa 1654) täcks av `WebBankBudgeterServiceTest/FacitTransactionCountTests.cs`.
+3. **Riktig `.xls` (manuellt / lokal maskin):** ladda samma källa som facit (`Pelles Budget.xls`) via `TransactionHandler` och jämför volym/struktur med facit-JSON — kräver att filen finns på sökväg i `GeneralSettings.xml` (`TransactionTestFilePath`).
+4. Vid `MSB3021`/`MSB3027` under full build: stäng körande WinForms eller bygg med `Budgetterarn.NoWindowsUi.slnf`.
 
 ---
 
