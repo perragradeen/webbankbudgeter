@@ -6,12 +6,13 @@ Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategor
 
 Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att textfacit skapas med `ConsoleBudgeter` och `--out`, att facit inte “justeras” bara för gröna tester, och att du ska utgå från **faktisk** `git`-status i arbetskopian.
 
-- **`plan.md`** — målbild mot Excel-facit, beslut D1–D14, milstolpar M0–M5, risker.
-- **`todo.md`** — korta öppna punkter och vad som redan verifierats i kod.
+- **`plan.md`** — endast **återstående** arbete (M0, M3/M4, regenerering av facit, öppna gap).
+- **`todo.md`** — korta öppna punkter.
+- **[`todo-history-arkiv.md`](todo-history-arkiv.md)** — fryst snapshot av tidigare full `plan.md` + `todo.md` (beslut, Excel-analys, facit-schema, gamla milstolpar).
 - **[`HISTORY.md`](HISTORY.md)** — kort aktuellt (beslut, Linux, facit-kedja).
 - **[`HISTORY_ARCHIVE.md`](HISTORY_ARCHIVE.md)** — längre bakgrund (gamla sessioner, agent-ID:n).
 
-**Rutin:** När något har **byggts, testats och verifierats**, uppdatera **`plan.md`**, **`todo.md`**, denna **`README.md`** och **`HISTORY.md`** så att de speglar verkligheten — då slipper ni att plan och kod divergerar.
+**Rutin:** När något har **byggts, testats och verifierats**, uppdatera **`plan.md`**, **`todo.md`**, denna **`README.md`** och **`HISTORY.md`**. Arkivet **`todo-history-arkiv.md`** uppdateras bara om du medvetet fryser en ny snapshot av längre plan/todo-text.
 
 ## Typ av projekt
 
@@ -26,7 +27,7 @@ Arbetet i repot sker ofta via **Cursor** med flera sätt att få hjälp av en mo
 
 - **Flera agenter / parallella uppdrag:** Olika konversationer eller bakgrundsjobb (t.ex. *Cloud Agent*) kan arbeta i samma repo **samtidigt**. De skapar då ofta **egna grenar** (prefix `cursor/…`) och **pull requests** mot `master`.
 - **Samordning:** Innan merge, kontrollera att grenar inte krockar i samma filer och att tester fortfarande är gröna. Historik om tidigare agent-sessioner kan finnas i `HISTORY.md` om den filen finns i grenen — den är **bakgrund**, inte facit; **committad facit + tester** är den bindande referensen.
-- **Headless / Linux:** WinForms-projektet kräver Windows Desktop SDK. För CI eller Linux-miljöer: bygg och testa det som **inte** kräver WinForms (se `plan.md` eller repo för *solution filter* `.slnf` om det finns), och använd konsol-/servicetester där det går.
+- **Headless / Linux:** WinForms-projektet kräver Windows Desktop SDK. För CI eller Linux: `Budgetterarn.NoWindowsUi.slnf` — bygg/test utan WinForms; konsol-/servicetester.
 
 Kort sagt: *multi-agent* här betyder **flera automatiserade eller parallella kodvägar** — planera merges och lita på **test + facit**, inte bara på en enskild agents utskrift i chatten.
 

@@ -3,6 +3,12 @@
 > **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och korta **sessionsfakta**.  
 > **Underhåll:** Lägg nya upptäckter under *Del A*. Långa bakgrundsposter ligger i **`HISTORY_ARCHIVE.md`**.
 
+## 2026-04-27 — `plan.md` / `todo.md` rensade; snapshot i `todo-history-arkiv.md`
+
+**Syfte:** Lämna endast **återstående** arbete i `plan.md` och `todo.md`. All tidigare full plan (beslut D1–D16, Excel-analys, dataflöde, facit-schema, M1–M5 i detalj, risker) och den dåvarande `todo.md` ligger fryst i **`todo-history-arkiv.md`**. `README.md` och `HISTORY_ARCHIVE.md` pekar på arkivet där längre text behövs.
+
+---
+
 ## 2026-04-26 — Dokumentstäd: `plan` / `todo` vs genomförd kod (gren `ai`)
 
 **Syfte:** Ta bort dubbletter där samma arbete stod som både “klart i kod” och “väntar verifiering” i `todo.md`, synka `plan.md` (dataflöde §2.1–2.3, M1-status, G6) med repot, och flytta arkivdelen till `HISTORY_ARCHIVE.md` så `HISTORY.md` bara bär aktuellt innehåll.
@@ -61,8 +67,8 @@
 
 ### Plan vs. repo
 
-- **`plan.md` avsnitt M1** beskriver fortfarande en **checklista** vid regenerering av facit — följ den när Excel eller extraktionsregler ändras; **faktiska filantal** finns i committad facit och `Facit/README.md`.
-- **`plan.md` §6 (risker)** har uppdaterats med mitigeringar (R1 `.slnf`, R5 årsfilter, R6 utfasad Kvar).
+- **Regenerering av facit:** checklista och invariant­er finns i **`todo-history-arkiv.md`** (tidigare `plan.md` §5 M1, §3.4); kort pekare i nuvarande **`plan.md`**. **Faktiska filantal** i committad facit: `WebBankBudgeterTests.Facit/Facit/README.md`.
+- **Tidigare risktabell (R1–R8)** ligger i arkivet; mitigeringar (`.slnf`, årsfilter i `TransFilterer`, Kvar-kedja) finns kvar i kod och tester.
 
 ### Tester som är “källan till sanning” på Linux
 
@@ -71,4 +77,4 @@
 
 ---
 
-*Senast uppdaterad: 2026-04-26 (dokumentstäd + `HISTORY_ARCHIVE.md`).*
+*Senast uppdaterad: 2026-04-27 (`todo-history-arkiv.md` + rensade plan/todo).*

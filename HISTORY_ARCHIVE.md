@@ -1,7 +1,7 @@
 # Projekt­historik — arkiv (WebBankBudgeter)
 
 > **Syfte:** Långa bakgrundsposter, gamla branch-namn och sessionsdetaljer som **inte** ska behövas för dagligt arbete.  
-> **Aktuellt läge:** se `HISTORY.md` (Del A) och `plan.md` / `todo.md`.
+> **Aktuellt läge:** se `HISTORY.md` (Del A), `plan.md` / `todo.md` (återstående), och vid behov `todo-history-arkiv.md` (snapshot av längre plan/todo).
 
 ---
 
@@ -19,7 +19,7 @@
 - **Extraktor-bugg (fixad):** fel kolumn för kategori i `ExtractBudgetIn` → gav `"category": "-11506.74"`; rättades till kolumn 1 + månader 6–17.
 - **Plan D5 / januari:** plan påstod först att januari 2014 saknades — **verifiering visade att januari finns**; plan och invariant (28×12 = 336 rader per år) korrigerades.
 - **M2:** `WebBankBudgeterTests.Facit` + `FacitLoader` + records + JSON kopieras till output.
-- **Gamla “Nästa steg” i denna fil** nämnde M0/M3/M4/M5 som pending — **status har ändrats** (mycket av M5 och delar av facit-kedjan är implementerat); se `plan.md` och `todo.md` för aktuell kö.
+- **Gamla “Nästa steg” i denna fil** nämnde M0/M3/M4/M5 som pending — **status har ändrats** (mycket av M5 och delar av facit-kedjan är implementerat); se `plan.md` / `todo.md` för öppet, `todo-history-arkiv.md` för fryst bakgrund.
 
 ### Agent-ID:n (endast spårbarhet i gamla loggar)
 
