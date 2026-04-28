@@ -1,4 +1,5 @@
-﻿using BudgeterCore.Entities;
+﻿using System.Collections;
+using BudgeterCore.Entities;
 using BudgetterarnDAL.DAL;
 using LoadTransactionsFromFile;
 
@@ -4226,12 +4227,21 @@ Chatta med oss";
             Assert.IsTrue(actual.Count > 0);
             Assert.AreEqual(48, actual.Count);
 
-            var key = DateTime.Today.ToShortDateString() +
-                      "APOTEKET AB STOCKHOLM-227.90";
-            var actualFirst = actual[key]
-                as KontoEntry;
-            Assert.AreEqual("APOTEKET AB STOCKHOLM", actualFirst.Info);
-            Assert.AreEqual(DateTime.Today, actualFirst.Date);
+            // Nyckeln byggs i KontoEntry.KeyForThis (yyyy-MM-dd + invariant belopp m.m.) —
+            // ToShortDateString() stämmer inte överens med alla kulturer/OS.
+            KontoEntry? apotek = null;
+            foreach (DictionaryEntry de in actual)
+            {
+                if (de.Value is KontoEntry ke && ke.Info == "APOTEKET AB STOCKHOLM")
+                {
+                    apotek = ke;
+                    break;
+                }
+            }
+
+            Assert.IsNotNull(apotek, "Förväntade posten APOTEKET AB STOCKHOLM i NewKontoEntries.");
+            Assert.AreEqual(DateTime.Today, apotek.Date);
+            Assert.AreEqual(-227.90, apotek.KostnadEllerInkomst, 0.02);
         }
 
         [TestMethod]
@@ -4257,8 +4267,8 @@ Chatta med oss";
 
             var key =
                 "2021-08-21UNDER PRODUKTION-29191495.39";
-            var actualFirst = actual[key]
-                as KontoEntry;
+            Assert.IsTrue(actual.ContainsKey(key), $"Nyckel saknas: {key}");
+            var actualFirst = (KontoEntry)actual[key]!;
             Assert.AreEqual("UNDER PRODUKTION", actualFirst.Info);
             Assert.AreEqual(new DateTime(2021, 08, 21), actualFirst.Date);
         }

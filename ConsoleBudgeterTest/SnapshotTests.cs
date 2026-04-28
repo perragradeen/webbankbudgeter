@@ -41,6 +41,14 @@ public class SnapshotTests
             $"Rapporten skiljer sig från snapshot. Actual: {actualPath}");
     }
 
-    private static string Normalize(string s) =>
-        s.Replace("\r\n", "\n").Replace("\r", "\n").TrimEnd();
+    private static string Normalize(string s)
+    {
+        // Ignorera UTF-8 BOM — snapshots kan sparas med eller utan den.
+        if (s.Length > 0 && s[0] == '\uFEFF')
+        {
+            s = s[1..];
+        }
+
+        return s.Replace("\r\n", "\n").Replace("\r", "\n").TrimEnd();
+    }
 }
