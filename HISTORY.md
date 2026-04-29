@@ -3,15 +3,17 @@
 > **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och korta **sessionsfakta**.  
 > **Underhåll:** Lägg nya upptäckter under *Del A*. Långa bakgrundsposter ligger i **`HISTORY_ARCHIVE.md`**.
 
-## 2026-04-29 — M0: `TransactionHandler` + två Excel-källor
+## 2026-04-29 — M0: `TransactionHandler` + två Excel-källor; facit-JSON-räkning i CI
 
 **Syfte:** Verifiera inläsning mot `pelles budget.xls` och mot facit-filen `Pelles-budget-slim-2014-2015-gform.xlsx`.
 
-**Utfall:** Repo-roten `pelles budget.xls` innehåller **2018–2023** (arbetskopia), inte 2014–2015. Facit-antalen **809 + 845** valideras mot **`.gform.xlsx`** i `TransactionHandlerM0Tests`. I `KontoEntry` för XLS: år **1–99** normaliseras med **+2000** så tvåsiffriga år inte blir år 14/15 e.Kr.
+**Utfall:** Repo-roten `pelles budget.xls` innehåller **2018–2023** (arbetskopia), inte 2014–2015. Facit-antalen **809 + 845** valideras mot **`.gform.xlsx`** i `TransactionHandlerM0Tests`. Antal rader i facit-JSON (**809**, **845**, summa **1654**) täcks även av `WebBankBudgeterServiceTest/FacitTransactionCountTests.cs` enligt `WebBankBudgeterTests.Facit/Facit/README.md`. I `KontoEntry` för XLS: år **1–99** normaliseras med **+2000** så tvåsiffriga år inte blir år 14/15 e.Kr.
 
 ---
 
-**Syfte:** `dotnet test Budgetterarn.NoWindowsUi.slnf` grönt. Uppdaterade `ConsoleBudgeterTest/Snapshots/report-2014.txt` och `report-2015.txt` till aktuell rapport (radordning `" -"` i budgettabell, borttagen förflyttnings-summeringsblock). `SnapshotTests.Normalize` strippar UTF-8 BOM. `GetAllVisibleEntriesFromWebBrowserTests.Check_If_SomeThingLoaded_Privata` sökte med `DateTime.Today.ToShortDateString()` som nyckel — stämmer inte med `KontoEntry.KeyForThis` (`yyyy-MM-dd`); bytt till uppslag via `Info`.
+**Snapshots / UI-test:** `dotnet test Budgetterarn.NoWindowsUi.slnf` grönt efter uppdaterade `ConsoleBudgeterTest/Snapshots/report-2014.txt` och `report-2015.txt`, samt `SnapshotTests.Normalize` som strippar UTF-8 BOM. `Check_If_SomeThingLoaded_Privata` fixad (nyckel via `Info`, inte `DateTime.Today`).
+
+**M0 (del):** Full `TransactionHandler` + arkiv-.`xls` med 2014–2015 kvar manuellt där filen finns på sökväg.
 
 ---
 
@@ -89,4 +91,4 @@
 
 ---
 
-*Senast uppdaterad: 2026-04-28 (testfix snapshots + Swedbank HTML-test).*
+*Senast uppdaterad: 2026-04-29 (M0 merge: gform + facit-JSON-tester).*

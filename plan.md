@@ -13,11 +13,13 @@ Målbild: UI ska matcha struktur och data mot Excel-facit `Pelles-budget-slim-20
 ### M0 — `TransactionHandler` och transaktionsantal
 
 1. Bekräfta att `WebBankBudgeterService/TransactionHandler.cs` exponerar det som `WebBankBudgeterUi/WebBankBudgeter.cs` förväntar (`TransactionList.Transactions`, `TransactionList.Account.AvailableAmount` m.m. — exakta rader: läs koden).
-2. **Två olika filer i repot:**
+2. **Facit-JSON (CI):** antal transaktioner per år enligt `WebBankBudgeterTests.Facit/Facit/README.md` (2014 = 809, 2015 = 845, summa 1654) täcks av `WebBankBudgeterServiceTest/FacitTransactionCountTests.cs`.
+3. **Två olika filer i repot:**
    - `pelles budget.xls` (repo-root) är en **arbetskopia** med bl.a. **2018–2023** (ej 2014–2015). Där ska du inte förvänta dig ~1 654 rader för 2014+2015.
    - **`Pelles-budget-slim-2014-2015-gform.xlsx`** är **facit-källan** (samma som JSON under `WebBankBudgeterTests.Facit`). `TransactionHandler` ska ge **809** transaktioner 2014 och **845** 2015 — automatiserat i `WebBankBudgeterServiceTest/TransactionHandlerM0Tests.cs` (`M0_SlimGformXlsx_MatchesFacitTransactionCounts`).
-3. Vid gamla `.xls` med **tvåsiffrigt år** i kolumn (t.ex. 14→2014) normaliserar `BudgeterCore/Entities/KontoEntry.cs` året till 2000+ vid inläsning.
-4. Vid `MSB3021`/`MSB3027` under full build: stäng körande WinForms eller bygg med `Budgetterarn.NoWindowsUi.slnf`.
+4. **Riktig `.xls` som facit 2014–2015 kom från (manuellt / lokal maskin):** ladda via `TransactionHandler` och jämför volym/struktur med facit-JSON — kräver att filen finns på sökväg i `GeneralSettings.xml` (`TransactionTestFilePath`).
+5. Vid gamla `.xls` med **tvåsiffrigt år** i kolumn (t.ex. 14→2014) normaliserar `BudgeterCore/Entities/KontoEntry.cs` året till 2000+ vid inläsning.
+6. Vid `MSB3021`/`MSB3027` under full build: stäng körande WinForms eller bygg med `Budgetterarn.NoWindowsUi.slnf`.
 
 ---
 
