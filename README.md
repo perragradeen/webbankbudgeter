@@ -218,3 +218,35 @@ Filtret exkluderar `WebBankBudgeterUi`, `BudgetterarnUi` och `WebBankBudgeterUiT
 **SDK:** installera **.NET 8 SDK** (`dotnet-sdk-8.0`). Utan `dotnet` i `PATH` misslyckas alla steg ovan.
 
 **Vanliga fel:** om WinForms-appen kör samtidigt som `dotnet build Budgetterarn.sln` kan MSBuild rapportera **MSB3021/MSB3027** (filer låsta under `bin/`). Stäng appen eller använd `.slnf`.
+
+### ConsoleBudgeter utan .NET på målmaskinen (Linux x64)
+
+Med **självmantlad** publicering följer .NET-runtime med i utdata. På en annan Linux behöver målmaskinen då **inte** installera SDK eller runtime — kopiera publiceringsmappen och kör binären.
+
+Bygg (kräver .NET SDK **på byggmaskinen**, t.ex. CI eller din dev-dator):
+
+```bash
+./scripts/publish-console-budgeter-linux.sh
+```
+
+Alternativt utan skript:
+
+```bash
+dotnet publish ConsoleBudgeter/ConsoleBudgeter.csproj -c Release -p:PublishProfile=Linux-x64-SelfContained
+```
+
+Utdata hamnar under **`artifacts/ConsoleBudgeter/linux-x64/`** (mappen är ignorerad av git). Kör t.ex.:
+
+```bash
+./artifacts/ConsoleBudgeter/linux-x64/ConsoleBudgeter --help
+```
+
+För textfacit (samma som i `AGENTS.md`):
+
+```bash
+./artifacts/ConsoleBudgeter/linux-x64/ConsoleBudgeter -- \
+  --year 2014 --year 2015 --transactions 0 \
+  --out WebBankBudgeterTests.Facit/Facit/facit-2014-2015.txt
+```
+
+För Windows eller andra RID:er kan du lägga en egen `PublishProfiles/*.pubxml` med annat `RuntimeIdentifier` (t.ex. `win-x64`).

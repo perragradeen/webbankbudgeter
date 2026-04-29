@@ -15,6 +15,8 @@
 
 **M0 (del):** Full `TransactionHandler` + arkiv-.`xls` med 2014–2015 kvar manuellt där filen finns på sökväg.
 
+**ConsoleBudgeter på Linux utan installerad .NET på målmaskinen:** självmantlad publicering `linux-x64` (`ConsoleBudgeter/Properties/PublishProfiles/Linux-x64-SelfContained.pubxml`), skript `scripts/publish-console-budgeter-linux.sh`; utdata under `artifacts/` (ignoreras av git). Se `README.md`.
+
 ---
 
 ## 2026-04-27 — `plan.md` / `todo.md` rensade; snapshot i `todo-history-arkiv.md`
@@ -32,6 +34,12 @@
 ## 2026-04-26 — Gren `ai`: sammanslagning av remote-grenar från `master`
 
 **Syfte:** En arbetsgren `ai` skapad från `master` där relevanta `origin/*`-grenar mergats in så att en enda gren bär samlad kod och dokumentation. Inkluderat: `cursor/agents-history-console-facit-d200`, `cursor/console-budgeter-app-1a34` (redan up to date), `cursor/m5-kvar-snurra-budgetins-23ef`, `cursor/mitigate-plan-risks-23ef`, `cursor/readme-multi-agent-a7a6`, `cursor/plan-todo-readme-c93a`, `cursor/m0-m5-plan-facit-a56f` (**tom merge** `-s ours` — innehåll fanns redan i `ai`; undvek massiva add/add-konflikter i facit-JSON), `feature/facit-implementation` (redan up to date), dependabot-grenar för CefSharp (behöll **140.1.140** på `HEAD`) respektive `System.Text.Encodings.Web` (behöll borttagen `packages.config` i `SwedbankSharp-master`). Första innehållsmerge (`agents-history…`) gav konflikter mot `master`; lösningen prioriterade `master`-konsolflödet (`BudgetReportBuilder` + `WebBankBudgeterTests.Facit`), behöll `TransFilterer`-förbättring, tog bort duplicerad `InBudgetKvarCalculator` (samma logik som `InBudgetMath`), och skärpte `BudgetStructureBuilder` så förflyttning matchar exakt trimmat `" -"`.
+
+---
+
+## 2026-04-26 — ConsoleBudgeter: självmantlad Linux-publicering
+
+**Vad:** `PublishProfiles/Linux-x64-SelfContained.pubxml` + `scripts/publish-console-budgeter-linux.sh`; utdata till `artifacts/ConsoleBudgeter/linux-x64/`. **Varför:** köra `ConsoleBudgeter` på Linux utan installerad .NET SDK/runtime på målmaskinen (runtime följer med vid publicering). **`/artifacts/`** tillagd i `.gitignore`. **Git:** branch `cursor/console-budgeter-self-contained-8460` (molnmiljöns PR-krav); användaren önskade arbetsbas `master`.
 
 ---
 
@@ -91,4 +99,4 @@
 
 ---
 
-*Senast uppdaterad: 2026-04-29 (M0 merge: gform + facit-JSON-tester).*
+*Senast uppdaterad: 2026-04-29 (merge PR #17 + #15: facit-JSON-tester, Linux self-contained publicering).*

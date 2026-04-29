@@ -4,7 +4,7 @@ Målbild: UI ska matcha struktur och data mot Excel-facit `Pelles-budget-slim-20
 
 **Arkiv:** `todo-history-arkiv.md` innehåller tidigare full `plan.md` (beslut D1–D16, Excel-analys, dataflöde, facit-schema, integrations­test­tabeller, M1–M5 i detalj, risker) och tidigare `todo.md`.
 
-**Rutin:** `AGENTS.md` — textfacit endast via `ConsoleBudgeter --out`; efter verifierad leverans uppdatera vid behov denna fil, `todo.md`, `README.md`, `HISTORY.md`.
+**Rutin:** Se **`AGENTS.md`**: textfacit endast via `ConsoleBudgeter --out`; efter verifierad leverans uppdatera vid behov denna fil, `todo.md`, `README.md`, `HISTORY.md`. För att **köra** `ConsoleBudgeter` på Linux utan installerad .NET-runtime på målmaskinen: självmantlad publicering (`ConsoleBudgeter/Properties/PublishProfiles/Linux-x64-SelfContained.pubxml`, skript `scripts/publish-console-budgeter-linux.sh`) — se `README.md`.
 
 ---
 

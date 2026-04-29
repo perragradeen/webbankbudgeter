@@ -1,3 +1,6 @@
+# Självmantlad publicering av ConsoleBudgeter (byggs lokalt/CI, checkas inte in)
+/artifacts/
+
 Release
 Debug
 
