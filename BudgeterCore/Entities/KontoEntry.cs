@@ -190,6 +190,12 @@ namespace BudgeterCore.Entities
                 Month = RowThatExistsNoSpecial(inArray, 1).SafeGetIntFromString();
                 Day = RowThatExistsNoSpecial(inArray, 2).SafeGetIntFromString();
 
+                // Excel/sparformat kan lagra år som 14/15 i stället för 2014/2015.
+                if (Year is > 0 and < 100)
+                {
+                    Year += 2000;
+                }
+
                 if (Day == 0)
                 {
                     Day = Date.Day;
