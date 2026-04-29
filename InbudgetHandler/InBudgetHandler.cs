@@ -39,7 +39,7 @@ namespace InbudgetHandler
             _inBudgetHandlerFileHandler.SparaInPosterPåDisk(inPoster);
         }
 
-        internal async Task<List<InBudget>> SetInPosterFromDisk()
+        public async Task<List<InBudget>> SetInPosterFromDisk()
         {
             return await _inBudgetHandlerFileHandler.SetInPosterFromDisk();
         }
