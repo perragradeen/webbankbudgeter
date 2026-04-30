@@ -116,9 +116,9 @@
             // BudgetTabs
             // 
             BudgetTabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            BudgetTabs.Controls.Add(tbl_Kvar);
             BudgetTabs.Controls.Add(tbl_INCOME);
             BudgetTabs.Controls.Add(tbl_Budget);
+            BudgetTabs.Controls.Add(tbl_Kvar);
             BudgetTabs.Controls.Add(tbl_Totals);
             BudgetTabs.Controls.Add(tbl_Transactions);
             BudgetTabs.Controls.Add(tbl_reccuringCosts);
@@ -161,7 +161,7 @@
             tbl_INCOME.Name = "tbl_INCOME";
             tbl_INCOME.Size = new Size(1013, 545);
             tbl_INCOME.TabIndex = 2;
-            tbl_INCOME.Text = "Incomes";
+            tbl_INCOME.Text = "In";
             tbl_INCOME.UseVisualStyleBackColor = true;
             // 
             // gv_incomes
@@ -184,7 +184,7 @@
             tbl_Budget.Padding = new Padding(4, 3, 4, 3);
             tbl_Budget.Size = new Size(1013, 545);
             tbl_Budget.TabIndex = 0;
-            tbl_Budget.Text = "Budget Total";
+            tbl_Budget.Text = "Ut - Utgifter";
             tbl_Budget.UseVisualStyleBackColor = true;
             // 
             // tbl_Totals

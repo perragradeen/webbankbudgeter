@@ -5,7 +5,7 @@ using WebBankBudgeterTests.Facit;
 namespace ConsoleBudgeter.Rendering;
 
 /// <summary>
-/// Renderar "Incomes"-fliken. Motsvarar det <c>InBudgetUiHandler</c> binder
+/// Renderar budget-in-fliken (**In** / <c>gv_incomes</c>). Motsvarar det <c>InBudgetUiHandler</c> binder
 /// till <c>gv_incomes</c>: första kolumn = kategorinamn, följande kolumner =
 /// månader, värden formaterade med "# ##0" enligt InvariantCulture.
 /// </summary>

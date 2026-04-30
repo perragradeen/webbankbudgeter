@@ -33,7 +33,7 @@ namespace WebBankBudgeterUi
                 _utgiftsHanterareUiBinder = new UtgiftsHanterareUiBinder(
                     gv_budget);
 
-                txtYearFilter.Text = "2023"; //Testdata
+                txtYearFilter.Text = "2014"; // Facit / slim xlsx samt FacitJson budget-in
                 //TODO: sätt alltid förra året
                     //TransFilterer.LastYear().ToString();
 
@@ -70,8 +70,7 @@ namespace WebBankBudgeterUi
             webBankBudgeter.AddAveragesToTable(table);
 
             var inDataRader = await HämtaInDataRaderFiltrerat();
-            var tableBeforeInMerge = TextToTableOutPuterClone.Clone(table);
-            WebBankBudgeter.MergeBudgetInsIntoBudgetTextTable(table, inDataRader);
+            var tableUtOnly = TextToTableOutPuterClone.Clone(table);
 
             // --- Behandla data
 
@@ -81,6 +80,7 @@ namespace WebBankBudgeterUi
             webBankBudgeter.DescribeReoccurringGroups();
             DescribeStartYear(table);
 
+            // Ut-fliken: enbart transaktionssummering (samma som facit expected-ut per kategori).
             BindToBudgetTableUi(table);
             var summedAvaragesForCalc = webBankBudgeter.CalculateMonthlyAvarages();
             BindMonthAveragesToUi(summedAvaragesForCalc);
@@ -90,7 +90,7 @@ namespace WebBankBudgeterUi
 
             //BindTotalsToUi();
 
-            var kvarTable = webBankBudgeter.BuildKvarTextTable(tableBeforeInMerge, inDataRader, WriteLineToOutputAndScrollDown);
+            var kvarTable = webBankBudgeter.BuildKvarTextTable(tableUtOnly, inDataRader, WriteLineToOutputAndScrollDown);
             BindKvarBudgetTableUi(kvarTable);
 
             // Presentera tabell för inkomst i varje kategori budget.

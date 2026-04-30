@@ -1,3 +1,4 @@
+using BudgeterCore.Entities;
 using InbudgetHandler;
 using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
@@ -225,6 +226,53 @@ namespace WebBankBudgeterServiceTest
                 .FrånÅrTillDatum("2023");
 
             Assert.AreEqual(new DateTime(2023, 01, 01), results);
+        }
+
+        [TestMethod]
+        public async Task SkapaInPoster_TargetMonth_IsInSelectedYear_WhenExistingInPosterIsOtherYear()
+        {
+            var tempJson = Path.Combine(Path.GetTempPath(), $"budgetins-{Guid.NewGuid():n}.json");
+            try
+            {
+                var inBudgetHandler = new InBudgetHandler(tempJson);
+                inBudgetHandler.SetInPoster(new List<InBudget>
+                {
+                    new InBudget
+                    {
+                        CategoryDescription = "Kat",
+                        BudgetValue = 100,
+                        YearAndMonth = new DateTime(2015, 12, 1)
+                    }
+                });
+
+                if (!File.Exists(_transactionTestFilePath))
+                {
+                    Assert.Inconclusive($"Saknar transaktionsfil: {_transactionTestFilePath}");
+                }
+
+                var tableGetter = new TableGetter { AddAverageColumn = true };
+                var transactionHandler = new TransactionHandler(
+                    _ => { },
+                    tableGetter,
+                    GetCategoryFilePath(),
+                    _transactionTestFilePath);
+                await transactionHandler.GetTransactionsAsync();
+
+                var sut = new SkapaInPosterHanterare(inBudgetHandler, transactionHandler);
+                var results = await sut.SkapaInPoster(new DateTime(2023, 1, 1));
+
+                Assert.IsTrue(results.Any());
+                Assert.IsTrue(
+                    results.All(r => r.YearAndMonth.Year == 2023),
+                    "Nya rader ska ligga i valt år så årsfiltret i UI inte tar bort allt.");
+            }
+            finally
+            {
+                if (File.Exists(tempJson))
+                {
+                    File.Delete(tempJson);
+                }
+            }
         }
 
         [TestMethod]

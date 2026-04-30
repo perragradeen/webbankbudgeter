@@ -10,7 +10,7 @@ namespace ConsoleBudgeter;
 /// <summary>
 /// Bygger rapport från facit-JSON med samma service-lager som WinForms:
 /// <see cref="FacitBudgetTextTableFactory"/>, <see cref="BudgetStructureBuilder"/>,
-/// <see cref="BudgetTableInMerger"/>, <see cref="KvarTextTableBuilder"/>.
+/// <see cref="KvarTextTableBuilder"/> (Ut = transaktionssummering utan ihopslagning med budget-in).
 /// </summary>
 public static class BudgetReportBuilder
 {
@@ -20,28 +20,26 @@ public static class BudgetReportBuilder
         var budgetIn = FacitLoader.LoadBudgetIn(year);
         var expectedUt = FacitLoader.LoadExpectedUt(year);
         var transfers = FacitLoader.LoadExpectedTransfers(year);
-        var expectedKvar = FacitLoader.LoadExpectedKvar(year);
 
         var sb = new StringBuilder();
         sb.AppendLine($"# WebBankBudgeter – rapport för {year}");
         sb.AppendLine();
 
-        sb.AppendLine("## Incomes (gv_incomes)");
+        sb.AppendLine("## In (gv_incomes)");
         sb.AppendLine(IncomesRenderer.Render(year, budgetIn));
 
         var utAmounts = expectedUt
             .Select(u => (u.Category, u.Year, u.Month, u.ActualAmount))
             .Concat(transfers.Select(t => (t.Category, t.Year, t.Month, t.ActualAmount)));
 
-        var expenseTable = FacitBudgetTextTableFactory.Build(year, utAmounts, addAverageColumns: true);
+        var tableUt = FacitBudgetTextTableFactory.Build(year, utAmounts, addAverageColumns: true);
         var inRader = FacitInBudgetRows.FromFacit(budgetIn);
-        var tableBeforeIn = TextToTableOutPuterClone.Clone(expenseTable);
-        BudgetTableInMerger.MergeInRows(expenseTable, inRader);
+        var tableUtForKvar = TextToTableOutPuterClone.Clone(tableUt);
 
-        sb.AppendLine("## Utgifter aka - Budget Total (gv_budget)");
-        sb.AppendLine(TableRenderer.Render(expenseTable));
+        sb.AppendLine("## Ut - Utgifter (gv_budget)");
+        sb.AppendLine(TableRenderer.Render(tableUt));
 
-        var kvarTable = KvarTextTableBuilder.Build(tableBeforeIn, inRader);
+        var kvarTable = KvarTextTableBuilder.Build(tableUtForKvar, inRader);
         sb.AppendLine("## Kvar (gv_Kvar)");
         sb.AppendLine(TableRenderer.Render(kvarTable));
 

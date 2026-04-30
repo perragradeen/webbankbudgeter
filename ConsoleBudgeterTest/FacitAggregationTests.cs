@@ -83,8 +83,8 @@ public class FacitAggregationTests
     public void BuildReport_ProducesAllSections(int year)
     {
         var report = BudgetReportBuilder.BuildReport(year, transactionLimit: null);
-        StringAssert.Contains(report, "Incomes (gv_incomes)");
-        StringAssert.Contains(report, "Utgifter aka - Budget Total (gv_budget)");
+        StringAssert.Contains(report, "In (gv_incomes)");
+        StringAssert.Contains(report, "Ut - Utgifter (gv_budget)");
         StringAssert.Contains(report, "Kvar (gv_Kvar)");
         StringAssert.Contains(report, "Totals (gv_Totals)");
         StringAssert.Contains(report, "Transactions (dg_Transactions)");

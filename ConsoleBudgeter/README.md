@@ -16,11 +16,11 @@ dem mot facit.
 
 Rapporten innehåller en sektion per flik i WinForms-UI:t:
 
-| Flik             | Källa i koden                        | Console-motsvarighet |
-|------------------|--------------------------------------|-----------------------|
-| Budget Total     | `UtgiftsHanterareUiBinder`           | `TableRenderer`       |
-| Kvar             | Samma bindning, data: `expected-kvar`| `TableRenderer`       |
-| Incomes          | `InBudgetUiHandler`                  | `IncomesRenderer`     |
+| Flik                 | Källa i koden                        | Console-motsvarighet |
+|----------------------|--------------------------------------|-----------------------|
+| Ut - Utgifter        | `UtgiftsHanterareUiBinder` → `gv_budget` (endast transaktionssummering) | `TableRenderer` |
+| Kvar                 | `KvarTextTableBuilder` → `gv_Kvar`   | `TableRenderer`       |
+| In                   | `InBudgetUiHandler` → `gv_incomes`   | `IncomesRenderer`     |
 | Totals           | `BindMonthAvaragesToUi`              | `TotalsRenderer`      |
 | Transactions     | `BindTransactionListToUi`            | `TransactionsRenderer`|
 

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <GeneralSettings>
-<Property Name="TransactionTestFilePath" Value="C:\Files\Dropbox\budget\Program\webbankbudgeter\BudgetterarnUi\bin\Debug\Pelles Budget.xls"/>
-	<!--<Property Name="TransactionTestFilePath" Value="C:\temp\Pelles Budget.xls"/>-->
-	<!--TODO: Byt från joxiga relativa sökvägar. ev välj från UI och spara...-->
+<Property Name="TransactionTestFilePath" Value="..\..\..\..\Pelles-budget-slim-2014-2015-gform.xlsx"/>
+	<!-- Facit 2014–2015 (809+845 rader). Alternativ: ..\..\..\..\pelles budget.xls (arbetskopia 2018–2023). Absolut sökväg fungerar också. -->
   <Property Name="CategoryPath" Value="..\..\..\..\BudgetterarnUi\Data\Categories.xml"/>
-  <!-- In-poster (gv_incomes / merge mot Budget Total): BudgetIns | FacitJson -->
-  <Property Name="InPosterSource" Value="BudgetIns"/>
+  <!-- In-poster: FacitJson = budget-in-ÅR.json i FacitBudgetInDirectory (kopieras till output). BudgetIns = TestData/BudgetIns.json -->
+  <Property Name="InPosterSource" Value="FacitJson"/>
   <!-- Vid FacitJson: katalog med budget-in-ÅR.json (relativt appens output om ej absolut) -->
   <Property Name="FacitBudgetInDirectory" Value="Facit"/>
 </GeneralSettings>

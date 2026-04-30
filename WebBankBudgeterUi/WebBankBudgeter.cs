@@ -34,8 +34,30 @@ namespace WebBankBudgeterUi
         internal TransactionHandler TransactionHandler =>
             _transactionHandler;
 
-        private string TransactionFilePath =>
+        private string? TransactionFilePathRaw =>
             generalSettingsGetter?.GetStringSetting("TransactionTestFilePath");
+
+        /// <summary>
+        /// Relativa sökvägar i XML löses mot <see cref="AppDomain.CurrentDomain.BaseDirectory"/>
+        /// (t.ex. <c>..\..\..\..\Pelles-budget-slim-2014-2015-gform.xlsx</c>).
+        /// </summary>
+        private string? ResolvedTransactionFilePath
+        {
+            get
+            {
+                var raw = TransactionFilePathRaw;
+                if (string.IsNullOrWhiteSpace(raw))
+                {
+                    return raw;
+                }
+
+                return Path.IsPathRooted(raw)
+                    ? raw
+                    : Path.GetFullPath(Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory,
+                        raw));
+            }
+        }
         private static string GetGeneralSettingsPath()
         {
             var path = Path.Combine(
@@ -79,7 +101,7 @@ namespace WebBankBudgeterUi
                 writeToOutput,
                 tableGetter,
                 CategoryFilePath,
-                TransactionFilePath
+                ResolvedTransactionFilePath!
             );
         }
 

@@ -105,9 +105,9 @@ Budgetterarn.sln
 
 | Flik | DataGridView | Beskrivning |
 |------|-------------|-------------|
+| **In** | `gv_incomes` | Budget-in per kategori och månad (facit `budget-in-*.json` / `BudgetIns.json`) |
+| **Ut - Utgifter** | `gv_budget` | Transaktionssummering per kategori och månad med summeringsrader (**samma siffror som facit `expected-ut`**; ingen ihopslagning med budget-in) |
 | **Kvar** | `gv_Kvar` | Kvar per kategori/månad: **IN + UT** (facit `expected-kvar`; utgifter som negativa belopp; placeholder-raden **"-"** visas inte här) |
-| **Incomes** | `gv_incomes` | Budgeterade inkomster per kategori och månad |
-| **Budget Total** | `gv_budget` | Alla utgifter/inkomster per kategori och månad med summor |
 | **Totals** | `gv_Totals` | Sammanfattande siffror (snitt, diff) |
 | **Transactions** | `dg_Transactions` | Alla individuella transaktioner |
 | **Reccuring Costs** | — | Återkommande kostnader (ej implementerad) |
@@ -123,11 +123,13 @@ TransactionHandler.GetTransactionsAsync()
     ↓
 FilterTransactions() → TransformToTextTableFromTransactions()
     ↓
-TextToTableOutPuter { ColumnHeaders, BudgetRows }
+TextToTableOutPuter { ColumnHeaders, BudgetRows } (en klon används till Kvar-bygge)
     ↓
 BudgetStructureBuilder.BuildStructuredBudget()
     ↓
-UtgiftsHanterareUiBinder → gv_budget (Budget Total-fliken)
+UtgiftsHanterareUiBinder → gv_budget (**Ut - Utgifter**, transaktioner endast)
+    ↓
+KvarTextTableBuilder + InBudgetMath.SnurraIgenom → gv_Kvar (**Kvar**, IN+UT)
 ```
 
 ## Konfiguration

@@ -1,4 +1,5 @@
 ﻿using BudgeterCore.Entities;
+using System.Linq;
 using RefLesses;
 using WebBankBudgeterService;
 using WebBankBudgeterService.Model;
@@ -35,7 +36,13 @@ namespace InbudgetHandler
 
             var inPoster = await _inBudgetHandler.GetInPoster();
 
-            var senasteDatum = _inBudgetHandler.HämtaSenasteDatum(inPoster, nuDatum.Value);
+            // Bara in-poster för valt kalenderår — annars pekar "senaste" på t.ex. facit 2015
+            // medan årsfiltret är 2023, inga kolumner/rader matchar och Incomes-rutnätet blir tomt.
+            var inPosterFörValtÅr = inPoster
+                .Where(i => i.YearAndMonth.Year == nuDatum.Value.Year)
+                .ToList();
+
+            var senasteDatum = _inBudgetHandler.HämtaSenasteDatum(inPosterFörValtÅr, nuDatum.Value);
             senasteDatum = senasteDatum.AddMonths(1); // Den senaste finns redan så lägg till 1 månad.
 
             if (transactionList != null)
