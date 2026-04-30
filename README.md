@@ -6,13 +6,35 @@ Personligt budgetverktyg som läser banktransaktioner och visar dem i en kategor
 
 Läs **[AGENTS.md](AGENTS.md)** innan du ändrar kod: där står bland annat att textfacit skapas med `ConsoleBudgeter` och `--out`, att facit inte “justeras” bara för gröna tester, och att du ska utgå från **faktisk** `git`-status i arbetskopian.
 
-- **`plan.md`** — endast **återstående** arbete (M0, M3/M4, regenerering av facit, öppna gap).
+- **`plan.md`** — endast **återstående** arbete (M0 status pekar på arkiv för längre checklista; M3/M4; regenerering av facit; öppna gap).
 - **`todo.md`** — korta öppna punkter.
-- **[`todo-history-arkiv.md`](todo-history-arkiv.md)** — fryst snapshot av tidigare full `plan.md` + `todo.md` (beslut, Excel-analys, facit-schema, gamla milstolpar).
+- **[`todo-history-arkiv.md`](todo-history-arkiv.md)** — fryst snapshot av tidigare full `plan.md` + `todo.md` (beslut, Excel-analys, facit-schema, gamla milstolpar) **samt nya avsnitt för avklarade milstolpar** (sök nedan).
 - **[`HISTORY.md`](HISTORY.md)** — kort aktuellt (beslut, Linux, facit-kedja).
 - **[`HISTORY_ARCHIVE.md`](HISTORY_ARCHIVE.md)** — längre bakgrund (gamla sessioner, agent-ID:n).
 
-**Rutin:** När något har **byggts, testats och verifierats**, uppdatera **`plan.md`**, **`todo.md`**, denna **`README.md`** och **`HISTORY.md`**. Arkivet **`todo-history-arkiv.md`** uppdateras bara om du medvetet fryser en ny snapshot av längre plan/todo-text.
+**Rutin:** När något har **byggts, testats och verifierats**, uppdatera **`plan.md`**, **`todo.md`**, denna **`README.md`** och **`HISTORY.md`**. Lägg genomförda checklistor/konkret leverans i **`todo-history-arkiv.md`** med tydlig rubrik (se *plan-arkiv* nedan).
+
+### Nyckelord: plan-arkiv, rensa plan, arkivera klart
+
+Använd detta när du vill **flytta färdigt arbete ur `plan.md`** så filen bara listar det som återstår — utan att tappa spårbarhet.
+
+| Sök / säg till agent | Meny |
+|---------------------|------|
+| **plan-arkiv** | Arbetsflödet nedan + filen **`todo-history-arkiv.md`**. |
+| **rensa plan** | Korta `plan.md`; detaljer ska inte dupliceras om de bara var “klar-koll”. |
+| **arkivera klart** | Klipp in genomförd text eller ny leveranspost **överst i arkivet** (ny `##`-rubrik med datum). |
+| **M0 verifiering** | Checklista för manuell M0 ligger i arkiv under *M0 verifiering — flyttad från plan*. |
+| **In Ut Kvar** | Kort leveransbeskrivning för flik- och rapportmodellen i arkiv. |
+
+**Steg (upprepa vid behov):**
+
+1. I **`plan.md`**: markera vad som är **klart** vs **kvar**. Ta bort långa avsnitt som inte längre styr arbete (t.ex. punktlistor som bara bekräftar redan automatiserat/testat).
+2. I **`todo-history-arkiv.md`**: lägg en **ny sektion** med dagens datum och klistra in flyttad text, eller en kort **leveranspost** (vad som gjorts, vilka filer/tester som är sanning).
+3. **Uppdatera pekare:** om `todo.md` eller `plan.md` refererade till borttagen §, ändra till **arkivrubrik** eller *«se arkiv § …»*.
+4. **`HISTORY.md`:** en rad eller stycke om leveransen var större (beslut, facit-regenerering, ny flikmodell).
+5. **`README.md`:** bara om processen eller pekare ändrats (denna undersektion behöver sällan ändras; uppdatera tabellen om du inför **nya** nyckelord).
+
+Arkivfilen **`todo-history-arkiv.md`** ska **inte** overskrivas helt — den innehåller redan den stora frysta **«Tidigare plan.md (fullständig)»**; nya arkivdelar läggs **ovanför** den gamla snapshotten eller som egna `##`-block efter introt.
 
 ## Typ av projekt
 

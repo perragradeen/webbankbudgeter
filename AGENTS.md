@@ -39,10 +39,11 @@ dotnet run --project ConsoleBudgeter/ConsoleBudgeter.csproj -- \
 
 Uppdatera i samma leverans där det är relevant:
 
-- `plan.md` — om milstolpar, risker eller beslut ändrats.
+- `plan.md` — om milstolpar, risker eller beslut ändrats (**endast återstående**; flyttat innehåll → arkiv enligt nedan).
 - `todo.md` — vad som är gjort / väntar användarverifiering.
 - `README.md` — kommandon, Linux/WinForms-skillnader, länkar.
 - `HISTORY.md` — kort post om **vad** som gjorts, **varför**, och ev. git-fakta (branch, merge).
+- **`todo-history-arkiv.md`** — när arbete är **klart**: lägg checklista eller leveranspost med datum (`## …`). Sökord och steg: **`README.md` → *Nyckelord: plan-arkiv***.
 
 Om `dotnet` saknas i PATH i en miljö: dokumentera att bygget inte körts där och ange exakt kommando för användaren.
 

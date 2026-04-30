@@ -1,6 +1,31 @@
 # todo-history-arkiv.md
 
 > Fryst snapshot av **plan.md** och **todo.md** (innehåll per 2026-04-27) innan de rensades till endast återstående arbete. Beslutstabeller, Excel-analys, dataflöde, facit-schema, integrations­test­spec, gamla milstolpsbeskrivningar med mera — för historik och copy-paste vid regenerering av facit.
+>
+> **Sökord:** `plan-arkiv`, `M0 verifiering`, `In Ut Kvar` (se rubriker nedan).
+
+---
+
+## In / Ut / Kvar — levererat (2026-04)
+
+WinForms-flikar: **In** (`gv_incomes`), **Ut - Utgifter** (`gv_budget`, endast transaktionssummering — ingen `BudgetTableInMerger` på den griden), **Kvar** (`gv_Kvar`, IN+UT via `KvarTextTableBuilder` / `InBudgetMath.SnurraIgenom`). Konsolrapport: `## In (gv_incomes)`, `## Ut - Utgifter (gv_budget)`, `## Kvar (gv_Kvar)`; `facit-2014-2015.txt` och snapshot-filer uppdaterade därefter.
+
+Övrigt samma period: `SkapaInPosterHanterare` tar «senaste månad» bara inom **valt kalenderår** (tom Incomes efter «Skapa tom rad» undviks); regressionstest i `SkapaInPosterTests`.
+
+---
+
+## M0 verifiering — flyttad från plan.md (2026-04)
+
+Checklista som tidigare stod under *Plan → Verifiering → M0*:
+
+1. Bekräfta att `WebBankBudgeterService/TransactionHandler.cs` exponerar det som `WebBankBudgeterUi/WebBankBudgeter.cs` förväntar (`TransactionList.Transactions`, `TransactionList.Account.AvailableAmount` m.m. — exakta rader: läs koden).
+2. **Facit-JSON (CI):** antal transaktioner per år enligt `WebBankBudgeterTests.Facit/Facit/README.md` (2014 = 809, 2015 = 845, summa 1654) täcks av `WebBankBudgeterServiceTest/FacitTransactionCountTests.cs`.
+3. **Två olika filer i repot:**
+   - `pelles budget.xls` (repo-root) är en **arbetskopia** med bl.a. **2018–2023** (ej 2014–2015). Där ska du inte förvänta dig ~1 654 rader för 2014+2015.
+   - **`Pelles-budget-slim-2014-2015-gform.xlsx`** är **facit-källan** (samma som JSON under `WebBankBudgeterTests.Facit`). `TransactionHandler` ska ge **809** transaktioner 2014 och **845** 2015 — automatiserat i `WebBankBudgeterServiceTest/TransactionHandlerM0Tests.cs` (`M0_SlimGformXlsx_MatchesFacitTransactionCounts`).
+4. **Riktig `.xls` som facit 2014–2015 kom från (manuellt / lokal maskin):** ladda via `TransactionHandler` och jämför volym/struktur med facit-JSON — kräver att filen finns på sökväg i `GeneralSettings.xml` (`TransactionTestFilePath`).
+5. Vid gamla `.xls` med **tvåsiffrigt år** i kolumn (t.ex. 14→2014) normaliserar `BudgeterCore/Entities/KontoEntry.cs` året till 2000+ vid inläsning.
+6. Vid `MSB3021`/`MSB3027` under full build: stäng körande WinForms eller bygg med `Budgetterarn.NoWindowsUi.slnf`.
 
 ---
 
@@ -22,7 +47,7 @@
 | Uppgift | Anteckning |
 |---------|-------------|
 | **Bygg och test** | Kör `dotnet build Budgetterarn.NoWindowsUi.slnf` och `dotnet test Budgetterarn.NoWindowsUi.slnf` (eller hela lösningen på Windows) och notera resultat i CI eller här när grönt. |
-| **M0** | Verifiera `TransactionHandler` mot **riktig** transaktionskälla (~1 654 rader 2014+2015) och att UI-fasaden får rätt `TransactionList` — se `plan.md` §5 M0. |
+| **M0** | Verifiera `TransactionHandler` mot **riktig** transaktionskälla (~1 654 rader 2014+2015) och att UI-fasaden får rätt `TransactionList` — se arkivet **§ M0 verifiering — flyttad från plan.md** ovan. |
 | **M4** | UI-integrationstester (`BudgetIntegrationTests` enligt plan §4.3) — kräver **Windows** / `net8.0-windows`. |
 | **M3 (valfritt utökning)** | Plan §4.2 nämner `FacitBudgetTests.cs`; dagens facit-täckning ligger bl.a. i `ConsoleBudgeterTest` och `InBudgetMathSnurraIgenomTests` — utöka om ni vill spegla exakt tabellen i planen. |
 
@@ -38,7 +63,7 @@
 
 ## Arkiverad riktning (får inte följas som “sanning”)
 
-Tidigare förslag att **Kvar** skulle vara en kopia av **Budget Total**-griden är **ersatt** av IN+UT via `SnurraIgenom` / `KvarTextTableBuilder` (se merge `console-budgeter-app-1a34` och `plan.md`).
+Tidigare förslag att **Kvar** skulle vara en kopia av **Budget Total**-griden är **ersatt** av separata flikar **Ut - Utgifter** (transaktioner) och **Kvar** (IN+UT); se arkiv **§ In / Ut / Kvar**.
 
 **Längre sessionsbakgrund** (multi-agent, gamla branch-namn, agent-ID): `HISTORY_ARCHIVE.md`.
 

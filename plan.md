@@ -1,25 +1,16 @@
 # Plan — återstående arbete
 
-Målbild: UI ska matcha struktur och data mot Excel-facit `Pelles-budget-slim-2014-2015-gform.xlsx` (se arkiv för bakgrund, flikar, kolumnlayout).
+Målbild: UI ska matcha struktur och data mot Excel-facit `Pelles-budget-slim-2014-2015-gform.xlsx` (bakgrund och gamla beslut: **`todo-history-arkiv.md`**).
 
-**Arkiv:** `todo-history-arkiv.md` innehåller tidigare full `plan.md` (beslut D1–D16, Excel-analys, dataflöde, facit-schema, integrations­test­tabeller, M1–M5 i detalj, risker) och tidigare `todo.md`.
+**Arkiv:** Där ligger fryst lång `plan`/`todo`, beslut D1–D16 — och **avklarade checklistor** som flyttats hit från denna fil (sök t.ex. *«M0 verifiering»*, *«In Ut Kvar»*).
 
-**Rutin:** Se **`AGENTS.md`**: textfacit endast via `ConsoleBudgeter --out`; efter verifierad leverans uppdatera vid behov denna fil, `todo.md`, `README.md`, `HISTORY.md`. För att **köra** `ConsoleBudgeter` på Linux utan installerad .NET-runtime på målmaskinen: självmantlad publicering (`ConsoleBudgeter/Properties/PublishProfiles/Linux-x64-SelfContained.pubxml`, skript `scripts/publish-console-budgeter-linux.sh`) — se `README.md`.
+**Rutin:** `AGENTS.md` (textfacit via `ConsoleBudgeter --out`). När arbete är klart: **arkivera** enligt `README.md` → **Nyckelord: plan-arkiv**.
 
 ---
 
-## Verifiering
+## M0 — `TransactionHandler` (status)
 
-### M0 — `TransactionHandler` och transaktionsantal
-
-1. Bekräfta att `WebBankBudgeterService/TransactionHandler.cs` exponerar det som `WebBankBudgeterUi/WebBankBudgeter.cs` förväntar (`TransactionList.Transactions`, `TransactionList.Account.AvailableAmount` m.m. — exakta rader: läs koden).
-2. **Facit-JSON (CI):** antal transaktioner per år enligt `WebBankBudgeterTests.Facit/Facit/README.md` (2014 = 809, 2015 = 845, summa 1654) täcks av `WebBankBudgeterServiceTest/FacitTransactionCountTests.cs`.
-3. **Två olika filer i repot:**
-   - `pelles budget.xls` (repo-root) är en **arbetskopia** med bl.a. **2018–2023** (ej 2014–2015). Där ska du inte förvänta dig ~1 654 rader för 2014+2015.
-   - **`Pelles-budget-slim-2014-2015-gform.xlsx`** är **facit-källan** (samma som JSON under `WebBankBudgeterTests.Facit`). `TransactionHandler` ska ge **809** transaktioner 2014 och **845** 2015 — automatiserat i `WebBankBudgeterServiceTest/TransactionHandlerM0Tests.cs` (`M0_SlimGformXlsx_MatchesFacitTransactionCounts`).
-4. **Riktig `.xls` som facit 2014–2015 kom från (manuellt / lokal maskin):** ladda via `TransactionHandler` och jämför volym/struktur med facit-JSON — kräver att filen finns på sökväg i `GeneralSettings.xml` (`TransactionTestFilePath`).
-5. Vid gamla `.xls` med **tvåsiffrigt år** i kolumn (t.ex. 14→2014) normaliserar `BudgeterCore/Entities/KontoEntry.cs` året till 2000+ vid inläsning.
-6. Vid `MSB3021`/`MSB3027` under full build: stäng körande WinForms eller bygg med `Budgetterarn.NoWindowsUi.slnf`.
+**Klart (automatiskt + dokumenterat):** antal enligt facit-JSON (`FacitTransactionCountTests`); slim `.gform.xlsx` **2014** 809 / **2015** 845 (`TransactionHandlerM0Tests`); `KontoEntry` +2000 för tvåsiffrigt år; relativa transaktionsvägar (`ResolvedTransactionFilePath`). **Utökad punktlista** (två filtyper, manuell `.xls`, bygglås): **`todo-history-arkiv.md` → avsnitt *M0 verifiering — flyttad från plan***.
 
 ---
 

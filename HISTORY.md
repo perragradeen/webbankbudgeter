@@ -3,6 +3,12 @@
 > **Syfte:** Dokumentera **vad som spelar roll idag** (beslut, buggar, verktyg, Linux) och korta **sessionsfakta**.  
 > **Underhåll:** Lägg nya upptäckter under *Del A*. Långa bakgrundsposter ligger i **`HISTORY_ARCHIVE.md`**.
 
+## 2026-04-30 — Plan rensad; arkiv utökat; README *plan-arkiv*
+
+**Syfte:** `plan.md` ska bara bära **återstående** arbete. Genomförd M0-checklista, leverans **In / Ut / Kvar** (WinForms + `ConsoleBudgeter`) och `SkapaInPoster`-årsfix flyttade till **`todo-history-arkiv.md`** med sökord. **`README.md`** beskriver arbetsflödet under **Nyckelord: plan-arkiv** så det går att återanvända med t.ex. *rensa plan* eller *arkivera klart*.
+
+---
+
 ## 2026-04-29 — M0: `TransactionHandler` + två Excel-källor; facit-JSON-räkning i CI
 
 **Syfte:** Verifiera inläsning mot `pelles budget.xls` och mot facit-filen `Pelles-budget-slim-2014-2015-gform.xlsx`.
@@ -58,7 +64,7 @@
 ### Facit och sanning
 
 - **Facit-JSON och referenstext** (`WebBankBudgeterTests.Facit/Facit/`, `facit-2014-2015.txt`) är **sanning**: koden och testerna ska anpassas till dem, inte tvärtom.
-- **`ConsoleBudgeter`** kör samma kedja som WinForms för tabell­logik: `WebBankBudgeterService` (`FacitBudgetTextTableFactory`, `BudgetStructureBuilder`, …) + `InbudgetHandler` (`BudgetTableInMerger`, `KvarTextTableBuilder`, `InBudgetMath`). Endast **textrendering** ligger i konsolprojektet.
+- **`ConsoleBudgeter` + WinForms:** samma tabellmotor (`WebBankBudgeterService`: `FacitBudgetTextTableFactory`, `BudgetStructureBuilder`, …) och **`InbudgetHandler`** (`KvarTextTableBuilder`, `InBudgetMath`). **Ut** i UI och i rapporten = transaktionssummering **utan** ihopslagning med budget-in; **Kvar** = IN+UT. `BudgetTableInMerger` finns kvar för specialfall/test — inte standard på **`gv_budget`** / rapportens Ut-sektion. Endast **textrendering** ligger i konsolprojektet.
 - **Inkomstkategori i budgetstruktur:** endast **exakt** kategorinamn `"+"` räknas som inkomst — **inte** `Contains("+")` (annars hamnar t.ex. `värnamoresor+övriga` fel).
 - **Kvar:** `IN + UT` per kategori/månad; `KvarTextTableBuilder` använder **alla** platta `BudgetRow` *före* IN-merge (union som `expected-kvar`). Raden **"-"** (placeholder) visas **inte** i Kvar-vyn.
 - **`BudgetIns.json`** kan fyllas från facit: `tools/FacitBudgetInsExport` → samma budget som `budget-in-*.json` i UI-format (672 rader = 336×2 år när båda åren exporteras).
@@ -94,9 +100,9 @@
 
 ### Tester som är “källan till sanning” på Linux
 
-- `ConsoleBudgeterTest` — snapshot av full rapport, facit-aggregation.
+- `ConsoleBudgeterTest` — snapshot av full rapport (In / Ut / Kvar-sektioner), facit-aggregation.
 - `WebBankBudgeterServiceTest` — bl.a. `TableGetter`, `BudgetStructureBuilder`, `BudgetTableInMerger`, `InBudgetMath` / `SnurraIgenom` mot facit, `TransFilterer`, `FacitBudgetInLoader`.
 
 ---
 
-*Senast uppdaterad: 2026-04-29 (merge PR #17 + #15: facit-JSON-tester, Linux self-contained publicering).*
+*Senast uppdaterad: 2026-04-30 (plan-arkiv-rutin i README; Del A om Ut/Kvar/konsol).*
